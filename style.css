@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    font-family: sans-serif;
+    transition: .25s all;
+}
+
+.site {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 100%;
+    width: 20%;
+    border-right: solid black 1px;
+}
+
+.form__input-name, .form__input-text, .form__send-button{
+    margin: 10px;
+    padding: 5px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.form__text {
+    margin: 10px;
+    padding: 5px;
+    width: 90%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.messages-container {
+    width: 80%;
+    background-color: #eaeaea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+.message {
+    width: 90%;
+    border: solid black 1px;
+    margin: 10px;
+    background-color: white;
+    position: relative;
+}
+
+.message-name {
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.message-text {
+    padding: 5px;
+    font-size: 17px;
+    font-weight: 500;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.message-time {
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
