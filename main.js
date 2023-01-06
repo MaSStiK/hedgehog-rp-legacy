@@ -90,8 +90,7 @@ function updateMessagesBin() {
 
 document.querySelector(".form__send-button").onclick = () => {
     document.querySelector(".form__send-button").disabled = true
-    let d = new Date()
-    let date = `${d.toLocaleDateString("ru-RU")} ${d.toLocaleTimeString("ru-RU")}`
+    date = new Date().toLocaleString('ru', {timeZone: 'Europe/Moscow'})
     let name = document.querySelector(".form__input-name").value
     let text = document.querySelector(".form__input-text").value
 
