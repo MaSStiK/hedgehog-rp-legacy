@@ -1,28 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VK 2028</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Ежиное РП</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <div class="site">
-        <div class="form">
-            <input class="form__input-name" type="text" name="name" placeholder="Введите имя" maxlength="25">
-            <input class="form__input-text" type="text" name="text" placeholder="Текст сообщения" maxlength="200">
-            <button class="form__send-button">Отправить</button>
-            <p class="form__text">Сообщения обновляются раз в 5 секунд (или медленее)</p>
-        </div>
-        <div class="messages-container">
-            <!-- <div class="message">
-                <div class="message-time">05.01 25:15</div>
-                <div class="message-name">Олег</div>
-                <div class="message-text">Мама я в телике</div>
+    <header>
+        <a href="./index.html" class="header__index second-button">На главную</a>
+        <a href="./authorization.html" class="header__login main-button">Войти</a>
+        <a href="./profile.html" class="header__profile second-button">
+            <img class="header__profile-image" src="" />
+            <p class="header__profile-name">Имя</p>
+        </a>
+    </header>
+    <p class="user-list__title">Участники проекта</p>
+    <div class="user-list__wrapper">
+        <div class="user-list">
+            <!-- <div class="user-block">
+                <img class="user-block__image" src="./assets/avatars/coolHedgehog.png" />
+                <div class="user-block__data">
+                    <p class="user-block__name">Имя</p>
+                    <p class="user-block__tag">Тег</p>
+                </div>
             </div> -->
         </div>
     </div>
-    <script src="./main.js"></script>
+    <script src="./scripts/firebase.js" type="module"></script>
+    <script src="./scripts/header.js" type="module"></script>
+    <script src="./scripts/index.js" type="module"></script>
 </body>
 </html>

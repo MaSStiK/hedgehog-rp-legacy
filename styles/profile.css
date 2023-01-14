@@ -1,0 +1,68 @@
+.profile-wrapper {
+    width: 300px;
+    height: 400px;
+    background-color: var(--second-bg);
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.profile-block {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-exit {
+    padding: 5px 10px;
+    margin-left: 30px;
+}
+
+.profile-block__input {
+    display: block;
+    padding: 5px;
+    outline: none;
+    background-color: var(--second-bg);
+    border: none;
+    border-bottom: solid var(--highlight-color) 1px;
+    color: var(--text-main-color);
+}
+
+.show-password {
+    height: 20px;
+    width: 20px;
+    padding: 3px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    background-color: var(--second-bg);
+    background: transparent;
+}
+
+.show-password img {
+    height: 20px;
+    overflow: hidden;
+}
+
+.show-password:hover {
+    background-color: var(--button-second-hover);
+}
+
+.profile-block__avatar {
+    background-color: var(--second-bg);
+    color: var(--text-main-color);
+    -moz-appearance: none;
+    border: none;
+    outline: none;
+    border-bottom: solid var(--highlight-color) 1px;
+}
+
+.profile-block__save {
+    padding: 5px 10px;
+    margin-left: 15px;
+}

@@ -1,0 +1,104 @@
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "header.css";
+
+:root {
+    --main-bg: #1b1a1f; /* Основной цвет фона */
+    --second-bg: #242328; /* Вторичный цвет фона */
+    --highlight-color: #6d5fe4; /* Хайлайт цвет */
+
+    --button-main-bg: #6d5fe4; /* Оновной цвет кнопки */
+    --button-main-hover: #594ec0; /* Цвет основной кнопки при наведении + border */
+    --button-second-bg: #322f39; /* Вторичный цвет кнопки */
+    --button-second-hover: #413f46; /* Цвет вторичной кнопки при наведении + border */
+    --button-noactive-border: #343238; /* border отключенной кнопки */
+    --button-danger-bg: #7a141a; /* Цвет опасной кнопки */
+    --button-danger-hover: #911820; /* Цвет опасной кнопки при наведении + border */
+    --button-text-color: #ffffff; /* Цвет текста кнопки */
+
+    --text-main-color: #e1e1e1; /* Оновной цвет текста */
+    --text-second-color: #8f8f94;/* Вторичный цвет текста */
+    --text-noactive-color: #4a4a4c; /* Цвет неактивного текста */
+    --error-color: #b00020; /* Цвет ошибки */
+
+    /* --main-bg: #1A1A1D;
+    --second-bg: #1F2833;
+    --third-color: #116466; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat" !important;
+    font-weight: 500;
+    transition: .2s all;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Montserrat";
+    font-weight: 500;
+    background-color: var(--main-bg);
+    color: var(--text-main-color);
+    height: 100%;
+    width: 100%;
+}
+
+.main-button {
+    border: solid var(--button-main-hover) 1px;
+    border-radius: 10px;
+    background-color: var(--button-main-bg);
+    color: var(--button-text-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.main-button:hover {
+    background-color: var(--button-main-hover);
+}
+
+.second-button {
+    border: solid var(--button-second-hover) 2px;
+    border-radius: 10px;
+    background-color: var(--button-second-bg);
+    color: var(--button-text-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.second-button:hover {
+    background-color: var(--button-second-hover);
+}
+
+.danger-button {
+    border: solid var(--button-danger-hover) 1px;
+    border-radius: 10px;
+    background-color: var(--button-danger-bg);
+    color: var(--button-text-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.danger-button:hover {
+    background-color: var(--button-danger-hover);
+}
+
+button:disabled {
+    cursor: default;
+    border: solid var(--button-noactive-border) 2px;
+    background-color: var(--second-bg);
+}
+
+button:disabled:hover {
+    background-color: var(--second-bg);
+}
+
+.waiting {
+    cursor: wait !important;
+}

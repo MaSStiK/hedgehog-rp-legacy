@@ -1,0 +1,114 @@
+.login-block, .registration-block {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.registration-block {
+    display: none;
+}
+
+.login-form {
+    width: 300px;
+    height: 220px;
+    background-color: var(--second-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    color: var(--text-main-color);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.registration-form {
+    width: 300px;
+    height: 470px;
+    background-color: var(--second-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    color: var(--text-main-color);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    display: block;
+    padding: 5px;
+    margin-bottom: 30px;
+    outline: none;
+    background-color: var(--second-bg);
+    border: none;
+    border-bottom: solid var(--highlight-color) 1px;
+    color: var(--text-main-color);
+    width: 100%;
+}
+
+/* фикс автоввода */
+input:-webkit-autofill, 
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.reg-password-again {
+    margin-bottom: 10px;
+}
+
+
+
+input::placeholder {
+    color: var(--text-second-color);
+}
+
+.help-text {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 10px;
+    color: var(--text-second-color);
+}
+
+.help-text:last-of-type {
+    margin-bottom: 15px;
+}
+
+
+.submit {
+    width: 100%;
+    height: 40px;
+}
+
+.to-registration, .to-login {
+    width: 300px;
+    height: 140px;
+    background-color: var(--second-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 10px;
+    
+}
+
+.to-registration__text, .to-login__text {
+    color: var(--text-main-color);
+    font-size: 13px;
+    margin-bottom:  15px;
+}
+
+.to-registration__button, .to-login__button {
+    width: 100%;
+    height: 40px;
+}
+
+@media only screen and (max-width: 1050px) {
+    
+}

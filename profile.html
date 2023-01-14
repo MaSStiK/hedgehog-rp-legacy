@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header>
+        <a href="./index.html" class="header__index second-button">На главную</a>
+        <a href="./authorization.html" class="header__login main-button">Войти</a>
+        <a href="./profile.html" class="header__profile second-button">
+            <img class="header__profile-image" src="" />
+            <p class="header__profile-name">Имя</p>
+        </a>
+    </header>
+    <div class="profile-wrapper">
+        <div class="profile-block">
+            <P class="profile-block__text">Имя</P>
+            <input type="name" class="profile-block__input input-name" readonly>
+        </div>
+        <div class="profile-block">
+            <P class="profile-block__text">Логин</P>
+            <input type="login" class="profile-block__input input-login" readonly>
+        </div>
+        <div class="profile-block">
+            <P class="profile-block__text">ID</P>
+            <input type="id" class="profile-block__input input-id" readonly>
+        </div>
+        <div class="profile-block">
+            <P class="profile-block__text">Пароль</P>
+            <input type="password" class="profile-block__input input-password" readonly>
+            <a class="show-password">
+                <img src="./assets/eye.png" alt="eye">
+            </a>
+        </div>
+        <div class="profile-block">
+            <p class="profile-block__text">Аватарка</p>
+            <select name="avatar" class="profile-block__avatar">
+                <option value="coolHedgehog" id="coolHedgehog" class="profile-block__avatar-option">Крутой ёж</option>
+                <option value="chillHedgeho" id="chillHedgeho" class="profile-block__avatar-option">Чилящий ёж</option>
+                <option value="superHedgehog" id="superHedgehog" class="profile-block__avatar-option">Супер ёж</option>
+            </select>
+        </div>
+        <button class="profile-block__save second-button">Сохранить</button>
+
+        <!-- Добавить выбор аватарки -->
+        <!-- фотки не хранить а сохранять ссылку на нее -->
+    </div>
+    <button class="profile-exit danger-button">Выйти из профиля</button>
+    <script src="./scripts/firebase.js" type="module"></script>
+    <script src="./scripts/header.js" type="module"></script>
+    <script src="./scripts/profile.js" type="module"></script>
+</body>
+</html>

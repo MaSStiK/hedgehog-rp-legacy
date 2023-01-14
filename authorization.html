@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="styles/authorization.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="login-block">
+        <form class="login-form">
+            <label for="login">Введите логин</label>
+            <input type="login" name="login" class="login" autocomplete="off" minlength="4" maxlength="24" placeholder="Логин" required>
+            <label for="password">Введите пароль</label>
+            <input type="password" name="password" class="password" minlength="4" placeholder="Пароль" required>
+            <button type="submit" class="submit main-button">Войти</button>
+        </form>
+        <div class="to-registration">
+            <div class="to-registration__wrapper">
+                <p class="to-registration__text">Также вы можете зарегистрироваться если у вас еще нету аккаунта</p>
+                <button class="to-registration__button second-button">Зарегистрироваться</button>
+            </div>
+        </div>
+    </div>
+    <div class="registration-block">
+        <form class="registration-form">
+            <label for="login">Придумайте логин</label>
+            <p class="help-text">Он понадобится для входа и будет отображаться как ваше короткое имя</p>
+            <input type="login" name="login" class="reg-login" autocomplete="off" minlength="4" maxlength="24" placeholder="Логин (4 - 24 символа)" required>
+            <label for="name">Отображаемое имя</label>
+            <p class="help-text">Имя которое будет видно всем ролевикам</p>
+            <input type="name" name="name" class="reg-name" autocomplete="off" placeholder="Имя (2 - 50 символа)" minlength="2" maxlength="50" required>
+            <label for="password">Придумайте пароль</label>
+            <p class="help-text">Пароль для входа в проект</p>
+            <input type="password" name="password" class="reg-password" placeholder="Пароль (4 - 24 символа)" minlength="4" maxlength="24" required>
+            <label for="password">Повторите пароль</label>
+            <p class="help-text">Повторите пароль которые написали выше</p>
+            <input type="password" name="password-again" class="reg-password-again" placeholder="Пароль (4 - 24 символа)" minlength="4" maxlength="24" required>
+            <p class="help-text">Все данные позже можно будет изменить в личном кабинете</p>
+            <button type="submit" class="submit main-button">Зарегистрироваться</button>
+        </form>
+        <div class="to-login">
+            <div class="to-login__wrapper">
+                <p class="to-login__text">Или войдите если у вас уже есть аккаунт</p>
+                <button class="to-login__button second-button">Войти</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./scripts/firebase.js" type="module"></script>
+    <script src="./scripts/authorization.js" type="module"></script>
+</body>
+</html>
