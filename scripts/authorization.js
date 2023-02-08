@@ -1,160 +1,206 @@
-import {getData, updateData} from "./firebase.js"
+import {getData, updateData, setInputError, setBlockWaiting, setButtonDisabled} from "./scripts-base.js"
 
 // localStorage userData
-let authorized
-let userData = null
+let userData
 try {
     userData = JSON.parse(window.localStorage.getItem("userData"))
-    document.querySelector(".login").value = userData.login
-    document.querySelector(".password").value = userData.password
-    authorized = true
 } catch {
-    authorized = false
+    userData = null
 }
 
-document.querySelector(".to-registration__button").onclick = () => {
-    document.querySelector(".login-block").style.display = "none"
-    document.querySelector(".registration-block").style.display = "flex"
+let authorized = userData ? true : false
+
+if (authorized) { // Автозаполнение если сохранен пользователь
+    $(".login-login").val(userData.login)
+    $(".login-password").val(userData.password)
 }
 
-document.querySelector(".to-login__button").onclick = () => {
-    document.querySelector(".registration-block").style.display = "none"
-    document.querySelector(".login-block").style.display = "flex"
-}
+$(".login-logo").on("click tap", () => { // Переход на главную с логина
+    window.location.href = "./index.html"
+})
 
-function checkPassword() {
-    if (document.querySelector(".reg-password").value === document.querySelector(".reg-password-again").value) {
-        document.querySelector(".reg-password-again").style.backgroundColor = "var(--second-bg)"
-        document.querySelector(".reg-password-again").removeEventListener("input", checkPassword)
+$(".reg-logo").on("click tap", () => { // Переход на главную с регистрации
+    window.location.href = "./index.html"
+})
+
+$(".switch-registeration").on("click tap", () => { // Переход на регистрацию
+    $(".login-block").css("display", "none")
+    $(".registration-block").css("display", "flex")
+})
+
+$(".switch-login").on("click tap", () => { // Переход на вход
+    $(".registration-block").css("display", "none")
+    $(".login-block").css("display", "flex")
+})
+
+let inputs = [$(".reg-login"), $(".reg-name"), $(".reg-surname"), $(".reg-password"), $(".reg-password-again")]
+inputs.forEach(element => {
+    element.on("input", () => {
+        element.val(element.val().split(' ').join('_'))
+    })
+})
+
+$(".reg-password-again").on("change", () => { // Несовпадение пароля
+    if ($(".reg-password").val() !== $(".reg-password-again").val()) {
+        setInputError(".reg-password")
+        setInputError(".reg-password__img")
+        setInputError(".reg-password-again")
+        setInputError(".reg-password-again__img")
     }
-}
+})
 
-document.querySelector(".reg-password-again").onchange = () => {
-    if (document.querySelector(".reg-password").value !== document.querySelector(".reg-password-again").value) {
-        document.querySelector(".reg-password-again").style.backgroundColor = "var(--error-color)"
-        document.querySelector(".reg-password-again").addEventListener("input", checkPassword)
+$(".login-password__img").on("click tap", () => { // Показать/спрятать пароль логина
+    if ($(".login-password__img").hasClass("show-password")) {
+        $(".login-password__img").removeClass("show-password")
+        $(".login-password__img").attr("src", "./assets/EyeOpen.svg")
+        $(".login-password").attr("type", "password")
+    } else {
+        $(".login-password__img").addClass("show-password")
+        $(".login-password__img").attr("src", "./assets/EyeClosed.svg")
+        $(".login-password").attr("type", "text")
     }
-}
+})
 
-function checkLogin() {
-    document.querySelector(".reg-login").style.backgroundColor = "var(--second-bg)"
-    document.querySelector(".reg-login").removeEventListener("input", checkLogin)
-}
+$(".reg-password__img").on("click tap", () => { // Показать/спрятать пароль регистрации
+    if ($(".reg-password__img").hasClass("show-password")) {
+        $(".reg-password__img").removeClass("show-password")
+        $(".reg-password__img").attr("src", "./assets/EyeOpen.svg")
+        $(".reg-password").attr("type", "password")
+    } else {
+        $(".reg-password__img").addClass("show-password")
+        $(".reg-password__img").attr("src", "./assets/EyeClosed.svg")
+        $(".reg-password").attr("type", "text")
+    }
+})
 
-function inputErrorLogin() {
-    document.querySelector(".login").style.backgroundColor = "var(--second-bg)"
-    document.querySelector(".login").removeEventListener("input", inputErrorLogin)
-}
+$(".reg-password-again__img").on("click tap", () => { // Показать/спрятать пароль регистрации повтор
+    if ($(".reg-password-again__img").hasClass("show-password")) {
+        $(".reg-password-again__img").removeClass("show-password")
+        $(".reg-password-again__img").attr("src", "./assets/EyeOpen.svg")
+        $(".reg-password-again").attr("type", "password")
+    } else {
+        $(".reg-password-again__img").addClass("show-password")
+        $(".reg-password-again__img").attr("src", "./assets/EyeClosed.svg")
+        $(".reg-password-again").attr("type", "text")
+    }
+})
 
-function inputErrorPassword() {
-    document.querySelector(".password").style.backgroundColor = "var(--second-bg)"
-    document.querySelector(".password").removeEventListener("input", inputErrorPassword)
-}
-
-function setButtonDisabled(name) {
-    document.querySelector(name).disabled = true
-    setTimeout(() => {
-        document.querySelector(name).disabled = false
-    }, 3000)
-}
-
+// Форма входа
 const loginForm = document.querySelector('.login-form')
 loginForm.addEventListener('submit', (event) => {
-    event.preventDefault()
-    document.querySelector("body").classList.add("waiting")
-    setButtonDisabled(".submit")
+    event.preventDefault() // Отключение базового перехода
+    setBlockWaiting("body")
+    setButtonDisabled(".login-submit")
 
     const formData = new FormData(loginForm)
     const formLogin = formData.get("login")
     const formPassword = formData.get("password")
-
-    getData("users/" + formLogin, (data) => {
-        if (data) {
-            if (data.password === formPassword) {
-                window.localStorage.setItem("userData", JSON.stringify(data))
-                document.querySelector("body").classList.remove("waiting")
-                window.location.href = "./index.html"
-            } else {
-                document.querySelector("body").classList.remove("waiting")
-                document.querySelector(".login").style.backgroundColor = "var(--error-color)"
-                document.querySelector(".login").addEventListener("input", inputErrorLogin)
-                document.querySelector(".password").style.backgroundColor = "var(--error-color)"
-                document.querySelector(".password").addEventListener("input", inputErrorPassword)
-            }
-        } else {
-            document.querySelector("body").classList.remove("waiting")
-            document.querySelector(".login").style.backgroundColor = "var(--error-color)"
-            document.querySelector(".login").addEventListener("input", inputErrorLogin)
-            document.querySelector(".password").style.backgroundColor = "var(--error-color)"
-            document.querySelector(".password").addEventListener("input", inputErrorPassword)
-        }
-    })
-})
-
-const registrationForm = document.querySelector('.registration-form')
-registrationForm.addEventListener('submit', (event) => {
-    event.preventDefault()
-    document.querySelector("body").classList.add("waiting")
-    setButtonDisabled(".submit")
-
-    const formData = new FormData(registrationForm)
-    const formLogin = formData.get("login").toString()
-    const formName = formData.get("name").toString()
-    const formPassword = formData.get("password").toString()
-    const formPasswordAgain = formData.get("password-again").toString()
-
-    if (formPassword === formPasswordAgain) {
-        try {
-            getData("users/" + formLogin, (data) => {
+    try {
+        getData("logins/" + formLogin, (data) => { // Получаем id по логину
+            getData("users/" + data.uniqueId, (data) => { // Получаем данные по id
                 try {
-                    // Установить курсор загрузки
-                    if (data) { // Если юзер с таким ником уже сущетвует
-                        throw "already registered"
+                    if (data.password === formPassword) { // Если логин не существует или пароль не подошел то ошибка
+                        window.localStorage.setItem("userData", JSON.stringify(data))
+                        window.location.href = "./index.html"
                     } else {
-                        let uniqueId = Date.now().toString().split("")
-                        uniqueId = uniqueId.splice(uniqueId.length-6, uniqueId.length)
-                        uniqueId = Number(uniqueId.join(''))
-                        let userAgent
-                        try {
-                            userAgent = navigator.userAgentData
-                        } catch {
-                            userAgent = null
-                        }
-
-                        let date = new Date().toLocaleString('ru', {timeZone: 'Europe/Moscow'})
-                        
-                        let newUser = {
-                            id: uniqueId,
-                            login: formLogin,
-                            name: formName,
-                            password: formPassword,
-                            avatar: "coolHedgehog",
-                            meta: {
-                                userAgent: userAgent,
-                                creationDate: date
-                            },
-                            fields: {
-                                postCount: 0,
-                            }
-                        }
-                        
-                        updateData("users/" + formLogin, newUser, (data) => {
-                            window.localStorage.setItem("userData", JSON.stringify(newUser))
-                            document.querySelector("body").classList.remove("waiting")
-                            location.reload()
-                        })
-                    } 
+                        throw Error
+                    }
                 } catch {
-                    document.querySelector("body").classList.remove("waiting")
-                    document.querySelector(".reg-login").style.backgroundColor = "var(--error-color)"
-                    document.querySelector(".reg-login").addEventListener("input", checkLogin)
+                    setInputError(".login-login")
+                    setInputError(".login-password")
+                    setInputError(".login-password__img")
                 }
             })
-        } catch {
-            document.querySelector("body").classList.remove("waiting")
-            document.querySelector(".reg-login").style.backgroundColor = "var(--error-color)"
-            document.querySelector(".reg-login").addEventListener("input", checkLogin)
-        }
-        
+        })
+    } catch {
+        setInputError(".login-login")
+        setInputError(".login-password")
+        setInputError(".login-password__img")
+    }
+})
+
+// Форма регистрации
+const registrationForm = document.querySelector('.registration-form')
+registrationForm.addEventListener('submit', (event) => {
+    event.preventDefault() // Отключение базового перехода
+    setBlockWaiting("body")
+    setButtonDisabled(".reg-submit")
+
+    const formData = new FormData(registrationForm)
+    const formLogin = formData.get("login")
+    const formName = formData.get("name")
+    const formSurname = formData.get("surname")
+    const formPassword = formData.get("password")
+    const formPasswordAgain = formData.get("password-again")
+    
+    if (formPassword !== formPasswordAgain) {
+        setInputError(".reg-password")
+        setInputError(".reg-password-again")
+        setInputError(".reg-password__img")
+        setInputError(".reg-password-again__img")
+        return
+    }
+
+    try {
+        getData("users/" + formLogin, (data) => {
+            try {
+                if (data) {
+                    setInputError(".reg-login")
+                    return
+                } else {
+                    let uniqueId = Math.round(Math.random() * (99999999 - 10000000) + 10000000).toString()
+                    // let date = new Date().toLocaleString('ru', {timeZone: 'Europe/Moscow'})
+                    let date = Date.now()
+                    let userAgent
+                    try {
+                        userAgent = navigator.userAgentData
+                    } catch {
+                        userAgent = null
+                    }
+
+                    let newUser = {
+                        id: uniqueId, // Уникальный id
+                        uid: uniqueId, // id который указывает пользователь
+                        login: formLogin, // Логин
+                        password: formPassword, // Пароль
+                        tag: `@${uniqueId}`, // Тег @uid
+                        name: formName, // Имя
+                        surname: formSurname, // Фамилия
+                        avatar: "../assets/avatars/coolHedgehog.png", // Аватарка
+                        meta: { // Мета данные
+                            userAgent: userAgent,
+                            creationDate: date,
+                        },
+                        about: { // Блок информации
+                            gameName: formName + " " + formSurname, // Игровое имя
+                            rpDate: date, // Дата появления в рп
+                            сountry: "", // Страна
+                            сountryRole: "", // Роль в стране
+                            race: "", // Раса
+                            languages: "", // Языки на которых говорит
+                            vkLink: "", // Ссылка на вк
+                            vkConfirmed: false, // Подтвержден ли вк
+                            status: "", // Статус
+                        },
+                        fields: { // Доп поля
+                            postCount: 0,
+                        }
+                    }
+
+                    updateData("users/" + uniqueId, newUser, (data) => { // В БД хранится по id 
+                        window.localStorage.setItem("userData", JSON.stringify(newUser))
+                        updateData("logins/" + formLogin, {uniqueId}, (data) => { // Допом записываем login = id
+                            location.reload()
+                        })
+                    })
+                }
+            } catch(error) {
+                alert(`Произошла непредвиденная ошибка на стадии отправки формы!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${error}`)
+                location.reload()
+            }
+        })
+    } catch(error) {
+        alert(`Произошла непредвиденная ошибка на стадии регистрации!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${error}`)
+        location.reload()
     }
 })

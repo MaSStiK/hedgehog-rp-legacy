@@ -1,0 +1,222 @@
+.block {
+    background-color: var(--secondary-bg);
+    border: solid var(--block-border) 1px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.modal-notification {
+    position: fixed;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 15px;
+    z-index: 999;
+    background-color: var(--button-secondary-bg);
+    border: solid var(--button-secondary-border) 1px;
+    border-radius: 10px;
+}
+
+.modal-notification-primary {
+    background-color: var(--button-primary-bg) !important;
+    border: solid var(--button-primary-border) 1px !important;
+}
+
+.modal-notification-danger {
+    background-color: var(--button-danger-bg);
+    border: solid var(--button-danger-border) 1px;
+}
+
+/* text color */
+
+.primary-text {
+    color: var(--text-primary-color);
+}
+
+.secondary-text {
+    color: var(--text-secondary-color);
+}
+
+.darker-text {
+    color: var(--text-darker-color);
+}
+
+.danger-text {
+    color: var(--text-danger-color);
+}
+
+.link-text {
+    color: var(--text-link-color);
+}
+
+.link-text:hover {
+    color: var(--text-link-hover);
+    cursor: pointer;
+}
+
+/* text size */
+
+.big-title {
+    font-size: var(--text-bigTitle-size);
+    line-height: auto;
+}
+
+.h1-title {
+    font-size: var(--text-h1Title-size);
+    line-height: auto;
+}
+
+.h1-title-break {
+    font-size: var(--text-h1Title-size);
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: auto;
+    word-break: break-word;
+}
+
+.h2-normal {
+    font-size: var(--text-h2Normal-size);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: auto;
+}
+
+.h2-normal-break {
+    font-size: var(--text-h2Normal-size);
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: auto;
+    word-break: break-word;
+}
+
+.h3-little {
+    font-size: var(--text-h3Little-size);
+    line-height: 120%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.h3-little-break {
+    font-size: var(--text-h3Little-size);
+    line-height: 120%;
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.h4-tiny {
+    font-size: var(--text-h4Tiny-size);
+    line-height: 120%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.h4-tiny-break {
+    font-size: var(--text-h4Tiny-size);
+    line-height: 120%;
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+/* buttons */
+
+.primary-button, .secondary-button, .danger-button {
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: var(--button-text-color);
+    font-size: var(--text-button-size);
+    cursor: pointer;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.primary-button {
+    background-color: var(--button-primary-bg);
+    border: solid var(--button-primary-border) 1px;
+}
+
+.primary-button:hover, .primary-button:active {
+    background-color: var(--button-primary-hover);
+}
+
+.secondary-button {
+    border: solid var(--button-secondary-border) 2px;
+    background-color: var(--button-secondary-bg);
+}
+
+.secondary-button:hover, .secondary-button:active {
+    background-color: var(--button-secondary-hover);
+}
+
+.danger-button {
+    border: solid var(--button-danger-hover) 1px;
+    background-color: var(--button-danger-bg);
+}
+
+.danger-button:hover, .danger-button:active {
+    background-color: var(--button-danger-hover);
+}
+
+button:disabled {
+    cursor: default;
+    border: solid var(--button-inactive-border) 2px;
+    background-color: var(--secondary-bg);
+    cursor: not-allowed;
+}
+
+button:disabled:hover, button:disabled:active {
+    background-color: var(--secondary-bg);
+    cursor: not-allowed;
+}
+
+/* another */
+
+input {
+    display: block;
+    padding: 5px;
+    outline: none;
+    background-color: var(--primary-bg);
+    border: solid var(--block-border) 1px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.input-password {
+    padding-right: 30px !important;
+}
+
+/* фикс автоввода */
+input:-webkit-autofill, 
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+input::placeholder {
+    color: var(--text-darker-color);
+}
+
+.input-error {
+    animation: inputError 2s ease-in;
+}
+
+@keyframes inputError {
+    0% {
+        background-color: var(--button-danger-bg);
+    }
+
+    100% {
+        background-color: var(--primary-bg);
+    }
+}

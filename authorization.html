@@ -5,51 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Авторизация</title>
+    <link rel="shortcut icon" href="./assets/logo/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/authorization.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <div class="login-block">
-        <form class="login-form">
-            <label for="login">Введите логин</label>
-            <input type="login" name="login" class="login" autocomplete="off" minlength="4" maxlength="24" placeholder="Логин" required>
-            <label for="password">Введите пароль</label>
-            <input type="password" name="password" class="password" minlength="4" placeholder="Пароль" required>
-            <button type="submit" class="submit main-button">Войти</button>
-        </form>
-        <div class="to-registration">
-            <div class="to-registration__wrapper">
-                <p class="to-registration__text">Также вы можете зарегистрироваться если у вас еще нету аккаунта</p>
-                <button class="to-registration__button second-button">Зарегистрироваться</button>
+        <img class="login-logo" src="./assets/logo/main-logotype.png" alt="logotype">
+        <form class="block login-form">
+            <label for="login" class="h1-title primary-text">Введите логин</label>
+            <input type="login" name="login" class="h2-normal primary-text login-login" autocomplete="off" minlength="4" maxlength="24" placeholder="Логин" required>
+            <label for="password" class="h1-title primary-text">Введите пароль</label>
+            <div class="login-password__wrapper">
+                <img src="./assets/EyeOpen.svg" alt="show-password" class="login-password__img">
+                <input type="password" name="password" class="h2-normal primary-text input-password login-password" minlength="4" maxlength="24" placeholder="Пароль" required>
             </div>
-        </div>
+            <button type="submit" class="primary-button login-submit">Войти</button>
+            <p class="h3-little secondary-text">Нету аккаута? <span class="h3-little link-text switch-registeration">Зарегистрируйтесь!</span></p>
+        </form>
     </div>
+
     <div class="registration-block">
-        <form class="registration-form">
-            <label for="login">Придумайте логин</label>
-            <p class="help-text">Он понадобится для входа и будет отображаться как ваше короткое имя</p>
-            <input type="login" name="login" class="reg-login" autocomplete="off" minlength="4" maxlength="24" placeholder="Логин (4 - 24 символа)" required>
-            <label for="name">Отображаемое имя</label>
-            <p class="help-text">Имя которое будет видно всем ролевикам</p>
-            <input type="name" name="name" class="reg-name" autocomplete="off" placeholder="Имя (2 - 50 символа)" minlength="2" maxlength="50" required>
-            <label for="password">Придумайте пароль</label>
-            <p class="help-text">Пароль для входа в проект</p>
-            <input type="password" name="password" class="reg-password" placeholder="Пароль (4 - 24 символа)" minlength="4" maxlength="24" required>
-            <label for="password">Повторите пароль</label>
-            <p class="help-text">Повторите пароль которые написали выше</p>
-            <input type="password" name="password-again" class="reg-password-again" placeholder="Пароль (4 - 24 символа)" minlength="4" maxlength="24" required>
-            <p class="help-text">Все данные позже можно будет изменить в личном кабинете</p>
-            <button type="submit" class="submit main-button">Зарегистрироваться</button>
-        </form>
-        <div class="to-login">
-            <div class="to-login__wrapper">
-                <p class="to-login__text">Или войдите если у вас уже есть аккаунт</p>
-                <button class="to-login__button second-button">Войти</button>
+        <img class="reg-logo" src="./assets/logo/main-logotype.png" alt="logotype">
+        <form class="block registration-form">
+            <p class="h3-little-break secondary-text reg-help">* Вместо пробела используйте _ или -</p>
+            <label for="login" class="h1-title primary-text">Придумайте логин</label>
+            <input type="login" name="login" class="h2-normal primary-text reg-login" autocomplete="off" minlength="4" maxlength="24" placeholder="Логин (4 - 24 символа)" required>
+            <label for="name" class="h1-title primary-text">Настоящее имя</label>
+            <input type="name" name="name" class="h2-normal primary-text reg-name" autocomplete="off" placeholder="Имя (1 - 16 символов)" minlength="1" maxlength="16" required>
+            <label for="surname" class="h1-title primary-text">Настоящая фамилия</label>
+            <input type="surname" name="surname" class="h2-normal primary-text reg-surname" autocomplete="off" placeholder="Фамилия (1 - 16 символов)" minlength="1" maxlength="16" required>
+            <label for="password" class="h1-title primary-text">Придумайте пароль</label>
+            <div class="reg-password__wrapper">
+                <img src="./assets/EyeOpen.svg" alt="show-password" class="reg-password__img">
+                <input type="password" name="password" class="h2-normal primary-text input-password reg-password" placeholder="Пароль (4 - 24 символа)" minlength="4" maxlength="24" required>
             </div>
-        </div>
+            <label for="password-again" class="h1-title primary-text">Повторите пароль</label>
+            <div class="reg-password-again__wrapper">
+                <img src="./assets/EyeOpen.svg" alt="show-password" class="reg-password-again__img">
+                <input type="password" name="password-again" class="h2-normal primary-text input-password reg-password-again" placeholder="Пароль (4 - 24 символа)" minlength="4" maxlength="24" required>
+            </div>
+            <button type="submit" class="primary-button reg-submit">Зарегистрироваться</button>
+            <p class="h3-little secondary-text">Есть аккаунт? <span class="h3-little link-text switch-login">Войдите!</span></p>
+        </form>
     </div>
     
-    <script src="./scripts/firebase.js" type="module"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./scripts/scripts-base.js" type="module"></script>
     <script src="./scripts/authorization.js" type="module"></script>
 </body>
 </html>

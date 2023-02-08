@@ -1,39 +1,55 @@
 /* Montserrat */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import "header.css";
+@import "elements.css";
+@import "sidebar.css";
 
 :root {
-    --main-bg: #1b1a1f; /* Основной цвет фона */
-    --second-bg: #242328; /* Вторичный цвет фона */
-    --highlight-color: #6d5fe4; /* Хайлайт цвет */
+    --primary-bg: #1B1A1F;
+    --secondary-bg: #242328;
+    --block-border: #413F46;
+    --block-highlight-border: #6D5FE4;
 
-    --button-main-bg: #6d5fe4; /* Оновной цвет кнопки */
-    --button-main-hover: #594ec0; /* Цвет основной кнопки при наведении + border */
-    --button-second-bg: #322f39; /* Вторичный цвет кнопки */
-    --button-second-hover: #413f46; /* Цвет вторичной кнопки при наведении + border */
-    --button-noactive-border: #343238; /* border отключенной кнопки */
-    --button-danger-bg: #7a141a; /* Цвет опасной кнопки */
-    --button-danger-hover: #911820; /* Цвет опасной кнопки при наведении + border */
-    --button-text-color: #ffffff; /* Цвет текста кнопки */
+    --button-primary-bg: #6D5FE4;
+    --button-primary-border: #594EC0;
+    --button-primary-hover: var(--button-primary-border);
 
-    --text-main-color: #e1e1e1; /* Оновной цвет текста */
-    --text-second-color: #8f8f94;/* Вторичный цвет текста */
-    --text-noactive-color: #4a4a4c; /* Цвет неактивного текста */
-    --error-color: #b00020; /* Цвет ошибки */
+    --button-secondary-bg: #322F39;
+    --button-secondary-border: #55515C;
+    --button-secondary-hover: var(--button-secondary-border);
+    
+    --button-inactive-bg: var(--secondary-bg);
+    --button-inactive-border: #413F46;
 
-    /* --main-bg: #1A1A1D;
-    --second-bg: #1F2833;
-    --third-color: #116466; */
+    --button-danger-bg: #7A141A;
+    --button-danger-border: #A91922;
+    --button-danger-hover: var(--button-danger-border);
+
+    --button-text-color: rgba(255,255,255, 1);
+    --text-primary-color: rgba(255,255,255, 1);
+    --text-secondary-color: rgba(255,255,255, 0.5); /* 50% прозрачность */
+    --text-darker-color: rgba(255,255,255, 0.3); /* 30% прозрачность */
+    --text-danger-color: #B00020;
+    --text-link-color: #6D5FE4;
+    --text-link-hover: #594EC0;
+
+    --text-button-size: 16px;
+    --text-bigTitle-size: 24px;
+    --text-h1Title-size: 20px;
+    --text-h2Normal-size: 16px;
+    --text-h3Little-size: 12px;
+    --text-h4Tiny-size: 10px;
 }
 
 * {
     margin: 0;
     padding: 0;
-    font-family: "Montserrat" !important;
-    font-weight: 500;
     transition: .2s all;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 500;
+    font-size: var(--text-h2Normal-size);
+    color: var(--text-primary-color);
 }
 
 html {
@@ -42,61 +58,12 @@ html {
 }
 
 body {
-    font-family: "Montserrat";
-    font-weight: 500;
-    background-color: var(--main-bg);
-    color: var(--text-main-color);
-    height: 100%;
+    background-color: var(--primary-bg);
     width: 100%;
-}
-
-.main-button {
-    border: solid var(--button-main-hover) 1px;
-    border-radius: 10px;
-    background-color: var(--button-main-bg);
-    color: var(--button-text-color);
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.main-button:hover {
-    background-color: var(--button-main-hover);
-}
-
-.second-button {
-    border: solid var(--button-second-hover) 2px;
-    border-radius: 10px;
-    background-color: var(--button-second-bg);
-    color: var(--button-text-color);
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.second-button:hover {
-    background-color: var(--button-second-hover);
-}
-
-.danger-button {
-    border: solid var(--button-danger-hover) 1px;
-    border-radius: 10px;
-    background-color: var(--button-danger-bg);
-    color: var(--button-text-color);
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.danger-button:hover {
-    background-color: var(--button-danger-hover);
-}
-
-button:disabled {
-    cursor: default;
-    border: solid var(--button-noactive-border) 2px;
-    background-color: var(--second-bg);
-}
-
-button:disabled:hover {
-    background-color: var(--second-bg);
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .waiting {

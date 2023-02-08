@@ -5,54 +5,160 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Профиль</title>
+    <link rel="shortcut icon" href="./assets/logo/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/profile.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header>
-        <a href="./index.html" class="header__index second-button">На главную</a>
-        <a href="./authorization.html" class="header__login main-button">Войти</a>
-        <a href="./profile.html" class="header__profile second-button">
-            <img class="header__profile-image" src="" />
-            <p class="header__profile-name">Имя</p>
-        </a>
-    </header>
-    <div class="profile-wrapper">
-        <div class="profile-block">
-            <P class="profile-block__text">Имя</P>
-            <input type="name" class="profile-block__input input-name" readonly>
+    <main>
+        <nav>
+            <div class="nav-wrapper">
+                <img class="nav__logo" src="./assets/logo/main-logotype.png" alt="logotype">
+                <a href="./authorization.html" class="primary-button nav__button-authorization">Авторизация</a>
+                <a href="./profile.html" class="secondary-button nav__button-authorized">
+                    <div class="authorization-avatar"></div>
+                    <div class="authorization-names">
+                        <p class="h2-normal primary-text authorization-name">Имя Фамилия</p>
+                        <p class="h3-little secondary-text authorization-id">@id123456</p>
+                    </div>
+                </a>
+                <div class="nav__line"></div>
+                <a href="./index.html" class="secondary-button">Главная</a>
+                <a href="./index.html" class="secondary-button">Новости</a>
+                <a href="./index.html" class="secondary-button">Страны</a>
+                <a href="./index.html" class="secondary-button">Рассы</a>
+                <a href="./index.html" class="secondary-button">Инструменты</a>
+                <div class="nav__line"></div>
+                <a href="./index.html" class="secondary-button">О нас</a>
+                <a href="./index.html" class="secondary-button">Обновления</a>
+            </div>
+            <div class="nav-phone__wrapper">
+                <div class="nav-phone">
+                    <div class="nav-phone__burger-wrapper">
+                        <img class="nav-phone__burger" src="./assets/Burger.svg" alt="burger">
+                    </div>
+                    <a href="./authorization.html" class="primary-button nav__button-authorization">Авторизация</a>
+                    <a href="./profile.html" class="secondary-button nav__button-authorized">
+                        <div class="authorization-avatar"></div>
+                        <div class="authorization-names">
+                            <p class="h2-normal primary-text authorization-name">Имя Фамилия</p>
+                            <p class="h3-little secondary-text authorization-id">@id123456</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="nav-phone__content">
+                    <img class="nav-phone__logo" src="./assets/logo/main-logotype.png" alt="logotype">
+                    <div class="nav__line"></div>
+                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Главная</a>
+                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Новости</a>
+                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Страны</a>
+                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Рассы</a>
+                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Инструменты</a>
+                    <div class="nav__line"></div>
+                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">О нас</a>
+                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Обновления</a>
+                </div>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="top-content">
+                <div class="block block-avatar">
+                    <div class="block-avatar__avatar">
+                        <div class="avatar-fullscreen__wrapper">
+                            <img class="avatar-fullscreen" src="./assets/Fullscreen.svg" alt="fullscreen">
+                        </div>
+                        <div class="avatar-opened">
+                            <img class="avatar-opened__img" src="./assets/avatars/coolHedgehog.png" alt="fullscreen-opened">
+                            <img class="avatar-opened__close" src="./assets/Close.svg" alt="close">
+                        </div>
+                        <div class="block-avatar__avatar-black"></div>
+                    </div>
+                </div>
+                <div class="block block-info">
+                    <div class="block-info__name">
+                        <p class="big-title primary-text info-name">Имя</p>
+                        <p class="big-title primary-text info-surname">Фамилия</p>
+                    </div>
+                    <div class="block-info__line"></div>
+                    <div class="block-info__info-wrapper">
+                        <div class="block-info__info">
+                            <div class="stroke-text__wrapper">
+                                <p class="h3-little secondary-text block-info__info-tag info-tag">@uid123456</p>
+                            </div>
+                            <div class="block-info__stroke">
+                                <p class="h2-normal-break primary-text block-info__stroke-title">Игровое имя:</p>
+                                <div class="stroke-text__wrapper">
+                                    <p class="h2-normal-break primary-text block-info__stroke-text info-gameName">Не указано</p>
+                                </div>
+                            </div>
+                            <div class="block-info__stroke">
+                                <p class="h2-normal-break primary-text block-info__stroke-title">Участник ЕРП с:</p>
+                                <div class="stroke-text__wrapper">
+                                    <p class="h2-normal-break primary-text block-info__stroke-text info-rpDate">01.01.2020</p>
+                                </div>
+                            </div>
+                            <div class="block-info__stroke">
+                                <p class="h2-normal-break primary-text block-info__stroke-title">Страна:</p>
+                                <div class="stroke-text__wrapper">
+                                    <p class="h2-normal-break primary-text block-info__stroke-text info-сountry">Не указано</p>
+                                </div>
+                            </div>
+                            <div class="block-info__stroke">
+                                <p class="h2-normal-break primary-text block-info__stroke-title">Раса:</p>
+                                <div class="stroke-text__wrapper">
+                                    <p class="h2-normal-break primary-text block-info__stroke-text info-race">Не указано</p>
+                                </div>
+                            </div>
+                            <div class="block-info__stroke">
+                                <p class="h2-normal-break primary-text block-info__stroke-title">Язык(и):</p>
+                                <div class="stroke-text__wrapper">
+                                    <p class="h2-normal-break primary-text block-info__stroke-text info-languages">Не указано</p>
+                                </div>
+                            </div>
+                            <div class="block-info__stroke">
+                                <p class="h2-normal-break primary-text block-info__stroke-title">Профиль ВК:</p>
+                                <div class="stroke-text__wrapper">
+                                    <p class="h2-normal-break primary-text block-info__stroke-text info-vkLink">Не указано</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-info__right-menu">
+                            <div class="block-info__buttons">
+                                <div class="block-info__button-wrapper block-info__button-share">
+                                    <img src="./assets/Share.svg" alt="share">
+                                </div>
+                                <div class="block-info__button-wrapper block-info__button-edit">
+                                    <img src="./assets/Edit.svg" alt="edit">
+                                </div>
+                                <div class="block-info__button-wrapper block-info__button-settings">
+                                    <img src="./assets/Private.svg" alt="edit">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-info__status-wrapper">
+                        <p class="h2-normal-break primary-text info-status">Статус не указан</p>
+                    </div>
+                    <div class="edit-modal__wrapper">
+                        <div class="block edit-modal__block">
+                            <p class="h1-title-break primary-text edit-modal__block-title">Изменение поля ""</p>
+                            <p class="h2-normal-break primary-text edit-modal__block-text">Введите новое значение:</p>
+                            <p class="h3-little-break secondary-text edit-modal__block-help">* Можно оставить поле пустым</p>
+                            <p class="h3-little-break secondary-text edit-modal__block-help2">* Вместо пробела используйте _ или -</p>
+                            <input class="h2-normal primary-text edit-modal__block-input" type="text" placeholder="1 - 16 символов" minlength="1" maxlength="16" required>
+                            <button class="primary-button edit-modal__block-button-linkout">Перейти</button>
+                            <button type="submit" class="primary-button edit-modal__block-button-change">Изменить</button>
+                            <button type="submit" class="danger-button edit-modal__block-button-report">Пожаловаться</button>
+                            <button class="secondary-button edit-modal__block-button-cancel">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="profile-block">
-            <P class="profile-block__text">Логин</P>
-            <input type="login" class="profile-block__input input-login" readonly>
-        </div>
-        <div class="profile-block">
-            <P class="profile-block__text">ID</P>
-            <input type="id" class="profile-block__input input-id" readonly>
-        </div>
-        <div class="profile-block">
-            <P class="profile-block__text">Пароль</P>
-            <input type="password" class="profile-block__input input-password" readonly>
-            <a class="show-password">
-                <img src="./assets/eye.png" alt="eye">
-            </a>
-        </div>
-        <div class="profile-block">
-            <p class="profile-block__text">Аватарка</p>
-            <select name="avatar" class="profile-block__avatar">
-                <option value="coolHedgehog" id="coolHedgehog" class="profile-block__avatar-option">Крутой ёж</option>
-                <option value="chillHedgeho" id="chillHedgeho" class="profile-block__avatar-option">Чилящий ёж</option>
-                <option value="superHedgehog" id="superHedgehog" class="profile-block__avatar-option">Супер ёж</option>
-            </select>
-        </div>
-        <button class="profile-block__save second-button">Сохранить</button>
-
-        <!-- Добавить выбор аватарки -->
-        <!-- фотки не хранить а сохранять ссылку на нее -->
-    </div>
-    <button class="profile-exit danger-button">Выйти из профиля</button>
-    <script src="./scripts/firebase.js" type="module"></script>
-    <script src="./scripts/header.js" type="module"></script>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./scripts/scripts-base.js" type="module"></script>
+    <script src="./scripts/sidebar.js" type="module"></script>
     <script src="./scripts/profile.js" type="module"></script>
 </body>
 </html>
