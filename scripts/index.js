@@ -13,8 +13,8 @@ $(".error").text("WTF БЛЯТЬ")
 try {
     sendGSRequest("users", "getData", {}, (data) => {
         try {
-            window.localStorage.setItem("allUsers", JSON.stringify(data))
-            allUsers = data
+            // window.localStorage.setItem("allUsers", JSON.stringify(data))
+            // allUsers = data
             if (authorized) { // Если авторизован то обновляем информацию о пользователе
                 // window.localStorage.setItem("userData", JSON.stringify(data[userData.id]))
                 // userData = data[userData.id]
