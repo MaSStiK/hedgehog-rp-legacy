@@ -8,6 +8,8 @@ let allUsers = JSON.parse(window.localStorage.getItem("allUsers"))
 let allNations = JSON.parse(window.localStorage.getItem("allNations"))
 let authorized = userData ? true : false
 
+$(".error").text("WTF БЛЯТЬ")
+
 try {
     sendGSRequest("users", "getData", {}, (data) => {
         try {
