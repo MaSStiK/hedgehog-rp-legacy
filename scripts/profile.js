@@ -123,7 +123,11 @@ function renderUser(userData, finalRender) {
         $(".info-vkLink").removeClass("primary-text").addClass("link-text")
         $(".info-vkLink").unbind("click tap")
         $(".info-vkLink").on("click tap", () => {
-            window.open(userData.about.vkLink, "_blank")
+            if (userData.about.vkLink.startsWith("https://")) {
+                window.open(userData.about.vkLink, "_blank")
+            } else {
+                window.open("https://" + userData.about.vkLink, "_blank")
+            }
         })
     }
 
