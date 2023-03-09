@@ -2,7 +2,7 @@ import {sendGSRequest} from "./scripts-base.js"
 
 function ready () {
 // window.localStorage.removeItem("strokaData")
-localStorage.clear()
+// localStorage.clear()
 
 // localStorage userData, allUsers, allNations
 // let userData = JSON.parse(window.localStorage.getItem("userData"))
@@ -13,6 +13,7 @@ localStorage.clear()
 
 if (window) {
     $(".userData").text("window");
+    window.localStorage.clear()
 } else {
     $(".userData").text("null");
 }
