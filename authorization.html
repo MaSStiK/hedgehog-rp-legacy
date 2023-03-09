@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
+    <div class="reg-waiting"></div>
     <div class="login-block">
         <img class="login-logo" src="./assets/logo/main-logotype.png" alt="logotype">
         <form class="block login-form">
             <label for="login" class="h1-title primary-text">Введите логин</label>
-            <input type="login" name="login" class="h2-normal primary-text login-login" autocomplete="off" minlength="4" maxlength="24" placeholder="Логин" required>
+            <input type="login" name="login" class="h2-normal primary-text login-login" minlength="4" maxlength="24" placeholder="Логин" required>
             <label for="password" class="h1-title primary-text">Введите пароль</label>
             <div class="login-password__wrapper">
                 <img src="./assets/EyeOpen.svg" alt="show-password" class="login-password__img">
@@ -30,11 +31,11 @@
         <form class="block registration-form">
             <p class="h3-little-break secondary-text reg-help">* Вместо пробела используйте _ или -</p>
             <label for="login" class="h1-title primary-text">Придумайте логин</label>
-            <input type="login" name="login" class="h2-normal primary-text reg-login" autocomplete="off" minlength="4" maxlength="24" placeholder="Логин (4 - 24 символа)" required>
+            <input type="login" name="login" class="h2-normal primary-text reg-login" minlength="4" maxlength="24" placeholder="Логин (4 - 24 символа)" required>
             <label for="name" class="h1-title primary-text">Настоящее имя</label>
-            <input type="name" name="name" class="h2-normal primary-text reg-name" autocomplete="off" placeholder="Имя (1 - 16 символов)" minlength="1" maxlength="16" required>
+            <input type="name" name="name" class="h2-normal primary-text reg-name" placeholder="Имя (1 - 16 символов)" minlength="1" maxlength="16" required>
             <label for="surname" class="h1-title primary-text">Настоящая фамилия</label>
-            <input type="surname" name="surname" class="h2-normal primary-text reg-surname" autocomplete="off" placeholder="Фамилия (1 - 16 символов)" minlength="1" maxlength="16" required>
+            <input type="surname" name="surname" class="h2-normal primary-text reg-surname" placeholder="Фамилия (1 - 16 символов)" minlength="1" maxlength="16" required>
             <label for="password" class="h1-title primary-text">Придумайте пароль</label>
             <div class="reg-password__wrapper">
                 <img src="./assets/EyeOpen.svg" alt="show-password" class="reg-password__img">

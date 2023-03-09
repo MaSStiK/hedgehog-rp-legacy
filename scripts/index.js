@@ -1,4 +1,4 @@
-import {getData} from "./scripts-base.js"
+import {sendGSRequest} from "./scripts-base.js"
 
 // window.localStorage.removeItem("userData")
 
@@ -6,7 +6,7 @@ import {getData} from "./scripts-base.js"
 let userData = JSON.parse(window.localStorage.getItem("userData"))
 let authorized = userData ? true : false
 
-getData("users/", (data) => {
+sendGSRequest("users", "getData", {}, (data) => {
     window.localStorage.setItem("allUsers", JSON.stringify(data))
     if (authorized) { // Если авторизован то обновляем информацию о пользователе
         window.localStorage.setItem("userData", JSON.stringify(data[userData.id]))

@@ -24,13 +24,13 @@
                 </a>
                 <div class="nav__line"></div>
                 <a href="./index.html" class="secondary-button">Главная</a>
-                <a href="./index.html" class="secondary-button">Новости</a>
-                <a href="./index.html" class="secondary-button">Страны</a>
-                <a href="./index.html" class="secondary-button">Рассы</a>
-                <a href="./index.html" class="secondary-button">Инструменты</a>
+                <a href="./news.html" class="secondary-button">Новости</a>
+                <a href="./countries.html" class="secondary-button">Страны</a>
+                <a href="./nations.html" class="secondary-button">Нации</a>
+                <a href="./tools.html" class="secondary-button">Инструменты</a>
                 <div class="nav__line"></div>
-                <a href="./index.html" class="secondary-button">О нас</a>
-                <a href="./index.html" class="secondary-button">Обновления</a>
+                <a href="./about.html" class="secondary-button">О нас</a>
+                <a href="./updates.html" class="secondary-button">Обновления</a>
             </div>
             <div class="nav-phone__wrapper">
                 <div class="nav-phone">
@@ -50,13 +50,13 @@
                     <img class="nav-phone__logo" src="./assets/logo/main-logotype.png" alt="logotype">
                     <div class="nav__line"></div>
                     <a href="./index.html" class="h2-normal primary-text nav-phone__button">Главная</a>
-                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Новости</a>
-                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Страны</a>
-                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Рассы</a>
-                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Инструменты</a>
+                    <a href="./news.html" class="h2-normal primary-text nav-phone__button">Новости</a>
+                    <a href="./countries.html" class="h2-normal primary-text nav-phone__button">Страны</a>
+                    <a href="./nations.html" class="h2-normal primary-text nav-phone__button">Нации</a>
+                    <a href="./tools.html" class="h2-normal primary-text nav-phone__button">Инструменты</a>
                     <div class="nav__line"></div>
-                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">О нас</a>
-                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Обновления</a>
+                    <a href="./about.html" class="h2-normal primary-text nav-phone__button">О нас</a>
+                    <a href="./updates.html" class="h2-normal primary-text nav-phone__button">Обновления</a>
                 </div>
             </div>
         </nav>
@@ -68,7 +68,7 @@
                             <img class="avatar-fullscreen" src="./assets/Fullscreen.svg" alt="fullscreen">
                         </div>
                         <div class="avatar-opened">
-                            <img class="avatar-opened__img" src="./assets/avatars/coolHedgehog.png" alt="fullscreen-opened">
+                            <img class="avatar-opened__img" src="./assets/images/base-avatar.png" alt="fullscreen-opened">
                             <img class="avatar-opened__close" src="./assets/Close.svg" alt="close">
                         </div>
                         <div class="block-avatar__avatar-black"></div>
@@ -104,9 +104,9 @@
                                 </div>
                             </div>
                             <div class="block-info__stroke">
-                                <p class="h2-normal-break primary-text block-info__stroke-title">Раса:</p>
+                                <p class="h2-normal-break primary-text block-info__stroke-title">Нация:</p>
                                 <div class="stroke-text__wrapper">
-                                    <p class="h2-normal-break primary-text block-info__stroke-text info-race">Не указано</p>
+                                    <p class="h2-normal-break primary-text block-info__stroke-text info-nation">Не указано</p>
                                 </div>
                             </div>
                             <div class="block-info__stroke">
@@ -131,11 +131,12 @@
                                     <img src="./assets/Edit.svg" alt="edit">
                                 </div>
                                 <div class="block-info__button-wrapper block-info__button-settings">
-                                    <img src="./assets/Private.svg" alt="edit">
+                                    <img src="./assets/Private.svg" alt="private-settings">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="edit-waiting"></div>
                     <div class="block-info__status-wrapper">
                         <p class="h2-normal-break primary-text info-status">Статус не указан</p>
                     </div>
@@ -146,6 +147,7 @@
                             <p class="h3-little-break secondary-text edit-modal__block-help">* Можно оставить поле пустым</p>
                             <p class="h3-little-break secondary-text edit-modal__block-help2">* Вместо пробела используйте _ или -</p>
                             <input class="h2-normal primary-text edit-modal__block-input" type="text" placeholder="1 - 16 символов" minlength="1" maxlength="16" required>
+                            <textarea class="edit-modal__block-textarea" wrap="off" maxlength="500"></textarea>
                             <button class="primary-button edit-modal__block-button-linkout">Перейти</button>
                             <button type="submit" class="primary-button edit-modal__block-button-change">Изменить</button>
                             <button type="submit" class="danger-button edit-modal__block-button-report">Пожаловаться</button>

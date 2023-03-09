@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нации</title>
+    <link rel="shortcut icon" href="./assets/logo/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles/nation.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="nav-wrapper">
+                <img class="nav__logo" src="./assets/logo/main-logotype.png" alt="logotype">
+                <a href="./authorization.html" class="primary-button nav__button-authorization">Авторизация</a>
+                <a href="./profile.html" class="secondary-button nav__button-authorized">
+                    <div class="authorization-avatar"></div>
+                    <div class="authorization-names">
+                        <p class="h2-normal primary-text authorization-name">Имя Фамилия</p>
+                        <p class="h3-little secondary-text authorization-id">@id123456</p>
+                    </div>
+                </a>
+                <div class="nav__line"></div>
+                <a href="./index.html" class="secondary-button">Главная</a>
+                <a href="./news.html" class="secondary-button">Новости</a>
+                <a href="./countries.html" class="secondary-button">Страны</a>
+                <a href="./nations.html" class="secondary-button nav-active-link">Нации</a>
+                <a href="./tools.html" class="secondary-button">Инструменты</a>
+                <div class="nav__line"></div>
+                <a href="./about.html" class="secondary-button">О нас</a>
+                <a href="./updates.html" class="secondary-button">Обновления</a>
+            </div>
+            <div class="nav-phone__wrapper">
+                <div class="nav-phone">
+                    <div class="nav-phone__burger-wrapper">
+                        <img class="nav-phone__burger" src="./assets/Burger.svg" alt="burger">
+                    </div>
+                    <a href="./authorization.html" class="primary-button nav__button-authorization">Авторизация</a>
+                    <a href="./profile.html" class="secondary-button nav__button-authorized">
+                        <div class="authorization-avatar"></div>
+                        <div class="authorization-names">
+                            <p class="h2-normal primary-text authorization-name">Имя Фамилия</p>
+                            <p class="h3-little secondary-text authorization-id">@id123456</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="nav-phone__content">
+                    <img class="nav-phone__logo" src="./assets/logo/main-logotype.png" alt="logotype">
+                    <div class="nav__line"></div>
+                    <a href="./index.html" class="h2-normal primary-text nav-phone__button">Главная</a>
+                    <a href="./news.html" class="h2-normal primary-text nav-phone__button">Новости</a>
+                    <a href="./countries.html" class="h2-normal primary-text nav-phone__button">Страны</a>
+                    <a href="./nations.html" class="h2-normal primary-text nav-phone__button nav-active-link">Нации</a>
+                    <a href="./tools.html" class="h2-normal primary-text nav-phone__button">Инструменты</a>
+                    <div class="nav__line"></div>
+                    <a href="./about.html" class="h2-normal primary-text nav-phone__button">О нас</a>
+                    <a href="./updates.html" class="h2-normal primary-text nav-phone__button">Обновления</a>
+                </div>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="nations">
+                <div class="nations__all-wrapper">
+                    <div class="nations__all-title-wrapper">
+                        <p class="big-title primary-text nations__all-title">Все нации</p>
+                        <p class="big-title secondary-text nations__all-change-user">Мои нации</p>
+                    </div>
+                    <div class="nations__all">
+                        <!-- <div class="block nations-container">
+                            <div class="nation">
+                                <div class="nation__image" style="background-image: url(./assets/images/base-nation.png);"></div>
+                                <div class="nation__content">
+                                    <p class="h1-title primary-text nation__content-title">Единорог ебанутый</p>
+                                    <p class="h3-little-break secondary-text nation__content-text">Единороги самые крутые программисты я нюхал кокс это было прекрасно да да я вот такой крутой а ты нет</p>
+                                </div>
+                                <div class="nation__after">
+                                    <a href="./profile.html" class="nation__after-profile">
+                                        <div class="nation__after-avatar" style="background-image: url(./assets/images/base-avatar.png);"></div>
+                                        <div class="nation__after-names">
+                                            <p class="h2-normal primary-text nation__after-name">Лютик блять</p>
+                                            <p class="h3-little-break secondary-text">Автор</p>
+                                        </div>
+                                    </a>
+                                    <div class="nation__after-buttons">
+                                        <div class="nation__after-buttons-wrapper nation__after-button-enter">
+                                            <img src="./assets/Enter.svg" alt="enter">
+                                        </div>
+                                        <div class="nation__after-buttons-wrapper nation__after-button-edit">
+                                            <img src="./assets/Edit.svg" alt="edit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- <div class="nations__user-wrapper">
+                    <div class="nations__user-title-wrapper">
+                        <p class="big-title secondary-text nations__user-change-all">Все нации</p>
+                        <p class="big-title primary-text nations__user-title">Мои нации</p>
+                    </div>
+                    <div class="nations__user">
+                        
+                    </div>
+                </div> -->
+                
+            </div>
+            <div class="create-waiting"></div>
+            <div class="create-modal__wrapper">
+                <div class="block create-modal__block">
+                    <p class="h1-title-break primary-text create-modal__block-title">Создание нации</p>
+                    <p class="h2-normal-break primary-text create-modal__block-text">Название нации:</p>
+                    <p class="h3-little-break secondary-text create-modal__block-help">* К примеру "Еж" или "Единорог"</p>
+                    <input class="h2-normal primary-text create-modal__block-name" type="text" placeholder="1 - 24 символов" minlength="1" maxlength="24" required>
+                    <p class="h2-normal-break primary-text create-modal__block-text">Описание нации:</p>
+                    <p class="h3-little-break secondary-text create-modal__block-help">* Можно оставить поле пустым</p>
+                    <textarea class="create-modal__block-textarea" wrap="off" placeholder="1 - 500 символов" maxlength="500"></textarea>
+                    <p class="h2-normal-break primary-text create-modal__block-text">Изображение нации:</p>
+                    <p class="h3-little-break secondary-text create-modal__block-help">* Можно оставить поле пустым</p>
+                    <input class="h2-normal primary-text create-modal__block-image" type="text" placeholder="Ссылка на изображение" minlength="1" maxlength="300">
+                    <button type="submit" class="primary-button create-modal__block-button-save">Создать</button>
+                    <button type="submit" class="primary-button create-modal__block-button-change">Изменить</button>
+                    <button class="danger-button create-modal__block-button-delete">Удалить</button>
+                    <button class="danger-button create-modal__block-button-confirm">Точно удалить?</button>
+                    <button class="secondary-button create-modal__block-button-cancel">Отмена</button>
+                </div>
+            </div>
+            <div class="enter-modal__wrapper">
+                <div class="block enter-modal__block">
+                    <p class="h1-title-break primary-text enter-modal__block-title">Выбрать свою нацию</p>
+                    <p class="h2-normal-break primary-text enter-modal__block-text">Вы уверены что хотите присоединиться к нации ""?</p>
+                    <button type="submit" class="primary-button enter-modal__block-button-change">Выбрать</button>
+                    <button class="secondary-button enter-modal__block-button-cancel">Отмена</button>
+                </div>
+            </div>
+            <div class="block bottom">
+                <div class="bottom__find">
+                    <input class="h2-normal primary-text bottom__find-input" type="text" name="nation" placeholder="Найти нацию" minlength="1" maxlength="48">
+                    <!-- <button class="secondary-button bottom__find-button">Найти</button> -->
+                    <!-- <div class="bottom__find-icon">
+                        <img src="./assets/Search.svg" alt="search">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./scripts/scripts-base.js" type="module"></script>
+    <script src="./scripts/sidebar.js" type="module"></script>
+    <script src="./scripts/nation.js" type="module"></script>
+</body>
+</html>

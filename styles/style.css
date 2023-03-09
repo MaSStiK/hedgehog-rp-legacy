@@ -4,6 +4,9 @@
 @import "sidebar.css";
 
 :root {
+    prefers-color-scheme: dark;
+    color-scheme: dark;
+    
     --primary-bg: #1B1A1F;
     --secondary-bg: #242328;
     --block-border: #413F46;

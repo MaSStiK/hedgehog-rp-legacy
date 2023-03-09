@@ -1,4 +1,4 @@
-import {updateData, setInputError} from "./scripts-base.js"
+import {sendGSRequest, sendVkRequest, setButtonDisabled,setInputError} from "./scripts-base.js"
 
 // window.localStorage.removeItem("userData")
 
@@ -11,7 +11,7 @@ if (!authorized) {
     window.location.href = "./index.html"
 }
 
-$(".password-block__content-text").text(`Ваш текущий пароль: ${userData.password[0]}********${userData.password.slice(-1)}`)
+// $(".password-block__content-text").text(`Ваш текущий пароль: ${userData.password[0]}********${userData.password.slice(-1)}`)
 
 $(".old-password__img").on("click tap", () => { // Показать/спрятать старый пароль
     if ($(".old-password__img").hasClass("show-password")) {
@@ -54,7 +54,7 @@ $(".change-password__button").on("click tap", () => {
     $(".change-password__wrapper").css("display", "flex")
 })
 
-$(".new-password-again").on("change", () => {
+$(".new-password-again").on("change", () => { // Если пароли не совпадают
     if ($(".new-password").val() !== $(".new-password-again").val()) {
         setInputError(".new-password")
         setInputError(".new-password__img")
@@ -64,26 +64,40 @@ $(".new-password-again").on("change", () => {
 })
 
 let inputs = [$(".old-password"), $(".new-password"), $(".new-password-again")]
-inputs.forEach(element => {
+inputs.forEach(element => { // Замена паролей
     element.on("input", () => {
         element.val(element.val().split(' ').join('_'))
     })
 })
 
 $(".save-button").on("click tap", () => {
-    if ($(".old-password").val() === "" || $(".old-password").val() !== userData.password) {
+    if ($(".old-password").val() === "") { // Если поле старого пароля пустое
         setInputError(".old-password")
         setInputError(".old-password__img")
         return
     }
-
-    if ($(".new-password").val() === $(".new-password-again").val()) {
-        userData.password = $(".new-password").val()
-        updateData("users/" + userData.id, userData, (data) => {
-            window.localStorage.setItem("userData", JSON.stringify(userData))
-            $(".change-password__button").css("display", "block")
-            $(".change-password__wrapper").css("display", "none")
-            location.reload()
+    
+    if ($(".new-password").val() === $(".new-password-again").val()) { // Если повтор пароля совпадает
+        $(".settings-waiting").addClass("settings-waiting-show")
+        let oldPassword = $(".old-password").val()
+        let newPassword = $(".new-password").val()
+        sendGSRequest("usersPasswords", "getValueCompareById", {id: userData.id, value: oldPassword}, (data) => {
+            if (data) { // Если старый пароль совпадает
+                sendGSRequest("usersPasswords", "updateValueById", {id: userData.id, value: newPassword}, (data) => {
+                    let message = `Смена пароля:\nПользователь: ${userData.name} ${userData.surname} (${userData.id})\nПароль: ${oldPassword} > ${newPassword}`
+                    sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
+                        (data) => {
+                            if (data.response) { // success
+                                location.reload()
+                            }
+                        }
+                    )
+                })
+            } else {
+                setInputError(".old-password")
+                setInputError(".old-password__img")
+                $(".settings-waiting").removeClass("settings-waiting-show")
+            }
         })
     } else {
         setInputError(".new-password")
@@ -93,7 +107,7 @@ $(".save-button").on("click tap", () => {
     }
 })
 
-$(".cancel-button").on("click tap", () => {
+$(".cancel-button").on("click tap", () => { // Отмена - обнуление полей
     $(".change-password__button").css("display", "block")
     $(".change-password__wrapper").css("display", "none")
     $(".old-password").val("")

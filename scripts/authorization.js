@@ -1,4 +1,4 @@
-import {getData, updateData, setInputError, setBlockWaiting, setButtonDisabled} from "./scripts-base.js"
+import {sendGSRequest, sendVkRequest, setInputError, setBlockWaiting, setButtonDisabled} from "./scripts-base.js"
 
 // localStorage userData
 let userData
@@ -7,13 +7,12 @@ try {
 } catch {
     userData = null
 }
-
 let authorized = userData ? true : false
 
-if (authorized) { // Автозаполнение если сохранен пользователь
-    $(".login-login").val(userData.login)
-    $(".login-password").val(userData.password)
-}
+// if (authorized) { // Автозаполнение если сохранен пользователь
+//     $(".login-login").val(userData.login)
+//     $(".login-password").val(userData.password)
+// }
 
 $(".login-logo").on("click tap", () => { // Переход на главную с логина
     window.location.href = "./index.html"
@@ -89,30 +88,50 @@ $(".reg-password-again__img").on("click tap", () => { // Показать/спр
 const loginForm = document.querySelector('.login-form')
 loginForm.addEventListener('submit', (event) => {
     event.preventDefault() // Отключение базового перехода
-    setBlockWaiting("body")
+    // setBlockWaiting("body")
     setButtonDisabled(".login-submit")
 
     const formData = new FormData(loginForm)
     const formLogin = formData.get("login")
     const formPassword = formData.get("password")
+    $(".reg-waiting").addClass("reg-waiting-show")
     try {
-        getData("logins/" + formLogin, (data) => { // Получаем id по логину
-            getData("users/" + data.uniqueId, (data) => { // Получаем данные по id
-                try {
-                    if (data.password === formPassword) { // Если логин не существует или пароль не подошел то ошибка
-                        window.localStorage.setItem("userData", JSON.stringify(data))
-                        window.location.href = "./index.html"
-                    } else {
-                        throw Error
-                    }
-                } catch {
-                    setInputError(".login-login")
-                    setInputError(".login-password")
-                    setInputError(".login-password__img")
-                }
-            })
+        sendGSRequest("usersLogins", "findValueInRange", {range: "B:B", value: formLogin}, (data) => {
+            try {
+                let idRange = "A" + data.split("")[1] // Получаем рендж айдишника
+                sendGSRequest("usersPasswords", "getDataByRange", {range: idRange}, (data) => { // Получили айдишник
+                    let user_id = data
+                    sendGSRequest("usersPasswords", "getValueCompareById", {id: user_id, value: formPassword}, (data) => {
+                        if (data) {  // Если пароль совпадает то входим
+                            sendGSRequest("users", "getDataById", {id: user_id}, (data) => {
+                                let user_data = JSON.parse(data)
+                                let message = `Авторизация:\nПользователь: ${user_data.name} ${user_data.surname} (${user_data.id})`
+                                sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
+                                    (data) => {
+                                        if (data.response) { // success
+                                            window.localStorage.setItem("userData", JSON.stringify(user_data))
+                                            window.location.href = "./index.html"
+                                        }
+                                    }
+                                )
+                            })
+                        } else { // Не совпал пароль
+                            $(".reg-waiting").removeClass("reg-waiting-show")
+                            setInputError(".login-login")
+                            setInputError(".login-password")
+                            setInputError(".login-password__img")
+                        }
+                    })
+                })
+            } catch {
+                $(".reg-waiting").removeClass("reg-waiting-show")
+                setInputError(".login-login")
+                setInputError(".login-password")
+                setInputError(".login-password__img") 
+            }
         })
     } catch {
+        $(".reg-waiting").removeClass("reg-waiting-show")
         setInputError(".login-login")
         setInputError(".login-password")
         setInputError(".login-password__img")
@@ -123,7 +142,7 @@ loginForm.addEventListener('submit', (event) => {
 const registrationForm = document.querySelector('.registration-form')
 registrationForm.addEventListener('submit', (event) => {
     event.preventDefault() // Отключение базового перехода
-    setBlockWaiting("body")
+    // setBlockWaiting("body")
     setButtonDisabled(".reg-submit")
 
     const formData = new FormData(registrationForm)
@@ -142,58 +161,56 @@ registrationForm.addEventListener('submit', (event) => {
     }
 
     try {
-        getData("users/" + formLogin, (data) => {
+        // Если в столбике B есть такой логин, то не создаем пользоваеля
+        $(".reg-waiting").addClass("reg-waiting-show")
+        sendGSRequest("usersLogins", "findValueInRange", {range:"B:B", value: formLogin}, (data) => {
             try {
-                if (data) {
+                if (data) { // Если найдено идентичное совпадение
                     setInputError(".reg-login")
+                    $(".reg-waiting").removeClass("reg-waiting-show")
                     return
-                } else {
-                    let uniqueId = Math.round(Math.random() * (99999999 - 10000000) + 10000000).toString()
-                    // let date = new Date().toLocaleString('ru', {timeZone: 'Europe/Moscow'})
-                    let date = Date.now()
-                    let userAgent
-                    try {
-                        userAgent = navigator.userAgentData
-                    } catch {
-                        userAgent = null
+                }
+                let id = Math.round(Math.random() * (99999999 - 10000000) + 10000000).toString()
+                // let date = new Date().toLocaleString('ru', {timeZone: 'Europe/Moscow'})
+                let date = Date.now()
+                let newUser = {
+                    id: id, // Уникальный id
+                    uid: id, // id который указывает пользователь
+                    // login: formLogin, // Логин
+                    // password: formPassword, // Пароль
+                    name: formName, // Имя
+                    surname: formSurname, // Фамилия
+                    avatar: "https://sun9-31.userapi.com/impg/G2LIF9CtQnTtQ4P9gRxJmvQAa1_64hPsOAe4sQ/E7KVVKP75MM.jpg?size=427x320&quality=96&sign=e5665d0791b6119869af1b0ee46bec8f&type=album", // Аватарка
+                    creationDate: date,
+                    about: { // Блок информации
+                        gameName: formName + " " + formSurname, // Игровое имя
+                        rpDate: date, // Дата появления в рп
+                        сountry: "", // Страна
+                        сountryRole: "", // Роль в стране
+                        nation: "", // Нация
+                        languages: "", // Языки на которых говорит
+                        vkLink: "", // Ссылка на вк
+                        status: "", // Статус
+                    },
+                    fields: { // Доп поля
+                        postCount: 0,
                     }
-
-                    let newUser = {
-                        id: uniqueId, // Уникальный id
-                        uid: uniqueId, // id который указывает пользователь
-                        login: formLogin, // Логин
-                        password: formPassword, // Пароль
-                        tag: `@${uniqueId}`, // Тег @uid
-                        name: formName, // Имя
-                        surname: formSurname, // Фамилия
-                        avatar: "../assets/avatars/coolHedgehog.png", // Аватарка
-                        meta: { // Мета данные
-                            userAgent: userAgent,
-                            creationDate: date,
-                        },
-                        about: { // Блок информации
-                            gameName: formName + " " + formSurname, // Игровое имя
-                            rpDate: date, // Дата появления в рп
-                            сountry: "", // Страна
-                            сountryRole: "", // Роль в стране
-                            race: "", // Раса
-                            languages: "", // Языки на которых говорит
-                            vkLink: "", // Ссылка на вк
-                            vkConfirmed: false, // Подтвержден ли вк
-                            status: "", // Статус
-                        },
-                        fields: { // Доп поля
-                            postCount: 0,
-                        }
-                    }
-
-                    updateData("users/" + uniqueId, newUser, (data) => { // В БД хранится по id 
-                        window.localStorage.setItem("userData", JSON.stringify(newUser))
-                        updateData("logins/" + formLogin, {uniqueId}, (data) => { // Допом записываем login = id
-                            location.reload()
+                }
+                sendGSRequest("users", "addDataById", newUser, (data) => { // Добовляем в бд                    
+                    window.localStorage.setItem("userData", JSON.stringify(newUser))
+                    sendGSRequest("usersLogins", "addValueById", {id: id,value: formLogin}, (data) => { // Допом записываем id / login
+                        sendGSRequest("usersPasswords", "addValueById", {id: id, value: formPassword}, (data) => { // Допом записываем id / password
+                            let message = `Регистрация:\nПользователь: ${formName} ${formSurname} (${id})\nДанные: ${formLogin} ${formPassword}`
+                            sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
+                                (data) => {
+                                    if (data.response) { // success
+                                        location.reload()
+                                    }
+                                }
+                            )
                         })
                     })
-                }
+                })
             } catch(error) {
                 alert(`Произошла непредвиденная ошибка на стадии отправки формы!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${error}`)
                 location.reload()

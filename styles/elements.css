@@ -193,6 +193,17 @@ input {
     box-sizing: border-box;
 }
 
+textarea {
+    display: block;
+    padding: 5px;
+    outline: none;
+    background-color: var(--primary-bg);
+    border: solid var(--block-border) 1px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    resize: none;
+}
+
 .input-password {
     padding-right: 30px !important;
 }

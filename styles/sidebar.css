@@ -26,12 +26,14 @@ nav {
 
 .nav-wrapper .nav__button-authorization, .nav-phone .nav__button-authorization {
     width: 200px;
+    /* opacity: 0; */
 }
 
 .nav-wrapper .nav__button-authorized, .nav-phone .nav__button-authorized {
     width: 200px;
     justify-content: flex-start;
     display: none;
+    /* opacity: 0; */
 }
 
 .nav__line {
@@ -160,7 +162,8 @@ nav {
 
 .nav-opened {
     height: 100%;
-    background-color: #0000007a;
+    z-index: 999;
+    /* background-color: #0000007a; */
 }
 
 .nav-active-link {
@@ -174,6 +177,7 @@ nav {
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
+    position: relative;
 }
 
 @media screen and (max-width: 1020px) {
@@ -195,6 +199,11 @@ nav {
     .content {
         width: 100%;
         margin-top: 50px;
+    }
+
+    .nav-opened {
+        height: 100%;
+        background-color: #0000007a;
     }
 }
 

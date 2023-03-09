@@ -15,7 +15,7 @@ let authorized = userData ? true : false
 if (authorized) { // Профиль в сайдбаре если авторизован
     $(".authorization-avatar").css("background-image", `url(${userData.avatar})`)
     $(".authorization-name").text(`${userData.name} ${userData.surname}`)
-    $(".authorization-id").text(userData.tag)
+    $(".authorization-id").text("@" + userData.uid)
     $(".nav__button-authorized").attr("href", "./profile.html?id=" + userData.id)
     $(".nav__button-authorization").attr("style", "display: none !important")
     $(".nav__button-authorized").attr("style", "display: flex !important")

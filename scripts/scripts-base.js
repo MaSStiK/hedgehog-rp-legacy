@@ -30,6 +30,7 @@ export function createNotification(text, color=null) {
     setTimeout(() => {$(".modal-notification").first().remove()}, 3000)
 }
 
+// Ивенты онлайн / оффлайн
 $(window).on("offline", (event) => {
     createNotification("Потеряно интернет соединение", "danger")
 })
@@ -37,79 +38,84 @@ $(window).on("online", (event) => {
     createNotification("Интернет соединение восстановлено", "primary")
 })
 
-// FireBase https://console.firebase.google.com/u/0/project/ejinoerp-a8d5c/database/ejinoerp-a8d5c-default-rtdb/data
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyB17LQ4qvBFjCsKBG4736K5_aApSUJt9Uw",
-  authDomain: "ejinoerp-a8d5c.firebaseapp.com",
-  databaseURL: "https://ejinoerp-a8d5c-default-rtdb.firebaseio.com",
-  projectId: "ejinoerp-a8d5c",
-  storageBucket: "ejinoerp-a8d5c.appspot.com",
-  messagingSenderId: "115569943731",
-  appId: "1:115569943731:web:1a5e6a9e7c9c5c8acdbcc6",
-  measurementId: "G-KS0M0ZBHFR"
-};
+// Google Sheets
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzmEh-mzZiBmqynucvNcpuwk6KCReRiEA09NuN9YkZJhSyfEPgpcDmQCmEZFfAJZEE0/exec"
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-
-import {getDatabase, ref, get, set, child, update, remove} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
-
-const db = getDatabase()
-
-export function deleteData(link, func=null) {
-     // link = posts/
-    remove(ref(db, link), data).then(() => {
-        if (func) {func("removed")}
-    }).catch((error) => {
-        if (func) {func(error)}
+export function sendGSRequest(sheet, action, data={}, func=null) {
+    const sendData = {
+        sheet: sheet
+    }
+    switch(action) {
+        // actions:
+        case "getEvent": // getEvent sendGSRequest("any", "getEvent", {}, (data) => {})
+            sendData.data = JSON.stringify(data)
+            break;
+        case "getData": // getData sendGSRequest("sheetName", "getData", {}, (data) => {})
+            break;
+        
+        case "getDataByRange": // getData sendGSRequest("sheetName", "getDataByRange", {range: A:A}, (data) => {})
+            sendData.data = JSON.stringify(data)
+            sendData.range = data.range
+            break;
+        case "getDataById": // getData sendGSRequest("sheetName", "getDataById", {anyData, id: int}, (data) => {})
+            sendData.data = JSON.stringify(data)
+            sendData.id = data.id
+            break;
+        case "findValueInRange": // getData sendGSRequest("sheetName", "findValueInRange", {anyData, range: A:A, value: str}, (data) => {})
+            sendData.data = JSON.stringify(data)
+            sendData.range = data.range
+            sendData.value = data.value
+            break;
+        case "getValueCompareById": // getData sendGSRequest("sheetName", "getValueCompareById", {anyData, id: int, value: str}, (data) => {})
+            sendData.data = JSON.stringify(data)
+            sendData.id = data.id
+            sendData.value = data.value
+            break;
+        case "addDataById": // getData sendGSRequest("sheetName", "addDataById", {anyData, id: int}, (data) => {})
+            sendData.data = JSON.stringify(data)
+            sendData.id = data.id
+            break;
+        case "addValueById": // getData sendGSRequest("sheetName", "addValueById", {anyData, id: int, value: str}, (data) => {})
+            sendData.data = JSON.stringify(data)
+            sendData.id = data.id
+            sendData.value = data.value
+            break;
+        case "updateDataById": // getData sendGSRequest("sheetName", "updateDataById", {anyData, id: int}, (data) => {})
+            sendData.data = JSON.stringify(data)
+            sendData.id = data.id
+            break;
+        case "updateValueById": // getData sendGSRequest("sheetName", "updateValueById", {anyData, id: int, value: str}, (data) => {})
+            sendData.data = JSON.stringify(data)
+            sendData.id = data.id
+            sendData.value = data.value
+            break;
+        case "deleteRowById": // getData sendGSRequest("sheetName", "deleteRowById", {anyData, id: int}, (data) => {})
+            sendData.data = JSON.stringify(data)
+            sendData.id = data.id
+            break;
+        default:
+            break;
+    }
+    $.ajax({
+        crossDomain: true,
+        url: GoogleSheetURL + "?action=" + action,
+        method: "GET",
+        dataType: 'JSONP',
+        data: sendData,
+        success: (res) => {
+            if (func) {func(res)}
+        }
     })
 }
 
-
-export function updateData(link, data, func=null) {
-     // link = posts/
-    update(ref(db, link), data).then(() => {
-        if (func) {func("updated")}
-    }).catch((error) => {
-        if (func) {func(error)}
-    })
-}
-
-export function getData(link, func=null) {
-    // link = posts/
-    get(child(ref(db), link)).then((data) => {
-        if (func) {func(data.val())}
-            
-    }).catch((error) => {
-        if (func) {func(error)}
-    })
-}
-
-export function setData(link, data, func=null) {
-    // link = posts/
-    set(ref(db, link), data).then(() => {
-        if (func) {func("set")}
-    }).catch((error) => {
-        if (func) {func(error)}
-    })
-}
-
+// sendGSRequest("users", "updateDataById", {id: 4411, name: "увагуе"}, (data) => {
+//     console.log(data);
+// })
 
 // VK API
 let token = "vk1.a.PfD30rLv8JpK3-RBjksczmShBSymiZ0gxlZn2FixH-B8OG-MA_GVSB-aOFlvydrzzyAYpPfs6Q8_fRUWJxapzjyHpcuzBynC2baY_fU0WkzgqC5yK1-tvY9fGEtBdnzZdOvFI1EPbst2XPt-yyR6JxTN7-T51bSaIhjNzcjPpWo1XD7DBhdAaJLBN1o0I36R31L0ORlG4wuLc1i4p2Jpaw"
 function getMethodUrl(method, params) {
-    if (!method) {
-        console.log("Method not specified")
-    } 
     params = params || {}
     params['access_token'] = token
     params['v'] = "5.131"
@@ -124,3 +130,9 @@ export function sendVkRequest(method, params, func=null) {
         success: func,
     })
 }
+
+// 2000000001 Рп беседа
+// 2000000002 test_chamber
+// 2000000005 logs
+// 2000000006 Географ Жалобы
+// 2000000007 Географ Логи

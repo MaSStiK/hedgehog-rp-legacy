@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ежиное РП</title>
+    <title>Страны</title>
     <link rel="shortcut icon" href="./assets/logo/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/countries.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
@@ -25,7 +25,7 @@
                 <div class="nav__line"></div>
                 <a href="./index.html" class="secondary-button">Главная</a>
                 <a href="./news.html" class="secondary-button">Новости</a>
-                <a href="./countries.html" class="secondary-button">Страны</a>
+                <a href="./countries.html" class="secondary-button nav-active-link">Страны</a>
                 <a href="./nations.html" class="secondary-button">Нации</a>
                 <a href="./tools.html" class="secondary-button">Инструменты</a>
                 <div class="nav__line"></div>
@@ -51,7 +51,7 @@
                     <div class="nav__line"></div>
                     <a href="./index.html" class="h2-normal primary-text nav-phone__button">Главная</a>
                     <a href="./news.html" class="h2-normal primary-text nav-phone__button">Новости</a>
-                    <a href="./countries.html" class="h2-normal primary-text nav-phone__button">Страны</a>
+                    <a href="./countries.html" class="h2-normal primary-text nav-phone__button nav-active-link">Страны</a>
                     <a href="./nations.html" class="h2-normal primary-text nav-phone__button">Нации</a>
                     <a href="./tools.html" class="h2-normal primary-text nav-phone__button">Инструменты</a>
                     <div class="nav__line"></div>
@@ -61,40 +61,12 @@
             </div>
         </nav>
         <div class="content">
-            <div class="settings-waiting"></div>
-            <div class="block password-block">
-                <div class="block-title__wrapper">
-                    <p class="h1-title primary-text block-title">Пароль</p>
-                </div>
-                <div class="password-block__content">
-                    <p class="h2-normal-break primary-text password-block__content-text">Изменить ваш текущий пароль</p>
-                </div>
-                <button class="primary-button change-password__button">Изменить</button>
-                <div class="change-password__wrapper">
-                    <p class="h2-normal-break primary-text change-password__text">Введите старый пароль</p>
-                    <div class="input-wrapper">
-                        <img src="./assets/EyeOpen.svg" alt="show-password" class="old-password__img">
-                        <input class="h2-normal primary-text input-password old-password" type="password" placeholder="Пароль (4 - 24 символов)" minlength="4" maxlength="24" required>
-                    </div>
-                    <p class="h2-normal-break primary-text input-password change-password__text">Введите новый пароль</p>
-                    <div class="input-wrapper">
-                        <img src="./assets/EyeOpen.svg" alt="show-password" class="new-password__img">
-                        <input class="h2-normal primary-text input-password new-password" type="password" placeholder="Пароль (4 - 24 символов)" minlength="4" maxlength="24" required>
-                    </div>
-                    <p class="h2-normal-break primary-text change-password__text">Повторите новый пароль</p>
-                    <div class="input-wrapper">
-                        <img src="./assets/EyeOpen.svg" alt="show-password" class="new-password-again__img">
-                        <input class="h2-normal primary-text input-password new-password-again" type="password" placeholder="Пароль (4 - 24 символов)" minlength="4" maxlength="24" required>
-                    </div>
-                    <button class="primary-button save-button">Сохранить</button>
-                    <button class="secondary-button cancel-button">Отмена</button>
-                </div>
-            </div>
+            content
         </div>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./scripts/scripts-base.js" type="module"></script>
     <script src="./scripts/sidebar.js" type="module"></script>
-    <script src="./scripts/settings.js" type="module"></script>
+    <script src="./scripts/countries.js" type="module"></script>
 </body>
 </html>
