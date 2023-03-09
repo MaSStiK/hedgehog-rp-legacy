@@ -16,12 +16,12 @@ try {
             window.localStorage.setItem("allUsers", JSON.stringify(data))
             allUsers = data
             if (authorized) { // Если авторизован то обновляем информацию о пользователе
-                window.localStorage.setItem("userData", JSON.stringify(data[userData.id]))
-                userData = data[userData.id]
+                // window.localStorage.setItem("userData", JSON.stringify(data[userData.id]))
+                // userData = data[userData.id]
             }
         
-            $(".userData").text(JSON.stringify(userData))
-            $(".allUsers").text(JSON.stringify(allUsers))
+            $(".userData").text(JSON.stringify(data[userData.id]))
+            $(".allUsers").text(JSON.stringify(data))
         } catch (error) {
             $(".error").text(error)
         }
@@ -30,9 +30,9 @@ try {
     
     sendGSRequest("nations", "getData", {}, (data) => {
         try {
-            window.localStorage.setItem("allNations", JSON.stringify(data))
-            allNations = data
-            $(".allNations").text(JSON.stringify(allNations))
+            // window.localStorage.setItem("allNations", JSON.stringify(data))
+            // allNations = data
+            $(".allNations").text(JSON.stringify(data))
         } catch (error) {
             $(".error").text(error)
         }
