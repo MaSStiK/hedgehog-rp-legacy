@@ -1,6 +1,5 @@
 import {sendGSRequest, sendVkRequest, setInputError, createNotification, setBlockWaiting, setButtonDisabled} from "./scripts-base.js"
 // window.localStorage.removeItem("userData")
-// hello
 
 // localStorage userData, allUsers, allNations
 let userData = JSON.parse(window.localStorage.getItem("userData"))
