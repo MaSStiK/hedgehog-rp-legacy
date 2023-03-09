@@ -1,7 +1,8 @@
 import {sendGSRequest} from "./scripts-base.js"
 
 function ready () {
-window.localStorage.removeItem("strokaData")
+// window.localStorage.removeItem("strokaData")
+// window.localStorage.clear()
 
 // localStorage userData, allUsers, allNations
 let userData = JSON.parse(window.localStorage.getItem("userData"))
@@ -9,6 +10,20 @@ let allUsers = JSON.parse(window.localStorage.getItem("allUsers"))
 let allNations = JSON.parse(window.localStorage.getItem("allNations"))
 let stroka = window.localStorage.getItem("stroka")
 let authorized = userData ? true : false
+
+
+if (window) {
+    $(".userData").text("window");
+} else {
+    $(".userData").text("null");
+}
+
+if (localStorage) {
+    $(".allUsers").text(JSON.stringify(localStorage));
+} else {
+    $(".allUsers").text("null");
+}
+
 
 $(".error").text("WTF БЛЯТЬ")
 // window.localStorage.setItem("counter", counter)
