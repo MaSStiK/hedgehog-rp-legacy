@@ -6,9 +6,18 @@ import {sendGSRequest} from "./scripts-base.js"
 let userData = JSON.parse(window.localStorage.getItem("userData"))
 let allUsers = JSON.parse(window.localStorage.getItem("allUsers"))
 let allNations = JSON.parse(window.localStorage.getItem("allNations"))
+let counter = window.localStorage.getItem("counter")
 let authorized = userData ? true : false
 
 $(".error").text("WTF БЛЯТЬ")
+if (counter) {
+    counter++
+} else {
+    counter = 0
+}
+
+window.localStorage.setItem("counter", counter)
+$(".counter").text("counter: " + counter)
 
 try {
     sendGSRequest("users", "getData", {}, (data) => {
@@ -20,7 +29,7 @@ try {
                 // userData = data[userData.id]
             }
         
-            $(".userData").text(JSON.stringify(data[userData.id]))
+            // $(".userData").text(JSON.stringify(data[userData.id]))
             $(".allUsers").text(JSON.stringify(data))
         } catch (error) {
             $(".error").text(error)
