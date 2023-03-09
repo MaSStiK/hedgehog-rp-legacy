@@ -20,7 +20,7 @@ if (window) {
 if (localStorage) {
     $(".allUsers").text(JSON.stringify(localStorage));
 } else {
-    $(".allUsers").text("null");
+    $(".allUsers").text("null local");
 }
 }
 
