@@ -1,4 +1,6 @@
 import {sendGSRequest} from "./scripts-base.js"
+
+function ready () {
 // window.localStorage.removeItem("strokaData")
 
 // localStorage userData, allUsers, allNations
@@ -12,9 +14,13 @@ $(".error").text("WTF БЛЯТЬ")
 // window.localStorage.setItem("counter", counter)
 if (stroka) {
     $(".stroka").text("строка записана")
+    window.localStorage.removeItem("strokaData")
+} else {
+    window.localStorage.setItem("strokaData", "любая запись")
 }
 
-window.localStorage.setItem("strokaData", "любая запись")
+}
+
 
 // try {
 //     sendGSRequest("users", "getData", {}, (data) => {
@@ -46,3 +52,4 @@ window.localStorage.setItem("strokaData", "любая запись")
 //     $(".error").text(error)
 // }
 
+document.addEventListener("DOMContentLoaded", ready());
