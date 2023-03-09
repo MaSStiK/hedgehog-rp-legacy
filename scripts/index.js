@@ -10,8 +10,6 @@ function ready () {
 // let allNations = JSON.parse(window.localStorage.getItem("allNations"))
 // let authorized = userData ? true : false
 
-console.log(localStorage);
-
 
 if (window) {
     $(".userData").text("window");
@@ -27,6 +25,7 @@ if (localStorage) {
 }
 
 localStorage.setItem("lolka", "lolka")
+$(".stroka").text("lolka");
 }
 
 // try {
