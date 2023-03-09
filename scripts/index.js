@@ -10,19 +10,23 @@ function ready () {
 // let allNations = JSON.parse(window.localStorage.getItem("allNations"))
 // let authorized = userData ? true : false
 
+console.log(localStorage);
+
 
 if (window) {
     $(".userData").text("window");
-    window.localStorage.clear()
+    // window.localStorage.clear()
 } else {
     $(".userData").text("null");
 }
-
+$(".allUsers").text(JSON.stringify(localStorage));
 if (localStorage) {
     $(".allUsers").text(JSON.stringify(localStorage));
 } else {
     $(".allUsers").text("null local");
 }
+
+localStorage.setItem("lolka", "lolka")
 }
 
 // try {
