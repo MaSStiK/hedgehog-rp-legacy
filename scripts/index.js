@@ -18,17 +18,22 @@ $(".userData").text(JSON.stringify(localStorage.getItem("userData")));
 localStorage.setItem("lolka", "lolka")
 $(".stroka").text("lolka");
 
-sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: "auth"}, 
-    (data) => {
-        if (data.response) { // success
-            $(".text").text("Сработало!");
-        }
+// sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: "auth"}, 
+//     (data) => {
+//         if (data.response) { // success
+//             $(".text").text("Сработало!");
+//         }
 
-        if (data.error) { // error
-            $(".error").text(data.error.error_msg);
-        }
-    }
-)
+//         if (data.error) { // error
+//             $(".error").text(data.error.error_msg);
+//         }
+//     }
+// )
+
+sendGSRequest("users", "getData", {}, (data) => {
+    $(".text").text(JSON.stringify(data));
+})
+
 
 // try {
 //     sendGSRequest("users", "getData", {}, (data) => {
