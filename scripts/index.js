@@ -1,8 +1,6 @@
-import {sendGSRequest} from "./scripts-base.js"
+import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
 
-function ready () {
-// window.localStorage.removeItem("strokaData")
-// localStorage.clear()
+localStorage.clear()
 
 // localStorage userData, allUsers, allNations
 // let userData = JSON.parse(window.localStorage.getItem("userData"))
@@ -10,7 +8,6 @@ function ready () {
 // let allNations = JSON.parse(window.localStorage.getItem("allNations"))
 // let authorized = userData ? true : false
 
-// localStorage.clear()
 if (window) {
     $(".userData").text("window");
 } else {
@@ -25,7 +22,19 @@ if (localStorage) {
 
 localStorage.setItem("lolka", "lolka")
 $(".stroka").text("lolka");
-}
+
+sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: "auth"}, 
+    (data) => {
+        if (data.response) { // success
+            createNotification("Жалоба отправлена!", "primary")
+            $(".edit-modal__wrapper").css("display", "none")
+        }
+
+        if (data.error) { // error
+            alert(`Не удалось отправить жалобу!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${data.error.error_msg}`)
+        }
+    }
+)
 
 // try {
 //     sendGSRequest("users", "getData", {}, (data) => {
@@ -56,5 +65,3 @@ $(".stroka").text("lolka");
 // } catch (error) {
 //     $(".error").text(error)
 // }
-
-document.addEventListener("DOMContentLoaded", ready());

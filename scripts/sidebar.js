@@ -1,12 +1,11 @@
 import {createNotification} from "./scripts-base.js"
 
 // localStorage userData
-let userData
+let userData = null
 try {
     userData = JSON.parse(localStorage.getItem("userData"))
 } catch { // Если юзердата сломалась то удаляем ее
     localStorage.removeItem("userData")
-    userData = null
 }
 let authorized = userData ? true : false
 
