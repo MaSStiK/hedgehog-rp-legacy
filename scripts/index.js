@@ -9,7 +9,7 @@ import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
 // let authorized = userData ? true : false
 
 if (window) {
-    $(".window").text("window");
+    $(".window").text("виндус");
 } else {
     $(".window").text("null");
 }
