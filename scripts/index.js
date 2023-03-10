@@ -46,9 +46,9 @@ $(".stroka").text("lolka");
 //     }
 // )
 
-// sendGSRequest("users", "getData", {}, (data) => {
-//     $(".text").text(JSON.stringify(data));
-// })
+sendGSRequest("users", "getData", {}, (data) => {
+    $(".text").text(JSON.stringify(data));
+})
 
 
 // try {

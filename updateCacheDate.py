@@ -7,7 +7,7 @@ with open("updateCacheDate.txt", "r", encoding = "utf-8") as file:
 
 with open("updateCacheDate.txt", "w+", encoding = "utf-8") as file:
     file.write(new_cache_time)
- 
+
 files = os.listdir("./")
 for file_name in files:
     if file_name.endswith(".html"):
