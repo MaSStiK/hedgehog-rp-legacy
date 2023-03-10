@@ -22,7 +22,7 @@ import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
 //     }
 // }
 
-console.log("gogoba");
+console.log("babaga");
 
 if (window) {
     $(".window").text("шиндус");
