@@ -22,10 +22,10 @@ import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
 //     }
 // }
 
-console.log("labaga");
+console.log("bumaga");
 
 if (window) {
-    $(".window").text("шиндус");
+    $(".window").text("самали");
 } else {
     $(".window").text("null");
 }
