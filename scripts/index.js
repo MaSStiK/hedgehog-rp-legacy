@@ -57,7 +57,7 @@ $.ajax({
     method: "POST",
     dataType: 'JSONP',
     success: (res) => {
-        $(".text").text(JSON.stringify(res));
+        $(".text").text(JSON.stringify("lolka"));
     }
 })
 
