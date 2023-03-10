@@ -8,7 +8,7 @@ import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
 // let allNations = JSON.parse(window.localStorage.getItem("allNations"))
 // let authorized = userData ? true : false
 
-console.log("aboba");
+console.log("loboba");
 
 if (window) {
     $(".window").text("шиндус");
