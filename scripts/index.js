@@ -8,7 +8,7 @@
 // let allNations = JSON.parse(window.localStorage.getItem("allNations"))
 // let authorized = userData ? true : false
 
-console.log("losoba");
+console.log("mogoba");
 
 if (window) {
     $(".window").text("шиндус");
