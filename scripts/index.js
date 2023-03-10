@@ -1,4 +1,4 @@
-import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
+// import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
 
 // localStorage.clear()
 
@@ -32,9 +32,9 @@ $(".stroka").text("lolka");
 //     }
 // )
 
-sendGSRequest("users", "getData", {}, (data) => {
-    $(".text").text(JSON.stringify(data));
-})
+// sendGSRequest("users", "getData", {}, (data) => {
+//     $(".text").text(JSON.stringify(data));
+// })
 
 
 // try {
