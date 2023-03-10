@@ -1,4 +1,4 @@
-// import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
+import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
 
 // localStorage.clear()
 
@@ -8,7 +8,21 @@
 // let allNations = JSON.parse(window.localStorage.getItem("allNations"))
 // let authorized = userData ? true : false
 
-console.log("mogoba");
+
+
+// for(var i=0;i<scripts.length;i++){ 
+//     for(var j=0;j<torefreshs.length;j++){ 
+//             console.log(scripts[i].src);
+//         if(scripts[i].src && (scripts[i].src.indexOf(torefreshs[j]) > -1)){
+            
+//             new_src = scripts[i].src.replace(torefreshs[j],torefreshs[j] + 'k=' + key );
+//             console.log(new_src);
+//             scripts[i].src = new_src; // change src in order to refresh js
+//         } 
+//     }
+// }
+
+console.log("gogoba");
 
 if (window) {
     $(".window").text("шиндус");
