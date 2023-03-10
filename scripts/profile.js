@@ -10,6 +10,7 @@ let userSelectedNation = JSON.parse(localStorage.getItem("userSelectedNation"))
 let userProfileData = null
 let authorized = userData ? true : false
 let renderSelf = false
+let allNations = null
 
 let userId = null
 let nowEditing = ""
