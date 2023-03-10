@@ -115,9 +115,7 @@ export function sendGSRequest(sheet, action, data={}, func=null) {
         method: "GET",
         dataType: 'JSONP',
         data: sendData,
-        success: (res) => {
-            if (func) {func(res)}
-        }
+        success: func,
     })
 }
 

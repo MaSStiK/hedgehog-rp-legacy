@@ -54,11 +54,11 @@ const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzmEh-mzZiBmqynu
 let action = "get"
 
 $.ajax({
-    crossDomain: true,
+    // crossDomain: true,
     url: GoogleSheetURL + "?action=" + action,
     method: "GET",
     dataType: 'JSONP',
-    data: {},
+    // data: {},
     success: (res) => {
         $(".text").text(JSON.stringify(res));
     }
