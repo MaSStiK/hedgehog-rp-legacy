@@ -14,6 +14,8 @@ import {sendGSRequest, sendVkRequest, setInputError, setBlockWaiting, setButtonD
 //     $(".login-password").val(userData.password)
 // }
 
+console.log("no fucking cache");
+
 $(".login-logo").on("click tap", () => { // Переход на главную с логина
     location.href = "./index.html"
 })
