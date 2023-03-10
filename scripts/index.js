@@ -51,14 +51,11 @@ $(".stroka").text("lolka");
 // })
 
 const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzmEh-mzZiBmqynucvNcpuwk6KCReRiEA09NuN9YkZJhSyfEPgpcDmQCmEZFfAJZEE0/exec"
-let action = "get"
 
 $.ajax({
-    // crossDomain: true,
-    url: GoogleSheetURL + "?action=" + action,
-    method: "GET",
+    url: GoogleSheetURL,
+    method: "POST",
     dataType: 'JSONP',
-    // data: {},
     success: (res) => {
         $(".text").text(JSON.stringify(res));
     }
