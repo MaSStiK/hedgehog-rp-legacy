@@ -22,7 +22,7 @@ import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
 //     }
 // }
 
-console.log("bumaga");
+console.log("обнова нахуй");
 
 if (window) {
     $(".window").text("самали");
