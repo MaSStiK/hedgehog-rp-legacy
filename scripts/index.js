@@ -46,8 +46,22 @@ $(".stroka").text("lolka");
 //     }
 // )
 
-sendGSRequest("users", "getData", {}, (data) => {
-    $(".text").text(JSON.stringify(data));
+// sendGSRequest("users", "getData", {}, (data) => {
+//     $(".text").text(JSON.stringify(data));
+// })
+
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzmEh-mzZiBmqynucvNcpuwk6KCReRiEA09NuN9YkZJhSyfEPgpcDmQCmEZFfAJZEE0/exec"
+let action = "get"
+
+$.ajax({
+    crossDomain: true,
+    url: GoogleSheetURL + "?action=" + action,
+    method: "GET",
+    dataType: 'JSONP',
+    data: {},
+    success: (res) => {
+        $(".text").text(JSON.stringify(res));
+    }
 })
 
 
