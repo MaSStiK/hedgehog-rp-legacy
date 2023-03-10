@@ -1,13 +1,15 @@
-import {sendGSRequest, createNotification, setInputError, setButtonDisabled, sendVkRequest} from "./scripts-base.js"
+import {logger, sendGSRequest, createNotification, setInputError, setButtonDisabled, sendVkRequest} from "./scripts-base.js"
 // localStorage.removeItem("userData")
-// localStorage.removeItem("allUsers")
 // localStorage.removeItem("allNations")
+// localStorage.clear()
 
-// localStorage userData, allUsers, allNations
-let userData = JSON.parse(localStorage.getItem("userData"))
-let allUsers = JSON.parse(localStorage.getItem("allUsers"))
-let allNations = JSON.parse(localStorage.getItem("allNations"))
+// localStorage userData, allNations
+let userData = JSON.parse(localStorage.getItem("userData")) // Храним только Важную информацию
+let userNations = JSON.parse(localStorage.getItem("userNations"))
+let userSelectedNation = JSON.parse(localStorage.getItem("userSelectedNation"))
+let userProfileData = null
 let authorized = userData ? true : false
+let renderSelf = false
 
 let userId = null
 let nowEditing = ""
@@ -20,71 +22,85 @@ urlParams.forEach((e, key) => {
     params[key] = e
 })
 
-if (allUsers) {
-    if ("id" in params) { // Если указан id в ссылке
-        if (!(params.id in allUsers)) { // Если неправильный айди то проверка uid
-            let finded = false
-            Object.keys(allUsers).forEach((user) => {
-                if (allUsers[user].uid.toString() == params.id.toString()) {
-                    userId = allUsers[user].id
-                    finded = true
+// -------------------- Узнаем способ рендера --------------------
+try {
+    if ("id" in params) { // Если указан id
+        if (params.id === userData?.id || params.id === userData?.uid) { // Если указан указан айди и он равен либо id либо uid пользователя
+            logger("prerender\nauthorized-user by url id", params.id)
+            renderSelf = true
+            renderUser(userData)
+            sendGSRequest("users", "getDataById", userData, (data) => {
+                logger("prerender\nreceived new authorized-user data")
+                localStorage.setItem("userData", JSON.stringify(data))
+                userData = data
+                renderUser(userData, true)
+            })
+        } else { // ПОлучаем информацию о любом другом пользователе и рендерим ее
+            sendGSRequest("users", "getData", {}, (data) => {
+                logger("prerender\nreceived new user data")
+                if (params.id in data) { // Если id во всех юзерах
+                    logger("prerender\nid found", data[params.id].id)
+                    userProfileData = data[params.id]
+                    renderUser(data[params.id], true)
+                } else { // Если нету то проверка uid 
+                    let found = false
+                    Object.keys(data).forEach((userID) => { // Если неправильный айди то проверка uid
+                        if (data[userID].uid.toString() === params.id.toString()) {  
+                            found = data[userID]
+                        }
+                    })
+                    userProfileData = found
+
+                    if (found) { // Если найден uid
+                        logger("prerender\nid found by uid", found.id)
+                        renderUser(found, true)
+                        
+                    } else { // Если не найден то выкидвает на главную
+                        logger("prerender\nincorrect id")
+                        alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!\nIncorrect id`)
+                        location.href = "./index.html"
+                    }
                 }
             })
-        
-            if (!finded) {
-                alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!`)
-                location.href = "./index.html"
-            }
-        } else if (params.id in allUsers) { // Если айди в списке
-            userId = params.id
-        } else { // Если не id и не uid в списке
-            alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!`)
-            location.href = "./index.html"
         }
-    } else { // Если не указан то ставим id юзера
-        if (authorized) { // Если авторизован
-            userId = userData.id
-        } else { // Переход на главную если не авторизован
-            alert(`Вы пытаетесь просмотреть свою страницу будучи не авторизованным!`)
+    } else { 
+        if (authorized) { // Если не указан айди и но авторизован - рендер своей странички из памяти
+            logger("prerender\nuser authorized page by id",userData.id)
+            renderSelf = true
+            renderUser(userData)
+            sendGSRequest("users", "getDataById", userData, (data) => {
+                localStorage.setItem("userData", JSON.stringify(data))
+                userData = data
+                renderUser(userData, true)
+            })
+        } else { // Если не указан айди и не авторихован
+            logger("prerender\nnot authorized")
+            alert(`Вы пытаетесь просмотреть свою страницу будучи не авторизованным!\nNot authorized`)
             location.href = "./index.html"
         }
     }
-} else {
-    sendGSRequest("users", "getData", {}, (data) => {
-        localStorage.setItem("allUsers", JSON.stringify(data))
-        allUsers = data
-        if ("id" in params) { // Если указан id в ссылке
-            if (!(params.id in allUsers)) { // Если неправильный айди то проверка uid
-                let finded = false
-                Object.keys(allUsers).forEach((user) => {
-                    if (allUsers[user].uid.toString() == params.id.toString()) {
-                        userId = allUsers[user].id
-                        finded = true
-                    }
-                })
-            
-                if (!finded) {
-                    alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!`)
-                    location.href = "./index.html"
-                }
-            } else if (params.id in allUsers) { // Если айди в списке
-                userId = params.id
-            } else { // Если не id и не uid в списке
-                alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!`)
-                location.href = "./index.html"
-            }
-        } else { // Если не указан то ставим id юзера
-            if (authorized) { // Если авторизован
-                userId = userData.id
-            } else { // Переход на главную если не авторизован
-                alert(`Вы пытаетесь просмотреть свою страницу будучи не авторизованным!`)
-                location.href = "./index.html"
-            }
-        }
-    })
+} catch(error) {
+    logger("prerender\nerror", error)
+    alert(`Не удалось отобразить страницу пользователя!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${error}`)
+    location.href = "./index.html"
 }
 
-function renderUser(userData, finalRender) {
+// -------------------- Рендер страницы --------------------
+function renderUser(userData, finalRender=false) {
+    if (renderSelf) {
+        $(".block-avatar__exit").removeClass("hide-button") // Делаем кнопку выхода видимой
+        $(".block-avatar__report").remove() // Удаляем кнопку репорта
+        $(".edit-modal__block-button-report").remove() // Удаляем кнопку репорта из модального окна
+        if (finalRender) { // При конечном рендере добавляем кнопки редактирования
+            $(".block-info__button-edit").css("display", "flex") // Делаем кнопку редактирования профиля видимой
+            $(".block-info__button-settings").css("display", "flex") // Делаем кнопку редактирования приватной информации видимой
+        }   
+    } else {
+        $(".block-avatar__exit").remove() // Удаляем кнопку выхода
+        $(".block-info__button-edit").remove() // Удаляем кнопку
+        $(".block-info__button-settings").remove() // Удаляем кнопку
+    }
+
     $(".avatar-opened__img").attr("src", userData.avatar);
     $(".info-name").text(userData.name)
     $(".info-surname").text(userData.surname)
@@ -115,11 +131,9 @@ function renderUser(userData, finalRender) {
             }
         }
     }
-
     if (userData.about.languages !== "") {
         $(".info-languages").text(userData.about.languages)
     }
-
     if (userData.about.vkLink !== "") {
         $(".info-vkLink").text(userData.about.vkLink)
         $(".info-vkLink").removeClass("primary-text").addClass("link-text")
@@ -136,48 +150,19 @@ function renderUser(userData, finalRender) {
     if (userData.about.status !== "") {
         $(".info-status").text(userData.about.status)
     }
-}
 
-try {
-    if (userData?.id === userId) { // Если профиль авторизованного то
-        $(".block-avatar__avatar").after(`<button class="danger-button block-avatar__exit">Выйти</button>`)
-        $(".edit-modal__block-button-report").css("display", "none")
-        try {
-            renderUser(userData, false) // Сначало рендерим из хэша
-        } catch {}
-        sendGSRequest("nations", "getData", {}, (data) => { // Загружаем все нации
-            localStorage.setItem("allNations", JSON.stringify(data))
-            allNations = data
-            sendGSRequest("users", "getDataById", {id: userData.id}, (data) => {
-                renderUser(JSON.parse(data), true) // Затем обновляем информацию о пользователе
-                $(".block-info__button-edit").css("display", "flex") // Делаем кнопку редактирования профиля видимой
-                $(".block-info__button-settings").css("display", "flex") // Делаем кнопку редактирования приватной информации видимой
-                localStorage.setItem("userData", data) // Обновляем юзердату
-            })
-        })
+    if (!finalRender) {
+        logger("render\nrendered")
     } else {
-        $(".block-avatar__avatar").after(`<button class="danger-button block-avatar__report">Пожаловаться</button>`)
-        try {
-            renderUser(allUsers[userId], false) // Рендер из Хэша
-        } catch {}
-        sendGSRequest("nations", "getData", {}, (data) => { // Загружаем все нации
-            localStorage.setItem("allNations", JSON.stringify(data))
-            allNations = data
-            sendGSRequest("users", "getData", {}, (data) => {
-                renderUser(data[userId], true) // Поиск человека и его рендер
-                localStorage.setItem("allUsers", JSON.stringify(data))
-            })
-        })
+        logger("render\nfinaly rendered")
     }
-} catch(error) {
-    alert(`Не удалось отобразить страницу пользователя (${userId})!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${error}`)
-    // location.href = "./index.html"
-    location.reload()
-}
+}   
 
-$(".block-info__button-edit").on("click tap", () => { // Эдит мод
-    if (userData.id === userId) { // Если авторизованный изменяет свой профиль
+// -------------------- Эдит мод --------------------
+$(".block-info__button-edit").on("click tap", () => { 
+    if (renderSelf) { // Если авторизованный изменяет свой профиль
         if ($(".block-info__button-edit").hasClass("edit-mode-on")) { // Если включен
+            logger("edit-mode\noff")
             $(".block-info__button-edit").removeClass("edit-mode-on")
             $(".edit-name").remove()
             $(".edit-surname").remove()
@@ -193,6 +178,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
             $(".block-avatar__avatar-black").css("display", "none")
             $(".avatar-fullscreen__wrapper").css("display", "flex")
         } else {
+            logger("edit-mode\non")
             $(".block-info__button-edit").addClass("edit-mode-on")
             $(".info-name").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-name">`)
             $(".info-surname").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-surname">`)
@@ -227,16 +213,14 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (userData.id === userId) {
+                    if (renderSelf) {
                         if (editInput.val() === "") {
                             setInputError(".edit-modal__block-input")
                             $(".edit-waiting").removeClass("edit-waiting-show")
-                            // Добавить отключение кнопки как в регистрации
                         } else {
                             userData.name = $(".edit-modal__block-input").val()
                             sendGSRequest("users", "updateDataById", userData, (data) => {
                                 localStorage.setItem("userData", JSON.stringify(userData))
-                                $(".edit-modal__wrapper").css("display", "none")
                                 location.reload()
                             })
                         }
@@ -264,7 +248,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (userData.id === userId) {
+                    if (renderSelf) {
                         if (editInput.val() === "") {
                             setInputError(".edit-modal__block-input")
                             $(".edit-waiting").removeClass("edit-waiting-show")
@@ -272,7 +256,6 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                             userData.surname = $(".edit-modal__block-input").val()
                             sendGSRequest("users", "updateDataById", userData, (data) => {
                                 localStorage.setItem("userData", JSON.stringify(userData))
-                                $(".edit-modal__wrapper").css("display", "none")
                                 location.reload()
                             })
                         }
@@ -300,12 +283,11 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (userData.id === userId) {
+                    if (renderSelf) {
                         if (editInput.val() === "") { // Если инпут пустой то просто ставим айдишник и сохраняем
                             userData.uid = userData.id
                             sendGSRequest("users", "updateDataById", userData, (data) => {
                                 localStorage.setItem("userData", JSON.stringify(userData))
-                                $(".edit-modal__wrapper").css("display", "none")
                                 location.reload()
                             })
                         } else { // Если не пусто то проверяем на совпадение и потом сохраняем
@@ -324,7 +306,6 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                                     userData.uid = newUid
                                     sendGSRequest("users", "updateDataById", userData, (data) => {
                                         localStorage.setItem("userData", JSON.stringify(userData))
-                                        $(".edit-modal__wrapper").css("display", "none")
                                         location.reload()
                                     })
                                 } else { // Если нет то ошибка
@@ -357,7 +338,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (userData.id === userId) {
+                    if (renderSelf) {
                         if (editInput.val() === "") { // Если инпут пустой то ставим имя фамилия 
                             userData.about.gameName = userData.name + " " + userData.surname
                         } else {
@@ -365,7 +346,6 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                         }
                         sendGSRequest("users", "updateDataById", userData, (data) => {
                             localStorage.setItem("userData", JSON.stringify(userData))
-                            $(".edit-modal__wrapper").css("display", "none")
                             location.reload()
                         })
                     }
@@ -384,7 +364,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-linkout").css("display", "block")
                 $(".edit-modal__block-button-linkout").unbind("click tap")
                 $(".edit-modal__block-button-linkout").on("click tap", () => {
-                    location.href = "./index.html" // Изменить ссылку на о нас (администрация)
+                    location.href = "./about.html" // Изменить ссылку на о нас (администрация)
                 })
                 $(".edit-modal__block-button-change").css("display", "none")
                 $(".edit-modal__wrapper").css("display", "flex")
@@ -443,11 +423,10 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (userData.id === userId) {
+                    if (renderSelf) {
                         userData.about.languages = $(".edit-modal__block-input").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
                             localStorage.setItem("userData", JSON.stringify(userData))
-                            $(".edit-modal__wrapper").css("display", "none")
                             location.reload()
                         })
                     }
@@ -474,11 +453,10 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (userData.id === userId) {
+                    if (renderSelf) {
                         userData.about.vkLink = $(".edit-modal__block-input").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
                             localStorage.setItem("userData", JSON.stringify(userData))
-                            $(".edit-modal__wrapper").css("display", "none")
                             location.reload()
                         })
                     }
@@ -502,11 +480,10 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (userData.id === userId) {
+                    if (renderSelf) {
                         userData.about.status = $(".edit-modal__block-textarea").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
                             localStorage.setItem("userData", JSON.stringify(userData))
-                            $(".edit-modal__wrapper").css("display", "none")
                             location.reload()
                         })
                     }
@@ -534,12 +511,11 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (userData.id === userId) {
+                    if (renderSelf) {
                         if ($(".edit-modal__block-input").val() === "") { // Если пусто то стаим фотографию по умолчанию
                             userData.avatar = "https://sun9-31.userapi.com/impg/G2LIF9CtQnTtQ4P9gRxJmvQAa1_64hPsOAe4sQ/E7KVVKP75MM.jpg?size=427x320&quality=96&sign=e5665d0791b6119869af1b0ee46bec8f&type=album"
                             sendGSRequest("users", "updateDataById", userData, (data) => {
                                 localStorage.setItem("userData", JSON.stringify(userData))
-                                $(".edit-modal__wrapper").css("display", "none")
                                 location.reload()
                             })
                         } else { // Если не пусто то проверяем фотографию
@@ -547,7 +523,6 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                                 userData.avatar = $(".edit-modal__block-input").val()
                                 sendGSRequest("users", "updateDataById", userData, (data) => {
                                     localStorage.setItem("userData", JSON.stringify(userData))
-                                    $(".edit-modal__wrapper").css("display", "none")
                                     location.reload()
                                 })
                             } else {
@@ -592,11 +567,13 @@ $(".edit-modal__block-input").change(() => { // Свободный текст (�
         img.src = $(".edit-modal__block-input").val()
         img.onload = () => {
             avaReady = true
+            logger("edit-mode\nimageReady", avaReady)
             $(".edit-modal__block-input").after(`<div class="avatar-preview"></div>`)
             $(".avatar-preview").css("background-image", `url(${$(".edit-modal__block-input").val()})`)
         }
         img.onerror = () => {
             avaReady = false
+            logger("edit-mode\nimageReady", avaReady)
             setInputError(".edit-modal__block-input")
         }
     }
@@ -620,6 +597,7 @@ $(".edit-modal__block-input").on("input", () => { // Текст без проб�
 $(".block-info__button-share").on("click tap", () => { // Скопировать ссылку на профиль
     try {
         navigator.clipboard.writeText(location)
+        logger("copied\n", location)
         createNotification("Ссылка на профиль скопирована!")
     } catch {
         createNotification("Не удалось скопировать!", "danger")
@@ -634,7 +612,7 @@ $(".avatar-opened__close").on("click tap", () => { // Закрыть авата�
     $(".avatar-opened").css("display", "none")
 })
 
-$(".block-avatar__exit").on("click tap", () => {
+$(".block-avatar__exit").on("click tap", () => { // Выход из профиля
     localStorage.removeItem("userData")
     location.href = "./index.html"
 })
@@ -649,6 +627,7 @@ $(".block-avatar__report").on("click tap", () => {
     $(".edit-modal__block-text").text(`Введите текст жалобы:`)
     $(".edit-modal__block-help").css("display", "none")
     $(".edit-modal__block-help2").css("display", "none")
+    $(".edit-modal__block-textarea").css("display", "none")
     let editInput = $(".edit-modal__block-input")
     editInput.attr("placeholder", "1 - 100 символов")
     editInput.attr("minLength", 1)
@@ -660,20 +639,23 @@ $(".block-avatar__report").on("click tap", () => {
     $(".edit-modal__block-button-change").unbind("click tap")
     $(".edit-modal__block-button-report").css("display", "block")
     $(".edit-modal__block-button-report").on("click tap", () => {
-        let message = `Жалоба:\nОт: ${userData.name} ${userData.surname} (${userData.id})\nНа: ${allUsers[userId].name} ${allUsers[userId].surname} (${allUsers[userId].id})\nТекст: ${$(".edit-modal__block-input").val()}`
-        sendVkRequest('messages.send', {peer_id: 2000000006, random_id: 0, message: message}, 
-            (data) => {
-                if (data.response) { // success
-                    createNotification("Жалоба отправлена!", "primary")
-                    $(".edit-modal__wrapper").css("display", "none")
-                }
+        if (!renderSelf) {
+            let message = `Жалоба:\nОт: ${userData.name} ${userData.surname} (${userData.id})\nНа: ${userProfileData.name} ${userProfileData.surname} (${userProfileData.id})\nТекст: ${$(".edit-modal__block-input").val()}`
+            sendVkRequest('messages.send', {peer_id: 2000000006, random_id: 0, message: message}, 
+                (data) => {
+                    if (data.response) { // success
+                        createNotification("Жалоба отправлена!", "primary")
+                        $(".edit-modal__wrapper").css("display", "none")
+                    }
 
-                if (data.error) { // error
-                    alert(`Не удалось отправить жалобу!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${data.error.error_msg}`)
-                    
+                    if (data.error) { // error
+                        alert(`Не удалось отправить жалобу!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${data.error.error_msg}`)
+                    }
                 }
-            }
-        )
+            )
+        } else {
+            createNotification("Нельзя отправить жалобу на самого себя!", "danger")
+        }
     })
     $(".edit-modal__wrapper").css("display", "flex")
 })

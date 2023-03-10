@@ -1,3 +1,15 @@
+const doLog = true
+export function logger() {
+    let elememts = []
+    for (let i = 0; i < arguments.length; i++) {
+        elememts.push(arguments[i])
+    }
+
+    if (doLog) {
+        console.log(elememts.join(" "))
+    }
+}
+
 export function setInputError(className) { // Ошибка в заполнении
     if (!$(className).hasClass("input-error")) {
         $(className).addClass("input-error")

@@ -1,13 +1,13 @@
 import {sendGSRequest, sendVkRequest, setInputError, setBlockWaiting, setButtonDisabled} from "./scripts-base.js"
 
 // localStorage userData
-let userData
-try {
-    userData = JSON.parse(localStorage.getItem("userData"))
-} catch {
-    userData = null
-}
-let authorized = userData ? true : false
+// let userData
+// try {
+//     userData = JSON.parse(localStorage.getItem("userData"))
+// } catch {
+//     userData = null
+// }
+// let authorized = userData ? true : false
 
 // if (authorized) { // Автозаполнение если сохранен пользователь
 //     $(".login-login").val(userData.login)
@@ -105,7 +105,7 @@ loginForm.addEventListener('submit', (event) => {
                     sendGSRequest("usersPasswords", "getValueCompareById", {id: user_id, value: formPassword}, (data) => {
                         if (data) {  // Если пароль совпадает то входим
                             sendGSRequest("users", "getDataById", {id: user_id}, (data) => {
-                                let user_data = JSON.parse(data)
+                                let user_data = data
                                 let message = `Авторизация:\nПользователь: ${user_data.name} ${user_data.surname} (${user_data.id})`
                                 sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                     (data) => {
