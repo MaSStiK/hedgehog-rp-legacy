@@ -3,9 +3,9 @@ import {createNotification} from "./scripts-base.js"
 // localStorage userData
 let userData
 try {
-    userData = JSON.parse(window.localStorage.getItem("userData"))
+    userData = JSON.parse(localStorage.getItem("userData"))
 } catch { // Если юзердата сломалась то удаляем ее
-    window.localStorage.removeItem("userData")
+    localStorage.removeItem("userData")
     userData = null
 }
 let authorized = userData ? true : false
@@ -34,9 +34,9 @@ $(".nav-phone__burger-wrapper").on("click tap", () => {
 })
 
 $(".nav__logo").on("click tap", () => {
-    window.location.href = "./index.html"
+    location.href = "./index.html"
 })
 
 $(".nav-phone__logo").on("click tap", () => {
-    window.location.href = "./index.html"
+    location.href = "./index.html"
 })

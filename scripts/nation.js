@@ -1,10 +1,10 @@
 import {sendGSRequest, sendVkRequest, setInputError, createNotification, setBlockWaiting, setButtonDisabled} from "./scripts-base.js"
-// window.localStorage.removeItem("userData")
+// localStorage.removeItem("userData")
 
 // localStorage userData, allUsers, allNations
-let userData = JSON.parse(window.localStorage.getItem("userData"))
-let allUsers = JSON.parse(window.localStorage.getItem("allUsers"))
-let allNations = JSON.parse(window.localStorage.getItem("allNations"))
+let userData = JSON.parse(localStorage.getItem("userData"))
+let allUsers = JSON.parse(localStorage.getItem("allUsers"))
+let allNations = JSON.parse(localStorage.getItem("allNations"))
 let authorized = userData ? true : false
 let nationReady = false
 let nowEditing = ""
@@ -13,7 +13,7 @@ let userNationsCount = 0
 const maxUserNationCount = 10
 
 // http://127.0.0.1:5500/nations.html?search=Олег%20петров
-let urlParams = new URLSearchParams(window.location.search)
+let urlParams = new URLSearchParams(location.search)
 let params = {}
 urlParams.forEach((e, key) => {
     params[key] = e
@@ -96,7 +96,7 @@ function renderNations(allNations, finalRender) {
         $(`.share-${allNations[nationId].id}`).on("click tap", (event) => {
             event.stopPropagation() // Остановка всплытия
             try {
-                navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}?search=${allNations[nationId].name.replace(" ", "%20")}`)
+                navigator.clipboard.writeText(`${location.origin}${location.pathname}?search=${allNations[nationId].name.replace(" ", "%20")}`)
                 createNotification("Ссылка на нацию скопирована!")
             } catch {
                 createNotification("Не удалось скопировать!", "danger")
@@ -115,7 +115,7 @@ function renderNations(allNations, finalRender) {
                 $(".enter-modal__block-text").text(`Вы уверены что хотите присоединиться к нации "${allNations[nationId].name}"?`);
                 $(".enter-modal__wrapper").css("display", "flex")
             } else { // Если нет то выкидвает на вход
-                window.location.href = "./authorization.html"
+                location.href = "./authorization.html"
                 return
             }            
         })
@@ -340,7 +340,7 @@ $(".nations__all-change-user").on("click tap", () => { // Смена вклад�
         $(".nations__all-wrapper").css("display", "none");
         $(".nations__user-wrapper").css("display", "flex");
     } else { // Если нет, то переброс на авторизацию
-        window.location.href = "./authorization.html"
+        location.href = "./authorization.html"
     }
 })
 
@@ -349,14 +349,14 @@ $(".nations__user-change-all").on("click tap", () => { // Смена вклад�
         $(".nations__user-wrapper").css("display", "none");
         $(".nations__all-wrapper").css("display", "flex");
     } else { // Если нет, то переброс на авторизацию
-        window.location.href = "./authorization.html"
+        location.href = "./authorization.html"
     }
 })
 
 try {
     if (!allNations) { // Если все нации пустые сначало загружаем потом рендер
         sendGSRequest("users", "getData", {}, (data) => { // Загружаем всех юзеров
-            window.localStorage.setItem("allUsers", JSON.stringify(data))
+            localStorage.setItem("allUsers", JSON.stringify(data))
             allUsers = data
             sendGSRequest("nations", "getData", {}, (data) => { // Загружаем все нации
                 renderNations(data, true)
@@ -366,7 +366,7 @@ try {
                     $(".create-nation").removeAttr("disabled")
                 }
                 
-                window.localStorage.setItem("allNations", JSON.stringify(data))
+                localStorage.setItem("allNations", JSON.stringify(data))
                 allNations = data
 
                 $(".bottom__find-input").trigger("input") // Поиск страны после рендера
@@ -376,7 +376,7 @@ try {
     } else { // Сразу рендер, потом загружаем и сного рендерим
         renderNations(allNations, false) // Рендер из хеша
         sendGSRequest("users", "getData", {}, (data) => { // Загружаем всех юзеров
-            window.localStorage.setItem("allUsers", JSON.stringify(data))
+            localStorage.setItem("allUsers", JSON.stringify(data))
             allUsers = data
             sendGSRequest("nations", "getData", {}, (data) => { // Загружаем все нации
                 renderNations(data, true)
@@ -385,7 +385,7 @@ try {
                 if (userNationsCount < maxUserNationCount) { // Возможность добавить новую нацию если их меньше maxUserNationCount
                     $(".create-nation").removeAttr("disabled")
                 }
-                window.localStorage.setItem("allNations", JSON.stringify(data))
+                localStorage.setItem("allNations", JSON.stringify(data))
                 allNations = data
 
                 $(".bottom__find-input").trigger("input") // Поиск страны после рендера
@@ -394,7 +394,7 @@ try {
     }
 } catch(error) {
     alert(`Не удалось отобразить страницу наций!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${error}`)
-    // window.location.href = "./index.html"
+    // location.href = "./index.html"
     location.reload()
 }
 
@@ -453,7 +453,7 @@ $(".enter-modal__block-button-change").on("click tap", () => {
     setButtonDisabled(".enter-modal__block-button-change")
     $(".create-waiting").addClass("create-waiting-show")
     sendGSRequest("users", "updateDataById", userData, (data) => {
-        window.localStorage.setItem("userData", JSON.stringify(userData))
+        localStorage.setItem("userData", JSON.stringify(userData))
         location.reload()
     })
 })

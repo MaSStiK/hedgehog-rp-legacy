@@ -1,12 +1,12 @@
 import {sendGSRequest, createNotification, setInputError, setButtonDisabled, sendVkRequest} from "./scripts-base.js"
-// window.localStorage.removeItem("userData")
-// window.localStorage.removeItem("allUsers")
-// window.localStorage.removeItem("allNations")
+// localStorage.removeItem("userData")
+// localStorage.removeItem("allUsers")
+// localStorage.removeItem("allNations")
 
 // localStorage userData, allUsers, allNations
-let userData = JSON.parse(window.localStorage.getItem("userData"))
-let allUsers = JSON.parse(window.localStorage.getItem("allUsers"))
-let allNations = JSON.parse(window.localStorage.getItem("allNations"))
+let userData = JSON.parse(localStorage.getItem("userData"))
+let allUsers = JSON.parse(localStorage.getItem("allUsers"))
+let allNations = JSON.parse(localStorage.getItem("allNations"))
 let authorized = userData ? true : false
 
 let userId = null
@@ -14,7 +14,7 @@ let nowEditing = ""
 let avaReady = false
 
 // http://127.0.0.1:5500/profile.html?id=MaSStiK
-let urlParams = new URLSearchParams(window.location.search)
+let urlParams = new URLSearchParams(location.search)
 let params = {}
 urlParams.forEach((e, key) => {
     params[key] = e
@@ -33,25 +33,25 @@ if (allUsers) {
         
             if (!finded) {
                 alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!`)
-                window.location.href = "./index.html"
+                location.href = "./index.html"
             }
         } else if (params.id in allUsers) { // Если айди в списке
             userId = params.id
         } else { // Если не id и не uid в списке
             alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!`)
-            window.location.href = "./index.html"
+            location.href = "./index.html"
         }
     } else { // Если не указан то ставим id юзера
         if (authorized) { // Если авторизован
             userId = userData.id
         } else { // Переход на главную если не авторизован
             alert(`Вы пытаетесь просмотреть свою страницу будучи не авторизованным!`)
-            window.location.href = "./index.html"
+            location.href = "./index.html"
         }
     }
 } else {
     sendGSRequest("users", "getData", {}, (data) => {
-        window.localStorage.setItem("allUsers", JSON.stringify(data))
+        localStorage.setItem("allUsers", JSON.stringify(data))
         allUsers = data
         if ("id" in params) { // Если указан id в ссылке
             if (!(params.id in allUsers)) { // Если неправильный айди то проверка uid
@@ -65,20 +65,20 @@ if (allUsers) {
             
                 if (!finded) {
                     alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!`)
-                    window.location.href = "./index.html"
+                    location.href = "./index.html"
                 }
             } else if (params.id in allUsers) { // Если айди в списке
                 userId = params.id
             } else { // Если не id и не uid в списке
                 alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!`)
-                window.location.href = "./index.html"
+                location.href = "./index.html"
             }
         } else { // Если не указан то ставим id юзера
             if (authorized) { // Если авторизован
                 userId = userData.id
             } else { // Переход на главную если не авторизован
                 alert(`Вы пытаетесь просмотреть свою страницу будучи не авторизованным!`)
-                window.location.href = "./index.html"
+                location.href = "./index.html"
             }
         }
     })
@@ -105,12 +105,12 @@ function renderUser(userData, finalRender) {
                 $(".info-nation").removeClass("primary-text").addClass("link-text")
                 $(".info-nation").unbind("click tap")
                 $(".info-nation").on("click tap", () => {
-                    window.open("./nations.html?search=" + allNations[userData.about.nation].name.replace(" ", "%20"))
+                    open("./nations.html?search=" + allNations[userData.about.nation].name.replace(" ", "%20"))
                 })
             } else {
                 userData.about.nation = ""
                 sendGSRequest("users", "updateDataById", userData, (data) => {
-                    window.localStorage.setItem("userData", JSON.stringify(userData))
+                    localStorage.setItem("userData", JSON.stringify(userData))
                 })
             }
         }
@@ -126,9 +126,9 @@ function renderUser(userData, finalRender) {
         $(".info-vkLink").unbind("click tap")
         $(".info-vkLink").on("click tap", () => {
             if (userData.about.vkLink.startsWith("https://")) {
-                window.open(userData.about.vkLink, "_blank")
+                open(userData.about.vkLink, "_blank")
             } else {
-                window.open("https://" + userData.about.vkLink, "_blank")
+                open("https://" + userData.about.vkLink, "_blank")
             }
         })
     }
@@ -146,13 +146,13 @@ try {
             renderUser(userData, false) // Сначало рендерим из хэша
         } catch {}
         sendGSRequest("nations", "getData", {}, (data) => { // Загружаем все нации
-            window.localStorage.setItem("allNations", JSON.stringify(data))
+            localStorage.setItem("allNations", JSON.stringify(data))
             allNations = data
             sendGSRequest("users", "getDataById", {id: userData.id}, (data) => {
                 renderUser(JSON.parse(data), true) // Затем обновляем информацию о пользователе
                 $(".block-info__button-edit").css("display", "flex") // Делаем кнопку редактирования профиля видимой
                 $(".block-info__button-settings").css("display", "flex") // Делаем кнопку редактирования приватной информации видимой
-                window.localStorage.setItem("userData", data) // Обновляем юзердату
+                localStorage.setItem("userData", data) // Обновляем юзердату
             })
         })
     } else {
@@ -161,17 +161,17 @@ try {
             renderUser(allUsers[userId], false) // Рендер из Хэша
         } catch {}
         sendGSRequest("nations", "getData", {}, (data) => { // Загружаем все нации
-            window.localStorage.setItem("allNations", JSON.stringify(data))
+            localStorage.setItem("allNations", JSON.stringify(data))
             allNations = data
             sendGSRequest("users", "getData", {}, (data) => {
                 renderUser(data[userId], true) // Поиск человека и его рендер
-                window.localStorage.setItem("allUsers", JSON.stringify(data))
+                localStorage.setItem("allUsers", JSON.stringify(data))
             })
         })
     }
 } catch(error) {
     alert(`Не удалось отобразить страницу пользователя (${userId})!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${error}`)
-    // window.location.href = "./index.html"
+    // location.href = "./index.html"
     location.reload()
 }
 
@@ -235,7 +235,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                         } else {
                             userData.name = $(".edit-modal__block-input").val()
                             sendGSRequest("users", "updateDataById", userData, (data) => {
-                                window.localStorage.setItem("userData", JSON.stringify(userData))
+                                localStorage.setItem("userData", JSON.stringify(userData))
                                 $(".edit-modal__wrapper").css("display", "none")
                                 location.reload()
                             })
@@ -271,7 +271,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                         } else {
                             userData.surname = $(".edit-modal__block-input").val()
                             sendGSRequest("users", "updateDataById", userData, (data) => {
-                                window.localStorage.setItem("userData", JSON.stringify(userData))
+                                localStorage.setItem("userData", JSON.stringify(userData))
                                 $(".edit-modal__wrapper").css("display", "none")
                                 location.reload()
                             })
@@ -304,7 +304,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                         if (editInput.val() === "") { // Если инпут пустой то просто ставим айдишник и сохраняем
                             userData.uid = userData.id
                             sendGSRequest("users", "updateDataById", userData, (data) => {
-                                window.localStorage.setItem("userData", JSON.stringify(userData))
+                                localStorage.setItem("userData", JSON.stringify(userData))
                                 $(".edit-modal__wrapper").css("display", "none")
                                 location.reload()
                             })
@@ -323,7 +323,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                                 if (pass) { // Если uid уникальный то сохраняем
                                     userData.uid = newUid
                                     sendGSRequest("users", "updateDataById", userData, (data) => {
-                                        window.localStorage.setItem("userData", JSON.stringify(userData))
+                                        localStorage.setItem("userData", JSON.stringify(userData))
                                         $(".edit-modal__wrapper").css("display", "none")
                                         location.reload()
                                     })
@@ -364,7 +364,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                             userData.about.gameName = $(".edit-modal__block-input").val()
                         }
                         sendGSRequest("users", "updateDataById", userData, (data) => {
-                            window.localStorage.setItem("userData", JSON.stringify(userData))
+                            localStorage.setItem("userData", JSON.stringify(userData))
                             $(".edit-modal__wrapper").css("display", "none")
                             location.reload()
                         })
@@ -384,7 +384,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-linkout").css("display", "block")
                 $(".edit-modal__block-button-linkout").unbind("click tap")
                 $(".edit-modal__block-button-linkout").on("click tap", () => {
-                    window.location.href = "./index.html" // Изменить ссылку на о нас (администрация)
+                    location.href = "./index.html" // Изменить ссылку на о нас (администрация)
                 })
                 $(".edit-modal__block-button-change").css("display", "none")
                 $(".edit-modal__wrapper").css("display", "flex")
@@ -401,7 +401,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-linkout").css("display", "block")
                 $(".edit-modal__block-button-linkout").unbind("click tap")
                 $(".edit-modal__block-button-linkout").on("click tap", () => {
-                    window.location.href = "./countries.html"
+                    location.href = "./countries.html"
                 })
                 $(".edit-modal__block-button-change").css("display", "none")
                 $(".edit-modal__wrapper").css("display", "flex")
@@ -418,7 +418,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                 $(".edit-modal__block-button-linkout").css("display", "block")
                 $(".edit-modal__block-button-linkout").unbind("click tap")
                 $(".edit-modal__block-button-linkout").on("click tap", () => {
-                    window.location.href = "./nations.html"
+                    location.href = "./nations.html"
                 })
                 $(".edit-modal__block-button-change").css("display", "none")
                 $(".edit-modal__wrapper").css("display", "flex")
@@ -446,7 +446,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                     if (userData.id === userId) {
                         userData.about.languages = $(".edit-modal__block-input").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
-                            window.localStorage.setItem("userData", JSON.stringify(userData))
+                            localStorage.setItem("userData", JSON.stringify(userData))
                             $(".edit-modal__wrapper").css("display", "none")
                             location.reload()
                         })
@@ -477,7 +477,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                     if (userData.id === userId) {
                         userData.about.vkLink = $(".edit-modal__block-input").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
-                            window.localStorage.setItem("userData", JSON.stringify(userData))
+                            localStorage.setItem("userData", JSON.stringify(userData))
                             $(".edit-modal__wrapper").css("display", "none")
                             location.reload()
                         })
@@ -505,7 +505,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                     if (userData.id === userId) {
                         userData.about.status = $(".edit-modal__block-textarea").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
-                            window.localStorage.setItem("userData", JSON.stringify(userData))
+                            localStorage.setItem("userData", JSON.stringify(userData))
                             $(".edit-modal__wrapper").css("display", "none")
                             location.reload()
                         })
@@ -538,7 +538,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                         if ($(".edit-modal__block-input").val() === "") { // Если пусто то стаим фотографию по умолчанию
                             userData.avatar = "https://sun9-31.userapi.com/impg/G2LIF9CtQnTtQ4P9gRxJmvQAa1_64hPsOAe4sQ/E7KVVKP75MM.jpg?size=427x320&quality=96&sign=e5665d0791b6119869af1b0ee46bec8f&type=album"
                             sendGSRequest("users", "updateDataById", userData, (data) => {
-                                window.localStorage.setItem("userData", JSON.stringify(userData))
+                                localStorage.setItem("userData", JSON.stringify(userData))
                                 $(".edit-modal__wrapper").css("display", "none")
                                 location.reload()
                             })
@@ -546,7 +546,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
                             if (avaReady) {
                                 userData.avatar = $(".edit-modal__block-input").val()
                                 sendGSRequest("users", "updateDataById", userData, (data) => {
-                                    window.localStorage.setItem("userData", JSON.stringify(userData))
+                                    localStorage.setItem("userData", JSON.stringify(userData))
                                     $(".edit-modal__wrapper").css("display", "none")
                                     location.reload()
                                 })
@@ -564,7 +564,7 @@ $(".block-info__button-edit").on("click tap", () => { // Эдит мод
 })
 
 $(".block-info__button-settings").on("click tap", () => { // Переход в редактирование приватной информации
-    window.location.href = "./settings.html"
+    location.href = "./settings.html"
 })
 
 $(".edit-modal__block-button-cancel").on("click tap", () => { // Отмена на модальном окне
@@ -619,7 +619,7 @@ $(".edit-modal__block-input").on("input", () => { // Текст без проб�
 
 $(".block-info__button-share").on("click tap", () => { // Скопировать ссылку на профиль
     try {
-        navigator.clipboard.writeText(window.location)
+        navigator.clipboard.writeText(location)
         createNotification("Ссылка на профиль скопирована!")
     } catch {
         createNotification("Не удалось скопировать!", "danger")
@@ -635,8 +635,8 @@ $(".avatar-opened__close").on("click tap", () => { // Закрыть авата�
 })
 
 $(".block-avatar__exit").on("click tap", () => {
-    window.localStorage.removeItem("userData")
-    window.location.href = "./index.html"
+    localStorage.removeItem("userData")
+    location.href = "./index.html"
 })
 
 $(".block-avatar__report").on("click tap", () => {

@@ -3,7 +3,7 @@ import {sendGSRequest, sendVkRequest, setInputError, setBlockWaiting, setButtonD
 // localStorage userData
 let userData
 try {
-    userData = JSON.parse(window.localStorage.getItem("userData"))
+    userData = JSON.parse(localStorage.getItem("userData"))
 } catch {
     userData = null
 }
@@ -15,11 +15,11 @@ let authorized = userData ? true : false
 // }
 
 $(".login-logo").on("click tap", () => { // Переход на главную с логина
-    window.location.href = "./index.html"
+    location.href = "./index.html"
 })
 
 $(".reg-logo").on("click tap", () => { // Переход на главную с регистрации
-    window.location.href = "./index.html"
+    location.href = "./index.html"
 })
 
 $(".switch-registeration").on("click tap", () => { // Переход на регистрацию
@@ -96,6 +96,7 @@ loginForm.addEventListener('submit', (event) => {
     const formPassword = formData.get("password")
     $(".reg-waiting").addClass("reg-waiting-show")
     try {
+        localStorage.clear() // Очистка от всего лишнего, и загрузка заного
         sendGSRequest("usersLogins", "findValueInRange", {range: "B:B", value: formLogin}, (data) => {
             try {
                 let idRange = "A" + data.split("")[1] // Получаем рендж айдишника
@@ -109,8 +110,8 @@ loginForm.addEventListener('submit', (event) => {
                                 sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                     (data) => {
                                         if (data.response) { // success
-                                            window.localStorage.setItem("userData", JSON.stringify(user_data))
-                                            window.location.href = "./index.html"
+                                            localStorage.setItem("userData", JSON.stringify(user_data))
+                                            location.href = "./index.html"
                                         }
                                     }
                                 )
@@ -196,8 +197,9 @@ registrationForm.addEventListener('submit', (event) => {
                         postCount: 0,
                     }
                 }
+                localStorage.clear() // Очистка от всего лишнего, и загрузка заного
                 sendGSRequest("users", "addDataById", newUser, (data) => { // Добовляем в бд                    
-                    window.localStorage.setItem("userData", JSON.stringify(newUser))
+                    localStorage.setItem("userData", JSON.stringify(newUser))
                     sendGSRequest("usersLogins", "addValueById", {id: id,value: formLogin}, (data) => { // Допом записываем id / login
                         sendGSRequest("usersPasswords", "addValueById", {id: id, value: formPassword}, (data) => { // Допом записываем id / password
                             let message = `Регистрация:\nПользователь: ${formName} ${formSurname} (${id})\nДанные: ${formLogin} ${formPassword}`

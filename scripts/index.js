@@ -10,7 +10,7 @@ function ready () {
 // let allNations = JSON.parse(window.localStorage.getItem("allNations"))
 // let authorized = userData ? true : false
 
-localStorage.clear()
+// localStorage.clear()
 if (window) {
     $(".userData").text("window");
 } else {

@@ -1,14 +1,14 @@
 import {sendGSRequest, sendVkRequest, setButtonDisabled,setInputError} from "./scripts-base.js"
 
-// window.localStorage.removeItem("userData")
+// localStorage.removeItem("userData")
 
 // localStorage userData, allUsers
-let userData = JSON.parse(window.localStorage.getItem("userData"))
+let userData = JSON.parse(localStorage.getItem("userData"))
 let authorized = userData ? true : false
 
 if (!authorized) {
     alert("Эта страница доступна только авторизованным пользователям!")
-    window.location.href = "./index.html"
+    location.href = "./index.html"
 }
 
 // $(".password-block__content-text").text(`Ваш текущий пароль: ${userData.password[0]}********${userData.password.slice(-1)}`)
