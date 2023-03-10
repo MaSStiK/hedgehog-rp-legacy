@@ -1,15 +1,3 @@
-.userData {
-    margin-bottom: 30px;
-}
-
-.allUsers {
-    margin-bottom: 30px;
-}
-
-.allNations {
-    margin-bottom: 30px;
-}
-
 .info {
     width: 100%;
     height: 100%;
@@ -18,4 +6,8 @@
     padding-right: 5%;
     padding-bottom: 76px;
     overflow: auto;
+}
+
+.content div {
+    margin-bottom: 10px;
 }
