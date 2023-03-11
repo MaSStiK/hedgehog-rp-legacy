@@ -44,7 +44,6 @@ $(window).on("online", (event) => {
 })
 
 export function sendError(message, userData, error) { // Отправка ошибки
-    // Тест
     if (confirm(`${message}\nОтправить эту ошибку разработчику?\n${error}`)) {
         let sendMessage = "Ошибка:\n"
         if (userData) { // Если пользователь авторизован и получена информация

@@ -7,7 +7,7 @@ let userData = JSON.parse(localStorage.getItem("userData"))
 
 if (localStorage.getItem("afterAthorization")) { // Перезагрузка страницы с обновлением хеша после авторизации
     try {
-        localStorage.clear(true)
+        location.reload(true)
     } catch {}
     localStorage.removeItem("afterAthorization")
 }
