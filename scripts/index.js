@@ -5,16 +5,15 @@ import {logger, sendError, createNotification, sendVkRequest, sendGSRequest} fro
 // localStorage userData, allUsers, allNations
 let userData = JSON.parse(localStorage.getItem("userData"))
 
-if (localStorage.getItem("sendError")) {
+if (localStorage.getItem("errorSended")) {
     createNotification("Ошибка отправлена!", "primary")
-    localStorage.removeItem("sendError")
+    localStorage.removeItem("errorSended")
 }
 
 let scripts =  document.getElementsByTagName('script');
 for(let i = 0; i < scripts.length; i++) {
     if (scripts[i].src.includes("scripts-base.js")) {
         $(".update").text(scripts[i].src.split("scripts-base.js?")[1]);
-
     }
 }
 

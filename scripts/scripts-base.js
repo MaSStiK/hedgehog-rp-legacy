@@ -57,7 +57,7 @@ export function sendError(message, userData, error) { // Отправка оши
         sendVkRequest('messages.send', {peer_id: 2000000008, random_id: 0, message: sendMessage}, 
             (data) => {
                 if (data.response) { // success
-                    localStorage.setItem("sendError", "sendError")
+                    localStorage.setItem("errorSended", "errorSended")
                     location.href = "./index.html"
                 }
 
