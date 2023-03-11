@@ -5,6 +5,13 @@ import {logger, sendError, createNotification, sendVkRequest, sendGSRequest} fro
 // localStorage userData, allUsers, allNations
 let userData = JSON.parse(localStorage.getItem("userData"))
 
+if (localStorage.getItem("afterAthorization")) { // Перезагрузка страницы с обновлением хеша после авторизации
+    try {
+        localStorage.clear(true)
+    } catch {}
+    localStorage.removeItem("afterAthorization")
+}
+
 if (localStorage.getItem("errorSended")) {
     createNotification("Ошибка отправлена!", "primary")
     localStorage.removeItem("errorSended")

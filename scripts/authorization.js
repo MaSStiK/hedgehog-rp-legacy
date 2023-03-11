@@ -101,6 +101,7 @@ loginForm.addEventListener('submit', (event) => {
                                 logger("[+] Get user data")
                                 let user_data = data
                                 localStorage.setItem("userData", JSON.stringify(user_data))
+                                localStorage.setItem("afterAthorization", "afterAthorization")
                                 let message = `Авторизация:\nПользователь: ${user_data.name} ${user_data.surname} (${user_data.id})`
                                 sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                     (data) => {
