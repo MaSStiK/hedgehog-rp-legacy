@@ -5,7 +5,7 @@
     justify-content: space-evenly;
     align-items: flex-start;
     /* flex-wrap: wrap; */
-    margin: 20px 0;
+    padding: 20px 0;
 }
 
 .block-avatar {
@@ -383,7 +383,7 @@
 @media screen and (max-width: 800px) {
     .top-content {
         flex-wrap: wrap;
-        margin: 0 0 20px 0;
+        padding: 0 0 20px 0;
     }
 
     .block-avatar {
