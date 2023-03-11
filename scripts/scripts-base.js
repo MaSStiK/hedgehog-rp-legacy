@@ -1,5 +1,5 @@
 const doLog = true
-export function logger() {
+export function logger() { // Логер
     let elememts = []
     for (let i = 0; i < arguments.length; i++) {
         elememts.push(arguments[i])
@@ -17,20 +17,13 @@ export function setInputError(className) { // Ошибка в заполнени
     setTimeout(() => {$(className).removeClass("input-error")}, 2000)
 }
 
-export function setBlockWaiting(className) { // Ожидание
-    if (!$(className).hasClass("waiting")) {
-        $(className).addClass("waiting")
-    }
-    setTimeout(() => {$(className).removeClass("waiting")}, 2000)
-}
-
-export function setButtonDisabled(className) {
+export function setButtonDisabled(className) { // Отключение кнопки (антиспам)
     $(className).attr("disabled", "disabled")
     setTimeout(() => {$(className).removeAttr("disabled")}, 2000)
 }
 
-export function createNotification(text, color=null) {
-    $("main").append(`<div class="modal-notification">${text}</div>`)
+export function createNotification(text, color=null) { // Создание уведомления
+    $("body").append(`<div class="modal-notification">${text}</div>`)
     if (color) {
         if (color === "primary") {
             $(".modal-notification").last().addClass("modal-notification-primary")
@@ -49,6 +42,34 @@ $(window).on("offline", (event) => {
 $(window).on("online", (event) => {
     createNotification("Интернет соединение восстановлено", "primary")
 })
+
+export function sendError(message, userData, error) { // Отправка ошибки
+    if (confirm(`${message}\nОтправить эту ошибку разработчику?\n${error}`)) {
+        let sendMessage = "Ошибка:\n"
+        if (userData) { // Если пользователь авторизован и получена информация
+            sendMessage += `От: ${userData.name} ${userData.surname} (${userData.id})`
+        } else {
+            sendMessage += `От: anonymous`
+        }
+        sendMessage += `\nСтраница: ${location.href}`
+        sendMessage += `\nТекст: ${message}`
+        sendMessage += `\nТекст ошибки: ${error}`
+        sendVkRequest('messages.send', {peer_id: 2000000008, random_id: 0, message: sendMessage}, 
+            (data) => {
+                if (data.response) { // success
+                    localStorage.setItem("sendError", "sendError")
+                    location.href = "./index.html"
+                }
+
+                if (data.error) { // error
+                    location.href = "./index.html"
+                }
+            }
+        )
+    } else {
+        location.href = "./index.html"
+    }
+}
 
 
 // Google Sheets
@@ -146,3 +167,4 @@ export function sendVkRequest(method, params, func=null) {
 // 2000000005 logs
 // 2000000006 Географ Жалобы
 // 2000000007 Географ Логи
+// 2000000008 Географ Ошибки

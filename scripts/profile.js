@@ -1,18 +1,22 @@
-import {logger, sendGSRequest, createNotification, setInputError, setButtonDisabled, sendVkRequest} from "./scripts-base.js"
-// localStorage.removeItem("userData")
-// localStorage.removeItem("allNations")
+import {logger, sendGSRequest, createNotification, setInputError, setButtonDisabled, sendVkRequest, sendError} from "./scripts-base.js"
 // localStorage.clear()
 
-// localStorage userData, allNations
+// localStorage userData, userSelectedNation
 let userData = JSON.parse(localStorage.getItem("userData")) // Храним только Важную информацию
-let userNations = JSON.parse(localStorage.getItem("userNations"))
-let userSelectedNation = JSON.parse(localStorage.getItem("userSelectedNation"))
+
+let userSelectedNation = {}
+try { // Пробуем получить нацию пользователя, если не удается спарсить то удаляем
+    userSelectedNation = JSON.parse(localStorage.getItem("userSelectedNation"))
+} catch {
+    logger("[-] Error in userSelectedNation, deleting...")
+    localStorage.removeItem("userSelectedNation")
+}
+
 let userProfileData = null
 let authorized = userData ? true : false
-let renderSelf = false
-let allNations = null
+let selfRender = false
+let findedNation = null
 
-let userId = null
 let nowEditing = ""
 let avaReady = false
 
@@ -27,37 +31,55 @@ urlParams.forEach((e, key) => {
 try {
     if ("id" in params) { // Если указан id
         if (params.id === userData?.id || params.id === userData?.uid) { // Если указан указан айди и он равен либо id либо uid пользователя
-            logger("prerender\nauthorized-user by url id", params.id)
-            renderSelf = true
+            logger("[R] Render authorized-user by id", params.id)
+            selfRender = true
             renderUser(userData)
             sendGSRequest("users", "getDataById", userData, (data) => {
-                logger("prerender\nreceived new authorized-user data")
-                localStorage.setItem("userData", JSON.stringify(data))
+                logger("[+] Received authorized-user data")
                 userData = data
-                renderUser(userData, true)
+                localStorage.setItem("userData", JSON.stringify(userData))
+                sendGSRequest("nations", "getDataById", {id: userData.about.nation !== "" ? userData.about.nation : "noname"}, (data) => {
+                    findedNation = data
+                    logger("[+] Received authorized-user nation")
+                    renderUser(userData, true)
+                })
+                
+                
             })
-        } else { // ПОлучаем информацию о любом другом пользователе и рендерим ее
+        } else { // Получаем информацию о любом другом пользователе и рендерим ее
+            $(".edit-waiting").addClass("edit-waiting-show")
             sendGSRequest("users", "getData", {}, (data) => {
-                logger("prerender\nreceived new user data")
+                logger("[+] Received all users data")
                 if (params.id in data) { // Если id во всех юзерах
-                    logger("prerender\nid found", data[params.id].id)
                     userProfileData = data[params.id]
-                    renderUser(data[params.id], true)
+                    sendGSRequest("nations", "getDataById", {id: userProfileData.about.nation !== "" ? userProfileData.about.nation : "noname"}, (data) => {
+                        findedNation = data
+                        logger("[+] Received user nation")
+                        logger("[R] Render user by id", userProfileData.id)
+                        $(".edit-waiting").removeClass("edit-waiting-show")
+                        renderUser(userProfileData, true)
+                    })
+                    
                 } else { // Если нету то проверка uid 
                     let found = false
-                    Object.keys(data).forEach((userID) => { // Если неправильный айди то проверка uid
-                        if (data[userID].uid.toString() === params.id.toString()) {  
-                            found = data[userID]
+                    Object.keys(data).forEach((user_id) => { // Если неправильный айди то проверка uid
+                        if (data[user_id].uid.toString() === params.id.toString()) {  
+                            found = data[user_id]
                         }
                     })
                     userProfileData = found
 
                     if (found) { // Если найден uid
-                        logger("prerender\nid found by uid", found.id)
-                        renderUser(found, true)
+                        sendGSRequest("nations", "getDataById", {id: userProfileData.about.nation !== "" ? userProfileData.about.nation : "noname"}, (data) => {
+                            findedNation = data
+                            logger("[+] Received user nation")
+                            logger("[R] Render user by uid", userProfileData.id)
+                            $(".edit-waiting").removeClass("edit-waiting-show")
+                            renderUser(userProfileData, true)
+                        })
                         
                     } else { // Если не найден то выкидвает на главную
-                        logger("prerender\nincorrect id")
+                        logger("[-] Incorrect id")
                         alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!\nIncorrect id`)
                         location.href = "./index.html"
                     }
@@ -66,29 +88,29 @@ try {
         }
     } else { 
         if (authorized) { // Если не указан айди и но авторизован - рендер своей странички из памяти
-            logger("prerender\nuser authorized page by id",userData.id)
-            renderSelf = true
+            logger("[R] Render authorized-user", userData.id)
+            selfRender = true
             renderUser(userData)
             sendGSRequest("users", "getDataById", userData, (data) => {
+                logger("[+] Received authorized-user data")
                 localStorage.setItem("userData", JSON.stringify(data))
                 userData = data
                 renderUser(userData, true)
             })
         } else { // Если не указан айди и не авторихован
-            logger("prerender\nnot authorized")
-            alert(`Вы пытаетесь просмотреть свою страницу будучи не авторизованным!\nNot authorized`)
+            logger("[-] Not authorized")
+            alert(`Вы пытаетесь просмотреть свою страницу будучи не авторизованным!\nNot authorized!`)
             location.href = "./index.html"
         }
     }
 } catch(error) {
-    logger("prerender\nerror", error)
-    alert(`Не удалось отобразить страницу пользователя!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${error}`)
-    location.href = "./index.html"
+    // sendError("Не удалось отобразить страницу пользователя!", userData, error)
+    console.log(error);
 }
 
 // -------------------- Рендер страницы --------------------
-function renderUser(userData, finalRender=false) {
-    if (renderSelf) {
+function renderUser(user, finalRender=false) {
+    if (selfRender) {
         $(".block-avatar__exit").removeClass("hide-button") // Делаем кнопку выхода видимой
         $(".block-avatar__report").remove() // Удаляем кнопку репорта
         $(".edit-modal__block-button-report").remove() // Удаляем кнопку репорта из модального окна
@@ -102,68 +124,90 @@ function renderUser(userData, finalRender=false) {
         $(".block-info__button-settings").remove() // Удаляем кнопку
     }
 
-    $(".avatar-opened__img").attr("src", userData.avatar);
-    $(".info-name").text(userData.name)
-    $(".info-surname").text(userData.surname)
-    $(".block-avatar__avatar").css("background-image", `url(${userData.avatar})`)
-    $(".info-tag").text("@" + userData.uid)
-    if (userData.about.gameName !== "") {
-        $(".info-gameName").text(userData.about.gameName)
+    $(".avatar-opened__img").attr("src", user.avatar);
+    $(".info-name").text(user.name)
+    $(".info-surname").text(user.surname)
+    $(".block-avatar__avatar").css("background-image", `url(${user.avatar})`)
+    $(".info-tag").text("@" + user.uid)
+    if (user.about.gameName !== "") {
+        $(".info-gameName").text(user.about.gameName)
     }
-    let date = new Date(userData.about.rpDate).toLocaleString('ru', {timeZone: 'Europe/Moscow'})
+    let date = new Date(user.about.rpDate).toLocaleString('ru', {timeZone: 'Europe/Moscow'})
     $(".info-rpDate").text(date.split(",")[0])
-    if (userData.about.сountry !== "") {
-        $(".info-сountry").text(`${userData.about.сountry} (${userData.about.сountryRole})`)
+    if (user.about.сountry !== "") {
+        $(".info-сountry").text(`${user.about.сountry} (${user.about.сountryRole})`)
     }
-    if (userData.about.nation !== "") {
-        if (allNations) { // Если все нации загружены 
-            if (userData.about.nation in allNations) { // Если нацию удалили а она осталась у пользователя то удаляем ее у пользователя
-                $(".info-nation").text(allNations[userData.about.nation].name)
+    if (user.about.nation !== "") {
+        if (finalRender) { // Если финальный рендер, то все должно быть загружено
+            if (findedNation) { // Если указаная нация не найдена то удаляем
+                $(".info-nation").text(findedNation.name)
                 $(".info-nation").removeClass("primary-text").addClass("link-text")
                 $(".info-nation").unbind("click tap")
                 $(".info-nation").on("click tap", () => {
-                    open("./nations.html?search=" + allNations[userData.about.nation].name.replace(" ", "%20"))
+                    open("./nations.html?search=" + findedNation.name.replace(" ", "%20"))
                 })
-            } else {
-                userData.about.nation = ""
-                sendGSRequest("users", "updateDataById", userData, (data) => {
-                    localStorage.setItem("userData", JSON.stringify(userData))
+                if (selfRender) {
+                    localStorage.setItem("userSelectedNation", JSON.stringify(findedNation)) // Обновляем если рендер себя
+                }
+            } else { // Если нацию удалили а она осталась у пользователя то удаляем ее у пользователя
+                user.about.nation = ""
+                $(".info-nation").text("Не указано")
+                $(".info-nation").removeClass("link-text").addClass("primary-text")
+                $(".info-nation").unbind("click tap")
+                sendGSRequest("users", "updateDataById", user, (data) => {
+                    if (selfRender) { // Если рендерим себя удаляем у себя
+                        localStorage.setItem("userData", JSON.stringify(user))
+                        localStorage.removeItem("userSelectedNation") // Удаляем выбраную нацию
+                    }
                 })
             }
+        } else { // Не финальный рендер
+            if (selfRender || userSelectedNation) { // Если рендер себя и сохранена нация
+                logger("[R] Render authorized-user nation")
+                $(".info-nation").text(userSelectedNation.name)
+                $(".info-nation").removeClass("primary-text").addClass("link-text")
+                $(".info-nation").unbind("click tap")
+                $(".info-nation").on("click tap", () => {
+                    open("./nations.html?search=" + userSelectedNation.name.replace(" ", "%20"))
+                })
+            }
+            // А у других юзеров сразу финальный рендер
         }
     }
-    if (userData.about.languages !== "") {
-        $(".info-languages").text(userData.about.languages)
+
+    if (user.about.languages !== "") {
+        $(".info-languages").text(user.about.languages)
     }
-    if (userData.about.vkLink !== "") {
-        $(".info-vkLink").text(userData.about.vkLink)
+    if (user.about.vkLink !== "") {
+        $(".info-vkLink").text(user.about.vkLink)
         $(".info-vkLink").removeClass("primary-text").addClass("link-text")
         $(".info-vkLink").unbind("click tap")
         $(".info-vkLink").on("click tap", () => {
-            if (userData.about.vkLink.startsWith("https://")) {
-                open(userData.about.vkLink, "_blank")
+            if (user.about.vkLink.startsWith("https://")) {
+                open(user.about.vkLink, "_blank")
             } else {
-                open("https://" + userData.about.vkLink, "_blank")
+                open("https://" + user.about.vkLink, "_blank")
             }
         })
     }
 
-    if (userData.about.status !== "") {
-        $(".info-status").text(userData.about.status)
+    if (user.about.status !== "") {
+        $(".info-status").text(user.about.status)
     }
 
+    // В конце рендера пишем какой был рендер
     if (!finalRender) {
-        logger("render\nrendered")
+        logger("[✓] Fully rendered")
     } else {
-        logger("render\nfinaly rendered")
+        logger("[✓] Fully finaly rendered")
     }
 }   
 
 // -------------------- Эдит мод --------------------
 $(".block-info__button-edit").on("click tap", () => { 
-    if (renderSelf) { // Если авторизованный изменяет свой профиль
+    if (selfRender) { // Если авторизованный изменяет свой профиль
         if ($(".block-info__button-edit").hasClass("edit-mode-on")) { // Если включен
-            logger("edit-mode\noff")
+            logger("[+] Edit mode")
             $(".block-info__button-edit").removeClass("edit-mode-on")
             $(".edit-name").remove()
             $(".edit-surname").remove()
@@ -179,7 +223,7 @@ $(".block-info__button-edit").on("click tap", () => {
             $(".block-avatar__avatar-black").css("display", "none")
             $(".avatar-fullscreen__wrapper").css("display", "flex")
         } else {
-            logger("edit-mode\non")
+            logger("[-] Edit mode")
             $(".block-info__button-edit").addClass("edit-mode-on")
             $(".info-name").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-name">`)
             $(".info-surname").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-surname">`)
@@ -214,7 +258,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (renderSelf) {
+                    if (selfRender) {
                         if (editInput.val() === "") {
                             setInputError(".edit-modal__block-input")
                             $(".edit-waiting").removeClass("edit-waiting-show")
@@ -249,7 +293,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (renderSelf) {
+                    if (selfRender) {
                         if (editInput.val() === "") {
                             setInputError(".edit-modal__block-input")
                             $(".edit-waiting").removeClass("edit-waiting-show")
@@ -284,7 +328,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (renderSelf) {
+                    if (selfRender) {
                         if (editInput.val() === "") { // Если инпут пустой то просто ставим айдишник и сохраняем
                             userData.uid = userData.id
                             sendGSRequest("users", "updateDataById", userData, (data) => {
@@ -339,7 +383,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (renderSelf) {
+                    if (selfRender) {
                         if (editInput.val() === "") { // Если инпут пустой то ставим имя фамилия 
                             userData.about.gameName = userData.name + " " + userData.surname
                         } else {
@@ -424,7 +468,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (renderSelf) {
+                    if (selfRender) {
                         userData.about.languages = $(".edit-modal__block-input").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
                             localStorage.setItem("userData", JSON.stringify(userData))
@@ -454,7 +498,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (renderSelf) {
+                    if (selfRender) {
                         userData.about.vkLink = $(".edit-modal__block-input").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
                             localStorage.setItem("userData", JSON.stringify(userData))
@@ -481,7 +525,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (renderSelf) {
+                    if (selfRender) {
                         userData.about.status = $(".edit-modal__block-textarea").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
                             localStorage.setItem("userData", JSON.stringify(userData))
@@ -512,7 +556,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
                     $(".edit-waiting").addClass("edit-waiting-show")
-                    if (renderSelf) {
+                    if (selfRender) {
                         if ($(".edit-modal__block-input").val() === "") { // Если пусто то стаим фотографию по умолчанию
                             userData.avatar = "https://sun9-31.userapi.com/impg/G2LIF9CtQnTtQ4P9gRxJmvQAa1_64hPsOAe4sQ/E7KVVKP75MM.jpg?size=427x320&quality=96&sign=e5665d0791b6119869af1b0ee46bec8f&type=album"
                             sendGSRequest("users", "updateDataById", userData, (data) => {
@@ -568,13 +612,13 @@ $(".edit-modal__block-input").change(() => { // Свободный текст (�
         img.src = $(".edit-modal__block-input").val()
         img.onload = () => {
             avaReady = true
-            logger("edit-mode\nimageReady", avaReady)
+            logger("[I] Image loaded", avaReady)
             $(".edit-modal__block-input").after(`<div class="avatar-preview"></div>`)
             $(".avatar-preview").css("background-image", `url(${$(".edit-modal__block-input").val()})`)
         }
         img.onerror = () => {
             avaReady = false
-            logger("edit-mode\nimageReady", avaReady)
+            logger("[I] Image error", avaReady)
             setInputError(".edit-modal__block-input")
         }
     }
@@ -598,8 +642,8 @@ $(".edit-modal__block-input").on("input", () => { // Текст без проб�
 $(".block-info__button-share").on("click tap", () => { // Скопировать ссылку на профиль
     try {
         navigator.clipboard.writeText(location)
-        logger("copied\n", location)
         createNotification("Ссылка на профиль скопирована!")
+        logger("[+] Copied\n", location)
     } catch {
         createNotification("Не удалось скопировать!", "danger")
     }
@@ -614,8 +658,8 @@ $(".avatar-opened__close").on("click tap", () => { // Закрыть авата�
 })
 
 $(".block-avatar__exit").on("click tap", () => { // Выход из профиля
-    localStorage.removeItem("userData")
-    location.href = "./index.html"
+    localStorage.clear()
+    location.href = "./authorization.html"
 })
 
 $(".block-avatar__report").on("click tap", () => {
@@ -640,7 +684,12 @@ $(".block-avatar__report").on("click tap", () => {
     $(".edit-modal__block-button-change").unbind("click tap")
     $(".edit-modal__block-button-report").css("display", "block")
     $(".edit-modal__block-button-report").on("click tap", () => {
-        if (!renderSelf) {
+        if (!selfRender) {
+            setButtonDisabled(".edit-modal__block-button-report")
+            if ($(".edit-modal__block-input").val() === "") {
+                setInputError(".edit-modal__block-input")
+                return
+            }
             let message = `Жалоба:\nОт: ${userData.name} ${userData.surname} (${userData.id})\nНа: ${userProfileData.name} ${userProfileData.surname} (${userProfileData.id})\nТекст: ${$(".edit-modal__block-input").val()}`
             sendVkRequest('messages.send', {peer_id: 2000000006, random_id: 0, message: message}, 
                 (data) => {
@@ -650,12 +699,13 @@ $(".block-avatar__report").on("click tap", () => {
                     }
 
                     if (data.error) { // error
-                        alert(`Не удалось отправить жалобу!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${data.error.error_msg}`)
+                        sendError("Не удалось отправить жалобу!", userData, error)
                     }
                 }
             )
         } else {
             createNotification("Нельзя отправить жалобу на самого себя!", "danger")
+            $(".edit-modal__wrapper").css("display", "none")
         }
     })
     $(".edit-modal__wrapper").css("display", "flex")

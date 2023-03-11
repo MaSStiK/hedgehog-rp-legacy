@@ -18,11 +18,11 @@
         <img class="login-logo" src="./assets/logo/main-logotype.png" alt="logotype">
         <form class="block login-form">
             <label for="login" class="h1-title primary-text">Введите логин</label>
-            <input type="login" name="login" class="h2-normal primary-text login-login" minlength="4" maxlength="24" placeholder="Логин" required>
+            <input type="login" name="login" class="h2-normal primary-text login-login" minlength="4" maxlength="64" placeholder="Логин" required>
             <label for="password" class="h1-title primary-text">Введите пароль</label>
             <div class="login-password__wrapper">
                 <img src="./assets/EyeOpen.svg" alt="show-password" class="login-password__img">
-                <input type="password" name="password" class="h2-normal primary-text input-password login-password" minlength="4" maxlength="24" placeholder="Пароль" required>
+                <input type="password" name="password" class="h2-normal primary-text input-password login-password" minlength="4" maxlength="64" placeholder="Пароль" required>
             </div>
             <button type="submit" class="primary-button login-submit">Войти</button>
             <p class="h3-little secondary-text">Нету аккаута? <span class="h3-little link-text switch-registeration">Зарегистрируйтесь!</span></p>
@@ -34,7 +34,7 @@
         <form class="block registration-form">
             <p class="h3-little-break secondary-text reg-help">* Вместо пробела используйте _ или -</p>
             <label for="login" class="h1-title primary-text">Придумайте логин</label>
-            <input type="login" name="login" class="h2-normal primary-text reg-login" minlength="4" maxlength="24" placeholder="Логин (4 - 24 символа)" required>
+            <input type="login" name="login" class="h2-normal primary-text reg-login" minlength="4" maxlength="64" placeholder="Логин (4 - 64 символа)" required>
             <label for="name" class="h1-title primary-text">Настоящее имя</label>
             <input type="name" name="name" class="h2-normal primary-text reg-name" placeholder="Имя (1 - 16 символов)" minlength="1" maxlength="16" required>
             <label for="surname" class="h1-title primary-text">Настоящая фамилия</label>
@@ -42,12 +42,12 @@
             <label for="password" class="h1-title primary-text">Придумайте пароль</label>
             <div class="reg-password__wrapper">
                 <img src="./assets/EyeOpen.svg" alt="show-password" class="reg-password__img">
-                <input type="password" name="password" class="h2-normal primary-text input-password reg-password" placeholder="Пароль (4 - 24 символа)" minlength="4" maxlength="24" required>
+                <input type="password" name="password" class="h2-normal primary-text input-password reg-password" placeholder="Пароль (4 - 64 символа)" minlength="4" maxlength="64" required>
             </div>
             <label for="password-again" class="h1-title primary-text">Повторите пароль</label>
             <div class="reg-password-again__wrapper">
                 <img src="./assets/EyeOpen.svg" alt="show-password" class="reg-password-again__img">
-                <input type="password" name="password-again" class="h2-normal primary-text input-password reg-password-again" placeholder="Пароль (4 - 24 символа)" minlength="4" maxlength="24" required>
+                <input type="password" name="password-again" class="h2-normal primary-text input-password reg-password-again" placeholder="Пароль (4 - 64 символа)" minlength="4" maxlength="64" required>
             </div>
             <button type="submit" class="primary-button reg-submit">Зарегистрироваться</button>
             <p class="h3-little secondary-text">Есть аккаунт? <span class="h3-little link-text switch-login">Войдите!</span></p>
@@ -55,7 +55,7 @@
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./scripts/scripts-base.js?update=1678490209" type="module"></script>
-    <script src="./scripts/authorization.js?update=1678490209" type="module"></script>
+    <script defer src="./scripts/scripts-base.js?update=1678574224" type="module"></script>
+    <script defer src="./scripts/authorization.js?update=1678574224" type="module"></script>
 </body>
 </html>

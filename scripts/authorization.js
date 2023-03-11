@@ -1,18 +1,9 @@
-import {sendGSRequest, sendVkRequest, setInputError, setBlockWaiting, setButtonDisabled} from "./scripts-base.js"
+import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "./scripts-base.js"
 
-// localStorage userData
-// let userData
-// try {
-//     userData = JSON.parse(localStorage.getItem("userData"))
-// } catch {
-//     userData = null
-// }
-// let authorized = userData ? true : false
-
-// if (authorized) { // Автозаполнение если сохранен пользователь
-//     $(".login-login").val(userData.login)
-//     $(".login-password").val(userData.password)
-// }
+if (localStorage.getItem("registered")) {
+    createNotification("Вы успешно зарегистрированы", "primary")
+    localStorage.removeItem("registered")
+}
 
 $(".login-logo").on("click tap", () => { // Переход на главную с логина
     location.href = "./index.html"
@@ -97,6 +88,7 @@ loginForm.addEventListener('submit', (event) => {
     $(".reg-waiting").addClass("reg-waiting-show")
     try {
         localStorage.clear() // Очистка от всего лишнего, и загрузка заного
+        logger("[-] Old data cleaned")
         sendGSRequest("usersLogins", "findValueInRange", {range: "B:B", value: formLogin}, (data) => {
             try {
                 let idRange = "A" + data.split("")[1] // Получаем рендж айдишника
@@ -104,19 +96,22 @@ loginForm.addEventListener('submit', (event) => {
                     let user_id = data
                     sendGSRequest("usersPasswords", "getValueCompareById", {id: user_id, value: formPassword}, (data) => {
                         if (data) {  // Если пароль совпадает то входим
+                            logger("[+] Correct password")
                             sendGSRequest("users", "getDataById", {id: user_id}, (data) => {
+                                logger("[+] Get user data")
                                 let user_data = data
+                                localStorage.setItem("userData", JSON.stringify(user_data))
                                 let message = `Авторизация:\nПользователь: ${user_data.name} ${user_data.surname} (${user_data.id})`
                                 sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                     (data) => {
                                         if (data.response) { // success
-                                            localStorage.setItem("userData", JSON.stringify(user_data))
                                             location.href = "./index.html"
                                         }
                                     }
                                 )
                             })
                         } else { // Не совпал пароль
+                            logger("[-] Incorrect password")
                             $(".reg-waiting").removeClass("reg-waiting-show")
                             setInputError(".login-login")
                             setInputError(".login-password")
@@ -152,8 +147,24 @@ registrationForm.addEventListener('submit', (event) => {
     const formSurname = formData.get("surname")
     const formPassword = formData.get("password")
     const formPasswordAgain = formData.get("password-again")
+
+    if (formLogin.length < 4) { // Если логин меньше 4 символов
+        logger("[-] Login < 4 symbols")
+        setInputError(".reg-login")
+        return
+    }
+
+    if (formPassword.length < 4 || formPasswordAgain.length < 4) { // Если пароль или повтор пароля меньше 4 символов
+        logger("[-] Password < 4 symbols")
+        setInputError(".reg-password")
+        setInputError(".reg-password-again")
+        setInputError(".reg-password__img")
+        setInputError(".reg-password-again__img")
+        return
+    }
     
-    if (formPassword !== formPasswordAgain) {
+    if (formPassword !== formPasswordAgain) { // Если пароли не совпадают
+        logger("[-] Passwords is not the same")
         setInputError(".reg-password")
         setInputError(".reg-password-again")
         setInputError(".reg-password__img")
@@ -167,10 +178,12 @@ registrationForm.addEventListener('submit', (event) => {
         sendGSRequest("usersLogins", "findValueInRange", {range:"B:B", value: formLogin}, (data) => {
             try {
                 if (data) { // Если найдено идентичное совпадение
+                    logger("[-] Login is not unic")
                     setInputError(".reg-login")
                     $(".reg-waiting").removeClass("reg-waiting-show")
                     return
                 }
+                logger("[+] Login is unic")
                 let id = Math.round(Math.random() * (99999999 - 10000000) + 10000000).toString()
                 // let date = new Date().toLocaleString('ru', {timeZone: 'Europe/Moscow'})
                 let date = Date.now()
@@ -198,14 +211,19 @@ registrationForm.addEventListener('submit', (event) => {
                     }
                 }
                 localStorage.clear() // Очистка от всего лишнего, и загрузка заного
-                sendGSRequest("users", "addDataById", newUser, (data) => { // Добовляем в бд                    
+                logger("[-] Old data cleaned")
+                sendGSRequest("users", "addDataById", newUser, (data) => { // Добовляем в бд
+                    logger("[+] User data sended")
                     localStorage.setItem("userData", JSON.stringify(newUser))
                     sendGSRequest("usersLogins", "addValueById", {id: id,value: formLogin}, (data) => { // Допом записываем id / login
+                        logger("[+] Login sended")
                         sendGSRequest("usersPasswords", "addValueById", {id: id, value: formPassword}, (data) => { // Допом записываем id / password
+                            logger("[+] Password sended")
                             let message = `Регистрация:\nПользователь: ${formName} ${formSurname} (${id})\nДанные: ${formLogin} ${formPassword}`
                             sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                 (data) => {
                                     if (data.response) { // success
+                                        localStorage.setItem("registered", "registered")
                                         location.reload()
                                     }
                                 }
@@ -214,12 +232,10 @@ registrationForm.addEventListener('submit', (event) => {
                     })
                 })
             } catch(error) {
-                alert(`Произошла непредвиденная ошибка на стадии отправки формы!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${error}`)
-                location.reload()
+                sendError("Произошла непредвиденная ошибка на стадии отправки формы!", userData, error)
             }
         })
     } catch(error) {
-        alert(`Произошла непредвиденная ошибка на стадии регистрации!\nОтправьте эту ошибку разработчику https://vk.com/291195777\n${error}`)
-        location.reload()
+        sendError("Произошла непредвиденная ошибка на стадии регистрации!", userData, error)
     }
 })

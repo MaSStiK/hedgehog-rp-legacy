@@ -1,65 +1,25 @@
-import {sendVkRequest, sendGSRequest} from "./scripts-base.js"
+import {logger, sendError, createNotification, sendVkRequest, sendGSRequest} from "./scripts-base.js"
 
 // localStorage.clear()
 
 // localStorage userData, allUsers, allNations
-// let userData = JSON.parse(localStorage.getItem("userData"))
-// let allUsers = JSON.parse(window.localStorage.getItem("allUsers"))
-// let allNations = JSON.parse(window.localStorage.getItem("allNations"))
-// let authorized = userData ? true : false
+let userData = JSON.parse(localStorage.getItem("userData"))
 
-
-
-// for(var i=0;i<scripts.length;i++){ 
-//     for(var j=0;j<torefreshs.length;j++){ 
-//             console.log(scripts[i].src);
-//         if(scripts[i].src && (scripts[i].src.indexOf(torefreshs[j]) > -1)){
-            
-//             new_src = scripts[i].src.replace(torefreshs[j],torefreshs[j] + 'k=' + key );
-//             console.log(new_src);
-//             scripts[i].src = new_src; // change src in order to refresh js
-//         } 
-//     }
-// }
-
-console.log("обнова нахуй");
-
-if (window) {
-    $(".window").text("самали");
-} else {
-    $(".window").text("null");
+if (localStorage.getItem("sendError")) {
+    createNotification("Ошибка отправлена!", "primary")
+    localStorage.removeItem("sendError")
 }
-$(".userData").text(JSON.stringify(localStorage.getItem("userData")));
 
-localStorage.setItem("lolka", "lolka")
-$(".stroka").text("lolka");
+let scripts =  document.getElementsByTagName('script');
+for(let i = 0; i < scripts.length; i++) {
+    if (scripts[i].src.includes("scripts-base.js")) {
+        $(".update").text(scripts[i].src.split("scripts-base.js?")[1]);
 
-// sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: "auth"}, 
-//     (data) => {
-//         if (data.response) { // success
-//             $(".text").text("Сработало!");
-//         }
-
-//         if (data.error) { // error
-//             $(".error").text(data.error.error_msg);
-//         }
-//     }
-// )
-
-// sendGSRequest("users", "getData", {}, (data) => {
-//     $(".text").text(JSON.stringify(data));
-// })
-
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzmEh-mzZiBmqynucvNcpuwk6KCReRiEA09NuN9YkZJhSyfEPgpcDmQCmEZFfAJZEE0/exec"
-
-$.ajax({
-    url: GoogleSheetURL,
-    method: "POST",
-    dataType: 'JSONP',
-    success: (res) => {
-        $(".text").text(JSON.stringify("lolka"));
     }
-})
+}
+
+$(".userData").text(JSON.stringify(userData));
+
 
 
 // try {

@@ -1,10 +1,11 @@
-import {createNotification} from "./scripts-base.js"
+import {logger, createNotification} from "./scripts-base.js"
 
 // localStorage userData
 let userData = null
-try {
+try { // Пробуем получить информацию о пользователе, если не удается спарсить то удаляем
     userData = JSON.parse(localStorage.getItem("userData"))
-} catch { // Если юзердата сломалась то удаляем ее
+} catch {
+    logger("[-] Error in userData, deleting...")
     localStorage.removeItem("userData")
 }
 let authorized = userData ? true : false
@@ -18,6 +19,8 @@ if (authorized) { // Профиль в сайдбаре если авториз�
     $(".nav__button-authorized").attr("href", "./profile.html?id=" + userData.id)
     $(".nav__button-authorization").attr("style", "display: none !important")
     $(".nav__button-authorized").attr("style", "display: flex !important")
+} else {
+    $(".nav__button-authorization").css("opacity", "1");
 }
 
 $(".nav-phone__burger-wrapper").on("click tap", () => {

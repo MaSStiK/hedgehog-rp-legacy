@@ -4,7 +4,6 @@
 @import "sidebar.css";
 
 :root {
-    prefers-color-scheme: dark;
     color-scheme: dark;
     
     --primary-bg: #1B1A1F;
@@ -67,8 +66,4 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-
-.waiting {
-    cursor: wait !important;
 }

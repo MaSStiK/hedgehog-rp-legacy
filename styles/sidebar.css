@@ -33,7 +33,11 @@ nav {
     width: 200px;
     justify-content: flex-start;
     display: none;
-    /* opacity: 0; */
+}
+
+.nav__button-authorization {
+    opacity: 0;
+    transition: 0s opacity;
 }
 
 .nav__line {
