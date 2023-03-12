@@ -65,26 +65,26 @@
         </nav>
         <div class="content">
             <div class="settings-waiting"></div>
-            <div class="block password-block">
-                <div class="block-title__wrapper">
-                    <p class="h1-title primary-text block-title">Пароль</p>
+            <div class="block settings-block">
+                <div class="settings-block__title-wrapper">
+                    <p class="h1-title primary-text">Пароль</p>
                 </div>
-                <div class="password-block__content">
-                    <p class="h2-normal-break primary-text password-block__content-text">Изменить ваш текущий пароль</p>
+                <div class="settings-block__content">
+                    <p class="h2-normal-break primary-text settings-block__text">Изменить ваш текущий пароль</p>
                 </div>
                 <button class="primary-button change-password__button">Изменить</button>
                 <div class="change-password__wrapper">
-                    <p class="h2-normal-break primary-text change-password__text">Введите старый пароль</p>
+                    <p class="h2-normal-break primary-text settings-block__text">Введите старый пароль</p>
                     <div class="input-wrapper">
                         <img src="./assets/EyeOpen.svg" alt="show-password" class="old-password__img">
                         <input class="h2-normal primary-text input-password old-password" type="password" placeholder="Пароль (4 - 24 символов)" minlength="4" maxlength="24" required>
                     </div>
-                    <p class="h2-normal-break primary-text input-password change-password__text">Введите новый пароль</p>
+                    <p class="h2-normal-break primary-text input-password settings-block__text">Введите новый пароль</p>
                     <div class="input-wrapper">
                         <img src="./assets/EyeOpen.svg" alt="show-password" class="new-password__img">
                         <input class="h2-normal primary-text input-password new-password" type="password" placeholder="Пароль (4 - 24 символов)" minlength="4" maxlength="24" required>
                     </div>
-                    <p class="h2-normal-break primary-text change-password__text">Повторите новый пароль</p>
+                    <p class="h2-normal-break primary-text settings-block__text">Повторите новый пароль</p>
                     <div class="input-wrapper">
                         <img src="./assets/EyeOpen.svg" alt="show-password" class="new-password-again__img">
                         <input class="h2-normal primary-text input-password new-password-again" type="password" placeholder="Пароль (4 - 24 символов)" minlength="4" maxlength="24" required>
@@ -93,11 +93,22 @@
                     <button class="secondary-button cancel-button">Отмена</button>
                 </div>
             </div>
+            <div class="block settings-block">
+                <div class="settings-block__title-wrapper">
+                    <p class="h1-title primary-text">Перезагрузка</p>
+                </div>
+                <div class="settings-block__content">
+                    <p class="h2-normal-break primary-text settings-block__text">Полная перезагрузка сайта с очищением кеша</p>
+                    <p class="h3-little-break secondary-text settings-block__text">(Работает не во всех браузерах)</p>
+                </div>
+                <button class="primary-button reload-button">Перезагрузить</button>
+                
+            </div>
         </div>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./scripts/scripts-base.js?update=1678575345" type="module"></script>
-    <script src="./scripts/sidebar.js?update=1678575345" type="module"></script>
-    <script src="./scripts/settings.js?update=1678575345" type="module"></script>
+    <script src="./scripts/scripts-base.js?update=1678622255" type="module"></script>
+    <script src="./scripts/sidebar.js?update=1678622255" type="module"></script>
+    <script src="./scripts/settings.js?update=1678622255" type="module"></script>
 </body>
 </html>

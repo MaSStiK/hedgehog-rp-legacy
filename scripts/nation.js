@@ -198,11 +198,11 @@ function renderNations(nations, finalRender=false) {
             event.stopPropagation() // Остановка всплытия
             if (authorized) { // Если авторизован
                 nowEntering = nation.id
-                $(".enter-modal__block-text").text(`Вы уверены что хотите присоединиться к нации "${nation.name}"?`);
+                $(".enter-modal__block-text").text(`Вы уверены что хотите вступить в нацию "${nation.name}"?`);
                 $(".enter-modal__wrapper").css("display", "flex")
                 userSelectedNation = nation
             } else { // Если нет то уведомление
-                createNotification("Присоединиться к нации может только авторизованный пользователь!", "danger")
+                createNotification("Вступить в нацию может только авторизованный пользователь!", "danger")
                 return
             }            
         })

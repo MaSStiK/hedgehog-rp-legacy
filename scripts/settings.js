@@ -114,3 +114,8 @@ $(".cancel-button").on("click tap", () => { // Отмена - обнуление
     $(".new-password").val("")
     $(".new-password-again").val("")
 })
+
+
+$(".reload-button").on("click tap", () => { // Полная перезагрузка страницы
+    location.reload(true)
+})

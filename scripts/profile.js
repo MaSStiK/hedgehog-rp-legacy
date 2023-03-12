@@ -144,7 +144,7 @@ function renderUser(user, finalRender=false) {
                 $(".info-nation").removeClass("primary-text").addClass("link-text")
                 $(".info-nation").unbind("click tap")
                 $(".info-nation").on("click tap", () => {
-                    open("./nations.html?search=" + findedNation.name.replace(" ", "%20"))
+                    location.href = "./nations.html?search=" + findedNation.name.replace(" ", "%20")
                 })
                 if (selfRender) {
                     localStorage.setItem("userSelectedNation", JSON.stringify(findedNation)) // Обновляем если рендер себя
@@ -168,7 +168,7 @@ function renderUser(user, finalRender=false) {
                 $(".info-nation").removeClass("primary-text").addClass("link-text")
                 $(".info-nation").unbind("click tap")
                 $(".info-nation").on("click tap", () => {
-                    open("./nations.html?search=" + userSelectedNation.name.replace(" ", "%20"))
+                    location.href = "./nations.html?search=" + userSelectedNation.name.replace(" ", "%20")
                 })
             }
             // А у других юзеров сразу финальный рендер

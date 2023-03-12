@@ -1,4 +1,4 @@
-.password-block {
+.settings-block {
     margin-top: 20px;
     width: 350px;
     /* height: 200px; */
@@ -9,7 +9,7 @@
     padding-bottom: 10px;
 }
 
-.block-title__wrapper {
+.settings-block__title-wrapper {
     width: 80%;
     height: 40px;
     display: flex;
@@ -24,9 +24,13 @@
 
 } */
 
-.password-block__content {
+.settings-block__content {
     width: 90%;
     margin-bottom: 10px;
+}
+
+.settings-block__text {
+    margin-bottom: 5px;
 }
 
 .change-password__wrapper {
@@ -38,9 +42,7 @@
     display: none;
 }
 
-.change-password__text {
-    margin-bottom: 5px;
-}
+
 
 input {
     margin-bottom: 15px;
@@ -68,6 +70,17 @@ input {
 
 .save-button  {
     margin-bottom: 10px;
+}
+
+.reload-block {
+    margin-top: 20px;
+    width: 350px;
+    /* height: 200px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 10px;
 }
 
 .settings-waiting {
