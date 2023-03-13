@@ -12,20 +12,6 @@ if (localStorage.getItem("afterAthorization")) { // Перезагрузка с�
     localStorage.removeItem("afterAthorization")
 }
 
-if (localStorage.getItem("passwordChangedAfter")) { // И уведомляем пользователя
-    createNotification("Пароль был изменен, или не найден локально!", "danger")
-    localStorage.removeItem("passwordChangedAfter")
-}
-
-if (localStorage.getItem("passwordChanged")) { // После изменение пароля на другом устройсвте выкенет на гланую
-    localStorage.clear()
-    localStorage.removeItem("passwordChanged")
-    localStorage.setItem("passwordChangedAfter", "passwordChangedAfter") 
-    try {
-        location.reload(true) // Удаляем данные и хеш
-    } catch {}
-}
-
 if (localStorage.getItem("errorSended")) { // После отправки ошибки
     createNotification("Ошибка отправлена!", "primary")
     localStorage.removeItem("errorSended")

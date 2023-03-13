@@ -71,6 +71,19 @@ export function sendError(message, userData, error) { // Отправка оши
     }
 }
 
+if (localStorage.getItem("passwordChangedAfter")) { // И уведомляем пользователя
+    createNotification("Пароль был изменен, или не найден локально!", "danger")
+    localStorage.removeItem("passwordChangedAfter")
+}
+
+if (localStorage.getItem("passwordChanged")) { // После изменение пароля на другом устройсвте выкенет на гланую
+    localStorage.clear()
+    localStorage.removeItem("passwordChanged")
+    localStorage.setItem("passwordChangedAfter", "passwordChangedAfter") 
+    try {
+        location.reload(true) // Удаляем данные и хеш
+    } catch {}
+}
 
 // Google Sheets
 const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzmEh-mzZiBmqynucvNcpuwk6KCReRiEA09NuN9YkZJhSyfEPgpcDmQCmEZFfAJZEE0/exec"

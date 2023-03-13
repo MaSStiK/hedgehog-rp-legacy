@@ -49,11 +49,11 @@ if (authorized) {
         sendGSRequest("usersPasswords", "getValueCompareById", {id: userData.id, value: userPassword}, (data) => { // Сравниваем пароль
             if (!data) {
                 localStorage.setItem("passwordChanged", "passwordChanged")
-                location.href = "./index.html"
+                location.href = "./authorization.html"
             }
         })
     } else {
         localStorage.setItem("passwordChanged", "passwordChanged")
-        location.href = "./index.html"
+        location.href = "./authorization.html"
     }
 } 
