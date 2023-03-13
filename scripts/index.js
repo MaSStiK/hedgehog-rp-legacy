@@ -12,11 +12,26 @@ if (localStorage.getItem("afterAthorization")) { // Перезагрузка с�
     localStorage.removeItem("afterAthorization")
 }
 
-if (localStorage.getItem("errorSended")) {
+if (localStorage.getItem("passwordChanged")) { // После изменение пароля на другом устройсвте выкенет на гланую
+    localStorage.clear()
+    try {
+        location.reload(true)
+    } catch {}
+    localStorage.removeItem("passwordChanged")
+    localStorage.setItem("passwordChangedAfter") // Удаляем данные и хеш
+}
+
+if (localStorage.getItem("passwordChangedAfter")) { // И уведомляем пользователя
+    createNotification("Пароль был изменен, или не найден локально!", "danger")
+    localStorage.removeItem("passwordChangedAfter")
+}
+
+if (localStorage.getItem("errorSended")) { // После отправки ошибки
     createNotification("Ошибка отправлена!", "primary")
     localStorage.removeItem("errorSended")
 }
 
+/////////////////////////////////////////////////////////////
 let scripts =  document.getElementsByTagName('script');
 for(let i = 0; i < scripts.length; i++) {
     if (scripts[i].src.includes("scripts-base.js")) {
@@ -25,35 +40,3 @@ for(let i = 0; i < scripts.length; i++) {
 }
 
 $(".userData").text(JSON.stringify(userData));
-
-
-
-// try {
-//     sendGSRequest("users", "getData", {}, (data) => {
-//         try {
-//             window.localStorage.setItem("allUsers", JSON.stringify(data))
-//             if (authorized) { // Если авторизован то обновляем информацию о пользователе
-//                 window.localStorage.setItem("userData", JSON.stringify(data[userData.id]))
-//             }
-        
-//             // $(".userData").text(JSON.stringify(data[userData.id]))
-//             $(".allUsers").text(JSON.stringify(data))
-//         } catch (error) {
-//             $(".error").text(error)
-//         }
-        
-//     })
-    
-//     sendGSRequest("nations", "getData", {}, (data) => {
-//         try {
-//             // window.localStorage.setItem("allNations", JSON.stringify(data))
-//             // allNations = data
-//             $(".allNations").text(JSON.stringify(data))
-//         } catch (error) {
-//             $(".error").text(error)
-//         }
-        
-//     })
-// } catch (error) {
-//     $(".error").text(error)
-// }

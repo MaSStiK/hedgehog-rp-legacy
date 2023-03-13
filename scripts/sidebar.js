@@ -1,4 +1,4 @@
-import {logger, createNotification} from "./scripts-base.js"
+import {logger, createNotification, sendGSRequest} from "./scripts-base.js"
 
 // localStorage userData
 let userData = null
@@ -42,3 +42,18 @@ $(".nav__logo").on("click tap", () => {
 $(".nav-phone__logo").on("click tap", () => {
     location.href = "./index.html"
 })
+
+const userPassword = localStorage.getItem("userPassword")
+if (authorized) {
+    if (userPassword) { // Если пароль сохранен
+        sendGSRequest("usersPasswords", "getValueCompareById", {id: userData.id, value: userPassword}, (data) => { // Сравниваем пароль
+            if (!data) {
+                localStorage.setItem("passwordChanged", "passwordChanged")
+                location.href = "./index.html"
+            }
+        })
+    } else {
+        localStorage.setItem("passwordChanged", "passwordChanged")
+        location.href = "./index.html"
+    }
+} 

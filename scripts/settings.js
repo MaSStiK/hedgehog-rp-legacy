@@ -88,7 +88,9 @@ $(".save-button").on("click tap", () => {
                     sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                         (data) => {
                             if (data.response) { // success
-                                location.reload()
+                                try {
+                                    location.reload(true)
+                                } catch {}
                             }
                         }
                     )
@@ -117,5 +119,7 @@ $(".cancel-button").on("click tap", () => { // Отмена - обнуление
 
 
 $(".reload-button").on("click tap", () => { // Полная перезагрузка страницы
-    location.reload(true)
+    try {
+        location.reload(true)
+    } catch {}
 })

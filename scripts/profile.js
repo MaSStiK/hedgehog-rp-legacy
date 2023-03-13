@@ -104,8 +104,7 @@ try {
         }
     }
 } catch(error) {
-    // sendError("Не удалось отобразить страницу пользователя!", userData, error)
-    console.log(error);
+    sendError("Не удалось отобразить страницу пользователя!", userData, error)
 }
 
 // -------------------- Рендер страницы --------------------
@@ -162,7 +161,7 @@ function renderUser(user, finalRender=false) {
                 })
             }
         } else { // Не финальный рендер
-            if (selfRender || userSelectedNation) { // Если рендер себя и сохранена нация
+            if (selfRender && userSelectedNation) { // Если рендер себя и сохранена нация
                 logger("[R] Render authorized-user nation")
                 $(".info-nation").text(userSelectedNation.name)
                 $(".info-nation").removeClass("primary-text").addClass("link-text")

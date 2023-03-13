@@ -101,7 +101,8 @@ loginForm.addEventListener('submit', (event) => {
                                 logger("[+] Get user data")
                                 let user_data = data
                                 localStorage.setItem("userData", JSON.stringify(user_data))
-                                localStorage.setItem("afterAthorization", "afterAthorization")
+                                localStorage.setItem("afterAthorization", "afterAthorization") // Обновление хеша на главной страницы
+                                localStorage.setItem("userPassword", formPassword) // Для проверки пароля
                                 let message = `Авторизация:\nПользователь: ${user_data.name} ${user_data.surname} (${user_data.id})`
                                 sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                     (data) => {
