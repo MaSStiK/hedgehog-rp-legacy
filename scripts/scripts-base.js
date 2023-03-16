@@ -153,10 +153,6 @@ export function sendGSRequest(sheet, action, data={}, func=null) {
     })
 }
 
-// sendGSRequest("users", "updateDataById", {id: 4411, name: "увагуе"}, (data) => {
-//     console.log(data);
-// })
-
 // VK API
 let token = "vk1.a.PfD30rLv8JpK3-RBjksczmShBSymiZ0gxlZn2FixH-B8OG-MA_GVSB-aOFlvydrzzyAYpPfs6Q8_fRUWJxapzjyHpcuzBynC2baY_fU0WkzgqC5yK1-tvY9fGEtBdnzZdOvFI1EPbst2XPt-yyR6JxTN7-T51bSaIhjNzcjPpWo1XD7DBhdAaJLBN1o0I36R31L0ORlG4wuLc1i4p2Jpaw"
 function getMethodUrl(method, params) {

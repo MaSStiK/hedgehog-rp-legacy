@@ -118,12 +118,28 @@ $(".reg-isend").on("click tap", () => { // Нажатие на Отправил 
 
             if (userFoundId) { // Если найден userFoundId
                 logger("[F] User finded")
-                userVkName = usersNames[userFoundId]
-                $(".reg__vk-name").text("Это вы?: " + userVkName)
-                $(".reg__vk-link").text("https://vk.com/id" + userFoundId)
-                $(".reg__vk-link").attr("href", "https://vk.com/id" + userFoundId)
-                $(".reg__start").css("display", "none") // Прячем первый блок
-                $(".reg__ask").css("display", "flex") // Показываем блок с кнопками я не я
+                sendGSRequest("users", "getData", {}, (data) => {
+                    logger("[+] Received all users data")
+                    let finded = false
+                    Object.keys(data).forEach(userId => { // Если человек с таким id уже привязывал страничку, то не привязываем
+                        if (data[userId].about.vkId === userFoundId) {
+                            finded = true
+                        }
+                    })
+
+                    if (!finded) {
+                        userVkName = usersNames[userFoundId]
+                        $(".reg__vk-name").text("Это вы?: " + userVkName)
+                        $(".reg__vk-link").text("https://vk.com/id" + userFoundId)
+                        $(".reg__vk-link").attr("href", "https://vk.com/id" + userFoundId)
+                        $(".reg__start").css("display", "none") // Прячем первый блок
+                        $(".reg__ask").css("display", "flex") // Показываем блок с кнопками я не я
+                    } else {
+                        logger("[F] User not unic")
+                        createNotification("Эта страница уже привязана!", "danger")
+                    }
+                })
+                
             } else {
                 logger("[F] User not finded")
                 createNotification("Сообщение с кодом не найдено!", "danger")
