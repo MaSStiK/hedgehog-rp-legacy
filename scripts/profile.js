@@ -123,9 +123,8 @@ function renderUser(user, finalRender=false) {
         $(".block-info__button-settings").remove() // Удаляем кнопку
     }
 
-    $(".avatar-opened__img").attr("src", user.avatar);
-    $(".info-name").text(user.name)
-    $(".info-surname").text(user.surname)
+    $(".avatar-opened__img").attr("src", user.avatar)
+    $(".info-vkName").text(user.vkName)
     $(".block-avatar__avatar").css("background-image", `url(${user.avatar})`)
     $(".info-tag").text("@" + user.uid)
     if (user.about.gameName !== "") {
@@ -177,16 +176,13 @@ function renderUser(user, finalRender=false) {
     if (user.about.languages !== "") {
         $(".info-languages").text(user.about.languages)
     }
+
     if (user.about.vkLink !== "") {
-        $(".info-vkLink").text(user.about.vkLink)
-        $(".info-vkLink").removeClass("primary-text").addClass("link-text")
-        $(".info-vkLink").unbind("click tap")
-        $(".info-vkLink").on("click tap", () => {
-            if (user.about.vkLink.startsWith("https://")) {
-                open(user.about.vkLink, "_blank")
-            } else {
-                open("https://" + user.about.vkLink, "_blank")
-            }
+        $(".info-vkId").text(user.about.vkLink)
+        $(".info-vkId").removeClass("primary-text").addClass("link-text")
+        $(".info-vkId").unbind("click tap")
+        $(".info-vkId").on("click tap", () => {
+            open(user.about.vkLink, "_blank")
         })
     }
 
@@ -208,15 +204,12 @@ $(".block-info__button-edit").on("click tap", () => {
         if ($(".block-info__button-edit").hasClass("edit-mode-on")) { // Если включен
             logger("[+] Edit mode")
             $(".block-info__button-edit").removeClass("edit-mode-on")
-            $(".edit-name").remove()
-            $(".edit-surname").remove()
             $(".edit-tag").remove()
             $(".edit-gameName").remove()
             $(".edit-rpDate").remove()
             $(".edit-сountry").remove()
             $(".edit-nation").remove()
             $(".edit-languages").remove()
-            $(".edit-vkLink").remove()
             $(".edit-status").remove()
             $(".edit-avatar").remove()
             $(".block-avatar__avatar-black").css("display", "none")
@@ -224,89 +217,16 @@ $(".block-info__button-edit").on("click tap", () => {
         } else {
             logger("[-] Edit mode")
             $(".block-info__button-edit").addClass("edit-mode-on")
-            $(".info-name").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-name">`)
-            $(".info-surname").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-surname">`)
             $(".info-tag").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-mode-little edit-tag">`)
             $(".info-gameName").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-gameName">`)
             $(".info-rpDate").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-rpDate">`)
             $(".info-сountry").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-сountry">`)
             $(".info-nation").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-nation">`)
             $(".info-languages").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-languages">`)
-            $(".info-vkLink").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-vkLink">`)
             $(".block-info__status-wrapper").after(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-status">`)
             $(".avatar-fullscreen__wrapper").css("display", "none")
             $(".block-avatar__avatar-black").append(`<img src="./assets/Edit.svg" alt="edit" class="edit-mode edit-avatar">`)
             $(".block-avatar__avatar-black").css("display", "flex")
-            
-            $(".edit-name").on("click tap", () => {
-                nowEditing = "name"
-                $(".edit-modal__block-title").text(`Изменение поля "Имя"`)
-                $(".edit-modal__block-text").text(`Введите новое значение:`)
-                $(".edit-modal__block-help").css("display", "none")
-                $(".edit-modal__block-help2").css("display", "block")
-                $(".edit-modal__block-textarea").css("display", "none")
-                let editInput = $(".edit-modal__block-input")
-                editInput.attr("placeholder", "1 - 16 символов")
-                editInput.attr("minLength", 1)
-                editInput.attr("maxLength", 16)
-                editInput.val(userData.name)
-                $(".edit-modal__block-input").css("display", "block")
-                $(".edit-modal__block-button-linkout").css("display", "none")
-                $(".edit-modal__block-button-change").css("display", "block")
-                $(".edit-modal__block-button-change").unbind("click tap")
-                $(".edit-modal__block-button-change").on("click tap", () => {
-                    setButtonDisabled(".edit-modal__block-button-change")
-                    $(".edit-waiting").addClass("edit-waiting-show")
-                    if (selfRender) {
-                        if (editInput.val() === "") {
-                            setInputError(".edit-modal__block-input")
-                            $(".edit-waiting").removeClass("edit-waiting-show")
-                        } else {
-                            userData.name = $(".edit-modal__block-input").val()
-                            sendGSRequest("users", "updateDataById", userData, (data) => {
-                                localStorage.setItem("userData", JSON.stringify(userData))
-                                location.reload()
-                            })
-                        }
-                    }
-                })
-                $(".edit-modal__wrapper").css("display", "flex")
-            })
-
-            $(".edit-surname").on("click tap", () => {
-                nowEditing = "surname"
-                $(".edit-modal__block-title").text(`Изменение поля "Фамилия"`)
-                $(".edit-modal__block-text").text(`Введите новое значение:`)
-                $(".edit-modal__block-help").css("display", "none")
-                $(".edit-modal__block-help2").css("display", "block")
-                $(".edit-modal__block-textarea").css("display", "none")
-                let editInput = $(".edit-modal__block-input")
-                editInput.attr("placeholder", "1 - 16 символов")
-                editInput.attr("minLength", 1)
-                editInput.attr("maxLength", 16)
-                editInput.val(userData.surname)
-                $(".edit-modal__block-input").css("display", "block")
-                $(".edit-modal__block-button-linkout").css("display", "none")
-                $(".edit-modal__block-button-change").css("display", "block")
-                $(".edit-modal__block-button-change").unbind("click tap")
-                $(".edit-modal__block-button-change").on("click tap", () => {
-                    setButtonDisabled(".edit-modal__block-button-change")
-                    $(".edit-waiting").addClass("edit-waiting-show")
-                    if (selfRender) {
-                        if (editInput.val() === "") {
-                            setInputError(".edit-modal__block-input")
-                            $(".edit-waiting").removeClass("edit-waiting-show")
-                        } else {
-                            userData.surname = $(".edit-modal__block-input").val()
-                            sendGSRequest("users", "updateDataById", userData, (data) => {
-                                localStorage.setItem("userData", JSON.stringify(userData))
-                                location.reload()
-                            })
-                        }
-                    }
-                })
-                $(".edit-modal__wrapper").css("display", "flex")
-            })
 
             $(".edit-tag").on("click tap", () => {
                 nowEditing = "tag"
@@ -371,9 +291,9 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-help2").css("display", "none")
                 $(".edit-modal__block-textarea").css("display", "none")
                 let editInput = $(".edit-modal__block-input")
-                editInput.attr("placeholder", "1 - 48 символов")
+                editInput.attr("placeholder", "1 - 64 символов")
                 editInput.attr("minLength", 1)
-                editInput.attr("maxLength", 48)
+                editInput.attr("maxLength", 64)
                 editInput.val(userData.about.gameName)
                 $(".edit-modal__block-input").css("display", "block")
                 $(".edit-modal__block-button-linkout").css("display", "none")
@@ -384,7 +304,7 @@ $(".block-info__button-edit").on("click tap", () => {
                     $(".edit-waiting").addClass("edit-waiting-show")
                     if (selfRender) {
                         if (editInput.val() === "") { // Если инпут пустой то ставим имя фамилия 
-                            userData.about.gameName = userData.name + " " + userData.surname
+                            userData.about.gameName = userData.vkName
                         } else {
                             userData.about.gameName = $(".edit-modal__block-input").val()
                         }
@@ -469,36 +389,6 @@ $(".block-info__button-edit").on("click tap", () => {
                     $(".edit-waiting").addClass("edit-waiting-show")
                     if (selfRender) {
                         userData.about.languages = $(".edit-modal__block-input").val()
-                        sendGSRequest("users", "updateDataById", userData, (data) => {
-                            localStorage.setItem("userData", JSON.stringify(userData))
-                            location.reload()
-                        })
-                    }
-                })
-                $(".edit-modal__wrapper").css("display", "flex")
-            })
-
-            $(".edit-vkLink").on("click tap", () => {
-                nowEditing = "vkLink"
-                $(".edit-modal__block-title").text(`Изменение поля "Профиль ВК"`)
-                $(".edit-modal__block-text").text(`Введите новое значение:`)
-                $(".edit-modal__block-help").css("display", "block")
-                $(".edit-modal__block-help2").css("display", "none")
-                $(".edit-modal__block-textarea").css("display", "none")
-                let editInput = $(".edit-modal__block-input")
-                editInput.attr("placeholder", "1 - 48 символов")
-                editInput.attr("minLength", 1)
-                editInput.attr("maxLength", 48)
-                editInput.val(userData.about.vkLink)
-                $(".edit-modal__block-input").css("display", "block")
-                $(".edit-modal__block-button-linkout").css("display", "none")
-                $(".edit-modal__block-button-change").css("display", "block")
-                $(".edit-modal__block-button-change").unbind("click tap")
-                $(".edit-modal__block-button-change").on("click tap", () => {
-                    setButtonDisabled(".edit-modal__block-button-change")
-                    $(".edit-waiting").addClass("edit-waiting-show")
-                    if (selfRender) {
-                        userData.about.vkLink = $(".edit-modal__block-input").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
                             localStorage.setItem("userData", JSON.stringify(userData))
                             location.reload()
@@ -598,7 +488,7 @@ $(".edit-modal__block-input").change(() => { // Свободный текст (�
     if (nowEditing === "languages") {
         $(".edit-modal__block-input").val($(".edit-modal__block-input").val().replace(/ +/g, ' ').trim())
     }
-    if (nowEditing === "vkLink") {
+    if (nowEditing === "vkId") {
         $(".edit-modal__block-input").val($(".edit-modal__block-input").val().replace(/ +/g, ' ').trim())
     }
     if (nowEditing === "status") {
@@ -627,12 +517,6 @@ $(".edit-modal__block-input").change(() => { // Свободный текст (�
 })
 
 $(".edit-modal__block-input").on("input", () => { // Текст без пробелов
-    if (nowEditing === "name") {
-        $(".edit-modal__block-input").val($(".edit-modal__block-input").val().split(' ').join('_'))
-    }
-    if (nowEditing === "surname") {
-        $(".edit-modal__block-input").val($(".edit-modal__block-input").val().split(' ').join('_'))
-    }
     if (nowEditing === "tag") {
         $(".edit-modal__block-input").val($(".edit-modal__block-input").val().split(' ').join('_'))
     }
@@ -689,7 +573,7 @@ $(".block-avatar__report").on("click tap", () => {
                 setInputError(".edit-modal__block-input")
                 return
             }
-            let message = `Жалоба:\nОт: ${userData.name} ${userData.surname} (${userData.id})\nНа: ${userProfileData.name} ${userProfileData.surname} (${userProfileData.id})\nТекст: ${$(".edit-modal__block-input").val()}`
+            let message = `Жалоба:\nОт: ${userData.vkName} (${userData.id})\nНа: ${userProfileData.vkName} (${userProfileData.id})\nТекст: ${$(".edit-modal__block-input").val()}`
             sendVkRequest('messages.send', {peer_id: 2000000006, random_id: 0, message: message}, 
                 (data) => {
                     if (data.response) { // success

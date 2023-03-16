@@ -1,6 +1,7 @@
 .login-block, .registration-block {
     width: 1280px;
-    height: 720px;
+    height: calc(720px - 100px);
+    padding-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,17 +13,17 @@
     display: none;
 }
 
-.login-logo {
+.login-logo, .reg-logo {
     margin-top: -200px;
     cursor: pointer;
-    width: 200px;
+    width: 150px;
 }
 
-.reg-logo {
+/* .reg-logo {
     margin-top: -75px;
     cursor: pointer;
     width: 100px;
-}
+} */
 
 .login-form {
     /* width: 300px; */
@@ -36,7 +37,7 @@
 }
 
 .registration-form {
-    /* width: 300px; */
+    width: 315px;
     /* height: 530px; */
     display: flex;
     flex-direction: column;
@@ -44,6 +45,17 @@
     justify-content: center;
     padding: 30px;
     box-sizing: border-box;
+}
+
+.reg-lastpage, .reg-firstpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.reg-lastpage {
+    display: none;
 }
 
 label {
@@ -63,6 +75,10 @@ input {
     box-sizing: border-box;
 }
 
+.reg-password {
+    margin-bottom: 4px;
+}
+
 /* фикс автоввода */
 input:-webkit-autofill, 
 input:-webkit-autofill:focus {
@@ -77,18 +93,68 @@ input::placeholder {
     color: var(--text-darker-color);
 }
 
+button {
+    margin-bottom: 16px;
+}
+
 .reg-help {
     margin-bottom: 2px;
 }
 
 .login-submit {
     width: 200px !important;
-    margin-bottom: 15px;
 }
 
-.reg-submit {
+.reg-submit, .reg-continue {
     width: 250px !important;
-    margin-bottom: 15px;
+}
+
+.reg__code-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg__copy-wrapper {
+    width: 30px;
+    height: 30px;
+    margin-left: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--button-secondary);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.reg__copy-wrapper:hover, .reg__copy-wrapper:active {
+    background-color: var(--button-secondary-hover);
+}
+
+.reg__ask, .reg__continue, .reg__start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg__send-text {
+    margin-bottom: 8px;
+}
+
+.reg__vk-name {
+    margin-top: 16px;
+}
+
+.reg__vk-link {
+    margin-bottom: 16px;
+}
+
+.reg__ask, .reg__continue {
+    display: none;
 }
 
 .login-password__wrapper, .reg-password__wrapper, .reg-password-again__wrapper {

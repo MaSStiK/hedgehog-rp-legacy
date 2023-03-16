@@ -1,1 +1,1 @@
-import {sendGSRequest, setInputError, setBlockWaiting, setButtonDisabled} from "./scripts-base.js"
+import {sendGSRequest, setInputError, setButtonDisabled} from "./scripts-base.js"

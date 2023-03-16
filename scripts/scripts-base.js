@@ -47,7 +47,7 @@ export function sendError(message, userData, error) { // Отправка оши
     if (confirm(`${message}\nОтправить эту ошибку разработчику?\n${error}`)) {
         let sendMessage = "Ошибка:\n"
         if (userData) { // Если пользователь авторизован и получена информация
-            sendMessage += `От: ${userData.name} ${userData.surname} (${userData.id})`
+            sendMessage += `От: ${userData.vkName} (${userData.id})`
         } else {
             sendMessage += `От: anonymous`
         }

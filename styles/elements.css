@@ -204,7 +204,8 @@ textarea {
     resize: none;
 }
 
-.input-password {
+/* Для кнопки просмотра */
+.input-password { 
     padding-right: 30px !important;
 }
 

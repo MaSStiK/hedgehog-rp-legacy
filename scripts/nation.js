@@ -118,7 +118,7 @@ function renderNations(nations, finalRender=false) {
                     <a href="./profile.html?id=${ownerId}" class="nation__after-profile">
                         <div class="nation__after-avatar" style="background-image: url(${allUsers[ownerId].avatar});"></div>
                         <div class="nation__after-names">
-                            <p class="h2-normal primary-text nation__after-name">${allUsers[ownerId].name} ${allUsers[ownerId].surname}</p>
+                            <p class="h2-normal primary-text nation__after-name">${allUsers[ownerId].vkName}</p>
                             <p class="h3-little-break secondary-text">Автор</p>
                         </div>
                     </a>
@@ -271,7 +271,7 @@ $(".create-modal__block-button-change").on("click tap", () => { // Кнопка 
                     nationData.about = $(".create-modal__block-textarea").val() // Описание без проверок
                     nationData.image = newNationImage // Новая аватарка после проверки
                     sendGSRequest("nations", "updateDataById", nationData, (data) => { // Сохраняем 
-                        let message = `Обновлена нация:\nПользователь: ${userData.name} ${userData.surname} (${userData.id})\nНация: ${oldNationName} > ${newNationName} (${nationData.id})`
+                        let message = `Обновлена нация:\nПользователь: ${userData.vkName} (${userData.id})\nНация: ${oldNationName} > ${newNationName} (${nationData.id})`
                         sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                             (data) => {
                                 if (data.response) { // success
@@ -286,7 +286,7 @@ $(".create-modal__block-button-change").on("click tap", () => { // Кнопка 
             nationData.about = $(".create-modal__block-textarea").val() // Описание без проверок
             nationData.image = newNationImage // Новая аватарка после проверки
             sendGSRequest("nations", "updateDataById", nationData, (data) => { // Сохраняем 
-                let message = `Обновлена нация:\nПользователь: ${userData.name} ${userData.surname} (${userData.id})\nНация: (${nationData.id})`
+                let message = `Обновлена нация:\nПользователь: ${userData.vkName} (${userData.id})\nНация: (${nationData.id})`
                 sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                     (data) => {
                         if (data.response) { // success
@@ -312,7 +312,7 @@ $(".create-modal__block-button-confirm").on("click tap", () => { // Подтве
     if (nationData.ownerId === userData.id) {
         $(".create-waiting").addClass("create-waiting-show")
         sendGSRequest("nations", "deleteRowById", nationData, (data) => {
-            let message = `Удалена нация:\nПользователь: ${userData.name} ${userData.surname} (${userData.id})\nНация: ${nationData.name} (${nationData.id})`
+            let message = `Удалена нация:\nПользователь: ${userData.vkName} (${userData.id})\nНация: ${nationData.name} (${nationData.id})`
             sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                 (data) => {
                     if (data.response) { // success
@@ -398,7 +398,7 @@ if (authorized) { // Если авторизован то добовляет к�
                             image: nationImage
                         }
                         sendGSRequest("nations", "addDataById", newNation, (data) => { // Сохраняем 
-                            let message = `Создана нация:\nПользователь: ${userData.name} ${userData.surname} (${userData.id})\nНация: ${nationName} (${id})`
+                            let message = `Создана нация:\nПользователь: ${userData.vkName} (${userData.id})\nНация: ${nationName} (${id})`
                             sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                 (data) => {
                                     if (data.response) { // success

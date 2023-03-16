@@ -1,6 +1,6 @@
 import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "./scripts-base.js"
 
-if (localStorage.getItem("registered")) {
+if (localStorage.getItem("registered")) { // Уведомление после регистрации
     createNotification("Вы успешно зарегистрированы", "primary")
     localStorage.removeItem("registered")
 }
@@ -16,14 +16,16 @@ $(".reg-logo").on("click tap", () => { // Переход на главную с 
 $(".switch-registeration").on("click tap", () => { // Переход на регистрацию
     $(".login-block").css("display", "none")
     $(".registration-block").css("display", "flex")
+    logger("[S] Switch to registration")
 })
 
 $(".switch-login").on("click tap", () => { // Переход на вход
     $(".registration-block").css("display", "none")
     $(".login-block").css("display", "flex")
+    logger("[S] Switch to login")
 })
 
-let inputs = [$(".reg-login"), $(".reg-name"), $(".reg-surname"), $(".reg-password"), $(".reg-password-again")]
+let inputs = [$(".reg-login"), $(".reg-name"), $(".reg-vkName"), $(".reg-password"), $(".reg-password-again")]  // Замена пробелов в инпуте
 inputs.forEach(element => {
     element.on("input", () => {
         element.val(element.val().split(' ').join('_'))
@@ -74,12 +76,86 @@ $(".reg-password-again__img").on("click tap", () => { // Показать/спр
         $(".reg-password-again").attr("type", "text")
     }
 })
+let userConfirmVk = false
+let userVkCode = Math.random().toString(36).slice(6) + Math.random().toString(36).slice(6)
+let userFoundId = null
+let userVkName = ""
+$(".reg__code").text(userVkCode)
+
+$(".reg-continue").on("click tap", () => { // Переход на второй блок
+    $(".reg-firstpage").css("display", "none")
+    $(".reg-lastpage").css("display", "flex")
+})
+
+$(".reg-back").on("click tap", () => { // Переход обратно на первый
+    $(".reg-lastpage").css("display", "none")
+    $(".reg-firstpage").css("display", "flex")
+})
+
+$(".reg__copy-wrapper").on("click tap", () => {
+    navigator.clipboard.writeText(userVkCode)
+    createNotification("Код скопирован!", "primary")
+})
+
+$(".reg-isend").on("click tap", () => { // Нажатие на Отправил - открывается блок с именем и Это я или Это не я
+    setButtonDisabled(".reg-isend")
+    sendVkRequest('messages.getConversations', {extended: 1}, 
+        (res) => {
+            let data = res.response
+            logger("[+] Received all messages")
+            userFoundId = null // Обнуляем
+            let usersNames = {}
+            data.items.forEach(msg => { // Перебираем каждое первое сообщение
+                if (msg.last_message.from_id !== -202912556) { // Если сообщение не от бота
+                    if (msg.last_message.text === userVkCode) { // Проверка совпадает ли сообщение с кодом
+                        userFoundId = msg.last_message.from_id // Запоминаем id отправившего
+                        data.profiles.forEach(profile => { // Собираем массив имен
+                            usersNames[profile.id] = profile.first_name + " " + profile.last_name
+                        })
+                    }
+                }
+            })
+
+            if (userFoundId) { // Если найден userFoundId
+                logger("[F] User finded")
+                userVkName = usersNames[userFoundId]
+                $(".reg__vk-name").text("Это вы?: " + userVkName)
+                $(".reg__vk-link").text("https://vk.com/id" + userFoundId)
+                $(".reg__vk-link").attr("href", "https://vk.com/id" + userFoundId)
+                $(".reg__start").css("display", "none") // Прячем первый блок
+                $(".reg__ask").css("display", "flex") // Показываем блок с кнопками я не я
+            } else {
+                logger("[F] User not finded")
+                createNotification("Сообщение с кодом не найдено!", "danger")
+            }
+        }
+    )
+})
+
+$(".reg-itsnotme").on("click tap", () => { // Нажатие на Это не я - Возвращает кнопку отправить
+    $(".reg__ask").css("display", "none") // Прячем блок вопроса
+    $(".reg__start").css("display", "flex") // Показываем первый блок
+    userConfirmVk = false
+    userVkCode = Math.random().toString(36).slice(6) + Math.random().toString(36).slice(6)
+    $(".reg__code").text(userVkCode)
+    createNotification("Код обновлен!", "primary")
+})
+
+$(".reg-itsme").on("click tap", () => { // Нажатие на Это я - переход на продолжить или отмена
+    $(".reg__ask").css("display", "none")  // Прячем блок вопроса
+    $(".reg__continue").css("display", "flex") // Показываем последний блок
+    userConfirmVk = true
+})
+
+$(".reg-cancel").on("click tap", () => { // Нажатие на отмена - переход показываем блок я не я
+    $(".reg__continue").css("display", "none")  // Прячем блок продолжения
+    $(".reg__ask").css("display", "flex") // Показываем блок вопроса
+})
 
 // Форма входа
 const loginForm = document.querySelector('.login-form')
 loginForm.addEventListener('submit', (event) => {
     event.preventDefault() // Отключение базового перехода
-    // setBlockWaiting("body")
     setButtonDisabled(".login-submit")
 
     const formData = new FormData(loginForm)
@@ -98,12 +174,12 @@ loginForm.addEventListener('submit', (event) => {
                         if (data) {  // Если пароль совпадает то входим
                             logger("[+] Correct password")
                             sendGSRequest("users", "getDataById", {id: user_id}, (data) => {
-                                logger("[+] Get user data")
+                                logger("[+] Received user data")
                                 let user_data = data
                                 localStorage.setItem("userData", JSON.stringify(user_data))
                                 localStorage.setItem("afterAthorization", "afterAthorization") // Обновление хеша на главной страницы
                                 localStorage.setItem("userPassword", formPassword) // Для проверки пароля
-                                let message = `Авторизация:\nПользователь: ${user_data.name} ${user_data.surname} (${user_data.id})`
+                                let message = `Авторизация:\nПользователь: ${user_data.vkName} (${user_data.id})`
                                 sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                     (data) => {
                                         if (data.response) { // success
@@ -140,15 +216,20 @@ loginForm.addEventListener('submit', (event) => {
 const registrationForm = document.querySelector('.registration-form')
 registrationForm.addEventListener('submit', (event) => {
     event.preventDefault() // Отключение базового перехода
-    // setBlockWaiting("body")
     setButtonDisabled(".reg-submit")
 
     const formData = new FormData(registrationForm)
     const formLogin = formData.get("login")
-    const formName = formData.get("name")
-    const formSurname = formData.get("surname")
     const formPassword = formData.get("password")
     const formPasswordAgain = formData.get("password-again")
+
+    if (!userConfirmVk) {
+        createNotification("Вы еще не подтвердили вк!", "danger")
+        logger("[-] Not pass vk")
+        $(".reg-lastpage").css("display", "none")
+        $(".reg-firstpage").css("display", "flex")
+        return
+    }
 
     if (formLogin.length < 4) { // Если логин меньше 4 символов
         logger("[-] Login < 4 symbols")
@@ -194,18 +275,18 @@ registrationForm.addEventListener('submit', (event) => {
                     uid: id, // id который указывает пользователь
                     // login: formLogin, // Логин
                     // password: formPassword, // Пароль
-                    name: formName, // Имя
-                    surname: formSurname, // Фамилия
+                    vkName: userVkName, // Имя + фамилия
                     avatar: "https://sun9-31.userapi.com/impg/G2LIF9CtQnTtQ4P9gRxJmvQAa1_64hPsOAe4sQ/E7KVVKP75MM.jpg?size=427x320&quality=96&sign=e5665d0791b6119869af1b0ee46bec8f&type=album", // Аватарка
                     creationDate: date,
                     about: { // Блок информации
-                        gameName: formName + " " + formSurname, // Игровое имя
+                        gameName: userVkName, // Игровое имя (по умолчанию вк)
                         rpDate: date, // Дата появления в рп
                         сountry: "", // Страна
                         сountryRole: "", // Роль в стране
                         nation: "", // Нация
                         languages: "", // Языки на которых говорит
-                        vkLink: "", // Ссылка на вк
+                        vkId: userFoundId, // id юзера
+                        vkLink: "https://vk.com/id" + userFoundId, // Ссылка на юзера
                         status: "", // Статус
                     },
                     fields: { // Доп поля
@@ -221,7 +302,7 @@ registrationForm.addEventListener('submit', (event) => {
                         logger("[+] Login sended")
                         sendGSRequest("usersPasswords", "addValueById", {id: id, value: formPassword}, (data) => { // Допом записываем id / password
                             logger("[+] Password sended")
-                            let message = `Регистрация:\nПользователь: ${formName} ${formSurname} (${id})\nДанные: ${formLogin} ${formPassword}`
+                            let message = `Регистрация:\nПользователь: ${userVkName} (${id})\nДанные: ${formLogin} ${formPassword}`
                             sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                 (data) => {
                                     if (data.response) { // success
@@ -241,3 +322,4 @@ registrationForm.addEventListener('submit', (event) => {
         sendError("Произошла непредвиденная ошибка на стадии регистрации!", userData, error)
     }
 })
+

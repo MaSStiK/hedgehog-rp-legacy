@@ -231,14 +231,10 @@
     background-color: var(--button-secondary-hover);
 }
 
-.info-name, .info-surname, .info-tag, .info-gameName, .info-rpDate, .info-сountry, .info-race, .info-languages, .info-vkLink {
+.info-vkName, .info-tag, .info-gameName, .info-rpDate, .info-сountry, .info-race, .info-languages, .info-vkId {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-}
-
-.info-surname {
-    margin-left: 5px;
 }
 
 .edit-mode {
