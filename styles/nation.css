@@ -1,3 +1,5 @@
+@import "bottom.css";
+
 .nations {
     width: 100%;
     height: 100%;
@@ -12,7 +14,7 @@
 }
 
 .nations__all-wrapper, .nations__user-wrapper {
-    width: 55%;
+    width: max(70%, 520px);
     /* height: 100%; */
     display: flex;
     flex-direction: column;
@@ -122,7 +124,8 @@
     justify-content: flex-start;
     align-items: center;
     width: calc(100% - 80px - 122px);  /* контент по центру, вычитаем растояние левого и правильного блока */
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
+    padding-left: 4px;
 }
 
 .nation__content-title {
@@ -244,58 +247,6 @@
     margin-left: 10%;
 }
 
-/* Нижня панель */
-.bottom {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 90%;
-    height: 75px;
-    margin: 0 5% 0 5%;
-    border-radius: 10px 10px 0 0 !important;
-    border: 1px var(--block-highlight-border) solid !important;
-    border-bottom: none !important;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    padding: 0 25px 0 25px;
-}
-
-.bottom__find {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: 10px;
-}
-
-.bottom__find-input {
-    margin-right: 10px;
-}
-
-/* .bottom__find-icon {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--button-secondary);
-    border-radius: 10px;
-    cursor: pointer;
-    display: none;
-}
-
-.bottom__find-icon:hover, .bottom__find-icon:active {
-    background-color: var(--button-secondary-hover);
-} */
-
-.create-nation {
-    width: auto !important;
-    padding: 0 8px 0 8px;
-}
-
 /* create / edit modal */
 .create-modal__wrapper {
     position: fixed;
@@ -372,32 +323,6 @@
     z-index: 5;
 }
 
-.create-waiting {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-image: url("../assets/images/waiting.gif");
-    background-color: #15151586;
-    background-repeat: no-repeat;
-    background-position: center;
-    /* background-size: cover; */
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    opacity: 0;
-    display: none;
-}
-
-.create-waiting-show {
-    display: block;
-    animation: show-waiting .5s forwards;
-}
-  
-@keyframes show-waiting {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-}
-
 .enter-modal__wrapper {
     position: fixed;
     width: 100%;
@@ -465,7 +390,7 @@
     }
 
     .nations__all-wrapper, .nations__user-wrapper {
-        width: 420px;
+        width: 520px;
     }
 
     .nations__all-title, .nations__user-title, .nations__all-change-user, .nations__user-change-all {
@@ -479,50 +404,11 @@
     .nations__user-change-all:hover, .nations__user-change-all:active {
         background-color: var(--button-secondary-bg);
     }
-
-    .bottom {
-        width: 100%;
-        margin: 0;
-        padding: 0 10px 0 10px;
-        border-radius: 0 !important;
-        border: none !important;
-        border-top: 1px var(--block-highlight-border) solid !important;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    /* .bottom__find-button {
-        display: none !important;
-    } */
-
-    /* .bottom__find-icon {
-        display: flex;
-    } */
 }
 
 @media screen and (max-width: 520px) {
     .nations__all-wrapper, .nations__user-wrapper {
         width: 100%;
-    }
-
-    /* .bottom {
-        width: 100%;
-        margin: 0;
-    } */
-
-    .bottom__find {
-        margin-right: 4px;
-    }
-
-    .bottom__find-input {
-        width: 150px;
-        margin-right: 4px;
-    }
-
-    .create-nation {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding: 0 2px 0 2px;
     }
 }
 
@@ -537,12 +423,5 @@
 }
 
 @media screen and (max-width: 300px) {
-    .bottom {
-        padding: 0 2px 0 2px;
-    }
 
-    .bottom__find-input {
-        width: 75px;
-        margin-right: 0px;
-    }
 }

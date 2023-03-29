@@ -139,7 +139,6 @@ $(".reg-isend").on("click tap", () => { // Нажатие на Отправил 
                         createNotification("Эта страница уже привязана!", "danger")
                     }
                 })
-                
             } else {
                 logger("[F] User not finded")
                 createNotification("Сообщение с кодом не найдено!", "danger")
@@ -177,7 +176,7 @@ loginForm.addEventListener('submit', (event) => {
     const formData = new FormData(loginForm)
     const formLogin = formData.get("login")
     const formPassword = formData.get("password")
-    $(".reg-waiting").addClass("reg-waiting-show")
+    $(".waiting").addClass("waiting-show")
     try {
         localStorage.clear() // Очистка от всего лишнего, и загрузка заного
         logger("[-] Old data cleaned")
@@ -206,7 +205,7 @@ loginForm.addEventListener('submit', (event) => {
                             })
                         } else { // Не совпал пароль
                             logger("[-] Incorrect password")
-                            $(".reg-waiting").removeClass("reg-waiting-show")
+                            $(".waiting").removeClass("waiting-show")
                             setInputError(".login-login")
                             setInputError(".login-password")
                             setInputError(".login-password__img")
@@ -214,14 +213,14 @@ loginForm.addEventListener('submit', (event) => {
                     })
                 })
             } catch {
-                $(".reg-waiting").removeClass("reg-waiting-show")
+                $(".waiting").removeClass("waiting-show")
                 setInputError(".login-login")
                 setInputError(".login-password")
                 setInputError(".login-password__img") 
             }
         })
     } catch {
-        $(".reg-waiting").removeClass("reg-waiting-show")
+        $(".waiting").removeClass("waiting-show")
         setInputError(".login-login")
         setInputError(".login-password")
         setInputError(".login-password__img")
@@ -273,13 +272,13 @@ registrationForm.addEventListener('submit', (event) => {
 
     try {
         // Если в столбике B есть такой логин, то не создаем пользоваеля
-        $(".reg-waiting").addClass("reg-waiting-show")
+        $(".waiting").addClass("waiting-show")
         sendGSRequest("usersLogins", "findValueInRange", {range:"B:B", value: formLogin}, (data) => {
             try {
                 if (data) { // Если найдено идентичное совпадение
                     logger("[-] Login is not unic")
                     setInputError(".reg-login")
-                    $(".reg-waiting").removeClass("reg-waiting-show")
+                    $(".waiting").removeClass("waiting-show")
                     return
                 }
                 logger("[+] Login is unic")
@@ -293,7 +292,7 @@ registrationForm.addEventListener('submit', (event) => {
                     // password: formPassword, // Пароль
                     vkName: userVkName, // Имя + фамилия
                     avatar: "https://sun9-31.userapi.com/impg/G2LIF9CtQnTtQ4P9gRxJmvQAa1_64hPsOAe4sQ/E7KVVKP75MM.jpg?size=427x320&quality=96&sign=e5665d0791b6119869af1b0ee46bec8f&type=album", // Аватарка
-                    creationDate: date,
+                    creationDate: date, // Дата создания профиля
                     about: { // Блок информации
                         gameName: userVkName, // Игровое имя (по умолчанию вк)
                         rpDate: date, // Дата появления в рп

@@ -78,7 +78,7 @@ $(".save-button").on("click tap", () => {
     }
     
     if ($(".new-password").val() === $(".new-password-again").val()) { // Если повтор пароля совпадает
-        $(".settings-waiting").addClass("settings-waiting-show")
+        $(".waiting").addClass("waiting-show")
         let oldPassword = $(".old-password").val()
         let newPassword = $(".new-password").val()
         sendGSRequest("usersPasswords", "getValueCompareById", {id: userData.id, value: oldPassword}, (data) => {
@@ -98,7 +98,7 @@ $(".save-button").on("click tap", () => {
             } else {
                 setInputError(".old-password")
                 setInputError(".old-password__img")
-                $(".settings-waiting").removeClass("settings-waiting-show")
+                $(".waiting").removeClass("waiting-show")
             }
         })
     } else {

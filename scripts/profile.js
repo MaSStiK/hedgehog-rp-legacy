@@ -47,7 +47,7 @@ try {
                 
             })
         } else { // Получаем информацию о любом другом пользователе и рендерим ее
-            $(".edit-waiting").addClass("edit-waiting-show")
+            $(".waiting").addClass("waiting-show")
             sendGSRequest("users", "getData", {}, (data) => {
                 logger("[+] Received all users data")
                 if (params.id in data) { // Если id во всех юзерах
@@ -56,7 +56,7 @@ try {
                         findedNation = data
                         logger("[+] Received user nation")
                         logger("[R] Render user by id", userProfileData.id)
-                        $(".edit-waiting").removeClass("edit-waiting-show")
+                        $(".waiting").removeClass("waiting-show")
                         renderUser(userProfileData, true)
                     })
                     
@@ -74,7 +74,7 @@ try {
                             findedNation = data
                             logger("[+] Received user nation")
                             logger("[R] Render user by uid", userProfileData.id)
-                            $(".edit-waiting").removeClass("edit-waiting-show")
+                            $(".waiting").removeClass("waiting-show")
                             renderUser(userProfileData, true)
                         })
                         
@@ -246,7 +246,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").unbind("click tap")
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
-                    $(".edit-waiting").addClass("edit-waiting-show")
+                    $(".waiting").addClass("waiting-show")
                     if (selfRender) {
                         if (editInput.val() === "") { // Если инпут пустой то просто ставим айдишник и сохраняем
                             userData.uid = userData.id
@@ -274,7 +274,7 @@ $(".block-info__button-edit").on("click tap", () => {
                                     })
                                 } else { // Если нет то ошибка
                                     setInputError(".edit-modal__block-input")
-                                    $(".edit-waiting").removeClass("edit-waiting-show")
+                                    $(".waiting").removeClass("waiting-show")
                                 }
                             })
                         }
@@ -301,7 +301,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").unbind("click tap")
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
-                    $(".edit-waiting").addClass("edit-waiting-show")
+                    $(".waiting").addClass("waiting-show")
                     if (selfRender) {
                         if (editInput.val() === "") { // Если инпут пустой то ставим имя фамилия 
                             userData.about.gameName = userData.vkName
@@ -386,7 +386,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").unbind("click tap")
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
-                    $(".edit-waiting").addClass("edit-waiting-show")
+                    $(".waiting").addClass("waiting-show")
                     if (selfRender) {
                         userData.about.languages = $(".edit-modal__block-input").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
@@ -413,7 +413,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").unbind("click tap")
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
-                    $(".edit-waiting").addClass("edit-waiting-show")
+                    $(".waiting").addClass("waiting-show")
                     if (selfRender) {
                         userData.about.status = $(".edit-modal__block-textarea").val()
                         sendGSRequest("users", "updateDataById", userData, (data) => {
@@ -444,7 +444,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-change").unbind("click tap")
                 $(".edit-modal__block-button-change").on("click tap", () => {
                     setButtonDisabled(".edit-modal__block-button-change")
-                    $(".edit-waiting").addClass("edit-waiting-show")
+                    $(".waiting").addClass("waiting-show")
                     if (selfRender) {
                         if ($(".edit-modal__block-input").val() === "") { // Если пусто то стаим фотографию по умолчанию
                             userData.avatar = "https://sun9-31.userapi.com/impg/G2LIF9CtQnTtQ4P9gRxJmvQAa1_64hPsOAe4sQ/E7KVVKP75MM.jpg?size=427x320&quality=96&sign=e5665d0791b6119869af1b0ee46bec8f&type=album"
@@ -461,7 +461,7 @@ $(".block-info__button-edit").on("click tap", () => {
                                 })
                             } else {
                                 setInputError(".edit-modal__block-input")
-                                $(".edit-waiting").removeClass("edit-waiting-show")
+                                $(".waiting").removeClass("waiting-show")
                             }
                         }
                     }

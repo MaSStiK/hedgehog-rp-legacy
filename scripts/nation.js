@@ -3,6 +3,7 @@ import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButt
 
 // localStorage userData, userNations, userSelectedNation
 let userData = JSON.parse(localStorage.getItem("userData"))
+let authorized = userData ? true : false
 let userNations = {}
 try { // Пробуем получить нации пользователя, если не удается спарсить то удаляем
     userNations = JSON.parse(localStorage.getItem("userNations"))
@@ -22,7 +23,6 @@ try { // Пробуем получить нацию пользователя, е
 let allUsers = {}
 let allNations = {}
 
-let authorized = userData ? true : false
 let nationReady = false
 let nowEditing = ""
 let nowEntering = ""
@@ -51,21 +51,21 @@ if (authorized) { // Если авторизован то добовляем б�
             
         </div>
     </div>`) // Добовляем нации пользователя
-    $(".bottom__find").after(`<button class="primary-button create-nation" disabled>Создать нацию 0/${maxUserNationCount}</button>`)
+    $(".bottom__find").after(`<button class="primary-button bottom-button" disabled>Создать нацию 0/${maxUserNationCount}</button>`)
 }
 
 try {
     if (userNations) { // Если заргужены нации пользователя
         logger("[R] Render authorized-user nations")
         renderNations(userNations)
-        $(".create-nation").text(`Создать нацию ${savedUserNationsCount}/${maxUserNationCount}`)
+        $(".bottom-button").text(`Создать нацию ${savedUserNationsCount}/${maxUserNationCount}`)
     } else { // Рендер только всех
         if (authorized) {
             logger("[R] Firset render authorized-user nations")
         } else {
             logger("[R] Render all users nations")
         }
-        $(".create-waiting").addClass("create-waiting-show")
+        $(".waiting").addClass("waiting-show")
     }
 
     sendGSRequest("users", "getData", {}, (data) => { // Загружаем всех юзеров
@@ -74,12 +74,12 @@ try {
         sendGSRequest("nations", "getData", {}, (data) => { // Загружаем все нации, после финального рендера доступны все возможности
             allNations = data
             logger("[+] Received all nations data")
-            $(".create-waiting").removeClass("create-waiting-show")
+            $(".waiting").removeClass("waiting-show")
             renderNations(allNations, true)
 
-            $(".create-nation").text(`Создать нацию ${userNationsCount}/${maxUserNationCount}`)
+            $(".bottom-button").text(`Создать нацию ${userNationsCount}/${maxUserNationCount}`)
             if (userNationsCount < maxUserNationCount) { // Возможность добавить новую нацию если их меньше maxUserNationCount
-                $(".create-nation").removeAttr("disabled")
+                $(".bottom-button").removeAttr("disabled")
             }
 
             $(".bottom__find-input").trigger("input") // Поиск страны после рендера
@@ -252,7 +252,7 @@ $(".create-modal__block-button-change").on("click tap", () => { // Кнопка 
     }
 
     try {
-        $(".create-waiting").addClass("create-waiting-show")
+        $(".waiting").addClass("waiting-show")
         let newNationName = $(".create-modal__block-name").val()
         let nationData = allNations[nowEditing]
         if (newNationName.toLowerCase() !== nationData.name.toLowerCase()) { // Если новое имя не совпадает со старым то проверяем новое имя на уникальность
@@ -261,7 +261,7 @@ $(".create-modal__block-button-change").on("click tap", () => { // Кнопка 
                 Object.keys(data).forEach((natId) => {
                     if (data[natId].name.toLowerCase() === newNationName.toLowerCase()) { // Если найдено идентичное название то ошибка
                         setInputError(".create-modal__block-name")
-                        $(".create-waiting").removeClass("create-waiting-show")
+                        $(".waiting").removeClass("waiting-show")
                         saveChange = false
                     }
                 })
@@ -310,7 +310,7 @@ $(".create-modal__block-button-confirm").on("click tap", () => { // Подтве
     setButtonDisabled(".create-modal__block-button-confirm")
     let nationData = allNations[nowEditing]
     if (nationData.ownerId === userData.id) {
-        $(".create-waiting").addClass("create-waiting-show")
+        $(".waiting").addClass("waiting-show")
         sendGSRequest("nations", "deleteRowById", nationData, (data) => {
             let message = `Удалена нация:\nПользователь: ${userData.vkName} (${userData.id})\nНация: ${nationData.name} (${nationData.id})`
             sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
@@ -325,7 +325,7 @@ $(".create-modal__block-button-confirm").on("click tap", () => { // Подтве
 })
 
 if (authorized) { // Если авторизован то добовляет кнопку для создания
-    $(".create-nation").on("click tap", () => {
+    $(".bottom-button").on("click tap", () => {
         $(".create-modal__block-button-save").css("display", "flex") // Кнопка сохранить если создание
         $(".create-modal__block-button-change").css("display", "none") // Кнопка изменить выключается
         $(".create-modal__block-button-delete").css("display", "none") // Кнопка удалить выключается
@@ -360,7 +360,7 @@ if (authorized) { // Если авторизован то добовляет к�
         }
 
         try {
-            $(".create-waiting").addClass("create-waiting-show")
+            $(".waiting").addClass("waiting-show")
             let nationName = $(".create-modal__block-name").val()
             sendGSRequest("nations", "getData", {}, (data) => {
                 try {
@@ -373,7 +373,7 @@ if (authorized) { // Если авторизован то добовляет к�
 
                         if (data[nationId].name.toLowerCase() === nationName.toLowerCase()) { // Если найдено идентичное название то ошибка
                             setInputError(".create-modal__block-name")
-                            $(".create-waiting").removeClass("create-waiting-show")
+                            $(".waiting").removeClass("waiting-show")
                             saveNation = false
                         }
                     })
@@ -492,7 +492,7 @@ $(".enter-modal__block-button-cancel").on("click tap", () => { // Отмена �
 $(".enter-modal__block-button-change").on("click tap", () => { // Присоединиться к рассе
     userData.about.nation = nowEntering.toString()
     setButtonDisabled(".enter-modal__block-button-change")
-    $(".create-waiting").addClass("create-waiting-show")
+    $(".waiting").addClass("waiting-show")
     sendGSRequest("users", "updateDataById", userData, (data) => {
         localStorage.setItem("userSelectedNation", JSON.stringify(userSelectedNation))
         localStorage.setItem("userData", JSON.stringify(userData))

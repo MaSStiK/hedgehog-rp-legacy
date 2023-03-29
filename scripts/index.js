@@ -5,6 +5,9 @@ import {logger, sendError, createNotification, sendVkRequest, sendGSRequest} fro
 // localStorage userData, allUsers, allNations
 let userData = JSON.parse(localStorage.getItem("userData"))
 
+console.time("timer")
+console.table(localStorage)
+
 if (localStorage.getItem("afterAthorization")) { // Перезагрузка страницы с обновлением хеша после авторизации
     try {
         location.reload(true)
@@ -26,3 +29,4 @@ for(let i = 0; i < scripts.length; i++) {
 }
 
 $(".userData").text(JSON.stringify(userData));
+console.timeEnd("timer")

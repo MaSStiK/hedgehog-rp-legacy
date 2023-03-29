@@ -232,3 +232,29 @@ input::placeholder {
         background-color: var(--primary-bg);
     }
 }
+
+.waiting {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url("../assets/images/waiting.gif");
+    background-color: #15151586;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-size: cover; */
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    opacity: 0;
+    display: none;
+}
+
+.waiting-show {
+    display: block;
+    animation: show-waiting .5s forwards;
+}
+  
+@keyframes show-waiting {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
