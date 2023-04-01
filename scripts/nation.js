@@ -109,7 +109,9 @@ function renderNations(nations, finalRender=false) {
         let nationBlock = `
         <div class="block nation-container nation-${nation.id}">
             <div class="nation">
-                <div class="nation__image" style="background-image: url(${nation.image});"></div>
+                <div class="nation__image-container">
+                    <div class="nation__image" style="background-image: url(${nation.image});"></div>
+                </div>
                 <div class="nation__content">
                     <p class="h1-title primary-text nation__content-title">${nation.name}</p>
                     <p class="h3-little-break secondary-text nation__content-text">${nationAbout}</p>

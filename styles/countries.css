@@ -1,14 +1,12 @@
 @import "bottom.css";
 
 .countries {
-    width: 750px;
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     box-sizing: border-box;
-    padding-left: 5%;
-    padding-right: 5%;
     padding-bottom: 76px;
     overflow: hidden;
 }
@@ -39,6 +37,89 @@
     text-align: center;
 }
 
+.countries__all {
+    width: 700px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    background-color: var(--primary-bg);
+    padding-top: 8px;
+    padding-right: 8px;
+    scrollbar-gutter: stable;
+}
+
+.country-container {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.country {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    /* justify-content: space-between; */
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.country:hover, .country:active {
+    background-color: var(--button-secondary-bg);
+}
+
+.country__images-container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.country__image {
+    width: 75px;
+    height: 75px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    margin: 1.7px 2px 1.7px 1px;
+}
+
+.country__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: calc(100% - 156px - 122px);  /* контент по центру, вычитаем растояние левого и правильного блока */
+    box-sizing: border-box;
+    padding-left: 4px;
+}
+
+.country__content-title {
+    margin-top: 4px;
+    width: 100%;
+    /* height: 24px; */
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: auto;
+}
+
+.country__content-text {
+    width: 100%;
+    height: 45px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
 .bottom-button {
     width: 180px !important;
 }
@@ -48,7 +129,7 @@
 }
 
 @media screen and (max-width: 520px) {
-    .nations__all-wrapper, .nations__user-wrapper {
+    .countries__all-wrapper {
         width: 100%;
     }
 
