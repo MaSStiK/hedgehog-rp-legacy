@@ -287,7 +287,7 @@ registrationForm.addEventListener('submit', (event) => {
                 let date = Date.now()
                 let newUser = {
                     id: id, // Уникальный id
-                    uid: id, // id который указывает пользователь
+                    tag: id, // tag который указывает пользователь
                     // login: formLogin, // Логин
                     // password: formPassword, // Пароль
                     vkName: userVkName, // Имя + фамилия

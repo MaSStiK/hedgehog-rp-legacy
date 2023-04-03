@@ -30,7 +30,7 @@ urlParams.forEach((e, key) => {
 // -------------------- Узнаем способ рендера --------------------
 try {
     if ("id" in params) { // Если указан id
-        if (params.id === userData?.id || params.id === userData?.uid) { // Если указан указан айди и он равен либо id либо uid пользователя
+        if (params.id === userData?.id || params.id === userData?.tag) { // Если указан указан айди и он равен либо id либо tag пользователя
             logger("[R] Render authorized-user by id", params.id)
             selfRender = true
             renderUser(userData)
@@ -60,20 +60,20 @@ try {
                         renderUser(userProfileData, true)
                     })
                     
-                } else { // Если нету то проверка uid 
+                } else { // Если нету то проверка tag 
                     let found = false
-                    Object.keys(data).forEach((user_id) => { // Если неправильный айди то проверка uid
-                        if (data[user_id].uid.toString() === params.id.toString()) {  
+                    Object.keys(data).forEach((user_id) => { // Если неправильный айди то проверка tag
+                        if (data[user_id].tag.toString() === params.id.toString()) {  
                             found = data[user_id]
                         }
                     })
                     userProfileData = found
 
-                    if (found) { // Если найден uid
+                    if (found) { // Если найден tag
                         sendGSRequest("nations", "getDataById", {id: userProfileData.about.nation !== "" ? userProfileData.about.nation : "noname"}, (data) => {
                             findedNation = data
                             logger("[+] Received user nation")
-                            logger("[R] Render user by uid", userProfileData.id)
+                            logger("[R] Render user by tag", userProfileData.id)
                             $(".waiting").removeClass("waiting-show")
                             renderUser(userProfileData, true)
                         })
@@ -126,7 +126,7 @@ function renderUser(user, finalRender=false) {
     $(".avatar-opened__img").attr("src", user.avatar)
     $(".info-vkName").text(user.vkName)
     $(".block-avatar__avatar").css("background-image", `url(${user.avatar})`)
-    $(".info-tag").text("@" + user.uid)
+    $(".info-tag").text("@" + user.tag)
     if (user.about.gameName !== "") {
         $(".info-gameName").text(user.about.gameName)
     }
@@ -230,7 +230,7 @@ $(".block-info__button-edit").on("click tap", () => {
 
             $(".edit-tag").on("click tap", () => {
                 nowEditing = "tag"
-                $(".edit-modal__block-title").text(`Изменение поля "Тег (uid)"`)
+                $(".edit-modal__block-title").text(`Изменение поля "Тег (tag)"`)
                 $(".edit-modal__block-text").text(`Введите новое значение:`)
                 $(".edit-modal__block-help").css("display", "block")
                 $(".edit-modal__block-help2").css("display", "block")
@@ -239,7 +239,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 editInput.attr("placeholder", "1 - 16 символов")
                 editInput.attr("minLength", 1)
                 editInput.attr("maxLength", 16)
-                editInput.val(userData.uid)
+                editInput.val(userData.tag)
                 $(".edit-modal__block-input").css("display", "block")
                 $(".edit-modal__block-button-linkout").css("display", "none")
                 $(".edit-modal__block-button-change").css("display", "block")
@@ -249,25 +249,25 @@ $(".block-info__button-edit").on("click tap", () => {
                     $(".waiting").addClass("waiting-show")
                     if (selfRender) {
                         if (editInput.val() === "") { // Если инпут пустой то просто ставим айдишник и сохраняем
-                            userData.uid = userData.id
+                            userData.tag = userData.id
                             sendGSRequest("users", "updateDataById", userData, (data) => {
                                 localStorage.setItem("userData", JSON.stringify(userData))
                                 location.reload()
                             })
                         } else { // Если не пусто то проверяем на совпадение и потом сохраняем
-                            let newUid = $(".edit-modal__block-input").val()
+                            let newTag = $(".edit-modal__block-input").val()
                             sendGSRequest("users", "getData", {}, (data) => {
                                 let pass = true
                                 Object.keys(data).forEach((element) => {
-                                    if (data[element].uid === newUid) { // Ищем совпадение
-                                        if (data[element].id !== userData.id) { // Если это не uid этого пользователя
+                                    if (data[element].tag === newTag) { // Ищем совпадение
+                                        if (data[element].id !== userData.id) { // Если это не tag этого пользователя
                                             pass = false
                                         }
                                     }
                                 })
 
-                                if (pass) { // Если uid уникальный то сохраняем
-                                    userData.uid = newUid
+                                if (pass) { // Если tag уникальный то сохраняем
+                                    userData.tag = newTag
                                     sendGSRequest("users", "updateDataById", userData, (data) => {
                                         localStorage.setItem("userData", JSON.stringify(userData))
                                         location.reload()

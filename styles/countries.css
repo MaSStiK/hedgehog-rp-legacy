@@ -121,6 +121,60 @@
     -webkit-box-orient: vertical;
 }
 
+.country__after {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 2px;
+    padding-top: 2px;
+    width: 120px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.country__after-profile {
+    width: 100%; /* Размер левой части блока нации */
+    height: 33px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    color: var(--button-text-color);
+    font-size: var(--text-button-size);
+    /* border: solid var(--button-secondary-border) 2px; */
+    /* background-color: var(--button-secondary-bg); */
+    cursor: pointer;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.country__after-profile:last-child {
+    margin-bottom: 3px;
+}
+
+.country__after-profile:hover, .country__after-profile:active {
+    background-color: var(--button-secondary-hover);
+}
+
+.country__after-avatar {
+    width: 31px;
+    height: 31px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    margin-left: 1px;
+    margin-right: 2px;
+}
+
+.country__after-names {
+    width: calc(120px - 34px);
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
 .bottom-button {
     width: 180px !important;
 }
