@@ -47,7 +47,7 @@ const userPassword = localStorage.getItem("userPassword")
 if (authorized) {
     if (userPassword) { // Если пароль сохранен
         sendGSRequest("usersPasswords", "getValueCompareById", {id: userData.id, value: userPassword}, (data) => { // Сравниваем пароль
-            if (!data) {
+            if (!data) { // Если он не совпадает то выкидываем на вход
                 localStorage.setItem("passwordChanged", "passwordChanged")
                 location.href = "./authorization.html"
             }
