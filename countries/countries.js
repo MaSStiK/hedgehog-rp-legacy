@@ -1,4 +1,4 @@
-import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "./scripts-base.js"
+import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "/global/scripts-base.js"
 // localStorage.removeItem("userData")
 
 // localStorage userData, userNations, userSelectedNation
@@ -15,3 +15,7 @@ urlParams.forEach((e, key) => {
 if (authorized) { // Если авторизован то добовляем кнопку "моя страна"
     $(".bottom__find").after(`<button class="primary-button bottom-button">Моя страна</button>`)
 }
+
+$(".bottom-button").on("click tap", () => {
+    location.href = "/country/index.html"
+})

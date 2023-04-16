@@ -26,18 +26,12 @@ nav {
 
 .nav-wrapper .nav__button-authorization, .nav-phone .nav__button-authorization {
     width: 200px;
-    /* opacity: 0; */
 }
 
 .nav-wrapper .nav__button-authorized, .nav-phone .nav__button-authorized {
     width: 200px;
     justify-content: flex-start;
-    display: none;
-}
-
-.nav__button-authorization {
-    opacity: 0;
-    transition: 0s opacity;
+    display: flex;
 }
 
 .nav__line {
@@ -49,9 +43,7 @@ nav {
 .authorization-avatar {
     width: 31px;
     height: 31px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    object-fit: cover;
     border-radius: 10px;
     margin-left: 1px;
     margin-right: 4px;
@@ -170,9 +162,9 @@ nav {
     /* background-color: #0000007a; */
 }
 
-.nav-active-link {
+/* .nav-active-link {
     background-color: var(--button-secondary-hover) !important;
-}
+} */
 
 .content {
     width: 1024px;

@@ -1,4 +1,4 @@
-import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "./scripts-base.js"
+import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "/global/scripts-base.js"
 
 if (localStorage.getItem("registered")) { // Уведомление после регистрации
     createNotification("Вы успешно зарегистрированы", "primary")
@@ -6,11 +6,11 @@ if (localStorage.getItem("registered")) { // Уведомление после �
 }
 
 $(".login-logo").on("click tap", () => { // Переход на главную с логина
-    location.href = "./index.html"
+    location.href = "/home/index.html"
 })
 
 $(".reg-logo").on("click tap", () => { // Переход на главную с регистрации
-    location.href = "./index.html"
+    location.href = "/home/index.html"
 })
 
 $(".switch-registeration").on("click tap", () => { // Переход на регистрацию
@@ -44,11 +44,11 @@ $(".reg-password-again").on("change", () => { // Несовпадение пар
 $(".login-password__img").on("click tap", () => { // Показать/спрятать пароль логина
     if ($(".login-password__img").hasClass("show-password")) {
         $(".login-password__img").removeClass("show-password")
-        $(".login-password__img").attr("src", "./assets/EyeOpen.svg")
+        $(".login-password__img").attr("src", "/assets/EyeOpen.svg")
         $(".login-password").attr("type", "password")
     } else {
         $(".login-password__img").addClass("show-password")
-        $(".login-password__img").attr("src", "./assets/EyeClosed.svg")
+        $(".login-password__img").attr("src", "/assets/EyeClosed.svg")
         $(".login-password").attr("type", "text")
     }
 })
@@ -56,11 +56,11 @@ $(".login-password__img").on("click tap", () => { // Показать/спрят
 $(".reg-password__img").on("click tap", () => { // Показать/спрятать пароль регистрации
     if ($(".reg-password__img").hasClass("show-password")) {
         $(".reg-password__img").removeClass("show-password")
-        $(".reg-password__img").attr("src", "./assets/EyeOpen.svg")
+        $(".reg-password__img").attr("src", "/assets/EyeOpen.svg")
         $(".reg-password").attr("type", "password")
     } else {
         $(".reg-password__img").addClass("show-password")
-        $(".reg-password__img").attr("src", "./assets/EyeClosed.svg")
+        $(".reg-password__img").attr("src", "/assets/EyeClosed.svg")
         $(".reg-password").attr("type", "text")
     }
 })
@@ -68,11 +68,11 @@ $(".reg-password__img").on("click tap", () => { // Показать/спрята
 $(".reg-password-again__img").on("click tap", () => { // Показать/спрятать пароль регистрации повтор
     if ($(".reg-password-again__img").hasClass("show-password")) {
         $(".reg-password-again__img").removeClass("show-password")
-        $(".reg-password-again__img").attr("src", "./assets/EyeOpen.svg")
+        $(".reg-password-again__img").attr("src", "/assets/EyeOpen.svg")
         $(".reg-password-again").attr("type", "password")
     } else {
         $(".reg-password-again__img").addClass("show-password")
-        $(".reg-password-again__img").attr("src", "./assets/EyeClosed.svg")
+        $(".reg-password-again__img").attr("src", "/assets/EyeClosed.svg")
         $(".reg-password-again").attr("type", "text")
     }
 })
@@ -198,7 +198,7 @@ loginForm.addEventListener('submit', (event) => {
                                 sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                     (data) => {
                                         if (data.response) { // success
-                                            location.href = "./index.html"
+                                            location.href = "/home/index.html"
                                         }
                                     }
                                 )

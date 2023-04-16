@@ -1,4 +1,4 @@
-import {sendGSRequest, sendVkRequest, setButtonDisabled, setInputError} from "./scripts-base.js"
+import {sendGSRequest, sendVkRequest, setButtonDisabled, setInputError} from "/global/scripts-base.js"
 
 // localStorage.removeItem("userData")
 
@@ -8,7 +8,7 @@ let authorized = userData ? true : false
 
 if (!authorized) {
     alert("Эта страница доступна только авторизованным пользователям!")
-    location.href = "./index.html"
+    location.href = "/home/index.html"
 }
 
 // $(".password-block__content-text").text(`Ваш текущий пароль: ${userData.password[0]}********${userData.password.slice(-1)}`)
@@ -16,11 +16,11 @@ if (!authorized) {
 $(".old-password__img").on("click tap", () => { // Показать/спрятать старый пароль
     if ($(".old-password__img").hasClass("show-password")) {
         $(".old-password__img").removeClass("show-password")
-        $(".old-password__img").attr("src", "./assets/EyeOpen.svg")
+        $(".old-password__img").attr("src", "/assets/EyeOpen.svg")
         $(".old-password").attr("type", "password")
     } else {
         $(".old-password__img").addClass("show-password")
-        $(".old-password__img").attr("src", "./assets/EyeClosed.svg")
+        $(".old-password__img").attr("src", "/assets/EyeClosed.svg")
         $(".old-password").attr("type", "text")
     }
 })
@@ -28,11 +28,11 @@ $(".old-password__img").on("click tap", () => { // Показать/спрята
 $(".new-password__img").on("click tap", () => { // Показать/спрятать новый пароль
     if ($(".new-password__img").hasClass("show-password")) {
         $(".new-password__img").removeClass("show-password")
-        $(".new-password__img").attr("src", "./assets/EyeOpen.svg")
+        $(".new-password__img").attr("src", "/assets/EyeOpen.svg")
         $(".new-password").attr("type", "password")
     } else {
         $(".new-password__img").addClass("show-password")
-        $(".new-password__img").attr("src", "./assets/EyeClosed.svg")
+        $(".new-password__img").attr("src", "/assets/EyeClosed.svg")
         $(".new-password").attr("type", "text")
     }
 })
@@ -40,11 +40,11 @@ $(".new-password__img").on("click tap", () => { // Показать/спрята
 $(".new-password-again__img").on("click tap", () => { // Показать/спрятать новый пароль повтор
     if ($(".new-password-again__img").hasClass("show-password")) {
         $(".new-password-again__img").removeClass("show-password")
-        $(".new-password-again__img").attr("src", "./assets/EyeOpen.svg")
+        $(".new-password-again__img").attr("src", "/assets/EyeOpen.svg")
         $(".new-password-again").attr("type", "password")
     } else {
         $(".new-password-again__img").addClass("show-password")
-        $(".new-password-again__img").attr("src", "./assets/EyeClosed.svg")
+        $(".new-password-again__img").attr("src", "/assets/EyeClosed.svg")
         $(".new-password-again").attr("type", "text")
     }
 })

@@ -1,4 +1,4 @@
-import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "./scripts-base.js"
+import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "/global/scripts-base.js"
 // localStorage.removeItem("userData")
 
 // localStorage userData, userNations, userSelectedNation
@@ -117,7 +117,7 @@ function renderNations(nations, finalRender=false) {
                     <p class="h3-little-break secondary-text nation__content-text">${nationAbout}</p>
                 </div>
                 <div class="nation__after">
-                    <a href="./profile.html?id=${ownerId}" class="nation__after-profile">
+                    <a href="/profile/index.html?id=${ownerId}" class="nation__after-profile">
                         <div class="nation__after-avatar" style="background-image: url(${allUsers[ownerId].avatar});"></div>
                         <div class="nation__after-names">
                             <p class="h2-normal primary-text nation__after-name">${allUsers[ownerId].vkName}</p>
@@ -126,10 +126,10 @@ function renderNations(nations, finalRender=false) {
                     </a>
                     <div class="nation__after-buttons buttons-${nation.id}" >
                         <div class="nation__after-buttons-wrapper nation__after-button-share share-${nation.id}">
-                            <img src="./assets/Share.svg" alt="share">
+                            <img src="/assets/Share.svg" alt="share">
                         </div>
                         <div class="nation__after-buttons-wrapper nation__after-button-enter enter-${nation.id}">
-                            <img src="./assets/Enter.svg" alt="enter">
+                            <img src="/assets/Enter.svg" alt="enter">
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@ function renderNations(nations, finalRender=false) {
 
         let editButton = `
         <div class="nation__after-buttons-wrapper nation__after-button-edit edit-${nation.id}" id="${nation.id}">
-            <img src="./assets/Edit.svg" alt="edit">
+            <img src="/assets/Edit.svg" alt="edit">
         </div>`
         
         if (authorized) { // Если аавторизованный пользователь
@@ -299,7 +299,7 @@ $(".create-modal__block-button-change").on("click tap", () => { // Кнопка 
             })
         }
     } catch(error) {
-        sendError("Произошла непредвиденная ошибка при изменении расы!", userData, error)
+        sendError("Произошла непредвиденная ошибка при изменении нации!", userData, error)
     }
 })
 
@@ -412,11 +412,11 @@ if (authorized) { // Если авторизован то добовляет к�
                     }
                     
                 } catch(error) {
-                    sendError("Произошла непредвиденная ошибка на стадии сохранения расы!", userData, error)
+                    sendError("Произошла непредвиденная ошибка на стадии сохранения нации!", userData, error)
                 }
             })
         } catch(error) {
-            sendError("Произошла непредвиденная ошибка на стадии создания расы!", userData, error)
+            sendError("Произошла непредвиденная ошибка на стадии создания нации!", userData, error)
         }
     })  
 }
@@ -426,7 +426,7 @@ $(".nations__all-change-user").on("click tap", () => { // Смена вклад�
         $(".nations__all-wrapper").css("display", "none");
         $(".nations__user-wrapper").css("display", "flex");
     } else { // Если нет, то переброс на авторизацию
-        location.href = "./authorization.html"
+        location.href = "/authorization/index.html"
     }
 })
 
@@ -435,7 +435,7 @@ $(".nations__user-change-all").on("click tap", () => { // Смена вклад�
         $(".nations__user-wrapper").css("display", "none");
         $(".nations__all-wrapper").css("display", "flex");
     } else { // Если нет, то переброс на авторизацию
-        location.href = "./authorization.html"
+        location.href = "/authorization/index.html"
     }
 })
 
