@@ -426,7 +426,7 @@ $(".nations__all-change-user").on("click tap", () => { // Смена вклад�
         $(".nations__all-wrapper").css("display", "none");
         $(".nations__user-wrapper").css("display", "flex");
     } else { // Если нет, то переброс на авторизацию
-        location.href = "/authorization/index.html"
+        location.href = "../authorization/index.html"
     }
 })
 
@@ -435,7 +435,7 @@ $(".nations__user-change-all").on("click tap", () => { // Смена вклад�
         $(".nations__user-wrapper").css("display", "none");
         $(".nations__all-wrapper").css("display", "flex");
     } else { // Если нет, то переброс на авторизацию
-        location.href = "/authorization/index.html"
+        location.href = "../authorization/index.html"
     }
 })
 

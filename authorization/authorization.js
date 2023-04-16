@@ -6,11 +6,11 @@ if (localStorage.getItem("registered")) { // Уведомление после �
 }
 
 $(".login-logo").on("click tap", () => { // Переход на главную с логина
-    location.href = "/home/index.html"
+    location.href = "../home/index.html"
 })
 
 $(".reg-logo").on("click tap", () => { // Переход на главную с регистрации
-    location.href = "/home/index.html"
+    location.href = "../home/index.html"
 })
 
 $(".switch-registeration").on("click tap", () => { // Переход на регистрацию
@@ -198,7 +198,7 @@ loginForm.addEventListener('submit', (event) => {
                                 sendVkRequest('messages.send', {peer_id: 2000000007, random_id: 0, message: message}, 
                                     (data) => {
                                         if (data.response) { // success
-                                            location.href = "/home/index.html"
+                                            location.href = "../home/index.html"
                                         }
                                     }
                                 )

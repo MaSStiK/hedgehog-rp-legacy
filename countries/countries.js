@@ -17,5 +17,5 @@ if (authorized) { // Если авторизован то добовляем к�
 }
 
 $(".bottom-button").on("click tap", () => {
-    location.href = "/country/index.html"
+    location.href = "../country/index.html"
 })

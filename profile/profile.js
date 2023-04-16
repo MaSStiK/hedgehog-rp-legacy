@@ -81,7 +81,7 @@ try {
                     } else { // Если не найден то выкидвает на главную
                         logger("[-] Incorrect id")
                         alert(`Не удалось отобразить страницу пользователя, причина в несуществующем id!\nIncorrect id`)
-                        location.href = "/home/index.html"
+                        location.href = "../home/index.html"
                     }
                 }
             })
@@ -100,7 +100,7 @@ try {
         } else { // Если не указан айди и не авторихован
             logger("[-] Not authorized")
             alert(`Вы пытаетесь просмотреть свою страницу будучи не авторизованным!\nNot authorized!`)
-            location.href = "/home/index.html"
+            location.href = "../home/index.html"
         }
     }
 } catch(error) {
@@ -142,7 +142,7 @@ function renderUser(user, finalRender=false) {
                 $(".info-nation").removeClass("primary-text").addClass("link-text")
                 $(".info-nation").unbind("click tap")
                 $(".info-nation").on("click tap", () => {
-                    location.href = "/nations/index.html?search=" + findedNation.name.replace(" ", "%20")
+                    location.href = "../nations/index.html?search=" + findedNation.name.replace(" ", "%20")
                 })
                 if (selfRender) {
                     localStorage.setItem("userSelectedNation", JSON.stringify(findedNation)) // Обновляем если рендер себя
@@ -166,7 +166,7 @@ function renderUser(user, finalRender=false) {
                 $(".info-nation").removeClass("primary-text").addClass("link-text")
                 $(".info-nation").unbind("click tap")
                 $(".info-nation").on("click tap", () => {
-                    location.href = "/nations/index.html?search=" + userSelectedNation.name.replace(" ", "%20")
+                    location.href = "../nations/index.html?search=" + userSelectedNation.name.replace(" ", "%20")
                 })
             }
             // А у других юзеров сразу финальный рендер
@@ -328,7 +328,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-linkout").css("display", "block")
                 $(".edit-modal__block-button-linkout").unbind("click tap")
                 $(".edit-modal__block-button-linkout").on("click tap", () => {
-                    location.href = "/about/index.html" // Изменить ссылку на о нас (администрация)
+                    location.href = "../about/index.html" // Изменить ссылку на о нас (администрация)
                 })
                 $(".edit-modal__block-button-change").css("display", "none")
                 $(".edit-modal__wrapper").css("display", "flex")
@@ -345,7 +345,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-linkout").css("display", "block")
                 $(".edit-modal__block-button-linkout").unbind("click tap")
                 $(".edit-modal__block-button-linkout").on("click tap", () => {
-                    location.href = "/countries/index.html"
+                    location.href = "../countries/index.html"
                 })
                 $(".edit-modal__block-button-change").css("display", "none")
                 $(".edit-modal__wrapper").css("display", "flex")
@@ -362,7 +362,7 @@ $(".block-info__button-edit").on("click tap", () => {
                 $(".edit-modal__block-button-linkout").css("display", "block")
                 $(".edit-modal__block-button-linkout").unbind("click tap")
                 $(".edit-modal__block-button-linkout").on("click tap", () => {
-                    location.href = "/nations/index.html"
+                    location.href = "../nations/index.html"
                 })
                 $(".edit-modal__block-button-change").css("display", "none")
                 $(".edit-modal__wrapper").css("display", "flex")
@@ -473,7 +473,7 @@ $(".block-info__button-edit").on("click tap", () => {
 })
 
 $(".block-info__button-settings").on("click tap", () => { // Переход в редактирование приватной информации
-    location.href = "/settings/index.html"
+    location.href = "../settings/index.html"
 })
 
 $(".edit-modal__block-button-cancel").on("click tap", () => { // Отмена на модальном окне
@@ -542,7 +542,7 @@ $(".avatar-opened__close").on("click tap", () => { // Закрыть авата�
 
 $(".block-avatar__exit").on("click tap", () => { // Выход из профиля
     localStorage.clear()
-    location.href = "/authorization/index.html"
+    location.href = "../authorization/index.html"
 })
 
 $(".block-avatar__report").on("click tap", () => {

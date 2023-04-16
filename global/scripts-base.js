@@ -58,16 +58,16 @@ export function sendError(message, userData, error) { // Отправка оши
             (data) => {
                 if (data.response) { // success
                     localStorage.setItem("errorSended", "errorSended")
-                    location.href = "/home/index.html"
+                    location.href = "../home/index.html"
                 }
 
                 if (data.error) { // error
-                    location.href = "/home/index.html"
+                    location.href = "../home/index.html"
                 }
             }
         )
     } else {
-        location.href = "/home/index.html"
+        location.href = "../home/index.html"
     }
 }
 

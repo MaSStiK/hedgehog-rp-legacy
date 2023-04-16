@@ -8,7 +8,7 @@ let authorized = userData ? true : false
 
 if (!authorized) {
     alert("Эта страница доступна только авторизованным пользователям!")
-    location.href = "/home/index.html"
+    location.href = "../home/index.html"
 }
 
 // $(".password-block__content-text").text(`Ваш текущий пароль: ${userData.password[0]}********${userData.password.slice(-1)}`)

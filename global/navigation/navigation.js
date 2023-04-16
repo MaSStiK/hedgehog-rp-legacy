@@ -79,11 +79,11 @@ $(".nav-phone__burger-wrapper").on("click tap", () => {
 })
 
 $(".nav__logo").on("click tap", () => {
-    location.href = "/home/index.html"
+    location.href = "../home/index.html"
 })
 
 $(".nav-phone__logo").on("click tap", () => {
-    location.href = "/home/index.html"
+    location.href = "../home/index.html"
 })
 
 const userPassword = localStorage.getItem("userPassword")
@@ -92,11 +92,11 @@ if (authorized) {
         sendGSRequest("usersPasswords", "getValueCompareById", {id: userData.id, value: userPassword}, (data) => { // Сравниваем пароль
             if (!data) { // Если он не совпадает то выкидываем на вход
                 localStorage.setItem("passwordChanged", "passwordChanged")
-                location.href = "/authorization/index.html"
+                location.href = "../authorization/index.html"
             }
         })
     } else { // На всякий случай хз (к примеру если хеш удалится)
         localStorage.setItem("passwordChanged", "passwordChanged")
-        location.href = "/authorization/index.html"
+        location.href = "../authorization/index.html"
     }
 } 
