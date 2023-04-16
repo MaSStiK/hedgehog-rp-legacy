@@ -1,4 +1,4 @@
-import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "/global/scripts-base.js"
+import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "../global/scripts-base.js"
 // localStorage.removeItem("userData")
 
 // localStorage userData, userNations, userSelectedNation

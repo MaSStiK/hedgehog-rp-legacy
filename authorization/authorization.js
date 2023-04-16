@@ -1,4 +1,4 @@
-import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "/global/scripts-base.js"
+import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButtonDisabled, logger, sendError} from "../global/scripts-base.js"
 
 if (localStorage.getItem("registered")) { // Уведомление после регистрации
     createNotification("Вы успешно зарегистрированы", "primary")

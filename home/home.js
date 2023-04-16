@@ -1,4 +1,4 @@
-import {logger, sendError, createNotification, sendVkRequest, sendGSRequest} from "/global/scripts-base.js"
+import {logger, sendError, createNotification, sendVkRequest, sendGSRequest} from "../global/scripts-base.js"
 
 // localStorage.clear()
 

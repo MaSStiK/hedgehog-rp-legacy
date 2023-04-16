@@ -1,4 +1,4 @@
-import {logger, createNotification, sendGSRequest} from "/global/scripts-base.js"
+import {logger, createNotification, sendGSRequest} from "../global/scripts-base.js"
 
 // localStorage userData
 let userData = null
