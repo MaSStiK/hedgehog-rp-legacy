@@ -217,15 +217,15 @@ $(".block-info__button-edit").on("click tap", () => {
         } else {
             logger("[-] Edit mode")
             $(".block-info__button-edit").addClass("edit-mode-on")
-            $(".info-tag").after(`<img src="/assets/Edit.svg" alt="edit" class="edit-mode edit-mode-little edit-tag">`)
-            $(".info-gameName").after(`<img src="/assets/Edit.svg" alt="edit" class="edit-mode edit-gameName">`)
-            $(".info-rpDate").after(`<img src="/assets/Edit.svg" alt="edit" class="edit-mode edit-rpDate">`)
-            $(".info-сountry").after(`<img src="/assets/Edit.svg" alt="edit" class="edit-mode edit-сountry">`)
-            $(".info-nation").after(`<img src="/assets/Edit.svg" alt="edit" class="edit-mode edit-nation">`)
-            $(".info-languages").after(`<img src="/assets/Edit.svg" alt="edit" class="edit-mode edit-languages">`)
-            $(".block-info__status-wrapper").after(`<img src="/assets/Edit.svg" alt="edit" class="edit-mode edit-status">`)
+            $(".info-tag").after(`<img src="../assets/Edit.svg" alt="edit" class="edit-mode edit-mode-little edit-tag">`)
+            $(".info-gameName").after(`<img src="../assets/Edit.svg" alt="edit" class="edit-mode edit-gameName">`)
+            $(".info-rpDate").after(`<img src="../assets/Edit.svg" alt="edit" class="edit-mode edit-rpDate">`)
+            $(".info-сountry").after(`<img src="../assets/Edit.svg" alt="edit" class="edit-mode edit-сountry">`)
+            $(".info-nation").after(`<img src="../assets/Edit.svg" alt="edit" class="edit-mode edit-nation">`)
+            $(".info-languages").after(`<img src="../assets/Edit.svg" alt="edit" class="edit-mode edit-languages">`)
+            $(".block-info__status-wrapper").after(`<img src="../assets/Edit.svg" alt="edit" class="edit-mode edit-status">`)
             $(".avatar-fullscreen__wrapper").css("display", "none")
-            $(".block-avatar__avatar-black").append(`<img src="/assets/Edit.svg" alt="edit" class="edit-mode edit-avatar">`)
+            $(".block-avatar__avatar-black").append(`<img src="../assets/Edit.svg" alt="edit" class="edit-mode edit-avatar">`)
             $(".block-avatar__avatar-black").css("display", "flex")
 
             $(".edit-tag").on("click tap", () => {

@@ -12,54 +12,54 @@ const authorized = userData ? true : false
 
 $("nav").append(`
     <div class="nav-wrapper">
-        <img class="nav__logo" src="/assets/logo/main-logotype.png" alt="logotype">
+        <img class="nav__logo" src="../assets/logo/main-logotype.png" alt="logotype">
         ${authorized // Если авторизован - рендерим кнопку профиля, иначе - кнопку входа
-            ? `<a href="/profile/index.html?id=${userData.id}" class="secondary-button nav__button-authorized">
+            ? `<a href="../profile/index.html?id=${userData.id}" class="secondary-button nav__button-authorized">
                     <img class="authorization-avatar" src="${userData.avatar}" alt="avatar">
                     <div class="authorization-names">
                         <p class="h2-normal primary-text authorization-name">${userData.vkName}</p>
                         <p class="h3-little secondary-text authorization-tag">@${userData.tag}</p>
                     </div>
                 </a>`
-            : `<a href="/authorization/index.html" class="primary-button nav__button-authorization">Авторизация</a>`
+            : `<a href="../authorization/index.html" class="primary-button nav__button-authorization">Авторизация</a>`
         }
         <div class="nav__line"></div>
-        <a href="/home/index.html" class="secondary-button">Главная</a>
-        <a href="/news/index.html" class="secondary-button">Новости</a>
-        <a href="/countries/index.html" class="secondary-button">Страны</a>
-        <a href="/nations/index.html" class="secondary-button">Нации</a>
-        <a href="/tools/index.html" class="secondary-button">Инструменты</a>
+        <a href="../home/index.html" class="secondary-button">Главная</a>
+        <a href="../news/index.html" class="secondary-button">Новости</a>
+        <a href="../countries/index.html" class="secondary-button">Страны</a>
+        <a href="../nations/index.html" class="secondary-button">Нации</a>
+        <a href="../tools/index.html" class="secondary-button">Инструменты</a>
         <div class="nav__line"></div>
-        <a href="/about/index.html" class="secondary-button">О нас</a>
-        <a href="/updates/index.html" class="secondary-button">Обновления</a>
+        <a href="../about/index.html" class="secondary-button">О нас</a>
+        <a href="../updates/index.html" class="secondary-button">Обновления</a>
     </div>
     <div class="nav-phone__wrapper">
         <div class="nav-phone">
             <div class="nav-phone__burger-wrapper">
-                <img class="nav-phone__burger" src="/assets/Burger.svg" alt="burger">
+                <img class="nav-phone__burger" src="../assets/Burger.svg" alt="burger">
             </div>
             ${authorized // Если авторизован - рендерим кнопку профиля, иначе - кнопку входа
-                ? `<a href="/profile/index.html?id=${userData.id}" class="secondary-button nav__button-authorized">
+                ? `<a href="../profile/index.html?id=${userData.id}" class="secondary-button nav__button-authorized">
                         <img class="authorization-avatar" src="${userData.avatar}" alt="avatar">
                         <div class="authorization-names">
                             <p class="h2-normal primary-text authorization-name">${userData.vkName}</p>
                             <p class="h3-little secondary-text authorization-tag">@${userData.tag}</p>
                         </div>
                     </a>`
-                : `<a href="/authorization/index.html" class="primary-button nav__button-authorization">Авторизация</a>`
+                : `<a href="../authorization/index.html" class="primary-button nav__button-authorization">Авторизация</a>`
             }
         </div>
         <div class="nav-phone__content">
-            <img class="nav-phone__logo" src="/assets/logo/main-logotype.png" alt="logotype">
+            <img class="nav-phone__logo" src="../assets/logo/main-logotype.png" alt="logotype">
             <div class="nav__line"></div>
-            <a href="/home/index.html" class="h2-normal primary-text nav-phone__button">Главная</a>
-            <a href="/news/index.html" class="h2-normal primary-text nav-phone__button">Новости</a>
-            <a href="/countries/index.html" class="h2-normal primary-text nav-phone__button">Страны</a>
-            <a href="/nations/index.html" class="h2-normal primary-text nav-phone__button">Нации</a>
-            <a href="/tools/index.html" class="h2-normal primary-text nav-phone__button">Инструменты</a>
+            <a href="../home/index.html" class="h2-normal primary-text nav-phone__button">Главная</a>
+            <a href="../news/index.html" class="h2-normal primary-text nav-phone__button">Новости</a>
+            <a href="../countries/index.html" class="h2-normal primary-text nav-phone__button">Страны</a>
+            <a href="../nations/index.html" class="h2-normal primary-text nav-phone__button">Нации</a>
+            <a href="../tools/index.html" class="h2-normal primary-text nav-phone__button">Инструменты</a>
             <div class="nav__line"></div>
-            <a href="/about/index.html" class="h2-normal primary-text nav-phone__button">О нас</a>
-            <a href="/updates/index.html" class="h2-normal primary-text nav-phone__button">Обновления</a>
+            <a href="../about/index.html" class="h2-normal primary-text nav-phone__button">О нас</a>
+            <a href="../updates/index.html" class="h2-normal primary-text nav-phone__button">Обновления</a>
         </div>
     </div>
 `)
