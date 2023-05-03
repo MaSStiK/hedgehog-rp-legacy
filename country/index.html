@@ -9,8 +9,8 @@
     <meta http-equiv="pragma" content="no-cache">
     <title>Страны</title>
     <link rel="shortcut icon" href="../assets/logo/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./country.css">
     <link rel="stylesheet" href="../global/style.css">
+    <link rel="stylesheet" href="./country.css">
 </head>
 <body>
     <main>
@@ -29,28 +29,32 @@
                             <p class="h2-normal-break primary-text country-about__text">Описание страны нормальное такое описание Описание страны нормальное такое описание<br>1<br>2<br>3<br>12<br>15<br>47<br>48<br>4<br>6<br>ку</p>
                         </div>
                     </div>
-                    <div class="block country-post">создать пост</div>
+                    <div class="block country-post">создать пост (В разработке)</div>
                 </div>
                 <div class="country-info">
-                    <div class="info-images">
-                        <div class="block info-images__logo" style="background-image: url(../assets/images/base-country.png);">
-                            <div class="info-images__logo-fullscreen-wrapper">
-                                <img class="info-images__logo-fullscreen" src="../assets/Fullscreen.svg" alt="fullscreen">
+                    <div class="block info-top">
+                        <div class="info-images">
+                            <div class="block info-images__logo" style="background-image: url(../assets/images/base-country.png);">
+                                <div class="info-images__logo-fullscreen-wrapper">
+                                    <img class="info-images__logo-fullscreen" src="../assets/Fullscreen.svg" alt="fullscreen">
+                                </div>
+                                <div class="logo-opened">
+                                    <img class="logo-opened__img" src="../assets/images/base-country.png" alt="fullscreen-opened">
+                                    <img class="logo-opened__close" src="../assets/Close.svg" alt="close">
+                                </div>
                             </div>
-                            <div class="logo-opened">
-                                <img class="logo-opened__img" src="../assets/images/base-country.png" alt="fullscreen-opened">
-                                <img class="logo-opened__close" src="../assets/Close.svg" alt="close">
+                            <div class="block info-images__map" style="background-image: url(../assets/images/base-map.png);">
+                                <div class="info-images__map-fullscreen-wrapper">
+                                    <img class="info-images__map-fullscreen" src="../assets/Fullscreen.svg" alt="fullscreen">
+                                </div>
+                                <div class="map-opened">
+                                    <img class="map-opened__img" src="../assets/images/base-map.png" alt="fullscreen-opened">
+                                    <img class="map-opened__close" src="../assets/Close.svg" alt="close">
+                                </div>
                             </div>
                         </div>
-                        <div class="block info-images__map" style="background-image: url(../assets/images/base-country-map.png);">
-                            <div class="info-images__map-fullscreen-wrapper">
-                                <img class="info-images__map-fullscreen" src="../assets/Fullscreen.svg" alt="fullscreen">
-                            </div>
-                            <div class="map-opened">
-                                <img class="map-opened__img" src="../assets/images/base-country-map.png" alt="fullscreen-opened">
-                                <img class="map-opened__close" src="../assets/Close.svg" alt="close">
-                            </div>
-                        </div>
+                        <a href="../country-edit/index.html" class="secondary-button country-edit">Редактировать</a>
+                        <button class="primary-button country-enter">Вступить</button>
                     </div>
                     <div class="block info-members">
                         <p class="h1-title primary-text info-members__title">Участники</p>

@@ -102,11 +102,11 @@ button {
 }
 
 .login-submit {
-    width: 200px !important;
+    width: 200px;
 }
 
 .reg-submit, .reg-continue {
-    width: 250px !important;
+    width: 250px;
 }
 
 .reg__code-wrapper {
@@ -173,5 +173,5 @@ button {
 .login-password__img:hover, .login-password__img:active,
 .reg-password__img:hover, .reg-password__img:active,
 .reg-password-again__img:hover, .reg-password-again__img:active {
-    background-color: var(--button-secondary-hover) !important;
+    background-color: var(--button-secondary-hover);
 }

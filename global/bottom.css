@@ -6,9 +6,9 @@
     width: 90%;
     height: 75px;
     margin: 0 5% 0 5%;
-    border-radius: 10px 10px 0 0 !important;
-    border: 1px var(--block-highlight-border) solid !important;
-    border-bottom: none !important;
+    border-radius: 10px 10px 0 0;
+    border: 1px var(--block-highlight-border) solid;
+    border-bottom: none;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -29,7 +29,7 @@
 }
 
 .bottom-button {
-    width: auto !important;
+    width: auto;
     padding: 0 8px 0 8px;
 }
 
@@ -38,9 +38,9 @@
         width: 100%;
         margin: 0;
         padding: 0 10px 0 10px;
-        border-radius: 0 !important;
-        border: none !important;
-        border-top: 1px var(--block-highlight-border) solid !important;
+        border-radius: 0;
+        border: none;
+        border-top: 1px var(--block-highlight-border) solid;
     }
 }
 

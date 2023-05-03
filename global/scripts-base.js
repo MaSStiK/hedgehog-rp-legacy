@@ -1,5 +1,5 @@
 const doLog = true
-export function logger() { // Логер
+export function logger() { // Логер (он существует что бы все ПОЛЕЗНЫЕ логи можно было вкючить и выключить)
     let elememts = []
     for (let i = 0; i < arguments.length; i++) {
         elememts.push(arguments[i])

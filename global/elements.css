@@ -18,8 +18,8 @@
 }
 
 .modal-notification-primary {
-    background-color: var(--button-primary-bg) !important;
-    border: solid var(--button-primary-border) 1px !important;
+    background-color: var(--button-primary-bg);
+    border: solid var(--button-primary-border) 1px;
 }
 
 .modal-notification-danger {
@@ -185,7 +185,7 @@ button:disabled:hover, button:disabled:active {
 
 input {
     display: block;
-    padding: 5px;
+    padding: 4px;
     outline: none;
     background-color: var(--primary-bg);
     border: solid var(--block-border) 1px;
@@ -195,7 +195,7 @@ input {
 
 textarea {
     display: block;
-    padding: 5px;
+    padding: 4px;
     outline: none;
     background-color: var(--primary-bg);
     border: solid var(--block-border) 1px;
@@ -256,4 +256,8 @@ input::placeholder {
 @keyframes show-waiting {
     0% {opacity: 0;}
     100% {opacity: 1;}
+}
+
+.hide-block {
+    display: none !important;
 }

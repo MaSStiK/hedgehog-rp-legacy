@@ -5,7 +5,7 @@ import {sendGSRequest, sendVkRequest, setInputError, createNotification, setButt
 let userData = JSON.parse(localStorage.getItem("userData"))
 let authorized = userData ? true : false
 
-// http://127.0.0.1:5500/country.html?id=i0t1
+// http://127.0.0.1:5500/country.html?id=12341234
 let urlParams = new URLSearchParams(location.search)
 let params = {}
 urlParams.forEach((e, key) => {

@@ -110,7 +110,7 @@ try {
 // -------------------- Рендер страницы --------------------
 function renderUser(user, finalRender=false) {
     if (selfRender) {
-        $(".block-avatar__exit").removeClass("hide-button") // Делаем кнопку выхода видимой
+        $(".block-avatar__exit").removeClass("hide-block") // Делаем кнопку выхода видимой
         $(".block-avatar__report").remove() // Удаляем кнопку репорта
         $(".edit-modal__block-button-report").remove() // Удаляем кнопку репорта из модального окна
         if (finalRender) { // При конечном рендере добавляем кнопки редактирования

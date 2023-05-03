@@ -16,6 +16,12 @@ if (authorized) { // Если авторизован то добовляем к�
     $(".bottom__find").after(`<button class="primary-button bottom-button">Моя страна</button>`)
 }
 
+console.log(userData);
+
 $(".bottom-button").on("click tap", () => {
-    location.href = "../country/index.html"
+    if (userData.about.сountry === "") {
+        location.href = "../country-edit/index.html"
+    } else {
+        location.href = "../country/index.html"
+    }
 })

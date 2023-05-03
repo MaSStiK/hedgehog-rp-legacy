@@ -70,11 +70,11 @@ $(".nav-phone__burger-wrapper").on("click tap", () => {
     if($(".nav-phone__burger-wrapper").hasClass("nav-phone__burger-active")) {
         $(".nav-phone__burger-wrapper").removeClass("nav-phone__burger-active")
         $("nav").removeClass("nav-opened")
-        $(".nav-phone__content").attr("style", "display: none !important")
+        $(".nav-phone__content").attr("style", "display: none")
     } else {
         $(".nav-phone__burger-wrapper").addClass("nav-phone__burger-active")
         $("nav").addClass("nav-opened")
-        $(".nav-phone__content").attr("style", "display: flex !important")
+        $(".nav-phone__content").attr("style", "display: flex")
     }
 })
 

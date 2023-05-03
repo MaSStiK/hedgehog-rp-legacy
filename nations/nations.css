@@ -1,4 +1,4 @@
-@import "bottom.css";
+@import "../global/bottom.css";
 
 .nations {
     width: 100%;
@@ -390,7 +390,7 @@
 
 @media screen and (max-width: 1020px) {
     .big-title  {
-        font-size: var(--text-h1Title-size) !important;
+        font-size: var(--text-h1Title-size);
     }
 
     .nations__all-change-user, .nations__user-change-all {

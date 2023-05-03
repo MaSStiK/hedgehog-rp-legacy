@@ -65,7 +65,7 @@ input {
 .old-password__img:hover, .old-password__img:active,
 .new-password__img:hover, .new-password__img:active,
 .new-password-again__img:hover, .new-password-again__img:active {
-    background-color: var(--button-secondary-hover) !important;
+    background-color: var(--button-secondary-hover);
 }
 
 .save-button  {

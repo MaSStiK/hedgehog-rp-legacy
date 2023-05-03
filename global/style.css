@@ -48,7 +48,7 @@
     transition: .2s all;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    font-family: "Montserrat", sans-serif !important;
+    font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: var(--text-h2Normal-size);
     color: var(--text-primary-color);

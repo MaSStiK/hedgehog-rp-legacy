@@ -113,7 +113,7 @@ nav {
 }
 
 .nav-phone__burger-active {
-    background-color: var(--button-secondary-hover) !important;
+    background-color: var(--button-secondary-hover);
 } 
 
 .nav-phone__content {
@@ -163,7 +163,7 @@ nav {
 }
 
 /* .nav-active-link {
-    background-color: var(--button-secondary-hover) !important;
+    background-color: var(--button-secondary-hover);
 } */
 
 .content {

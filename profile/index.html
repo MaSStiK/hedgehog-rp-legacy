@@ -9,10 +9,11 @@
     <meta http-equiv="pragma" content="no-cache">
     <title>Профиль</title>
     <link rel="shortcut icon" href="../assets/logo/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./profile.css">
     <link rel="stylesheet" href="../global/style.css">
+    <link rel="stylesheet" href="./profile.css">
 </head>
 <body>
+    <!-- Сделать основной блок меньше  + кнопки перенести под картинку профиля -->
     <main>
         <nav>
             <script src="../global/navigation/navigation.js" type="module" defer></script>
@@ -21,7 +22,7 @@
         <div class="content">
             <div class="content-wrapper">
                 <div class="block block-avatar">
-                    <div class="block-avatar__avatar">
+                    <div class="block block-avatar__avatar">
                         <div class="avatar-fullscreen__wrapper">
                             <img class="avatar-fullscreen" src="../assets/Fullscreen.svg" alt="fullscreen">
                         </div>
@@ -31,12 +32,12 @@
                         </div>
                         <div class="block-avatar__avatar-black"></div>
                     </div>
-                    <button class="danger-button block-avatar__exit hide-button">Выйти</button>
+                    <button class="danger-button block-avatar__exit hide-block">Выйти</button>
                     <button class="danger-button block-avatar__report">Пожаловаться</button>
                 </div>
                 <div class="block block-info">
                     <div class="block-info__name">
-                        <p class="big-title primary-text info-vkName">Имя Фамилия</p>
+                        <p class="big-title primary-text info-vkName">&nbsp;</p>
                     </div>
                     <div class="block-info__line"></div>
                     <div class="block-info__info-wrapper">
@@ -105,7 +106,7 @@
                             <p class="h3-little-break secondary-text edit-modal__block-help">* Можно оставить поле пустым</p>
                             <p class="h3-little-break secondary-text edit-modal__block-help2">* Вместо пробела используйте _ или -</p>
                             <input class="h2-normal primary-text edit-modal__block-input" type="text" placeholder="1 - 16 символов" minlength="1" maxlength="16" required>
-                            <textarea class="edit-modal__block-textarea" wrap="off" maxlength="500"></textarea>
+                            <textarea class="edit-modal__block-textarea" wrap="on" maxlength="500"></textarea>
                             <button class="primary-button edit-modal__block-button-linkout">Перейти</button>
                             <button type="submit" class="primary-button edit-modal__block-button-change">Изменить</button>
                             <button type="submit" class="danger-button edit-modal__block-button-report">Пожаловаться</button>
