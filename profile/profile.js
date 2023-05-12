@@ -12,6 +12,14 @@ try { // Пробуем получить нацию пользователя, е
     localStorage.removeItem("userSelectedNation")
 }
 
+let userCountry = {}
+try { // Пробуем получить страну пользователя, если не удается спарсить то удаляем
+    userCountry = JSON.parse(localStorage.getItem("userCountry"))
+} catch {
+    logger("[-] Error in userCountry, deleting...")
+    localStorage.removeItem("userCountry")
+}
+
 let userProfileData = null
 let authorized = userData ? true : false
 let selfRender = false
@@ -133,7 +141,12 @@ function renderUser(user, finalRender=false) {
     let date = new Date(user.about.rpDate).toLocaleString('ru', {timeZone: 'Europe/Moscow'})
     $(".info-rpDate").text(date.split(",")[0])
     if (user.about.сountry !== "") {
-        $(".info-сountry").text(`${user.about.сountry} (${user.about.сountryRole})`)
+        if (selfRender) { // Если рендер себя
+            $(".info-сountry").text(`${userCountry.name} (${userCountry.members[user.id].role})`)
+        } else {
+
+        }
+        
     }
     if (user.about.nation !== "") {
         if (finalRender) { // Если финальный рендер, то все должно быть загружено

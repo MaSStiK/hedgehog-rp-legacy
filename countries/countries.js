@@ -19,9 +19,9 @@ if (authorized) { // Если авторизован то добовляем к�
 console.log(userData);
 
 $(".bottom-button").on("click tap", () => {
-    if (userData.about.сountry === "") {
+    if (userData.about.сountry === "") { // Если нету страны - перекидывает на создание
         location.href = "../country-edit/index.html"
-    } else {
-        location.href = "../country/index.html"
+    } else { // Если есть страна то на нее
+        location.href = "../country/index.html?id=" + userData.about.сountry
     }
 })
