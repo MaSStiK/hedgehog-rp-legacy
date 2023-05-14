@@ -1,0 +1,14 @@
+.commands-block {
+    width: 198px;
+    height: 250px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.commands-block button {
+    width: 100%;
+}

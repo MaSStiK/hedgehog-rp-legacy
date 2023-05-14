@@ -1,0 +1,186 @@
+/* Весь сайт */
+main {
+    width: min(1000px, 100%); /* Ширина сайта 1000px */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Навигация */
+main nav {
+    width: 20%; /* Ширина навигации 20%, все кнопки в 100% ширины */
+    height: 100%;
+    z-index: var(--z-nav);
+}
+
+/* Контент сайта */
+section {
+    width: 80%; /* Ширина контента 80% */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 12px; /* Отступ между блоками */
+    padding: 20px; /* Наружный отступ */
+}
+
+
+/* Основной контент */
+.main-nav__content {
+    width: 200px;
+    overflow: auto;
+}
+
+
+/* Логотип */
+.main-nav__logotype {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.main-nav__logotype img {
+    width: 150px;
+    cursor: pointer;
+}
+
+
+/* Разделитель */
+.main-nav__divider {
+    width: 80%;
+    margin: 0 auto 20px auto; /* Центр */
+    padding-top: 20px;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+
+/* Ссылки как прозрачные кнопки */
+.main-nav__link {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--button-bg-transparent);
+}
+
+.main-nav__link a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-nav__link:hover, .main-nav__link:active {
+    background-color: var(--button-hover-transparent);
+}
+
+
+/* Контент профиля и страны */
+.main-nav__link-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 4px;
+    margin-left: 4px;
+}
+
+#nav-full__profile img, #nav-full__country img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.main-nav__link-text h5 {
+    width: 100px;
+}
+
+.main-nav__link-text h6 {
+    width: 100px;
+    color: var(--text-secondary);
+}
+
+
+/* Кнопка авторизации (Как обычная зеленая) */
+#nav-full__authorization {
+    background-color: var(--button-bg-primary);
+}
+
+#nav-full__authorization:hover, #nav-full__authorization:active {
+    background-color: var(--button-hover-primary);
+}
+
+
+/* Навигация сверху */
+@media screen and (max-width: 1000px) {
+    /* Отодвигаем от верха что бы нечего не закрывала навигация + ресайз */
+    section {
+        padding-top: 70px;
+        width: 100%;
+    }
+
+    /* Делаем навигацию сверху поверх всего + ресайз */
+    main nav {
+        width: 100%;
+        height: 50px;
+        position: fixed;
+        right: 0;
+        top: 0;
+    }
+
+    /* Прячем основной контент */
+    .main-nav__content {
+        display: none;
+    }
+
+
+    /* Задний фон навигации */
+    .main-nav__content-wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        background-color: #00000066;
+        z-index: var(--z-nav-content);
+        display: none;
+    }
+
+    /* Включает отображение */
+    .main-nav__content-wrapper.show {
+        display: flex;
+        position: fixed;
+    }
+
+    /* Сама навигация становится телефонной версией */
+    .main-nav__content.show {
+        background-color: var(--bg-secondary);
+        border-left: 1px solid var(--border-secondary);
+        display: block;
+        padding-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+
+}
+
+/* Навигация ресайзится */
+@media screen and (max-width: 420px) {
+    /* Растягиваем навигацию на весь экран и убираем бордер слево*/
+    .main-nav__content.show {
+        width: 100%;
+        border: none;
+    }
+}
+
+@media screen and (max-width: 300px) {
+
+}

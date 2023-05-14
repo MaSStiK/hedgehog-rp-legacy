@@ -1,0 +1,61 @@
+/* Стили для текста */
+h1, .h1 {
+    font-size: var(--text-h1);
+}
+
+h2, .h2 {
+    font-size: var(--text-h2);
+}
+
+h3, .h3 {
+    font-size: var(--text-h3);
+}
+
+h4, .h4 {
+    font-size: var(--text-h4);
+}
+
+h5, .h5 {
+    font-size: var(--text-h5);
+}
+
+h6, .h6 {
+    font-size: var(--text-h6);
+}
+
+p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Ссылка (Указывается для тега <a> если в нем только текст) */
+.link {
+    color: var(--text-link);
+}
+
+.link:hover, .link:active {
+    color: var(--text-link-hover);
+}
+
+
+/* Переносящийся текст */
+.text-break {
+    word-break: break-word;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+/* Обрезающийся текст */
+.text-cut {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

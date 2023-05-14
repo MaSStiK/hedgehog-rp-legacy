@@ -1,0 +1,28 @@
+/* Стиль блока */
+.block {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 4px;
+    padding: 12px;
+}
+
+/* Блок основной информации */
+.main-block {
+    width: 550px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* Блок скрыт, но все так же на месте (Заменяется другим) */
+.invisible {
+    visibility: hidden;
+}
+
+
+/* Блок полностью убрал (Включается позже что бы сайт не прыгал) */
+.hidden {
+    display: none;
+}
