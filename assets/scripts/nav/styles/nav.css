@@ -23,7 +23,7 @@ section {
     justify-content: flex-start; /* Изначально контент притягивается к левому верхнему краю, далее по центру */
     align-items: flex-start;
     gap: 12px; /* Отступ между блоками */
-    padding: 20px 0 0 20px; /* Наружный отступ сверху и слево */
+    padding: 20px 0 0 8px; /* Наружный отступ сверху и слево */
 }
 
 
@@ -31,6 +31,10 @@ section {
 .main-nav__content {
     width: 200px;
     overflow: auto;
+}
+
+.main-nav__content li {
+    padding: 0 4px;
 }
 
 

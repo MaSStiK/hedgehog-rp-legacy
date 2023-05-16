@@ -3,7 +3,7 @@ import { renderNavigation } from "../../assets/scripts/nav/nav-render.js"
 
 
 $("#set-userData").on("click tap", () => {
-    if (!getCache("userData")) {
+    if (!getCache("userData")) { // Пушим данные если их нет
         setCache("userData", {data: "data"})
     } else {
         removeCache("userData")
@@ -12,7 +12,7 @@ $("#set-userData").on("click tap", () => {
 })
 
 $("#set-userCountryData").on("click tap", () => {
-    if (!getCache("userCountryData")) {
+    if (!getCache("userCountryData")) { // Пушим данные если их нет
         setCache("userCountryData", {data: "data"})
     } else {
         removeCache("userCountryData")
