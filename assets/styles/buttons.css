@@ -15,7 +15,7 @@
     --button-bg-disabled: #2E2C35;
 }
 
-/* main style */
+/* Обычная кнопка (Серая) */
 button {
     width: 150px;
     height: 35px;
@@ -33,6 +33,7 @@ button {
     background-color: var(--button-bg);
 
     overflow: hidden;
+    user-select: none;
     cursor: pointer;
 }
 
@@ -41,7 +42,7 @@ button:hover, button:active {
 }
 
 
-/* button with class primary (green) */
+/* Важная кнопка (Зеленая) */
 button.primary {
     background-color: var(--button-bg-primary);
 }
@@ -51,7 +52,7 @@ button.primary:hover, button.primary:active {
 }
 
 
-/* button with class danger (red) */
+/* Опасная кнопка (Красная) */
 button.danger {
     background-color: var(--button-bg-danger);
 }
@@ -60,7 +61,8 @@ button.danger:hover, button.danger:active {
     background-color: var(--button-hover-danger);
 }
 
-/* button with class danger (red) */
+
+/* Кнопка в списке (Прозрачная) */
 button.transparent {
     background-color: var(--button-bg-transparent);
 }
@@ -70,7 +72,7 @@ button.transparent:hover, button.transparent:active {
 }
 
 
-/* disabled button */
+/* Отключена */
 button:disabled {
     cursor: not-allowed;
     color: var(--text-darker);

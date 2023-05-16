@@ -19,7 +19,7 @@ export function getCache(name) {
 
 // Сохраняем значение в хеш
 export function setCache(name, data) {
-    try { // Пробуем сохранить информацию , если не удается перевести в строку, то пропускаем
+    try { // Пробуем сохранить информацию, если не удается перевести в строку, то пропускаем
         localStorage.setItem(name, JSON.stringify(data))
         // console.log(`[+] Successfully stringified "${name}"`)
         return true
@@ -32,12 +32,27 @@ export function setCache(name, data) {
 
 // Удаляем значение в хеша
 export function removeCache(name) {
-    try { // Пробуем удалить информацию , если не удается удалить ячейку, то пропускаем
+    try { // Пробуем удалить информацию, если не удается удалить ячейку, то пропускаем
         localStorage.removeItem(name)
         // console.log(`[+] Successfully removed "${name}"`)
         return true
     } catch {
         // console.log(`[-] Unable to remove "${name}", pass removing...`)
+        return false
+    }
+}
+
+
+// Удаляем все значение в хеша
+export function removeAll() {
+    try { // Перебираем все значения и удаляем их, если не удается удалить, то пропускаем
+        for (let i in localStorage) {
+            localStorage.removeItem(i)
+        }
+        // console.log(`[+] Successfully removed all`)
+        return true
+    } catch {
+        // console.log(`[-] Unable to remove all, pass removing...`)
         return false
     }
 }

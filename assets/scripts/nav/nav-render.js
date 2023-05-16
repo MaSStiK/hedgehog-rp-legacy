@@ -1,4 +1,4 @@
-import { getCache, setCache, removeCache } from "../cache.js"
+import { getCache, setCache, removeCache, removeAll } from "../cache.js"
 import { linkTo } from "../global-functions.js"
 
 
@@ -52,7 +52,7 @@ export function renderNavigation() {
                                 <h6 class="text-cut" id="nav-full__profile-tag">@tag123456</h6>
                             </div>
                         </a></ul>`
-                    : `<ul class="main-nav__link"><a href="#" id="nav-full__authorization">Авторизация</a></ul>` // Иначе кнопка входа
+                    : `<ul class="main-nav__link"><a href="../login/" id="nav-full__authorization">Авторизация</a></ul>` // Иначе кнопка входа
                     }
     
                     <!-- Кнопка страны (Если у юзера она есть) -->
@@ -95,6 +95,10 @@ export function renderNavigation() {
         $(".main-nav__phone").toggleClass("hide-border-part");
         $("#nav__burger").toggleClass("clicked");
     })
+
+    $("#nav-full__profile").on("click tap", function () {
+        console.log(1);
+    });
 }
 
 renderNavigation() // Рендерим сразу

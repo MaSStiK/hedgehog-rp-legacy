@@ -9,6 +9,9 @@
 @import "../scripts/nav/styles/nav.css";
 @import "../scripts/nav/styles/nav-phone.css";
 
+/* Уведомления */
+@import "../scripts/notification/styles/notification.css";
+
 :root {
     color-scheme: dark;
     
@@ -32,14 +35,14 @@
     --text-link: #6D5FE4;
     --text-link-hover: #594EC0;
 
-    --z-under: 0;
-    --z-main: 1;
-    --z-over: 2;
-    --z-modal: 3;
-    --z-loading: 4;
-    
-    --z-nav-content: 5;
-    --z-nav: 6;
+    --z-under: 0; /* Под основным контентом */
+    --z-main: 1; /* Основной контент */
+    --z-over: 2; /* Над основным контентом */
+    --z-modal: 3; /* Модальное окно (Под навигацией) */
+    --z-loading: 4; /* Загрузка над модальным окном */
+    --z-nav-content: 5; /* Контент навигации */
+    --z-nav: 6; /* Топ навигации */
+    --z-top: 7; /* Над навигацией */
 }
 
 * {
@@ -47,14 +50,15 @@
     padding: 0;
 
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
     font-size: var(--text-h4);
+    font-weight: 500;
     color: var(--text-primary);
 
     list-style-type: none;
     box-sizing: border-box;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    
     transition: .2s all;
     z-index: var(--z-main);
 }

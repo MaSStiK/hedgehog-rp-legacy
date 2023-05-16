@@ -34,6 +34,7 @@ section {
 }
 
 .main-nav__content li {
+    user-select: none;
     padding: 0 4px;
 }
 

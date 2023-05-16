@@ -1,0 +1,26 @@
+/* Обычное уведомление (Серое) */
+.notification {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: var(--button-bg);
+    border-radius: 12px;
+
+    font-size: var(--text-h3);
+    padding: 8px 16px;
+    z-index: var(--z-top);
+}
+
+
+/* Важное уведомление (Зеленое) */
+.notification.primary {
+    background-color: var(--button-bg-primary);
+}
+
+
+/* Опасное уведомление (Красное) */
+.notification.danger {
+    background-color: var(--button-bg-danger);
+}
