@@ -84,7 +84,7 @@ export function renderNavigation() {
 
 
     // Нажатие логотип - переход на вкладку дом
-    $("#nav__logo").on("click tap", () => { 
+    $("#nav__logo img").on("click tap", () => { 
         linkTo("../home/")
     })
     

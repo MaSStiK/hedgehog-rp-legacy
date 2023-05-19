@@ -30,11 +30,37 @@
 </head>
 <body>
     <main>
-        <section>
-            <div class="block">
-                ку
+        <div class="container">
+            <!-- Логотип -->
+            <div class="logotype-wrapper">
+                <img src="../assets/images/logo/main-logotype.png" alt="logotype">
             </div>
-        </section>
+
+            <!-- Форма входа -->
+            <form class="block form">
+                <!-- Инпут логина -->
+                <label for="login">Введите логин</label>
+                <input type="text" id="login" name="login" placeholder="Логин" required>
+
+                <!-- Инпут пароля -->
+                <label for="password">Введите пароль</label>
+                <div class="input-wrapper" id="password-input">
+                    <input type="password" id="password" name="password" placeholder="Пароль" required>
+                    <button class="image" type="button"><img src="../assets/images/icons/EyeOpen.svg" alt="show-password"></button>                    
+                </div>
+                
+                <!-- Кнопка входа -->
+                <button class="primary" type="submit">Войти</button>
+
+                <!-- Сделать статью о востановлении пароля через бота -->
+                <!-- <a href="#" class="h5 link">Забыл(а) пароль</a> -->
+            </form>
+
+            <!-- Перенос на регистрацию -->
+            <div>
+                <h5 class="text-secondary">Нету аккаунта? <a href="../registration/" class="h5 link">Зарегистрируйся!</a></h5>
+            </div>
+        </div>
     </main>
 
     <!-- jQuery -->

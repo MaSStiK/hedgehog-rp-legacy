@@ -45,10 +45,8 @@ export function removeCache(name) {
 
 // Удаляем все значение в хеша
 export function removeAll() {
-    try { // Перебираем все значения и удаляем их, если не удается удалить, то пропускаем
-        for (let i in localStorage) {
-            localStorage.removeItem(i)
-        }
+    try { // Удаляем всю информацию
+        localStorage.clear();
         // console.log(`[+] Successfully removed all`)
         return true
     } catch {

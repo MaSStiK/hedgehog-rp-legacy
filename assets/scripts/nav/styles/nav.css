@@ -1,7 +1,7 @@
 /* Весь сайт */
 main {
     width: min(1000px, 100%); /* Ширина сайта либо максимальная ширина, либо 100% экрана */
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     justify-content: center;
     margin: 0 auto; /* По центру страницы */

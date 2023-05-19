@@ -2,7 +2,8 @@
 
 /* Элементы */
 @import "global-elements.css";
-@import "buttons.css";
+@import "button.css";
+@import "input.css";
 @import "text.css";
 
 /* Навигация */
@@ -20,20 +21,6 @@
 
     --border-primary: #413F46;
     --border-secondary: #1CA02C;
-
-    --text-h1: 28px;
-    --text-h2: 24px;
-    --text-h3: 20px;
-    --text-h4: 16px;
-    --text-h5: 12px;
-    --text-h6: 10px;
-
-    --text-primary: rgba(255,255,255, 1);
-    --text-secondary: rgba(255,255,255, 0.5); /* 50% прозрачность */
-    --text-darker: rgba(255,255,255, 0.3); /* 30% прозрачность */
-    --text-danger: #B00020;
-    --text-link: #6D5FE4;
-    --text-link-hover: #594EC0;
 
     --z-under: 0; /* Под основным контентом */
     --z-main: 1; /* Основной контент */

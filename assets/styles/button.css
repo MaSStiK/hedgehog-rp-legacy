@@ -17,8 +17,8 @@
 
 /* Обычная кнопка (Серая) */
 button {
-    width: 150px;
-    height: 35px;
+    width: 160px;
+    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,6 +68,22 @@ button.transparent {
 }
 
 button.transparent:hover, button.transparent:active {
+    background-color: var(--button-hover-transparent);
+}
+
+
+/* Кнопка с иконкой (Как прозрачная, но 36x36) */
+button.image {
+    width: 36px;
+    height: 36px;
+    background-color: var(--button-bg-transparent);
+}
+
+/* button.image img {
+    width: 100%;
+} */
+
+button.image:hover, button.image:active {
     background-color: var(--button-hover-transparent);
 }
 
