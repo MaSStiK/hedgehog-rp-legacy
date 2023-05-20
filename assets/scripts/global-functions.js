@@ -4,6 +4,13 @@ export function linkTo(link) {
 }
 
 
+// Отключение кнопки на время
+export function disableButton(id) {
+    $(id).attr("disabled", "disabled")
+    setTimeout(() => {$(id).removeAttr("disabled")}, 2000)
+}
+
+
 // Ошибка инпута
 export function inputError(selector) {
     // Если у инпута нету класса ошибки - добавляем и через 2 секунды удаляем
@@ -14,7 +21,7 @@ export function inputError(selector) {
 }
 
 
-// Инициализировать инпут с паролем
+// Инициализировать инпут с паролем (Только по специальной структуре)
 export function initInputPassword(selector) {
     const input = $(selector + " input")
     const button = $(selector + " button")
@@ -35,10 +42,13 @@ export function initInputPassword(selector) {
 }
 
 
-// Отключение кнопки на время
-export function disableButton(id) {
-    $(id).attr("disabled", "disabled")
-    setTimeout(() => {$(id).removeAttr("disabled")}, 2000)
+// Инициализировать инпут без пробелов
+export function initInputWithoutSpaces(selector) {
+    const element = $(selector)
+    // При вводе значения проверяеся нет ли пробела, если он есть, то заменяется на _
+    element.on("input", () => {
+        element.val(element.val().split(' ').join('_'))
+    })
 }
 
 

@@ -1,5 +1,5 @@
 import { getCache } from "../../assets/scripts/cache.js"
-import { linkTo, initInputPassword } from "../../assets/scripts/global-functions.js"
+import { linkTo, initInputPassword, initInputWithoutSpaces } from "../../assets/scripts/global-functions.js"
 import { consts } from "../../assets/scripts/global-consts.js"
 
 
@@ -19,6 +19,10 @@ $("#password").attr("maxlength", consts.passwordMax)
 
 // Объявляем запороленый инпут
 initInputPassword("#password-input")
+
+// Объявляем инпуты без пробелов
+initInputWithoutSpaces("#login")
+initInputWithoutSpaces("#password")
 
 
 // Автозаполнение полей если есть юзердата

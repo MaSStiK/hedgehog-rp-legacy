@@ -37,7 +37,7 @@ export function renderNavigation() {
     
                 <!-- Логотип в верху -->
                 <div class="main-nav__logotype" id="nav__logo">
-                    <img src="../assets/images/logo/main-logotype.png" alt="logotype">
+                    <img src="../assets/images/logo/logo.png" alt="logotype">
                 </div>
     
                 <!-- Список всех ссылок -->

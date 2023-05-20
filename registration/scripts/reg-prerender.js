@@ -1,6 +1,8 @@
 import { getCache } from "../../assets/scripts/cache.js"
-import { linkTo, initInputPassword } from "../../assets/scripts/global-functions.js"
+import { linkTo, disableButton, initInputPassword, initInputWithoutSpaces } from "../../assets/scripts/global-functions.js"
 import { consts } from "../../assets/scripts/global-consts.js"
+import { VKsendRequest, VKsendMessage } from "../../assets/scripts/vk-api.js"
+
 
 
 // Нажатие на логотип переносит на главную
@@ -9,10 +11,21 @@ $(".logotype-wrapper img").on("click tap", () => {
 })
 
 
-// Переход на второй блок
+// Переход на второй блок если бот находит сообщение
 $("#first-page-button").on("click tap", () => {
-    $("#first-page").addClass("hidden")
-    $("#second-page").removeClass("hidden")
+    // Отключаем кнопку
+    disableButton("#first-page-button")
+
+    // Получаем всю сообщения бота
+    // VKsendRequest('messages.getConversations', {extended: 1}, (data) => {
+    VKsendRequest('messages.search', {q: "sdf51sd5fsd1f", extended: 1}, (data) => {
+        // Сделать через поиск по сообщению
+
+        data = data.response
+        console.log(data);
+        $("#first-page").addClass("hidden")
+        $("#second-page").removeClass("hidden")
+    })
 })
 
 // Переход на финальный блок
@@ -37,6 +50,11 @@ $("#last-page-back").on("click tap", () => {
 // Объявляем запороленый инпут
 initInputPassword("#password-input")
 initInputPassword("#password-again-input")
+
+// Объявляем инпуты без пробелов
+initInputWithoutSpaces("#login")
+initInputWithoutSpaces("#password")
+initInputWithoutSpaces("#password-again")
 
 // Заполняем плейсхолдеры
 $("#login").attr("placeholder", `Логин (${consts.loginMin} - ${consts.loginMax} символа)`)
