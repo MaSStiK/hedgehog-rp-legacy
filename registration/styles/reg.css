@@ -77,16 +77,32 @@ h5 {
 }
 
 
+/* Профиль вк */
+.vk-profile {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+
+    text-align: center;
+}
+
+#vk-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+
 /* Блок с текстом для копирования */
-#vkcode {
+.vkcode__wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* Кнопка копирования */
-#copy-vkcode {
-    margin-left: 8px;
+    gap: 8px;
 }
 
 @media screen and (max-width: 300px) {

@@ -38,12 +38,15 @@
 
             <!-- Поиск аккаунта в вк -->
             <div class="block reg" id="first-page">
-                <h3>1) Прикрепите свой аккаунт в ВКонтакте</h3>
+                <h3>1) Прикрепите свой профиль в ВКонтакте</h3>
                 <p>Не закрывая вкладку отправьте код нашему боту "Географ" в ВКонтакте: <a href="https://vk.com/write-202912556" target="_blank" class="link">https://vk.com/write-202912556</a></p>
-                <p id="vkcode">Код: dw1q51wqd53<button class="image" id="copy-vkcode">
+                <div class="vkcode__wrapper">
+                    <p id="vkcode">Код: abcde12345</p>
+                    <button class="image" id="copy-vkcode">
                         <img src="../assets/images/icons/Copy.svg" alt="copy">
                     </button>
-                </p>
+                </div>
+                
                 <p>Нажмите кнопку ниже, когда отправите сообщение</p>
                 
                 <!-- Перейти на подтверждение -->
@@ -54,6 +57,11 @@
             <!-- Подтверждение -->
             <div class="block reg hidden" id="second-page">
                 <p class="h3">Это вы?</p>
+
+                <div class="vk-profile">
+                    <img id="vk-photo" src="" alt="photo">
+                    <p id="vk-name">Имя фамилия</p>
+                </div>
                 
                 <!-- Перейти к регистрации или назад -->
                 <div class="reg__buttons">
@@ -69,23 +77,23 @@
                 <!-- Инпут логина -->
                 <label for="login">2) Придумайте логин</label>
                 <p class="h5 text-secondary">* Вместо пробела используйте _ или -</p>
-                <input type="text" id="login" name="login" placeholder="Логин" required>
+                <input type="login" id="login" name="login" placeholder="Логин">
 
                 <!-- Инпут пароля -->
                 <label for="password">3) Придумайте пароль</label>
                 <p class="h5 text-secondary">* Вместо пробела используйте _ или -</p>
                 <div class="input-wrapper" id="password-input">
-                    <input type="password" id="password" name="password" placeholder="Пароль" required>
+                    <input type="password" id="password" name="password" placeholder="Пароль">
                     <button class="image" type="button"><img src="../assets/images/icons/EyeOpen.svg" alt="show-password"></button>                    
                 </div>
                 <!-- Инпут повтора пароля -->
                 <div class="input-wrapper" id="password-again-input">
-                    <input type="password" id="password-again" name="password-again" placeholder="Повторите пароль" required>
+                    <input type="password" id="password-again" name="password-again" placeholder="Повторите пароль">
                     <button class="image" type="button"><img src="../assets/images/icons/EyeOpen.svg" alt="show-password"></button>                    
                 </div>
                 
                 <!-- Кнопка регистрации -->
-                <button type="submit" class="primary">Зарегистрироваться</button>
+                <button class="primary" id="form-submit">Зарегистрироваться</button>
             </form>
 
             <!-- Перенос на вход -->
