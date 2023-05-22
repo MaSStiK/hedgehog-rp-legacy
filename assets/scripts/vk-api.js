@@ -1,13 +1,18 @@
-// VK API
-const TOKEN = "vk1.a.PfD30rLv8JpK3-RBjksczmShBSymiZ0gxlZn2FixH-B8OG-MA_GVSB-aOFlvydrzzyAYpPfs6Q8_fRUWJxapzjyHpcuzBynC2baY_fU0WkzgqC5yK1-tvY9fGEtBdnzZdOvFI1EPbst2XPt-yyR6JxTN7-T51bSaIhjNzcjPpWo1XD7DBhdAaJLBN1o0I36R31L0ORlG4wuLc1i4p2Jpaw"
+import { getCache } from "./cache.js"
+import { linkTo } from "./global-functions.js"
 
+const notAToken = "dmsxLmEuUGZEMzByTHY4SnBLMy1SQmprc2N6bVNoQlN5bWlaMGd4bFpuMkZpeEgtQjhPRy1NQV9HVlNCLWFPRmx2eWRyenp5QVlwUGZzNlE4X2ZSVVdKeGFwemp5SHBjdXpCeW5DMmJhWV9mVTBXa3pncUM1eUsxLXR2WTlmR0V0QmRuelpkT3ZGSTFFUGJzdDJYUHQteXlSNkp4VE43LVQ1MWJTYUloak56Y2pQcFdvMVhEN0RCaGRBYUpMQk4xbzBJMzZSMzFMME9SbEc0d3VMYzFpNHAySnBhdw"
+
+// Получить ссылку на метод
 function getMethodUrl(method, params) {
     params = params || {}
-    params['access_token'] = TOKEN
+    params['access_token'] = atob(notAToken)
     params['v'] = "5.131"
     return "https://api.vk.com/method/" + method + "?" + $.param(params)
 }
 
+
+// Отправить запрос
 export function VKsendRequest(method, params, func=null) {
     $.ajax({
         url: getMethodUrl(method, params),
@@ -17,6 +22,8 @@ export function VKsendRequest(method, params, func=null) {
     })
 }
 
+
+// Метод отправки сообщения
 export function VKsendMessage(peer_id, message, func=null) {
     VKsendRequest('messages.send', {peer_id: peer_id, random_id: 0, message: message}, 
         (data) => {
@@ -25,6 +32,31 @@ export function VKsendMessage(peer_id, message, func=null) {
             }
         }
     )
+}
+
+
+// Метод обработки ошибки
+export function VKsendError(text, error) {
+    // Если пользователя нажимает "Отмена", то не отправляем ошибку
+    if (!confirm(`${text}\nОтправить эту ошибку разработчику?\n${error}`)) {
+        linkTo("../home/")
+        return
+    }
+    
+    let userData = getCache("userData")
+    let message = `Страница: ${location.href}`
+    if (userData) {
+        message += `\nОт: ${userData.name + " " + userData.surname} (${userData.id})`
+    } else {
+        message += `\nОт: Anonymous`
+    }
+    message += `\nОшибка: ${error}`
+    message += `\nТекст: ${text}`
+
+    // Отправляем в беседу с ошибками, после перенаправляем на главную
+    VKsendMessage(2000000008, message, () => {
+        linkTo("../home/")
+    })
 }
 
 // VKsendMessage(2000000007, "ку", (data) => {
