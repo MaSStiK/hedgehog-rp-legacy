@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-image: url("/assets/images/waiting.gif");
+    background-image: url("../../../images/waiting.gif");
     background-color: #15151586;
     background-repeat: no-repeat;
     background-position: center;
