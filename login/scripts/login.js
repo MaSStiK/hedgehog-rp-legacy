@@ -9,6 +9,7 @@ import { loading } from "../../assets/scripts/loading/loading.js"
 // Находим форму и ставим ивент submit
 const form = document.querySelector('form')
 form.addEventListener('submit', (event) => {
+    console.log("[+] Submit")
     try {
         // Отключение базового перехода
         event.preventDefault()
@@ -54,7 +55,9 @@ form.addEventListener('submit', (event) => {
         // Если проходит все проверки то включаем анимацию загрузки
         loading()
 
+        console.log("[+] GSlogin")
         GSlogin("usersAuth", {auth: JSON.stringify({login:formLogin,password:formPassword})}, (data) => {
+            console.log(data)
             // Если не находит по логину и паролю
             if(Object.keys(data).length === 0) {
                 loading(false)
@@ -66,6 +69,8 @@ form.addEventListener('submit', (event) => {
 
             // Парсим информацию, если она есть
             let userData = JSON.parse(data)
+
+            console.log(userData)
 
             // Удаляем весь старый хеш и записываем нового юзера
             removeCacheAll()

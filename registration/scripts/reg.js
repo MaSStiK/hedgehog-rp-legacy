@@ -118,6 +118,7 @@ $("#second-page-no").on("click tap", () => {
 // Находим форму и ставим ивент submit
 const form = document.querySelector('form')
 form.addEventListener('submit', (event) => {
+    console.log("[+] Submit")
     try {
         // Отключение базового перехода
         event.preventDefault()
@@ -209,7 +210,9 @@ form.addEventListener('submit', (event) => {
             }
         }
 
+        console.log("[+] GSregistration")
         GSregistration("usersAuth", newUserData, formLogin, formPassword, (data) => {
+            console.log(data)
             // Если находит такой же логин
             if (!data) {
                 loading(false)
