@@ -6,6 +6,9 @@
 @import "input.css";
 @import "text.css";
 
+/* Загрузка */
+@import "../scripts/loading/styles/loading.css";
+
 /* Навигация */
 @import "../scripts/nav/styles/nav.css";
 @import "../scripts/nav/styles/nav-phone.css";

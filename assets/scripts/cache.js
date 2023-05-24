@@ -18,7 +18,7 @@ export function getCache(name) {
 
 
 // Сохраняем значение в хеш
-export function setCache(name, data) {
+export function setCache(name, data={}) {
     try { // Пробуем сохранить информацию, если не удается перевести в строку, то пропускаем
         localStorage.setItem(name, JSON.stringify(data))
         // console.log(`[+] Successfully stringified "${name}"`)
@@ -44,7 +44,7 @@ export function removeCache(name) {
 
 
 // Удаляем все значение в хеша
-export function removeAll() {
+export function removeCacheAll() {
     try { // Удаляем всю информацию
         localStorage.clear();
         // console.log(`[+] Successfully removed all`)

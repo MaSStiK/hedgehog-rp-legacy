@@ -59,10 +59,6 @@ export function VKsendError(text, error) {
     })
 }
 
-// VKsendMessage(2000000007, "ку", (data) => {
-//     console.log(data);
-// })
-
 
 // 2000000001 Рп беседа
 // 2000000002 test_chamber

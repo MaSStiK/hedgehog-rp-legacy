@@ -1,0 +1,1 @@
+import { setCache } from "../../assets/scripts/cache.js";

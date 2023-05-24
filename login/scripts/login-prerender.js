@@ -23,11 +23,3 @@ initInputWithoutSpaces("#password")
 $(".logotype-wrapper img").on("click tap", () => { 
     linkTo("../home/")
 })
-
-
-// Автозаполнение полей если есть юзердата
-let userData = getCache("userData")
-if (userData) {
-    // $("#password").val()
-    // $("#login").val()
-}

@@ -1,4 +1,4 @@
-import { getCache, setCache, removeCache, removeAll } from "../cache.js"
+import { getCache, setCache, removeCache } from "../cache.js"
 import { linkTo } from "../global-functions.js"
 
 
@@ -12,8 +12,8 @@ export function renderNavigation() {
             <!-- Кнопка профиля в топ навигации -->
             ${userData // Если есть информация о юзере
             ? `<button class="transparent" id="nav__profile">
-                <img src="../assets/images/base/base-avatar.png" alt="avatar" id="nav__profile-image">
-                <h5 class="text-cut" id="nav__profile-name">Имя</h5>
+                <img src="${userData.photo}" alt="avatar" id="nav__profile-image">
+                <h5 class="text-cut" id="nav__profile-name">${userData.name}</h5>
                 </button>`
             : `` // Иначе нечгео
             }
@@ -45,11 +45,11 @@ export function renderNavigation() {
 
                     <!-- Кнопка авторизации или профиль юзера -->
                     ${userData // Если есть информация о юзере
-                    ? `<ul class="main-nav__link"><a href="#" id="nav-full__profile">
-                            <img src="../assets/images/base/base-avatar.png" alt="avatar" id="nav-full__profile-image">
+                    ? `<ul class="main-nav__link"><a href="../profile/index.html?id=${userData.id}" id="nav-full__profile">
+                            <img src="${userData.photo}" alt="avatar" id="nav-full__profile-image">
                             <div class="main-nav__link-text">
-                                <h5 class="text-cut" id="nav-full__profile-name">Имя</h5>
-                                <h6 class="text-cut" id="nav-full__profile-tag">@tag123456</h6>
+                                <h5 class="text-cut" id="nav-full__profile-name">${userData.name} ${userData.surname}</h5>
+                                <h6 class="text-cut" id="nav-full__profile-tag">@${userData.tag}</h6>
                             </div>
                         </a></ul>`
                     : `<ul class="main-nav__link"><a href="../login/" id="nav-full__authorization">Авторизация</a></ul>` // Иначе кнопка входа
@@ -88,6 +88,7 @@ export function renderNavigation() {
         linkTo("../home/")
     })
     
+
     // Открытие навигации
     $("#nav__burger").on("click tap", () => { 
         $(".main-nav__content-wrapper").toggleClass("show");
@@ -96,9 +97,11 @@ export function renderNavigation() {
         $("#nav__burger").toggleClass("clicked");
     })
 
-    $("#nav-full__profile").on("click tap", function () {
-        console.log(1);
-    });
+
+    // Перенос в профиль на телефонной версии
+    $("#nav__profile").on("click tap", () => {
+        linkTo(`../profile/index.html?id=${userData.id}`)
+    })
 }
 
 renderNavigation() // Рендерим сразу

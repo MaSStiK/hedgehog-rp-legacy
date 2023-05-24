@@ -77,7 +77,7 @@
                 <!-- Инпут логина -->
                 <label for="login">2) Придумайте логин</label>
                 <p class="h5 text-secondary">* Вместо пробела используйте _ или -</p>
-                <input type="login" id="login" name="login" placeholder="Логин" required>
+                <input type="login" id="login" name="login" placeholder="Логин" autocomplete="off" required>
 
                 <!-- Инпут пароля -->
                 <label for="password">3) Придумайте пароль</label>
@@ -86,6 +86,7 @@
                     <input type="password" id="password" name="password" placeholder="Пароль" required>
                     <button class="image" type="button"><img src="../assets/images/icons/EyeOpen.svg" alt="show-password"></button>                    
                 </div>
+                
                 <!-- Инпут повтора пароля -->
                 <div class="input-wrapper" id="password-again-input">
                     <input type="password" id="password-again" name="password-again" placeholder="Повторите пароль" required>

@@ -1,3 +1,4 @@
+import { getCache, removeCache } from "./cache.js"
 import { notify } from "./notification/notification.js"
 
 // Интернет соединение восстановлено
@@ -11,5 +12,16 @@ $(window).on("offline", (event) => {
 })
 
 
+// Сообщение после регистрации
+if (getCache("after-reg")) {
+    removeCache("after-reg")
+    notify("Вы успешно зарегистрировались!", "primary")
+}
 
-// Добавить уведомление после регистрации + уведомление от жалобы
+// Сообщение после входа
+if (getCache("after-login")) {
+    removeCache("after-login")
+    notify("Вы успешно вошли в аккаунт!", "primary")
+}
+
+// Добавить уведомление от жалобы

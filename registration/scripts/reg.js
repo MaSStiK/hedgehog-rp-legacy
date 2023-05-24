@@ -1,9 +1,10 @@
-import { getCache, setCache, removeCache } from "../../assets/scripts/cache.js"
+import { setCache, removeCacheAll } from "../../assets/scripts/cache.js"
 import { linkTo, inputError, disableButton  } from "../../assets/scripts/global-functions.js"
 import { notify } from "../../assets/scripts/notification/notification.js"
 import { consts } from "../../assets/scripts/global-consts.js"
 import { VKsendRequest, VKsendMessage, VKsendError } from "../../assets/scripts/vk-api.js"
-import { GSgetEvent, sendGSRequest } from "../../assets/scripts/gs-api.js"
+import { GSfindInColumn, GSregistration } from "../../assets/scripts/gs-api.js"
+import { loading } from "../../assets/scripts/loading/loading.js"
 
 // Уникальный ключ
 let unic_key = Math.random().toString(36).slice(6) + Math.random().toString(36).slice(6)
@@ -76,10 +77,23 @@ $("#second-page-yes").on("click tap", () => {
     
     // Ставим подтверждение
     confirm_account = true
+    loading()
 
-    // Переход на следующий блок
-    $("#second-page").addClass("hidden")
-    $("#last-page").removeClass("hidden")
+    // Ищем в колонне пользователя с таким же id
+    GSfindInColumn("users", {column: "A", value: user_id}, (data) => {
+        // Если он есть, то останавливаем регистрацию
+        if (data.length !== 0) {
+            notify("Этот аккаунт уже зарегистрирован!", "danger")
+            $("#second-page-no").trigger("click")
+            loading(false)
+            return
+        }
+
+        // Переход на следующий блок
+        $("#second-page").addClass("hidden")
+        $("#last-page").removeClass("hidden")
+        loading(false)
+    })
 })
 
 // Возвращение на первый блок
@@ -144,7 +158,7 @@ form.addEventListener('submit', (event) => {
             return
         }
 
-        // Если логин меньше нужной длины
+        // Если пароль меньше нужной длины
         if (!(formPassword.length >= consts.passwordMin)) {
             inputError("#password")
             notify("Минимальная длина пароля - 4 символа!", "danger")
@@ -167,12 +181,16 @@ form.addEventListener('submit', (event) => {
             return
         }
 
+        // Если проходит все проверки то включаем анимацию загрузки
+        loading()
+
         // Таймштамп
         let date = Date.now()
 
         // Данные нового пользователя
         const newUserData = {
-            id: user_id, // id на сайте, по стандарту id от вк, но в случае чего можно изменить вручную
+            id: user_id.toString(), // id на сайте, по стандарту id от вк, но в случае чего можно изменить вручную
+            tag: user_id.toString(), // Тэг для упрощенного поиска
             name: user_name,
             surname: user_surname,
             photo: user_photo,
@@ -189,20 +207,36 @@ form.addEventListener('submit', (event) => {
                 nation_id: "", // Отображаемая нация
                 languages: "", // Языки на которых говорит
             }
-
         }
+
+        GSregistration("usersAuth", newUserData, formLogin, formPassword, (data) => {
+            // Если находит такой же логин
+            if (!data) {
+                loading(false)
+                inputError("#login")
+                notify("Этот логин занят!", "danger")
+                return
+            }
+            
+            // Удаляем весь старый хеш и записываем нового юзера
+            removeCacheAll()
+            setCache("userData", newUserData)
+
+            // Отправляем сообщение в логи
+            let message = `Регистрация\nПользователь: ${user_name} ${user_surname} (${user_id})\nЛогин: ${formLogin}\nВК: ${"https://vk.com/id" + user_id}`
+            VKsendMessage(2000000007, message, () => {
+                // И сообщение юзеру
+                VKsendMessage(user_id, "Вы успешно зарегистрировались!", () => {
+                    // Уведомление о регистрации
+                    setCache("after-reg")
+    
+                    // Переносим на главную
+                    linkTo("../home/")
+                })
+            })
+        })
 
     } catch(error) {
         VKsendError("Произошла непредвиденная ошибка при попытке регистрации!", error)
     }
 })
-
-// GSgetEvent("users", {}, (data) => {
-//     console.log(data);
-// })
-
-
-// sendGSRequest("users", "getEvent", {}, (data) => {
-//     console.log("Выполнено");
-//     console.log(data);
-// })
