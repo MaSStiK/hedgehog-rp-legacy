@@ -1,4 +1,4 @@
-import { getCache, setCache, removeCacheAll } from "../../assets/scripts/cache.js"
+import { setCache, removeCacheAll } from "../../assets/scripts/cache.js"
 import { linkTo, inputError, disableButton  } from "../../assets/scripts/global-functions.js"
 import { notify } from "../../assets/scripts/notification/notification.js"
 import { consts } from "../../assets/scripts/global-consts.js"

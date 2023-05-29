@@ -4,6 +4,12 @@ export function linkTo(link) {
 }
 
 
+// Получить переменные из ссылки
+export function getUrlParams(link) {
+    return Object.fromEntries(new URLSearchParams(window.location.search))
+}
+
+
 // Отключение кнопки на время
 export function disableButton(id) {
     $(id).attr("disabled", "disabled")

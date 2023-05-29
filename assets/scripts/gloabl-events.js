@@ -23,5 +23,3 @@ if (getCache("after-login")) {
     removeCache("after-login")
     notify("Вы успешно вошли в аккаунт!", "primary")
 }
-
-// Добавить уведомление от жалобы
