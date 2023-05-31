@@ -1,0 +1,92 @@
+/* Отступ для фотографии */
+section {
+    padding-top: 70px;
+}
+
+.main-block {
+    height: 1000px;
+    overflow: visible;
+}
+
+/* Верх профиля */
+.profile-top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+/* Тег автора, в телефонной версии съезжает под аватарку */
+.profile-top p {
+    width: calc(50% - 54px - 8px);
+    cursor: pointer;
+}
+
+
+/* Фото профиля */
+.profile-top__photo {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-sizing: content-box;
+    z-index: var(--z-over);
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.profile-top__photo:hover {
+    width: 108px;
+    height: 108px;
+}
+
+.profile-top__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Обводка фотографии */
+.profile-top__photo__wrapper {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    box-sizing: content-box;
+    z-index: var(--z-over);
+
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Навигация сверху */
+@media screen and (max-width: 1000px) {
+    /* Отступ для фотографии */
+    section {
+        padding-top: 120px;
+    }
+}
+
+/* Контент в 300px */
+@media screen and (max-width: 590px) {
+
+}
+
+/* Ресайз навигации */
+@media screen and (max-width: 420px) {
+
+}
+
+/* Контент в 100% */
+@media screen and (max-width: 316px) {
+
+}

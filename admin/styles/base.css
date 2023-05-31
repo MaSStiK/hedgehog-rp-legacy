@@ -1,19 +1,21 @@
-/* Основной блок 550px */
+/* Контент в 550px, блоки контента в 100% шириной */
 
 /* Навигация сверху */
 @media screen and (max-width: 1000px) {
 
 }
 
-@media screen and (max-width: 540px) {
+/* Контент в 300px */
+@media screen and (max-width: 590px) {
 
 }
 
-/* Навигация ресайзится */
+/* Ресайз навигации */
 @media screen and (max-width: 420px) {
 
 }
 
-@media screen and (max-width: 300px) {
+/* Контент в 100% */
+@media screen and (max-width: 316px) {
 
 }

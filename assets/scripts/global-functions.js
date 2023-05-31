@@ -4,6 +4,12 @@ export function linkTo(link) {
 }
 
 
+// Скопировать текст
+export function copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
+}
+
+
 // Получить переменные из ссылки
 export function getUrlParams(link) {
     return Object.fromEntries(new URLSearchParams(window.location.search))

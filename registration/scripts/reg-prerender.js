@@ -1,5 +1,5 @@
 import { getCache } from "../../assets/scripts/cache.js"
-import { linkTo, disableButton, initInputPassword, initInputWithoutSpaces } from "../../assets/scripts/global-functions.js"
+import { linkTo, disableButton, initInputPassword, initInputWithoutSpaces, copyToClipboard } from "../../assets/scripts/global-functions.js"
 import { notify } from "../../assets/scripts/notification/notification.js"
 import { consts } from "../../assets/scripts/global-consts.js"
 
@@ -47,6 +47,6 @@ $("#last-page-back").on("click tap", () => {
 
 // Копирование ключа (Значение берется из тега с ключем только значение самого ключа)
 $("#copy-vkcode").on("click tap", () => {
-    navigator.clipboard.writeText($("#vkcode").text().split(" ")[1])
+    copyToClipboard($("#vkcode").text().split(" ")[1])
     notify("Код скопирован!", "primary")
 })

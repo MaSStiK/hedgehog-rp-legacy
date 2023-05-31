@@ -25,14 +25,14 @@
     --border-primary: #413F46;
     --border-secondary: #1CA02C;
 
-    --z-under: 0; /* Под основным контентом */
-    --z-main: 1; /* Основной контент */
-    --z-over: 2; /* Над основным контентом */
-    --z-modal: 3; /* Модальное окно (Под навигацией) */
-    --z-loading: 4; /* Загрузка над модальным окном */
-    --z-nav-content: 5; /* Контент навигации */
-    --z-nav: 6; /* Топ навигации */
-    --z-top: 7; /* Над навигацией */
+    --z-under: -1; /* Под основным контентом */
+    --z-main: 0; /* Основной контент */
+    --z-over: 1; /* Над основным контентом */
+    --z-modal: 2; /* Модальное окно (Под навигацией) */
+    --z-loading: 3; /* Загрузка над модальным окном */
+    --z-nav-content: 4; /* Контент навигации */
+    --z-nav: 5; /* Топ навигации */
+    --z-top: 6; /* Над навигацией */
 }
 
 * {
@@ -46,11 +46,10 @@
 
     list-style-type: none;
     box-sizing: border-box;
-    overflow-x: hidden;
+    overflow: hidden;
     scroll-behavior: smooth;
     
     transition: .2s all;
-    z-index: var(--z-main);
 }
 
 html {
@@ -62,4 +61,111 @@ body {
     width: 100%;
     height: 100%;
     background-color: var(--bg-primary);
+}
+
+
+/* Отступ между блоками (Навигация / Контент / Правый блок) 20px, внутри блока отступ 12px */
+
+/* Весь сайт */
+main {
+    /* Ширина сайта Навигация + блок + отступы блока + левая часть */
+    width: min(calc(200px + 550px + 40px + 200px), 100%); /* Ширина сайта либо максимальная ширина, либо 100% экрана */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    margin: 0 auto; /* По центру страницы */
+    position: relative; /* Что бы блоки не уехжай на край экрана */
+}
+
+
+/* Секция контента сайта (Прокручивает только контент не задевая правый и левый блок) */
+section {
+    /* Ширина контена + (отступ до скроллбара + скролл) * 2 что бы было по центру) */
+    width: calc(550px + 24px);
+    padding-top: 20px; /* Наружный отступ сверху */
+
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    overflow: overlay; /* Скроллбар поверх */
+}
+
+
+/* Контент страницы */
+article {
+    width: 550px; /* Основной блок в 550px */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px; /* Отступ между элементами */
+
+    margin: 0 auto; /* По центру */
+    padding-bottom: 20px; /* Отступ снизу для красивого скрола */
+    overflow: visible; /* Выступающий контент видно */
+}
+
+/* Правая панель (На разных страницах разный функцианал) */
+aside {
+    width: 200px; /* Как ширина навигации 200px */;
+    margin-top: 20px;
+    z-index: var(--z-nav);
+
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 4px;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+/* Навигация сверху */
+@media screen and (max-width: 1000px) {
+    /* Отодвигаем от верха что бы нечего не закрывала навигацию */
+    section {
+        width: 100%; 
+        padding-top: 70px; /* 50px высота навигации + 20px отступ сверху */
+    }
+
+    aside {
+        display: none;
+        margin-top: 70px;
+    }
+}
+
+/* Контент в 300px */
+@media screen and (max-width: 590px) {
+    /* Делаем контент шириной в 300px */
+    article {
+        width: 300px;
+    }
+}
+
+/* Контент в 100% */
+@media screen and (max-width: 316px) {
+    /* Делаем контент шириной в 100% */
+    article {
+        width: 100%;
+        padding: 0 8px;
+    }
+}
+
+
+/* Скролл */
+*::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+/* Подложка скролла в цвет фона */
+::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: var(--bg-primary);
+}
+
+/* Скрол цвета основного блока */
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: var(--bg-secondary);
 }

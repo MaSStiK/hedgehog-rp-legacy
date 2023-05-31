@@ -66,11 +66,12 @@
     }
 }
 
-@media screen and (max-width: 540px) {
+/* Контент в 300px */
+@media screen and (max-width: 590px) {
 
 }
 
-/* Навигация ресайзится */
+/* Ресайз навигации */
 @media screen and (max-width: 420px) {
     /* Перекрытие бордера растягиваем на весь экран */
     .hide-border-part::after {
@@ -90,6 +91,7 @@
     }
 }
 
-@media screen and (max-width: 300px) {
+/* Контент в 100% */
+@media screen and (max-width: 316px) {
 
 }

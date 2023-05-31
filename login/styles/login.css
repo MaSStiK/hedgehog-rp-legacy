@@ -60,7 +60,8 @@ h5 {
     text-align: center;
 }
 
-@media screen and (max-width: 300px) {
+/* Контент в 100% */
+@media screen and (max-width: 316px) {
     /* Ставим ширину формы на всю страницу */
     .form {
         width: 100%;

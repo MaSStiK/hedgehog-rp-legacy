@@ -105,7 +105,8 @@ h5 {
     gap: 8px;
 }
 
-@media screen and (max-width: 300px) {
+/* Контент в 100% */
+@media screen and (max-width: 316px) {
     /* Ставим ширину формы на всю страницу */
     .reg {
         width: 100%;

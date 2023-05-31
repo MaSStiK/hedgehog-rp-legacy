@@ -1,29 +1,12 @@
-/* Весь сайт */
-main {
-    width: min(1000px, 100%); /* Ширина сайта либо максимальная ширина, либо 100% экрана */
-    /* height: 100%; */
-    display: flex;
-    justify-content: center;
-    margin: 0 auto; /* По центру страницы */
-}
-
 /* Навигация */
 main nav {
-    width: 200px; /* Ширина навигации 20%, все кнопки в 100% ширины */
+    width: 200px; /* Ширина навигации 200px */
     height: 100%;
     z-index: var(--z-nav);
-}
 
-/* Контент сайта */
-section {
-    width: 800px; /* Ширина контента 80% */
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start; /* Изначально контент притягивается к левому верхнему краю, далее по центру */
-    align-items: flex-start;
-    gap: 12px; /* Отступ между блоками */
-    padding: 20px 0 0 8px; /* Наружный отступ сверху и слево */
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 
@@ -35,7 +18,6 @@ section {
 
 .main-nav__content li {
     user-select: none;
-    padding: 0 4px;
 }
 
 
@@ -127,13 +109,6 @@ section {
 
 /* Навигация сверху */
 @media screen and (max-width: 1000px) {
-    /* Отодвигаем от верха что бы нечего не закрывала навигация + ресайз */
-    section {
-        width: 100%;
-        padding: 70px 8px 0 8px; /* 50px высота навигации + 20px отступ сверху + 8px сбоков */
-        justify-content: center; /* Центрируем контент */
-    }
-
     /* Делаем навигацию сверху поверх всего + ресайз */
     main nav {
         width: 100%;
@@ -146,6 +121,11 @@ section {
     /* Прячем основной контент */
     .main-nav__content {
         display: none;
+    }
+
+    /* Отступ у кнопок */
+    .main-nav__content li {
+        padding: 0 8px;
     }
 
 
@@ -175,18 +155,13 @@ section {
     }
 }
 
-@media screen and (max-width: 540px) {
+/* Контент в 300px */
+@media screen and (max-width: 590px) {
 
 }
 
-/* Навигация ресайзится */
+/* Ресайз навигации */
 @media screen and (max-width: 420px) {
-    section {
-        width: 100%;
-        padding-top: 58px; /* Отступ сверху 8px */
-        justify-content: center; /* Центрируем контент */
-    }
-
     /* Растягиваем навигацию на весь экран и убираем бордер слево*/
     .main-nav__content.show {
         width: 100%;
@@ -194,6 +169,7 @@ section {
     }
 }
 
-@media screen and (max-width: 300px) {
+/* Контент в 100% */
+@media screen and (max-width: 316px) {
 
 }

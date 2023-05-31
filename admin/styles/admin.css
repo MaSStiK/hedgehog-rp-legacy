@@ -1,14 +1,16 @@
-.commands-block {
-    width: 200px;
-    height: 250px;
-    
+aside {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 12px;
+    padding: 12px;
 }
 
-.commands-block button {
+aside button {
     width: 100%;
+}
+
+#elements {
+    height: 1000px;
 }

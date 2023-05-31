@@ -8,15 +8,15 @@
 
 /* Блок основной информации */
 .main-block {
-    width: 550px;
-    height: 600px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    position: relative;
 }
 
 
-/* Блок полностью убрал (Включается позже что бы сайт не прыгал) */
+/* Блок полностью убран (Включается позже что бы сайт не прыгал) */
 .hidden {
     display: none !important;
 }
