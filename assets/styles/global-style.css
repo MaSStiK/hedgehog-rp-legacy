@@ -178,10 +178,3 @@ aside section {
     border-radius: 4px;
     background-color: var(--bg-secondary);
 }
-
-@media only screen and (hover: none) and (pointer: coarse) {
-
-    body {
-        background-color: #006500;
-    }
-}

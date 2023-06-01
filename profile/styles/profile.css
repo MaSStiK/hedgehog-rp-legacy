@@ -39,10 +39,22 @@ article {
     cursor: pointer;
 }
 
-.profile-top__photo:hover {
-    width: 108px;
-    height: 108px;
+/* Только для десктопных устройств */
+@media (hover: hover) {
+    .profile-top__photo:hover, .profile-top__photo:active {
+        width: 108px;
+        height: 108px;
+    }
 }
+
+/* Только на мобильных дивайсах */
+@media only screen and (hover: none) and (pointer: coarse) {
+    .profile-top__photo:focus {
+        width: 108px;
+        height: 108px;
+    }
+}
+
 
 .profile-top__photo img {
     width: 100%;

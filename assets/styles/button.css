@@ -15,6 +15,7 @@
     --button-bg-disabled: #2E2C35;
 }
 
+
 /* Обычная кнопка (Серая) */
 button {
     width: 160px;
@@ -37,18 +38,10 @@ button {
     cursor: pointer;
 }
 
-button:focus, button:hover, button:active {
-    background-color: var(--button-hover);
-}
-
 
 /* Важная кнопка (Зеленая) */
 button.primary {
     background-color: var(--button-bg-primary);
-}
-
-button.primary:hover, button.primary:active {
-    background-color: var(--button-hover-primary);
 }
 
 
@@ -57,18 +50,10 @@ button.danger {
     background-color: var(--button-bg-danger);
 }
 
-button.danger:hover, button.danger:active {
-    background-color: var(--button-hover-danger);
-}
-
 
 /* Кнопка в списке (Прозрачная) */
 button.transparent {
     background-color: var(--button-bg-transparent);
-}
-
-button.transparent:hover, button.transparent:active {
-    background-color: var(--button-hover-transparent);
 }
 
 
@@ -79,14 +64,6 @@ button.image {
     background-color: var(--button-bg-transparent);
 }
 
-/* button.image img {
-    width: 100%;
-} */
-
-button.image:hover, button.image:active {
-    background-color: var(--button-hover-transparent);
-}
-
 
 /* Отключена */
 button:disabled {
@@ -95,11 +72,64 @@ button:disabled {
     background-color: var(--button-bg-disabled);
 }
 
-button:disabled:hover, button:disabled:active {
-    cursor: not-allowed;
-    background-color: var(--button-bg-disabled);
-}
 
+/* Нажата */
 button.clicked {
     background-color: var(--button-bg-clicked);
+}
+
+
+/* Только для десктопных устройств */
+@media (hover: hover) {
+    button:hover, button:active {
+        background-color: var(--button-hover);
+    }
+
+    button.primary:hover, button.primary:active {
+        background-color: var(--button-hover-primary);
+    }
+
+    button.danger:hover, button.danger:active {
+        background-color: var(--button-hover-danger);
+    }
+
+    button.transparent:hover, button.transparent:active {
+        background-color: var(--button-hover-transparent);
+    }
+
+    button.image:hover, button.image:active {
+        background-color: var(--button-hover-transparent);
+    }
+
+    button:disabled:hover, button:disabled:active {
+        background-color: var(--button-bg-disabled);
+    }
+}
+
+
+/* Только на мобильных дивайсах */
+@media only screen and (hover: none) and (pointer: coarse) {
+    button:focus {
+        background-color: var(--button-hover);
+    }
+
+    button.primary:focus {
+        background-color: var(--button-hover-primary);
+    }
+
+    button.danger:focus {
+        background-color: var(--button-hover-danger);
+    }
+
+    button.transparent:focus {
+        background-color: var(--button-hover-transparent);
+    }
+
+    button.image:focus {
+        background-color: var(--button-hover-transparent);
+    }
+
+    button:disabled:focus {
+        background-color: var(--button-bg-disabled);
+    }
 }

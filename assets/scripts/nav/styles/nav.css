@@ -70,8 +70,18 @@ main nav {
     align-items: center;
 }
 
-.main-nav__link:hover, .main-nav__link:active {
-    background-color: var(--button-hover-transparent);
+/* Только для десктопных устройств */
+@media (hover: hover) {
+    .main-nav__link:hover, .main-nav__link:active {
+        background-color: var(--button-hover-transparent);
+    }
+}
+
+/* Только на мобильных дивайсах */
+@media only screen and (hover: none) and (pointer: coarse) {
+    .main-nav__link:focus {
+        background-color: var(--button-hover-transparent);
+    }
 }
 
 
@@ -107,8 +117,18 @@ main nav {
     background-color: var(--button-bg-primary);
 }
 
-#nav-full__authorization:hover, #nav-full__authorization:active {
-    background-color: var(--button-hover-primary);
+/* Только для десктопных устройств */
+@media (hover: hover) {
+    #nav-full__authorization:hover, #nav-full__authorization:active {
+        background-color: var(--button-hover-primary);
+    }
+}
+
+/* Только на мобильных дивайсах */
+@media only screen and (hover: none) and (pointer: coarse) {
+    #nav-full__authorization:focus {
+        background-color: var(--button-hover-primary);
+    }
 }
 
 

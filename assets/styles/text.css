@@ -11,7 +11,6 @@
     --text-darker: rgba(255,255,255, 0.3); /* 30% прозрачность */
     --text-danger: #B00020;
     --text-link: #6D5FE4;
-    --text-link-hover: #594EC0;
 }
 
 /* Стили для текста */
@@ -75,8 +74,18 @@ label {
     color: var(--text-link);
 }
 
-.link:hover, .link:active {
-    color: var(--text-link-hover);
+/* Только для десктопных устройств */
+@media (hover: hover) {
+    .link:hover, .link:active {
+        text-decoration: underline;
+    }
+}
+
+/* Только на мобильных дивайсах */
+@media only screen and (hover: none) and (pointer: coarse) {
+    .link:focus {
+        text-decoration: underline;
+    }
 }
 
 
