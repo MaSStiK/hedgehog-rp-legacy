@@ -1,5 +1,5 @@
 /* Отступ для фотографии */
-section {
+article {
     padding-top: 70px;
 }
 
@@ -71,7 +71,7 @@ section {
 /* Навигация сверху */
 @media screen and (max-width: 1000px) {
     /* Отступ для фотографии */
-    section {
+    article {
         padding-top: 120px;
     }
 }

@@ -37,7 +37,7 @@ button {
     cursor: pointer;
 }
 
-button:hover, button:active {
+button:focus, button:hover, button:active {
     background-color: var(--button-hover);
 }
 
@@ -102,4 +102,12 @@ button:disabled:hover, button:disabled:active {
 
 button.clicked {
     background-color: var(--button-bg-clicked);
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+
+    *:hover {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;        
+    }
 }

@@ -73,6 +73,7 @@ main {
     height: 100%;
     display: flex;
     justify-content: center;
+    overflow: visible;
 
     margin: 0 auto; /* По центру страницы */
     position: relative; /* Что бы блоки не уехжай на край экрана */
@@ -80,10 +81,10 @@ main {
 
 
 /* Секция контента сайта (Прокручивает только контент не задевая правый и левый блок) */
-section {
+article {
     /* Ширина контена + (отступ до скроллбара + скролл) * 2 что бы было по центру) */
     width: calc(550px + 24px);
-    padding-top: 20px; /* Наружный отступ сверху */
+    padding: 20px 0; /* Наружный отступ сверху и снизу для для красивого скрола */
 
     -ms-overflow-style: -ms-autohiding-scrollbar;
     overflow: overlay; /* Скроллбар поверх */
@@ -91,7 +92,7 @@ section {
 
 
 /* Контент страницы */
-article {
+article section {
     width: 550px; /* Основной блок в 550px */
     display: flex;
     flex-direction: column;
@@ -100,44 +101,52 @@ article {
     gap: 12px; /* Отступ между элементами */
 
     margin: 0 auto; /* По центру */
-    padding-bottom: 20px; /* Отступ снизу для красивого скрола */
     overflow: visible; /* Выступающий контент видно */
 }
 
 /* Правая панель (На разных страницах разный функцианал) */
 aside {
-    width: 200px; /* Как ширина навигации 200px */;
-    margin-top: 20px;
+    width: 212px; /* Как ширина навигации 200px */
+    height: 100%;
+    padding: 20px 0; /* Отступ как и у основного блока */
     z-index: var(--z-nav);
+    
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    overflow: overlay; /* Скроллбар поверх */
+
+    position: absolute;
+    right: -12px;
+    top: 0;
+}
+
+/* Контент aside */
+aside section {
+    width: 200px;
+    padding: 12px;
 
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     border-radius: 4px;
-
-    position: absolute;
-    right: 0;
-    top: 0;
 }
-
 
 /* Навигация сверху */
 @media screen and (max-width: 1000px) {
     /* Отодвигаем от верха что бы нечего не закрывала навигацию */
-    section {
+    article {
         width: 100%; 
         padding-top: 70px; /* 50px высота навигации + 20px отступ сверху */
     }
 
     aside {
         display: none;
-        margin-top: 70px;
+        padding-top: 70px;
     }
 }
 
 /* Контент в 300px */
 @media screen and (max-width: 590px) {
     /* Делаем контент шириной в 300px */
-    article {
+    article section {
         width: 300px;
     }
 }
@@ -145,7 +154,7 @@ aside {
 /* Контент в 100% */
 @media screen and (max-width: 316px) {
     /* Делаем контент шириной в 100% */
-    article {
+    article section {
         width: 100%;
         padding: 0 8px;
     }
