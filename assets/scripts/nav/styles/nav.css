@@ -15,10 +15,11 @@ main nav {
     overflow-y: auto;
 }
 
-/* Основной контент */
+/* Основной контент + скрол в телефонной версии */
 .main-nav__content {
     width: 200px;
     overflow: auto;
+    padding-bottom: 20px;
 }
 
 .main-nav__content li {
