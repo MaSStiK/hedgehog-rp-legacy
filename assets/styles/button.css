@@ -108,7 +108,7 @@ button.clicked {
 
 
 /* Только на мобильных дивайсах */
-@media only screen and (hover: none) and (pointer: coarse) {
+/* @media only screen and (hover: none) and (pointer: coarse) {
     button:focus {
         background-color: var(--button-hover);
     }
@@ -132,4 +132,4 @@ button.clicked {
     button:disabled:focus {
         background-color: var(--button-bg-disabled);
     }
-}
+} */

@@ -1,0 +1,80 @@
+/* Контент в 300px */
+@media screen and (max-width: 590px) {
+    /* Фото профиля по центру */
+    .profile-top__photo, .profile-top__photo__wrapper {
+        left: 50%;
+    }
+
+    .profile-top__photo {
+        width: 75px;
+        height: 75px;
+    }
+
+    .profile-top__photo__wrapper {
+        width: 83px;
+        height: 83px;
+    }
+
+    /* Только для десктопных устройств */
+    @media (hover: hover) {
+        .profile-top__photo:hover, .profile-top__photo:active {
+            width: 83px;
+            height: 83px;
+        }
+    }
+
+
+    /* Имя под фото */
+    .profile-top__name {
+        width: 100%;
+        margin-top: 40px; /* Отступ от картинки примерно 12px */
+        text-align: center;
+        margin-left: 0;
+    }
+
+
+    /* Кнопка жалобы */
+    #report, #edit {
+        width: 100px;
+    }
+
+    /* Информация в одну колонну + отступ между блоками */
+    .profile-info__part {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .profile-info__part > p {
+        width: 100%;
+    }
+
+
+    /* Текст в одну строку (Дата) */
+    .profile-info__part.inline p {
+        width: 100px;
+    }
+}
+
+/* Ресайз навигации */
+@media screen and (max-width: 420px) {
+
+}
+
+/* Контент в 100% */
+@media screen and (max-width: 316px) {
+    /* Кнопка жалобы */
+    #report, #edit {
+        top: 54px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+
+    /* Имя под фото */
+    .profile-top__name {
+        width: 100%;
+        margin-top: 88px; /* Отступ от картинки примерно 12px */
+        text-align: center;
+        margin-left: 0;
+    }
+}
