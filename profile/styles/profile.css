@@ -150,7 +150,7 @@ article {
     height: auto;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 12px;
 }
 
 
@@ -159,9 +159,9 @@ article {
     width: 100%;
     padding: 8px;
 
+    background-color: var(--bg-primary);
     border: 1px solid var(--border-primary);
     border-radius: 4px;
-    background-color: var(--bg-primary);
 }
 
 

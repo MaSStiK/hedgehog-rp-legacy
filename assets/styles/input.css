@@ -10,10 +10,10 @@ textarea {
     font-size: var(--text-h4);
     text-decoration: none;
 
+    background-color: var(--bg-primary);
     outline: none;
     border: 1px solid var(--border-primary);
     border-radius: 4px;
-    background-color: var(--bg-primary);
 
     resize: vertical; /* Ресайз только вертикальный */
 }
@@ -35,10 +35,10 @@ input {
     font-size: var(--text-h4);
     text-decoration: none;
 
+    background-color: var(--bg-primary);
     outline: none;
     border: 1px solid var(--border-primary);
     border-radius: 4px;
-    background-color: var(--bg-primary);
 }
 
 /* При выборе инпута */
