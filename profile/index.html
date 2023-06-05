@@ -49,25 +49,30 @@
                             <p class="text-secondary h5 text-break" id="profile-tag">@tag123456789</p>
                             <p class="h3 text-break" id="profile-name">Имя Фамилия</p>
                         </div>
+
+                        <!-- Одна из двух кнопок -->
                         <button class="danger" id="report">Жалоба</button>
                         <button id="edit">Изменить</button>
                     </div>
 
                     <!-- Блок с информацией -->
                     <div class="profile-info">
+                        <!-- Разделитель сверху -->
+                        <div class="divider"></div>
+
                         <!-- Ссылка на вк -->
                         <div class="profile-info__part">
                             <p>ВКонтакте</p>
-                            <a class="profile-info__part-button" id="profile-vk-button" href="#">
-                                <img id="profile-vk-photo" src="../assets/images/base/base-photo.png" alt="vk-photo">
-                                <p class="text-cut" id="profile-vk-name">Имя Фамилия</p>
+                            <a class="profile-info__part-button" id="profile-vk-button" target="_blank" href="#">
+                                <!-- <img id="profile-vk-photo" src="../assets/images/base/base-photo.png" alt="vk-photo"> -->
+                                <!-- <p class="text-cut" id="profile-vk-name">Имя Фамилия</p> -->
                             </a>
                         </div>
 
                         <!-- Ссылка на нацию -->
                         <div class="profile-info__part">
                             <p>Нация</p>
-                            <a class="profile-info__part-button" id="profile-vk-button" href="#">
+                            <a class="profile-info__part-button" id="profile-nation-button" target="_blank" href="#">
                                 <img id="profile-nation-photo" src="../assets/images/base/base-nation.png" alt="nation-photo">
                                 <p class="text-cut" id="profile-nation-name">Скоро</p>
                             </a>
@@ -76,7 +81,7 @@
                         <!-- Ссылка на страну -->
                         <div class="profile-info__part">
                             <p>Страна</p>
-                            <a class="profile-info__part-button" id="profile-country-button" href="#">
+                            <a class="profile-info__part-button" id="profile-country-button" target="_blank" href="#">
                                 <img id="profile-country-photo" src="../assets/images/base/base-country.png" alt="country-photo">
                                 <p class="text-cut" id="profile-country-name">Скоро</p>
                             </a>
@@ -113,5 +118,6 @@
     
     <!-- Остальные скрипты -->
     <script src="./scripts/profile-prerender.js" type="module" defer></script>
+    <script src="./scripts/profile-render.js" type="module"></script>
 </body>
 </html>

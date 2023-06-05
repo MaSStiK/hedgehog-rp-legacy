@@ -9,7 +9,6 @@ import { loading } from "../../assets/scripts/loading/loading.js"
 // Находим форму и ставим ивент submit
 const form = document.querySelector('form')
 form.addEventListener('submit', (event) => {
-    console.log("[+] Submit")
     try {
         // Отключение базового перехода
         event.preventDefault()
@@ -55,9 +54,7 @@ form.addEventListener('submit', (event) => {
         // Если проходит все проверки то включаем анимацию загрузки
         loading()
 
-        console.log("[+] GSlogin")
-        GSlogin("usersAuth", {auth: JSON.stringify({login:formLogin,password:formPassword})}, (data) => {
-            console.log(data)
+        GSlogin("usersAuth", {login: formLogin, password: formPassword}, (data) => {
             // Если не находит по логину и паролю
             if(Object.keys(data).length === 0) {
                 loading(false)
@@ -68,13 +65,16 @@ form.addEventListener('submit', (event) => {
             }
 
             // Парсим информацию, если она есть
-            let userData = JSON.parse(data)
+            let userData = data
 
-            console.log(userData)
 
             // Удаляем весь старый хеш и записываем нового юзера
             removeCacheAll()
             setCache("userData", userData)
+
+            // Для проверки пароля на актуальность
+            setCache("userPassword", formPassword)
+
 
             // Отправляем сообщение в логи
             let message = `Вход\nПользователь: ${userData.name} ${userData.surname} (${userData.id})\nВК: ${"https://vk.com/id" + userData.id}`

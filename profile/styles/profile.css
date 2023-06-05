@@ -89,6 +89,14 @@ article {
 }
 
 
+/* Разделитель */
+.divider {
+    width: 90%;
+    border-bottom: 1px solid var(--border-primary);
+    margin-top: 8px;
+}
+
+
 /* Блок с информацией */
 .profile-info {
     width: 100%;
@@ -96,18 +104,16 @@ article {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-
-    margin-top: 20px;
 }
 
 .profile-info__part {
     width: 100%;
-    height: 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
+/* Оступ слево */
 .profile-info__part > p {
     width: 50%; /* Ширина блока текста */
 }
@@ -146,15 +152,22 @@ article {
 }
 
 
+/* Текст в одну строку (Дата) */
+.profile-info__part.inline {
+    height: 40px;
+}
+
+
+/* Описание (Имитация textarea) */
 .profile-info__part.about {
+    margin-top: 8px;
     height: auto;
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
 }
 
-
-/* Описание (Имитация textarea) */
+/* Имитация textarea */
 #profile-about {
     width: 100%;
     padding: 8px;

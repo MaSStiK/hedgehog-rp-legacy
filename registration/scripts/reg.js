@@ -75,12 +75,10 @@ $("#second-page-yes").on("click tap", () => {
         return
     }
     
-    // Ставим подтверждение
-    confirm_account = true
     loading()
 
     // Ищем в колонне пользователя с таким же id
-    GSfindInColumn("users", {column: "A", value: user_id}, (data) => {
+    GSfindInColumn("users", {column: "id", value: user_id}, (data) => {
         // Если он есть, то останавливаем регистрацию
         if (data.length !== 0) {
             notify("Этот аккаунт уже зарегистрирован!", "danger")
@@ -88,6 +86,9 @@ $("#second-page-yes").on("click tap", () => {
             loading(false)
             return
         }
+
+        // Ставим подтверждение
+        confirm_account = true
 
         // Переход на следующий блок
         $("#second-page").addClass("hidden")
@@ -118,7 +119,6 @@ $("#second-page-no").on("click tap", () => {
 // Находим форму и ставим ивент submit
 const form = document.querySelector('form')
 form.addEventListener('submit', (event) => {
-    console.log("[+] Submit")
     try {
         // Отключение базового перехода
         event.preventDefault()
@@ -192,27 +192,22 @@ form.addEventListener('submit', (event) => {
         const newUserData = {
             id: user_id.toString(), // id на сайте, по стандарту id от вк, но в случае чего можно изменить вручную
             tag: user_id.toString(), // Тэг для упрощенного поиска
-            name: user_name,
-            surname: user_surname,
-            photo: user_photo,
-            timestamp: date,
             vk_id: user_id, // Чаще всего совпадает, но если надо сделать профиль для группы, то можно изменить вручную
             vk_link: "https://vk.com/id" + user_id, // Ссылка на профиль, для групп другая
+            name: user_name, // Отображаемое имя
+            surname: user_surname, // Отображаемое фамилия
+            photo: user_photo, // Фото профиля
+            description: "", // Описание
+            сountry_id: "", // Отображаемая страна
+            nation_id: "", // Отображаемая нация
+            reg_date: date, // Дата появления в беседе - устанавливается администратором
+            timestamp: date, // Дата регистрации
 
-            // Рп информация
-            about: {
-                come_date: date, // Дата появления в РП - устанавливается администратором
-                rp_name: user_name + " " + user_surname, // Замена настоящего имени
-                description: "", // Описание
-                сountry_id: "", // Отображаемая страна
-                nation_id: "", // Отображаемая нация
-                languages: "", // Языки на которых говорит
-            }
+            login: formLogin, // Передаем логин
+            password: formPassword, // Передаем пароль
         }
 
-        console.log("[+] GSregistration")
-        GSregistration("usersAuth", newUserData, formLogin, formPassword, (data) => {
-            console.log(data)
+        GSregistration("users", newUserData, (data) => {
             // Если находит такой же логин
             if (!data) {
                 loading(false)
@@ -223,7 +218,15 @@ form.addEventListener('submit', (event) => {
             
             // Удаляем весь старый хеш и записываем нового юзера
             removeCacheAll()
+
+            // Удаляем лишние поля и сохраняем
+            delete newUserData.login
+            delete newUserData.password
             setCache("userData", newUserData)
+
+            // Для проверки пароля на актуальность
+            setCache("userPassword", formPassword)
+
 
             // Отправляем сообщение в логи
             let message = `Регистрация\nПользователь: ${user_name} ${user_surname} (${user_id})\nЛогин: ${formLogin}\nВК: ${"https://vk.com/id" + user_id}`

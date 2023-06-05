@@ -1,7 +1,7 @@
 
 // Ссылка для обращение к api
 // const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbx37WWcFWB-uQ4hi-PPWUwlCRM9D4dFkVFaobsO-nQZcpHAzFwrWg8Q2RhgYPzYShvaDg/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbwZTgEMAERxxVlj2FHZjt9WZs_M-OQ6y4bUUEBMEs1yqE-9DjtxyjdcjM2yor83bR29gA/exec"
 
 
 // Отправить запрос
@@ -70,12 +70,11 @@ export function GSgetRowById(sheet, data={}, func=null) {
 export function GSfindInColumn(sheet, data={}, func=null) {
     // sheet: name
     // data: 
-    //      column: "A" / "B"
+    //      column: column name
     //      value: string
     
     let sendData = {
         sheet: sheet,
-        data: JSON.stringify(data),
         column: data.column,
         value: data.value
     }
@@ -86,19 +85,14 @@ export function GSfindInColumn(sheet, data={}, func=null) {
 
 // --------------------special--------------------
 // Специльно для регистрации
-export function GSregistration(sheet, data={}, login, password, func=null) {
-    // sheet: "usersAuth"
+export function GSregistration(sheet, data={}, func=null) {
+    // sheet: "users"
     // data:
-    //      id: int
-    // login: string
-    // password: string
+    //      userdata {id ... login, password}
     
     let sendData = {
         sheet: sheet,
         data: JSON.stringify(data),
-        id: data.id,
-        login: login,
-        password: password
     }
 
     GSsendRequest("registration", sendData, func)
@@ -108,12 +102,13 @@ export function GSregistration(sheet, data={}, login, password, func=null) {
 export function GSlogin(sheet, data={}, func=null) {
     // sheet: "usersAuth"
     // data:
-    //      auth: JSON.stringify(login + password)
+    //      login
+    //      password
     
     let sendData = {
         sheet: sheet,
-        data: JSON.stringify(data),
-        _auth: data.auth
+        login: data.login,
+        password: data.password
     }
 
     GSsendRequest("login", sendData, func)
