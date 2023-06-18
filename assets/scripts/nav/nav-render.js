@@ -49,9 +49,7 @@ export function renderNavigation() {
                             <img src="${userData.photo}" alt="avatar" id="nav-full__profile-image">
                             <div class="main-nav__link-text">
                                 <h5 class="text-cut" id="nav-full__profile-name">${userData.name}</h5>
-                                <h6 class="text-cut" id="nav-full__profile-tag">${
-                                    userData.tag.startsWith("@") ? userData.tag : "@" + userData.tag // Если в теге нету @
-                                }</h6>
+                                <h6 class="text-cut" id="nav-full__profile-tag">${userData.tag}</h6>
                             </div>
                         </a></ul>`
                     : `<ul class="main-nav__link"><a href="../login/" id="nav-full__authorization">Авторизация</a></ul>` // Иначе кнопка входа

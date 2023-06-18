@@ -44,40 +44,53 @@
                     <button class="primary" id="edit-back">Назад</button>
 
                     <div class="edit-block">
-                        <p class="text-break title">ID</p>
-                        <input id="edit-id" readonly value="">
+                        <p class="text-break edit-block__title">ID</p>
+                        <input id="edit-id" readonly>
                     </div>
                     <div class="divider"></div>
+
                     <div class="edit-block">
-                        <p class="text-break title">Тег</p>
-                        <input id="edit-tag" value="@">
+                        <p class="text-break edit-block__title">Тег</p>
+                        <input id="edit-tag" maxlength="32">
                     </div>
                     <div class="divider"></div>
+
                     <div class="edit-block">
-                        <p class="text-break title">Фотография</p>
-                        <input id="edit-photo" value="" placeholder="Ссылка на изображение">
+                        <p class="text-break edit-block__title">Фотография</p>
+                        <input id="edit-photo" placeholder="Ссылка на изображение" maxlength="200">
+
+                        <!-- Предпросмотр кратинки -->
+                        <!-- <img id="edit-photo-preview" src="../assets/images/base/base-photo.png" alt="photo"> -->
                     </div>
                     <div class="divider"></div>
+
                     <div class="edit-block">
-                        <p class="text-break title">Имя профиля</p>
-                        <input id="edit-name" value="">
+                        <p class="text-break edit-block__title">Имя профиля</p>
+                        <input id="edit-name" maxlength="64">
                     </div>
                     <div class="divider"></div>
+
                     <div class="edit-block">
-                        <p class="text-break title">Описание</p>
+                        <p class="text-break edit-block__title" id="edit-bio-title">Описание <span id="edit-bio-count"></span></p>
                     </div>
-                    <textarea id="edit-name" value=""></textarea>
+                    <textarea id="edit-bio" wrap="soft" maxlength="2500"></textarea>
+                    <div class="divider"></div>
+
+                    <div class="edit-buttons">
+                        <button class="primary">Сохранить</button>
+                        <button class="danger">Отмена</button>
+                    </div>
                 </div>
 
                 <!-- Изменение страны и нации -->
                 <div class="block content-tab">
                     <div class="edit-block">
-                        <p class="text-break title">Нация</p>
+                        <p class="text-break edit-block__title">Нация</p>
                         <button>Изменить</button>
                     </div>
                     <div class="divider"></div>
                     <div class="edit-block">
-                        <p class="text-break title">Страна</p>
+                        <p class="text-break edit-block__title">Страна</p>
                         <button>Изменить</button>
                     </div>
                 </div>
@@ -85,7 +98,7 @@
                 <!-- Изменение приватной информации -->
                 <div class="block content-tab">
                     <div class="edit-block">
-                        <p class="text-break title">Смена пароля</p>
+                        <p class="text-break edit-block__title">Смена пароля</p>
                         <button id="edit-password">Изменить</button>
                     </div>
                 </div>

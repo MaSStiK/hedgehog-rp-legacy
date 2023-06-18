@@ -26,7 +26,7 @@
 }
 
 /* Заголовок */
-.edit-block .title {
+.edit-block .edit-block__title {
     width: 50%;
 }
 
@@ -35,9 +35,32 @@
 }
 
 
+/* Превью фотографии */
+#edit-photo-preview {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+/* Заголовок у bio в 100% ширины */
+#edit-bio-title {
+    width: 100%;
+}
+
+/* Счетчик у bio */
+#edit-bio-count {
+    color: var(--text-secondary);
+    float: right;
+}
+
+
 /* Поле описание в 100% шириной */
 textarea {
     width: 90%;
+    height: 120px;
+
+    resize: none;
+    overflow: overlay;
 }
 
 
@@ -47,4 +70,11 @@ textarea {
     left: 0;
     top: -40px;
     display: none;
+}
+
+.edit-buttons {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
 }

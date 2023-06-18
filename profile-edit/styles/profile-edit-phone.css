@@ -21,16 +21,13 @@
 @media screen and (max-width: 590px) {
     /* Ставим переносы */
     .edit-block {
+        width: 100%;
         flex-wrap: wrap;
         gap: 12px;
     }
 
-    .edit-block .title{
-        width: 100%;
-    }
-
     /* Инпуты переходят на следующую строку и становяться в 100% шириной */
-    .edit-block input {
+    .edit-block .edit-block__title, .edit-block input, textarea, .divider {
         width: 100%;
     }
 }
