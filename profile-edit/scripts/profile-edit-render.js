@@ -9,7 +9,11 @@ if (!userData) {
 }
 
 function renderEdit(data) {
-    $("#edit-id").val(data.id);
+    $("#edit-id").val(data.id)
+    $("#edit-tag").val(data.tag)
+    $("#edit-photo").val(data.photo)
+    $("#edit-name").val(data.name)
+    $("#edit-bio").val(data.bio)
 }
 
 renderEdit(userData)

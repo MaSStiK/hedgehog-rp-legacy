@@ -67,7 +67,7 @@ function renderUser(user_data) {
     let regYear = regDate.getFullYear()
 
     $("#profile-date").val(`${regHours}:${regMinutes} ${regDay}.${regMonth}.${regYear}`)
-    $("#profile-about").text(user_data.description)
+    $("#profile-bio").text(user_data.bio)
 
 
     // Отключаем анимацию загрузки

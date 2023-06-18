@@ -196,7 +196,7 @@ form.addEventListener('submit', (event) => {
             vk_link: "https://vk.com/id" + user_id, // Ссылка на профиль, для групп другая
             name: user_name + " " + user_surname, // Отображаемое имя и фамилия
             photo: user_photo, // Фото профиля
-            description: "", // Описание
+            bio: "", // Описание
             сountry_id: "", // Отображаемая страна
             nation_id: "", // Отображаемая нация
             reg_date: date, // Дата появления в беседе - устанавливается администратором
