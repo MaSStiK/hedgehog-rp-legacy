@@ -3,6 +3,7 @@ import { getUrlParams, relocate } from "../../assets/scripts/global-functions.js
 import { GSgetRowById, GSgetUserByTag } from "../../assets/scripts/gs-api.js";
 import { notify } from "../../assets/scripts/notification/notification.js";
 import { VKsendRequest, VKsendMessage, VKsendError } from "../../assets/scripts/vk-api.js"
+import { loading } from "../../assets/scripts/loading/loading.js"
 
 
 // Параметр из сылки. id = int
@@ -45,19 +46,32 @@ function renderUser(user_data) {
     $("#profile-name").text(user_data.name)
     $("#profile-photo").attr("src", user_data.photo)
 
-    //
-    let regDate = new Date(Number(user_data.reg_date) )
+    // Дата появления в беседе
+    let regDate = new Date(Number(user_data.reg_date))
+
+    let regHours = regDate.getHours().toString()
+    regHours = regHours.length !== 2 ? "0" + regHours : regHours // Формат часов 00
+
+    let regMinutes = regDate.getMinutes().toString()
+    regMinutes = regMinutes.length !== 2 ? "0" + regMinutes : regMinutes // Формат минут 00
 
     let regDay = regDate.getDate().toString()
-    regDay = regDay.length !== 2 && "0" + regDay // Формат дня 00
+    regDay = regDay.length !== 2 ? "0" + regDay : regDay // Формат дня 00
 
-    let regMonth = regDate.getMonth().toString()
-    regMonth = regMonth.length !== 2 && "0" + regMonth // Формат месяца 00
+    let regMonth = (regDate.getMonth() + 1).toString() // Добавляем 1 т.к. месяц начинается с нуля
+    console.log(regMonth);
+    regMonth = regMonth.length !== 2 ? "0" + regMonth : regMonth // Формат месяца 00
+    console.log(regMonth);
+    
 
     let regYear = regDate.getFullYear()
 
-    $("#profile-date").val(`${regDay}.${regMonth}.${regYear}`)
+    $("#profile-date").val(`${regHours}:${regMinutes} ${regDay}.${regMonth}.${regYear}`)
     $("#profile-about").text(user_data.description)
+
+
+    // Отключаем анимацию загрузки
+    loading(false)
 }
 
 
@@ -66,6 +80,7 @@ let user_id = urlParams?.id ? urlParams.id : userData.id
 
 // Если id в поисковой строке цифрами - то обычный рендер по id
 if (!isNaN(user_id)) {
+    loading()
     console.log("Render by id " + user_id);
 
     GSgetRowById("users", {id: user_id}, (data) => {
@@ -84,6 +99,7 @@ if (!isNaN(user_id)) {
         user_id = "@" + user_id
     }
 
+    loading()
     console.log("Render by tag " + user_id);
 
     GSgetUserByTag("users", {tag: user_id}, (data) => {

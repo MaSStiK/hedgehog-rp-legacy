@@ -7,3 +7,9 @@ let userData = getCache("userData")
 if (!userData) {
     relocate("../login/")
 }
+
+function renderEdit(data) {
+    $("#edit-id").val(data.id);
+}
+
+renderEdit(userData)
