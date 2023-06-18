@@ -1,5 +1,5 @@
 import { getCache, setCache, removeCache } from "../cache.js"
-import { linkTo } from "../global-functions.js"
+import { relocate } from "../global-functions.js"
 
 
 // Рендер всей навигации
@@ -13,7 +13,7 @@ export function renderNavigation() {
             ${userData // Если есть информация о юзере
             ? `<button class="transparent" id="nav__profile">
                 <img src="${userData.photo}" alt="avatar" id="nav__profile-image">
-                <h5 class="text-cut" id="nav__profile-name">${userData.name}</h5>
+                <h5 class="text-cut" id="nav__profile-name">${userData.name.split(" ")[0]}</h5>
                 </button>`
             : `` // Иначе нечгео
             }
@@ -48,8 +48,10 @@ export function renderNavigation() {
                     ? `<ul class="main-nav__link"><a href="../profile/index.html?id=${userData.id}" id="nav-full__profile">
                             <img src="${userData.photo}" alt="avatar" id="nav-full__profile-image">
                             <div class="main-nav__link-text">
-                                <h5 class="text-cut" id="nav-full__profile-name">${userData.name} ${userData.surname}</h5>
-                                <h6 class="text-cut" id="nav-full__profile-tag">@${userData.tag}</h6>
+                                <h5 class="text-cut" id="nav-full__profile-name">${userData.name}</h5>
+                                <h6 class="text-cut" id="nav-full__profile-tag">${
+                                    userData.tag.startsWith("@") ? userData.tag : "@" + userData.tag // Если в теге нету @
+                                }</h6>
                             </div>
                         </a></ul>`
                     : `<ul class="main-nav__link"><a href="../login/" id="nav-full__authorization">Авторизация</a></ul>` // Иначе кнопка входа
@@ -85,7 +87,7 @@ export function renderNavigation() {
 
     // Нажатие логотип - переход на вкладку дом
     $("#nav__logo img").on("click tap", () => { 
-        linkTo("../home/")
+        relocate("../home/")
     })
     
 
@@ -100,7 +102,7 @@ export function renderNavigation() {
 
     // Перенос в профиль на телефонной версии
     $("#nav__profile").on("click tap", () => {
-        linkTo(`../profile/index.html?id=${userData.id}`)
+        relocate(`../profile/index.html?id=${userData.id}`)
     })
 }
 

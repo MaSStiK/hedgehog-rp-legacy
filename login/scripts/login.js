@@ -1,5 +1,5 @@
 import { setCache, removeCacheAll } from "../../assets/scripts/cache.js"
-import { linkTo, inputError, disableButton  } from "../../assets/scripts/global-functions.js"
+import { relocate, inputError, disableButton  } from "../../assets/scripts/global-functions.js"
 import { notify } from "../../assets/scripts/notification/notification.js"
 import { consts } from "../../assets/scripts/global-consts.js"
 import { VKsendMessage, VKsendError } from "../../assets/scripts/vk-api.js"
@@ -77,13 +77,13 @@ form.addEventListener('submit', (event) => {
 
 
             // Отправляем сообщение в логи
-            let message = `Вход\nПользователь: ${userData.name} ${userData.surname} (${userData.id})\nВК: ${"https://vk.com/id" + userData.id}`
+            let message = `Вход\nПользователь: ${userData.name} (${userData.id})\nВК: ${"https://vk.com/id" + userData.id}`
             VKsendMessage(2000000007, message, () => {
                 // Уведомление о регистрации
                 setCache("after-login")
     
                 // Переносим на главную
-                linkTo("../home/")
+                relocate("../home/")
             })
         })
     } catch(error) {

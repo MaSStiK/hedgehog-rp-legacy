@@ -43,24 +43,23 @@
                     <div class="profile-top">
                         <div class="profile-top__photo__wrapper"></div>
                         <div class="profile-top__photo">
-                            <img src="../assets/images/base/base-photo.png" alt="photo">
+                            <!-- Аватарка пустая пока не загрузиться -->
+                            <img id="profile-photo" src="../assets/images/base/base-photo-empty.png" alt="photo">
                         </div>
                         <div class="profile-top__name">
-                            <p class="text-secondary h5 text-break" id="profile-tag">@tag123456789</p>
-                            <p class="h3 text-break" id="profile-name">Имя Фамилия</p>
+                            <p class="h3 text-break" id="profile-name">&nbsp;</p>
+                            <p class="text-secondary h5 text-break" id="profile-tag">&nbsp;</p>
                         </div>
 
-                        <!-- Одна из двух кнопок -->
-                        <button class="danger" id="report">Жалоба</button>
-                        <button id="edit">Изменить</button>
+                        <!-- Либо репорт, либо редактирование и выход -->
+                        <button class="danger hidden" id="report-button">Жалоба</button>
+                        <button class="danger hidden" id="exit-button">Выйти</button>
+                        <button class="hidden" id="edit-button">Изменить</button>
                     </div>
 
                     <!-- Блок с информацией -->
                     <div class="profile-info">
-                        <!-- Разделитель сверху -->
                         <div class="divider"></div>
-
-                        <!-- Ссылка на вк -->
                         <div class="profile-info__part">
                             <p>ВКонтакте</p>
                             <a class="profile-info__part-button" id="profile-vk-button" target="_blank" href="#">
@@ -68,8 +67,7 @@
                                 <!-- <p class="text-cut" id="profile-vk-name">Имя Фамилия</p> -->
                             </a>
                         </div>
-
-                        <!-- Ссылка на нацию -->
+                        <div class="divider"></div>
                         <div class="profile-info__part">
                             <p>Нация</p>
                             <a class="profile-info__part-button" id="profile-nation-button" target="_blank" href="#">
@@ -77,8 +75,7 @@
                                 <p class="text-cut" id="profile-nation-name">Скоро</p>
                             </a>
                         </div>
-
-                        <!-- Ссылка на страну -->
+                        <div class="divider"></div>
                         <div class="profile-info__part">
                             <p>Страна</p>
                             <a class="profile-info__part-button" id="profile-country-button" target="_blank" href="#">
@@ -86,18 +83,18 @@
                                 <p class="text-cut" id="profile-country-name">Скоро</p>
                             </a>
                         </div>
-
-                        <!-- Дата появления -->
-                        <div class="profile-info__part inline">
+                        <div class="divider"></div>
+                        <div class="profile-info__part date">
                             <p>В беседе с</p>
-                            <p id="profile-add-date">24.06.2020</p>
+                            <input id="profile-date" readonly> 
                         </div>
+                        <div class="divider"></div>
 
                         <!-- Описание (Имитация textarea) -->
-                        <div class="profile-info__part about">
+                        <div class="profile-info__part">
                             <p>О себе</p>
-                            <p id="profile-about">Адекватень</p>
                         </div>
+                        <p id="profile-about">&nbsp;</p>
                     </div>
                 </div>
             </section>

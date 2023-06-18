@@ -1,3 +1,11 @@
+/* Навигация сверху */
+@media screen and (max-width: 1000px) {
+    /* Отступ для фотографии */
+    article {
+        padding-top: 120px;
+    }
+}
+
 /* Контент в 300px */
 @media screen and (max-width: 590px) {
     /* Фото профиля по центру */
@@ -33,25 +41,50 @@
     }
 
 
-    /* Кнопка жалобы */
-    #report, #edit {
+    /* Кнопка жалобы и изменения */
+    #report-button, #edit-button, #exit-button {
         width: 100px;
+    }
+
+    #exit-button {
+        left: 0;
+    }
+
+    .divider {
+        width: 100%;
+    }
+
+    #profile-about {
+        width: 100%;
     }
 
     /* Информация в одну колонну + отступ между блоками */
     .profile-info__part {
+        width: 100%;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 12px;
     }
 
     .profile-info__part > p {
         width: 100%;
     }
 
+    .profile-info__part-button {
+        width: 100%;
+    }
 
-    /* Текст в одну строку (Дата) */
-    .profile-info__part.inline p {
-        width: 100px;
+
+    /* Текст в одну строку */
+    .profile-info__part > p {
+        width: 100%;
+    }
+
+    .profile-info__part.date {
+        height: auto;
+    }
+
+    .profile-info__part input {
+        width: 100%;
     }
 }
 
@@ -62,11 +95,15 @@
 
 /* Контент в 100% */
 @media screen and (max-width: 316px) {
-    /* Кнопка жалобы */
-    #report, #edit {
+    /* Кнопка жалобы и изменения */
+    #report-button, #edit-button, #exit-button {
         top: 54px;
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    #exit-button {
+        top: 102px; /* 54 + 36 + 12 */
     }
 
 
@@ -76,5 +113,15 @@
         margin-top: 88px; /* Отступ от картинки примерно 12px */
         text-align: center;
         margin-left: 0;
+    }
+
+    /* В телефонной версии если юзер рендерит свою страницу, то отступ больше */
+    .profile-top__name.self-render {
+        margin-top: 136px; 
+    }
+
+    /* Контейнер с информацией авто высота */
+    .profile-info__part.inline {
+         height: auto;
     }
 }

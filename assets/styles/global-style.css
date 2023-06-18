@@ -98,7 +98,7 @@ article section {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 12px; /* Отступ между элементами */
+    gap: 20px; /* Отступ между блоками 20px */
 
     margin: 0 auto; /* По центру */
     overflow: visible; /* Выступающий контент видно */

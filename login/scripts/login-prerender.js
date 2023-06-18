@@ -1,5 +1,5 @@
 import { getCache } from "../../assets/scripts/cache.js"
-import { linkTo, initInputPassword, initInputWithoutSpaces } from "../../assets/scripts/global-functions.js"
+import { relocate, initInputPassword, initInputWithoutSpaces } from "../../assets/scripts/global-functions.js"
 import { consts } from "../../assets/scripts/global-consts.js"
 
 
@@ -21,5 +21,5 @@ initInputWithoutSpaces("#password")
 
 // Нажатие на логотип переносит на главную
 $(".logotype-wrapper img").on("click tap", () => { 
-    linkTo("../home/")
+    relocate("../home/")
 })

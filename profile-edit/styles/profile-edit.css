@@ -1,0 +1,50 @@
+/* Контент страницы */
+.content-tab {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    position: relative;
+    overflow: visible;
+    
+    margin: 0 auto; /* Блок по центру */
+}
+
+/* Разделитель блоков */
+.divider {
+    width: 90%;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.edit-block {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Заголовок */
+.edit-block .title {
+    width: 50%;
+}
+
+.edit-block input, .edit-block button {
+    width: 50%;
+}
+
+
+/* Поле описание в 100% шириной */
+textarea {
+    width: 90%;
+}
+
+
+/* Кнопка вернуться в профиль */
+#edit-back {
+    position: absolute;
+    left: 0;
+    top: -40px;
+    display: none;
+}

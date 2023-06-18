@@ -1,5 +1,5 @@
 import { setCache, removeCacheAll } from "../../assets/scripts/cache.js"
-import { linkTo, inputError, disableButton  } from "../../assets/scripts/global-functions.js"
+import { relocate, inputError, disableButton  } from "../../assets/scripts/global-functions.js"
 import { notify } from "../../assets/scripts/notification/notification.js"
 import { consts } from "../../assets/scripts/global-consts.js"
 import { VKsendRequest, VKsendMessage, VKsendError } from "../../assets/scripts/vk-api.js"
@@ -80,7 +80,7 @@ $("#second-page-yes").on("click tap", () => {
     // Ищем в колонне пользователя с таким же id
     GSfindInColumn("users", {column: "id", value: user_id}, (data) => {
         // Если он есть, то останавливаем регистрацию
-        if (data.length !== 0) {
+        if (data.length > 0) {
             notify("Этот аккаунт уже зарегистрирован!", "danger")
             $("#second-page-no").trigger("click")
             loading(false)
@@ -194,8 +194,7 @@ form.addEventListener('submit', (event) => {
             tag: user_id.toString(), // Тэг для упрощенного поиска
             vk_id: user_id, // Чаще всего совпадает, но если надо сделать профиль для группы, то можно изменить вручную
             vk_link: "https://vk.com/id" + user_id, // Ссылка на профиль, для групп другая
-            name: user_name, // Отображаемое имя
-            surname: user_surname, // Отображаемое фамилия
+            name: user_name + " " + user_surname, // Отображаемое имя и фамилия
             photo: user_photo, // Фото профиля
             description: "", // Описание
             сountry_id: "", // Отображаемая страна
@@ -237,7 +236,7 @@ form.addEventListener('submit', (event) => {
                     setCache("after-reg")
     
                     // Переносим на главную
-                    linkTo("../home/")
+                    relocate("../home/")
                 })
             })
         })

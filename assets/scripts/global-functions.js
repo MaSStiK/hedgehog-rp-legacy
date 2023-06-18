@@ -1,5 +1,5 @@
 // Переход по ссылке
-export function linkTo(link) {
+export function relocate(link) {
     location.href = link
 }
 
@@ -11,7 +11,7 @@ export function copyToClipboard(text) {
 
 
 // Получить переменные из ссылки
-export function getUrlParams(link) {
+export function getUrlParams() {
     return Object.fromEntries(new URLSearchParams(window.location.search))
 }
 
@@ -64,4 +64,4 @@ export function initInputWithoutSpaces(selector) {
 }
 
 
-// Доабвить создание модального окна
+// Доабавить создание модального окна

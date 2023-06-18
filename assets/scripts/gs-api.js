@@ -1,7 +1,7 @@
 
 // Ссылка для обращение к api
-// const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbwZTgEMAERxxVlj2FHZjt9WZs_M-OQ6y4bUUEBMEs1yqE-9DjtxyjdcjM2yor83bR29gA/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
+// const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbwZTgEMAERxxVlj2FHZjt9WZs_M-OQ6y4bUUEBMEs1yqE-9DjtxyjdcjM2yor83bR29gA/exec"
 
 
 // Отправить запрос
@@ -17,12 +17,10 @@ export function GSsendRequest(action, data={}, func) {
 }
 
 
-// --------------------get--------------------
+// ----------------------------------------get----------------------------------------
 // Получить ивент
+// sheet (any), data (any)
 export function GSgetEvent(sheet, data={}, func=null) {
-    // sheet: any
-    // data: any
-
     let sendData = {
         data: JSON.stringify(data),
         sheet: sheet,
@@ -34,30 +32,22 @@ export function GSgetEvent(sheet, data={}, func=null) {
 
 
 // Получить информацию по диапазону
-export function GSgetColumn(sheet, data={}, func=null) {
-    // sheet: name
-    // data:
-    //      column: "A" / "B"
-    
+// sheet (name), data: column (name)
+export function GSgetColumnByName(sheet, data={}, func=null) {
     let sendData = {
         sheet: sheet,
-        data: JSON.stringify(data),
         column: data.column
     }
 
-    GSsendRequest("getColumn", sendData, func)
+    GSsendRequest("getColumnByName", sendData, func)
 }
 
 
 // Получить информацию по диапазону
+// sheet (name), data: id
 export function GSgetRowById(sheet, data={}, func=null) {
-    // sheet: name
-    // data:
-    //      id: int 
-    
     let sendData = {
         sheet: sheet,
-        data: JSON.stringify(data),
         id: data.id
     }
 
@@ -65,14 +55,10 @@ export function GSgetRowById(sheet, data={}, func=null) {
 }
 
 
-// --------------------find--------------------
+// ----------------------------------------find----------------------------------------
 // Найти в колонне значение
+// sheet (name), data: column (name), value (string)
 export function GSfindInColumn(sheet, data={}, func=null) {
-    // sheet: name
-    // data: 
-    //      column: column name
-    //      value: string
-    
     let sendData = {
         sheet: sheet,
         column: data.column,
@@ -83,13 +69,10 @@ export function GSfindInColumn(sheet, data={}, func=null) {
 }
 
 
-// --------------------special--------------------
+// ----------------------------------------special----------------------------------------
 // Специльно для регистрации
+// sheet "users", data: userdata {id ... login, password}
 export function GSregistration(sheet, data={}, func=null) {
-    // sheet: "users"
-    // data:
-    //      userdata {id ... login, password}
-    
     let sendData = {
         sheet: sheet,
         data: JSON.stringify(data),
@@ -99,12 +82,8 @@ export function GSregistration(sheet, data={}, func=null) {
 }
 
 // Специльно для входа
+// sheet "usersAuth", data: login, password
 export function GSlogin(sheet, data={}, func=null) {
-    // sheet: "usersAuth"
-    // data:
-    //      login
-    //      password
-    
     let sendData = {
         sheet: sheet,
         login: data.login,
@@ -112,4 +91,15 @@ export function GSlogin(sheet, data={}, func=null) {
     }
 
     GSsendRequest("login", sendData, func)
+}
+
+// Для получения юзера по тегу
+// sheet "users", data: tag
+export function GSgetUserByTag(sheet, data={}, func=null) {
+    let sendData = {
+        sheet: sheet,
+        tag: data.tag.toLowerCase() // В нижнем регистре
+    }
+
+    GSsendRequest("getUserByTag", sendData, func)
 }

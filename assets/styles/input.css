@@ -19,7 +19,7 @@ textarea {
 }
 
 /* При выборе текстареа */
-textarea:focus {
+textarea:focus:not(:read-only) {
     border: 1px solid var(--border-secondary);
 }
 
@@ -41,14 +41,19 @@ input {
     border-radius: 4px;
 }
 
-/* При выборе инпута */
-input:focus {
+/* При выборе инпута для всех помимо неизменяемых */
+input:focus:not(:read-only) {
     border: 1px solid var(--border-secondary);
 }
 
 /* Плейсхолдер */
 input::placeholder {
     color: var(--text-darker);
+}
+
+/* Только читаемые с серым текстом */
+input:read-only {
+    color: var(--text-secondary);
 }
 
 /* фикс автоввода */

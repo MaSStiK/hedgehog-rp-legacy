@@ -4,7 +4,6 @@ article {
 }
 
 .main-block {
-    /* height: 1000px; */
     overflow: visible;
     position: relative;
 }
@@ -81,10 +80,17 @@ article {
 }
 
 
-/* Кнопка жалобы */
-#report, #edit {
+/* Кнопка жалобы и изменения в одном месте */
+#report-button, #edit-button {
     position: absolute;
     right: 0;
+    top: -40px;
+}
+
+/* Кнопка выхода в одной строке с кнопкой изменения */
+#exit-button {
+    position: absolute;
+    right: 172px;
     top: -40px;
 }
 
@@ -93,7 +99,6 @@ article {
 .divider {
     width: 90%;
     border-bottom: 1px solid var(--border-primary);
-    margin-top: 8px;
 }
 
 
@@ -103,26 +108,44 @@ article {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
 }
 
 .profile-info__part {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
+.profile-info__part.date {
+    height: 40px;
+}
+
+
 /* Оступ слево */
-.profile-info__part > p {
+.profile-info__part p {
     width: 50%; /* Ширина блока текста */
+}
+
+.profile-info__part input {
+    width: 50%;
+}
+
+#profile-about {
+    width: 90%;
+    padding: 8px;
+
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 4px;
 }
 
 
 /* Блок с картинкой и текстом */
 .profile-info__part-button {
     height: 40px;
-    width: 200px;
+    width: 50%;
     background-color: var(--button-bg);
     border-radius: 4px;
     display: flex;
@@ -149,39 +172,4 @@ article {
 .profile-info__part-button p {
     /* Фиксированая ширина что бы картинка не сжималась (минус ширина картинки минус отступы 4 4 2) */
     width: calc(100% - 36px - 10px);
-}
-
-
-/* Текст в одну строку (Дата) */
-.profile-info__part.inline {
-    height: 40px;
-}
-
-
-/* Описание (Имитация textarea) */
-.profile-info__part.about {
-    margin-top: 8px;
-    height: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-}
-
-/* Имитация textarea */
-#profile-about {
-    width: 100%;
-    padding: 8px;
-
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 4px;
-}
-
-
-/* Навигация сверху */
-@media screen and (max-width: 1000px) {
-    /* Отступ для фотографии */
-    article {
-        padding-top: 120px;
-    }
 }

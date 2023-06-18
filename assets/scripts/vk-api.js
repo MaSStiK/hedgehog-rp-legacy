@@ -1,5 +1,5 @@
 import { getCache } from "./cache.js"
-import { linkTo } from "./global-functions.js"
+import { relocate } from "./global-functions.js"
 
 const notAToken = "dmsxLmEuUGZEMzByTHY4SnBLMy1SQmprc2N6bVNoQlN5bWlaMGd4bFpuMkZpeEgtQjhPRy1NQV9HVlNCLWFPRmx2eWRyenp5QVlwUGZzNlE4X2ZSVVdKeGFwemp5SHBjdXpCeW5DMmJhWV9mVTBXa3pncUM1eUsxLXR2WTlmR0V0QmRuelpkT3ZGSTFFUGJzdDJYUHQteXlSNkp4VE43LVQ1MWJTYUloak56Y2pQcFdvMVhEN0RCaGRBYUpMQk4xbzBJMzZSMzFMME9SbEc0d3VMYzFpNHAySnBhdw"
 
@@ -39,14 +39,14 @@ export function VKsendMessage(peer_id, message, func=null) {
 export function VKsendError(text, error) {
     // Если пользователя нажимает "Отмена", то не отправляем ошибку
     if (!confirm(`${text}\nОтправить эту ошибку разработчику?\n${error}`)) {
-        linkTo("../home/")
+        relocate("../home/")
         return
     }
     
     let userData = getCache("userData")
     let message = `Страница: ${location.href}`
     if (userData) {
-        message += `\nОт: ${userData.name + " " + userData.surname} (${userData.id})`
+        message += `\nОт: ${userData.name} (${userData.id})`
     } else {
         message += `\nОт: Anonymous`
     }
@@ -55,7 +55,7 @@ export function VKsendError(text, error) {
 
     // Отправляем в беседу с ошибками, после перенаправляем на главную
     VKsendMessage(2000000008, message, () => {
-        linkTo("../home/")
+        relocate("../home/")
     })
 }
 
