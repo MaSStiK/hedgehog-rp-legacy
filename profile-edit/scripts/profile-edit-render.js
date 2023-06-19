@@ -1,13 +1,8 @@
-import { getCache } from "../../assets/scripts/cache.js";
+import { getCache, setCache } from "../../assets/scripts/cache.js";
 import { inputError, relocate } from "../../assets/scripts/global-functions.js";
+import { GSgetRowById, GSupdateUserData } from "../../assets/scripts/gs-api.js";
 
 let userData = getCache("userData")
-
-// Если нет юзердаты - перекинет на вход
-if (!userData) {
-    relocate("../login/")
-}
-
 let photoReady = false
 
 
@@ -41,4 +36,33 @@ $("#edit-photo").on("change", () => {
     }
 })
 
-renderEdit(userData)
+
+// Если нет юзердаты - перекинет на вход
+if (!userData) {
+    relocate("../login/")
+} else {
+    // Если все нормально, то загружаем данные и рендерим
+    renderEdit(userData) // Рендер из памяти
+
+    // Загружаем новые данные
+    GSgetRowById("users", {id: userData.id}, (data) => {
+        userData = data
+        setCache("userData", data)
+        renderEdit(data)  
+    })
+}
+
+
+// Сбрасывает значения на те что были
+$("#edit-cancel").on("click tap", () => {
+    renderEdit(userData)
+})
+
+
+// Сбрасывает значения на те что были
+$("#edit-save").on("click tap", () => {
+    GSupdateUserData("users", {id: userData.id})
+    // renderEdit(userData)
+})
+
+// GSupdateUserData

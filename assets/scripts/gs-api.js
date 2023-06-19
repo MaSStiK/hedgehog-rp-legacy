@@ -1,7 +1,7 @@
 
 // Ссылка для обращение к api
 // const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzfV3xCsa0hHsIrhZRsjv7PekDvSndyN120G76amoITzioQj_1H1YILz6OR67-_SIHCDw/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzbxS71q_nOHOCZzo5-he5qFCQPfMiOmTIP-QM0oeWjEtWH7Yj7PYzX2MlqPKdbEOkhIg/exec"
 
 
 // Отправить запрос
@@ -66,6 +66,20 @@ export function GSfindInColumn(sheet, data={}, func=null) {
     }
 
     GSsendRequest("findInColumn", sendData, func)
+}
+
+
+// ----------------------------------------update----------------------------------------
+// Найти в колонне значение
+// sheet (name), data: column (name), value (string)
+export function GSupdateUserData(sheet, data={}, func=null) {
+    let sendData = {
+        sheet: sheet,
+        id: data.id,
+        data: JSON.stringify(data.data)
+    }
+
+    GSsendRequest("updateUserData", sendData, func)
 }
 
 
