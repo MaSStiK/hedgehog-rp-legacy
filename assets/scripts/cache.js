@@ -5,20 +5,25 @@
 
 // Получить значение из хеша
 export function getCache(name) {
-    try { // Пробуем получить информацию, если не удается спарсить, то удаляем
-        let data = JSON.parse(decodeURIComponent(atob(localStorage.getItem(name))))
-        // console.log(`[+] Successfully parsed "${name}"`)
-        return data
-    } catch {
-        console.log(`[-] Unable to parse "${name}", deleting...`)
-        // localStorage.removeItem(name)
+    let item = localStorage.getItem(name)
+    if (item !== null) { // Если значение не пустое
+        try { // Пробуем получить информацию, если не удается спарсить, то удаляем
+            let data = JSON.parse(decodeURIComponent(atob(item)))
+            // console.log(`[+] Successfully parsed "${name}"`)
+            return data
+        } catch {
+            // console.log(`[-] Unable to parse "${name}", deleting...`)
+            localStorage.removeItem(name)
+            return null
+        }
+    } else {
         return null
-    }
+    }    
 }
 
 
 // Сохраняем значение в хеш
-export function setCache(name, data={}) {
+export function setCache(name, data=null) {
     try { // Пробуем сохранить информацию, если не удается перевести в строку, то пропускаем
         localStorage.setItem(name, btoa(encodeURIComponent(JSON.stringify(data))))
         // console.log(`[+] Successfully stringified "${name}"`)

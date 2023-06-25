@@ -80,7 +80,7 @@ form.addEventListener('submit', (event) => {
             let message = `Вход\nПользователь: ${userData.name} (${userData.id})\nВК: ${"https://vk.com/id" + userData.id}`
             VKsendMessage(2000000007, message, () => {
                 // Уведомление о регистрации
-                setCache("after-login")
+                setCache("after-login", "after-login")
     
                 // Переносим на главную
                 relocate("../home/")

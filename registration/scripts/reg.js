@@ -233,7 +233,7 @@ form.addEventListener('submit', (event) => {
                 // И сообщение юзеру
                 VKsendMessage(user_id, "Вы успешно зарегистрировались!", () => {
                     // Уведомление о регистрации
-                    setCache("after-reg")
+                    setCache("after-reg", "after-reg")
     
                     // Переносим на главную
                     relocate("../home/")

@@ -49,24 +49,22 @@ function renderUser(user_data) {
     // Дата появления в беседе
     let regDate = new Date(Number(user_data.reg_date))
 
-    let regHours = regDate.getHours().toString()
-    regHours = regHours.length !== 2 ? "0" + regHours : regHours // Формат часов 00
+    // let regHours = regDate.getHours().toString()
+    // regHours = regHours.length !== 2 ? "0" + regHours : regHours // Формат часов 00
 
-    let regMinutes = regDate.getMinutes().toString()
-    regMinutes = regMinutes.length !== 2 ? "0" + regMinutes : regMinutes // Формат минут 00
+    // let regMinutes = regDate.getMinutes().toString()
+    // regMinutes = regMinutes.length !== 2 ? "0" + regMinutes : regMinutes // Формат минут 00
 
     let regDay = regDate.getDate().toString()
     regDay = regDay.length !== 2 ? "0" + regDay : regDay // Формат дня 00
 
     let regMonth = (regDate.getMonth() + 1).toString() // Добавляем 1 т.к. месяц начинается с нуля
-    console.log(regMonth);
     regMonth = regMonth.length !== 2 ? "0" + regMonth : regMonth // Формат месяца 00
-    console.log(regMonth);
-    
 
     let regYear = regDate.getFullYear()
 
-    $("#profile-date").val(`${regHours}:${regMinutes} ${regDay}.${regMonth}.${regYear}`)
+    // $("#profile-date").val(`${regHours}:${regMinutes} ${regDay}.${regMonth}.${regYear}`)
+    $("#profile-date").val(`${regDay}.${regMonth}.${regYear}`)
     $("#profile-bio").text(user_data.bio)
 
 

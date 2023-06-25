@@ -63,5 +63,13 @@ export function initInputWithoutSpaces(selector) {
     })
 }
 
+// Инициализировать инпут с нормальным колличеством пробелов
+export function initInputNormalSpaces(selector) {
+    const element = $(selector)
+    element.on("change", () => {
+        element.val(element.val().replace(/ +/g, ' ').trim())
+    })
+}
+
 
 // Доабавить создание модального окна

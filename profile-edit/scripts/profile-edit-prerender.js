@@ -1,4 +1,4 @@
-import { relocate, initInputWithoutSpaces } from "../../assets/scripts/global-functions.js";
+import { relocate, initInputWithoutSpaces, initInputNormalSpaces } from "../../assets/scripts/global-functions.js";
 
 
 // Кнопка назад 
@@ -14,6 +14,10 @@ $("#edit-back-nav").on("click tap", () => {
 
 // Объявляем инпут без пробелов
 initInputWithoutSpaces("#edit-tag")
+
+// Инпуты с нормальными пробелами
+initInputNormalSpaces("#edit-photo")
+initInputNormalSpaces("#edit-name")
 
 // Если удалили @ в начале тега, то возвращаем
 $("#edit-tag").on("input", () => {
