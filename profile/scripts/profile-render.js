@@ -38,7 +38,7 @@ function renderUser(user_data) {
         $("#profile-vk-button").append(`
             <img id="profile-vk-photo" src="${vkData.photo_200}" alt="vk-photo">
             <p class="text-cut" id="profile-vk-name">${vkData.first_name} ${vkData.last_name}</p>
-        `);
+        `)
     })
 
     // Заполняем поля
@@ -100,7 +100,7 @@ if (!isNaN(user_id)) {
     loading()
     console.log("Render by tag " + user_id);
 
-    GSgetUserByTag("users", {tag: user_id}, (data) => {
+    GSgetUserByTag({tag: user_id}, (data) => {
         // Если данные найдены то рендердерим, если нет, то ошибка и на главную
         if (Object.keys(data).length > 0) {
             renderUser(data)

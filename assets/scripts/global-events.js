@@ -23,3 +23,5 @@ if (getCache("after-login")) {
     removeCache("after-login")
     notify("Вы успешно вошли в аккаунт!", "primary")
 }
+
+// добавить проверки на пароль и проверка userdata

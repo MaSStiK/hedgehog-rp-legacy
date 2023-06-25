@@ -1,7 +1,7 @@
 
 // Ссылка для обращение к api
 // const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzbxS71q_nOHOCZzo5-he5qFCQPfMiOmTIP-QM0oeWjEtWH7Yj7PYzX2MlqPKdbEOkhIg/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzgFIfeLSRoMgAmPKsIkvAF7gO9oVjyoomnbsgkb2vrK4Bppi2me5_hS6RxUS6LmXNofg/exec"
 
 
 // Отправить запрос
@@ -71,10 +71,9 @@ export function GSfindInColumn(sheet, data={}, func=null) {
 
 // ----------------------------------------update----------------------------------------
 // Найти в колонне значение
-// sheet (name), data: column (name), value (string)
-export function GSupdateUserData(sheet, data={}, func=null) {
+// data: column (name), value (string)
+export function GSupdateUserData(data={}, func=null) {
     let sendData = {
-        sheet: sheet,
         id: data.id,
         data: JSON.stringify(data.data)
     }
@@ -85,21 +84,19 @@ export function GSupdateUserData(sheet, data={}, func=null) {
 
 // ----------------------------------------special----------------------------------------
 // Специльно для регистрации
-// sheet "users", data: userdata {id ... login, password}
-export function GSregistration(sheet, data={}, func=null) {
+// data: userdata {id ... login, password}
+export function GSregistration(data={}, func=null) {
     let sendData = {
-        sheet: sheet,
-        data: JSON.stringify(data),
+        data: JSON.stringify(data)
     }
 
     GSsendRequest("registration", sendData, func)
 }
 
 // Специльно для входа
-// sheet "usersAuth", data: login, password
-export function GSlogin(sheet, data={}, func=null) {
+// data: login, password
+export function GSlogin(data={}, func=null) {
     let sendData = {
-        sheet: sheet,
         login: data.login,
         password: data.password
     }
@@ -108,10 +105,9 @@ export function GSlogin(sheet, data={}, func=null) {
 }
 
 // Для получения юзера по тегу
-// sheet "users", data: tag
-export function GSgetUserByTag(sheet, data={}, func=null) {
+// data: tag
+export function GSgetUserByTag(data={}, func=null) {
     let sendData = {
-        sheet: sheet,
         tag: data.tag.toLowerCase() // В нижнем регистре
     }
 

@@ -206,7 +206,7 @@ form.addEventListener('submit', (event) => {
             password: formPassword, // Передаем пароль
         }
 
-        GSregistration("users", newUserData, (data) => {
+        GSregistration(newUserData, (data) => {
             // Если находит такой же логин
             if (!data) {
                 loading(false)

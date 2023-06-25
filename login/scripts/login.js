@@ -54,7 +54,7 @@ form.addEventListener('submit', (event) => {
         // Если проходит все проверки то включаем анимацию загрузки
         loading()
 
-        GSlogin("usersAuth", {login: formLogin, password: formPassword}, (data) => {
+        GSlogin({login: formLogin, password: formPassword}, (data) => {
             // Если не находит по логину и паролю
             if(Object.keys(data).length === 0) {
                 loading(false)

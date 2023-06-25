@@ -51,13 +51,13 @@
 
                     <div class="edit-block">
                         <p class="text-break edit-block__title">Тег</p>
-                        <input id="edit-tag" maxlength="32">
+                        <input id="edit-tag" maxlength="32" readonly>
                     </div>
                     <div class="divider"></div>
 
                     <div class="edit-block">
                         <p class="text-break edit-block__title">Фотография</p>
-                        <input id="edit-photo" placeholder="Ссылка на изображение" maxlength="200">
+                        <input id="edit-photo" placeholder="Ссылка на изображение" maxlength="200" readonly>
 
                         <!-- Предпросмотр кратинки -->
                         <!-- <img id="edit-photo-preview" src="../assets/images/base/base-photo.png" alt="photo"> -->
@@ -66,18 +66,18 @@
 
                     <div class="edit-block">
                         <p class="text-break edit-block__title">Имя профиля</p>
-                        <input id="edit-name" placeholder="Отображаемое имя" maxlength="64">
+                        <input id="edit-name" placeholder="Отображаемое имя" maxlength="64" readonly>
                     </div>
                     <div class="divider"></div>
 
                     <div class="edit-block">
                         <p class="text-break edit-block__title" id="edit-bio-title">Описание <span id="edit-bio-count"></span></p>
                     </div>
-                    <textarea id="edit-bio" wrap="soft" maxlength="2500"></textarea>
+                    <textarea id="edit-bio" wrap="soft" maxlength="2500" readonly></textarea>
                     <div class="divider"></div>
 
                     <div class="edit-buttons">
-                        <button class="primary" id="edit-save">Сохранить</button>
+                        <button class="primary" id="edit-save" disabled>Сохранить</button>
                         <button class="danger" id="edit-cancel">Отмена</button>
                     </div>
                 </div>
