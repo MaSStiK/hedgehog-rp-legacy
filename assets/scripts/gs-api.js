@@ -43,25 +43,26 @@ export function GSgetColumnByName(sheet, data={}, func=null) {
 }
 
 
-// Для получения юзера по id
-// data: id
-export function GSgetUserById(sheet, data={}, func=null) {
+// Получить информацию по диапазону
+// sheet (name), data: id
+export function GSgetRowById(sheet, data={}, func=null) {
     let sendData = {
+        sheet: sheet,
         id: data.id
     }
 
-    GSsendRequest("getUserById", sendData, func)
+    GSsendRequest("getRowById", sendData, func)
 }
 
 
 // Для получения юзера по тегу
-// data: tag
-export function GSgetUserByTag(data={}, func=null) {
+// data: id
+export function GSgetUserById(data={}, func=null) {
     let sendData = {
-        tag: data.tag.toLowerCase() // В нижнем регистре
+        idd: data.id
     }
 
-    GSsendRequest("getUserByTag", sendData, func)
+    GSsendRequest("getUserById", sendData, func)
 }
 
 
