@@ -18,48 +18,11 @@ export function GSsendRequest(action, data={}, func) {
 
 
 // ----------------------------------------get----------------------------------------
-// Получить ивент
-// sheet (any), data (any)
-export function GSgetEvent(sheet, data={}, func=null) {
-    let sendData = {
-        data: JSON.stringify(data),
-        sheet: sheet,
-        range: data.range
-    }
-
-    GSsendRequest("getEvent", sendData, func)
-}
-
-
-// Получить информацию по диапазону
-// sheet (name), data: column (name)
-export function GSgetColumnByName(sheet, data={}, func=null) {
-    let sendData = {
-        sheet: sheet,
-        column: data.column
-    }
-
-    GSsendRequest("getColumnByName", sendData, func)
-}
-
-
-// Получить информацию по диапазону
-// sheet (name), data: id
-export function GSgetRowById(sheet, data={}, func=null) {
-    let sendData = {
-        sheet: sheet,
-        id: data.id
-    }
-
-    GSsendRequest("getRowById", sendData, func)
-}
-
-
 // Для получения юзера по тегу
 // data: id
 export function GSgetUserById(data={}, func=null) {
     let sendData = {
-        idd: data.id
+        id: data.id
     }
 
     GSsendRequest("getUserById", sendData, func)
