@@ -21,6 +21,7 @@
     
     --bg-primary: #1B1A1F;
     --bg-secondary: #242328;
+    --bg-transparent: #15151586;
 
     --border-primary: #413F46;
     --border-secondary: #1CA02C;
@@ -28,11 +29,11 @@
     --z-under: -1; /* Под основным контентом */
     --z-main: 0; /* Основной контент */
     --z-over: 1; /* Над основным контентом */
-    --z-modal: 2; /* Модальное окно (Под навигацией) */
-    --z-loading: 3; /* Загрузка над модальным окном */
-    --z-nav-content: 4; /* Контент навигации */
-    --z-nav: 5; /* Топ навигации */
-    --z-top: 6; /* Над навигацией */
+    --z-nav-content: 2; /* Контент навигации */
+    --z-nav: 3; /* Топ навигации */
+    --z-modal: 4; /* Модальное окно (над навигацией) */
+    --z-loading: 5; /* Загрузка над навигацией */
+    --z-top: 6; /* Над всем */
 }
 
 * {
@@ -46,7 +47,6 @@
 
     list-style-type: none;
     box-sizing: border-box;
-    overflow: hidden;
     scroll-behavior: smooth;
     
     transition: .2s all;

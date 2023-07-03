@@ -1,7 +1,12 @@
 import { getCache, setCache } from "../../assets/scripts/cache.js";
 import { disableButton, inputError, relocate } from "../../assets/scripts/global-functions.js";
-import { GSgetRowById, GSupdateUserData } from "../../assets/scripts/gs-api.js";
+import { GSgetUserById, GSupdateUserData, GSupdateUserPassword } from "../../assets/scripts/gs-api.js";
+import { loading } from "../../assets/scripts/loading/loading.js";
 import { VKsendRequest } from "../../assets/scripts/vk-api.js";
+import { consts } from "../../assets/scripts/global-consts.js";
+import { notify } from "../../assets/scripts/notification/notification.js"
+
+
 
 let userData = getCache("userData")
 let photoReady = false
@@ -26,14 +31,14 @@ function renderEdit(data) {
 
 // Превью фотогрфии (Описан тут т.к меняет переменную)
 $("#edit-photo").on("change", () => {
-    $("#edit-photo-preview").remove() // Удаляем старую картинку
+    $("#edit-photo-preview").attr("src", "../assets/images/base/base-photo-empty.png") // Ставим пустую картинку
     if ($("#edit-photo").val() !== "") { // Если значение не пустое
         photoReady = false
         let img = new Image()
         img.src = $("#edit-photo").val()
         img.onload = () => {
             photoReady = true
-            $("#edit-photo").after(`<img id="edit-photo-preview" src="${$("#edit-photo").val()}">`)
+            $("#edit-photo-preview").attr("src", $("#edit-photo").val()) // Ставим новую
         }
         img.onerror = () => {
             photoReady = false
@@ -60,7 +65,7 @@ if (!userData) {
 
 
         // Загружаем новые данные
-        GSgetRowById("users", {id: userData.id}, (data) => {
+        GSgetUserById({id: userData.id}, (data) => {
             userData = data
             setCache("userData", data)
             renderEdit(data)
@@ -100,6 +105,33 @@ $("#edit-save").on("click tap", () => {
     let newName = $("#edit-name").val()
     let newBio = $("#edit-bio").val()
 
+
+    // Проверка длины (защита от изменения)
+    if (newTag.length > consts.tagMax) {
+        inputError("#edit-tag")
+        notify(`Максимальная длинна тега - ${consts.tagMax} символа!`, "danger")
+        return
+    }
+
+    if (newPhoto.length > consts.photoMax) {
+        inputError("#edit-photo")
+        notify(`Максимальная длинна фотографии - ${consts.photoMax} символа!`, "danger")
+        return
+    }
+
+    if (newName.length > consts.nameMax) {
+        inputError("#edit-name")
+        notify(`Максимальная длинна имени - ${consts.nameMax} символа!`, "danger")
+        return
+    }
+
+    if (newBio.length > consts.newBio) {
+        inputError("#edit-bio")
+        notify(`Максимальная длинна описания - ${consts.newBio} символа!`, "danger")
+        return
+    }
+
+
     // Если тег пустой то ставим тег как id юзера
     userData.tag = newTag !== "@" ? newTag : "@" + userData.id
 
@@ -110,10 +142,81 @@ $("#edit-save").on("click tap", () => {
     userData.name = newName !== "" ? newName : vkName
 
     userData.bio = newBio
+
+    loading()
     
     GSupdateUserData({id: userData.id, data: userData}, (data) => {
         // Сохраняем и обновляем страницу
         setCache("userData", userData)
         location.reload()
+    })
+})
+
+
+// Сохранение информации
+$("#modal-submit").on("click tap", () => {
+    // loading()
+    disableButton("#modal-submit")
+
+    let oldPass = $("#password-old").val()
+    let newPass = $("#password-new").val()
+    let againPass = $("#password-again").val()
+
+    // Проверка длины (защита от изменения)
+    if (oldPass.length < consts.passwordMin) {
+        inputError("#password-old")
+        notify(`Минимальная длина пароля - ${consts.passwordMin} символа!`, "danger")
+        return
+    }
+
+    if (oldPass.length > consts.passwordMax) {
+        inputError("#password-old")
+        notify(`Максимальная длина пароля - ${consts.passwordMax} символа!`, "danger")
+        return
+    }
+
+    if (newPass.length < consts.passwordMin) {
+        inputError("#password-new")
+        notify(`Минимальная длина пароля - ${consts.passwordMin} символа!`, "danger")
+        return
+    }
+
+    if (newPass.length > consts.passwordMax) {
+        inputError("#password-new")
+        notify(`Максимальная длина пароля - ${consts.passwordMax} символа!`, "danger")
+        return
+    }
+
+    if (againPass.length < consts.passwordMin) {
+        inputError("#password-again")
+        notify(`Минимальная длина пароля - ${consts.passwordMin} символа!`, "danger")
+        return
+    }
+
+    if (againPass.length > consts.passwordMax) {
+        inputError("#password-again")
+        notify(`Максимальная длина пароля - ${consts.passwordMax} символа!`, "danger")
+        return
+    }
+
+
+    // Не совпадают пароли
+    if (newPass !== againPass) {
+        inputError("#password-new")
+        inputError("#password-again")
+        notify(`Пароли не совпадают!`, "danger")
+        return
+    }
+
+
+    GSupdateUserPassword({id: userData.id, data: {old: oldPass, new: newPass}}, (data) => {
+        // Если возвращает succsess
+        if (Object.keys(data).length > 0) {
+            // Сохраняем новый пароль
+            setCache("userPassword", newPass)
+            location.reload()
+        } else {
+            inputError("#password-old")
+        }
     })
 })

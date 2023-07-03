@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     background-image: url("../../../images/waiting.gif");
-    background-color: #15151586;
+    background-color: var(--bg-transparent);
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;

@@ -146,9 +146,16 @@ form.addEventListener('submit', (event) => {
         }
 
         // Если логин меньше нужной длины
-        if (!(formLogin.length >= consts.loginMin)) {
+        if (formLogin.length < consts.loginMin) {
             inputError("#login")
-            notify("Минимальная длина логина -  4 символа!", "danger")
+            notify(`Минимальная длина логина -  ${consts.loginMin} символа!`, "danger")
+            return
+        }
+
+        // Если логин больше нужной длины (защита от изменения)
+        if (formLogin.length > consts.loginMax) {
+            inputError("#login")
+            notify(`Максимальная длина логина -  ${consts.loginMax} символа!`, "danger")
             return
         }
 
@@ -160,9 +167,16 @@ form.addEventListener('submit', (event) => {
         }
 
         // Если пароль меньше нужной длины
-        if (!(formPassword.length >= consts.passwordMin)) {
+        if (formPassword.length < consts.passwordMin) {
             inputError("#password")
-            notify("Минимальная длина пароля - 4 символа!", "danger")
+            notify(`Минимальная длина пароля - ${consts.passwordMin} символа!`, "danger")
+            return
+        }
+
+        // Если пароль больше нужной длины (защита от изменения)
+        if (formPassword.length > consts.passwordMax) {
+            inputError("#password")
+            notify(`Максимальная длина пароля - ${consts.passwordMax} символа!`, "danger")
             return
         }
 

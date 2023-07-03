@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="./styles/profile-edit.css">
     <link rel="stylesheet" href="./styles/profile-edit-aside.css">
     <link rel="stylesheet" href="./styles/profile-edit-phone.css">
+    <link rel="stylesheet" href="./styles/profile-edit-modal.css">
 </head>
 <body>
     <main>
@@ -51,29 +52,29 @@
 
                     <div class="edit-block">
                         <p class="text-break edit-block__title">Тег</p>
-                        <input id="edit-tag" maxlength="32" readonly>
+                        <input id="edit-tag" readonly>
                     </div>
                     <div class="divider"></div>
 
                     <div class="edit-block">
                         <p class="text-break edit-block__title">Фотография</p>
-                        <input id="edit-photo" placeholder="Ссылка на изображение" maxlength="200" readonly>
-
+                        <input id="edit-photo" placeholder="Ссылка на изображение" readonly>
+                        
                         <!-- Предпросмотр кратинки -->
-                        <!-- <img id="edit-photo-preview" src="../assets/images/base/base-photo.png" alt="photo"> -->
+                        <img id="edit-photo-preview" src="../assets/images/base/base-photo-empty.png" alt="photo">
                     </div>
                     <div class="divider"></div>
 
                     <div class="edit-block">
                         <p class="text-break edit-block__title">Имя профиля</p>
-                        <input id="edit-name" placeholder="Отображаемое имя" maxlength="64" readonly>
+                        <input id="edit-name" placeholder="Отображаемое имя" readonly>
                     </div>
                     <div class="divider"></div>
 
                     <div class="edit-block">
                         <p class="text-break edit-block__title" id="edit-bio-title">Описание <span id="edit-bio-count"></span></p>
                     </div>
-                    <textarea id="edit-bio" wrap="soft" maxlength="2500" readonly></textarea>
+                    <textarea id="edit-bio" wrap="soft" readonly></textarea>
                     <div class="divider"></div>
 
                     <div class="edit-buttons">
@@ -98,7 +99,7 @@
                 <!-- Изменение приватной информации -->
                 <div class="block content-tab">
                     <div class="edit-block">
-                        <p class="text-break edit-block__title">Смена пароля</p>
+                        <p class="text-break edit-block__title">Пароль</p>
                         <button id="edit-password">Изменить</button>
                     </div>
                 </div>
@@ -111,6 +112,34 @@
             </section>
         </aside>
     </main>
+
+
+    <!-- Модальное окно -->
+    <div class="modal-wrapper hidden">
+        <div class="modal block">
+            <h2>Смена пароля</h2>
+            <p>Старый пароль</p>
+            <div class="input-wrapper" id="password-old-input">
+                <input type="password" placeholder="Пароль" id="password-old" required>
+                <button class="image" type="button"><img src="../assets/images/icons/EyeOpen.svg" alt="show-password"></button>                    
+            </div>
+
+            <p>Новый пароль</p>
+            <div class="input-wrapper" id="password-new-input">
+                <input type="password" placeholder="Пароль" id="password-new" required>
+                <button class="image" type="button"><img src="../assets/images/icons/EyeOpen.svg" alt="show-password"></button>                    
+            </div>
+
+            <p>Повторите пароль</p>
+            <div class="input-wrapper" id="password-again-input">
+                <input type="password" placeholder="Пароль" id="password-again" required>
+                <button class="image" type="button"><img src="../assets/images/icons/EyeOpen.svg" alt="show-password"></button>                    
+            </div>
+
+            <button class="primary" id="modal-submit">Изменить</button>
+            <button class="danger" id="modal-close">Отмена</button>
+        </div>
+    </div>
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

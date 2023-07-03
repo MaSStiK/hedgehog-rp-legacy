@@ -1,7 +1,12 @@
 // Глобальные константы
 export const consts = {
-    loginMax: 64,
+    loginMax: 32,
     loginMin: 4,
-    passwordMax: 64,
-    passwordMin: 4
+    passwordMax: 32,
+    passwordMin: 8,
+
+    tagMax: 17,
+    nameMax: 32,
+    bioMax: 2500,
+    photoMax: 500,
 }

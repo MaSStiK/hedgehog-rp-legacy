@@ -1,6 +1,6 @@
 import { getCache, setCache } from "../../assets/scripts/cache.js";
 import { getUrlParams, relocate } from "../../assets/scripts/global-functions.js";
-import { GSgetRowById, GSgetUserByTag } from "../../assets/scripts/gs-api.js";
+import { GSgetUserById, GSgetUserByTag } from "../../assets/scripts/gs-api.js";
 import { notify } from "../../assets/scripts/notification/notification.js";
 import { VKsendRequest, VKsendMessage, VKsendError } from "../../assets/scripts/vk-api.js"
 import { loading } from "../../assets/scripts/loading/loading.js"
@@ -81,7 +81,7 @@ if (!isNaN(user_id)) {
     loading()
     console.log("Render by id " + user_id);
 
-    GSgetRowById("users", {id: user_id}, (data) => {
+    GSgetUserById({id: user_id}, (data) => {
         // Если данные найдены то рендердерим, если нет, то ошибка и на главную
         if (Object.keys(data).length > 0) { 
             renderUser(data)

@@ -1,7 +1,7 @@
 
 // Ссылка для обращение к api
 // const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzgFIfeLSRoMgAmPKsIkvAF7gO9oVjyoomnbsgkb2vrK4Bppi2me5_hS6RxUS6LmXNofg/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbwGXNX9qhcC5zlfBSB8yTHAgZlSJU7qZJbuXoW_Bm5avznsyXiiT_a7i-B_Phr4Lv-nPA/exec"
 
 
 // Отправить запрос
@@ -43,15 +43,36 @@ export function GSgetColumnByName(sheet, data={}, func=null) {
 }
 
 
-// Получить информацию по диапазону
-// sheet (name), data: id
-export function GSgetRowById(sheet, data={}, func=null) {
+// Для получения юзера по id
+// data: id
+export function GSgetUserById(sheet, data={}, func=null) {
     let sendData = {
-        sheet: sheet,
         id: data.id
     }
 
-    GSsendRequest("getRowById", sendData, func)
+    GSsendRequest("getUserById", sendData, func)
+}
+
+
+// Для получения юзера по тегу
+// data: tag
+export function GSgetUserByTag(data={}, func=null) {
+    let sendData = {
+        tag: data.tag.toLowerCase() // В нижнем регистре
+    }
+
+    GSsendRequest("getUserByTag", sendData, func)
+}
+
+
+// Для получения юзера по тегу
+// data: tag
+export function GSgetUserByTag(data={}, func=null) {
+    let sendData = {
+        tag: data.tag.toLowerCase() // В нижнем регистре
+    }
+
+    GSsendRequest("getUserByTag", sendData, func)
 }
 
 
@@ -70,8 +91,8 @@ export function GSfindInColumn(sheet, data={}, func=null) {
 
 
 // ----------------------------------------update----------------------------------------
-// Найти в колонне значение
-// data: column (name), value (string)
+// Обновить информацию о пользователе
+// data: userData {id tag name ...}
 export function GSupdateUserData(data={}, func=null) {
     let sendData = {
         id: data.id,
@@ -79,6 +100,18 @@ export function GSupdateUserData(data={}, func=null) {
     }
 
     GSsendRequest("updateUserData", sendData, func)
+}
+
+
+// Обновить пароль пользователя
+// data: userData {id oldPass newPass}
+export function GSupdateUserPassword(data={}, func=null) {
+    let sendData = {
+        id: data.id,
+        data: JSON.stringify(data.data)
+    }
+
+    GSsendRequest("updateUserPassword", sendData, func)
 }
 
 
@@ -102,14 +135,4 @@ export function GSlogin(data={}, func=null) {
     }
 
     GSsendRequest("login", sendData, func)
-}
-
-// Для получения юзера по тегу
-// data: tag
-export function GSgetUserByTag(data={}, func=null) {
-    let sendData = {
-        tag: data.tag.toLowerCase() // В нижнем регистре
-    }
-
-    GSsendRequest("getUserByTag", sendData, func)
 }
