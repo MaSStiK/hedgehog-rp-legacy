@@ -1,6 +1,6 @@
 import { getCache, setCache } from "../../assets/scripts/cache.js";
 import { disableButton, inputError, relocate } from "../../assets/scripts/global-functions.js";
-import { GSgetUserById, GSupdateUserData, GSupdateUserPassword } from "../../assets/scripts/gs-api.js";
+import { GSgetUserById, GSupdateUserData, GSupdateUserPassword, GSfindInColumn } from "../../assets/scripts/gs-api.js";
 import { loading } from "../../assets/scripts/loading/loading.js";
 import { VKsendRequest } from "../../assets/scripts/vk-api.js";
 import { consts } from "../../assets/scripts/global-consts.js";
@@ -132,6 +132,20 @@ $("#edit-save").on("click tap", () => {
     }
 
 
+    if (!isNaN(newTag.substring(1))) {
+        inputError("#edit-tag")
+        notify(`В теге должна быть как минимум одна буква!`, "danger")
+        return
+    }
+
+
+    // Если тег старый то не проверяем его уникальность
+    let isTagOld = true
+    if (userData.tag !== newTag) {
+        isTagOld = false
+    }
+
+
     // Если тег пустой то ставим тег как id юзера
     userData.tag = newTag !== "@" ? newTag : "@" + userData.id
 
@@ -145,11 +159,30 @@ $("#edit-save").on("click tap", () => {
 
     loading()
     
-    GSupdateUserData({id: userData.id, data: userData}, (data) => {
-        // Сохраняем и обновляем страницу
-        setCache("userData", userData)
-        location.reload()
-    })
+    
+    if (isTagOld) { // Если тег старый, то просто сохраняем
+        GSupdateUserData({id: userData.id, data: userData}, () => {
+            // Сохраняем и обновляем страницу
+            setCache("userData", userData)
+            location.reload()
+        })
+    } else { // Если новый, то проверяем на уникальность
+        GSfindInColumn("users", {column: "tag", value: newTag}, (data) => {
+            // Если найден - не обновляем
+            if (data.length !== 0) {
+                inputError("#edit-tag")
+                notify(`Этот тег занят!`, "danger")
+                loading(false)
+                return
+            }
+    
+            GSupdateUserData({id: userData.id, data: userData}, () => {
+                // Сохраняем и обновляем страницу
+                setCache("userData", userData)
+                location.reload()
+            })
+        })
+    }
 })
 
 

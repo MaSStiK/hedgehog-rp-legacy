@@ -205,7 +205,7 @@ form.addEventListener('submit', (event) => {
         // Данные нового пользователя
         const newUserData = {
             id: user_id.toString(), // id на сайте, по стандарту id от вк, но в случае чего можно изменить вручную
-            tag: "@" + user_id.toString(), // Тэг для упрощенного поиска
+            tag: "@" + user_id.toString(), // Тег для упрощенного поиска
             vk_id: user_id, // Чаще всего совпадает, но если надо сделать профиль для группы, то можно изменить вручную
             vk_link: "https://vk.com/id" + user_id, // Ссылка на профиль, для групп другая
             name: user_name + " " + user_surname, // Отображаемое имя и фамилия
