@@ -1,7 +1,7 @@
 
 // Ссылка для обращение к api
 // const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbwGXNX9qhcC5zlfBSB8yTHAgZlSJU7qZJbuXoW_Bm5avznsyXiiT_a7i-B_Phr4Lv-nPA/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycby8gqRo3cdV8NJS7cm3GxyiFwlj5bQ1wyMUES_AcaSKVlBHtYpDGMImtT5U8LWtLeyvNA/exec"
 
 
 // Отправить запрос
@@ -90,6 +90,7 @@ export function GSregistration(data={}, func=null) {
     GSsendRequest("registration", sendData, func)
 }
 
+
 // Специльно для входа
 // data: login, password
 export function GSlogin(data={}, func=null) {
@@ -99,4 +100,16 @@ export function GSlogin(data={}, func=null) {
     }
 
     GSsendRequest("login", sendData, func)
+}
+
+
+// Специльно для проверки пароля
+// data: id, password
+export function GScheckPassword(data={}, func=null) {
+    let sendData = {
+        id: data.id,
+        password: data.password
+    }
+
+    GSsendRequest("checkPassword", sendData, func)
 }

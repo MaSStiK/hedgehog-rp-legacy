@@ -24,4 +24,8 @@ if (getCache("after-login")) {
     notify("Вы успешно вошли в аккаунт!", "primary")
 }
 
-// добавить проверки на пароль и проверка userdata
+// Сообщение после ошибки изменения пароля
+if (getCache("password-changed")) {
+    removeCache("password-changed")
+    notify("Пароль был изменен, требуется повторный вход!", "danger")
+}

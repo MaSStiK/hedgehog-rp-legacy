@@ -1,11 +1,14 @@
 import { getCache, setCache, removeCache } from "../cache.js"
 import { relocate } from "../global-functions.js"
+import { GScheckPassword } from "../gs-api.js"
 
+let passwordChecked = false
 
 // Рендер всей навигации
 export function renderNavigation() {
     let userData = getCache("userData")
     let userCountryData = getCache("userCountryData")
+    let userPassword = getCache("userPassword")
     
     $("main nav").html(
         `<div class="main-nav__phone">
@@ -69,11 +72,11 @@ export function renderNavigation() {
                     
                     <!-- Остальные ссылки и делители -->
                     <div class="main-nav__divider"></div>
-                    <ul class="main-nav__link"><a href="../home">Главная</a></ul>
+                    <ul class="main-nav__link"><a href="../home/">Главная</a></ul>
                     <ul class="main-nav__link"><a href="#">Новости</a></ul>
-                    <ul class="main-nav__link"><a href="#">Участники</a></ul>
+                    <ul class="main-nav__link"><a href="../users/">Участники</a></ul>
                     <ul class="main-nav__link"><a href="#">Нации</a></ul>
-                    <ul class="main-nav__link"><a href="../countries">Страны</a></ul>
+                    <ul class="main-nav__link"><a href="../countries/">Страны</a></ul>
                     <div class="main-nav__divider"></div>
                     <ul class="main-nav__link"><a href="#">Помощь</a></ul>
                     <ul class="main-nav__link"><a href="#">О нас</a></ul>
@@ -81,15 +84,33 @@ export function renderNavigation() {
             </div>
         </div>`
     )
+    
+    if (userData && !passwordChecked) {
+        GScheckPassword({id: userData.id, password: userPassword}, (data) => {
+            if (Object.keys(data).length > 0) { // Если информация есть - обновляем
+                setCache("userData", data)
+                // Ставим что проверики пароль и обновляем навигацию
+                passwordChecked = true
+                renderNavigation()
+            } else { // Если нету - выкидываем из профиляы
+                removeCache("userData")
+                removeCache("userPassword")
+                setCache("password-changed", "password-changed")
+                relocate("../login/")
+            }
+        })
+    }
 
 
     // Нажатие логотип - переход на вкладку дом
+    $("#nav__logo img").unbind()
     $("#nav__logo img").on("click tap", () => { 
         relocate("../home/")
     })
     
 
     // Открытие навигации
+    $("#nav__burger").unbind()
     $("#nav__burger").on("click tap", () => { 
         $(".main-nav__content-wrapper").toggleClass("show");
         $(".main-nav__content").toggleClass("show");
@@ -99,11 +120,13 @@ export function renderNavigation() {
 
 
     // Перенос в профиль на телефонной версии
+    $("#nav__profile").unbind()
     $("#nav__profile").on("click tap", () => {
         relocate(`../profile/index.html?id=${userData.id}`)
     })
 
     // Перенос в страну на телефонной версии
+    $("#nav__country").unbind()
     $("#nav__country").on("click tap", () => {
         relocate(`../country/index.html?id=${userData.id}`)
     })
