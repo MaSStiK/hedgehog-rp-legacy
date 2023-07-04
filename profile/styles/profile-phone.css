@@ -86,6 +86,12 @@
     .profile-info__part input {
         width: 100%;
     }
+
+
+    /* Кнопка закрытия фотографии чуть дальше */
+    #photo-full-close {
+        top: 70px;
+    }
 }
 
 /* Ресайз навигации */

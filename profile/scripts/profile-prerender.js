@@ -24,6 +24,7 @@ $("#edit-button").on("click tap", () => {
 })
 
 
+// Нажатие на фотографии открывает в полный экран
 $(".profile-top__photo").on("click tap", () => {
     $(".modal-photo-full").removeClass("hidden")
 })
@@ -34,4 +35,9 @@ $(".modal-photo-full").on("click tap", (event) => {
     if (event.target.classList.contains("modal-photo-full")) {
         $(".modal-photo-full").addClass("hidden")
     }
+})
+
+// Нажатие на кнопку закрытия фотографии
+$("#photo-full-close").on("click tap", (event) => {
+    $(".modal-photo-full").addClass("hidden")
 })
