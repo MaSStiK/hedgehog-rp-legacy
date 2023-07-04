@@ -82,7 +82,7 @@ label {
 }
 
 /* Только на мобильных дивайсах */
-@media only screen and (hover: none) and (pointer: coarse) {
+@media (hover: none) {
     /* На мобильных девайсах ссылки подчеркнуты */
     .link {
         text-decoration: underline;
