@@ -1,7 +1,7 @@
 
 // Ссылка для обращение к api
 // const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycby8gqRo3cdV8NJS7cm3GxyiFwlj5bQ1wyMUES_AcaSKVlBHtYpDGMImtT5U8LWtLeyvNA/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbw5JcP25B-3IINW2CH0QtLpxRMBuRtj-FkyCs9lTkBR-ORfXI1AZnpmcx6FvNmU_3UPmQ/exec"
 
 
 // Отправить запрос
@@ -37,6 +37,17 @@ export function GSgetUserByTag(data={}, func=null) {
     }
 
     GSsendRequest("getUserByTag", sendData, func)
+}
+
+// Для получения всех юзеров или определенный список
+// data: type (all / ids), data: null / [id1, id2, id3 ...]
+export function GSgetAllUsers(data={}, func=null) {
+    let sendData = {
+        type: data.type,
+        data: data.data
+    }
+
+    GSsendRequest("getAllUsers", sendData, func)
 }
 
 
