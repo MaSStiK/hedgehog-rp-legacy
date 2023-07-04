@@ -22,11 +22,11 @@ function renderUser(user_data) {
     if (user_data.id === userData?.id) {
         $("#exit-button").removeClass("hidden")
         $("#edit-button").removeClass("hidden")
-        $("#report-button").remove()
+        // $("#report-button").remove()
         $(".profile-top__name").addClass("self-render") // Добавляем класс для большего отступа
         setCache("userData", user_data)
     } else {
-        $("#report-button").removeClass("hidden")
+        // $("#report-button").removeClass("hidden")
         $("#exit-button").remove()
         $("#edit-button").remove()
     }

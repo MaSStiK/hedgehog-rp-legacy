@@ -116,7 +116,8 @@
     /* Имя под фото */
     .profile-top__name {
         width: 100%;
-        margin-top: 88px; /* Отступ от картинки примерно 12px */
+        /* margin-top: 88px;  Отступ от картинки примерно 12px */
+        margin-top: 38px; /* Без кнопки репорта */
         text-align: center;
         margin-left: 0;
     }
