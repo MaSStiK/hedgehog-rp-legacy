@@ -45,6 +45,7 @@ function renderUser(user_data) {
     $("#profile-tag").text(user_data.tag)
     $("#profile-name").text(user_data.name)
     $("#profile-photo").attr("src", user_data.photo)
+    $("#photo-full").attr("src", user_data.photo)
 
     // Дата появления в беседе
     let regDate = new Date(Number(user_data.reg_date))

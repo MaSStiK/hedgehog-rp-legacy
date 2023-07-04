@@ -22,3 +22,16 @@ $("#exit-button").on("click tap", () => {
 $("#edit-button").on("click tap", () => {
     relocate("../profile-edit/")
 })
+
+
+$(".profile-top__photo").on("click tap", () => {
+    $(".modal-photo-full").removeClass("hidden")
+})
+
+// Нажатие на обвертку модального окна - закрывается
+$(".modal-photo-full").on("click tap", (event) => {
+    // Если клик на саму обвертку
+    if (event.target.classList.contains("modal-photo-full")) {
+        $(".modal-photo-full").addClass("hidden")
+    }
+})

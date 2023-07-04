@@ -57,7 +57,7 @@ export function renderNavigation() {
     
                     <!-- Кнопка страны (Если у юзера она есть) -->
                     ${userCountryData // Если есть информация о стране юзере
-                    ? `<ul class="main-nav__link"><a href="#" id="nav-full__country">
+                    ? `<ul class="main-nav__link"><a href="../country/index.html?id=${userData.id}" id="nav-full__country">
                             <img src="../assets/images/base/base-country.png" alt="country" id="nav-full__country-image">
                             <div class="main-nav__link-text">
                                 <h5 class="text-cut" id="nav-full__country-title">Название</h5>
@@ -69,13 +69,13 @@ export function renderNavigation() {
                     
                     <!-- Остальные ссылки и делители -->
                     <div class="main-nav__divider"></div>
-                    <ul class="main-nav__link"><a href="../home/">Главная</a></ul>
+                    <ul class="main-nav__link"><a href="../home">Главная</a></ul>
                     <ul class="main-nav__link"><a href="#">Новости</a></ul>
                     <ul class="main-nav__link"><a href="#">Участники</a></ul>
                     <ul class="main-nav__link"><a href="#">Нации</a></ul>
-                    <ul class="main-nav__link"><a href="#">Страны</a></ul>
+                    <ul class="main-nav__link"><a href="../countries">Страны</a></ul>
                     <div class="main-nav__divider"></div>
-                    <ul class="main-nav__link"><a href="../admin/">Помощь</a></ul>
+                    <ul class="main-nav__link"><a href="#">Помощь</a></ul>
                     <ul class="main-nav__link"><a href="#">О нас</a></ul>
                 </li>
             </div>
@@ -101,6 +101,11 @@ export function renderNavigation() {
     // Перенос в профиль на телефонной версии
     $("#nav__profile").on("click tap", () => {
         relocate(`../profile/index.html?id=${userData.id}`)
+    })
+
+    // Перенос в страну на телефонной версии
+    $("#nav__country").on("click tap", () => {
+        relocate(`../country/index.html?id=${userData.id}`)
     })
 }
 
