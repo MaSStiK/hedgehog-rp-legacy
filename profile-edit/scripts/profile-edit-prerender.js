@@ -1,6 +1,8 @@
 import { relocate, initInputWithoutSpaces, initInputNormalSpaces, initInputPassword } from "../../assets/scripts/global-functions.js";
 import { consts } from "../../assets/scripts/global-consts.js"
+import { getCache } from "../cache.js"
 
+let userData = getCache("userData")
 
 // Ставим пределы для полей
 $("#edit-tag").attr("maxlength", consts.tagMax)
@@ -20,12 +22,12 @@ $("#password-again").attr("maxlength", consts.passwordMax)
 
 // Кнопка назад 
 $("#edit-back").on("click tap", () => {
-    relocate("../profile/")
+    relocate(`../profile/index.html?id=${userData.id}`)
 })
 
-// Кнопка назад  навигации
+// Кнопка назад в навигации
 $("#edit-back-nav").on("click tap", () => {
-    relocate("../profile/")
+    relocate(`../profile/index.html?id=${userData.id}`)
 })
 
 
