@@ -7,7 +7,6 @@ import { consts } from "../../assets/scripts/global-consts.js";
 import { notify } from "../../assets/scripts/notification/notification.js"
 
 
-
 let userData = getCache("userData")
 let photoReady = false
 

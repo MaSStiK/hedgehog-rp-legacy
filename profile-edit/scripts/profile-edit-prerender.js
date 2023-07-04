@@ -1,6 +1,7 @@
 import { relocate, initInputWithoutSpaces, initInputNormalSpaces, initInputPassword } from "../../assets/scripts/global-functions.js";
 import { consts } from "../../assets/scripts/global-consts.js"
-import { getCache } from "../cache.js"
+import { getCache } from "../../assets/scripts/cache.js";
+
 
 let userData = getCache("userData")
 
@@ -25,7 +26,7 @@ $("#edit-back").on("click tap", () => {
     relocate(`../profile/index.html?id=${userData.id}`)
 })
 
-// Кнопка назад в навигации
+// Кнопка назад  навигации
 $("#edit-back-nav").on("click tap", () => {
     relocate(`../profile/index.html?id=${userData.id}`)
 })
