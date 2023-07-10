@@ -66,7 +66,7 @@ function renderUser(user_data) {
 
     // $("#profile-date").val(`${regHours}:${regMinutes} ${regDay}.${regMonth}.${regYear}`)
     $("#profile-date").val(`${regDay}.${regMonth}.${regYear}`)
-    $("#profile-bio").text(user_data.bio)
+    $("#profile-bio").text(user_data.bio !== "" ? user_data.bio : " ")
 
 
     // Отключаем анимацию загрузки
