@@ -22,7 +22,7 @@ section {
 .users-list {
     width: 60%;
     height: 100%;
-    overflow: auto;
+    overflow: overlay;
 
     /* Последний обьект не у края */
     padding-bottom: 12px;
