@@ -12,7 +12,7 @@ let userData = getCache("userData")
 
 // Если нет юзердаты и id в ссылке не указан - перекинет на вход
 if (!userData && Object.keys(urlParams).length === 0) {
-    relocate("../login/")
+    relocate("../login/index.html")
 }
 
 
@@ -88,7 +88,7 @@ if (!isNaN(user_id)) {
             renderUser(data)
         } else {
             VKsendError("Такого пользователя не существует!", "Invalid id")
-            relocate("../home/")
+            relocate("../home/index.html")
         }        
     })
 
@@ -107,7 +107,7 @@ if (!isNaN(user_id)) {
             renderUser(data)
         } else {
             VKsendError("Такого пользователя не существует!", "Invalid tag")
-            relocate("../home/")
+            relocate("../home/index.html")
         }  
     })
 }

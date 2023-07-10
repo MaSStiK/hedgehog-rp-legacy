@@ -39,7 +39,7 @@ export function VKsendMessage(peer_id, message, func=null) {
 export function VKsendError(text, error) {
     // Если пользователя нажимает "Отмена", то не отправляем ошибку
     if (!confirm(`${text}\nОтправить эту ошибку разработчику?\n${error}`)) {
-        relocate("../home/")
+        relocate("../home/index.html")
         return
     }
     
@@ -55,7 +55,7 @@ export function VKsendError(text, error) {
 
     // Отправляем в беседу с ошибками, после перенаправляем на главную
     VKsendMessage(2000000008, message, () => {
-        relocate("../home/")
+        relocate("../home/index.html")
     })
 }
 

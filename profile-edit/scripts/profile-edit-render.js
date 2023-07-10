@@ -49,7 +49,7 @@ $("#edit-photo").on("change", () => {
 
 // Если нет юзердаты - перекинет на вход
 if (!userData) {
-    relocate("../login/")
+    relocate("../login/index.html")
 } else {
     // Если все нормально, то загружаем данные и рендерим
     renderEdit(userData) // Рендер из памяти

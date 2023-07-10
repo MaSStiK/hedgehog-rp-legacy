@@ -250,7 +250,7 @@ form.addEventListener('submit', (event) => {
                     setCache("after-reg", "after-reg")
     
                     // Переносим на главную
-                    relocate("../home/")
+                    relocate("../home/index.html")
                 })
             })
         })

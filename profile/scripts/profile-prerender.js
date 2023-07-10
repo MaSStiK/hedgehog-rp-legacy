@@ -14,13 +14,13 @@ $("#profile-tag").on("click tap", () => {
 $("#exit-button").on("click tap", () => {
     // Удаляем весь кэш и переносим на вход
     removeCacheAll()
-    relocate("../login/")
+    relocate("../login/index.html")
 })
 
 
 // Кнопка редактирования профиля
 $("#edit-button").on("click tap", () => {
-    relocate("../profile-edit/")
+    relocate("../profile-edit/index.html")
 })
 
 

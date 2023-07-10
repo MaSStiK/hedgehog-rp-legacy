@@ -31,7 +31,7 @@ initInputWithoutSpaces("#password-again")
 
 // Нажатие на логотип переносит на главную
 $(".logotype-wrapper img").on("click tap", () => { 
-    relocate("../home/")
+    relocate("../home/index.html")
 })
 
 

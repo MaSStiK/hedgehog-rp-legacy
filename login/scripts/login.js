@@ -83,7 +83,7 @@ form.addEventListener('submit', (event) => {
                 setCache("after-login", "after-login")
     
                 // Переносим на главную
-                relocate("../home/")
+                relocate("../home/index.html")
             })
         })
     } catch(error) {

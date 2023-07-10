@@ -96,7 +96,7 @@ export function renderNavigation() {
                 removeCache("userData")
                 removeCache("userPassword")
                 setCache("password-changed", "password-changed")
-                relocate("../login/")
+                relocate("../login/index.html")
             }
         })
     }
@@ -105,7 +105,7 @@ export function renderNavigation() {
     // Нажатие логотип - переход на вкладку дом
     $("#nav__logo img").unbind()
     $("#nav__logo img").on("click tap", () => { 
-        relocate("../home/")
+        relocate("../home/index.html")
     })
     
 
