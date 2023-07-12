@@ -31,29 +31,29 @@ function renderUsers(users) {
     }
 
 
-    // Удаляем кнопки закрепов если нету юзердаты
+    // Удаляем кнопки "В избранные" если нету юзердаты
     if (!userData) {
         $(".users-list__favourite").remove()
     } else {
         // Удаляем все отметки
         $(".users-list__favourite").removeClass("show")
 
-        // Получаем список закрепов
+        // Получаем список избранных
         let user_favourite = JSON.parse(userData.favourite)
 
-        // Рендерим кнопки закрепов
+        // Рендерим кнопки "В избранные"
         for (let fav in user_favourite) {
             $("#" + fav).addClass("show")
         }
 
-        // Рендерим закрепы
+        // Рендерим избранные
         renderAside(user_favourite)
 
 
-        // Действие при нажатии на кнопку закрепа
+        // Действие при нажатии на кнопку "В избранные"
         $(".users-list__favourite").unbind()
         $(".users-list__favourite").on("click tap", (event) => {
-            // Если закреп активный - удаляем, если нет - добавляем
+            // Если юзей в избранных - удаляем, если нет - добавляем
             if ($("#" + event.target.id).hasClass("show")) {
                 $("#" + event.target.id).removeClass("show")
                 delete user_favourite[event.target.id]
@@ -68,7 +68,7 @@ function renderUsers(users) {
             }
 
 
-            // Сохраняем закреп локально
+            // Сохраняем избранные локально
             userData.favourite = JSON.stringify(user_favourite)
             setCache("userData", userData)
 
@@ -91,15 +91,15 @@ function renderUsers(users) {
 }
 
 
-// Рендер Закрепов (aside)
+// Рендер Избранных (aside)
 function renderAside(favourites) {
     if (Object.keys(favourites).length > 0) { // Если информация есть - рендерим
         // Если есть - показываем aside
         $("aside").removeClass("hidden")
-        $("aside section").html("")
+        $("aside section").html(`<h4 id="aside-title">Избранные</h4>`)
 
 
-        // Рендерим кнопки закрепов
+        // Рендерим кнопки в aside
         for (let fav in favourites) {
             // Откидываем первые 2 символа
             fav = fav.substring(2)
@@ -129,7 +129,7 @@ if (allUsers) {
         renderUsers(data)
     })
 } else {
-    // Удаляем список закрепов
+    // Удаляем список избранных
     $("aside").remove()
 
     loading()

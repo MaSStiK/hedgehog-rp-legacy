@@ -4,6 +4,12 @@ aside section {
     gap: 12px;
 }
 
+#aside-title {
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-primary);
+}
+
 /* Блок с юзером */
 .aside__button {
     height: 100%;

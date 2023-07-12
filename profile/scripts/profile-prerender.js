@@ -44,16 +44,16 @@ $("#photo-full-close").on("click tap", (event) => {
 
 
 
-// Рендер Закрепов (aside)
+// Рендер избранных (aside)
 function renderAside(favourites) {
     if (Object.keys(favourites).length > 0) { // Если информация есть - рендерим
         // Если есть - показываем aside
         $("aside").removeClass("hidden")
-        $("aside section").html("")
+        $("aside section").html(`<h4 id="aside-title">Избранные</h4>`)
 
         let allUsers = getCache("allUsers")
 
-        // Рендерим кнопки закрепов
+        // Рендерим кнопки в aside
         for (let fav in favourites) {
             // Откидываем первые 2 символа
             fav = fav.substring(2)

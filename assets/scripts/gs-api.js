@@ -90,7 +90,7 @@ export function GSupdateUserPassword(data={}, func=null) {
 }
 
 
-// Обновить закрепы пользователя
+// Обновить избранные пользователя
 // data: {id favourite}
 export function GSupdateUserFavourite(data={}, func=null) {
     let sendData = {
