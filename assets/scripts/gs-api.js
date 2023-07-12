@@ -1,7 +1,7 @@
 
 // Ссылка для обращение к api
 // const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbw5JcP25B-3IINW2CH0QtLpxRMBuRtj-FkyCs9lTkBR-ORfXI1AZnpmcx6FvNmU_3UPmQ/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzI1O2LKvDquCVh_qLRu_dCZ4C9EUGtjDhxFilspx2ybU9EkF_9jtARUARb99fgnfqHVw/exec"
 
 
 // Отправить запрос
@@ -79,7 +79,7 @@ export function GSupdateUserData(data={}, func=null) {
 
 
 // Обновить пароль пользователя
-// data: userData {id oldPass newPass}
+// data: {id old new}
 export function GSupdateUserPassword(data={}, func=null) {
     let sendData = {
         id: data.id,
@@ -87,6 +87,18 @@ export function GSupdateUserPassword(data={}, func=null) {
     }
 
     GSsendRequest("updateUserPassword", sendData, func)
+}
+
+
+// Обновить закрепы пользователя
+// data: {id favourite}
+export function GSupdateUserFavourite(data={}, func=null) {
+    let sendData = {
+        id: data.id,
+        data: JSON.stringify(data.data)
+    }
+
+    GSsendRequest("updateUserFavourite", sendData, func)
 }
 
 

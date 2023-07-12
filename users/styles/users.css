@@ -94,9 +94,6 @@ article section {
     width: 44px;
     border-radius: 50%;
     object-fit: cover;
-
-    pointer-events: none;
-
     margin-left: 4px;
 }
 
@@ -115,9 +112,9 @@ article section {
     width: 24px;
     height: 24px;
 
-    pointer-events: none;
-
     opacity: 0;
+
+    cursor: pointer;
 }
 
 .users-list__favourite.show {
@@ -126,12 +123,16 @@ article section {
 
 /* На пк при наведении на юзера появляется кнопка закрепа, при наведении на кнопку она становиться ярче */
 @media (hover: hover) {
-    .users-list__button-container:hover .users-list__favourite {
+    .users-list__button-container:hover .users-list__favourite:not(.show) {
         opacity: .25;
     }
 
-    .users-list__favourite:hover {
+    .users-list__favourite:hover:not(.show) {
         opacity: .5 !important;
+    }
+
+    .users-list__favourite.show:hover {
+        opacity: .75 !important;
     }
 }
 

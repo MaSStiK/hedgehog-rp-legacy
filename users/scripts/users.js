@@ -1,10 +1,12 @@
 import { getCache, setCache } from "../../assets/scripts/cache.js";
-import { GSgetAllUsers } from "../../assets/scripts/gs-api.js";
+import { GSgetAllUsers, GSupdateUserFavourite } from "../../assets/scripts/gs-api.js";
 import { loading } from "../../assets/scripts/loading/loading.js";
 
 
 let userData = getCache("userData")
 let allUsers = getCache("allUsers")
+
+console.log(userData);
 
 
 // Функция рендера юзеров
@@ -23,7 +25,7 @@ function renderUsers(users) {
                         <h5 class="text-cut text-secondary js-user-tag">${user.tag}</h5>
                     </div>
                 </a>
-                <img class="users-list__favourite" src="../assets/images/icons/Favourite.svg" alt="favourite">
+                <img class="users-list__favourite" id="user-favourite-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
             </div>
         `)
     }
@@ -31,8 +33,33 @@ function renderUsers(users) {
 
     // Удаляем закрепы если нету юзердаты
     if (!userData) {
-        $(".users-list__favourite").remove();
+        $(".users-list__favourite").remove()
     }
+
+    $(".users-list__favourite").unbind()
+    $(".users-list__favourite").on("click tap", (event) => {
+        // GSupdateUserFavourite
+        if ($("#" + event.target.id).hasClass("show")) {
+            $("#" + event.target.id).removeClass("show")
+        } else {
+            $("#" + event.target.id).addClass("show")
+
+            // Получаем список закрепов
+            let user_favourite = JSON.parse(userData.favourite)
+
+            // Если закрепов нету - создаем массив с одним
+            if (user_favourite["users"] === undefined) {
+                user_favourite["users"] = [event.target.id]
+            } else {
+                // Если уже есть значения
+                user_favourite["users"].push(event.target.id)
+
+            }
+            userData.favourite = JSON.stringify(user_favourite)
+            console.log(user_favourite);
+        }
+        
+    })
 
 
     // Тригерим инпут после рендера
