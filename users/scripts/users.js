@@ -2,11 +2,11 @@ import { getCache, setCache } from "../../assets/scripts/cache.js";
 import { GSgetAllUsers, GSupdateUserFavourite } from "../../assets/scripts/gs-api.js";
 import { loading } from "../../assets/scripts/loading/loading.js";
 
-
 let userData = getCache("userData")
 let allUsers = getCache("allUsers")
 
-console.log(userData);
+// Переменая для таймера сейва информации
+let saveFavourite = null
 
 
 // Функция рендера юзеров
@@ -25,41 +25,65 @@ function renderUsers(users) {
                         <h5 class="text-cut text-secondary js-user-tag">${user.tag}</h5>
                     </div>
                 </a>
-                <img class="users-list__favourite" id="user-favourite-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
+                <img class="users-list__favourite" id="u-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
             </div>
         `)
     }
 
 
-    // Удаляем закрепы если нету юзердаты
+    // Удаляем кнопки закрепов если нету юзердаты
     if (!userData) {
         $(".users-list__favourite").remove()
-    }
+    } else {
+        // Удаляем все отметки
+        $(".users-list__favourite").removeClass("show")
 
-    $(".users-list__favourite").unbind()
-    $(".users-list__favourite").on("click tap", (event) => {
-        // GSupdateUserFavourite
-        if ($("#" + event.target.id).hasClass("show")) {
-            $("#" + event.target.id).removeClass("show")
-        } else {
-            $("#" + event.target.id).addClass("show")
+        // Получаем список закрепов
+        let user_favourite = JSON.parse(userData.favourite)
 
-            // Получаем список закрепов
-            let user_favourite = JSON.parse(userData.favourite)
-
-            // Если закрепов нету - создаем массив с одним
-            if (user_favourite["users"] === undefined) {
-                user_favourite["users"] = [event.target.id]
-            } else {
-                // Если уже есть значения
-                user_favourite["users"].push(event.target.id)
-
-            }
-            userData.favourite = JSON.stringify(user_favourite)
-            console.log(user_favourite);
+        // Рендерим кнопки закрепов
+        for (let fav in user_favourite) {
+            $("#" + fav).addClass("show")
         }
-        
-    })
+
+        // Рендерим закрепы
+        renderAside(user_favourite)
+
+
+        // Действие при нажатии на кнопку закрепа
+        $(".users-list__favourite").unbind()
+        $(".users-list__favourite").on("click tap", (event) => {
+            // Если закреп активный - удаляем, если нет - добавляем
+            if ($("#" + event.target.id).hasClass("show")) {
+                $("#" + event.target.id).removeClass("show")
+                delete user_favourite[event.target.id]
+            } else {
+                $("#" + event.target.id).addClass("show")
+                user_favourite[event.target.id] = event.target.id
+            }
+            
+            // Если таймер запущен - удаляем старыый и запускаем новый
+            if (saveFavourite !== null) {
+                clearTimeout(saveFavourite);
+            }
+
+
+            // Сохраняем закреп локально
+            userData.favourite = JSON.stringify(user_favourite)
+            setCache("userData", userData)
+
+
+            // Если в течении 1 секунды не нажимали не на одну звезду, то сохраняем информацию
+            saveFavourite = setTimeout(() => {
+                // Рендерим aside
+                renderAside(user_favourite)
+
+                GSupdateUserFavourite({id: userData.id, data: user_favourite}, (data) => {
+                    // console.log(data)
+                })
+            }, 1000)
+        })
+    }
 
 
     // Тригерим инпут после рендера
@@ -67,18 +91,51 @@ function renderUsers(users) {
 }
 
 
+// Рендер Закрепов (aside)
+function renderAside(favourites) {
+    if (Object.keys(favourites).length > 0) { // Если информация есть - рендерим
+        // Если есть - показываем aside
+        $("aside").removeClass("hidden")
+        $("aside section").html("")
+
+
+        // Рендерим кнопки закрепов
+        for (let fav in favourites) {
+            // Откидываем первые 2 символа
+            fav = fav.substring(2)
+
+            let user = allUsers.find(user => user.id.toString() === fav)
+            $("aside section").append(`
+                <a class="aside__button" href="../profile/index.html?id=${user.id}">
+                    <img src="${user.photo}" alt="vk-photo">
+                    <div class="aside__button-names">
+                        <p class="text-cut js-user-name">${user.name.split(" ")[0]}</p>
+                    </div>
+                </a>
+            `)
+        }
+    } else {
+        // Если нету - скрываем aside
+        $("aside").addClass("hidden")
+    }
+}
+
+
 // Если есть список всех юзеров - рендерим из кэша и потом загружаем
 if (allUsers) {
     renderUsers(allUsers)
     GSgetAllUsers({type: "all", data: null}, (data) => {
-        renderUsers(data)
         setCache("allUsers", data)
+        renderUsers(data)
     })
 } else {
+    // Удаляем список закрепов
+    $("aside").remove()
+
     loading()
     GSgetAllUsers({type: "all", data: null}, (data) => {
         loading(false)
-        renderUsers(data)
         setCache("allUsers", data)
+        renderUsers(data)
     })
 }

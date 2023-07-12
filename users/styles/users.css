@@ -77,7 +77,7 @@ article section {
 
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
 
     position: relative;
 }

@@ -1,4 +1,4 @@
-import { removeCacheAll } from "../../assets/scripts/cache.js";
+import { getCache, removeCacheAll } from "../../assets/scripts/cache.js";
 import { copyToClipboard, relocate } from "../../assets/scripts/global-functions.js";
 import { notify } from "../../assets/scripts/notification/notification.js";
 
@@ -41,3 +41,43 @@ $(".modal-photo-full").on("click tap", (event) => {
 $("#photo-full-close").on("click tap", (event) => {
     $(".modal-photo-full").addClass("hidden")
 })
+
+
+
+// Рендер Закрепов (aside)
+function renderAside(favourites) {
+    if (Object.keys(favourites).length > 0) { // Если информация есть - рендерим
+        // Если есть - показываем aside
+        $("aside").removeClass("hidden")
+        $("aside section").html("")
+
+        let allUsers = getCache("allUsers")
+
+        // Рендерим кнопки закрепов
+        for (let fav in favourites) {
+            // Откидываем первые 2 символа
+            fav = fav.substring(2)
+
+            let user = allUsers.find(user => user.id.toString() === fav)
+            $("aside section").append(`
+                <a class="aside__button" href="../profile/index.html?id=${user.id}">
+                    <img src="${user.photo}" alt="vk-photo">
+                    <div class="aside__button-names">
+                        <p class="text-cut js-user-name">${user.name.split(" ")[0]}</p>
+                    </div>
+                </a>
+            `)
+        }
+    } else {
+        // Если нету - скрываем aside
+        $("aside").addClass("hidden")
+    }
+}
+
+let userData = getCache("userData")
+
+if (userData) {
+    renderAside(JSON.parse(userData.favourite))
+} else {
+    $("aside").delete()
+}
