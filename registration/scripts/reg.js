@@ -215,6 +215,7 @@ form.addEventListener('submit', (event) => {
             nation_id: "", // Отображаемая нация
             reg_date: date, // Дата появления в беседе - устанавливается администратором
             timestamp: date, // Дата регистрации
+            favourite: "", // Закрепы
 
             login: formLogin, // Передаем логин
             password: formPassword, // Передаем пароль

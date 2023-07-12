@@ -1,31 +1,58 @@
-section {
+article section {
     height: 100%;
 }
 
-.main-block{
+/* Снизу у блока убираем отступ */
+.main-block {
     height: 100%;
+    padding-bottom: 0px;
+    gap: 0;
+}
+
+/* Заголовок блока */
+.block-title {
+    text-align: center;
+    border-bottom: 1px solid var(--border-primary);
+    padding-bottom: 12px;
+}
+
+/* Контент блкоа */
+.block-content {
+    display: flex;
     flex-direction: row;
+    overflow: hidden;
     gap: 20px;
-    padding: 0 12px;
 }
 
 
 /* Поиск */
-#users-search {
+.input-wrapper {
     width: 40%;
+    height: 36px;
 
     margin-top: 12px;
+}
+
+.input-wrapper img {
+    pointer-events: none;
 }
 
 
 /* Список юзеров */
 .users-list {
-    width: 60%;
+    width: calc(60% - 12px);
     height: 100%;
-    overflow: overlay;
+    overflow: auto;
 
-    /* Последний обьект не у края */
+    /* Отступ снизу (отступ от нижнего края) */
     padding-bottom: 12px;
+    margin-right: 12px;
+}
+
+/* Скрол цвета фона */
+.users-list::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: var(--bg-primary);
 }
 
 
@@ -44,7 +71,7 @@ section {
 /* Блок с юзером */
 .users-list__button {
     height: 100%;
-    width: 80%;
+    width: calc(90% - 20px);
     background-color: var(--button-bg);
     border-radius: 4px;
 
@@ -68,6 +95,8 @@ section {
     border-radius: 50%;
     object-fit: cover;
 
+    pointer-events: none;
+
     margin-left: 4px;
 }
 
@@ -85,6 +114,8 @@ section {
 .users-list__favourite {
     width: 24px;
     height: 24px;
+
+    pointer-events: none;
 
     opacity: 0;
 }

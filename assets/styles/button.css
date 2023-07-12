@@ -58,7 +58,7 @@ button.transparent {
 
 
 /* Кнопка с иконкой (Как прозрачная, но 36x36) */
-button.image {
+button.image-button {
     width: 36px;
     height: 36px;
     background-color: var(--button-bg-transparent);

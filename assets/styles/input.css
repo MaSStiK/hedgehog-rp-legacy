@@ -109,8 +109,26 @@ input.error {
     right: 4px;
 }
 
-/* Пример кнопки */
+/* Картинка внутри обвертки */
+.input-wrapper > img {
+    /* Картинка внутри инпута 28px на 28px */
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 8px;
+    right: 12px;
+}
+
+/* Кпнока с полем пароля */
 /* <div class="input-wrapper" id="password-input">
     <input type="password" placeholder="Пароль">
-    <button class="image" type="button"><img src="../assets/images/icons/EyeOpen.svg" alt="show-password"></button>                    
+    <button class="image-button" type="button"><img src="../assets/images/icons/EyeOpen.svg" alt="show-password"></button>                    
+</div> */
+
+
+/* Кпнока с иконкой */
+/* <div class="input-wrapper">
+    <input type="text" id="search">
+    <img src="../assets/images/icons/Search.svg" alt="search">
 </div> */

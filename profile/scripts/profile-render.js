@@ -47,6 +47,9 @@ function renderUser(user_data) {
     $("#profile-photo").attr("src", user_data.photo)
     $("#photo-full").attr("src", user_data.photo)
 
+    // Меняем название страницы
+    $('title').text(user_data.name)
+
     // Дата появления в беседе
     let regDate = new Date(Number(user_data.reg_date))
 
