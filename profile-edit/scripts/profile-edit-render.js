@@ -157,6 +157,8 @@ $("#edit-save").on("click tap", () => {
     userData.bio = newBio
 
     loading()
+
+    console.log(userData);
     
     
     if (isTagOld) { // Если тег старый, то просто сохраняем

@@ -1,7 +1,7 @@
 
 // Ссылка для обращение к api
 // const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzI1O2LKvDquCVh_qLRu_dCZ4C9EUGtjDhxFilspx2ybU9EkF_9jtARUARb99fgnfqHVw/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzszrNb8asUfaF4yX9WbWQ1sCrGUev1nw1rhrx_esq2YinjKuPhL-q3V9rkIPOhmFXnOw/exec"
 
 
 // Отправить запрос
