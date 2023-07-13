@@ -14,20 +14,35 @@ function renderUsers(users) {
     // Очищаем контейнер перед рендером
     $(".users-list").html("")
 
+
+    // Фильтр юзеров в алфавитном порядке
+    let sortedUsers = users.sort((a,b) => {
+        if (a.name < b.name) {
+            return -1;
+        }
+        if (a.name > b.name) {
+            return 1;
+        }
+        return 0;
+    })
+
     // Заполняем список всех юзеров
-    for (let user of users) {
-        $(".users-list").append(`
-            <div class="users-list__button-container" id="user-${user.id}">
-                <a class="users-list__button" href="../profile/index.html?id=${user.id}">
-                    <img src="${user.photo}" alt="vk-photo">
-                    <div class="users-list__button-names">
-                        <p class="text-cut js-user-name">${user.name}</p>
-                        <h5 class="text-cut text-secondary js-user-tag">${user.tag}</h5>
-                    </div>
-                </a>
-                <img class="users-list__favourite" id="u-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
-            </div>
-        `)
+    for (let user of sortedUsers) {
+        // Не рендерим себя
+        if (user.id.toString() !== userData.id) {
+            $(".users-list").append(`
+                <div class="users-list__button-container" id="user-${user.id}">
+                    <a class="users-list__button" href="../profile/index.html?id=${user.id}">
+                        <img src="${user.photo}" alt="vk-photo">
+                        <div class="users-list__button-names">
+                            <p class="text-cut js-user-name">${user.name}</p>
+                            <h5 class="text-cut text-secondary js-user-tag">${user.tag}</h5>
+                        </div>
+                    </a>
+                    <img class="users-list__favourite" id="u-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
+                </div>
+            `)
+        }
     }
 
 
@@ -39,15 +54,15 @@ function renderUsers(users) {
         $(".users-list__favourite").removeClass("show")
 
         // Получаем список избранных
-        let user_favourite = JSON.parse(userData.favourite)
+        let userFavourite = JSON.parse(userData.favourite)
 
         // Рендерим кнопки "В избранные"
-        for (let fav in user_favourite) {
+        for (let fav in userFavourite) {
             $("#" + fav).addClass("show")
         }
 
         // Рендерим избранные
-        renderAside(user_favourite)
+        renderAside(userFavourite)
 
 
         // Действие при нажатии на кнопку "В избранные"
@@ -56,10 +71,10 @@ function renderUsers(users) {
             // Если юзей в избранных - удаляем, если нет - добавляем
             if ($("#" + event.target.id).hasClass("show")) {
                 $("#" + event.target.id).removeClass("show")
-                delete user_favourite[event.target.id]
+                delete userFavourite[event.target.id]
             } else {
                 $("#" + event.target.id).addClass("show")
-                user_favourite[event.target.id] = event.target.id
+                userFavourite[event.target.id] = event.target.id
             }
             
             // Если таймер запущен - удаляем старыый и запускаем новый
@@ -69,16 +84,16 @@ function renderUsers(users) {
 
 
             // Сохраняем избранные локально
-            userData.favourite = JSON.stringify(user_favourite)
+            userData.favourite = JSON.stringify(userFavourite)
             setCache("userData", userData)
 
 
             // Если в течении 1 секунды не нажимали не на одну звезду, то сохраняем информацию
             saveFavourite = setTimeout(() => {
                 // Рендерим aside
-                renderAside(user_favourite)
+                renderAside(userFavourite)
 
-                GSupdateUserFavourite({id: userData.id, data: user_favourite}, (data) => {
+                GSupdateUserFavourite({id: userData.id, data: userFavourite}, (data) => {
                     // console.log(data)
                 })
             }, 1000)
