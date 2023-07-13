@@ -158,8 +158,6 @@ $("#edit-save").on("click tap", () => {
 
     loading()
 
-    console.log(userData);
-    
     
     if (isTagOld) { // Если тег старый, то просто сохраняем
         GSupdateUserData({id: userData.id, data: userData}, () => {
