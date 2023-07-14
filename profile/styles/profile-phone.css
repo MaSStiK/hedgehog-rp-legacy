@@ -4,6 +4,11 @@
     article {
         padding-top: 120px;
     }
+
+    /* Кнопка закрытия фотографии чуть ниже */
+    #photo-full-close {
+        top: 70px;
+    }
 }
 
 /* Контент в 300px */
@@ -85,12 +90,6 @@
 
     .profile-info__part input {
         width: 100%;
-    }
-
-
-    /* Кнопка закрытия фотографии чуть дальше */
-    #photo-full-close {
-        top: 70px;
     }
 }
 
