@@ -31,15 +31,15 @@ function renderUsers(users) {
         // Не рендерим себя
         if (user.id.toString() !== userData.id) {
             $(".users-list").append(`
-                <div class="users-list__button-container" id="user-${user.id}">
-                    <a class="users-list__button" href="../profile/index.html?id=${user.id}">
+                <div class="button-container" id="user-${user.id}">
+                    <a class="button-content" href="../profile/index.html?id=${user.id}">
                         <img src="${user.photo}" alt="vk-photo">
-                        <div class="users-list__button-names">
+                        <div class="button-names">
                             <p class="text-cut js-user-name">${user.name}</p>
                             <h5 class="text-cut text-secondary js-user-tag">${user.tag}</h5>
                         </div>
                     </a>
-                    <img class="users-list__favourite" id="u-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
+                    <img class="button-favourite" id="u-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
                 </div>
             `)
         }
@@ -48,10 +48,10 @@ function renderUsers(users) {
 
     // Удаляем кнопки "В избранные" если нету юзердаты
     if (!userData) {
-        $(".users-list__favourite").remove()
+        $(".button-favourite").remove()
     } else {
         // Удаляем все отметки
-        $(".users-list__favourite").removeClass("show")
+        $(".button-favourite").removeClass("show")
 
         // Получаем список избранных
         let userFavourite = JSON.parse(userData.favourite)
@@ -66,8 +66,8 @@ function renderUsers(users) {
 
 
         // Действие при нажатии на кнопку "В избранные"
-        $(".users-list__favourite").unbind()
-        $(".users-list__favourite").on("click tap", (event) => {
+        $(".button-favourite").unbind()
+        $(".button-favourite").on("click tap", (event) => {
             // Если юзей в избранных - удаляем, если нет - добавляем
             if ($("#" + event.target.id).hasClass("show")) {
                 $("#" + event.target.id).removeClass("show")

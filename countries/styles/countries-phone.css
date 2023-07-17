@@ -11,11 +11,11 @@
         display: none;
     }
 
-    .input-wrapper, .users-list {
+    .input-wrapper, .countries-list {
         width: 43%;
     }
 
-    .users-list {
+    .countries-list {
         width: calc(57% - 8px);
         padding-right: 8px;
     }
@@ -38,7 +38,7 @@
         width: calc(100% - 12px);
     }
 
-    .users-list {
+    .countries-list {
         width: calc(100% - 4px);
         padding-right: 5px;
 

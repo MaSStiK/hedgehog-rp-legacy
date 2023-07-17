@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="../assets/styles/global-style.css">
     <!-- Все остальные стили -->
     <link rel="stylesheet" href="./styles/countries.css">
+    <link rel="stylesheet" href="./styles/countries-phone.css">
+    <link rel="stylesheet" href="./styles/countries-aside.css">
 </head>
 <body>
     <main>
@@ -40,13 +42,41 @@
         <article>
             <section>
                 <div class="block main-block">
-                    
+                    <!-- Заголовок блока -->
+                    <h2 class="block-title">Все участники</h2>
+
+                    <!-- Контент блока -->
+                    <div class="block-content">
+
+                        <!-- Список всех юзеров (Заранее заполняем перед загрузкой информации) -->
+                        <div class="countries-list">
+                            <!-- <div class="button-container">
+                                <a class="button-content" href="#">
+                                    <img src="../assets/images/base/base-photo-empty.png" alt="vk-photo">
+                                    <div class="button-names">
+                                        <p class="text-cut">&nbsp;</p>
+                                        <h5 class="text-cut text-secondary">&nbsp;</h5>
+                                    </div>
+                                </a>
+                                <img class="button-favourite" src="../assets/images/icons/Favourite.svg" alt="favourite">
+                            </div> -->
+                        </div>
+                        
+
+                        <!-- Поле поиска -->
+                        <div class="input-wrapper">
+                            <input type="text" id="countries-search">
+                            <img src="../assets/images/icons/Search.svg" alt="search">
+                        </div>
+                    </div>
                 </div>
             </section>
         </article>
 
-        <aside>
-            <section></section>
+        <aside class="hidden">
+            <section>
+                <!-- Список избранных стран -->
+            </section>
         </aside>
     </main>
 
