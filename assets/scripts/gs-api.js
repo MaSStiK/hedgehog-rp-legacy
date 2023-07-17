@@ -1,7 +1,7 @@
 
 // Ссылка для обращение к api
 // const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzszrNb8asUfaF4yX9WbWQ1sCrGUev1nw1rhrx_esq2YinjKuPhL-q3V9rkIPOhmFXnOw/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbwCJl6zoXpV_TaJ-JwEl9tlH1UPDSQG8PXZUYQRpeefBgF9p1nPdhWQog6xrpz8whdDdw/exec"
 
 
 // Отправить запрос
@@ -48,6 +48,18 @@ export function GSgetAllUsers(data={}, func=null) {
     }
 
     GSsendRequest("getAllUsers", sendData, func)
+}
+
+
+// Для получения всех стран или определенный список
+// data: type (all / ids), data: null / [id1, id2, id3 ...]
+export function GSgetAllCountries(data={}, func=null) {
+    let sendData = {
+        type: data.type,
+        data: data.data
+    }
+
+    GSsendRequest("getAllCountries", sendData, func)
 }
 
 

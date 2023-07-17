@@ -1,5 +1,5 @@
 import { getCache, setCache } from "../../assets/scripts/cache.js";
-import { GSgetAllcountries, GSupdateUserFavourite } from "../../assets/scripts/gs-api.js";
+import { GSgetAllCountries, GSupdateUserFavourite } from "../../assets/scripts/gs-api.js";
 import { loading } from "../../assets/scripts/loading/loading.js";
 
 let userData = getCache("userData")
@@ -37,7 +37,7 @@ function renderCountries(countries) {
                         <h5 class="text-cut text-secondary js-country-tag">${country.tag}</h5>
                     </div>
                 </a>
-                <img class="button-favourite" id="u-${country.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
+                <img class="button-favourite" id="${country.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
             </div>
         `)
     }
@@ -71,7 +71,7 @@ function renderCountries(countries) {
                 delete userFavourite[event.target.id]
             } else {
                 $("#" + event.target.id).addClass("show")
-                userFavourite[event.target.id] = event.target.id
+                userFavourite[event.target.id] = "true"
             }
             
             // Если таймер запущен - удаляем старыый и запускаем новый
@@ -87,6 +87,8 @@ function renderCountries(countries) {
 
             // Если в течении 1 секунды не нажимали не на одну звезду, то сохраняем информацию
             saveFavourite = setTimeout(() => {
+                console.log("Favourite saved")
+                
                 // Рендерим aside
                 renderAside(userFavourite)
 
@@ -105,7 +107,7 @@ function renderCountries(countries) {
 
 // Рендер Избранных (aside)
 function renderAside(favourites) {
-    if (Object.keys(favourites).length > 0) { // Если информация есть - рендерим
+    if (Object.keys(favourites).filter(country => country.startsWith("C-")).length > 0) { // Если информация есть - рендерим
         // Если есть - показываем aside
         $("aside").removeClass("hidden")
         $("aside section").html(`<h4 id="aside-title">Избранные</h4>`)
@@ -113,18 +115,18 @@ function renderAside(favourites) {
 
         // Рендерим кнопки в aside
         for (let fav in favourites) {
-            // Откидываем первые 2 символа
-            fav = fav.substring(2)
-
-            let country = allСountries.find(country => country.id.toString() === fav)
-            $("aside section").append(`
-                <a class="aside__button" href="../profile/index.html?id=${country.id}">
-                    <img src="${country.photo}" alt="vk-photo">
-                    <div class="aside__button-names">
-                        <p class="text-cut js-country-name">${country.name.split(" ")[0]}</p>
-                    </div>
-                </a>
-            `)
+            // Если начинается id начинается C-
+            if (fav.startsWith("C-")) {
+                let country = allСountries.find(country => country.id.toString() === fav)
+                $("aside section").append(`
+                    <a class="aside__button" href="../profile/index.html?id=${country.id}">
+                        <img src="${country.photo}" alt="vk-photo">
+                        <div class="aside__button-names">
+                            <p class="text-cut js-country-name">${country.name.split(" ")[0]}</p>
+                        </div>
+                    </a>
+                `)
+            }
         }
     } else {
         // Если нету - скрываем aside
@@ -132,11 +134,11 @@ function renderAside(favourites) {
     }
 }
 
-
 // Если есть список всех стран - рендерим из кэша и потом загружаем
 if (allСountries) {
     renderCountries(allСountries)
-    GSgetAllcountries({type: "all", data: null}, (data) => {
+    GSgetAllCountries({type: "all", data: null}, (data) => {
+        allСountries = data
         setCache("allСountries", data)
         renderCountries(data)
     })
@@ -145,8 +147,9 @@ if (allСountries) {
     $("aside").remove()
 
     loading()
-    GSgetAllcountries({type: "all", data: null}, (data) => {
+    GSgetAllCountries({type: "all", data: null}, (data) => {
         loading(false)
+        allСountries = data
         setCache("allСountries", data)
         renderCountries(data)
     })

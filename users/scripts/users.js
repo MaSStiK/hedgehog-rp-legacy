@@ -39,7 +39,7 @@ function renderUsers(users) {
                             <h5 class="text-cut text-secondary js-user-tag">${user.tag}</h5>
                         </div>
                     </a>
-                    <img class="button-favourite" id="u-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
+                    <img class="button-favourite" id="U-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
                 </div>
             `)
         }
@@ -90,6 +90,8 @@ function renderUsers(users) {
 
             // Если в течении 1 секунды не нажимали не на одну звезду, то сохраняем информацию
             saveFavourite = setTimeout(() => {
+                console.log("Favourite saved")
+
                 // Рендерим aside
                 renderAside(userFavourite)
 
@@ -108,7 +110,7 @@ function renderUsers(users) {
 
 // Рендер Избранных (aside)
 function renderAside(favourites) {
-    if (Object.keys(favourites).length > 0) { // Если информация есть - рендерим
+    if (Object.keys(favourites).filter(user => user.startsWith("U-")).length > 0) { // Если информация есть - рендерим
         // Если есть - показываем aside
         $("aside").removeClass("hidden")
         $("aside section").html(`<h4 id="aside-title">Избранные</h4>`)
@@ -116,18 +118,22 @@ function renderAside(favourites) {
 
         // Рендерим кнопки в aside
         for (let fav in favourites) {
-            // Откидываем первые 2 символа
-            fav = fav.substring(2)
+            // Если начинается id начинается C-
+            if (fav.startsWith("U-")) {
 
-            let user = allUsers.find(user => user.id.toString() === fav)
-            $("aside section").append(`
-                <a class="aside__button" href="../profile/index.html?id=${user.id}">
-                    <img src="${user.photo}" alt="vk-photo">
-                    <div class="aside__button-names">
-                        <p class="text-cut js-user-name">${user.name.split(" ")[0]}</p>
-                    </div>
-                </a>
-            `)
+                // Откидываем первые 2 символа, т.к. юзер с чистым айди без буквы
+                fav = fav.substring(2)
+
+                let user = allUsers.find(user => user.id.toString() === fav)
+                $("aside section").append(`
+                    <a class="aside__button" href="../profile/index.html?id=${user.id}">
+                        <img src="${user.photo}" alt="vk-photo">
+                        <div class="aside__button-names">
+                            <p class="text-cut js-user-name">${user.name.split(" ")[0]}</p>
+                        </div>
+                    </a>
+                `)
+            }
         }
     } else {
         // Если нету - скрываем aside
@@ -140,6 +146,7 @@ function renderAside(favourites) {
 if (allUsers) {
     renderUsers(allUsers)
     GSgetAllUsers({type: "all", data: null}, (data) => {
+        allUsers = data
         setCache("allUsers", data)
         renderUsers(data)
     })
@@ -150,6 +157,7 @@ if (allUsers) {
     loading()
     GSgetAllUsers({type: "all", data: null}, (data) => {
         loading(false)
+        allUsers = data
         setCache("allUsers", data)
         renderUsers(data)
     })
