@@ -30,7 +30,7 @@ function renderCountries(countries) {
     for (let country of sortedCountries) {
         $(".countries-list").append(`
             <div class="button-container" id="country-${country.id}">
-                <a class="button-content" href="../profile/index.html?id=${country.id}">
+                <a class="button-content" href="../country/index.html?id=${country.id}">
                     <img src="${country.photo}" alt="vk-photo">
                     <div class="button-names">
                         <p class="text-cut js-country-name">${country.name}</p>
@@ -88,7 +88,7 @@ function renderCountries(countries) {
             // Если в течении 1 секунды не нажимали не на одну звезду, то сохраняем информацию
             saveFavourite = setTimeout(() => {
                 console.log("Favourite saved")
-                
+
                 // Рендерим aside
                 renderAside(userFavourite)
 
