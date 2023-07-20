@@ -1,5 +1,4 @@
-import { getCache } from "../../assets/scripts/cache.js"
-import { relocate, disableButton, initInputPassword, initInputWithoutSpaces, copyToClipboard } from "../../assets/scripts/global-functions.js"
+import { relocate, initInputPassword, initInputWithoutSpaces, copyToClipboard } from "../../assets/scripts/global-functions.js"
 import { notify } from "../../assets/scripts/notification/notification.js"
 import { consts } from "../../assets/scripts/global-consts.js"
 
