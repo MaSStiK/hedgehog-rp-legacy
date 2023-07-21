@@ -27,20 +27,20 @@ $("#edit-button").on("click tap", () => {
 
 // Нажатие на фотографии открывает в полный экран
 $(".profile-top__photo").on("click tap", () => {
-    $(".modal-photo-full").removeClass("hidden")
+    $(".modal").removeClass("hidden")
 })
 
 // Нажатие на обвертку модального окна - закрывается
-$(".modal-photo-full").on("click tap", (event) => {
+$(".modal").on("click tap", (event) => {
     // Если клик на саму обвертку
-    if (event.target.classList.contains("modal-photo-full")) {
-        $(".modal-photo-full").addClass("hidden")
+    if (event.target.classList.contains("modal")) {
+        $(".modal").addClass("hidden")
     }
 })
 
-// Нажатие на кнопку закрытия фотографии
-$("#photo-full-close").on("click tap", (event) => {
-    $(".modal-photo-full").addClass("hidden")
+// Нажатие на кнопку закрытия закрытия модального окна
+$(".modal-close").on("click tap", () => {
+    $(".modal").addClass("hidden")
 })
 
 
@@ -78,6 +78,8 @@ function renderAside(favourites) {
     }
 }
 
+
+// Рендер aside
 let userData = getCache("userData")
 
 if (userData) {

@@ -97,7 +97,12 @@
                         <div class="profile-info__part">
                             <p>О себе</p>
                         </div>
-                        <p id="profile-bio">&nbsp;</p>
+
+                        <div class="profile-bio-wrapper">
+                            <p class="js-show-button" id="profile-bio">&nbsp;</p>
+
+                            <p class="profile-bio-show hidden">Нажмите чтобы раскрыть</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -112,9 +117,12 @@
 
     
     <!-- Фотография во весь экран -->
-    <div class="modal-photo-full hidden">
-        <img class="block" id="photo-full" src="../assets/images/base/base-photo-empty.png" alt="photo-full">
-        <img id="photo-full-close" src="../assets/images/icons/Close.svg" alt="photo-close">
+    <div class="modal hidden">
+        <div class="modal-content" id="photo-modal">
+            <img id="photo-full" src="../assets/images/base/base-photo-empty.png" alt="photo-full">
+        </div>
+
+        <img class="modal-close" src="../assets/images/icons/Close.svg" alt="modal-close">
     </div>
 
 

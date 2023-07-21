@@ -78,6 +78,7 @@ export function renderNavigation() {
                     <ul class="main-nav__link"><a href="#">Нации</a></ul>
                     <ul class="main-nav__link"><a href="../countries/index.html">Страны</a></ul>
                     <div class="main-nav__divider"></div>
+                    <ul class="main-nav__link"><a href="../tools/index.html">Инструменты</a></ul>
                     <ul class="main-nav__link"><a href="#">Помощь</a></ul>
                     <ul class="main-nav__link"><a href="#">О нас</a></ul>
                 </li>
@@ -85,11 +86,13 @@ export function renderNavigation() {
         </div>`
     )
     
+
+    // Проверка пароля юзера
     if (userData && !passwordChecked) {
         GScheckPassword({id: userData.id, password: userPassword}, (data) => {
             if (Object.keys(data).length > 0) { // Если информация есть - обновляем
                 setCache("userData", data)
-                // Ставим что проверики пароль и обновляем навигацию
+                // Ставим что проверили пароль и обновляем навигацию
                 passwordChecked = true
                 renderNavigation()
             } else { // Если нету - выкидываем из профиляы

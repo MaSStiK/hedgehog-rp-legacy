@@ -62,18 +62,23 @@ $("#edit-bio").on("input", () => {
 
 // Открытие модального окна
 $("#edit-password").on("click tap", () => {
-    $(".modal-wrapper").removeClass("hidden");
+    $(".modal").removeClass("hidden");
 })
 
 // Нажатие на обвертку модального окна - закрывается
-$(".modal-wrapper").on("click tap", (event) => {
+$(".modal").on("click tap", (event) => {
     // Если клик на саму обвертку
-    if (event.target.classList.contains("modal-wrapper")) {
-        $(".modal-wrapper").addClass("hidden")
+    if (event.target.classList.contains("modal")) {
+        $(".modal").addClass("hidden")
     }
 })
 
 // Кнопка Отмена в модальном окне
 $("#modal-close").on("click tap", () => {
-    $(".modal-wrapper").addClass("hidden")
+    $(".modal").addClass("hidden")
+})
+
+// Нажатие на кнопку закрытия модального окна
+$(".modal-close").on("click tap", () => {
+    $(".modal").addClass("hidden")
 })

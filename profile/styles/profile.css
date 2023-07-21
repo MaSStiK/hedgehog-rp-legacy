@@ -132,8 +132,16 @@ article {
     width: 50%;
 }
 
-#profile-bio {
+
+/* Обвертка описания */
+.profile-bio-wrapper {
     width: 90%;
+    position: relative;
+}
+
+#profile-bio {
+    width: 100%;
+    height: 100px;
     padding: 8px;
 
     background-color: var(--bg-primary);
@@ -141,6 +149,27 @@ article {
     border-radius: 4px;
 }
 
+#profile-bio.js-show-button {
+    height: auto;
+}
+
+.profile-bio-show {
+    width: 100%;
+    padding: 24px 0 12px 0;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    text-align: center;
+    cursor: pointer;
+    background: linear-gradient(#00000000, #000000 80%);
+}
+
+#profile-bio.show {
+    height: auto;
+    padding-bottom: 60px;
+}
 
 /* Блок с картинкой и текстом */
 .profile-info__part-button {
@@ -175,25 +204,9 @@ article {
 }
 
 
-/* Фото во весь экран */
-.modal-photo-full {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    background-color: var(--bg-transparent);
-    z-index: var(--z-modal);
-
-    cursor: pointer;
-}
-
-
-#photo-full {
+/* Фото в модальном окне размером в весь экран */
+#photo-modal {
     /* max-width: 80%;
     max-height: 80%; */
     max-width: 60%;
@@ -204,27 +217,4 @@ article {
 
     /* Увеличение картинки в полтора раза */
     scale: 1.5;
-}
-
-#photo-full-close {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: var(--z-top);
-}
-
-/* Только для десктопных устройств */
-@media (hover: hover) {
-    /* При наведении на обвертку кнопка загорается, при наведении на картинку кнопка не горит */
-    #photo-full-close {
-        opacity: .5;
-    }
-
-    .modal-photo-full:hover #photo-full-close {
-        opacity: 1;
-    }
-
-    #photo-full:hover + #photo-full-close {
-        opacity: .5;
-    }
 }

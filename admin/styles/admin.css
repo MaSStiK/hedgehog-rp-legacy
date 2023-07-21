@@ -22,3 +22,8 @@ aside button {
         display: none;
     }
 }
+
+
+#admin-modal {
+    text-align: center;
+}

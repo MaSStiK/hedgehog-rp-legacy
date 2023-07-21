@@ -16,7 +16,7 @@
     width: 45px;
     height: 45px;
     position: absolute;
-    right: 12px;
+    right: 20px;
 }
 
 #nav__burger img {
@@ -28,7 +28,7 @@
     width: auto;
     height: 45px;
     padding: 0 4px;
-    margin-left: 12px;
+    margin-left: 20px;
 }
 
 #nav__profile img, #nav__country img {

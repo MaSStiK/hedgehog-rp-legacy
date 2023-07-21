@@ -1,13 +1,8 @@
-    /* Навигация сверху */
+/* Навигация сверху */
 @media screen and (max-width: 1000px) {
     /* Отступ для фотографии */
     article {
         padding-top: 120px;
-    }
-
-    /* Кнопка закрытия фотографии чуть ниже */
-    #photo-full-close {
-        top: 70px;
     }
 }
 
@@ -59,7 +54,7 @@
         width: 100%;
     }
 
-    #profile-bio {
+    .profile-bio-wrapper {
         width: 100%;
     }
 

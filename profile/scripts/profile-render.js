@@ -72,6 +72,26 @@ function renderUser(user_data) {
     $("#profile-bio").text(user_data.bio !== "" ? user_data.bio : " ")
 
 
+    // Если высота описания больше 100px, то показывается кнопка для раскрывания
+    if ($("#profile-bio").height() > 100) {
+        $(".profile-bio-show").removeClass("hidden")
+        $("#profile-bio").removeClass("js-show-button")
+
+        // Раскрытие описания
+        $(".profile-bio-show").on("click tap", () => {
+            if ($("#profile-bio").hasClass("show")) {
+                $("#profile-bio").removeClass("show")
+                $(".profile-bio-show").text("Нажмите чтобы раскрыть")
+            } else {
+                $("#profile-bio").addClass("show")
+                $(".profile-bio-show").text("Нажмите чтобы свернуть")
+            }
+        })
+    } else { // Иначе удаляем кнопку
+        $(".profile-bio-show").remove()
+    }
+
+
     // Отключаем анимацию загрузки
     loading(false)
 }
