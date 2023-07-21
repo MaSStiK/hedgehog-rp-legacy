@@ -17,6 +17,42 @@ export function GSsendRequest(action, data={}, func) {
 }
 
 
+// ----------------------------------------special----------------------------------------
+// Специльно для регистрации
+// data: userdata {id ... login, password}
+export function GSregistration(data={}, func=null) {
+    let sendData = {
+        data: JSON.stringify(data)
+    }
+
+    GSsendRequest("registration", sendData, func)
+}
+
+
+// Специльно для входа
+// data: login, password
+export function GSlogin(data={}, func=null) {
+    let sendData = {
+        login: data.login,
+        password: data.password
+    }
+
+    GSsendRequest("login", sendData, func)
+}
+
+
+// Специльно для проверки пароля
+// data: id, password
+export function GScheckPassword(data={}, func=null) {
+    let sendData = {
+        id: data.id,
+        password: data.password
+    }
+
+    GSsendRequest("checkPassword", sendData, func)
+}
+
+
 // ----------------------------------------get----------------------------------------
 // Для получения юзера по тегу
 // data: id
@@ -111,40 +147,4 @@ export function GSupdateUserFavourite(data={}, func=null) {
     }
 
     GSsendRequest("updateUserFavourite", sendData, func)
-}
-
-
-// ----------------------------------------special----------------------------------------
-// Специльно для регистрации
-// data: userdata {id ... login, password}
-export function GSregistration(data={}, func=null) {
-    let sendData = {
-        data: JSON.stringify(data)
-    }
-
-    GSsendRequest("registration", sendData, func)
-}
-
-
-// Специльно для входа
-// data: login, password
-export function GSlogin(data={}, func=null) {
-    let sendData = {
-        login: data.login,
-        password: data.password
-    }
-
-    GSsendRequest("login", sendData, func)
-}
-
-
-// Специльно для проверки пароля
-// data: id, password
-export function GScheckPassword(data={}, func=null) {
-    let sendData = {
-        id: data.id,
-        password: data.password
-    }
-
-    GSsendRequest("checkPassword", sendData, func)
 }

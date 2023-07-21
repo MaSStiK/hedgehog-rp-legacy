@@ -47,7 +47,7 @@ $(".modal-close").on("click tap", () => {
 
 // Рендер избранных (aside)
 function renderAside(favourites) {
-    if (Object.keys(favourites).length > 0) { // Если информация есть - рендерим
+    if (favourites.length > 0) { // Если информация есть - рендерим
         GSgetAllUsers({type: "all", data: null}, (data) => {
             // Если есть - показываем aside
             $("aside").removeClass("hidden")
@@ -56,7 +56,7 @@ function renderAside(favourites) {
             let allUsers = data
 
             // Рендерим кнопки в aside
-            for (let fav in favourites) {
+            for (let fav of favourites) {
                 // Откидываем первые 2 символа
                 fav = fav.substring(2)
 
@@ -83,7 +83,7 @@ function renderAside(favourites) {
 let userData = getCache("userData")
 
 if (userData) {
-    renderAside(JSON.parse(userData.favourite))
+    renderAside(JSON.parse(userData.favourite).users)
 } else {
     $("aside").delete()
 }

@@ -54,24 +54,26 @@ function renderCountries(countries) {
         let userFavourite = JSON.parse(userData.favourite)
 
         // Рендерим кнопки "В избранные"
-        for (let fav in userFavourite) {
+        for (let fav of userFavourite.countries) {
             $("#" + fav).addClass("show")
         }
 
         // Рендерим избранные
-        renderAside(userFavourite)
+        renderAside(userFavourite.countries)
 
 
         // Действие при нажатии на кнопку "В избранные"
         $(".button-favourite").unbind()
         $(".button-favourite").on("click tap", (event) => {
-            // Если юзей в избранных - удаляем, если нет - добавляем
+            // Если страна в избранных - удаляем, если нет - добавляем
             if ($("#" + event.target.id).hasClass("show")) {
                 $("#" + event.target.id).removeClass("show")
-                delete userFavourite[event.target.id]
+
+                // Находим индекс айдишника и удаляем его из массива
+                userFavourite.countries.splice(userFavourite.countries.indexOf(event.target.id), 1)
             } else {
                 $("#" + event.target.id).addClass("show")
-                userFavourite[event.target.id] = "true"
+                userFavourite.countries.push(event.target.id)
             }
             
             // Если таймер запущен - удаляем старыый и запускаем новый
@@ -90,7 +92,7 @@ function renderCountries(countries) {
                 console.log("Favourite saved")
 
                 // Рендерим aside
-                renderAside(userFavourite)
+                renderAside(userFavourite.countries)
 
                 GSupdateUserFavourite({id: userData.id, data: userFavourite}, (data) => {
                     // console.log(data)
@@ -107,26 +109,24 @@ function renderCountries(countries) {
 
 // Рендер Избранных (aside)
 function renderAside(favourites) {
-    if (Object.keys(favourites).filter(country => country.startsWith("C-")).length > 0) { // Если информация есть - рендерим
+    if (favourites.length > 0) { // Если информация есть - рендерим
         // Если есть - показываем aside
         $("aside").removeClass("hidden")
         $("aside section").html(`<h4 id="aside-title">Избранные</h4>`)
 
 
         // Рендерим кнопки в aside
-        for (let fav in favourites) {
+        for (let fav of favourites) {
             // Если начинается id начинается C-
-            if (fav.startsWith("C-")) {
-                let country = allСountries.find(country => country.id.toString() === fav)
-                $("aside section").append(`
-                    <a class="aside__button" href="../profile/index.html?id=${country.id}">
-                        <img src="${country.photo}" alt="vk-photo">
-                        <div class="aside__button-names">
-                            <p class="text-cut js-country-name">${country.name.split(" ")[0]}</p>
-                        </div>
-                    </a>
-                `)
-            }
+            let country = allСountries.find(country => country.id.toString() === fav)
+            $("aside section").append(`
+                <a class="aside__button" href="../country/index.html?id=${country.id}">
+                    <img src="${country.photo}" alt="vk-photo">
+                    <div class="aside__button-names">
+                        <p class="text-cut js-country-name">${country.name.split(" ")[0]}</p>
+                    </div>
+                </a>
+            `)
         }
     } else {
         // Если нету - скрываем aside

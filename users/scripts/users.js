@@ -57,24 +57,26 @@ function renderUsers(users) {
         let userFavourite = JSON.parse(userData.favourite)
 
         // Рендерим кнопки "В избранные"
-        for (let fav in userFavourite) {
+        for (let fav of userFavourite.users) {
             $("#" + fav).addClass("show")
         }
 
         // Рендерим избранные
-        renderAside(userFavourite)
+        renderAside(userFavourite.users)
 
 
         // Действие при нажатии на кнопку "В избранные"
         $(".button-favourite").unbind()
         $(".button-favourite").on("click tap", (event) => {
-            // Если юзей в избранных - удаляем, если нет - добавляем
+            // Если юзер в избранных - удаляем, если нет - добавляем
             if ($("#" + event.target.id).hasClass("show")) {
                 $("#" + event.target.id).removeClass("show")
-                delete userFavourite[event.target.id]
+
+                // Находим индекс айдишника и удаляем его из массива
+                userFavourite.users.splice(userFavourite.users.indexOf(event.target.id), 1)
             } else {
                 $("#" + event.target.id).addClass("show")
-                userFavourite[event.target.id] = "true"
+                userFavourite.users.push(event.target.id)
             }
             
             // Если таймер запущен - удаляем старыый и запускаем новый
@@ -93,7 +95,7 @@ function renderUsers(users) {
                 console.log("Favourite saved")
 
                 // Рендерим aside
-                renderAside(userFavourite)
+                renderAside(userFavourite.users)
 
                 GSupdateUserFavourite({id: userData.id, data: userFavourite}, (data) => {
                     // console.log(data)
@@ -110,30 +112,26 @@ function renderUsers(users) {
 
 // Рендер Избранных (aside)
 function renderAside(favourites) {
-    if (Object.keys(favourites).filter(user => user.startsWith("U-")).length > 0) { // Если информация есть - рендерим
+    if (favourites.length > 0) { // Если информация есть - рендерим
         // Если есть - показываем aside
         $("aside").removeClass("hidden")
         $("aside section").html(`<h4 id="aside-title">Избранные</h4>`)
 
 
         // Рендерим кнопки в aside
-        for (let fav in favourites) {
-            // Если начинается id начинается C-
-            if (fav.startsWith("U-")) {
+        for (let fav of favourites) {
+            // Откидываем первые 2 символа, т.к. юзер с чистым айди без буквы
+            fav = fav.substring(2)
 
-                // Откидываем первые 2 символа, т.к. юзер с чистым айди без буквы
-                fav = fav.substring(2)
-
-                let user = allUsers.find(user => user.id.toString() === fav)
-                $("aside section").append(`
-                    <a class="aside__button" href="../profile/index.html?id=${user.id}">
-                        <img src="${user.photo}" alt="vk-photo">
-                        <div class="aside__button-names">
-                            <p class="text-cut js-user-name">${user.name.split(" ")[0]}</p>
-                        </div>
-                    </a>
-                `)
-            }
+            let user = allUsers.find(user => user.id.toString() === fav)
+            $("aside section").append(`
+                <a class="aside__button" href="../profile/index.html?id=${user.id}">
+                    <img src="${user.photo}" alt="vk-photo">
+                    <div class="aside__button-names">
+                        <p class="text-cut js-user-name">${user.name.split(" ")[0]}</p>
+                    </div>
+                </a>
+            `)
         }
     } else {
         // Если нету - скрываем aside
