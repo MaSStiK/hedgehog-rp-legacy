@@ -74,7 +74,7 @@ function renderUsers(users) {
                 delete userFavourite[event.target.id]
             } else {
                 $("#" + event.target.id).addClass("show")
-                userFavourite[event.target.id] = event.target.id
+                userFavourite[event.target.id] = "true"
             }
             
             // Если таймер запущен - удаляем старыый и запускаем новый
