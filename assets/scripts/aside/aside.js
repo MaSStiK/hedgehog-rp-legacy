@@ -17,16 +17,18 @@ function renderUsers(data) {
         fav = fav.substring(2)
 
         let user = allUsers.find(user => user.id.toString() === fav)
-        $("#aside-users").append(`
-            <button class="aside__button-container">
-                <a class="aside__button" href="../profile/index.html?id=${user.id}">
-                    <img src="${user.photo}" alt="vk-photo">
-                    <div class="aside__button-names">
-                        <p class="text-cut js-user-name">${user.name.split(" ")[0]}</p>
-                    </div>
-                </a>
-            </button>
-        `)
+        if (user !== undefined) {
+            $("#aside-users").append(`
+                <button class="aside__button-container">
+                    <a class="aside__button" href="../profile/index.html?id=${user.id}">
+                        <img src="${user.photo}" alt="vk-photo">
+                        <div class="aside__button-names">
+                            <p class="text-cut js-user-name">${user.name.split(" ")[0]}</p>
+                        </div>
+                    </a>
+                </button>
+            `)
+        }
     }
 
 
@@ -51,16 +53,19 @@ function renderCountries(data) {
 
     for (let fav of data) {
         let country = allСountries.find(country => country.id.toString() === fav)
-        $("#aside-countries").append(`
-            <button class="aside__button-container">
-                <a class="aside__button" href="../country/index.html?id=${country.id}">
-                    <img src="${country.photo}" alt="vk-photo">
-                    <div class="aside__button-names">
-                        <p class="text-cut js-country-name">${country.name.split(" ")[0]}</p>
-                    </div>
-                </a>
-            </button>
-        `)
+        if (country !== undefined) {
+            $("#aside-countries").append(`
+                <button class="aside__button-container">
+                    <a class="aside__button" href="../country/index.html?id=${country.id}">
+                        <img src="${country.photo}" alt="vk-photo">
+                        <div class="aside__button-names">
+                            <p class="text-cut js-country-name">${country.name.split(" ")[0]}</p>
+                        </div>
+                    </a>
+                </button>
+            `)
+        }
+        
     }
 
 
