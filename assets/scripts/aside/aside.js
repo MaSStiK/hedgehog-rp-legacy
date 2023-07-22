@@ -135,3 +135,21 @@ export function renderAside() {
         $("aside").addClass("hidden")
     }
 }
+
+
+let userData = getCache("userData")
+
+// Рендерим aside в том случае, если есть юзердата
+if (userData) {
+    $("aside section").append(`
+        <!-- Список избранных -->
+        <h4 id="aside-title">Избранные</h4>
+        <div id="aside-users"></div>
+        <h4 class="aside-divider"></h4>
+        <div id="aside-countries"></div>
+    `)
+    renderAside()
+} else {
+    // Иначе удаляем
+    $("aside").remove()
+}

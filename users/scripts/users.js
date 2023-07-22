@@ -44,10 +44,9 @@ function renderUsers(users) {
     }
 
 
-    // Если нету юзердаты, то удаляем кнопки "В избранные" и aside
+    // Если нету юзердаты, то удаляем кнопки "В избранные"
     if (!userData) {
         $(".button-favourite").remove()
-        $("aside").remove()
     } else {
         // Удаляем все отметки
         $(".button-favourite").removeClass("show")
@@ -62,10 +61,6 @@ function renderUsers(users) {
 
         // Удаляем кнопки "В избранные" у себя
         $(`#U-${userData.id}`).remove()
-
-
-        // Рендерим aside
-        renderAside()
 
 
         // Действие при нажатии на кнопку "В избранные"
@@ -97,7 +92,7 @@ function renderUsers(users) {
             saveFavourite = setTimeout(() => {
                 console.log("Favourite saved")
 
-                // Рендерим aside
+                // Обновляем aside с новой информацией
                 renderAside()
 
                 GSupdateUserFavourite({id: userData.id, data: userFavourite}, (data) => {

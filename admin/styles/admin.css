@@ -1,26 +1,5 @@
-aside section {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 12px;
-    height: 200px;
-}
-
-aside button {
-    width: 100%;
-}
-
 #elements {
     height: 1000px;
-}
-
-
-/* Навигация сверху */
-@media screen and (max-width: 1000px) {
-    aside {
-        display: none;
-    }
 }
 
 

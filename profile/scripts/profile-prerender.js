@@ -43,12 +43,3 @@ $(".modal").on("click tap", (event) => {
 $(".modal-close").on("click tap", () => {
     $(".modal").addClass("hidden")
 })
-
-// Рендер aside
-let userData = getCache("userData")
-
-if (userData) {
-    renderAside()
-} else {
-    $("aside").remove()
-}
