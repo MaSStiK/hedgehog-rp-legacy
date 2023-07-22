@@ -139,6 +139,6 @@ article section {
 /* На не яркая кнопка всегда */
 @media (hover: none) {
     .button-favourite {
-        opacity: .25;
+        opacity: .15;
     }
 }

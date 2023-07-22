@@ -13,6 +13,11 @@
 @import "../scripts/nav/styles/nav.css";
 @import "../scripts/nav/styles/nav-phone.css";
 
+
+/* Избранные */
+@import "../scripts/aside/styles/aside.css";
+
+
 /* Уведомления */
 @import "../scripts/notification/styles/notification.css";
 
@@ -104,42 +109,12 @@ article section {
     overflow: visible; /* Выступающий контент видно */
 }
 
-/* Правая панель (На разных страницах разный функцианал) */
-aside {
-    width: 212px; /* Как ширина навигации 200px */
-    height: 100%;
-    padding: 20px 0; /* Отступ как и у основного блока */
-    z-index: var(--z-nav);
-    
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    overflow: overlay; /* Скроллбар поверх */
-
-    position: absolute;
-    right: -12px;
-    top: 0;
-}
-
-/* Контент aside */
-aside section {
-    width: 200px;
-    padding: 12px;
-
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 4px;
-}
-
 /* Навигация сверху */
 @media screen and (max-width: 1000px) {
     /* Отодвигаем от верха что бы нечего не закрывала навигацию */
     article {
         width: 100%; 
         padding-top: 70px; /* 50px высота навигации + 20px отступ сверху */
-    }
-
-    aside {
-        display: none;
-        padding-top: 70px;
     }
 }
 

@@ -1,3 +1,4 @@
+import { renderAside } from "../../assets/scripts/aside/aside.js";
 import { getCache, setCache } from "../../assets/scripts/cache.js";
 import { GSgetAllCountries, GSupdateUserFavourite } from "../../assets/scripts/gs-api.js";
 import { loading } from "../../assets/scripts/loading/loading.js";
@@ -43,9 +44,10 @@ function renderCountries(countries) {
     }
 
 
-    // Удаляем кнопки "В избранные" если нету юзердаты
+    // Если нету юзердаты, то удаляем кнопки "В избранные" и aside
     if (!userData) {
         $(".button-favourite").remove()
+        $("aside").remove()
     } else {
         // Удаляем все отметки
         $(".button-favourite").removeClass("show")
@@ -58,8 +60,12 @@ function renderCountries(countries) {
             $("#" + fav).addClass("show")
         }
 
-        // Рендерим избранные
-        renderAside(userFavourite.countries)
+        // Удаляем кнопки "В избранные" у своей страны
+        $(`#C-${userData.id}`).remove()
+
+
+        // Рендерим aside
+        renderAside()
 
 
         // Действие при нажатии на кнопку "В избранные"
@@ -92,7 +98,7 @@ function renderCountries(countries) {
                 console.log("Favourite saved")
 
                 // Рендерим aside
-                renderAside(userFavourite.countries)
+                renderAside()
 
                 GSupdateUserFavourite({id: userData.id, data: userFavourite}, (data) => {
                     // console.log(data)
@@ -107,33 +113,6 @@ function renderCountries(countries) {
 }
 
 
-// Рендер Избранных (aside)
-function renderAside(favourites) {
-    if (favourites.length > 0) { // Если информация есть - рендерим
-        // Если есть - показываем aside
-        $("aside").removeClass("hidden")
-        $("aside section").html(`<h4 id="aside-title">Избранные</h4>`)
-
-
-        // Рендерим кнопки в aside
-        for (let fav of favourites) {
-            // Если начинается id начинается C-
-            let country = allСountries.find(country => country.id.toString() === fav)
-            $("aside section").append(`
-                <a class="aside__button" href="../country/index.html?id=${country.id}">
-                    <img src="${country.photo}" alt="vk-photo">
-                    <div class="aside__button-names">
-                        <p class="text-cut js-country-name">${country.name.split(" ")[0]}</p>
-                    </div>
-                </a>
-            `)
-        }
-    } else {
-        // Если нету - скрываем aside
-        $("aside").addClass("hidden")
-    }
-}
-
 // Если есть список всех стран - рендерим из кэша и потом загружаем
 if (allСountries) {
     renderCountries(allСountries)
@@ -143,12 +122,10 @@ if (allСountries) {
         renderCountries(data)
     })
 } else {
-    // Удаляем список избранных
-    $("aside").remove()
-
     loading()
     GSgetAllCountries({type: "all", data: null}, (data) => {
         loading(false)
+
         allСountries = data
         setCache("allСountries", data)
         renderCountries(data)

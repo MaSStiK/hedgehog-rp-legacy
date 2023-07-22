@@ -1,3 +1,4 @@
+import { renderAside } from "../../assets/scripts/aside/aside.js";
 import { getCache, setCache } from "../../assets/scripts/cache.js";
 import { GSgetAllUsers, GSupdateUserFavourite } from "../../assets/scripts/gs-api.js";
 import { loading } from "../../assets/scripts/loading/loading.js";
@@ -28,27 +29,25 @@ function renderUsers(users) {
 
     // Заполняем список всех юзеров
     for (let user of sortedUsers) {
-        // Не рендерим себя
-        if (user.id.toString() !== userData.id) {
-            $(".users-list").append(`
-                <div class="button-container" id="user-${user.id}">
-                    <a class="button-content" href="../profile/index.html?id=${user.id}">
-                        <img src="${user.photo}" alt="vk-photo">
-                        <div class="button-names">
-                            <p class="text-cut js-user-name">${user.name}</p>
-                            <h5 class="text-cut text-secondary js-user-tag">${user.tag}</h5>
-                        </div>
-                    </a>
-                    <img class="button-favourite" id="U-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
-                </div>
-            `)
-        }
+        $(".users-list").append(`
+            <div class="button-container" id="user-${user.id}">
+                <a class="button-content" href="../profile/index.html?id=${user.id}">
+                    <img src="${user.photo}" alt="vk-photo">
+                    <div class="button-names">
+                        <p class="text-cut js-user-name">${user.name}</p>
+                        <h5 class="text-cut text-secondary js-user-tag">${user.tag}</h5>
+                    </div>
+                </a>
+                <img class="button-favourite" id="U-${user.id}" src="../assets/images/icons/Favourite.svg" alt="favourite">
+            </div>
+        `)
     }
 
 
-    // Удаляем кнопки "В избранные" если нету юзердаты
+    // Если нету юзердаты, то удаляем кнопки "В избранные" и aside
     if (!userData) {
         $(".button-favourite").remove()
+        $("aside").remove()
     } else {
         // Удаляем все отметки
         $(".button-favourite").removeClass("show")
@@ -61,8 +60,12 @@ function renderUsers(users) {
             $("#" + fav).addClass("show")
         }
 
-        // Рендерим избранные
-        renderAside(userFavourite.users)
+        // Удаляем кнопки "В избранные" у себя
+        $(`#U-${userData.id}`).remove()
+
+
+        // Рендерим aside
+        renderAside()
 
 
         // Действие при нажатии на кнопку "В избранные"
@@ -95,7 +98,7 @@ function renderUsers(users) {
                 console.log("Favourite saved")
 
                 // Рендерим aside
-                renderAside(userFavourite.users)
+                renderAside()
 
                 GSupdateUserFavourite({id: userData.id, data: userFavourite}, (data) => {
                     // console.log(data)
@@ -110,36 +113,6 @@ function renderUsers(users) {
 }
 
 
-// Рендер Избранных (aside)
-function renderAside(favourites) {
-    if (favourites.length > 0) { // Если информация есть - рендерим
-        // Если есть - показываем aside
-        $("aside").removeClass("hidden")
-        $("aside section").html(`<h4 id="aside-title">Избранные</h4>`)
-
-
-        // Рендерим кнопки в aside
-        for (let fav of favourites) {
-            // Откидываем первые 2 символа, т.к. юзер с чистым айди без буквы
-            fav = fav.substring(2)
-
-            let user = allUsers.find(user => user.id.toString() === fav)
-            $("aside section").append(`
-                <a class="aside__button" href="../profile/index.html?id=${user.id}">
-                    <img src="${user.photo}" alt="vk-photo">
-                    <div class="aside__button-names">
-                        <p class="text-cut js-user-name">${user.name.split(" ")[0]}</p>
-                    </div>
-                </a>
-            `)
-        }
-    } else {
-        // Если нету - скрываем aside
-        $("aside").addClass("hidden")
-    }
-}
-
-
 // Если есть список всех юзеров - рендерим из кэша и потом загружаем
 if (allUsers) {
     renderUsers(allUsers)
@@ -149,12 +122,10 @@ if (allUsers) {
         renderUsers(data)
     })
 } else {
-    // Удаляем список избранных
-    $("aside").remove()
-
     loading()
     GSgetAllUsers({type: "all", data: null}, (data) => {
         loading(false)
+        
         allUsers = data
         setCache("allUsers", data)
         renderUsers(data)
