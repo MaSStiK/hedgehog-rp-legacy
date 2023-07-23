@@ -1,4 +1,4 @@
-.main-block {
+#main-block {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

@@ -24,7 +24,7 @@
 /* Контент в 300px */
 @media screen and (max-width: 590px) {
     /* Отключаем отступ справо и снизу */
-    .main-block {
+    #main-block {
         padding: 12px 0 0px 12px;
     }
 

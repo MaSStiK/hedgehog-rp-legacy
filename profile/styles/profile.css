@@ -3,7 +3,7 @@ article {
     padding-top: 70px;
 }
 
-.main-block {
+#main-block {
     overflow: visible;
     position: relative;
 }
