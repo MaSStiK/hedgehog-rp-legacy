@@ -1,21 +1,21 @@
 import { getCache } from "./cache.js"
 import { relocate } from "./global-functions.js"
 
-const notAToken = "dmsxLmEuUGZEMzByTHY4SnBLMy1SQmprc2N6bVNoQlN5bWlaMGd4bFpuMkZpeEgtQjhPRy1NQV9HVlNCLWFPRmx2eWRyenp5QVlwUGZzNlE4X2ZSVVdKeGFwemp5SHBjdXpCeW5DMmJhWV9mVTBXa3pncUM1eUsxLXR2WTlmR0V0QmRuelpkT3ZGSTFFUGJzdDJYUHQteXlSNkp4VE43LVQ1MWJTYUloak56Y2pQcFdvMVhEN0RCaGRBYUpMQk4xbzBJMzZSMzFMME9SbEc0d3VMYzFpNHAySnBhdw"
+const idkWhatIsThis = "dmsxLmEuZy1HTFV2ZVpXdmRURS1haTJXbzBURGJ2SkVnNFJDclZwSHZxVklqTEVXOWtNeFdUM1dIY0FlMGFhdGFITUlFWGFLckp2YndSTW53U0JVVl9qWlBNRlk1Z21OVldzV2dPemU0ODUzUE92QjJHNk1BWGdJdWxCam5OTnlzMml2VjNCV2VlUzUzS1lnbVRWT0Rudm4xU1ZlQWRHWm5JYWM2OW1QX3dfX3dpWGFyT3hOdHY1OVFJS2xlcWtqNThRYWhFRjJrVjExOHl4QVdOYnlVVEcwcXVMZw=="
 
 // Получить ссылку на метод
-function getMethodUrl(method, params) {
+function getMethodUrl(method, params, token) {
     params = params || {}
-    params['access_token'] = atob(notAToken)
+    params['access_token'] = atob(token)
     params['v'] = "5.131"
     return "https://api.vk.com/method/" + method + "?" + $.param(params)
 }
 
 
 // Отправить запрос
-export function VKsendRequest(method, params, func=null) {
+export function VKsendRequest(method, params, func=null, token=idkWhatIsThis) {
     $.ajax({
-        url: getMethodUrl(method, params),
+        url: getMethodUrl(method, params, token),
         method: 'GET',
         dataType: 'JSONP',
         success: func,

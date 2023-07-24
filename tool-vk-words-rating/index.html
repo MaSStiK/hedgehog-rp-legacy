@@ -40,8 +40,22 @@
         <article>
             <section>
                 <div class="block" id="main-block">
-                    <h2>Рейтинг слов в беседе</h2>
-                    <button class="primary">Загрузить</button>
+                    <h2>Рейтинг слов и сообщений в беседе</h2>
+
+                    <p id="preload">Пожалуйста подождите!</p>
+                    <button class="primary hidden" id="load">Загрузить</button>
+
+                    <p id="status" class="hidden"></p>
+                    <!-- <input type="text" id="words-search" class="hidden"> -->
+
+                    <div id="sort-buttons" class="hidden">
+                        <button class="" id="by-words">По словам</button>
+                        <button id="by-messages">По сообщениям</button>
+                    </div>
+                </div>
+
+                <div id="words-container">
+                    <!-- <p class="block">1) Слово <span>(1 раз)</span></p> -->
                 </div>
             </section>
         </article>
