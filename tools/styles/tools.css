@@ -1,8 +1,12 @@
-#main-block {
+.tools {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 12px;
+}
+
+h2 {
+    text-align: center;
 }
 
 .tool-container {
