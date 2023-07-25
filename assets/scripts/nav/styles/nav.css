@@ -34,17 +34,17 @@ main nav {
     align-items: center;
     justify-content: center;
     margin: 8px 0;
+    cursor: pointer;
 }
 
 .main-nav__logotype img {
     width: 150px;
-    cursor: pointer;
 }
 
 
 /* Разделитель */
 .main-nav__divider {
-    width: 80%;
+    width: 90%;
     margin: 0 auto 20px auto; /* Центр */
     padding-top: 20px;
     border-bottom: 1px solid var(--border-primary);
@@ -135,6 +135,7 @@ main nav {
     /* Прячем основной контент */
     .main-nav__content {
         display: none;
+        cursor: default;
     }
 
     /* Отступ у кнопок */
@@ -158,6 +159,7 @@ main nav {
     .main-nav__content-wrapper.show {
         display: flex;
         position: fixed;
+        cursor: pointer;
     }
 
     /* Сама навигация становится телефонной версией */

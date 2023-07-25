@@ -106,8 +106,8 @@ export function renderNavigation() {
 
 
     // Нажатие логотип - переход на вкладку дом
-    $("#nav__logo img").unbind()
-    $("#nav__logo img").on("click tap", () => { 
+    $("#nav__logo").unbind()
+    $("#nav__logo").on("click tap", () => { 
         relocate("../home/index.html")
     })
     
@@ -119,6 +119,14 @@ export function renderNavigation() {
         $(".main-nav__content").toggleClass("show");
         $(".main-nav__phone").toggleClass("hide-border-part");
         $("#nav__burger").toggleClass("clicked");
+    })
+
+
+    // Нажатие на темный фон навигации
+    $(".main-nav__content-wrapper").on("click tap", (event) => {
+        if (event.target.classList.contains("main-nav__content-wrapper")) {
+            $("#nav__burger").trigger("click")
+        }
     })
 
 
