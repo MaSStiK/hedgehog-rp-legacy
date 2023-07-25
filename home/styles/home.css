@@ -1,33 +1,44 @@
-#main-block {
+h1 {
+    text-align: center;
+}
+
+
+.title {
+    text-align: center;
+
+    margin-top: 12px;
+}
+
+
+.links {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     gap: 12px;
 }
 
-.tool-container {
+.link-container {
     width: calc(50% - 6px);
     height: 200px;
 
     position: relative;
 }
 
-.tool-container a {
+.link-container  a {
     width: 100%;
     height: 100%;
 }
 
-.tool-container img {
+.link-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.tool-image-contain {
+.link-image-contain {
     object-fit: contain !important;
 }
 
-.tool-title {
+.link-title {
     width: 100%;
     padding: 24px 0 12px 0;
     position: absolute;
