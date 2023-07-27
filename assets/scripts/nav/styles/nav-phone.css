@@ -24,14 +24,14 @@
     height: 40px;
 }
 
-#nav__profile, #nav__country {
+#nav__user, #nav__country {
     width: auto;
     height: 45px;
     padding: 0 4px;
     margin-left: 20px;
 }
 
-#nav__profile img, #nav__country img {
+#nav__user img, #nav__country img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -39,7 +39,7 @@
 }
 
 /* Текст в кнопках */
-#nav__profile h5, #nav__country h5 {
+#nav__user h5, #nav__country h5 {
     max-width: 100px;
     min-width: 0px;
     margin-left: 4px;
@@ -80,13 +80,13 @@
 
 
     /* Ставим картинки просто круглые */
-    #nav-profile, #nav-country {
+    #nav-user, #nav-country {
         width: 45px;
         padding: 0;
     }
 
     /* Отключаем текст */
-    #nav-profile h5, #nav-country h5 {
+    #nav-user h5, #nav-country h5 {
         display: none;
     }
 }

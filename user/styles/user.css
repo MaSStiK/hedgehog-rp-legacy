@@ -9,7 +9,7 @@ article {
 }
 
 /* Верх профиля */
-.profile-top {
+.user-top {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -17,7 +17,7 @@ article {
 }
 
 /* Тег автора и имя, в телефонной версии съезжает под аватарку */
-.profile-top__name {
+.user-top__name {
     width: calc(100% - 20%);
     display: flex;
     flex-direction: column;
@@ -25,14 +25,14 @@ article {
     margin-left: calc(20% + 52px); /* Отступ от фото примерно 12px */
 }
 
-#profile-tag {
+#user-tag {
     /* Скопировать тег */
     cursor: pointer;
 }
 
 
 /* Фото профиля */
-.profile-top__photo {
+.user-top__photo {
     width: 100px;
     height: 100px;
     overflow: hidden;
@@ -49,21 +49,21 @@ article {
 
 /* Только для десктопных устройств */
 @media (hover: hover) {
-    .profile-top__photo:hover, .profile-top__photo:active {
+    .user-top__photo:hover, .user-top__photo:active {
         width: 108px;
         height: 108px;
     }
 }
 
 
-.profile-top__photo img {
+.user-top__photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 /* Обводка фотографии */
-.profile-top__photo__wrapper {
+.user-top__photo__wrapper {
     width: 108px;
     height: 108px;
     border-radius: 50%;
@@ -103,7 +103,7 @@ article {
 
 
 /* Блок с информацией */
-.profile-info {
+.user-info {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -111,35 +111,35 @@ article {
     gap: 12px;
 }
 
-.profile-info__part {
+.user-info__part {
     width: 90%;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.profile-info__part.date {
+.user-info__part.date {
     height: 40px;
 }
 
 
 /* Оступ слево */
-.profile-info__part p {
+.user-info__part p {
     width: 50%; /* Ширина блока текста */
 }
 
-.profile-info__part input {
+.user-info__part input {
     width: 50%;
 }
 
 
 /* Обвертка описания */
-.profile-bio-wrapper {
+.user-bio-wrapper {
     width: 90%;
     position: relative;
 }
 
-#profile-bio {
+#user-bio {
     width: 100%;
     height: 100px;
     padding: 8px;
@@ -149,11 +149,11 @@ article {
     border-radius: 4px;
 }
 
-#profile-bio.js-show-button {
+#user-bio.js-show-button {
     height: auto;
 }
 
-.profile-bio-show {
+.user-bio-show {
     width: 100%;
     padding: 24px 0 12px 0;
 
@@ -166,13 +166,13 @@ article {
     background: linear-gradient(#00000000, #000000 80%);
 }
 
-#profile-bio.show {
+#user-bio.show {
     height: auto;
     padding-bottom: 60px;
 }
 
 /* Блок с картинкой и текстом */
-.profile-info__part-button {
+.user-info__part-button {
     height: 40px;
     width: 50%;
     background-color: var(--button-bg);
@@ -184,12 +184,12 @@ article {
 
 /* Только для десктопных устройств */
 @media (hover: hover) {
-    .profile-info__part-button:hover, .profile-info__part-button:active {
+    .user-info__part-button:hover, .user-info__part-button:active {
         background-color: var(--button-hover);
     }
 }
 
-.profile-info__part-button img {
+.user-info__part-button img {
     height: 36px;
     width: 36px;
     border-radius: 50%;
@@ -198,7 +198,7 @@ article {
     margin-left: 4px;
 }
 
-.profile-info__part-button p {
+.user-info__part-button p {
     /* Фиксированая ширина что бы картинка не сжималась (минус ширина картинки минус отступы 4 4 2) */
     width: calc(100% - 36px - 10px);
 }

@@ -9,23 +9,23 @@
 /* Контент в 300px */
 @media screen and (max-width: 590px) {
     /* Фото профиля по центру */
-    .profile-top__photo, .profile-top__photo__wrapper {
+    .user-top__photo, .user-top__photo__wrapper {
         left: 50%;
     }
 
-    .profile-top__photo {
+    .user-top__photo {
         width: 75px;
         height: 75px;
     }
 
-    .profile-top__photo__wrapper {
+    .user-top__photo__wrapper {
         width: 83px;
         height: 83px;
     }
 
     /* Только для десктопных устройств */
     @media (hover: hover) {
-        .profile-top__photo:hover, .profile-top__photo:active {
+        .user-top__photo:hover, .user-top__photo:active {
             width: 83px;
             height: 83px;
         }
@@ -33,7 +33,7 @@
 
 
     /* Имя под фото */
-    .profile-top__name {
+    .user-top__name {
         width: 100%;
         margin-top: 40px; /* Отступ от картинки примерно 12px */
         text-align: center;
@@ -54,36 +54,36 @@
         width: 100%;
     }
 
-    .profile-bio-wrapper {
+    .user-bio-wrapper {
         width: 100%;
     }
 
     /* Информация в одну колонну + отступ между блоками */
-    .profile-info__part {
+    .user-info__part {
         width: 100%;
         flex-wrap: wrap;
         gap: 12px;
     }
 
-    .profile-info__part > p {
+    .user-info__part > p {
         width: 100%;
     }
 
-    .profile-info__part-button {
+    .user-info__part-button {
         width: 100%;
     }
 
 
     /* Текст в одну строку */
-    .profile-info__part > p {
+    .user-info__part > p {
         width: 100%;
     }
 
-    .profile-info__part.date {
+    .user-info__part.date {
         height: auto;
     }
 
-    .profile-info__part input {
+    .user-info__part input {
         width: 100%;
     }
 }
@@ -108,7 +108,7 @@
 
 
     /* Имя под фото */
-    .profile-top__name {
+    .user-top__name {
         width: 100%;
         /* margin-top: 88px;  Отступ от картинки примерно 12px */
         margin-top: 38px; /* Без кнопки репорта */
@@ -117,12 +117,12 @@
     }
 
     /* В телефонной версии если юзер рендерит свою страницу, то отступ больше */
-    .profile-top__name.self-render {
+    .user-top__name.self-render {
         margin-top: 136px; 
     }
 
     /* Контейнер с информацией авто высота */
-    .profile-info__part.inline {
+    .user-info__part.inline {
          height: auto;
     }
 }

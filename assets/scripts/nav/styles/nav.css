@@ -89,7 +89,7 @@ main nav {
     margin-left: 4px;
 }
 
-#nav-full__profile img, #nav-full__country img {
+#nav-full__user img, #nav-full__country img {
     width: 40px;
     height: 40px;
     border-radius: 50%;

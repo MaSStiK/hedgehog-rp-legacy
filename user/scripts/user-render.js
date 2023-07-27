@@ -23,7 +23,7 @@ function renderUser(user_data) {
         $("#exit-button").removeClass("hidden")
         $("#edit-button").removeClass("hidden")
         // $("#report-button").remove()
-        $(".profile-top__name").addClass("self-render") // Добавляем класс для большего отступа
+        $(".user-top__name").addClass("self-render") // Добавляем класс для большего отступа
         setCache("userData", user_data)
     } else {
         // $("#report-button").removeClass("hidden")
@@ -34,17 +34,17 @@ function renderUser(user_data) {
     // Находим информацию о пользователе в вк
     VKsendRequest('users.get', {user_id: user_data.id, fields: "photo_200"}, (vkData) => {
         vkData = vkData.response[0]
-        $("#profile-vk-button").attr("href", "https://vk.com/id" + user_id)
-        $("#profile-vk-button").append(`
-            <img id="profile-vk-photo" src="${vkData.photo_200}" alt="vk-photo">
-            <p class="text-cut" id="profile-vk-name">${vkData.first_name} ${vkData.last_name}</p>
+        $("#user-vk-button").attr("href", "https://vk.com/id" + user_id)
+        $("#user-vk-button").append(`
+            <img id="user-vk-photo" src="${vkData.photo_200}" alt="vk-photo">
+            <p class="text-cut" id="user-vk-name">${vkData.first_name} ${vkData.last_name}</p>
         `)
     })
 
     // Заполняем поля
-    $("#profile-tag").text(user_data.tag)
-    $("#profile-name").text(user_data.name)
-    $("#profile-photo").attr("src", user_data.photo)
+    $("#user-tag").text(user_data.tag)
+    $("#user-name").text(user_data.name)
+    $("#user-photo").attr("src", user_data.photo)
     $("#photo-full").attr("src", user_data.photo)
 
     // Меняем название страницы
@@ -67,28 +67,28 @@ function renderUser(user_data) {
 
     let regYear = regDate.getFullYear()
 
-    // $("#profile-date").val(`${regHours}:${regMinutes} ${regDay}.${regMonth}.${regYear}`)
-    $("#profile-date").val(`${regDay}.${regMonth}.${regYear}`)
-    $("#profile-bio").text(user_data.bio !== "" ? user_data.bio : " ")
+    // $("#user-date").val(`${regHours}:${regMinutes} ${regDay}.${regMonth}.${regYear}`)
+    $("#user-date").val(`${regDay}.${regMonth}.${regYear}`)
+    $("#user-bio").text(user_data.bio !== "" ? user_data.bio : " ")
 
 
     // Если высота описания больше 100px, то показывается кнопка для раскрывания
-    if ($("#profile-bio").height() > 100) {
-        $(".profile-bio-show").removeClass("hidden")
-        $("#profile-bio").removeClass("js-show-button")
+    if ($("#user-bio").height() > 100) {
+        $(".user-bio-show").removeClass("hidden")
+        $("#user-bio").removeClass("js-show-button")
 
         // Раскрытие описания
-        $(".profile-bio-show").on("click tap", () => {
-            if ($("#profile-bio").hasClass("show")) {
-                $("#profile-bio").removeClass("show")
-                $(".profile-bio-show").text("Нажмите чтобы раскрыть")
+        $(".user-bio-show").on("click tap", () => {
+            if ($("#user-bio").hasClass("show")) {
+                $("#user-bio").removeClass("show")
+                $(".user-bio-show").text("Нажмите чтобы раскрыть")
             } else {
-                $("#profile-bio").addClass("show")
-                $(".profile-bio-show").text("Нажмите чтобы свернуть")
+                $("#user-bio").addClass("show")
+                $(".user-bio-show").text("Нажмите чтобы свернуть")
             }
         })
     } else { // Иначе удаляем кнопку
-        $(".profile-bio-show").remove()
+        $(".user-bio-show").remove()
     }
 
 

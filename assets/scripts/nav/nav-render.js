@@ -14,9 +14,9 @@ export function renderNavigation() {
         `<div class="main-nav__phone">
             <!-- Кнопка профиля в топ навигации -->
             ${userData // Если есть информация о юзере
-            ? `<button class="transparent" id="nav__profile">
-                <img src="${userData.photo}" alt="avatar" id="nav__profile-image">
-                <h5 class="text-cut" id="nav__profile-name">${userData.name.split(" ")[0]}</h5>
+            ? `<button class="transparent" id="nav__user">
+                <img src="${userData.photo}" alt="avatar" id="nav__user-image">
+                <h5 class="text-cut" id="nav__user-name">${userData.name.split(" ")[0]}</h5>
                 </button>`
             : `` // Иначе нечгео
             }
@@ -48,11 +48,11 @@ export function renderNavigation() {
 
                     <!-- Кнопка авторизации или профиль юзера -->
                     ${userData // Если есть информация о юзере
-                    ? `<ul class="main-nav__link"><a href="../profile/index.html?id=${userData.id}" id="nav-full__profile">
-                            <img src="${userData.photo}" alt="avatar" id="nav-full__profile-image">
+                    ? `<ul class="main-nav__link"><a href="../user/index.html?id=${userData.id}" id="nav-full__user">
+                            <img src="${userData.photo}" alt="avatar" id="nav-full__user-image">
                             <div class="main-nav__link-text">
-                                <h5 class="text-cut" id="nav-full__profile-name">${userData.name}</h5>
-                                <h6 class="text-cut" id="nav-full__profile-tag">${userData.tag}</h6>
+                                <h5 class="text-cut" id="nav-full__user-name">${userData.name}</h5>
+                                <h6 class="text-cut" id="nav-full__user-tag">${userData.tag}</h6>
                             </div>
                         </a></ul>`
                     : `<ul class="main-nav__link"><a href="../login/" id="nav-full__authorization">Авторизация</a></ul>` // Иначе кнопка входа
@@ -131,9 +131,9 @@ export function renderNavigation() {
 
 
     // Перенос в профиль на телефонной версии
-    $("#nav__profile").unbind()
-    $("#nav__profile").on("click tap", () => {
-        relocate(`../profile/index.html?id=${userData.id}`)
+    $("#nav__user").unbind()
+    $("#nav__user").on("click tap", () => {
+        relocate(`../user/index.html?id=${userData.id}`)
     })
 
     // Перенос в страну на телефонной версии

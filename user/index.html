@@ -15,8 +15,8 @@
 
     <!-- The Open Graph protocol -->
     <meta property="og:title" content="Профиль - Ежиное-РП">
-    <meta property="og:url" content="https://masstik.github.io/hedgehog.rp/profile">
-    <link rel="canonical" href="https://masstik.github.io/hedgehog.rp/profile">
+    <meta property="og:url" content="https://masstik.github.io/hedgehog.rp/user">
+    <link rel="canonical" href="https://masstik.github.io/hedgehog.rp/user">
     <meta property="og:site_name" content="hedgehog.rp">
     <meta property="og:description" content="Создай свою страну и развивай ее в соответствии со своими желаниями и интересами!">
     <meta name="description" content="Создай свою страну и развивай ее в соответствии со своими желаниями и интересами!">
@@ -28,9 +28,8 @@
     <!-- Глобальные стили -->
     <link rel="stylesheet" href="../assets/styles/global-style.css">
     <!-- Все остальные стили -->
-    <link rel="stylesheet" href="./styles/profile.css">
-    <link rel="stylesheet" href="./styles/profile-phone.css">
-    <link rel="stylesheet" href="./styles/profile-aside.css">
+    <link rel="stylesheet" href="./styles/user.css">
+    <link rel="stylesheet" href="./styles/user-phone.css">
 </head>
 <body>
     <main>
@@ -43,15 +42,15 @@
             <section>
                 <div class="block" id="main-block">
                     <!-- Верхняя часть профиля -->
-                    <div class="profile-top">
-                        <div class="profile-top__photo__wrapper"></div>
-                        <div class="profile-top__photo">
+                    <div class="user-top">
+                        <div class="user-top__photo__wrapper"></div>
+                        <div class="user-top__photo">
                             <!-- Аватарка пустая пока не загрузиться -->
-                            <img id="profile-photo" src="../assets/images/base/base-photo-empty.png" alt="photo">
+                            <img id="user-photo" src="../assets/images/base/base-photo-empty.png" alt="photo">
                         </div>
-                        <div class="profile-top__name">
-                            <p class="h3 text-break" id="profile-name">&nbsp;</p>
-                            <p class="text-secondary h5 text-break" id="profile-tag">&nbsp;</p>
+                        <div class="user-top__name">
+                            <p class="h3 text-break" id="user-name">&nbsp;</p>
+                            <p class="text-secondary h5 text-break" id="user-tag">&nbsp;</p>
                         </div>
 
                         <!-- Либо репорт, либо редактирование и выход -->
@@ -61,47 +60,47 @@
                     </div>
 
                     <!-- Блок с информацией -->
-                    <div class="profile-info">
+                    <div class="user-info">
                         <div class="divider"></div>
-                        <div class="profile-info__part">
+                        <div class="user-info__part">
                             <p>ВКонтакте</p>
-                            <a class="profile-info__part-button" id="profile-vk-button" target="_blank" href="#">
-                                <!-- <img id="profile-vk-photo" src="../assets/images/base/base-photo.png" alt="vk-photo"> -->
-                                <!-- <p class="text-cut" id="profile-vk-name">Имя Фамилия</p> -->
+                            <a class="user-info__part-button" id="user-vk-button" target="_blank" href="#">
+                                <!-- <img id="user-vk-photo" src="../assets/images/base/base-photo.png" alt="vk-photo"> -->
+                                <!-- <p class="text-cut" id="user-vk-name">Имя Фамилия</p> -->
                             </a>
                         </div>
                         <div class="divider"></div>
-                        <div class="profile-info__part">
+                        <div class="user-info__part">
                             <p>Нация</p>
-                            <a class="profile-info__part-button" id="profile-nation-button" href="#">
-                                <img id="profile-nation-photo" src="../assets/images/base/base-nation.png" alt="nation-photo">
-                                <p class="text-cut" id="profile-nation-name">Скоро</p>
+                            <a class="user-info__part-button" id="user-nation-button" href="#">
+                                <img id="user-nation-photo" src="../assets/images/base/base-nation.png" alt="nation-photo">
+                                <p class="text-cut" id="user-nation-name">Скоро</p>
                             </a>
                         </div>
                         <div class="divider"></div>
-                        <div class="profile-info__part">
+                        <div class="user-info__part">
                             <p>Страна</p>
-                            <a class="profile-info__part-button" id="profile-country-button" href="#">
-                                <img id="profile-country-photo" src="../assets/images/base/base-country.png" alt="country-photo">
-                                <p class="text-cut" id="profile-country-name">Скоро</p>
+                            <a class="user-info__part-button" id="user-country-button" href="#">
+                                <img id="user-country-photo" src="../assets/images/base/base-country.png" alt="country-photo">
+                                <p class="text-cut" id="user-country-name">Скоро</p>
                             </a>
                         </div>
                         <div class="divider"></div>
-                        <div class="profile-info__part date">
+                        <div class="user-info__part date">
                             <p>В беседе с</p>
-                            <input id="profile-date" readonly> 
+                            <input id="user-date" readonly> 
                         </div>
                         <div class="divider"></div>
 
                         <!-- Описание (Имитация textarea) -->
-                        <div class="profile-info__part">
+                        <div class="user-info__part">
                             <p>О себе</p>
                         </div>
 
-                        <div class="profile-bio-wrapper">
-                            <p class="js-show-button" id="profile-bio">&nbsp;</p>
+                        <div class="user-bio-wrapper">
+                            <p class="js-show-button" id="user-bio">&nbsp;</p>
 
-                            <p class="profile-bio-show hidden">Нажмите чтобы раскрыть</p>
+                            <p class="user-bio-show hidden">Нажмите чтобы раскрыть</p>
                         </div>
                     </div>
                 </div>
@@ -134,7 +133,7 @@
     <script src="../assets/scripts/global-events.js" type="module"></script>
     
     <!-- Остальные скрипты -->
-    <script src="./scripts/profile-prerender.js" type="module" defer></script>
-    <script src="./scripts/profile-render.js" type="module"></script>
+    <script src="./scripts/user-prerender.js" type="module" defer></script>
+    <script src="./scripts/user-render.js" type="module"></script>
 </body>
 </html>

@@ -31,7 +31,7 @@ function renderUsers(users) {
     for (let user of sortedUsers) {
         $(".users-list").append(`
             <div class="button-container" id="user-${user.id}">
-                <a class="button-content" href="../profile/index.html?id=${user.id}">
+                <a class="button-content" href="../user/index.html?id=${user.id}">
                     <img src="${user.photo}" alt="vk-photo">
                     <div class="button-names">
                         <p class="text-cut js-user-name">${user.name}</p>

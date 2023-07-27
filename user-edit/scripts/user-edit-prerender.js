@@ -23,12 +23,12 @@ $("#password-again").attr("maxlength", consts.passwordMax)
 
 // Кнопка назад 
 $("#edit-back").on("click tap", () => {
-    relocate(`../profile/index.html?id=${userData.id}`)
+    relocate(`../user/index.html?id=${userData.id}`)
 })
 
 // Кнопка назад  навигации
 $("#edit-back-nav").on("click tap", () => {
-    relocate(`../profile/index.html?id=${userData.id}`)
+    relocate(`../user/index.html?id=${userData.id}`)
 })
 
 

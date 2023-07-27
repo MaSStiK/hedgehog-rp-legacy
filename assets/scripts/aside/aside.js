@@ -20,7 +20,7 @@ function renderUsers(data) {
         if (user !== undefined) {
             $("#aside-users").append(`
                 <button class="aside__button-container">
-                    <a class="aside__button" href="../profile/index.html?id=${user.id}">
+                    <a class="aside__button" href="../user/index.html?id=${user.id}">
                         <img src="${user.photo}" alt="vk-photo">
                         <div class="aside__button-names">
                             <p class="text-cut js-user-name">${user.name.split(" ")[0]}</p>
