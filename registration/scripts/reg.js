@@ -226,7 +226,7 @@ form.addEventListener('submit', (event) => {
 
         GSregistration(newUserData, (data) => {
             // Если находит такой же логин
-            if (!data) {
+            if (!data.success) {
                 loading(false)
                 inputError("#login")
                 notify("Этот логин занят!", "danger")

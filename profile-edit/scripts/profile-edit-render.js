@@ -242,8 +242,7 @@ $("#modal-submit").on("click tap", () => {
 
 
     GSupdateUserPassword({id: userData.id, data: {old: oldPass, new: newPass}}, (data) => {
-        // Если возвращает succsess
-        if (Object.keys(data).length > 0) {
+        if (data.success) {
             // Сохраняем новый пароль
             setCache("userPassword", newPass)
             location.reload()
