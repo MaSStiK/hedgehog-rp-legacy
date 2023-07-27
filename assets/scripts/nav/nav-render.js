@@ -75,8 +75,8 @@ export function renderNavigation() {
                     <ul class="main-nav__link"><a href="../home/index.html">Главная</a></ul>
                     <ul class="main-nav__link"><a href="#">Новости</a></ul>
                     <ul class="main-nav__link"><a href="../users/index.html">Участники</a></ul>
-                    <ul class="main-nav__link"><a href="#">Нации</a></ul>
                     <ul class="main-nav__link"><a href="../countries/index.html">Страны</a></ul>
+                    <ul class="main-nav__link"><a href="#">Нации</a></ul>
                     <div class="main-nav__divider"></div>
                     <ul class="main-nav__link"><a href="../tools/index.html">Инструменты</a></ul>
                     <ul class="main-nav__link"><a href="#">Помощь</a></ul>
