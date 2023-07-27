@@ -37,20 +37,19 @@ aside section {
 /* Заголовок в aside */
 #aside-title {
     text-align: center;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-primary);
 }
 
 
 /* Контейнер с кнопками */
-#aside-users {
+#aside-users, #aside-countries {
     display: flex;
     flex-direction: column;
     gap: 12px;
-}
 
-.aside-divider {
-    border-bottom: 1px solid var(--border-primary);
+    padding-top: 12px;
+
+    /* Бордер сверху отделяет блоки с избранными */
+    border-top: 1px solid var(--border-primary);
 }
 
 

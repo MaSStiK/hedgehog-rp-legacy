@@ -30,14 +30,6 @@ function renderUsers(data) {
             `)
         }
     }
-
-
-    // Если есть и юзеры и страны, то показываем разделитель
-    if ($("#aside-users").html() !== "" && $("#aside-countries").html() !== "") {
-        $(".aside-divider").removeClass("hidden")
-    } else {
-        $(".aside-divider").addClass("hidden")
-    }
 }
 
 
@@ -66,14 +58,6 @@ function renderCountries(data) {
             `)
         }
         
-    }
-
-
-    // Если есть и юзеры и страны, то показываем разделитель
-    if ($("#aside-users").html() !== "" && $("#aside-countries").html() !== "") {
-        $(".aside-divider").removeClass("hidden")
-    } else {
-        $(".aside-divider").addClass("hidden")
     }
 }
 
@@ -150,7 +134,6 @@ if (userData) {
         <!-- Список избранных -->
         <h4 id="aside-title">Избранные</h4>
         <div id="aside-users"></div>
-        <h4 class="aside-divider"></h4>
         <div id="aside-countries"></div>
     `)
     renderAside()
