@@ -139,14 +139,12 @@ $("#edit-save").on("click tap", () => {
 
 
     // Если тег старый то не проверяем его уникальность
-    let isTagOld = true
-    if (userData.tag !== newTag) {
-        isTagOld = false
+    let isTagOld = userData.tag === newTag
+
+    // Если тег пустой то ставим тег как id юзера, Но проверка только если тег был изменен
+    if (isTagOld) {
+        userData.tag = newTag !== "@" ? newTag : "@" + userData.id
     }
-
-
-    // Если тег пустой то ставим тег как id юзера
-    userData.tag = newTag !== "@" ? newTag : "@" + userData.id
 
     // Если фото пустое, то ставим из вк
     userData.photo = newPhoto !== "" ? newPhoto : vkPhoto
