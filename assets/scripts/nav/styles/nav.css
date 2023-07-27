@@ -11,13 +11,14 @@ main nav {
 
 /* Для скрола полной навигации */
 .main-nav__content-wrapper {
+    width: 200px;
     height: 100%;
     overflow-y: auto;
 }
 
 /* Основной контент + скрол в телефонной версии */
 .main-nav__content {
-    width: 200px;
+    width: 188px;
     overflow: auto;
     padding-bottom: 20px;
 }
