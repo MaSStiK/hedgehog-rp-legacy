@@ -1,0 +1,29 @@
+.custom-button {
+    height: 48px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+
+    padding: 4px;
+}
+
+.custom-button img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    
+    background-color: var(--bg-primary);
+    object-fit: cover;
+}
+
+.custom-button__text {
+    /* 40px картинка и 8px оступы с боков */
+    width: calc(100% - 48px);
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.custom-button__text p, .custom-button__text small {
+    text-align: left;
+}

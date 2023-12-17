@@ -1,0 +1,94 @@
+/* Обвертка навигации */
+.nav-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 20px 0; /* Внешний отступ блоков - 20px */
+
+    overflow: overlay; /* Скроллбар поверх */
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    z-index: var(--z-nav);
+}
+
+/* Навигация */
+nav {
+    width: calc(100% - 8px); /* Растояние между контентом и скролом - 8px */
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--block-gap);
+}
+
+/* Кнопки */
+nav ul {
+    display: flex;
+    flex-direction: column;
+    /* gap: var(--block-gap); */
+}
+
+/* Контейнер кнопки */
+nav ul li {
+    user-select: none;
+}
+
+/* Кнопка */
+nav ul li a {
+    width: 100%;
+    height: 48px;
+    /* height: var(--button-height); */
+    background-color: var(--button-bg-tp);
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+
+    cursor: pointer;
+}
+
+nav ul li button {
+    height: 48px;
+}
+
+/* Активная вкладка навигации (Стрелочка сбоку) */
+nav ul li a.active::after {
+    content: ">";
+    position: absolute;
+    right: 20px;
+}
+
+/* Только для десктопных устройств */
+@media (hover: hover) {
+    nav ul li a:hover, nav ul li a:active {
+        background-color: var(--button-hover-tp);
+    }
+}
+
+
+/* Разделитель */
+.nav-divider {
+    width: 90%;
+
+    border-bottom: 1px solid var(--border-primary);
+
+    margin: var(--block-gap) auto; /* Центр */
+}
+
+
+/* Логотип */
+#nav-logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#nav-logo img {
+    width: 100px;
+    cursor: pointer;
+}
+
+#nav-menu-show, #nav-menu-hide, #nav-menu-bg, #nav-phone-user, #nav-logo-phone {
+    display: none;
+}

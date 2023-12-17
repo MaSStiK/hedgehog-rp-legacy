@@ -1,0 +1,56 @@
+#article-login {
+    padding: 20px 0px 0px 0px;
+}
+
+/* Секция входа */
+#section-login {
+    width: min(300px, 100%);
+
+    text-align: center;
+
+    margin: 0 auto;
+}
+
+#section-login form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--block-gap);
+}
+
+
+/* Логотип над формой */
+.section-login__logo {
+    width: min(200px, 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto 20px auto;
+}
+
+.section-login__logo img {
+    width: 100%;
+
+    cursor: pointer;
+}
+
+#section-login form .custom-input-wrapper:last-of-type {
+    margin-bottom: 4px;
+}
+
+#section-login form button[type=submit] {
+    margin-top: 4px;
+}
+
+
+/* Текст под формой */
+.section-login__sub-text {
+    width: min(300px, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin: 12px auto 0 auto;
+}

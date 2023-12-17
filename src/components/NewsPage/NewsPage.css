@@ -1,0 +1,17 @@
+#article-news {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}
+
+.section-news__row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--block-gap);
+}
+
+.section-news__column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--block-gap);
+}

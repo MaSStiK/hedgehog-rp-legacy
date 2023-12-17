@@ -1,0 +1,119 @@
+@media screen and (max-width: 840px) {
+    /* Обвертка навигации */
+    .nav-wrapper {
+        width: 200px;
+        padding: 0px 0px 60px 0px;
+        
+        background-color: var(--bg-secondary);
+        border-left: 1px solid var(--border-primary);
+
+        position: fixed;
+        top: 0px;
+        right: 0;
+
+        /* display: none; */
+    }
+
+    /* Навигация */
+    nav {
+        width: calc(100% - 8px - 8px); /* Растояние между контентом и скролом - 8px и слево - 8px */
+        margin: 0 auto;
+
+        gap: 0px;
+    }
+
+    #nav-logo {
+        display: none;
+    }
+
+    #nav-logo-phone {
+        display: flex;
+        width: 48px;
+        height: 48px;
+
+        margin-left: 8px;
+    }
+
+    #nav-logo-phone img {
+        width: 48px;
+        height: 48px;
+    }
+
+
+    /* Кнопку открвтия навигации видно только на маленьких экранах */
+    #nav-menu-show {
+        display: flex;
+        width: 48px;
+        height: 48px;
+
+        position: absolute;
+        top: 0px;
+        right: 8px;
+    }
+
+    #nav-menu-show img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Кнопка закрытия навигации */
+    #nav-menu-hide {
+        display: flex;
+        width: 48px;
+        height: 48px;
+
+        margin-left: auto;
+
+        margin: 0px 0 12px auto;
+    }
+
+    #nav-menu-hide img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Скрытие полосы у навигации */
+    #nav-menu-hide::after {
+        content: "";
+        width: 2px;
+        height: 49px;
+
+        position: fixed;
+        top: 0;
+        right: 199px;
+
+        background-color: var(--bg-secondary);
+    }
+
+    /* Подложка навигации */
+    #nav-menu-bg {
+        width: 100%;
+        height: calc(100% - 50px);
+        display: block;
+
+        position: fixed;
+        top: 50px;
+        left: 0;
+        background-color: var(--bg-transparent);
+
+        cursor: pointer;
+
+        z-index: var(--z-nav-bg);
+    }
+
+    /* Показывать ли меню */
+    .hide-nav-menu {
+        display: none !important;
+    }
+
+    /* Кнопка юзера в моб. версии */
+    #nav-phone-user {
+        width: 48px;
+        height: 48px;
+
+        display: flex;
+        position: absolute;
+        top: 0px;
+        right: 64px; /* 48px + 8px + 8px */
+    }
+}

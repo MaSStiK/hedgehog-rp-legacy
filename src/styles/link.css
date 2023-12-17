@@ -1,0 +1,26 @@
+/* Ссылка (Указывается для тега <a> (Link) если в нем только текст) */
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.text-link {
+    color: var(--text-link);
+    cursor: pointer;
+}
+
+
+/* Только для десктопных устройств */
+@media (hover: hover) {
+    .text-link:hover, .text-link:active {
+        text-decoration: underline;
+    }
+}
+
+/* Только на мобильных дивайсах */
+@media (hover: none) {
+    /* На мобильных девайсах ссылки подчеркнуты */
+    .text-link {
+        text-decoration: underline;
+    }
+}

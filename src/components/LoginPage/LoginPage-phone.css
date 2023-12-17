@@ -1,0 +1,6 @@
+/* Контент в 100% */
+@media screen and (max-width: 840px) {
+    #article-login {
+        padding: 20px 20px 0px 20px;
+    }
+}

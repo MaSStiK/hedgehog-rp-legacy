@@ -1,0 +1,36 @@
+/* Контент в 100% */
+@media screen and (max-width: 840px) {
+    /* Основной контейнер всего контента */
+    #root {
+        width: 100%; /* Ширина во всю страницу */
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Блок навигации */
+    aside {
+        width: 100%; /* Ширина во всю страницу */
+        height: 50px; /* 50px высота кнопок */
+
+        background-color: var(--bg-secondary);
+        border-bottom: 1px solid var(--border-primary);
+
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    /* Блок страницы */
+    article {
+        width: 100%; /* Ширина во всю страницу */
+        padding: 70px 20px 20px 20px; /* Отступ сверху 50px + 20px */
+    }
+
+    /* Блок с контентом */
+    section {
+        width: min(550px, 100%); /* 550px размер страницы и скролл сбоку страницы */
+        
+        margin: 0 auto; /* По центру страницы */
+    }
+}

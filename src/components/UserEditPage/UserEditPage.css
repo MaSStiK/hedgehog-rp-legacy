@@ -1,0 +1,27 @@
+#article-user-edit {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}
+
+.section-user-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--block-gap);
+}
+
+.section-user-edit small {
+    width: 100%;
+    text-align: left;
+}
+
+.section-user-edit img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+}
+
+.section-user-edit small .text-link {
+    font-size: var(--p-small-size);
+}

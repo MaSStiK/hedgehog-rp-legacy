@@ -1,9 +1,0 @@
-aside section {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-aside section button {
-    width: 100%;
-}

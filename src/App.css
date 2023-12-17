@@ -1,0 +1,70 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-primary);
+}
+
+/* Основной контейнер всего контента */
+#root {
+    display: flex;
+    gap: 20px;
+
+    padding: 0 20px;
+}
+
+/* Блок навигации */
+aside {
+    width: 212px; /* 200px размер навигации + 12px скролл */
+    height: 100%; /* Высота во всю страницу */
+
+    z-index: var(--z-nav-content);
+}
+
+/* Блок страницы */
+article {
+    width: 562px; /* 550px размер страницы + 12px скролл */
+    height: 100%; /* Высота во всю страницу */
+    padding: 20px 12px 20px 0px; /* Внешний отступ блоков - 20px */
+    overflow: overlay; /* Скроллбар поверх */
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/* Блок с контентом */
+section {
+    width: 100%;
+    height: auto; /* Высота определяется контентом блока */
+
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius);
+    padding: var(--block-gap);
+}
+
+
+/* Скролл */
+*::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+/* Подложка скролла в цвет фона */
+::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: #00000000;
+}
+
+/* Скрол цвета основного блока */
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #403d4a;
+}
+
+/* Заголовки страниц */
+.page-title {
+    margin-left: var(--article-gap);
+}

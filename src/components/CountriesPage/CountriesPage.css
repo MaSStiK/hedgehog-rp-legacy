@@ -1,0 +1,11 @@
+#article-countries {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}
+
+.section-countries {
+    display: flex;
+    flex-direction: column;
+    gap: var(--block-gap);
+}

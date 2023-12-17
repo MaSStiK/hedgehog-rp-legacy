@@ -1,0 +1,39 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    gap: var(--block-gap);
+}
+
+.post__top {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--block-gap);
+}
+
+.post__top a {
+    width: calc(100% - 76px);
+}
+
+.post__top > small {
+    text-align: right;
+}
+
+.post__attachments-wrapper {
+    height: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.post__attachments {
+    display: flex;
+    gap: var(--block-gap);
+    padding-bottom: var(--block-gap);
+}
+
+.post__attachments img {
+    display: inline-block;
+    height: 350px;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+}

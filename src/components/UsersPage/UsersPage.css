@@ -1,0 +1,11 @@
+#article-users {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}
+
+.section-users {
+    display: flex;
+    flex-direction: column;
+    gap: var(--block-gap);
+}

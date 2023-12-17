@@ -1,0 +1,5 @@
+#article-notfound {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}

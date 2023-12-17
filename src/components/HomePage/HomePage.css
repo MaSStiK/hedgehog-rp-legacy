@@ -1,0 +1,53 @@
+#article-home {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}
+
+.section-home__row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--block-gap);
+}
+
+.section-home__column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--block-gap);
+}
+
+/* Блок с информацией */
+.section-home-link__wrapper {
+    width: calc(50% - 6px);
+    height: 200px;
+    border-radius: var(--border-radius);
+
+    position: relative;
+    cursor: pointer;
+}
+
+/* Только для десктопных устройств */
+@media (hover: hover) {
+.section-home-link__wrapper:hover {
+    scale: 1.03;
+}
+}
+
+.section-home-link__wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+}
+
+.section-home-link__wrapper h3 {
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(#00000000, #000000CC);
+
+    text-align: center;
+
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}

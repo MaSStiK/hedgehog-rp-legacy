@@ -1,0 +1,14 @@
+/* Контент в 100% */
+@media screen and (max-width: 840px) {
+    .section-home-link__wrapper h3 {
+        font-size: var(--h4-size);
+    }
+
+    .section-home__column h2 {
+        font-size: var(--h3-size);
+    }
+
+    iframe {
+        width: 100%;
+    }
+}

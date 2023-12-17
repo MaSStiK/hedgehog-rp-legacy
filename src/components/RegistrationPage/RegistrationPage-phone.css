@@ -1,0 +1,6 @@
+/* Контент в 100% */
+@media screen and (max-width: 840px) {
+    #article-registration {
+        padding: 20px 20px 0px 20px;
+    }
+}

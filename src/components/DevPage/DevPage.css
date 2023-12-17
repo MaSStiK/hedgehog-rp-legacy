@@ -1,0 +1,11 @@
+#article-dev {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}
+
+.dev-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--block-gap);
+}
