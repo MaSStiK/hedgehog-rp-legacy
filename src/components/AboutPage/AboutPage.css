@@ -1,0 +1,11 @@
+#article-about {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}
+
+.section-about__column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}

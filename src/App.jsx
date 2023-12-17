@@ -25,6 +25,9 @@ import Country from "./components/CountryPage/CountryPage";
 import Countries from "./components/CountriesPage/CountriesPage";
 import CountryEdit from "./components/CountryEditPage/CountryEditPage";
 import Tools from "./components/ToolsPage/ToolsPage";
+import Help from "./components/HelpPage/HelpPage";
+import About from "./components/AboutPage/AboutPage";
+
 
 import Dev from "./components/DevPage/DevPage";
 
@@ -154,8 +157,8 @@ export default function App() {
                 <Route path="/tools" element={<Tools />} />
                 <Route path="/tools/exit" element={<Tools doExit={true} />} />
 
-                <Route path="/help" element={<NotFound />} />
-                <Route path="/about" element={<NotFound />} />
+                <Route path="/help" element={<Help />} />
+                <Route path="/about" element={<About />} />
 
                 <Route path="/dev" element={
                     <ProtectedRoute isAllowed={Context.isAdmin}>
