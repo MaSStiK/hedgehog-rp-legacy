@@ -3,7 +3,7 @@ import $ from "jquery";
 
 // Ссылка для обращение к api
 const devGoogleSheetURL = "https://script.google.com/macros/s/AKfycbyamHBWfy6Ym4Hm1vSEFXGxwlI9a3r9um7ILfrsfMi2/dev"
-const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbz8Ci5JJ9vxNdd9w7dR5uXlGadlmtK5y9BHCkTyQLGnE_1dJP_1ZmKllKW-yCNpEq_1Lg/exec"
+const GoogleSheetURL = "https://script.google.com/macros/s/AKfycbzjSNCtegLXqjt_xpT_4WRr4hqrOIc2-DBkeibDIDJpRitLdfQH_aCa4RxWNtYHl66Q/exec"
 
 
 // Отправить запрос

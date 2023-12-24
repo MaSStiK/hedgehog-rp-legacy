@@ -12,26 +12,26 @@ import "./App.css";
 import "./App-phone.css";
 
 // Импорт страниц
-import Login from "./components/LoginPage/LoginPage";
-import Registration from "./components/RegistrationPage/RegistrationPage";
+import Login from "./components/PageLogin/PageLogin";
 
-import Home from "./components/HomePage/HomePage";
-import News from "./components/NewsPage/NewsPage";
-import NewsAdd from "./components/NewsAddPage/NewsAddPage";
-import User from "./components/UserPage/UserPage";
-import Users from "./components/UsersPage/UsersPage";
-import UserEdit from "./components/UserEditPage/UserEditPage";
-import Country from "./components/CountryPage/CountryPage";
-import Countries from "./components/CountriesPage/CountriesPage";
-import CountryEdit from "./components/CountryEditPage/CountryEditPage";
-import Tools from "./components/ToolsPage/ToolsPage";
-import Help from "./components/HelpPage/HelpPage";
-import About from "./components/AboutPage/AboutPage";
+import Home from "./components/PageHome/PageHome";
+import News from "./components/PageNews/PageNews";
+import NewsAdd from "./components/PageNewsAdd/PageNewsAdd";
+import User from "./components/PageUser/PageUser";
+import Users from "./components/PageUsers/PageUsers";
+import UserEdit from "./components/PageUserEdit/PageUserEdit";
+import Country from "./components/PageCountry/PageCountry";
+import Countries from "./components/PageCountries/PageCountries";
+import CountryEdit from "./components/PageCountryEdit/PageCountryEdit";
+import Nations from "./components/PageNations/PageNations";
+import Tools from "./components/PageTools/PageTools";
+import Help from "./components/PageHelp/PageHelp";
+import About from "./components/PageAbout/PageAbout";
 
 
-import Dev from "./components/DevPage/DevPage";
+import Dev from "./components/PageDev/PageDev";
 
-import NotFound from "./components/NotFoundPage/NotFoundPage";
+import NotFound from "./components/PageNotFound/PageNotFound";
 
 
 
@@ -70,19 +70,19 @@ export default function App() {
                     console.log("GSAPI: authorize");
                     setPageLoading(false)
 
-                    // Если все успешно
-                    if (data.success) { 
-                        let newUserData = {...data.data}
-                        newUserData.token = Context.userData.token
-                        localStorage.userData = JSON.stringify(newUserData)
-                        setContextUserData(newUserData)
+                    // Если токен изменился
+                    if (!data.success || !Object.keys(data).length) { 
+                        delete localStorage.userData
+                        delete Context.userData
+                        Navigate("/login")
+                        window.location.reload()
                         return
                     }
 
-                    delete localStorage.userData
-                    delete Context.userData
-                    Navigate("/login")
-                    window.location.reload()
+                    let newUserData = {...data.data}
+                    newUserData.token = Context.userData.token
+                    localStorage.userData = JSON.stringify(newUserData)
+                    setContextUserData(newUserData)
                 })
             }
 
@@ -124,7 +124,6 @@ export default function App() {
         <DataContext.Provider value={Context}>
             <Routes>
                 <Route path="/login" element={<Login />} />
-                <Route path="/registration" element={<Registration />} />
 
                 <Route path="/home" element={<Home />} />
 
@@ -152,7 +151,7 @@ export default function App() {
                 }/>
 
 
-                <Route path="/nations" element={<NotFound />} />
+                <Route path="/nations" element={<Nations />} />
 
                 <Route path="/tools" element={<Tools />} />
                 <Route path="/tools/exit" element={<Tools doExit={true} />} />

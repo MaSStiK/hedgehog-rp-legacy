@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-const idkWhatIsThis = "dmsxLmEuZUNtcTRRaWt4RXM4TjZwVGpReEtZZFpEdDhTVEZqckNiaHlSWE16LVVPckFTUUxBUzhQck5JU0dQMWRZRHB5NHFPd1dhUXB0clkteVU4eXdZNTRXRDkzY3ZmdXRIbkpQQ0x3RG0yRmRTWUJFeUx1dkphQ3d2ajVjdnJ2WUl6eFFZdUZYVlFpSVI0VmxtQ0lYQTVRZGxpYnBnVEswS1ViVDU4d29JRVU4Y1R0OWNkU3VfZXp6TG9JczJhX2xhQm9Sc1RfRXVOYXhna25ZT2RoOWVLNzd6UQ=="
+const test = "dmsxLmEud3VSZVhoUVptaG9NM3BxZTdHcFRORW4tR29lUlNwZDFVZThGZWlKRGs2eXJTaGJWRXBaX2NpYVc3am1pemFaOGQxQ2pOeFZzMnkyMTBZQmFacUtMY05tTDNkSFZBQllUZGhWQ2Nfc0F6cnY3amZlNnVCYk1WMS0wdHg5dUo1ZTA4SlpNNWtSNl9FZjc0TnJXME1wWGpJcWR2amtBeHlyV184bkxpaU51MkE1RUdlMkdUQWxFLVR6TVBBejd4Y0RNQW1fNDIycGh1WGt4SHEySHJTWVJKQQ=="
 
 // Получить ссылку на метод
 function getMethodUrl(method, params, token) {
@@ -12,7 +12,7 @@ function getMethodUrl(method, params, token) {
 
 
 // Отправить запрос
-export function VKAPI(method, params, func=null, token=idkWhatIsThis) {
+export function VKAPI(method, params, func=null, token=test) {
     $.ajax({
         url: getMethodUrl(method, params, token),
         method: "GET",

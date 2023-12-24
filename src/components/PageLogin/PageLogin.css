@@ -1,0 +1,41 @@
+#article-registration {
+    padding: 20px 0px 0px 0px;
+}
+
+/* Секция входа */
+#section-reg {
+    width: min(400px, 100%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--block-gap);
+
+    text-align: center;
+
+    margin: 0 auto;
+}
+
+
+/* Логотип над формой */
+.section-reg__logo {
+    width: min(200px, 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto 20px auto;
+}
+
+.section-reg__logo img {
+    width: 100%;
+
+    cursor: pointer;
+}
+
+.section-reg__code-button {
+    width: auto;
+}
+
+/* Разделение строк */
+.section-reg__divider {
+    border-bottom: 1px solid var(--border-primary);
+}

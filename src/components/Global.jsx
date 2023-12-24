@@ -1,10 +1,7 @@
 import $ from "jquery";
 
 export const CONSTS = {
-    loginMin: 4,
-    loginMax: 32,
-    passwordMin: 8,
-    passwordMax: 32,
+    loginTokenMax: 200,
 
     userNameMin: 1,
     userNameMax: 64,
@@ -32,7 +29,7 @@ export function getUrlParams() {
     return Object.fromEntries(new URLSearchParams(window.location.search))
 }
 
-// Получить переменные из ссылки
+// Анимация загрузки страницы
 export function setPageLoading(show=true) {
     if (!show) {
         $("#page-loading").remove()

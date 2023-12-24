@@ -1,0 +1,11 @@
+#article-nations {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}
+
+.section-nations__column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+}

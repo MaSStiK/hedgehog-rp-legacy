@@ -33,7 +33,7 @@ export default function PostsRender(props) {
                 if (postAuthor) {
                     return <section className="post" key={post.post_id}>
                         <div className="post__top">
-                            <Link to={"/countries/" + postAuthor.country_id} key={postAuthor.country_id}>
+                            <Link to={"/countries/" + postAuthor.country_id}>
                                 <CustomButton
                                     src={postAuthor.country_photo}
                                     text={postAuthor.country_title}
@@ -52,8 +52,8 @@ export default function PostsRender(props) {
                         {postAttachments.length
                             ? <div className="post__attachments-wrapper">
                                 <div className="post__attachments">
-                                    {postAttachments.map((attach) => {
-                                        return <img src={attach} alt="post-attachment" />
+                                    {postAttachments.map((attach, index) => {
+                                        return <img src={attach} alt="post-attachment" key={index} />
                                     })}
                                 </div>
                               </div> 
