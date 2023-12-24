@@ -96,7 +96,7 @@ export default function PageLogin() {
                 Context.setisAdmin(newUserData.id === "291195777")
 
                 // Отправляем сообщение пользователю
-                let VKAPImessage = `Вы успешно вошли в свой аккаунт!\nТокен авторизации для входа в аккаунт на других устройствах:\n${newToken}`
+                let VKAPImessage = `Вы успешно вошли!\nТокен авторизации для входа в аккаунт на других устройствах:\n${newToken}`
                 VKAPI("messages.send", {peer_id: vkFindedUserId, random_id: 0, message: VKAPImessage}, () => {
                     Navigate("/")
                     setdisableSubmitButton(false)
@@ -165,7 +165,7 @@ export default function PageLogin() {
                     VKAPI("messages.send", {peer_id: 2000000007, random_id: 0, message: VKAPImessage}, () => {
         
                         // Отправляем сообщение пользователю
-                        VKAPImessage = "Вы успешно зарегистрировались!"
+                        VKAPImessage = `Вы успешно зарегистрировались!\nТокен авторизации для входа в аккаунт на других устройствах:\n${newToken}`
                         VKAPI("messages.send", {peer_id: vkData.id, random_id: 0, message: VKAPImessage}, () => {
                             setPageLoading(false)
         
