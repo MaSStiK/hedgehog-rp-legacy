@@ -12,11 +12,11 @@ export default function PageNotFound() {
         <>
             <Aside />
             
-            <article id="article-notfound">
+            <article>
                 <h4 className="page-title text-dark">/ Ошибка</h4>
 
                 <section>
-                    <h2>Страница не найдена, или ее еще не сделали</h2>
+                    <h2>Страница не найдена!</h2>
                 </section>
             </article>
         </>

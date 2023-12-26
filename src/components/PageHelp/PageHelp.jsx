@@ -17,10 +17,10 @@ export default function PageHelp() {
         <>
             <Aside />
 
-            <article id="article-help">
+            <article>
                 <h4 className="page-title text-dark">/ Помощь</h4>
 
-                <section className="section-help__column">
+                <section className="flex-col">
                     <h3>По техническим вопросам сайта</h3>
                     <Link to={"https://vk.com/id291195777"} target="_blank" rel="noopener noreferrer">
                         <CustomButton
@@ -30,7 +30,7 @@ export default function PageHelp() {
                     </Link>
                 </section>
 
-                <section className="section-help__column">
+                <section className="flex-col">
                     <h3>По вопросам группы и беседы в вк</h3>
                     <Link to={"https://vk.com/id396771911"} target="_blank" rel="noopener noreferrer">
                         <CustomButton
@@ -40,7 +40,7 @@ export default function PageHelp() {
                     </Link>
                 </section>
 
-                <section className="section-help__column">
+                <section className="flex-col">
                     <h3>Администратор беседы</h3>
                     <Link to={"https://vk.com/id307642230"} target="_blank" rel="noopener noreferrer">
                         <CustomButton

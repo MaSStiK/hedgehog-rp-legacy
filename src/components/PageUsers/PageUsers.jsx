@@ -45,10 +45,10 @@ export default function PageUsers() {
         <>
             <Aside />
             
-            <article id="article-users">
+            <article>
                 <h4 className="page-title text-dark">/ Все участники</h4>
 
-                <section className="section-users">
+                <section className="flex-col">
                     <CustomInput label="Поиск участника">
                         <input type="text" ref={searchRef} onInput={searchUsers} required />
                     </CustomInput>

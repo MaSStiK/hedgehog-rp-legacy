@@ -32,6 +32,10 @@ article {
     padding: 20px 12px 20px 0px; /* Внешний отступ блоков - 20px */
     overflow: overlay; /* Скроллбар поверх */
     -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
 }
 
 /* Блок с контентом */
@@ -64,7 +68,32 @@ section {
     background-color: #403d4a;
 }
 
+
+/* Не видимый обьект */
+.hidden {
+    display: none !important;
+}
+
 /* Заголовки страниц */
 .page-title {
     margin-left: var(--article-gap);
+}
+
+/* Разделение строк */
+.divider {
+    width: 100%;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--block-gap);
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--block-gap);
 }

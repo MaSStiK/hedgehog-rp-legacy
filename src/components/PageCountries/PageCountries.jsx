@@ -62,10 +62,10 @@ export default function PageCountries() {
         <>
             <Aside />
             
-            <article id="article-users">
+            <article>
                 <h4 className="page-title text-dark">/ Все страны</h4>
 
-                <section className="section-countries">
+                <section className="flex-col">
                     <CustomInput label="Поиск страны">
                         <input type="text" ref={searchRef} onInput={searchCountries} required />
                     </CustomInput>

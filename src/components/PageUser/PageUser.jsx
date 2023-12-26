@@ -95,7 +95,7 @@ export default function PageUser() {
     return (
         <>
             <Aside />
-            <article id="article-user">
+            <article>
                 <h4 className="page-title text-dark">/ Участник</h4>
 
                 {/* Если юзер найден */}
@@ -123,7 +123,7 @@ export default function PageUser() {
                             <button className="red" onClick={handleExitProfile}>Выйти из профиля</button>
                         }
 
-                        <div className="user-profile__divider"></div>
+                        <div className="divider"></div>
                         <div className="user-profile__row">
                             <p className="text-gray">ВКонтакте</p>
                             <Link to={`https://vk.com/id${userData.id}`} target="_blank" rel="noopener noreferrer">
@@ -137,7 +137,7 @@ export default function PageUser() {
                         {/* Если есть страна - отображаем */}
                         {userData.country_id &&
                             <>
-                                <div className="user-profile__divider"></div>
+                                <div className="divider"></div>
                                 <div className="user-profile__row">
                                     <p className="text-gray">Страна</p>
                                     <Link to={`/countries/${userData.country_id}`}>
@@ -154,8 +154,8 @@ export default function PageUser() {
                         {/* Если есть описание - отображаем */}
                         {userData.bio &&
                             <>
-                                <div className="user-profile__divider"></div>
-                                <div className="user-profile__column">
+                                <div className="divider"></div>
+                                <div className="flex-col">
                                     <p className="text-gray">О себе</p>
                                     <p className="user-profile__bio">{userData.bio}</p>
                                 </div>
@@ -164,12 +164,16 @@ export default function PageUser() {
                     </section>
                     
                     // Если пользователь не найден, будет показан только когда будет ошибка
-                    : <section className={`user-profile ${!userNotFound ? "hidden" : null}`}>
-                        <h2>Участник не найден!</h2>
-                        <Link to={"/users"}>
-                            <button>К списку участников</button>
-                        </Link>
-                    </section>
+                    : <> 
+                        {userNotFound &&
+                            <section className="user-profile">
+                                <h2>Участник не найден!</h2>
+                                <Link to={"/users"}>
+                                    <button>К списку участников</button>
+                                </Link>
+                            </section>
+                        }
+                    </>
                 }
 
             </article>

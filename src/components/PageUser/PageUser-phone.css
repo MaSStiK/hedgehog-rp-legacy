@@ -14,7 +14,6 @@
 
     /* Высота текста и обрезка */
     .user-profile__top-name h2 {
-        font-size: var(--h3-size);
         max-height: none;
     }
 
@@ -31,34 +30,5 @@
         
         background-color: var(--bg-primary);
         object-fit: cover;
-    }
-
-
-    /* Строка с информацией */
-    .user-profile__row {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: baseline;
-        gap: var(--block-gap);
-    }
-
-    .user-profile__row > p, .user-profile__row > a {
-        width: 100%;
-    }
-
-
-    /* Колонна с информацией (Описание) */
-    .user-profile__column {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: var(--block-gap);
-    }
-
-
-    /* Описание - текст стилизованный под текстареа */
-    .user-profile__bio {
-        font-size: var(--p-small-size);
     }
 }

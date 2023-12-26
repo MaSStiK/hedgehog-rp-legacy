@@ -88,7 +88,7 @@ export default function Aside() {
                             </li>
                         }
 
-                        <div className="nav-divider"></div>
+                        <div className="divider"></div>
 
                         <li><NavLink to={"/"}>Главная</NavLink></li>
                         <li><NavLink to={"/news"}>Новости</NavLink></li>
@@ -96,7 +96,7 @@ export default function Aside() {
                         <li><NavLink to={"/countries"}>Страны</NavLink></li>
                         <li><NavLink to={"/nations"}>Нации</NavLink></li>
 
-                        <div className={"nav-divider"}></div>
+                        <div className={"divider"}></div>
 
                         <li><NavLink to={"/tools"}>Инструменты</NavLink></li>
                         <li><NavLink to={"/help"}>Помощь</NavLink></li>
@@ -104,7 +104,7 @@ export default function Aside() {
 
                         {Context.isAdmin &&
                             <>
-                                <div className="nav-divider"></div>
+                                <div className="divider"></div>
                                 <li><NavLink to={"/dev"}>dev</NavLink></li>
                             </>
                         }

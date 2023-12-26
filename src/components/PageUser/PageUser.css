@@ -1,9 +1,3 @@
-#article-user {
-    display: flex;
-    flex-direction: column;
-    gap: var(--article-gap);
-}
-
 .user-profile {
     display: flex;
     flex-direction: column;
@@ -52,12 +46,6 @@
 }
 
 
-/* Разделение строк */
-.user-profile__divider {
-    border-bottom: 1px solid var(--border-primary);
-}
-
-
 /* Строка с информацией */
 .user-profile__row {
     width: 100%;
@@ -74,15 +62,6 @@
 }
 
 
-/* Колонна с информацией (Описание) */
-.user-profile__column {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--block-gap);
-}
-
-
 /* Описание - текст стилизованный под текстареа */
 .user-profile__bio {
     width: 100%;
@@ -90,7 +69,6 @@
     display: block;
 
     color: var(--text-white);
-    font-size: var(--p-size);
     text-decoration: none;
 
     outline: none;

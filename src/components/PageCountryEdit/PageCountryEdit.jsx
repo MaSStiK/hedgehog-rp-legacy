@@ -300,11 +300,11 @@ export default function PageCountryEdit() {
         <>
             <Aside />
 
-            <article id="article-country-edit">
+            <article>
                 {/* Добавить изменение надписи на "Создание страны" если страна у юзера пустая */}
                 <h4 className="page-title text-dark">{`/ ${Context.userData.country_id ? "Изменение" : "Создание"} страны`}</h4>
 
-                <section className="section-country-edit">
+                <section className="flex-col country-edit">
                     <CustomInput label="ID Страны">
                         <input
                             type="text"
@@ -374,7 +374,9 @@ export default function PageCountryEdit() {
                     </CustomInput>
 
                     <small>Длина ссылки до {CONSTS.photoMax} символов<br />Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px<br />Замена на стандартную картинку если поле пустое</small>
-                    <img src={countryPhotoPreview} alt="preview" className={countryPhotoPreview ? null : "hidden"} />
+                    {countryPhotoPreview &&
+                        <img src={countryPhotoPreview} alt="preview" />
+                    }
                     
                     <CustomInput label={`Описание страны (${countryBioMainLenght} / ${CONSTS.countryBioMainMax})`}>
                         <textarea
@@ -405,8 +407,10 @@ export default function PageCountryEdit() {
                         ></textarea>
                     </CustomInput>
                     <small>Доп. описание до {CONSTS.countryBioMoreMax} символов</small>
-
-                    <p className={`text-red ${!errorText ? "hidden" : null}`}>{errorText}</p>
+                    
+                    {errorText &&
+                        <p className="text-red">{errorText}</p>
+                    }
 
                     <button onClick={submitForm} disabled={disableSubmitButton} className="green">Сохранить</button>
                 </section>

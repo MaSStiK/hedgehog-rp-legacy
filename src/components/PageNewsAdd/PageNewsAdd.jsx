@@ -183,10 +183,10 @@ export default function PageNewsAdd() {
         <>
             <Aside />
 
-            <article id="article-news-write">
+            <article>
                 <h4 className="page-title text-dark">/ Создание новости</h4>
 
-                <section className="section-news-write">
+                <section className="flex-col news-add">
                     <CustomInput label="Заголовок новости">
                         <input
                             ref={postTitleInput}
@@ -217,7 +217,7 @@ export default function PageNewsAdd() {
                     
                     {/* Отображение загруженных картинок */}
                     {attachments.map((attach) => {
-                        return <div className="section-news-write__attachment-preview" key={attach.id}>
+                        return <div className="news-add__attachment-preview" key={attach.id}>
                             <img src={attach.url} alt="preview" />
                             <button onClick={() => {
                                 setattachments(attachments.filter(el => el.id !== attach.id))
@@ -229,7 +229,7 @@ export default function PageNewsAdd() {
                     {/* Отображение блок добавления картинок */}
                     {showAttachments &&
                         <>
-                            <div className="section-news-write__input-row">
+                            <div className="news-add__input-row">
                                 <CustomInput label="Добавить картинку">
                                     <input
                                         ref={postPhotoInput}
@@ -248,12 +248,15 @@ export default function PageNewsAdd() {
                                 <button className="green" onClick={addAttachment} disabled={disableAddButton}>Добавить</button>
                             </div>
                             <small>Длина ссылки до {CONSTS.photoMax} символов<br />Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px<br />Максимум {CONSTS.attachmentsCountMax} картинок</small>
-                            <img src={postPhotoPreview} alt="preview" className={postPhotoPreview ? null : "hidden"} />
+                            {postPhotoPreview &&
+                                <img src={postPhotoPreview} alt="preview" />
+                            }
                         </>
                     }
                     
-
-                    <p className={`text-red ${!errorText ? "hidden" : null}`}>{errorText}</p>
+                    {errorText &&
+                        <p className="text-red">{errorText}</p>
+                    }
 
                     <button onClick={submitForm} disabled={disableSubmitButton} className="green">Создать</button>
                 </section>

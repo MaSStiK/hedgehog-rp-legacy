@@ -66,12 +66,8 @@ nav ul li a.active::after {
 }
 
 
-/* Разделитель */
-.nav-divider {
-    width: 90%;
-
-    border-bottom: 1px solid var(--border-primary);
-
+/* Разделитель в навигации с отступами */
+nav ul .divider {
     margin: var(--block-gap) auto; /* Центр */
 }
 

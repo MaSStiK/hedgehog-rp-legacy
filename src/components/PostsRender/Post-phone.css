@@ -1,13 +1,5 @@
 /* Контент в 100% */
 @media screen and (max-width: 840px) {
-    .post h3 {
-        font-size: var(--h4-size);
-    }
-
-    .post p {
-        font-size: var(--p-small-size);
-    }
-
     .post__attachments img {
         height: 150px;
     }

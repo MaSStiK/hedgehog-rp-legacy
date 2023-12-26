@@ -29,10 +29,10 @@ export default function PageTools(props) {
         <>
             <Aside />
 
-            <article id="article-tools">
+            <article>
                 <h4 className="page-title text-dark">/ Инструменты</h4>
 
-                <section className="section-tools__column">
+                <section className="flex-col">
                     <h2>Запасной выход из профиля <br /><p>(Удаление всего хеша)</p></h2>
                     <p>Ссылка на функцию <br /><Link to={"exit"} className="text-link">{window.location.href + "/exit"}</Link></p>
 

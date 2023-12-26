@@ -20,7 +20,7 @@ export default function PageUserEdit() {
         <>
             <Aside />
 
-            <article id="article-user-edit">
+            <article>
                 <section>
                     <h3>Скоро</h3>
                 </section>

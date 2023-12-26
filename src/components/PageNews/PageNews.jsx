@@ -46,13 +46,13 @@ export default function PageNews() {
         <>
             <Aside />
 
-            <article id="article-news">
+            <article>
                 <h4 className="page-title text-dark">/ Новости</h4>
 
                 <PostsRender posts={Context.posts} users={Context.users} />
 
                 {showLoadButton &&
-                    <section className="section-news__row">
+                    <section className="flex-col">
                         <button onClick={loadMorePosts} disabled={disableLoadButton}>Загрузить еще</button>
                     </section>
                 }

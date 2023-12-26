@@ -37,7 +37,7 @@ export default function PageDev() {
         <>
             <Aside />
             
-            <article id="article-dev">
+            <article>
                 <h4 className="page-title text-dark">/ dev</h4>
 
                 <section className="dev-block">

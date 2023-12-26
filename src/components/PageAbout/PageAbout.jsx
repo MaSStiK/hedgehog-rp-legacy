@@ -17,10 +17,10 @@ export default function PageAbout() {
         <>
             <Aside />
 
-            <article id="article-about">
+            <article>
                 <h4 className="page-title text-dark">/ О нас</h4>
 
-                <section className="section-about__column">
+                <section className="flex-col">
                     <h3>"Ежиное РП"</h3>
                     <p>Это группа единомышленников и друзей, которые объединились, чтобы писать историю собственного мира.
                         <br />Это творческая команда, которая занимается одновременно
@@ -31,7 +31,7 @@ export default function PageAbout() {
                     </p>
                 </section>
 
-                <section className="section-about__column">
+                <section className="flex-col">
                     <h3>Наша группа в вк</h3>
                     <Link to={"https://vk.com/public196009619"} target="_blank" rel="noopener noreferrer">
                         <CustomButton

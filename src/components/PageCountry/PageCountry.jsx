@@ -56,20 +56,20 @@ export default function PageCountry() {
         <>
             <Aside />
             
-                <article id="article-country">
+                <article>
                     <h4 className="page-title text-dark">/ Страна</h4>
 
                     {/* Если страна найдена */}
                     {Object.keys(countryData).length
                         ? <>
-                            <section className="country-profile">
-                                <div className="country-profile__top">
-                                    <div className="country-profile__top-photo">
+                            <section className="flex-col">
+                                <div className="country-page__top">
+                                    <div className="country-page__top-photo">
                                         <img src={countryData.country_photo ? countryData.country_photo : imgBasePhoto} alt="userpic" />
                                     </div>
-                                    <div className="country-profile__top-name">
+                                    <div className="country-page__top-name">
                                         <h2>{countryData.country_title}</h2>
-                                        <p onClick={handleCopyButton} className="country-profile__top-tag text-cut text-gray">{showCopyMessage ? "Скопировано" : countryData.country_tag}</p>
+                                        <p onClick={handleCopyButton} className="country-page__top-tag text-cut text-gray">{showCopyMessage ? "Скопировано" : countryData.country_tag}</p>
                                     </div>
                                 </div>
 
@@ -80,8 +80,8 @@ export default function PageCountry() {
                                     </Link>
                                 }
 
-                                <div className="country-profile__divider"></div>
-                                <div className="country-profile__row">
+                                <div className="divider"></div>
+                                <div className="country-page__row">
                                     <p className="text-gray">Автор страны</p>
                                     <Link to={`/users/${countryData.id}`}>
                                         <CustomButton
@@ -94,10 +94,10 @@ export default function PageCountry() {
                                 {/* Если есть описание - отображаем */}
                                 {countryData.country_bio_main &&
                                     <>
-                                        <div className="country-profile__divider"></div>
-                                        <div className="country-profile__column">
+                                        <div className="divider"></div>
+                                        <div className="country-page__column">
                                             <p className="text-gray">Описание</p>
-                                            <p className="country-profile__bio">{countryData.country_bio_main}</p>
+                                            <p className="country-page__bio">{countryData.country_bio_main}</p>
                                         </div>
                                     </>
                                 }
@@ -105,10 +105,10 @@ export default function PageCountry() {
                                 {/* Если есть допю описание - отображаем */}
                                 {countryData.country_bio_more &&
                                     <>
-                                        <div className="country-profile__divider"></div>
-                                        <div className="country-profile__column">
+                                        <div className="divider"></div>
+                                        <div className="flex-col">
                                             <p className="text-gray">Доп. описание</p>
-                                            <p className="country-profile__bio">{countryData.country_bio_more}</p>
+                                            <p className="country-page__bio">{countryData.country_bio_more}</p>
                                         </div>
                                     </>
                                 }
@@ -128,12 +128,16 @@ export default function PageCountry() {
                         </>
 
                         // Если страна не найдена, будет показан только когда будет ошибка
-                        : <section className={`country-profile ${!countryNotFound ? "hidden" : null}`}>
-                            <h2>Страна не найдена!</h2>
-                            <Link to={"/countries"}>
-                                <button>К списку стран</button>
-                            </Link>
-                        </section>
+                        : <>
+                            {countryNotFound && 
+                                <section className="country-page">
+                                    <h2>Страна не найдена!</h2>
+                                    <Link to={"/countries"}>
+                                        <button>К списку стран</button>
+                                    </Link>
+                                </section>
+                            }
+                        </>
                     }
                 </article>
         </>

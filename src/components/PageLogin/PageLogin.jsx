@@ -204,7 +204,7 @@ export default function PageLogin() {
 
             // Если не нашло по токену
             if (!data.success || !Object.keys(data).length) {
-                seterrorTokenText("Код не найден")
+                seterrorTokenText("Токен не действителен")
                 setcodeInputError(true)
                 setdisableSubmitButton(false)
                 return
@@ -227,31 +227,35 @@ export default function PageLogin() {
     }
 
     return (
-        <article id="article-registration">
-            <div className="section-reg__logo">
+        <article id="article-login">
+            <div className="logo-wrapper">
                 <img src={imgLogo} alt="logo" onClick={() => {Navigate("/")}} />
             </div>
 
-            <section id="section-reg">
+            <section>
                 <h2>Вход в аккаунт</h2>
 
                 <p>Для входа в аккаунт отправте код ниже <Link to={"https://vk.com/write-202912556"} target="_blank" rel="noopener noreferrer" className="text-link">нашему боту "Географ"</Link></p>
                 <small className="text-gray">Вы автоматически зарегистрируетесь, если у вас еще нету аккаунта</small>
-                <button className="tp section-reg__code-button" onClick={handleCopyButton}>
-                    <p id="section-reg__code">Код: {vkCode}</p>
+                <button className="tp login__code-button" onClick={handleCopyButton}>
+                    <p>Код: {vkCode}</p>
                     <img src={imgCopy} alt="copy" />
                 </button>
 
-                <p className={`text-gray ${!showCopyMessage ? "hidden" : null}`}>Скопировано</p>
+                {showCopyMessage &&
+                    <p className="text-gray">Скопировано</p>
+                }
 
                 <p>Нажмите на кнопку "Отправил", после того как отправите код боту</p>
                 <small className="text-gray">Не перезагружайте эту страницу во время отправки сообщения, иначе код обновиться!</small>
 
-                <p className={`text-red ${!errorVkFindText ? "hidden" : null}`}>{errorVkFindText}</p>
+                {errorVkFindText &&
+                    <p className="text-red">{errorVkFindText}</p>
+                }
                 
                 <button onClick={searchMessage}>Отправил</button>
                 
-                <div className="section-reg__divider"></div>
+                <div className="divider"></div>
 
                 <p>Или отправьте токен авторизации, который бот отправлял вам ранее <br />(Если вы уже зарегистрированы)</p>
 
@@ -267,7 +271,9 @@ export default function PageLogin() {
                     />
                 </CustomInput>
 
-                <p className={`text-red ${!errorTokenText ? "hidden" : null}`}>{errorTokenText}</p>
+                {errorTokenText &&
+                    <p className="text-red">{errorTokenText}</p>
+                }
 
                 <button onClick={loginByToken} disabled={disableSubmitButton}>Войти</button>
             </section>

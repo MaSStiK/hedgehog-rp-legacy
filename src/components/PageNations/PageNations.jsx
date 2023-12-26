@@ -10,17 +10,17 @@ export default function PageNations() {
     const Context = useContext(DataContext)
 
     useEffect(() => {
-        document.title = "Инструменты | Ежиное-РП"
+        document.title = "Нации | Ежиное-РП"
     })
 
     return (
         <>
             <Aside />
 
-            <article id="article-nations">
-                <h4 className="page-title text-dark">/ Инструменты</h4>
+            <article>
+                <h4 className="page-title text-dark">/ Нации</h4>
 
-                <section className="section-nations__column">
+                <section className="flex-col">
                     <h3>Нации находятся под вопросом разработке</h3>
                     <p>Нужны ли они нам если почти все играют за людей?</p>
                 </section>

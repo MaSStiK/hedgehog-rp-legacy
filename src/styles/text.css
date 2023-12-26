@@ -83,3 +83,23 @@ label {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
+/* Контент в 100% */
+@media screen and (max-width: 840px) {
+    h1 {
+        font-size: var(--h2-size);
+    }
+
+    h2 {
+        font-size: var(--h3-size);
+    }
+
+    h3 {
+        font-size: var(--h4-size);
+    }
+
+    p {
+        font-size: var(--p-small-size);
+    }
+}

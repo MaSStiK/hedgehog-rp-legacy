@@ -66,8 +66,8 @@ export default function App() {
         try {
             // После загрузки приложения делаем проверку токена, если он изменился - требуем залогинится заного
             if (Context.userData) {
-                GSAPI("authorize", {token: Context.userData.token}, (data) => {
-                    console.log("GSAPI: authorize");
+                GSAPI("authorizeByToken", {token: Context.userData.token}, (data) => {
+                    console.log("GSAPI: authorizeByToken");
                     setPageLoading(false)
 
                     // Если токен изменился

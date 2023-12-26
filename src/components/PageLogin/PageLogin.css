@@ -1,9 +1,9 @@
-#article-registration {
-    padding: 20px 0px 0px 0px;
+#article-login {
+    padding: 20px;
 }
 
 /* Секция входа */
-#section-reg {
+#article-login section {
     width: min(400px, 100%);
     display: flex;
     flex-direction: column;
@@ -16,26 +16,21 @@
 
 
 /* Логотип над формой */
-.section-reg__logo {
+#article-login .logo-wrapper {
     width: min(200px, 100%);
     display: flex;
     justify-content: center;
     align-items: center;
 
-    margin: 0 auto 20px auto;
+    margin: 0 auto ;
 }
 
-.section-reg__logo img {
+#article-login .logo-wrapper img {
     width: 100%;
 
     cursor: pointer;
 }
 
-.section-reg__code-button {
+.login__code-button {
     width: auto;
-}
-
-/* Разделение строк */
-.section-reg__divider {
-    border-bottom: 1px solid var(--border-primary);
 }
