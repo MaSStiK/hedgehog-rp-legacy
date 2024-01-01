@@ -30,18 +30,29 @@ article {
     width: 562px; /* 550px размер страницы + 12px скролл */
     height: 100%; /* Высота во всю страницу */
     padding: 20px 12px 20px 0px; /* Внешний отступ блоков - 20px */
-    overflow: overlay; /* Скроллбар поверх */
-    -ms-overflow-style: -ms-autohiding-scrollbar;
+    overflow-y: auto; /* Скроллбар обычный */
+    overflow-x: hidden;
+    /* -ms-overflow-style: -ms-autohiding-scrollbar; */
 
     display: flex;
     flex-direction: column;
     gap: var(--article-gap);
+
+    scrollbar-gutter: stable;
+}
+
+/* CSS for other than iOS devices */ 
+@supports not (-webkit-touch-callout: none) {
+    article {
+        overflow-y: overlay; /* Скроллбар поверх */
+    }
 }
 
 /* Блок с контентом */
 section {
     width: 100%;
     height: auto; /* Высота определяется контентом блока */
+    position: relative;
 
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-primary);
