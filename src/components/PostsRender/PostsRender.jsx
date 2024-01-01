@@ -50,13 +50,18 @@ export default function PostsRender(props) {
                         }
 
                         {postAttachments.length
-                            ? <div className="post__attachments-wrapper">
-                                <div className="post__attachments">
-                                    {postAttachments.map((attach, index) => {
-                                        return <img src={attach} alt="post-attachment" key={index} />
-                                    })}
-                                </div>
-                              </div> 
+                            ? <>
+                                {postAttachments.length !== 1
+                                    ? <div className="post__attachments-wrapper">
+                                        <div className="post__attachments">
+                                            {postAttachments.map((attach, index) => {
+                                                return <img src={attach} alt="post-attachment" key={index} />
+                                            })}
+                                        </div>
+                                       </div> 
+                                    : <img src={postAttachments[0]} alt="post-attachment" className="post__attachment__single-img" />
+                                }
+                              </>
                             : null
                         }
 

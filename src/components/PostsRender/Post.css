@@ -37,3 +37,9 @@
     object-fit: contain;
     border-radius: var(--border-radius);
 }
+
+.post__attachment__single-img {
+    width: 100%;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+}
