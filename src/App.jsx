@@ -25,7 +25,9 @@ import Countries from "./components/PageCountries/PageCountries";
 import CountryEdit from "./components/PageCountryEdit/PageCountryEdit";
 import Nations from "./components/PageNations/PageNations";
 import Tools from "./components/PageTools/PageTools";
-import Help from "./components/PageHelp/PageHelp";
+import Support from "./components/PageSupport/PageSupport";
+import Support_creators_of_countries from "./components/PageSupport/PageSupport_сreators_of_countries";
+
 import About from "./components/PageAbout/PageAbout";
 
 
@@ -156,7 +158,9 @@ export default function App() {
                 <Route path="/tools" element={<Tools />} />
                 <Route path="/tools/exit" element={<Tools doExit={true} />} />
 
-                <Route path="/help" element={<Help />} />
+                <Route path="/support" element={<Support />} />
+                <Route path="/support/сreators-of-countries" element={<Support_creators_of_countries />} />
+
                 <Route path="/about" element={<About />} />
 
                 <Route path="/dev" element={

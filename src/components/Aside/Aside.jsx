@@ -99,7 +99,7 @@ export default function Aside() {
                         <div className={"divider"}></div>
 
                         <li><NavLink to={"/tools"}>Инструменты</NavLink></li>
-                        <li><NavLink to={"/help"}>Помощь</NavLink></li>
+                        <li><NavLink to={"/support"}>Помощь</NavLink></li>
                         <li><NavLink to={"/about"}>О нас</NavLink></li>
 
                         {Context.isAdmin &&
@@ -108,7 +108,6 @@ export default function Aside() {
                                 <li><NavLink to={"/dev"}>dev</NavLink></li>
                             </>
                         }
-                        
                     </ul>
                 </nav>
             </div>

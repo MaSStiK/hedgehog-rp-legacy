@@ -11,7 +11,7 @@ export default function PageUserEdit() {
     // const Navigate = useNavigate()
 
     useEffect(() => {
-        document.title = "Изменение страницы | Ежиное-РП"
+        document.title = "Изменение профиля | Ежиное-РП"
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -21,6 +21,8 @@ export default function PageUserEdit() {
             <Aside />
 
             <article>
+                <h4 className="page-title text-dark">/ Изменение профиля</h4>
+
                 <section>
                     <h3>Скоро</h3>
                 </section>

@@ -126,7 +126,7 @@ export default function PageUser() {
                         <div className="divider"></div>
                         <div className="user-profile__row">
                             <p className="text-gray">ВКонтакте</p>
-                            <Link to={`https://vk.com/id${userData.id}`} target="_blank" rel="noopener noreferrer">
+                            <Link to={`https://vk.com/id${userData.id}`} target="_blank">
                                 <CustomButton
                                     src={userDataVk.photo}
                                     text={userDataVk.name}

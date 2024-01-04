@@ -24,6 +24,10 @@
     gap: 0px;
 }
 
+.custom-button__text-padding {
+    padding: 0 4px;
+}
+
 .custom-button__text p, .custom-button__text small {
     text-align: left;
 }

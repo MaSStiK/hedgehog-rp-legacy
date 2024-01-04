@@ -235,7 +235,7 @@ export default function PageLogin() {
             <section>
                 <h2>Вход в аккаунт</h2>
 
-                <p>Для входа в аккаунт отправте код ниже <Link to={"https://vk.com/write-202912556"} target="_blank" rel="noopener noreferrer" className="text-link">нашему боту "Географ"</Link></p>
+                <p>Для входа в аккаунт отправте код ниже <Link to={"https://vk.com/write-202912556"} target="_blank" className="text-link">нашему боту "Географ"</Link></p>
                 <small className="text-gray">Вы автоматически зарегистрируетесь, если у вас еще нету аккаунта</small>
                 <button className="tp login__code-button" onClick={handleCopyButton}>
                     <p>Код: {vkCode}</p>
