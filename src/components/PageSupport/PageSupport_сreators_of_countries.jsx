@@ -2,6 +2,8 @@ import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Aside from "../Aside/Aside"
 import CustomButton from "../CustomButton/CustomButton"
+import { sortAlphabetically } from "../Global"
+
 
 
 import "./PageSupport.css"
@@ -12,6 +14,24 @@ export default function Support_creators_of_countries() {
     useEffect(() => {
         document.title = "Помощь | Ежиное-РП"
     })
+
+    const creators = [
+        {title: "Эллада", id: 396771911, name: "Алексей Дедов"},
+        {title: "Ежиное Царство" , id: 465908082, name: "Даниил Вудергорский"},
+        {title: "Шлёпляндия", id: 291195777, name: "Мотя Овчинников"},
+        {title: "Арбор", id: 554225932, name: "Егор Полянский"},
+        {title: "Регалия", id: 636378157, name: "Ярослав Янченко"},
+        {title: "Арабистон", id: 554680398, name: "Ис Лам"},
+        {title: "Сэнко и Членопопия" , id: 552376142, name: "’lmp ’pltnkv"},
+        {title: "Орден Св. Арно" , id: 444733069, name: "Матвей Дорофеев"},
+        {title: "Джейра", id: 655062790, name: "Мари Писклова"},
+        {title: "Пивград", id: 523937758, name: "Дмитрий Паникаровский"},
+        {title: "Фенмир (заморожен)", id: 610350669, name: "Fenet Greg"},
+        {title: "Саптостан", id: 450294430, name: "Тимофей Селетков"},
+        {title: "Мяуляндия", id: 4771941180, name: "Владислав Ермошкин"},
+        {title: "Морейская Империя" , id: 616625513, name: "Иван Кравцов"},
+        {title: "Валор", id: 509579665, name: "Вова Шацкий"},
+    ]
 
     return (
         <>
@@ -24,23 +44,9 @@ export default function Support_creators_of_countries() {
                     <h3>Текстовый список создателей стран</h3>
 
                     <ul className="support__ul flex-col">
-                        <li>
-                            <p>Королевство Романья - <Link to={"https://vk.com/id535028784"} className="text-link" target="_blank">Алексей Ванжа</Link>
-                            {" и "}
-                            <Link to={"https://vk.com/id307642230"} className="text-link" target="_blank">Никита Ванжа</Link></p>
-                        </li>
-                        <li><p>Эллада - <Link to={"https://vk.com/id396771911"} className="text-link" target="_blank">Алексей Дедов</Link></p></li>
-                        <li><p>Шлепляндия - <Link to={"https://vk.com/id291195777"} className="text-link" target="_blank">Мотя Овчинников</Link></p></li>
-                        <li><p>Арбор - <Link to={"https://vk.com/id554225932"} className="text-link" target="_blank">Егор Полянский</Link></p></li>
-                        <li><p>Регалия - <Link to={"https://vk.com/id636378157"} className="text-link" target="_blank">Ярослав Янченко</Link></p></li>
-                        <li><p>Арабистон - <Link to={"https://vk.com/id554680398"} className="text-link" target="_blank">Ис Лам</Link></p></li>
-                        <li><p>Сэнко - <Link to={"https://vk.com/id552376142"} className="text-link" target="_blank">’lmp ’pltnkv</Link></p></li>
-                        <li><p>Членопопия - <Link to={"https://vk.com/id815686275"} className="text-link" target="_blank">Вася Иванов</Link></p></li>
-                        <li><p>Орден Св. Арно - <Link to={"https://vk.com/id444733069"} className="text-link" target="_blank">Матвей Дорофеев</Link></p></li>
-                        <li><p>Джейра - <Link to={"https://vk.com/id655062790"} className="text-link" target="_blank">Мари Писклова</Link></p></li>
-                        <li><p>Пивград - <Link to={"https://vk.com/id523937758"} className="text-link" target="_blank">Дмитрий Паникаровский</Link></p></li>
-                        <li><p>Фенмир, заморожен - <Link to={"https://vk.com/id610350669"} className="text-link" target="_blank">Fenet Greg</Link></p></li>
-                        <li><p>Саптостан - <Link to={"https://vk.com/id450294430"} className="text-link" target="_blank">Тимофей Селетков</Link></p></li>
+                        {sortAlphabetically(creators, "title").map((creator) => (
+                            <li><p>{creator.title} - <Link to={"https://vk.com/id" + creator.id} className="text-link" target="_blank">{creator.name}</Link></p></li>
+                        ))}
                     </ul>
                 </section>
             </article>

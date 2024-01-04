@@ -38,3 +38,11 @@ export function setPageLoading(show=true) {
 
     $("#root").append(`<div id="page-loading"></div>`)
 }
+
+
+// Сортировка объекта в алфавитном порядке
+export function sortAlphabetically(data, key) {
+    return data.sort((a, b) => {
+        return a[key].localeCompare(b[key])
+    })
+}

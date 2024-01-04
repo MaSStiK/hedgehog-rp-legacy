@@ -8,6 +8,9 @@ import imgPrivate from "../../assets/icons/Private.svg"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgEdit from "../../assets/icons/Edit.svg"
 
+import { LINKAPI } from "../LINK-API"
+
+
 import "./PageDev.css"
 
 export default function PageDev() {

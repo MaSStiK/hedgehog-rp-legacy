@@ -87,13 +87,10 @@ export default function PageNewsAdd() {
 
         LINKAPI(postPhotoInput.current.value, (data) => {
             postPhotoInput.current.value = ""
-            if (data.shorturl) {
-                setattachments(prevState => [...prevState, {id: Date.now(), url: data.shorturl}])
-                return
-            }
+            setattachments(prevState => [...prevState, {id: Date.now(), url: data}])
 
-            seterrorText("Не удалось загрузить ")
-            setphotoInputError(true)
+            // seterrorText("Не удалось загрузить картинку")
+            // setphotoInputError(true)
         })
     }
 

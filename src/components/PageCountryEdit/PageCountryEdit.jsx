@@ -192,13 +192,12 @@ export default function PageCountryEdit() {
 
         LINKAPI(formPhoto, (data) => {
             // Если получилось сократить ссылку - сохраняем ее
-            if (data.shorturl) {
-                newCountryData.country_photo = data.shorturl
-            }
+            newCountryData.country_photo = data
 
-            // После чего начинаем отпарвк информации
+            // После чего начинаем отпарвку информации
             sendData(newCountryData)
         })
+        
 
 
         function sendData() {

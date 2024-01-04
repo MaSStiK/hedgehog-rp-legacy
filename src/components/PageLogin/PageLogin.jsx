@@ -142,40 +142,45 @@ export default function PageLogin() {
                 country_bio_more: "",
             }
             
+            
             LINKAPI(vkData.photo, (data) => {
                 // Если получилось сократить ссылку - сохраняем ее
-                if (data.shorturl) {
-                    newUserData.photo = data.shorturl
-                }
+                newUserData.photo = data
 
-                // Отправляем пользователя
-                GSAPI("POSTuser", {data: JSON.stringify(newUserData)}, (data) => {
-                    console.log("GSAPI: POSTuser");
+                // Отправляем данные о новом пользователе
+                sendNewUser(newUserData, vkData, newToken)
+            })
+        })
+    }
 
-                    // Если токен не уникальный
-                    if (!data.success || !Object.keys(data).length) {
-                        errorVkFindText("Произошла ошибка во время регистрации!")
-                        setdisableSubmitButton(false)
-                        setPageLoading(false)
-                        return
-                    }
-        
-                    // Отправляем сообщение в беседу логов
-                    let VKAPImessage = `Регистрация пользователя:\nname: ${newUserData.name}\nid: ${newUserData.id}\nlink: https://vk.com/id${newUserData.id}`
-                    VKAPI("messages.send", {peer_id: 2000000007, random_id: 0, message: VKAPImessage}, () => {
-        
-                        // Отправляем сообщение пользователю
-                        VKAPImessage = `Вы успешно зарегистрировались!\nТокен авторизации для входа в аккаунт на других устройствах:\n${newToken}`
-                        VKAPI("messages.send", {peer_id: vkData.id, random_id: 0, message: VKAPImessage}, () => {
-                            setPageLoading(false)
-        
-                            // Если успех - сохраняем и открываем главную
-                            localStorage.userData = JSON.stringify(newUserData)
-                            Context.setuserData(newUserData)
-                            // Тут не проверяем на админа, ибо новый админ не создается
-                            Navigate("/home")
-                        })
-                    })
+    // Отправка нового юзера
+    function sendNewUser(newUserData, vkData, newToken) {
+        // Отправляем пользователя
+        GSAPI("POSTuser", {data: JSON.stringify(newUserData)}, (data) => {
+            console.log("GSAPI: POSTuser");
+
+            // Если токен не уникальный
+            if (!data.success || !Object.keys(data).length) {
+                errorVkFindText("Произошла ошибка во время регистрации!")
+                setdisableSubmitButton(false)
+                setPageLoading(false)
+                return
+            }
+
+            // Отправляем сообщение в беседу логов
+            let VKAPImessage = `Регистрация пользователя:\nname: ${newUserData.name}\nid: ${newUserData.id}\nlink: https://vk.com/id${newUserData.id}`
+            VKAPI("messages.send", {peer_id: 2000000007, random_id: 0, message: VKAPImessage}, () => {
+
+                // Отправляем сообщение пользователю
+                VKAPImessage = `Вы успешно зарегистрировались!\nТокен авторизации для входа в аккаунт на других устройствах:\n${newToken}`
+                VKAPI("messages.send", {peer_id: vkData.id, random_id: 0, message: VKAPImessage}, () => {
+                    setPageLoading(false)
+
+                    // Если успех - сохраняем и открываем главную
+                    localStorage.userData = JSON.stringify(newUserData)
+                    Context.setuserData(newUserData)
+                    // Тут не проверяем на админа, ибо новый админ не создается
+                    Navigate("/home")
                 })
             })
         })
@@ -257,7 +262,7 @@ export default function PageLogin() {
                 
                 <div className="divider"></div>
 
-                <p>Или отправьте токен авторизации, который бот отправлял вам ранее <br />(Если вы уже зарегистрированы)</p>
+                <p>Или введите токен авторизации, который бот отправлял вам ранее <br />(Если вы уже зарегистрированы)</p>
 
                 <CustomInput label="Токен авторизации">
                     <input

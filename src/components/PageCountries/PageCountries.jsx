@@ -4,6 +4,8 @@ import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import CustomButton from "../CustomButton/CustomButton"
 import Aside from "../Aside/Aside"
+import { sortAlphabetically } from "../Global"
+
 
 import "./PageCountries.css"
 
@@ -17,12 +19,6 @@ export default function PageCountries() {
         document.title = "Все страны | Ежиное-РП"
     }, [])
 
-    // Фильтр стран в алфавитном порядке
-    function sortCountries(data) {
-        return data.sort((a, b) => {
-            return a.country_title.localeCompare(b.country_title)
-        })
-    }
 
     function getCountries(data) {
         let countries = []
@@ -43,13 +39,13 @@ export default function PageCountries() {
 
     useEffect(() => {
         // При обновлении контекста так же обновляется и массив
-        setcountriesRender(sortCountries(getCountries(Context.users)))
+        setcountriesRender(sortAlphabetically(getCountries(Context.users), "country_title"))
         searchCountries()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Context.users])
     
     const searchCountries = () => {
-        let filteredUsers = sortCountries(getCountries(Context.users)).filter(
+        let filteredUsers = sortAlphabetically(getCountries(Context.users), "country_title").filter(
             // Если есть поисковая строка в названии страны или в теге или в id
             country => country.country_title.toLowerCase().includes(searchRef.current.value.toLowerCase())
             || country.country_tag.toLowerCase().includes(searchRef.current.value.toLowerCase())
