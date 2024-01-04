@@ -24,21 +24,23 @@ export default function Support_creators_of_countries() {
                     <h3>Текстовый список создателей стран</h3>
 
                     <ul className="support__ul flex-col">
-                        <li>Королевство Романья - <Link to={"https://vk.com/id535028784"} className="text-link" target="_blank">Алексей Ванжа</Link>
+                        <li>
+                            <p>Королевство Романья - <Link to={"https://vk.com/id535028784"} className="text-link" target="_blank">Алексей Ванжа</Link>
                             {" и "}
-                            <Link to={"https://vk.com/id307642230"} className="text-link" target="_blank">Никита Ванжа</Link></li>
-                        <li>Эллада - <Link to={"https://vk.com/id396771911"} className="text-link" target="_blank">Алексей Дедов</Link></li>
-                        <li>Шлепляндия - <Link to={"https://vk.com/id291195777"} className="text-link" target="_blank">Мотя Овчинников</Link></li>
-                        <li>Арбор - <Link to={"https://vk.com/id554225932"} className="text-link" target="_blank">Егор Полянский</Link></li>
-                        <li>Регалия - <Link to={"https://vk.com/id636378157"} className="text-link" target="_blank">Ярослав Янченко</Link></li>
-                        <li>Арабистон - <Link to={"https://vk.com/id554680398"} className="text-link" target="_blank">Ис Лам</Link></li>
-                        <li>Сэнко - <Link to={"https://vk.com/id552376142"} className="text-link" target="_blank">’lmp ’pltnkv</Link></li>
-                        <li>Членопопия - <Link to={"https://vk.com/id815686275"} className="text-link" target="_blank">Вася Иванов</Link></li>
-                        <li>Орден Св. Арно - <Link to={"https://vk.com/id444733069"} className="text-link" target="_blank">Матвей Дорофеев</Link></li>
-                        <li>Джейра - <Link to={"https://vk.com/id655062790"} className="text-link" target="_blank">Мари Писклова</Link></li>
-                        <li>Пивград - <Link to={"https://vk.com/id523937758"} className="text-link" target="_blank">Дмитрий Паникаровский</Link></li>
-                        <li>Фенмир, заморожен - <Link to={"https://vk.com/id610350669"} className="text-link" target="_blank">Fenet Greg</Link></li>
-                        <li>Саптостан - <Link to={"https://vk.com/id450294430"} className="text-link" target="_blank">Тимофей Селетков</Link></li>
+                            <Link to={"https://vk.com/id307642230"} className="text-link" target="_blank">Никита Ванжа</Link></p>
+                        </li>
+                        <li><p>Эллада - <Link to={"https://vk.com/id396771911"} className="text-link" target="_blank">Алексей Дедов</Link></p></li>
+                        <li><p>Шлепляндия - <Link to={"https://vk.com/id291195777"} className="text-link" target="_blank">Мотя Овчинников</Link></p></li>
+                        <li><p>Арбор - <Link to={"https://vk.com/id554225932"} className="text-link" target="_blank">Егор Полянский</Link></p></li>
+                        <li><p>Регалия - <Link to={"https://vk.com/id636378157"} className="text-link" target="_blank">Ярослав Янченко</Link></p></li>
+                        <li><p>Арабистон - <Link to={"https://vk.com/id554680398"} className="text-link" target="_blank">Ис Лам</Link></p></li>
+                        <li><p>Сэнко - <Link to={"https://vk.com/id552376142"} className="text-link" target="_blank">’lmp ’pltnkv</Link></p></li>
+                        <li><p>Членопопия - <Link to={"https://vk.com/id815686275"} className="text-link" target="_blank">Вася Иванов</Link></p></li>
+                        <li><p>Орден Св. Арно - <Link to={"https://vk.com/id444733069"} className="text-link" target="_blank">Матвей Дорофеев</Link></p></li>
+                        <li><p>Джейра - <Link to={"https://vk.com/id655062790"} className="text-link" target="_blank">Мари Писклова</Link></p></li>
+                        <li><p>Пивград - <Link to={"https://vk.com/id523937758"} className="text-link" target="_blank">Дмитрий Паникаровский</Link></p></li>
+                        <li><p>Фенмир, заморожен - <Link to={"https://vk.com/id610350669"} className="text-link" target="_blank">Fenet Greg</Link></p></li>
+                        <li><p>Саптостан - <Link to={"https://vk.com/id450294430"} className="text-link" target="_blank">Тимофей Селетков</Link></p></li>
                     </ul>
                 </section>
             </article>
