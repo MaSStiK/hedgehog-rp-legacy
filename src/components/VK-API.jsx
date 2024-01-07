@@ -1,18 +1,18 @@
+import { VKtoken } from "./DOT-ENV"
 import $ from "jquery";
 
-const test = "dmsxLmEud3VSZVhoUVptaG9NM3BxZTdHcFRORW4tR29lUlNwZDFVZThGZWlKRGs2eXJTaGJWRXBaX2NpYVc3am1pemFaOGQxQ2pOeFZzMnkyMTBZQmFacUtMY05tTDNkSFZBQllUZGhWQ2Nfc0F6cnY3amZlNnVCYk1WMS0wdHg5dUo1ZTA4SlpNNWtSNl9FZjc0TnJXME1wWGpJcWR2amtBeHlyV184bkxpaU51MkE1RUdlMkdUQWxFLVR6TVBBejd4Y0RNQW1fNDIycGh1WGt4SHEySHJTWVJKQQ=="
 
 // Получить ссылку на метод
 function getMethodUrl(method, params, token) {
     params = params || {}
-    params["access_token"] = atob(token)
+    params["access_token"] = VKtoken
     params["v"] = "5.131"
     return "https://api.vk.com/method/" + method + "?" + $.param(params)
 }
 
 
 // Отправить запрос
-export function VKAPI(method, params, func=null, token=test) {
+export function VKAPI(method, params, func=null, token=VKtoken) {
     $.ajax({
         url: getMethodUrl(method, params, token),
         method: "GET",
@@ -22,12 +22,7 @@ export function VKAPI(method, params, func=null, token=test) {
 }
 
 
-// 2000000001 Рп беседа
-// 2000000002 test_chamber
-// 2000000005 logs
-// 2000000006 Географ Жалобы
-// 2000000007 Географ Логи
-// 2000000008 Географ Ошибки
+
 
 
 
