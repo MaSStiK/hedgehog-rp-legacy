@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useContext } from "react"
 import { Link } from "react-router-dom"
 import CustomInput from "../CustomInput/CustomInput"
+import ButtonIcon from "../ButtonIcon/ButtonIcon"
 import Aside from "../Aside/Aside"
 import { DataContext } from "../Context"
 import imgSearch from "../../assets/icons/Search.svg"
@@ -41,17 +42,18 @@ export default function PageDev() {
             <article>
                 <h4 className="page-title text-dark">/ dev</h4>
 
-                <section className="dev-block">
+                <section className="flex-col">
                     <h1>Never gonna give you up</h1>
                     <h2>Never gonna let you down</h2>
                     <h3>Never gonna run around and desert you</h3>
                     <h4>Never gonna make you cry</h4>
                     <p>Never gonna say goodbye</p>
                     <p><small>Never gonna tell a lie and hurt you</small></p>
-                    
+
+                    <p><br />Context.isAdmin: {`${Context.isAdmin}`}</p>
                 </section>
 
-                <section className="dev-block">
+                <section className="flex-col">
                     <button>gray (standart)</button>
                     <button className="green">green (confirm)</button>
                     <button className="red">red (cancel)</button>
@@ -59,23 +61,27 @@ export default function PageDev() {
                     <button disabled>disabled</button>
                     <Link to={"#"} className="text-link">Текст-ссылка по которой можно куда то попасть</Link>
 
-                    <div style={{display: "flex", gap: "12px"}}>
-                        <button className="button-icon">
-                            <img src={imgSearch} alt="button-test" />
-                        </button>
-                        <button className="button-icon">
-                            <img src={imgPrivate} alt="button-test" />
-                        </button>
-                        <button className="button-icon">
-                            <img src={imgCopy} alt="button-test" />
-                        </button>
-                        <button className="button-icon">
-                            <img src={imgEdit} alt="button-test" />
-                        </button>
+                    <div className="flex-row">
+                        <ButtonIcon 
+                            src={imgSearch}
+                            alt="button-test"
+                        />
+                        <ButtonIcon 
+                            src={imgPrivate}
+                            alt="button-test"
+                        />
+                        <ButtonIcon 
+                            src={imgCopy}
+                            alt="button-test"
+                        />
+                        <ButtonIcon 
+                            src={imgEdit}
+                            alt="button-test"
+                        />
                     </div>
                 </section>
                     
-                <section className="dev-block">
+                <section className="flex-col">
                     <CustomInput label="Пример с длинным название инпута">
                         <input ref={exampleInput} type="text" className={exampleInputError ?  "error" : null} required
                         onChange={() => {setexampleInputValue(exampleInput.current.value)}} />
@@ -88,7 +94,7 @@ export default function PageDev() {
                     </CustomInput>
                 </section>
 
-                <section className="dev-block">
+                <section className="flex-col">
                     <CustomInput label="Пример текстареа">
                         <textarea ref={exampleTextarea} required
                         onChange={() => {setexampleTextareaValue(exampleTextarea.current.value)}}></textarea>
@@ -96,7 +102,7 @@ export default function PageDev() {
                     <p>{"Текстареа: " + exampleTextareaValue}</p>
                 </section>
 
-                <section className="dev-block">
+                <section className="flex-col">
                     <CustomInput label="Инпут с паролем" password={true}>
                         <input type="password" id="password" required/>
                     </CustomInput>

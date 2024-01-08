@@ -16,6 +16,7 @@ import Login from "./components/PageLogin/PageLogin";
 
 import Home from "./components/PageHome/PageHome";
 import News from "./components/PageNews/PageNews";
+import Post from "./components/PagePost/PagePost";
 import NewsAdd from "./components/PageNewsAdd/PageNewsAdd";
 import User from "./components/PageUser/PageUser";
 import Users from "./components/PageUsers/PageUsers";
@@ -130,6 +131,7 @@ export default function App() {
                 <Route path="/home" element={<Home />} />
 
                 <Route path="/news" element={<News />} />
+                <Route path="/news/:id" element={<Post />} />
                 <Route path="/news/add" element={
                     <ProtectedRoute isAllowed={Context.userData}>
                         <NewsAdd />

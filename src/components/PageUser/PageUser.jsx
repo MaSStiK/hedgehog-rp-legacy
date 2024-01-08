@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import { Link, useParams, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
-import CustomButton from "../CustomButton/CustomButton"
+import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
 import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
 import { VKAPI } from "../VK-API"
@@ -127,7 +127,7 @@ export default function PageUser() {
                         <div className="user-profile__row">
                             <p className="text-gray">ВКонтакте</p>
                             <Link to={`https://vk.com/id${userData.id}`} target="_blank">
-                                <CustomButton
+                                <ButtonProfile
                                     src={userDataVk.photo}
                                     text={userDataVk.name}
                                 />
@@ -141,7 +141,7 @@ export default function PageUser() {
                                 <div className="user-profile__row">
                                     <p className="text-gray">Страна</p>
                                     <Link to={`/countries/${userData.country_id}`}>
-                                        <CustomButton
+                                        <ButtonProfile
                                             src={userData.country_photo}
                                             text={userData.country_title}
                                         />

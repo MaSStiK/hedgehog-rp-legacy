@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Aside from "../Aside/Aside"
-import CustomButton from "../CustomButton/CustomButton"
+import ButtonProfile from "../ButtonProfile/ButtonProfile"
 
 
 import "./PageSupport.css"
@@ -24,7 +24,7 @@ export default function PageSupport() {
                     <h3>Статьи для решения частых вопросов</h3>
                     
                     <Link to={"сreators-of-countries"}>
-                        <CustomButton
+                        <ButtonProfile
                             text={"Текстовый список создателей стран"}
                         />
                     </Link>

@@ -2,7 +2,7 @@ import { useEffect, useContext, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
-import CustomButton from "../CustomButton/CustomButton"
+import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
 import { sortAlphabetically } from "../Global"
 
@@ -67,7 +67,7 @@ export default function PageCountries() {
                     </CustomInput>
                     {countriesRender.map((country) => (
                         <Link to={"/countries/" + country.country_id} key={country.country_id}>
-                            <CustomButton
+                            <ButtonProfile
                                 src={country.country_photo}
                                 text={country.country_title}
                                 subText={country.country_tag} 

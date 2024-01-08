@@ -1,3 +1,4 @@
+/* Верхняя часть поста (автор и время публикации) */
 .post {
     display: flex;
     flex-direction: column;
@@ -10,14 +11,20 @@
     gap: var(--block-gap);
 }
 
+
+/* Оставляем место под время */
 .post__top a {
     width: calc(100% - 76px);
 }
 
+
+/* Время */
 .post__top > small {
     text-align: right;
 }
 
+
+/* Блок с прокруткой картинок */
 .post__attachments-wrapper {
     height: 100%;
     white-space: nowrap;
@@ -38,8 +45,15 @@
     border-radius: var(--border-radius);
 }
 
+
+/* Если картинка одна - во всю ширину блока, не зависимо от высоты */
 .post__attachment__single-img {
     width: 100%;
     object-fit: contain;
     border-radius: var(--border-radius);
+}
+
+
+.post__buttons {
+    
 }

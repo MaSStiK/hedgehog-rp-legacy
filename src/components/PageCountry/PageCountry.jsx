@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { DataContext } from "../Context"
-import CustomButton from "../CustomButton/CustomButton"
+import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
 import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
 import PostsRender from "../PostsRender/PostsRender"
@@ -84,7 +84,7 @@ export default function PageCountry() {
                                 <div className="country-page__row">
                                     <p className="text-gray">Автор страны</p>
                                     <Link to={`/users/${countryData.id}`}>
-                                        <CustomButton
+                                        <ButtonProfile
                                             src={countryData.photo}
                                             text={countryData.name}
                                         />
@@ -124,7 +124,10 @@ export default function PageCountry() {
                                 </section>
                             }
 
-                            <PostsRender posts={[...Context.posts].filter(post => post.country_id === URLparams.id)} users={Context.users} />
+                            <PostsRender
+                                posts={[...Context.posts].filter(post => post.country_id === URLparams.id)}
+                                users={Context.users}
+                            />
                         </>
 
                         // Если страна не найдена, будет показан только когда будет ошибка

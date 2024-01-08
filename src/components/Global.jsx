@@ -24,10 +24,6 @@ export const CONSTS = {
     photoPxMax: 1920,
 }
 
-// Получить переменные из ссылки
-export function getUrlParams() {
-    return Object.fromEntries(new URLSearchParams(window.location.search))
-}
 
 // Анимация загрузки страницы
 export function setPageLoading(show=true) {

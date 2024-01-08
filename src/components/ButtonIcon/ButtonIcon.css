@@ -1,0 +1,12 @@
+/* Кнопка с иконкой (Как прозрачная, но 36x36) */
+.button-icon {
+    width: var(--button-height);
+    height: var(--button-height);
+    background-color: var(--button-bg-tp);
+}
+
+/* Иконка в кнопке чуть меньше кнопки */
+.button-icon img {
+    width: var(--button-img-size);
+    height: var(--button-img-size);
+}

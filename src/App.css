@@ -61,25 +61,6 @@ section {
 }
 
 
-/* Скролл */
-*::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-}
-
-/* Подложка скролла в цвет фона */
-::-webkit-scrollbar-track {
-    border-radius: 4px;
-    background-color: #00000000;
-}
-
-/* Скрол цвета основного блока */
-::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: #403d4a;
-}
-
-
 /* Не видимый обьект */
 .hidden {
     display: none !important;

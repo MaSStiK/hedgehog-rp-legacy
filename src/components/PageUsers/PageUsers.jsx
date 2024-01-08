@@ -2,7 +2,7 @@ import { useEffect, useContext, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
-import CustomButton from "../CustomButton/CustomButton"
+import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
 import { sortAlphabetically } from "../Global"
 
@@ -49,7 +49,7 @@ export default function PageUsers() {
                     </CustomInput>
                     {usersRender.map((user) => (
                         <Link to={"/users/" + user.id} key={user.id}>
-                            <CustomButton
+                            <ButtonProfile
                                 src={user.photo}
                                 text={user.name}
                                 subText={user.tag} 

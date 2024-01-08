@@ -49,7 +49,10 @@ export default function PageNews() {
             <article>
                 <h4 className="page-title text-dark">/ Новости</h4>
 
-                <PostsRender posts={Context.posts} users={Context.users} />
+                <PostsRender
+                    posts={Context.posts}
+                    users={Context.users}
+                />
 
                 {showLoadButton &&
                     <section className="flex-col">

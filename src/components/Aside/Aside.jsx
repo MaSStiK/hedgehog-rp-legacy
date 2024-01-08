@@ -1,10 +1,11 @@
 import { useState, useContext } from "react"
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { DataContext } from "../Context"
-import imgLogo from "../../assets/logo/logo.png"
+import ButtonIcon from "../ButtonIcon/ButtonIcon"
+import imgLogo from "../../assets/logo/logo-fullsize.png"
 import imgBurger from "../../assets/icons/Burger.svg"
 import imgClose from "../../assets/icons/Close.svg"
-import CustomButton from "../CustomButton/CustomButton"
+import ButtonProfile from "../ButtonProfile/ButtonProfile"
 
 import "./Aside.css"
 import "./Aside-phone.css"
@@ -25,13 +26,16 @@ export default function Aside() {
            <div id="nav-menu-bg" className={hideNavMenu ? "hide-nav-menu" : null} onClick={handleShowNavMenu}></div>
 
             {/* Лого в мобильной навигации */}
-            <button id="nav-logo-phone" className="button-icon" onClick={() => {Navigate("/")}} >
-                <img src={imgLogo} alt="nav-logo-phone" />
-            </button>
+            <ButtonIcon 
+                id="nav-logo-phone"
+                src={imgLogo}
+                alt="logotype"
+                onClick={() => {Navigate("/")}}
+            />
 
             {/* Кнопка профиля в мобильной навигации */}
             {Context.userData && // Если есть юзердата - рендерим мобильную кнопку профиля
-                <CustomButton
+                <ButtonProfile
                     id="nav-phone-user"
                     type="tp"
                     src={Context.userData.photo}
@@ -40,17 +44,23 @@ export default function Aside() {
             }
 
             {/* Кнопка открытия мобильного меню навигации */}
-            <button id="nav-menu-show" className="button-icon" onClick={handleShowNavMenu}>
-                <img src={imgBurger} alt="open-menu" />
-            </button>
+            <ButtonIcon 
+                id="nav-menu-show"
+                src={imgBurger}
+                alt="open-menu"
+                onClick={handleShowNavMenu}
+            />
 
             {/* Контейнер навигации */}
             <div className={`nav-wrapper ${hideNavMenu ? "hide-nav-menu" : null}`}>
                 <nav>
                     {/* Закрытие мобильного меню */}
-                    <button id="nav-menu-hide" className="button-icon" onClick={handleShowNavMenu}>
-                        <img src={imgClose} alt="close-menu" />
-                    </button>
+                    <ButtonIcon 
+                        id="nav-menu-hide"
+                        src={imgClose}
+                        alt="close-menu"
+                        onClick={handleShowNavMenu}
+                    />
 
                     <div id="nav-logo">
                         <img src={imgLogo} alt="nav-logo" onClick={() => {Navigate("/")}} />
@@ -59,7 +69,7 @@ export default function Aside() {
                     <ul>
                         <li>
                             {Context.userData // Если есть юзердата - рендерим кнопку профиля
-                                ? <CustomButton
+                                ? <ButtonProfile
                                     src={Context.userData.photo}
                                     text={Context.userData.name}
                                     subText={Context.userData.tag}
@@ -75,7 +85,7 @@ export default function Aside() {
                         {Context.userData && // Если есть юзердата - ренлерим кнопку страны
                             <li>
                                 {Context.userData.country_id // Если страны нету - рендерим кнопку для создания страны
-                                    ? <CustomButton
+                                    ? <ButtonProfile
                                         src={Context.userData.country_photo}
                                         text={Context.userData.country_title}
                                         subText={Context.userData.country_tag}

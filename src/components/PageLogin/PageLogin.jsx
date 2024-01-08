@@ -5,7 +5,7 @@ import CustomInput from "../CustomInput/CustomInput"
 import { GSAPI } from "../GS-API"
 import { VKAPI } from "../VK-API"
 import { CONSTS, setPageLoading } from "../Global"
-import imgLogo from "../../assets/logo/logo.png"
+import imgLogo from "../../assets/logo/logo-fullsize.png"
 import imgCopy from "../../assets/icons/Copy.svg"
 import { LINKAPI } from "../LINK-API"
 

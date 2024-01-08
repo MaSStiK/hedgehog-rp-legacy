@@ -62,20 +62,6 @@ button.tp {
 }
 
 
-/* Кнопка с иконкой (Как прозрачная, но 36x36) */
-button.button-icon {
-    width: 36px;
-    height: 36px;
-    background-color: var(--button-bg-tp);
-}
-
-/* Иконка в кнопке чуть меньше кнопки */
-button.button-icon img {
-    width: 32px;
-    height: 32px;
-}
-
-
 /* Отключена */
 button:disabled {
     cursor: not-allowed;
@@ -120,27 +106,5 @@ button.clicked {
 
 /* Только на мобильных дивайсах */
 /* @media (hover: none) {
-    button:focus {
-        background-color: var(--button-hover);
-    }
 
-    button.primary:focus {
-        background-color: var(--button-hover-primary);
-    }
-
-    button.danger:focus {
-        background-color: var(--button-hover-danger);
-    }
-
-    button.transparent:focus {
-        background-color: var(--button-hover-tp);
-    }
-
-    button.image:focus {
-        background-color: var(--button-hover-tp);
-    }
-
-    button:disabled:focus {
-        background-color: var(--button-bg-disabled);
-    }
 } */

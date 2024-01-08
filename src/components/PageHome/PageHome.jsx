@@ -40,7 +40,10 @@ export default function PageHome() {
                     <iframe width="520" height="280" src="https://www.youtube.com/embed/x2gx7yKC54s?si=DUBOXLomABWx7FLY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 </section>
 
-                <PostsRender posts={[...Context.posts].slice(0, 5)} users={Context.users} />
+                <PostsRender
+                    posts={[...Context.posts].slice(0, 5)}
+                    users={Context.users}
+                />
 
                 <section>
                     <Link to={"/news"}>
