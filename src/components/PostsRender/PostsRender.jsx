@@ -13,7 +13,7 @@ function PostRender(props) {
     const [showText, setshowText] = useState(false)
 
     function handleShare(postId) {
-        navigator.clipboard.writeText(window.location.origin + "/#/news/" + postId)
+        navigator.clipboard.writeText(window.location.href.split("/#/")[0] + "/#/news/" + postId)
 
         setshowText(true)
         setTimeout(() => setshowText(false), 2000)
