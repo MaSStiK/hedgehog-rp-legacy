@@ -6,7 +6,7 @@ import Aside from "../Aside/Aside"
 import "./PageTools.css"
 
 export default function PageTools(props) {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
 
     useEffect(() => {
@@ -15,7 +15,7 @@ export default function PageTools(props) {
 
     const handleExitProfile = () => {
         localStorage.clear()
-        Navigate("/")
+        NavigateTo("/home")
         window.location.reload()
     }
 

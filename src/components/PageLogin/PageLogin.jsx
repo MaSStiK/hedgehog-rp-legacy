@@ -15,7 +15,7 @@ import "./PageLogin-phone.css"
 
 
 export default function PageLogin() {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
 
     useEffect(() => {
@@ -98,7 +98,7 @@ export default function PageLogin() {
                 // Отправляем сообщение пользователю
                 let VKAPImessage = `Вы успешно вошли!\nТокен авторизации для входа в аккаунт на других устройствах:\n${newToken}`
                 VKAPI("messages.send", {peer_id: vkFindedUserId, random_id: 0, message: VKAPImessage}, () => {
-                    Navigate("/")
+                    NavigateTo("/home")
                     setdisableSubmitButton(false)
                     setPageLoading(false)
                 })
@@ -180,7 +180,7 @@ export default function PageLogin() {
                     localStorage.userData = JSON.stringify(newUserData)
                     Context.setuserData(newUserData)
                     // Тут не проверяем на админа, ибо новый админ не создается
-                    Navigate("/home")
+                    NavigateTo("/home")
                 })
             })
         })
@@ -226,7 +226,7 @@ export default function PageLogin() {
             // Отправляем сообщение пользователю
             let VKAPImessage = `Вы успешно вошли в свой аккаунт по токену!`
             VKAPI("messages.send", {peer_id: parseInt(newUserData.vk_id), random_id: 0, message: VKAPImessage}, () => {
-                Navigate("/")
+                NavigateTo("/home")
             })
         })
     }
@@ -234,7 +234,7 @@ export default function PageLogin() {
     return (
         <article id="article-login">
             <div className="logo-wrapper">
-                <img src={imgLogo} alt="logo" onClick={() => {Navigate("/")}} />
+                <img src={imgLogo} alt="logo" onClick={() => {NavigateTo("/home")}} />
             </div>
 
             <section>

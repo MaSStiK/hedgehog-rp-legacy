@@ -7,7 +7,7 @@ import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import "./PageSupport.css"
 
 export default function PageSupport() {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
 
     useEffect(() => {
         document.title = "Помощь | Ежиное-РП"

@@ -1,6 +1,6 @@
 // Импорт основных библиотек
 import { useContext, useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { DataContext } from "./components/Context"
 import { GSAPI } from "./components/GS-API";
@@ -39,7 +39,7 @@ import NotFound from "./components/PageNotFound/PageNotFound";
 
 
 export default function App() {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
     const Context = useContext(DataContext) // Помять приложения, устанавливаем при запуске приложения
 
     // Передаем в контекст юзердату и его сеттер
@@ -77,7 +77,7 @@ export default function App() {
                     if (!data.success || !Object.keys(data).length) { 
                         delete localStorage.userData
                         delete Context.userData
-                        Navigate("/login")
+                        NavigateTo("/login")
                         window.location.reload()
                         return
                     }
@@ -117,7 +117,7 @@ export default function App() {
             delete localStorage.userData
             delete Context.userData
             alert(`Произошла непредвиденная ошибка:\n${error}`)
-            Navigate("/login")
+            NavigateTo("/login")
             return
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -171,7 +171,7 @@ export default function App() {
                     </ProtectedRoute>
                 }/>
 
-                <Route exact path="/" element={<Home />} />
+                <Route exact path="/" element={<Navigate to="/home" />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </DataContext.Provider>

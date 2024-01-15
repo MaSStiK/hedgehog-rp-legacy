@@ -9,7 +9,7 @@ import "./PageHome-phone.css"
 
 
 export default function PageHome() {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
 
     useEffect(() => {

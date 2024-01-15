@@ -14,7 +14,7 @@ import "./PageNewsAdd-phone.css"
 
 
 export default function PageNewsAdd() {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
 
     const [postTextLenght, setpostTextLenght] = useState(0)
@@ -169,8 +169,8 @@ export default function PageNewsAdd() {
             posts.unshift(newPostData)
             Context.setposts(posts)
 
-            // Navigate("/countries/" + Context.userData.country_id)
-            Navigate("/news")
+            // NavigateTo("/countries/" + Context.userData.country_id)
+            NavigateTo("/news")
 
             setPageLoading(false)
         })

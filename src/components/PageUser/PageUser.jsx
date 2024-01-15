@@ -11,7 +11,7 @@ import "./PageUser-phone.css"
 
 
 export default function PageUser() {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
     const URLparams = useParams()
     const isSelfRender = Context.userData ? Context.userData.id === URLparams.id : false
@@ -35,7 +35,7 @@ export default function PageUser() {
     const handleExitProfile = () => {
         delete localStorage.userData
         delete Context.userData
-        Navigate("/")
+        NavigateTo("/home")
         window.location.reload()
     }
 

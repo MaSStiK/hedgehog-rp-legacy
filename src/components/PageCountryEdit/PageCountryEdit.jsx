@@ -12,7 +12,7 @@ import "./PageCountryEdit.css"
 
 export default function PageCountryEdit() {
     const Context = useContext(DataContext)
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
 
     const [countryBioMainLenght, setcountryBioMainLenght] = useState(0);
     const [countryBioMoreLenght, setcountryBioMoreLenght] = useState(0);
@@ -291,7 +291,7 @@ export default function PageCountryEdit() {
             Context.setusers(usersWithoutUser)
 
             setPageLoading(false)
-            Navigate("/countries/" + newCountryData.country_id)
+            NavigateTo("/countries/" + newCountryData.country_id)
         }
     }
 

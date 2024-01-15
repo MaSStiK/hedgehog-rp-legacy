@@ -6,7 +6,7 @@ import Aside from "../Aside/Aside"
 import "./PageNations.css"
 
 export default function PageNations() {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
 
     useEffect(() => {

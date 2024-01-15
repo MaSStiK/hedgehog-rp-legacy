@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonIcon from "../ButtonIcon/ButtonIcon"
 import imgShare from "../../assets/icons/Share.svg"
@@ -11,7 +11,6 @@ import "./Post-phone.css"
 
 function PostRender(props) {
     const [showText, setshowText] = useState(false)
-    const navigate = useNavigate();
 
     function handleShare(postId) {
         navigator.clipboard.writeText(window.location.href + "news/" + postId)

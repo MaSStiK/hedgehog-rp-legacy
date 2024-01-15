@@ -9,7 +9,7 @@ import { sortAlphabetically } from "../Global"
 import "./PageSupport.css"
 
 export default function Support_creators_of_countries() {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
 
     useEffect(() => {
         document.title = "Помощь | Ежиное-РП"

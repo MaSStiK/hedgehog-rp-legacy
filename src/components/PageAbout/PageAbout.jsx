@@ -7,7 +7,7 @@ import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import "./PageAbout.css"
 
 export default function PageAbout() {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
 
     useEffect(() => {
         document.title = "О нас | Ежиное-РП"

@@ -11,7 +11,7 @@ import "./Aside.css"
 import "./Aside-phone.css"
 
 export default function Aside() {
-    const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
 
     const [hideNavMenu, sethideNavMenu] = useState(true);
@@ -30,7 +30,7 @@ export default function Aside() {
                 id="nav-logo-phone"
                 src={imgLogo}
                 alt="logotype"
-                onClick={() => {Navigate("/")}}
+                onClick={() => {NavigateTo("/home")}}
             />
 
             {/* Кнопка профиля в мобильной навигации */}
@@ -39,7 +39,7 @@ export default function Aside() {
                     id="nav-phone-user"
                     type="tp"
                     src={Context.userData.photo}
-                    onClick={() => {Navigate("/users/" + Context.userData.id)}} 
+                    onClick={() => {NavigateTo("/users/" + Context.userData.id)}} 
                 />
             }
 
@@ -63,7 +63,7 @@ export default function Aside() {
                     />
 
                     <div id="nav-logo">
-                        <img src={imgLogo} alt="nav-logo" onClick={() => {Navigate("/")}} />
+                        <img src={imgLogo} alt="nav-logo" onClick={() => {NavigateTo("/home")}} />
                     </div>
                     
                     <ul>
@@ -73,7 +73,7 @@ export default function Aside() {
                                     src={Context.userData.photo}
                                     text={Context.userData.name}
                                     subText={Context.userData.tag}
-                                    onClick={() => {Navigate("/users/" + Context.userData.id)}} 
+                                    onClick={() => {NavigateTo("/users/" + Context.userData.id)}} 
                                     style={{marginBottom: "var(--block-gap)"}}
                                   />
                                 : <Link to={"/login"}>
@@ -89,7 +89,7 @@ export default function Aside() {
                                         src={Context.userData.country_photo}
                                         text={Context.userData.country_title}
                                         subText={Context.userData.country_tag}
-                                        onClick={() => {Navigate("/countries/" + Context.userData.country_id)}} 
+                                        onClick={() => {NavigateTo("/countries/" + Context.userData.country_id)}} 
                                       />
                                     : <Link to={"/countries/edit"}>
                                         <button className="green">Моя страна</button>
