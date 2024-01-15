@@ -58,7 +58,7 @@ export default function App() {
     Context.users = ContextUsers
     Context.setusers = setContextUsers
 
-    // Передаем в контекст массив всех юзеров
+    // Передаем в контекст массив всех загруженных постов
     const [ContextPosts, setContextPosts] = useState([]);
     Context.posts = ContextPosts
     Context.setposts = setContextPosts
