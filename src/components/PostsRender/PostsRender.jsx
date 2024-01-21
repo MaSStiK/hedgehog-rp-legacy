@@ -6,6 +6,9 @@ import imgShare from "../../assets/icons/Share.svg"
 import imgEdit from "../../assets/icons/Edit.svg"
 
 
+import $ from "jquery";
+
+
 import "./Post.css"
 import "./Post-phone.css"
 
@@ -18,6 +21,7 @@ function PostRender(props) {
         setshowText(true)
         setTimeout(() => setshowText(false), 2000)
     }
+
 
     // Дата появления в беседе
     let date = new Date(Number(props.post.timestamp))

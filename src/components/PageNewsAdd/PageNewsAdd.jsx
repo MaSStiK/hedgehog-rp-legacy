@@ -83,15 +83,19 @@ export default function PageNewsAdd() {
     function addAttachment() {
         // Отключаем кнопку и превью
         setdisableAddButton(true)
+
+        // LINKAPI(postPhotoInput.current.value, (data) => {
+        //     postPhotoInput.current.value = ""
+        //     setattachments(prevState => [...prevState, {id: Date.now(), url: data}])
+
+        //     // seterrorText("Не удалось загрузить картинку")
+        //     // setphotoInputError(true)
+        // })
+
+        let attachSrc = postPhotoInput.current.value
+        setattachments(prevState => [...prevState, {id: Date.now(), url: attachSrc}])
         setpostPhotoPreview("")
-
-        LINKAPI(postPhotoInput.current.value, (data) => {
-            postPhotoInput.current.value = ""
-            setattachments(prevState => [...prevState, {id: Date.now(), url: data}])
-
-            // seterrorText("Не удалось загрузить картинку")
-            // setphotoInputError(true)
-        })
+        postPhotoInput.current.value = ""
     }
 
     useEffect(() => {

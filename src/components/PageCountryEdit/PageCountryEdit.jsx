@@ -190,13 +190,15 @@ export default function PageCountryEdit() {
             country_photo: formPhoto, // Флаг страны
         }
 
-        LINKAPI(formPhoto, (data) => {
-            // Если получилось сократить ссылку - сохраняем ее
-            newCountryData.country_photo = data
+        // LINKAPI(formPhoto, (data) => {
+        //     // Если получилось сократить ссылку - сохраняем ее
+        //     newCountryData.country_photo = data
 
-            // После чего начинаем отпарвку информации
-            sendData(newCountryData)
-        })
+        //     // После чего начинаем отпарвку информации
+        //     sendData(newCountryData)
+        // })
+
+        sendData(newCountryData)
         
 
 

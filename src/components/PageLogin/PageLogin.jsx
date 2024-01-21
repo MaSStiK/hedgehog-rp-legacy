@@ -143,13 +143,15 @@ export default function PageLogin() {
             }
             
             
-            LINKAPI(vkData.photo, (data) => {
-                // Если получилось сократить ссылку - сохраняем ее
-                newUserData.photo = data
+            // LINKAPI(vkData.photo, (data) => {
+            //     // Если получилось сократить ссылку - сохраняем ее
+            //     newUserData.photo = data
 
-                // Отправляем данные о новом пользователе
-                sendNewUser(newUserData, vkData, newToken)
-            })
+            //     // Отправляем данные о новом пользователе
+            //     sendNewUser(newUserData, vkData, newToken)
+            // })
+
+            sendNewUser(newUserData, vkData, newToken)
         })
     }
 
