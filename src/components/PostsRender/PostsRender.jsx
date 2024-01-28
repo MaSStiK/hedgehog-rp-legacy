@@ -6,9 +6,6 @@ import imgShare from "../../assets/icons/Share.svg"
 import imgEdit from "../../assets/icons/Edit.svg"
 
 
-import $ from "jquery";
-
-
 import "./Post.css"
 import "./Post-phone.css"
 
@@ -70,7 +67,7 @@ function PostRender(props) {
                                     return <img src={attach} alt="post-attachment" key={index} />
                                 })}
                             </div>
-                            </div> 
+                          </div> 
                         : <img src={postAttachments[0]} alt="post-attachment" className="post__attachment__single-img" />
                     }
                     </>
@@ -86,7 +83,7 @@ function PostRender(props) {
             </div>
 
             {showText &&
-                <p className="text-cut text-gray">Ссылка скопирована</p>
+                <p className="text-gray">Ссылка скопирована</p>
             }
         </section>
     )

@@ -32,6 +32,11 @@
     overflow-y: hidden;
 }
 
+/* Более толстый скрол */
+.post__attachments-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
 .post__attachments {
     display: flex;
     gap: var(--block-gap);
