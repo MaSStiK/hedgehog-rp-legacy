@@ -1,6 +1,8 @@
 import $ from "jquery";
 
 export const CONSTS = {
+    pageName: " | Ежиное-РП",
+
     loginTokenMax: 200,
 
     userNameMin: 1,

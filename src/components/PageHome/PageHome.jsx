@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import Aside from "../Aside/Aside"
 import PostsRender from "../PostsRender/PostsRender"
+import { CONSTS } from "../Global"
 
 import "./PageHome.css"
 import "./PageHome-phone.css"
@@ -12,8 +13,11 @@ export default function PageHome() {
     const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
 
+    const imgVkGroup = "https://sun9-60.userapi.com/impg/oEWyVY7z0mShE_4NiWZjLJRUtlblNoS-p0Ph4Q/6rgXOaV54GI.jpg?size=1080x1021&quality=95&sign=7521bfdf054e784b2b37a022c4ec2fdf&type=album"
+    const imgYoutubeChannel = "https://sun9-75.userapi.com/impg/InAN-EkKVY2m_b5O35GiDeI1MEJDkpI6a8Rr4A/e6KrwnAUh-w.jpg?size=176x176&quality=96&sign=3c161604cc42ae88ab597906173bff60&type=album"
+
     useEffect(() => {
-        document.title = "Главная | Ежиное-РП"
+        document.title = "Главная" + CONSTS.pageName
     })
 
     return (
@@ -25,12 +29,12 @@ export default function PageHome() {
 
                 <section className="flex-row">
                     <Link className="home__link-wrapper" to="https://vk.com/hedgehogs_army" target="_blank">
-                        <img src="https://sun9-60.userapi.com/impg/oEWyVY7z0mShE_4NiWZjLJRUtlblNoS-p0Ph4Q/6rgXOaV54GI.jpg?size=1080x1021&quality=95&sign=7521bfdf054e784b2b37a022c4ec2fdf&type=album" alt="link-vk" />
+                        <img src={imgVkGroup} alt="link-vk" />
                         <h3>Наша группа в ВК</h3>
                     </Link>
 
                     <Link className="home__link-wrapper" to="https://www.youtube.com/@hedgehogs_army" target="_blank">
-                        <img src="https://sun9-75.userapi.com/impg/InAN-EkKVY2m_b5O35GiDeI1MEJDkpI6a8Rr4A/e6KrwnAUh-w.jpg?size=176x176&quality=96&sign=3c161604cc42ae88ab597906173bff60&type=album" alt="link-youtube" />
+                        <img src={imgYoutubeChannel} alt="link-youtube" />
                         <h3>Мы в Youtube</h3>
                     </Link>
                 </section>

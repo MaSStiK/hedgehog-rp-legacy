@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { DataContext } from "./components/Context"
 import { GSAPI } from "./components/GS-API";
 import { setPageLoading } from "./components/Global";
+import Modal from "./components/Modal/Modal"
 
 // Импорт стилей
 import "./styles/style.css";
@@ -62,6 +63,11 @@ export default function App() {
     const [ContextPosts, setContextPosts] = useState([]);
     Context.posts = ContextPosts
     Context.setposts = setContextPosts
+
+    // Передаем в контекст Модальное окно
+    const [ModalData, setModalData] = useState([]);
+    Context.modalData = ModalData
+    Context.setModalData = setModalData
 
     useEffect(() => {
         // Анимация загрузки страницы
@@ -124,56 +130,62 @@ export default function App() {
     }, [])
 
     return (
-        <DataContext.Provider value={Context}>
-            <Routes>
-                <Route path="/login" element={<Login />} />
+        <>
+            <Modal>
+                {ModalData}
+            </Modal>
 
-                <Route path="/home" element={<Home />} />
+            <DataContext.Provider value={Context}>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
 
-                <Route path="/news" element={<News />} />
-                <Route path="/news/:id" element={<Post />} />
-                <Route path="/news/add" element={
-                    <ProtectedRoute isAllowed={Context.userData}>
-                        <NewsAdd />
-                    </ProtectedRoute>
-                }/>
+                    <Route path="/home" element={<Home />} />
 
-                <Route path="/users" element={<Users />} />
-                <Route path="/users/:id" element={<User />} />
-                <Route path="/users/edit" element={
-                    <ProtectedRoute isAllowed={Context.userData}>
-                        <UserEdit />
-                    </ProtectedRoute>
-                }/>
+                    <Route path="/news" element={<News />} />
+                    <Route path="/news/:id" element={<Post />} />
+                    <Route path="/news/add" element={
+                        <ProtectedRoute isAllowed={Context.userData}>
+                            <NewsAdd />
+                        </ProtectedRoute>
+                    }/>
 
-                <Route path="/countries" element={<Countries />} />
-                <Route path="/countries/:id" element={<Country />} />
-                <Route path="/countries/edit" element={
-                    <ProtectedRoute isAllowed={Context.userData}>
-                        <CountryEdit />
-                    </ProtectedRoute>
-                }/>
+                    <Route path="/users" element={<Users />} />
+                    <Route path="/users/:id" element={<User />} />
+                    <Route path="/users/edit" element={
+                        <ProtectedRoute isAllowed={Context.userData}>
+                            <UserEdit />
+                        </ProtectedRoute>
+                    }/>
+
+                    <Route path="/countries" element={<Countries />} />
+                    <Route path="/countries/:id" element={<Country />} />
+                    <Route path="/countries/edit" element={
+                        <ProtectedRoute isAllowed={Context.userData}>
+                            <CountryEdit />
+                        </ProtectedRoute>
+                    }/>
 
 
-                <Route path="/nations" element={<Nations />} />
+                    <Route path="/nations" element={<Nations />} />
 
-                <Route path="/tools" element={<Tools />} />
-                <Route path="/tools/exit" element={<Tools doExit={true} />} />
+                    <Route path="/tools" element={<Tools />} />
+                    <Route path="/tools/exit" element={<Tools doExit={true} />} />
 
-                <Route path="/support" element={<Support />} />
-                <Route path="/support/сreators-of-countries" element={<Support_creators_of_countries />} />
+                    <Route path="/support" element={<Support />} />
+                    <Route path="/support/сreators-of-countries" element={<Support_creators_of_countries />} />
 
-                <Route path="/about" element={<About />} />
+                    <Route path="/about" element={<About />} />
 
-                <Route path="/dev" element={
-                    <ProtectedRoute isAllowed={Context.isAdmin}>
-                        <Dev />
-                    </ProtectedRoute>
-                }/>
+                    <Route path="/dev" element={
+                        <ProtectedRoute isAllowed={Context.isAdmin}>
+                            <Dev />
+                        </ProtectedRoute>
+                    }/>
 
-                <Route exact path="/" element={<Navigate to="/home" />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </DataContext.Provider>
+                    <Route exact path="/" element={<Home />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </DataContext.Provider>
+        </>
     )
 }

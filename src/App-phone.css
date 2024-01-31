@@ -14,7 +14,7 @@
         height: 50px; /* 50px высота кнопок */
 
         background-color: var(--bg-secondary);
-        border-bottom: 1px solid var(--border-primary);
+        border-bottom: var(--border-primary);
 
         position: fixed;
         top: 0;
@@ -24,7 +24,7 @@
     /* Блок страницы */
     article {
         width: 100%; /* Ширина во всю страницу */
-        padding: 70px 20px 20px 20px; /* Отступ сверху 50px + 20px */
+        padding: 70px var(--article-gap) var(--article-gap) var(--article-gap); /* Отступ сверху 50px + 20px */
     }
 
     /* Блок с контентом */

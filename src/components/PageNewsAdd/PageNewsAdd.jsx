@@ -7,8 +7,6 @@ import { CONSTS, setPageLoading } from "../Global"
 import { GSAPI } from "../GS-API"
 import { LINKAPI } from "../LINK-API"
 
-
-
 import "./PageNewsAdd.css"
 import "./PageNewsAdd-phone.css"
 
@@ -34,7 +32,7 @@ export default function PageNewsAdd() {
     const postPhotoInput = useRef()
 
     useEffect(() => {
-        document.title = "Создание новости | Ежиное-РП"
+        document.title = "Создание новости" + CONSTS.pageName
     })
 
 
@@ -248,7 +246,7 @@ export default function PageNewsAdd() {
 
                                 <button className="green" onClick={addAttachment} disabled={disableAddButton}>Добавить</button>
                             </div>
-                            <small>Длина ссылки до {CONSTS.photoMax} символов<br />Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px<br />Максимум {CONSTS.attachmentsCountMax} картинок</small>
+                            <small>Длина ссылки до {CONSTS.photoMax} символов<br/>Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px<br/>Максимум {CONSTS.attachmentsCountMax} картинок</small>
                             {postPhotoPreview &&
                                 <img src={postPhotoPreview} alt="preview" />
                             }

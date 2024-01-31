@@ -4,8 +4,7 @@ import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
-import { sortAlphabetically } from "../Global"
-
+import { CONSTS, sortAlphabetically } from "../Global"
 
 import "./PageUsers.css"
 
@@ -16,7 +15,7 @@ export default function PageUsers() {
     const [usersRender, setusersRender] = useState([]);
 
     useEffect(() => {
-        document.title = "Все участники | Ежиное-РП"
+        document.title = "Все участники" + CONSTS.pageName
     }, [])
 
     useEffect(() => {

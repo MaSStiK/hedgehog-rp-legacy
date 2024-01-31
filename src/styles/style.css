@@ -14,14 +14,15 @@
     --bg-transparent: #15151586;
 
     /* Бордеры */
-    --border-primary: #413F46;
-    --border-input: #9891a0;
-    --border-input-focus: #1CA02C;
-    --border-input-error: #D60027;
+    --border-primary: 1px solid #413F46;
+    --border-input: 1px solid #9891a0;
+    --border-input-focus: 1px solid  #1CA02C;
+    --border-input-error: 1px solid  #D60027;
     --border-radius: 4px;
 
-    --block-gap: 12px;
+    /* Отступы между блоками и внутри блоков */
     --article-gap: 20px;
+    --block-gap: 12px;
 
     /* Уровни слоев */
     --z-under: -1; /* Под основным контентом */
@@ -64,12 +65,12 @@
 
 /* Подложка скролла в цвет фона */
 *::-webkit-scrollbar-track {
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     background-color: #00000000;
 }
 
 /* Скрол цвета основного блока */
 *::-webkit-scrollbar-thumb {
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     background-color: var(--border-primary);
 }

@@ -55,37 +55,48 @@ section {
     position: relative;
 
     background-color: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
+    border: var(--border-primary);
     border-radius: var(--border-radius);
     padding: var(--block-gap);
 }
 
-
-/* Не видимый обьект */
-.hidden {
-    display: none !important;
-}
 
 /* Заголовки страниц */
 .page-title {
     margin-left: var(--article-gap);
 }
 
-/* Разделение строк */
+/* Разделение внутри блока */
 .divider {
     width: 100%;
-    border-bottom: 1px solid var(--border-primary);
+    border-bottom: var(--border-primary);
 }
 
 
+/* Блок - флекс строка */
 .flex-row {
     display: flex;
     flex-direction: row;
     gap: var(--block-gap);
 }
 
+/* Блок - флекс колонна */
 .flex-col {
     display: flex;
     flex-direction: column;
     gap: var(--block-gap);
+}
+
+
+/* Скрыть обьект (не использовать) */
+.hidden {
+    display: none !important;
+}
+
+
+/* Объекты которые не видно на большом экране */
+@media screen and (min-width: 840px) {
+    .phone-show {
+        display: none !important;
+    }
 }

@@ -19,8 +19,8 @@ section::after {
     position: absolute;
     top: -18px;
     right: -13px;
-    width: 40px;
-    height: 40px;
+    width: var(--button-big-img-size);
+    height: var(--button-big-img-size);
     background-image: url("https://cdn-icons-png.flaticon.com/512/9181/9181465.png");
     background-size: contain;
     background-repeat: no-repeat;

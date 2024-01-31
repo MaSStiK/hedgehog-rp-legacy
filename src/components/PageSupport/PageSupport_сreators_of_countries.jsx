@@ -2,9 +2,7 @@ import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Aside from "../Aside/Aside"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
-import { sortAlphabetically } from "../Global"
-
-
+import { CONSTS, sortAlphabetically } from "../Global"
 
 import "./PageSupport.css"
 
@@ -12,7 +10,7 @@ export default function Support_creators_of_countries() {
     const NavigateTo = useNavigate()
 
     useEffect(() => {
-        document.title = "Помощь | Ежиное-РП"
+        document.title = "Помощь" + CONSTS.pageName
     })
 
     const creators = [

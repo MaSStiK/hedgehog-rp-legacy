@@ -2,16 +2,16 @@ import { useEffect, useContext, useRef, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { DataContext } from "../Context"
 import Aside from "../Aside/Aside"
-
+import { CONSTS } from "../Global"
 
 import "./PageUserEdit.css"
 
 export default function PageUserEdit() {
     // const Context = useContext(DataContext)
-    // const Navigate = useNavigate()
+    const NavigateTo = useNavigate()
 
     useEffect(() => {
-        document.title = "Изменение профиля | Ежиное-РП"
+        document.title = "Изменение профиля" + CONSTS.pageName
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

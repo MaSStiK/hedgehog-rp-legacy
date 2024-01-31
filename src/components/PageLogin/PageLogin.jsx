@@ -9,7 +9,6 @@ import imgLogo from "../../assets/logo/logo-fullsize.png"
 import imgCopy from "../../assets/icons/Copy.svg"
 import { LINKAPI } from "../LINK-API"
 
-
 import "./PageLogin.css"
 import "./PageLogin-phone.css"
 
@@ -19,12 +18,12 @@ export default function PageLogin() {
     const Context = useContext(DataContext)
 
     useEffect(() => {
-        document.title = "Вход | Ежиное-РП"
+        document.title = "Вход" + CONSTS.pageName
     }, [])
 
     // Уникальный ключ
     function generateVkCode() {
-        return Date.now().toString(32) + Math.random().toString(32).substring(2)
+        return (Math.random().toString(32).substring(2) + Date.now().toString(32)).toUpperCase()
     }
 
     const [showCopyMessage, setshowCopyMessage] = useState(false) // Спрятать ли сообщение об скопированом коде
@@ -78,7 +77,7 @@ export default function PageLogin() {
 
             vkFindedUserId = vkFindedUserId.last_message.from_id
 
-            let newToken = Date.now().toString(32) + Math.random().toString(32).substring(2) + Math.random().toString(32).substring(2)
+            let newToken = (Math.random().toString(32).substring(2) + Date.now().toString(32) + Math.random().toString(32).substring(2)).toUpperCase()
 
             GSAPI("authorizeById", {vk_id: vkFindedUserId.toString(), token: newToken}, (data) => {
                 // Если не нашло - регаем нового юзера
@@ -98,7 +97,7 @@ export default function PageLogin() {
                 // Отправляем сообщение пользователю
                 let VKAPImessage = `Вы успешно вошли!\nТокен авторизации для входа в аккаунт на других устройствах:\n${newToken}`
                 VKAPI("messages.send", {peer_id: vkFindedUserId, random_id: 0, message: VKAPImessage}, () => {
-                    NavigateTo("/home")
+                    NavigateTo("/")
                     setdisableSubmitButton(false)
                     setPageLoading(false)
                 })
@@ -182,7 +181,7 @@ export default function PageLogin() {
                     localStorage.userData = JSON.stringify(newUserData)
                     Context.setuserData(newUserData)
                     // Тут не проверяем на админа, ибо новый админ не создается
-                    NavigateTo("/home")
+                    NavigateTo("/")
                 })
             })
         })
@@ -228,7 +227,7 @@ export default function PageLogin() {
             // Отправляем сообщение пользователю
             let VKAPImessage = `Вы успешно вошли в свой аккаунт по токену!`
             VKAPI("messages.send", {peer_id: parseInt(newUserData.vk_id), random_id: 0, message: VKAPImessage}, () => {
-                NavigateTo("/home")
+                NavigateTo("/")
             })
         })
     }
@@ -236,7 +235,7 @@ export default function PageLogin() {
     return (
         <article id="article-login">
             <div className="logo-wrapper">
-                <img src={imgLogo} alt="logo" onClick={() => {NavigateTo("/home")}} />
+                <img src={imgLogo} alt="logo" onClick={() => {NavigateTo("/")}} />
             </div>
 
             <section>
@@ -264,7 +263,7 @@ export default function PageLogin() {
                 
                 <div className="divider"></div>
 
-                <p>Или введите токен авторизации, который бот отправлял вам ранее <br />(Если вы уже зарегистрированы)</p>
+                <p>Или введите токен авторизации, который бот отправлял вам ранее <br/>(Если вы уже зарегистрированы)</p>
 
                 <CustomInput label="Токен авторизации">
                     <input

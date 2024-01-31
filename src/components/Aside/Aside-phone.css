@@ -5,7 +5,7 @@
         padding: 0px 0px 60px 0px;
         
         background-color: var(--bg-secondary);
-        border-left: 1px solid var(--border-primary);
+        border-left: var(--border-primary);
 
         position: fixed;
         top: 0px;
@@ -28,23 +28,23 @@
 
     #nav-logo-phone {
         display: flex;
-        width: 48px;
-        height: 48px;
+        width: var(--button-big-height);
+        height: var(--button-big-height);
 
         margin-left: 8px;
     }
 
     #nav-logo-phone img {
-        width: 48px;
-        height: 48px;
+        width: var(--button-big-height);
+        height: var(--button-big-height);
     }
 
 
     /* Кнопку открвтия навигации видно только на маленьких экранах */
     #nav-menu-show {
         display: flex;
-        width: 48px;
-        height: 48px;
+        width: var(--button-big-height);
+        height: var(--button-big-height);
 
         position: absolute;
         top: 0px;
@@ -52,15 +52,15 @@
     }
 
     #nav-menu-show img {
-        width: 40px;
-        height: 40px;
+        width: var(--button-big-img-size);
+        height: var(--button-big-img-size);
     }
 
     /* Кнопка закрытия навигации */
     #nav-menu-hide {
         display: flex;
-        width: 48px;
-        height: 48px;
+        width: var(--button-big-height);
+        height: var(--button-big-height);
 
         margin-left: auto;
 
@@ -68,8 +68,8 @@
     }
 
     #nav-menu-hide img {
-        width: 40px;
-        height: 40px;
+        width: var(--button-big-img-size);
+        height: var(--button-big-img-size);
     }
 
     /* Скрытие полосы у навигации */
@@ -87,9 +87,9 @@
 
     /* Подложка навигации */
     #nav-menu-bg {
+        display: block;
         width: 100%;
         height: calc(100% - 50px);
-        display: block;
 
         position: fixed;
         top: 50px;
@@ -108,12 +108,12 @@
 
     /* Кнопка юзера в моб. версии */
     #nav-phone-user {
-        width: 48px;
-        height: 48px;
+        width: var(--button-big-height);
+        height: var(--button-big-height);
 
         display: flex;
         position: absolute;
         top: 0px;
-        right: 64px; /* 48px + 8px + 8px */
+        right: calc(var(--button-big-height) + 8px + 8px);
     }
 }

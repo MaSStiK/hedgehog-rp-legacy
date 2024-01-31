@@ -3,7 +3,7 @@ import { DataContext } from "../Context"
 import Aside from "../Aside/Aside"
 import PostsRender from "../PostsRender/PostsRender"
 import { GSAPI } from "../GS-API"
-
+import { CONSTS } from "../Global"
 
 import "./PageNews.css"
 import "./PageNews-phone.css"
@@ -18,7 +18,7 @@ export default function PageNews() {
     let postsOffset = 0
 
     useEffect(() => {
-        document.title = "Новости | Ежиное-РП"
+        document.title = "Новости" + CONSTS.pageName
     })
 
     const loadMorePosts = () => {

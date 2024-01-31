@@ -1,11 +1,12 @@
 import { useEffect } from "react"
 import Aside from "../Aside/Aside"
+import { CONSTS } from "../Global"
 
 import "./PageNotFound.css"
 
 export default function PageNotFound() {
     useEffect(() => {
-        document.title = "Ошибка | Ежиное-РП"
+        document.title = "Ошибка" + CONSTS.pageName
     }, [])
 
     return (

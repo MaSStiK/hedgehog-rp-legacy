@@ -20,7 +20,7 @@ export default function CustomInput(props) {
     }
 
     return (
-        <div className={`custom-input-wrapper ${props.password ? "custom-input-password" : null} ${props.className}`} style={props.style}>
+        <div className={`custom-input-wrapper ${props.password ? "custom-input-password" : null} ${props.className || ""}`} style={props.style}>
             {props.children}
             <label htmlFor={props.children.props.id}>{props.label}</label>
 
@@ -32,9 +32,4 @@ export default function CustomInput(props) {
             }
         </div>
     )
-}
-
-CustomInput.defaultProps = {
-    className: "",
-    password: null
 }

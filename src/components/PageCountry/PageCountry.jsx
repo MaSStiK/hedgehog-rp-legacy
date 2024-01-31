@@ -3,9 +3,9 @@ import { Link, useParams } from "react-router-dom"
 import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
-import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
+import { CONSTS } from "../Global"
 import PostsRender from "../PostsRender/PostsRender"
-
+import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
 
 import "./PageCountry.css"
 import "./PageCountry-phone.css"
@@ -22,7 +22,7 @@ export default function PageCountry() {
 
 
     useEffect(() => {
-        document.title = "Страна | Ежиное-РП"
+        document.title = "Страна" + CONSTS.pageName
     }, [])
 
     const handleCopyButton = () => {
@@ -46,7 +46,7 @@ export default function PageCountry() {
         }
 
         setcountryData(findedUser)
-        document.title = findedUser.country_title + " | Ежиное-РП"
+        document.title = findedUser.country_title + CONSTS.pageName
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [URLparams.id, Context.users])
 
@@ -85,6 +85,7 @@ export default function PageCountry() {
                                     <p className="text-gray">Автор страны</p>
                                     <Link to={`/users/${countryData.id}`}>
                                         <ButtonProfile
+                                            className="tp"
                                             src={countryData.photo}
                                             text={countryData.name}
                                         />

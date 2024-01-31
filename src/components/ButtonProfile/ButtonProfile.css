@@ -1,15 +1,12 @@
 .button-profile {
-    height: 48px;
+    height: var(--button-big-height);
     display: flex;
     justify-content: flex-start;
-    gap: 8px;
-
-    padding: 4px;
 }
 
 .button-profile img {
-    width: 40px;
-    height: 40px;
+    width: var(--button-big-img-size);
+    height: var(--button-big-img-size);
     border-radius: 50%;
     
     background-color: var(--bg-primary);
@@ -17,15 +14,10 @@
 }
 
 .button-profile__text {
-    /* 40px картинка и 8px оступы с боков */
-    width: calc(100% - 48px);
+    /* 40px картинка и оступы с боков */
+    width: calc(100% - var(--button-big-img-size) - var(--button-gap) - var(--button-padding));
     display: flex;
     flex-direction: column;
-    gap: 0px;
-}
-
-.button-profile__text-padding {
-    padding: 0 4px;
 }
 
 .button-profile__text p, .button-profile__text small {

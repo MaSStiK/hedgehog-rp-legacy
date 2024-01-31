@@ -1,9 +1,9 @@
 /* Основной стиль инпута */
 input {
+    display: block;
     width: 100%;
     height: var(--button-height);
-    padding: 8px;
-    display: block;
+    padding: var(--button-padding);
 
     color: var(--text-white);
     font-size: var(--p-size);
@@ -11,18 +11,18 @@ input {
 
     outline: none;
     background-color: var(--bg-secondary);
-    border: 1px solid var(--border-input);
-    border-radius: 4px;
+    border: var(--border-input);
+    border-radius: var(--border-radius);
 }
 
 /* Текстареа */
 textarea {
+    display: block;
     width: 100%;
     height: 80px; /* По умолчанию высота в 80px */
     min-height: var(--button-height); /* Минимальный размер павен размеру инпута */
     max-height: 200px; /* Максимальный размер */
-    padding: 8px;
-    display: block;
+    padding: var(--button-padding);
 
     color: var(--text-white);
     font-size: var(--p-size);
@@ -30,8 +30,8 @@ textarea {
 
     outline: none;
     background-color: var(--bg-secondary);
-    border: 1px solid var(--border-input);
-    border-radius: 4px;
+    border: var(--border-input);
+    border-radius: var(--border-radius);
 
     resize: vertical; /* Ресайз только вертикальный */
 }
@@ -39,7 +39,7 @@ textarea {
 /* При выборе инпута / текстареа (Кроме неизменяемых) */
 input:not(:read-only):focus,
 textarea:not(:read-only):focus {
-    border: 1px solid var(--border-input-focus);
+    border: var(--border-input-focus);
 }
 
 /* Неизменяемые с серым текстом */
@@ -101,7 +101,7 @@ input:-webkit-autofill:focus {
 /* При нажатии на инпут зеленая обводка */
 .custom-input-wrapper input:focus:not(:read-only),
 .custom-input-wrapper textarea:focus:not(:read-only) {
-    border: 1px solid var(--border-input-focus);
+    border: var(--border-input-focus);
 }
 
 
@@ -114,7 +114,7 @@ input:-webkit-autofill:focus {
 
 /* Стиль для ошибки */
 .custom-input-wrapper input.error:not(:read-only) {
-    border: 1px solid var(--border-input-error);
+    border: var(--border-input-error);
 }
 
 .custom-input-wrapper input.error:not(:read-only) ~ label {
@@ -124,7 +124,7 @@ input:-webkit-autofill:focus {
 
 /* Стиль для ошибки */
 .custom-input-wrapper textarea.error:not(:read-only) {
-    border: 1px solid var(--border-input-error);
+    border: var(--border-input-error);
 }
 
 .custom-input-wrapper textarea.error:not(:read-only) ~ label {

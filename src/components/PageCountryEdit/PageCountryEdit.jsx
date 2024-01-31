@@ -357,7 +357,7 @@ export default function PageCountryEdit() {
                             required
                         />
                     </CustomInput>
-                    <small>Без пробелов<br/>Длина тега до {CONSTS.countryTagMax} символов<br />Только латиница, цифры и спецсимволы</small>
+                    <small>Без пробелов<br/>Длина тега до {CONSTS.countryTagMax} символов<br/>Только латиница, цифры и спецсимволы</small>
 
                     <CustomInput label="Ссылка на флаг страны">
                         <input
@@ -374,7 +374,7 @@ export default function PageCountryEdit() {
                         />
                     </CustomInput>
 
-                    <small>Длина ссылки до {CONSTS.photoMax} символов<br />Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px<br />Замена на стандартную картинку если поле пустое</small>
+                    <small>Длина ссылки до {CONSTS.photoMax} символов<br/>Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px<br/>Замена на стандартную картинку если поле пустое</small>
                     {countryPhotoPreview &&
                         <img src={countryPhotoPreview} alt="preview" />
                     }

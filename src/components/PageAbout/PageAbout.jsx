@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Aside from "../Aside/Aside"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
-
+import { CONSTS } from "../Global"
 
 import "./PageAbout.css"
 
@@ -10,7 +10,7 @@ export default function PageAbout() {
     const NavigateTo = useNavigate()
 
     useEffect(() => {
-        document.title = "О нас | Ежиное-РП"
+        document.title = "О нас" + CONSTS.pageName
     })
 
     return (
@@ -23,11 +23,11 @@ export default function PageAbout() {
                 <section className="flex-col">
                     <h3>"Ежиное РП"</h3>
                     <p>Это группа единомышленников и друзей, которые объединились, чтобы писать историю собственного мира.
-                        <br />Это творческая команда, которая занимается одновременно
-                        <br />- Историей
-                        <br />- Литературой
-                        <br />- Искусством
-                        <br />- Картографией
+                        <br/>Это творческая команда, которая занимается одновременно
+                        <br/>- Историей
+                        <br/>- Литературой
+                        <br/>- Искусством
+                        <br/>- Картографией
                     </p>
                 </section>
 

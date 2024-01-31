@@ -34,8 +34,7 @@ nav ul li {
 /* Кнопка */
 nav ul li a {
     width: 100%;
-    height: 48px;
-    /* height: var(--button-height); */
+    height: var(--button-big-height);
     background-color: var(--button-bg-tp);
     position: relative;
 
@@ -45,10 +44,6 @@ nav ul li a {
     border-radius: var(--border-radius);
 
     cursor: pointer;
-}
-
-nav ul li button {
-    height: 48px;
 }
 
 /* Активная вкладка навигации (Стрелочка сбоку) */
@@ -83,8 +78,4 @@ nav ul .divider {
 #nav-logo img {
     width: 100px;
     cursor: pointer;
-}
-
-#nav-menu-show, #nav-menu-hide, #nav-menu-bg, #nav-phone-user, #nav-logo-phone {
-    display: none;
 }

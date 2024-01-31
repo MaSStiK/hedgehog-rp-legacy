@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { DataContext } from "../Context"
-import ButtonIcon from "../ButtonIcon/ButtonIcon"
+import ButtonImage from "../ButtonImage/ButtonImage"
 import imgLogo from "../../assets/logo/logo-fullsize.png"
 import imgBurger from "../../assets/icons/Burger.svg"
 import imgClose from "../../assets/icons/Close.svg"
@@ -23,29 +23,31 @@ export default function Aside() {
     return (
         <aside>
             {/* Темный фон во время открытого меню навигации */}
-           <div id="nav-menu-bg" className={hideNavMenu ? "hide-nav-menu" : null} onClick={handleShowNavMenu}></div>
+           <div id="nav-menu-bg" className={`phone-show ${hideNavMenu ? "hide-nav-menu" : null}`} onClick={handleShowNavMenu}></div>
 
             {/* Лого в мобильной навигации */}
-            <ButtonIcon 
+            <ButtonImage 
                 id="nav-logo-phone"
+                className="phone-show tp"
                 src={imgLogo}
                 alt="logotype"
-                onClick={() => {NavigateTo("/home")}}
+                onClick={() => {NavigateTo("/")}}
             />
 
             {/* Кнопка профиля в мобильной навигации */}
             {Context.userData && // Если есть юзердата - рендерим мобильную кнопку профиля
                 <ButtonProfile
                     id="nav-phone-user"
-                    type="tp"
+                    className="phone-show tp"
                     src={Context.userData.photo}
                     onClick={() => {NavigateTo("/users/" + Context.userData.id)}} 
                 />
             }
 
             {/* Кнопка открытия мобильного меню навигации */}
-            <ButtonIcon 
+            <ButtonImage 
                 id="nav-menu-show"
+                className="phone-show tp"
                 src={imgBurger}
                 alt="open-menu"
                 onClick={handleShowNavMenu}
@@ -55,15 +57,16 @@ export default function Aside() {
             <div className={`nav-wrapper ${hideNavMenu ? "hide-nav-menu" : null}`}>
                 <nav>
                     {/* Закрытие мобильного меню */}
-                    <ButtonIcon 
+                    <ButtonImage 
                         id="nav-menu-hide"
+                        className="phone-show tp"
                         src={imgClose}
                         alt="close-menu"
                         onClick={handleShowNavMenu}
                     />
 
                     <div id="nav-logo">
-                        <img src={imgLogo} alt="nav-logo" onClick={() => {NavigateTo("/home")}} />
+                        <img src={imgLogo} alt="nav-logo" onClick={() => {NavigateTo("/")}} />
                     </div>
                     
                     <ul>

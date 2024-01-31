@@ -4,8 +4,7 @@ import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
-import { sortAlphabetically } from "../Global"
-
+import { CONSTS, sortAlphabetically } from "../Global"
 
 import "./PageCountries.css"
 
@@ -16,7 +15,7 @@ export default function PageCountries() {
     const [countriesRender, setcountriesRender] = useState([]);
 
     useEffect(() => {
-        document.title = "Все страны | Ежиное-РП"
+        document.title = "Все страны" + CONSTS.pageName
     }, [])
 
 

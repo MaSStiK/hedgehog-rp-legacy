@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Aside from "../Aside/Aside"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
-
+import { CONSTS } from "../Global"
 
 import "./PageSupport.css"
 
@@ -10,7 +10,7 @@ export default function PageSupport() {
     const NavigateTo = useNavigate()
 
     useEffect(() => {
-        document.title = "Помощь | Ежиное-РП"
+        document.title = "Помощь" + CONSTS.pageName
     })
 
     return (

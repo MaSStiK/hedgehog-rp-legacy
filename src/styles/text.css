@@ -15,6 +15,16 @@
     --text-link: #6D5FE4;
 }
 
+@media screen and (max-width: 840px) {
+    :root {
+        --h1-size: 26px;
+        --h2-size: 22px;
+        --h3-size: 18px;
+        --h4-size: 14px;
+        --p-size: 14px;
+    }
+}
+
 /* Стили для текста */
 h1, .h1 {
     font-size: var(--h1-size);
@@ -82,24 +92,4 @@ label {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-
-/* Контент в 100% */
-@media screen and (max-width: 840px) {
-    h1 {
-        font-size: var(--h2-size);
-    }
-
-    h2 {
-        font-size: var(--h3-size);
-    }
-
-    h3 {
-        font-size: var(--h4-size);
-    }
-
-    p {
-        font-size: var(--p-small-size);
-    }
 }

@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef, useContext } from "react"
 import { Link } from "react-router-dom"
 import CustomInput from "../CustomInput/CustomInput"
-import ButtonIcon from "../ButtonIcon/ButtonIcon"
+import ButtonImage from "../ButtonImage/ButtonImage"
+import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
 import { DataContext } from "../Context"
+import { CONSTS } from "../Global"
 import imgSearch from "../../assets/icons/Search.svg"
 import imgPrivate from "../../assets/icons/Private.svg"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgEdit from "../../assets/icons/Edit.svg"
+import imgBasePhoto from "../../assets/replace/base-photo.png"
 
 
 import "./PageDev.css"
@@ -16,8 +19,15 @@ export default function PageDev() {
     const Context = useContext(DataContext)
 
     useEffect(() => {
-        document.title = "dev | Ежиное-РП"
+        document.title = "dev" + CONSTS.pageName
     }, [])
+
+
+    function openmodal() {
+        Context.setModalData(
+            <p>Модальное окно</p>
+        )
+    }
 
 
     const [exampleInputValue, setexampleInputValue] = useState("");
@@ -49,8 +59,27 @@ export default function PageDev() {
                     <h4>Never gonna make you cry</h4>
                     <p>Never gonna say goodbye</p>
                     <p><small>Never gonna tell a lie and hurt you</small></p>
+                </section>
 
-                    <p><br />Context.isAdmin: {`${Context.isAdmin}`}</p>
+                <section className="flex-col">
+                    <p>Context.isAdmin: {`${Context.isAdmin}`}</p>
+
+                    <button className="green" onClick={openmodal}>Open Modal</button>
+                    
+                    <ButtonProfile
+                        className="tp"
+                        text={"Имя ок да"}
+                        src={imgBasePhoto}
+                    />
+
+                    <ButtonProfile
+                        text={"Имя ок нет"}
+                        src={imgBasePhoto}
+                    />
+
+                    <ButtonProfile
+                        src={imgBasePhoto}
+                    />
                 </section>
 
                 <section className="flex-col">
@@ -62,26 +91,27 @@ export default function PageDev() {
                     <Link to={"#"} className="text-link">Текст-ссылка по которой можно куда то попасть</Link>
 
                     <div className="flex-row">
-                        <ButtonIcon 
+                        <ButtonImage 
                             src={imgSearch}
                             alt="button-test"
+                            text="Пацанчики дарова"
                         />
-                        <ButtonIcon 
+                        <ButtonImage 
                             src={imgPrivate}
                             alt="button-test"
                         />
-                        <ButtonIcon 
+                        <ButtonImage 
                             src={imgCopy}
                             alt="button-test"
                         />
-                        <ButtonIcon 
+                        <ButtonImage 
                             src={imgEdit}
                             alt="button-test"
                         />
                     </div>
                 </section>
                     
-                <section className="flex-col">
+                {/* <section className="flex-col">
                     <CustomInput label="Пример с длинным название инпута">
                         <input ref={exampleInput} type="text" className={exampleInputError ?  "error" : null} required
                         onChange={() => {setexampleInputValue(exampleInput.current.value)}} />
@@ -112,7 +142,7 @@ export default function PageDev() {
                     </CustomInput>
 
                     <button onClick={() => {localStorage.clear()}}>Delete userData</button>
-                </section>
+                </section> */}
             </article>
         </>
     )

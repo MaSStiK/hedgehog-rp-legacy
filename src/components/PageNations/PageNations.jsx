@@ -1,7 +1,8 @@
 import { useEffect, useContext } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import Aside from "../Aside/Aside"
+import { CONSTS } from "../Global"
 
 import "./PageNations.css"
 
@@ -10,7 +11,7 @@ export default function PageNations() {
     const Context = useContext(DataContext)
 
     useEffect(() => {
-        document.title = "Нации | Ежиное-РП"
+        document.title = "Нации" + CONSTS.pageName
     })
 
     return (

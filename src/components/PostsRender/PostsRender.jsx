@@ -1,22 +1,56 @@
-import { useState } from "react";
-import { Link } from "react-router-dom"
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom"
+import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
-import ButtonIcon from "../ButtonIcon/ButtonIcon"
+import ButtonImage from "../ButtonImage/ButtonImage"
 import imgShare from "../../assets/icons/Share.svg"
-import imgEdit from "../../assets/icons/Edit.svg"
+import imgCopy from "../../assets/icons/Copy.svg"
+import imgVk from "../../assets/tools/vk.png"
 
 
 import "./Post.css"
 import "./Post-phone.css"
 
 function PostRender(props) {
-    const [showText, setshowText] = useState(false)
+    const NavigateTo = useNavigate()
 
-    function handleShare(postId) {
-        navigator.clipboard.writeText(window.location.href.split("/#/")[0] + "/#/news/" + postId)
+    const Context = useContext(DataContext)
+    
 
-        setshowText(true)
-        setTimeout(() => setshowText(false), 2000)
+    function handleShare(postId, postTitle, postImg) {
+        Context.setModalData(
+            <>
+                <h3 className="modal__title">Поделиться ссылкой</h3>
+                
+                <div className="flex-row" style={{flexWrap: "wrap"}}>
+                    <ButtonImage
+                        src={imgVk}
+                        text={"Отправить в вк"}
+                        onClick={() =>  {
+                            // Отпраялем и закрываем модальное окно
+                            let url = "https://vk.com/share.php?"
+                            url += "url=" + encodeURIComponent("https://masstik.github.io/hedgehog.rp/#/news/" + postId)
+                            url += "&title=" + encodeURIComponent(postTitle)
+                            url += "&image=" + encodeURIComponent(postImg)
+                            url += "&noparse=true"
+
+                            window.open(url, "", "toolbar=0,status=0,popup=1,width=500,height=500")
+                            Context.setModalData({})
+                        }}
+                    />
+
+                    <ButtonImage
+                        src={imgCopy}
+                        text={"Скопировать ссылку"}
+                        onClick={() => {
+                            // Копируем ссылку и закрываем модальное окно
+                            navigator.clipboard.writeText("https://masstik.github.io/hedgehog.rp/#/news/" + postId)
+                            Context.setModalData({})
+                        }}
+                    />
+                </div>
+            </>
+        )
     }
 
 
@@ -49,7 +83,7 @@ function PostRender(props) {
                         subText={props.postAuthor.country_tag} 
                     />
                 </Link>
-                <small className="text-gray">{`${day}.${month}.${year}`}<br />{`${hours}:${minutes}`}</small>
+                <small className="text-gray">{`${day}.${month}.${year}`}<br/>{`${hours}:${minutes}`}</small>
             </div>
             
             <h3>{props.post.post_title}</h3>
@@ -75,16 +109,18 @@ function PostRender(props) {
             }
 
             <div className=" flex-row post__buttons">
-                <ButtonIcon 
+                <ButtonImage 
                     src={imgShare}
                     alt="close-menu"
-                    onClick={() => handleShare(props.post.post_id)}
+                    onClick={() => {
+                        handleShare(
+                            props.post.post_id,
+                            props.post.post_title,
+                            postAttachments.length ? postAttachments[0] : props.postAuthor.country_photo
+                        )
+                    }}
                 />
             </div>
-
-            {showText &&
-                <p className="text-gray">Ссылка скопирована</p>
-            }
         </section>
     )
 }

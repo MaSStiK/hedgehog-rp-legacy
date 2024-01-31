@@ -4,7 +4,7 @@ import { DataContext } from "../Context"
 import Aside from "../Aside/Aside"
 import PostsRender from "../PostsRender/PostsRender"
 import { GSAPI } from "../GS-API"
-
+import { CONSTS } from "../Global"
 
 import "./PagePost.css"
 import "./PagePost-phone.css"
@@ -17,7 +17,7 @@ export default function PagePost() {
     // Переименовать в GETposts и сделать GETpost по URLparams.id
 
     useEffect(() => {
-        document.title = "Новости | Ежиное-РП"
+        document.title = "Новости" + CONSTS.pageName
     })
 
     // const loadMorePosts = () => {

@@ -13,4 +13,7 @@ export const DataContext = createContext({
 
     posts: [],
     setposts: () => {},
+
+    modalData: undefined,
+    setModalData: () => {},
 });

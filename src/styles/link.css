@@ -5,17 +5,11 @@ a {
 }
 
 .text-link {
+    font-size: var(--p-size);
     color: var(--text-link);
     cursor: pointer;
+    
 }
-
-/* Контент в 100% */
-@media screen and (max-width: 840px) {
-    .text-link {
-        font-size: var(--p-small-size);
-    }
-}
-
 
 /* Только для десктопных устройств */
 @media (hover: hover) {

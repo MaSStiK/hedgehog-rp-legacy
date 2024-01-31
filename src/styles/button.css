@@ -15,8 +15,16 @@
 
     --button-bg-disabled: #2E2C35;
 
+    /* Обычная кнопка */
     --button-height: 36px;
-    --button-img-size: 28px
+    --button-img-size: 28px;
+
+    /* Большая кнопка (профиля) */
+    --button-big-height: 48px;
+    --button-big-img-size: 40px;
+
+    --button-gap: 4px;
+    --button-padding: 4px;
 }
 
 /* Обычная кнопка (Серая) */
@@ -26,11 +34,11 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--block-gap);
-    padding: var(--block-gap);
+    gap: var( --button-gap);
+    padding: var(--button-padding);
 
     color: var(--text-white);
-    font-size: var(--h4-size);
+    font-size: var(--p-size);
     text-decoration: none;
 
     outline: none;
@@ -42,7 +50,6 @@ button {
     user-select: none;
     cursor: pointer;
 }
-
 
 /* Важная кнопка (Зеленая) */
 button.green {

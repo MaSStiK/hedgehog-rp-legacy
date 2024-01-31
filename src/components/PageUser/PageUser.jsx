@@ -5,6 +5,7 @@ import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
 import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
 import { VKAPI } from "../VK-API"
+import { CONSTS } from "../Global"
 
 import "./PageUser.css"
 import "./PageUser-phone.css"
@@ -23,7 +24,7 @@ export default function PageUser() {
     const [userDataVk, setuserDataVk] = useState({});
 
     useEffect(() => {
-        document.title = "Участник | Ежиное-РП"
+        document.title = "Участник" + CONSTS.pageName
     }, [])
 
     const handleCopyButton = () => {
@@ -35,7 +36,7 @@ export default function PageUser() {
     const handleExitProfile = () => {
         delete localStorage.userData
         delete Context.userData
-        NavigateTo("/home")
+        NavigateTo("/")
         window.location.reload()
     }
 
@@ -55,7 +56,7 @@ export default function PageUser() {
         }
 
         setuserData(findedUser)
-        document.title = findedUser.name + " | Ежиное-РП"
+        document.title = findedUser.name + CONSTS.pageName
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [URLparams.id, Context.users])
 
@@ -128,6 +129,7 @@ export default function PageUser() {
                             <p className="text-gray">ВКонтакте</p>
                             <Link to={`https://vk.com/id${userData.id}`} target="_blank">
                                 <ButtonProfile
+                                    className="tp"
                                     src={userDataVk.photo}
                                     text={userDataVk.name}
                                 />
@@ -142,6 +144,7 @@ export default function PageUser() {
                                     <p className="text-gray">Страна</p>
                                     <Link to={`/countries/${userData.country_id}`}>
                                         <ButtonProfile
+                                            className="tp"
                                             src={userData.country_photo}
                                             text={userData.country_title}
                                         />
