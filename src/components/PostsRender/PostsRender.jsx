@@ -20,7 +20,7 @@ function PostRender(props) {
     function handleShare(postId, postTitle, postImg) {
         Context.setModalData(
             <>
-                <h3 className="modal__title">Поделиться ссылкой</h3>
+                <h3 className="modal__title">Поделиться новостью</h3>
                 
                 <div className="flex-row" style={{flexWrap: "wrap"}}>
                     <ButtonImage

@@ -46,6 +46,10 @@ nav ul li a {
     cursor: pointer;
 }
 
+nav ul li button {
+    height: var(--button-big-height);
+}
+
 /* Активная вкладка навигации (Стрелочка сбоку) */
 nav ul li a.active::after {
     content: ">";
