@@ -16,7 +16,7 @@ export default function Aside() {
 
     const [hideNavMenu, sethideNavMenu] = useState(true);
 
-    const handleShowNavMenu = () => {
+    function handleShowNavMenu () {
         sethideNavMenu(!hideNavMenu)
     }
 

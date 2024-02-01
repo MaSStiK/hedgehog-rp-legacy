@@ -70,12 +70,12 @@ export default function PageNewsAdd() {
 
 
     // При обновлении любого из инпутов
-    const handleInputUpdate = () => {
+    function handleInputUpdate() {
         seterrorText("")
         settitleInputError(false)
         settextInputError(false)
         setphotoInputError(false)
-        setdisableSubmitButton(postTitleInput.current.value.length < CONSTS.countryTitleMin) // Если меньше 1 символа в заголовке новости
+        setdisableSubmitButton(postTitleInput.current.value.length < CONSTS.countryTitleMin) // Если меньше 1 символа в заголовке поста
     }
 
     function addAttachment() {
@@ -105,7 +105,7 @@ export default function PageNewsAdd() {
     }, [attachments])
 
 
-    // Ивент субмит у формы создания новости
+    // Ивент субмит у формы создания поста
     function submitForm() {
         handleInputUpdate() // Сброс всех ошибок
 
@@ -149,15 +149,15 @@ export default function PageNewsAdd() {
         // Данные нового пользователя
         const newPostData = {
             country_id: Context.userData.country_id, // id страны
-            post_id: Context.userData.country_id + "_" + dateNow, // id новости
-            post_title: formTitle, // Заголовок новости
-            post_text: formText, // Текст новости
+            post_id: Context.userData.country_id + "_" + dateNow, // id поста
+            post_title: formTitle, // Заголовок поста
+            post_text: formText, // Текст поста
             attachments: JSON.stringify(Array.from(attachments, (attach) => attach.url)), // Прикрепленные картинки
-            timestamp: dateNow // Дата создани новости
+            timestamp: dateNow // Дата создани поста
         }
 
-        GSAPI("POSTnews", {data: JSON.stringify(newPostData), token: Context.userData.token}, (data) => {
-            console.log("GSAPI: POSTnews");
+        GSAPI("POSTpost", {data: JSON.stringify(newPostData), token: Context.userData.token}, (data) => {
+            console.log("GSAPI: POSTpost");
 
             // Если не удалось сохранить
             if (!data.success || !Object.keys(data).length) {

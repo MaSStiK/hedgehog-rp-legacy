@@ -25,7 +25,7 @@ export default function PageCountry() {
         document.title = "Страна" + CONSTS.pageName
     }, [])
 
-    const handleCopyButton = () => {
+    function handleCopyButton() {
         navigator.clipboard.writeText(countryData.tag)
         setshowCopyMessage(true)
         setTimeout(() => setshowCopyMessage(false), 2000)
@@ -98,7 +98,7 @@ export default function PageCountry() {
                                         <div className="divider"></div>
                                         <div className="country-page__column">
                                             <p className="text-gray">Описание</p>
-                                            <p className="country-page__bio">{countryData.country_bio_main}</p>
+                                            <p className="textarea-block">{countryData.country_bio_main}</p>
                                         </div>
                                     </>
                                 }
@@ -109,7 +109,7 @@ export default function PageCountry() {
                                         <div className="divider"></div>
                                         <div className="flex-col">
                                             <p className="text-gray">Доп. описание</p>
-                                            <p className="country-page__bio">{countryData.country_bio_more}</p>
+                                            <p className="textarea-block">{countryData.country_bio_more}</p>
                                         </div>
                                     </>
                                 }

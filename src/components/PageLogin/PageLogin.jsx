@@ -30,7 +30,7 @@ export default function PageLogin() {
 
     const [vkCode, setvkCode] = useState(generateVkCode()) // Создаем ключ для отправки в вк
 
-    const handleCopyButton = () => {
+    function handleCopyButton() {
         navigator.clipboard.writeText(vkCode)
         setshowCopyMessage(true)
         setTimeout(() => setshowCopyMessage(false), 5000)
@@ -44,7 +44,7 @@ export default function PageLogin() {
     const tokenInput = useRef()
 
     // При обновлении любого из инпутов
-    const handleInputUpdate = () => {
+    function handleInputUpdate() {
         seterrorTokenText("")
         seterrorVkFindText()
 

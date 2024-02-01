@@ -20,6 +20,11 @@ export default function PageHome() {
         document.title = "Главная" + CONSTS.pageName
     })
 
+    function navigateToNews() {
+        // sessionStorage.scrollToNews = post_id
+        NavigateTo("/news")
+    }
+
     return (
         <>
             <Aside />
@@ -50,9 +55,7 @@ export default function PageHome() {
                 />
 
                 <section>
-                    <Link to={"/news"}>
-                        <button>Больше новостей</button>
-                    </Link>
+                    <button onClick={navigateToNews}>Больше новостей</button>
                 </section>
             </article>
 

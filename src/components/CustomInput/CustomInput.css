@@ -36,6 +36,23 @@ textarea {
     resize: vertical; /* Ресайз только вертикальный */
 }
 
+
+/* Текст стилизованный под текстареа */
+.textarea-block {
+    width: 100%;
+    padding: var(--button-padding);
+
+    color: var(--text-white);
+    text-decoration: none;
+
+    background-color: var(--bg-secondary);
+    border: var(--border-input);
+    border-radius: var(--border-radius);
+
+    white-space: pre-wrap;
+}
+
+
 /* При выборе инпута / текстареа (Кроме неизменяемых) */
 input:not(:read-only):focus,
 textarea:not(:read-only):focus {

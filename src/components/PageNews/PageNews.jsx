@@ -1,9 +1,11 @@
 import { useEffect, useContext, useState } from "react"
+import { useParams } from "react-router-dom"
 import { DataContext } from "../Context"
 import Aside from "../Aside/Aside"
 import PostsRender from "../PostsRender/PostsRender"
 import { GSAPI } from "../GS-API"
 import { CONSTS } from "../Global"
+import $ from "jquery"
 
 import "./PageNews.css"
 import "./PageNews-phone.css"
@@ -11,6 +13,8 @@ import "./PageNews-phone.css"
 
 export default function PageNews() {
     const Context = useContext(DataContext)
+    const URLparams = useParams()
+
 
     const [disableLoadButton, setdisableLoadButton] = useState(false);
     const [showLoadButton, setshowLoadButton] = useState(true);
@@ -21,15 +25,16 @@ export default function PageNews() {
         document.title = "Новости" + CONSTS.pageName
     })
 
-    const loadMorePosts = () => {
+
+    function loadMorePosts() {
         setdisableLoadButton(true)
         postsOffset += 10
 
-        // Загрузка всех новостей
-        GSAPI("GETnews", {offset: postsOffset}, (data) => {
-            console.log("GSAPI: GETnews offset=" + postsOffset);
+        // Загрузка всех постов
+        GSAPI("GETposts", {offset: postsOffset}, (data) => {
+            console.log("GSAPI: GETposts offset=" + postsOffset);
 
-            // После получения всех новостей обновляем список в контексте
+            // После получения всех постов обновляем список в контексте
             let posts = [...Context.posts]
             Context.setposts(posts.concat(data))
 

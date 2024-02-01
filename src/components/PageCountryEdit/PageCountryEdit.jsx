@@ -91,7 +91,7 @@ export default function PageCountryEdit() {
 
 
     // При обновлении любого из инпутов
-    const handleInputUpdate = () => {
+    function handleInputUpdate() {
         seterrorText("")
         settitleInputError(false)
         settagInputError(false)

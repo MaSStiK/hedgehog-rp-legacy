@@ -38,7 +38,7 @@ export default function PageDev() {
     const exampleInput = useRef()
     const exampleTextarea = useRef()
 
-    const handleErrorButton = () => {
+    function handleErrorButton() {
         setexampleInputError(true)
         setTimeout(() => setexampleInputError(false), 2000)
         setdisableErrorButton(true)

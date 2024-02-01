@@ -43,7 +43,7 @@ export default function PageCountries() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Context.users])
     
-    const searchCountries = () => {
+    function searchCountries() {
         let filteredUsers = sortAlphabetically(getCountries(Context.users), "country_title").filter(
             // Если есть поисковая строка в названии страны или в теге или в id
             country => country.country_title.toLowerCase().includes(searchRef.current.value.toLowerCase())

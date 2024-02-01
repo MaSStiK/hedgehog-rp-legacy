@@ -14,7 +14,7 @@ export default function PageTools(props) {
         document.title = "Инструменты" + CONSTS.pageName
     })
 
-    const handleExitProfile = () => {
+    function handleExitProfile() {
         localStorage.clear()
         NavigateTo("/")
         window.location.reload()

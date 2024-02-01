@@ -15,6 +15,7 @@
 
     /* Бордеры */
     --border-primary: 1px solid #413F46;
+    --border-primary-color: #413F46;
     --border-input: 1px solid #9891a0;
     --border-input-focus: 1px solid  #1CA02C;
     --border-input-error: 1px solid  #D60027;
@@ -72,5 +73,5 @@
 /* Скрол цвета основного блока */
 *::-webkit-scrollbar-thumb {
     border-radius: var(--border-radius);
-    background-color: var(--border-primary);
+    background-color: var(--border-primary-color);
 }

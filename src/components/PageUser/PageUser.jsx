@@ -27,13 +27,13 @@ export default function PageUser() {
         document.title = "Участник" + CONSTS.pageName
     }, [])
 
-    const handleCopyButton = () => {
+    function handleCopyButton() {
         navigator.clipboard.writeText(userData.tag)
         setshowCopyMessage(true)
         setTimeout(() => setshowCopyMessage(false), 2000)
     }
 
-    const handleExitProfile = () => {
+    function handleExitProfile() {
         delete localStorage.userData
         delete Context.userData
         NavigateTo("/")
@@ -101,7 +101,7 @@ export default function PageUser() {
 
                 {/* Если юзер найден */}
                 {Object.keys(userData).length
-                    ? <section className="user-profile">
+                    ? <section className="flex-col">
                         <div className="user-profile__top">
                             <div className="user-profile__top-photo">
                                 <img src={userData.photo ? userData.photo : imgBasePhoto} alt="userpic" />
@@ -160,7 +160,7 @@ export default function PageUser() {
                                 <div className="divider"></div>
                                 <div className="flex-col">
                                     <p className="text-gray">О себе</p>
-                                    <p className="user-profile__bio">{userData.bio}</p>
+                                    <p className="textarea-block">{userData.bio}</p>
                                 </div>
                             </>
                         }
@@ -169,7 +169,7 @@ export default function PageUser() {
                     // Если пользователь не найден, будет показан только когда будет ошибка
                     : <> 
                         {userNotFound &&
-                            <section className="user-profile">
+                            <section className="flex-col">
                                 <h2>Участник не найден!</h2>
                                 <Link to={"/users"}>
                                     <button>К списку участников</button>

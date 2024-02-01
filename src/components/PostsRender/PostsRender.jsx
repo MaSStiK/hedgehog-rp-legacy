@@ -28,8 +28,8 @@ function PostRender(props) {
                         text={"Отправить в вк"}
                         onClick={() =>  {
                             // Отпраялем и закрываем модальное окно
-                            let url = "https://vk.com/share.php?"
-                            url += "url=" + encodeURIComponent("https://masstik.github.io/hedgehog.rp/#/news/" + postId)
+                            let url = "https://vk.com/share.php"
+                            url += "?url=" + encodeURIComponent("https://masstik.github.io/hedgehog.rp/#/news/" + postId)
                             url += "&title=" + encodeURIComponent(postTitle)
                             url += "&image=" + encodeURIComponent(postImg)
                             url += "&noparse=true"
@@ -74,7 +74,7 @@ function PostRender(props) {
     let postAttachments = JSON.parse(props.post.attachments) // Картинки в посте
 
     return (
-        <section className="post">
+        <section className="post" id={`post-${props.post.post_id}`}>
             <div className="post__top">
                 <Link to={"/countries/" + props.postAuthor.country_id}>
                     <ButtonProfile

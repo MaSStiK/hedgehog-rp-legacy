@@ -6,7 +6,7 @@ import { CONSTS, sortAlphabetically } from "../Global"
 
 import "./PageSupport.css"
 
-export default function Support_creators_of_countries() {
+export default function SupportCreatorsOfCountries() {
     const NavigateTo = useNavigate()
 
     useEffect(() => {

@@ -17,7 +17,7 @@ import Login from "./components/PageLogin/PageLogin";
 
 import Home from "./components/PageHome/PageHome";
 import News from "./components/PageNews/PageNews";
-import Post from "./components/PagePost/PagePost";
+import NewsPost from "./components/PageNewsPost/PageNewsPost";
 import NewsAdd from "./components/PageNewsAdd/PageNewsAdd";
 import User from "./components/PageUser/PageUser";
 import Users from "./components/PageUsers/PageUsers";
@@ -28,7 +28,7 @@ import CountryEdit from "./components/PageCountryEdit/PageCountryEdit";
 import Nations from "./components/PageNations/PageNations";
 import Tools from "./components/PageTools/PageTools";
 import Support from "./components/PageSupport/PageSupport";
-import Support_creators_of_countries from "./components/PageSupport/PageSupport_сreators_of_countries";
+import SupportCreatorsOfCountries from "./components/PageSupport/PageSupport_CreatorsOfCountries";
 
 import About from "./components/PageAbout/PageAbout";
 
@@ -95,11 +95,11 @@ export default function App() {
                 })
             }
 
-            // Загрузка всех новостей
-            GSAPI("GETnews", {offset: 0}, (data) => {
-                console.log("GSAPI: GETnews offset=0");
+            // Загрузка всех постов
+            GSAPI("GETposts", {offset: 0}, (data) => {
+                console.log("GSAPI: GETposts offset=0");
 
-                // После получения всех новостей обновляем список в контексте
+                // После получения всех постов обновляем список в контексте
                 setContextPosts(data)
             })
 
@@ -142,7 +142,7 @@ export default function App() {
                     <Route path="/home" element={<Home />} />
 
                     <Route path="/news" element={<News />} />
-                    <Route path="/news/:id" element={<Post />} />
+                    <Route path="/news/:id" element={<NewsPost />} />
                     <Route path="/news/add" element={
                         <ProtectedRoute isAllowed={Context.userData}>
                             <NewsAdd />
@@ -172,7 +172,7 @@ export default function App() {
                     <Route path="/tools/exit" element={<Tools doExit={true} />} />
 
                     <Route path="/support" element={<Support />} />
-                    <Route path="/support/сreators-of-countries" element={<Support_creators_of_countries />} />
+                    <Route path="/support/сreators-of-countries" element={<SupportCreatorsOfCountries />} />
 
                     <Route path="/about" element={<About />} />
 

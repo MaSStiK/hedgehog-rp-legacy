@@ -25,7 +25,7 @@ export default function PageUsers() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Context.users])
     
-    const searchUsers = () => {
+    function searchUsers() {
         let filteredUsers = sortAlphabetically(Context.users, "name").filter(
             // Если есть поисковая строка в имени юзера или в теге или в id
             user => user.name.toLowerCase().includes(searchRef.current.value.toLowerCase())

@@ -7,7 +7,7 @@ import "./CustomInput.css"
 
 export default function CustomInput(props) {
     const [showPassword, setShowPassword] = useState(false)
-    const toggleShowPassword = () => {
+    function toggleShowPassword() {
         setShowPassword(!showPassword)
 
         // Не совсем правильно, но работает

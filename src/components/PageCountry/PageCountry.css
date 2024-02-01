@@ -63,20 +63,3 @@
     flex-direction: column;
     gap: var(--block-gap);
 }
-
-
-/* Описание - текст стилизованный под текстареа */
-.country-page__bio {
-    width: 100%;
-    padding: var(--button-padding);
-
-    color: var(--text-white);
-    text-decoration: none;
-
-    outline: none;
-    background-color: var(--bg-secondary);
-    border: var(--border-input);
-    border-radius: var(--border-radius);
-
-    white-space: pre-wrap;
-}
