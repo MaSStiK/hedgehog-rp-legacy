@@ -43,12 +43,21 @@ export default function PageNewsPost() {
             <article>
                 <h4 className="page-title text-dark">/ Новости</h4>
 
-                {/* Если пост найдена */}
+                {/* Если пост найден */}
                 {Object.keys(postData).length
-                    ? <PostsRender
-                        posts={postData}
-                        users={Context.users}
-                      />
+                    ? <>
+                        <PostsRender
+                            posts={postData}
+                            users={Context.users}
+                        />
+
+                        <section className="flex-col">
+                            <Link to={"/news"}>
+                                <button>К новостям</button>
+                            </Link>
+                        </section>
+                    </>
+                    
                     
                     // Если пост не найден, будет показан только когда будет ошибка
                     : <> 
