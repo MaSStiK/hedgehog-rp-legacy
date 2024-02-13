@@ -22,7 +22,7 @@
     height: auto;
 
     background-color: var(--bg-secondary);
-    border: var(--border-primary);
+    border: 1px solid var(--border-primary);
     border-radius: var(--border-radius);
     padding: var(--block-gap);
 

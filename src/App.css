@@ -55,7 +55,7 @@ section {
     position: relative;
 
     background-color: var(--bg-secondary);
-    border: var(--border-primary);
+    border: 1px solid var(--border-primary);
     border-radius: var(--border-radius);
     padding: var(--block-gap);
 }
@@ -69,7 +69,7 @@ section {
 /* Разделение внутри блока */
 .divider {
     width: 100%;
-    border-bottom: var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
 }
 
 

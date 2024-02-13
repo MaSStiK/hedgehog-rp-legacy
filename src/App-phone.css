@@ -14,7 +14,7 @@
         height: 50px; /* 50px высота кнопок */
 
         background-color: var(--bg-secondary);
-        border-bottom: var(--border-primary);
+        border-bottom: 1px solid var(--border-primary);
 
         position: fixed;
         top: 0;

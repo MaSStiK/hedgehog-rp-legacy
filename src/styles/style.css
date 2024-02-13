@@ -14,11 +14,11 @@
     --bg-transparent: #15151586;
 
     /* Бордеры */
-    --border-primary: 1px solid #413F46;
+    --border-primary: #413F46;
     --border-primary-color: #413F46;
-    --border-input: 1px solid #9891a0;
-    --border-input-focus: 1px solid  #1CA02C;
-    --border-input-error: 1px solid  #D60027;
+    --border-input: #9891a0;
+    --border-input-focus: #1CA02C;
+    --border-input-error: #D60027;
     --border-radius: 4px;
 
     /* Отступы между блоками и внутри блоков */
@@ -39,8 +39,8 @@
 
 
 * {
-    margin: 0;
     padding: 0;
+    margin: 0;
 
     font-family: "Montserrat", sans-serif;
     color: var(--text-white);

@@ -5,7 +5,7 @@
         padding: 0px 0px 60px 0px;
         
         background-color: var(--bg-secondary);
-        border-left: var(--border-primary);
+        border-left: 1px solid var(--border-primary);
 
         position: fixed;
         top: 0px;

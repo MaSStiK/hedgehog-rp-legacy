@@ -11,7 +11,7 @@ input {
 
     outline: none;
     background-color: var(--bg-secondary);
-    border: var(--border-input);
+    border: 1px solid var(--border-input);
     border-radius: var(--border-radius);
 }
 
@@ -30,7 +30,7 @@ textarea {
 
     outline: none;
     background-color: var(--bg-secondary);
-    border: var(--border-input);
+    border: 1px solid var(--border-input);
     border-radius: var(--border-radius);
 
     resize: vertical; /* Ресайз только вертикальный */
@@ -46,7 +46,7 @@ textarea {
     text-decoration: none;
 
     background-color: var(--bg-secondary);
-    border: var(--border-input);
+    border: 1px solid var(--border-input);
     border-radius: var(--border-radius);
 
     white-space: pre-wrap;
@@ -56,7 +56,7 @@ textarea {
 /* При выборе инпута / текстареа (Кроме неизменяемых) */
 input:not(:read-only):focus,
 textarea:not(:read-only):focus {
-    border: var(--border-input-focus);
+    border: 1px solid var(--border-input-focus);
 }
 
 /* Неизменяемые с серым текстом */
@@ -118,7 +118,7 @@ input:-webkit-autofill:focus {
 /* При нажатии на инпут зеленая обводка */
 .custom-input-wrapper input:focus:not(:read-only),
 .custom-input-wrapper textarea:focus:not(:read-only) {
-    border: var(--border-input-focus);
+    border: 1px solid var(--border-input-focus);
 }
 
 
@@ -131,7 +131,7 @@ input:-webkit-autofill:focus {
 
 /* Стиль для ошибки */
 .custom-input-wrapper input.error:not(:read-only) {
-    border: var(--border-input-error);
+    border: 1px solid var(--border-input-error);
 }
 
 .custom-input-wrapper input.error:not(:read-only) ~ label {
@@ -141,7 +141,7 @@ input:-webkit-autofill:focus {
 
 /* Стиль для ошибки */
 .custom-input-wrapper textarea.error:not(:read-only) {
-    border: var(--border-input-error);
+    border: 1px solid var(--border-input-error);
 }
 
 .custom-input-wrapper textarea.error:not(:read-only) ~ label {
