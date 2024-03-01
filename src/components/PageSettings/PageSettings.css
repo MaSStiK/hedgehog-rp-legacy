@@ -1,10 +1,10 @@
-.settings__effects-input {
+.settings__theme-input {
     gap: 0;
     align-items: center;
     cursor: pointer;
 }
 
-.settings__effects-input label {
+.settings__theme-input label {
     padding-left: 12px;
     cursor: inherit;
 }

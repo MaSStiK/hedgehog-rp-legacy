@@ -133,12 +133,12 @@ export default function App() {
     // Если установлен стиль для сайта
     useEffect(() => {
         // По умолчанию новый год
-        if (localStorage.pageEffect === undefined) {
-            localStorage.pageEffect = "newYear"
+        if (localStorage.pageTheme === undefined) {
+            localStorage.pageTheme = "default"
         }
 
-        if (localStorage.pageEffect) {
-            $("body").attr("effect", localStorage.pageEffect)
+        if (localStorage.pageTheme) {
+            $("body").attr("theme", localStorage.pageTheme)
         }
     }, [])
 

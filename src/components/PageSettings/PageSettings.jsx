@@ -8,9 +8,9 @@ import "./PageSettings.css"
 export default function PageSettings() {
     useEffect(() => {setPageTitle("Настройки")}, [])
 
-    function handleChangeEffects(style) {
-        $("body").attr("effect", style)
-        localStorage.pageEffect = style
+    function handleChangeTheme(style) {
+        $("body").attr("theme", style)
+        localStorage.pageTheme = style
     }
 
     return (
@@ -23,20 +23,20 @@ export default function PageSettings() {
                 <section className="se flex-col">
                     <h3>Эффекты страницы</h3>
 
-                    <div className="settings__effects-input flex-row">
-                        <input type="radio" name="page-effects" id="effects-default"
-                            onChange={() => {handleChangeEffects("default")}}
-                            defaultChecked={localStorage.pageEffect === "default" || localStorage.pageEffect === undefined}
+                    <div className="settings__theme-input flex-row">
+                        <input type="radio" name="page-theme" id="theme-default"
+                            onChange={() => {handleChangeTheme("default")}}
+                            defaultChecked={localStorage.pageTheme === "default" || localStorage.pageTheme === undefined}
                         />
-                        <label htmlFor="effects-default">Без эффектов</label>
+                        <label htmlFor="theme-default">По умолчанию</label>
                     </div>
                     
-                    <div className="settings__effects-input flex-row">
-                        <input type="radio" name="page-effects" id="effects-newYear"
-                            onChange={() => {handleChangeEffects("newYear")}}
-                            defaultChecked={localStorage.pageEffect === "newYear"}
+                    <div className="settings__theme-input flex-row">
+                        <input type="radio" name="page-theme" id="theme-newYear"
+                            onChange={() => {handleChangeTheme("newYear")}}
+                            defaultChecked={localStorage.pageTheme === "newYear"}
                         />
-                        <label htmlFor="effects-newYear">Зима</label>
+                        <label htmlFor="theme-newYear">Зимняя тема</label>
                     </div>
                 </section>
             </article>

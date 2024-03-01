@@ -32,7 +32,7 @@
     overflow-y: hidden;
 }
 
-/* Более толстый скрол */
+/* Более толстый Scroll */
 .post__attachments-container::-webkit-scrollbar {
     height: 8px;
 }
