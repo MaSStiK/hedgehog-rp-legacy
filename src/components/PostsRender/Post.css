@@ -11,6 +11,10 @@
     gap: var(--block-gap);
 }
 
+.post p {
+    white-space: pre-wrap;
+}
+
 
 /* Оставляем место под время */
 .post__top a {
