@@ -4,23 +4,20 @@ import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
-import { CONSTS, sortAlphabetically } from "../Global"
+import { setPageTitle, sortAlphabetically } from "../Global"
 
 import "./PageUsers.css"
 
 export default function PageUsers() {
+    useEffect(() => {setPageTitle("Все участники")}, [])
     const Context = useContext(DataContext)
     const searchRef = useRef()
 
-    const [usersRender, setusersRender] = useState([]);
-
-    useEffect(() => {
-        document.title = "Все участники" + CONSTS.pageName
-    }, [])
+    const [usersRender, setUsersRender] = useState([]);
 
     useEffect(() => {
         // При обновлении контекста так же обновляется и массив
-        setusersRender(sortAlphabetically(Context.users, "name"))
+        setUsersRender(sortAlphabetically(Context.users, "name"))
         searchUsers()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Context.users])
@@ -32,7 +29,7 @@ export default function PageUsers() {
             || user.tag.toLowerCase().includes(searchRef.current.value.toLowerCase())
             || user.id.toLowerCase().includes(searchRef.current.value.toLowerCase())
         )
-        setusersRender(filteredUsers)
+        setUsersRender(filteredUsers)
     }
 
     return (
@@ -40,7 +37,7 @@ export default function PageUsers() {
             <Aside />
             
             <article>
-                <h4 className="page-title text-dark">/ Все участники</h4>
+                <h4 className="page-title">/ Все участники</h4>
 
                 <section className="flex-col">
                     <CustomInput label="Поиск участника">

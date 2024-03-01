@@ -3,37 +3,35 @@ import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import Aside from "../Aside/Aside"
 import CustomInput from "../CustomInput/CustomInput"
-import { CONSTS, setPageLoading } from "../Global"
-import { GSAPI } from "../GS-API"
-import { LINKAPI } from "../LINK-API"
+import { CONSTS, setPageTitle, setPageLoading } from "../Global"
+import { GSAPI } from "../API"
 
 import "./PageNewsAdd.css"
 import "./PageNewsAdd-phone.css"
 
 
 export default function PageNewsAdd() {
+    useEffect(() => {setPageTitle("Создание новости")}, [])
     const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
 
-    const [postTextLenght, setpostTextLenght] = useState(0)
-    const [postPhotoPreview, setpostPhotoPreview] = useState("")
-    const [showAttachments, setshowAttachments] = useState(true) // Показывать ли блок добавления картинок
-    const [attachments, setattachments] = useState([]) // Список картинок
+    const [postTextLength, setPostTextLength] = useState(0)
+    const [postPhotoPreview, setPostPhotoPreview] = useState("")
+    const [showAttachments, setShowAttachments] = useState(true) // Показывать ли блок добавления картинок
+    const [attachments, setAttach] = useState([]) // Список картинок
 
-    const [errorText, seterrorText] = useState("") // Текст ошибки
-    const [titleInputError, settitleInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
-    const [textInputError, settextInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
-    const [photoInputError, setphotoInputError] = useState(false) // Отображать ли ошибку инпута Сслыка на фото
-    const [disableAddButton, setdisableAddButton] = useState(true) // Отключить ли кнопку Добавления картинки
-    const [disableSubmitButton, setdisableSubmitButton] = useState(true) // Отключить ли кнопку сохранения
+    const [errorText, setErrorText] = useState("") // Текст ошибки
+    const [titleInputError, setTitleInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
+    const [textInputError, setTextInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
+    const [photoInputError, setPhotoInputError] = useState(false) // Отображать ли ошибку инпута Сслыка на фото
+    const [disableAddButton, setDisableAddButton] = useState(true) // Отключить ли кнопку Добавления картинки
+    const [disableSubmitButton, setDisableSubmitButton] = useState(true) // Отключить ли кнопку сохранения
     
     const postTitleInput = useRef()
     const postTextInput = useRef()
     const postPhotoInput = useRef()
 
-    useEffect(() => {
-        document.title = "Создание новости" + CONSTS.pageName
-    })
+    
 
 
     // Проверка существования картинки
@@ -47,65 +45,65 @@ export default function PageNewsAdd() {
                     || img.naturalHeight < CONSTS.photoPxMin
                     || img.naturalWidth > CONSTS.photoPxMax
                     || img.naturalHeight > CONSTS.photoPxMax) {
-                    seterrorText("Не удалось загрузить картинку")
-                    setphotoInputError(true)
-                    setpostPhotoPreview("")
+                    setErrorText("Не удалось загрузить картинку")
+                    setPhotoInputError(true)
+                    setPostPhotoPreview("")
                     return
                 }
 
                 // Если размер подходит - ставим превью
-                setpostPhotoPreview(src)
-                setdisableAddButton(false)
+                setPostPhotoPreview(src)
+                setDisableAddButton(false)
             }
 
             img.onerror = () => {
-                seterrorText("Не удалось загрузить картинку")
-                setphotoInputError(true)
-                setpostPhotoPreview("")
+                setErrorText("Не удалось загрузить картинку")
+                setPhotoInputError(true)
+                setPostPhotoPreview("")
             }
         } else {
-            setpostPhotoPreview("")
+            setPostPhotoPreview("")
         }
     }
 
 
     // При обновлении любого из инпутов
     function handleInputUpdate() {
-        seterrorText("")
-        settitleInputError(false)
-        settextInputError(false)
-        setphotoInputError(false)
-        setdisableSubmitButton(postTitleInput.current.value.length < CONSTS.countryTitleMin) // Если меньше 1 символа в заголовке поста
+        setErrorText("")
+        setTitleInputError(false)
+        setTextInputError(false)
+        setPhotoInputError(false)
+        setDisableSubmitButton(postTitleInput.current.value.length < CONSTS.countryTitleMin) // Если меньше 1 символа в заголовке поста
     }
 
     function addAttachment() {
         // Отключаем кнопку и превью
-        setdisableAddButton(true)
+        setDisableAddButton(true)
 
         // LINKAPI(postPhotoInput.current.value, (data) => {
         //     postPhotoInput.current.value = ""
-        //     setattachments(prevState => [...prevState, {id: Date.now(), url: data}])
+        //     setAttach(prevState => [...prevState, {id: Date.now(), url: data}])
 
-        //     // seterrorText("Не удалось загрузить картинку")
-        //     // setphotoInputError(true)
+        //     // setErrorText("Не удалось загрузить картинку")
+        //     // setPhotoInputError(true)
         // })
 
         let attachSrc = postPhotoInput.current.value
-        setattachments(prevState => [...prevState, {id: Date.now(), url: attachSrc}])
-        setpostPhotoPreview("")
+        setAttach(prevState => [...prevState, {id: Date.now(), url: attachSrc}])
+        setPostPhotoPreview("")
         postPhotoInput.current.value = ""
     }
 
     useEffect(() => {
         if (attachments.length < 10) {
-            setshowAttachments(true)
+            setShowAttachments(true)
         } else {
-            setshowAttachments(false)
+            setShowAttachments(false)
         }
     }, [attachments])
 
 
-    // Ивент субмит у формы создания поста
+    // Ивент submit у формы создания поста
     function submitForm() {
         handleInputUpdate() // Сброс всех ошибок
 
@@ -116,31 +114,31 @@ export default function PageNewsAdd() {
 
         // Проверка длины Заголовка
         if (formTitle.length < CONSTS.postTitleMin || formTitle.length > CONSTS.postTitleMax) {
-            seterrorText(formTitle.length < CONSTS.postTitleMin
+            setErrorText(formTitle.length < CONSTS.postTitleMin
                 ? `Заголовок меньше ${CONSTS.postTitleMin} символов`
                 : `Заголовок больше ${CONSTS.postTitleMax} символов`
             )
-            settitleInputError(true)
+            setTitleInputError(true)
             return
         }
 
 
         // Проверка длины Текста
         if (formText.length > CONSTS.postTextMax) {
-            seterrorText(`Текст больше ${CONSTS.postTextMax} символов`)
-            settextInputError(true)
+            setErrorText(`Текст больше ${CONSTS.postTextMax} символов`)
+            setTextInputError(true)
             return
         }
 
         // Проверка длины фото
         if (attachments.length > CONSTS.attachmentsCountMax) {
-            seterrorText(`Картинок больше ${CONSTS.attachmentsCountMax}`)
-            setphotoInputError(true)
+            setErrorText(`Картинок больше ${CONSTS.attachmentsCountMax}`)
+            setPhotoInputError(true)
             return
         }
 
         // Отключаем кнопку только в случае если прошло все проверки
-        setdisableSubmitButton(true)
+        setDisableSubmitButton(true)
         setPageLoading()
 
         // Таймштамп
@@ -161,15 +159,15 @@ export default function PageNewsAdd() {
 
             // Если не удалось сохранить
             if (!data.success || !Object.keys(data).length) {
-                seterrorText(`Произошла непредвиденная ошибка!`)
-                setdisableSubmitButton(false)
+                setErrorText(`Произошла непредвиденная ошибка!`)
+                setDisableSubmitButton(false)
                 setPageLoading(false)
                 return
             }
 
             let posts = [...Context.posts]
             posts.unshift(newPostData)
-            Context.setposts(posts)
+            Context.setPosts(posts)
 
             // NavigateTo("/countries/" + Context.userData.country_id)
             NavigateTo("/news")
@@ -183,7 +181,7 @@ export default function PageNewsAdd() {
             <Aside />
 
             <article>
-                <h4 className="page-title text-dark">/ Создание новости</h4>
+                <h4 className="page-title">/ Создание новости</h4>
 
                 <section className="flex-col news-add">
                     <CustomInput label="Заголовок новости">
@@ -199,14 +197,14 @@ export default function PageNewsAdd() {
                     </CustomInput>
                     <small>Длина заголовка от {CONSTS.postTitleMin} до {CONSTS.postTitleMax} символов</small>
 
-                    <CustomInput label={`Текст новости (${postTextLenght} / ${CONSTS.postTextMax})`}>
+                    <CustomInput label={`Текст новости (${postTextLength} / ${CONSTS.postTextMax})`}>
                         <textarea
                             ref={postTextInput}
                             id="form-text"
                             className={textInputError ? "error" : null}
                             maxLength={CONSTS.postTextMax}
                             onInput={() => {
-                                setpostTextLenght(postTextInput.current.value.length) // Обновляем значение длины текста
+                                setPostTextLength(postTextInput.current.value.length) // Обновляем значение длины текста
                                 handleInputUpdate() // Так же тригирим апдейт всех полей
                             }}
                             required 
@@ -219,7 +217,7 @@ export default function PageNewsAdd() {
                         return <div className="news-add__attachment-preview" key={attach.id}>
                             <img src={attach.url} alt="preview" />
                             <button onClick={() => {
-                                setattachments(attachments.filter(el => el.id !== attach.id))
+                                setAttach(attachments.filter(el => el.id !== attach.id))
                             }}
                             >Удалить</button>
                         </div>

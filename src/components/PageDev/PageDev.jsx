@@ -5,7 +5,7 @@ import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
 import { DataContext } from "../Context"
-import { CONSTS } from "../Global"
+import { setPageTitle } from "../Global"
 import imgSearch from "../../assets/icons/Search.svg"
 import imgPrivate from "../../assets/icons/Private.svg"
 import imgCopy from "../../assets/icons/Copy.svg"
@@ -16,33 +16,44 @@ import imgBasePhoto from "../../assets/replace/base-photo.png"
 import "./PageDev.css"
 
 export default function PageDev() {
+    useEffect(() => {setPageTitle("dev")}, [])
     const Context = useContext(DataContext)
 
-    useEffect(() => {
-        document.title = "dev" + CONSTS.pageName
-    }, [])
-
-
-    function openmodal() {
+    function openModal() {
         Context.setModalData(
             <p>Модальное окно</p>
         )
     }
 
 
-    const [exampleInputValue, setexampleInputValue] = useState("");
-    const [exampleTextareaValue, setexampleTextareaValue] = useState("");
-    const [exampleInputError, setexampleInputError] = useState(false);
-    const [disableErrorButton, setdisableErrorButton] = useState(false);
+    const [exampleInputValue, setExampleInputValue] = useState("");
+    const [exampleTextareaValue, setExampleTextareaValue] = useState("");
+    const [exampleInputError, setExampleInputError] = useState(false);
+    const [disableErrorButton, setDisableErrorButton] = useState(false);
 
     const exampleInput = useRef()
     const exampleTextarea = useRef()
 
     function handleErrorButton() {
-        setexampleInputError(true)
-        setTimeout(() => setexampleInputError(false), 2000)
-        setdisableErrorButton(true)
-        setTimeout(() => setdisableErrorButton(false), 2000)
+        setExampleInputError(true)
+        setTimeout(() => setExampleInputError(false), 2000)
+        setDisableErrorButton(true)
+        setTimeout(() => setDisableErrorButton(false), 2000)
+    }
+
+    const test = {
+        a: 0,
+        b: 0,
+        c: {
+            name: 1,
+            color: 1,
+            label: {
+                a: {
+                    name: 1
+                },
+                b: 15
+            }
+        }
     }
 
     return (
@@ -50,7 +61,7 @@ export default function PageDev() {
             <Aside />
             
             <article>
-                <h4 className="page-title text-dark">/ dev</h4>
+                <h4 className="page-title">/ dev</h4>
 
                 <section className="flex-col">
                     <h1>Never gonna give you up</h1>
@@ -64,7 +75,7 @@ export default function PageDev() {
                 <section className="flex-col">
                     <p>Context.isAdmin: {`${Context.isAdmin}`}</p>
 
-                    <button className="green" onClick={openmodal}>Open Modal</button>
+                    <button className="green" onClick={openModal}>Open Modal</button>
                     
                     <ButtonProfile
                         className="tp"
@@ -83,7 +94,7 @@ export default function PageDev() {
                 </section>
 
                 <section className="flex-col">
-                    <button>gray (standart)</button>
+                    <button>gray (default)</button>
                     <button className="green">green (confirm)</button>
                     <button className="red">red (cancel)</button>
                     <button className="tp">tp (transparent)</button>
@@ -94,7 +105,7 @@ export default function PageDev() {
                         <ButtonImage 
                             src={imgSearch}
                             alt="button-test"
-                            text="Пацанчики дарова"
+                            text="Кнопка с текстом"
                         />
                         <ButtonImage 
                             src={imgPrivate}
@@ -110,11 +121,17 @@ export default function PageDev() {
                         />
                     </div>
                 </section>
+
+                <section className="flex-col">
+                    <p style={{whiteSpace: "pre-wrap"}}>
+                        {JSON.stringify(test, null, 4)}
+                    </p>
+                </section>
                     
-                {/* <section className="flex-col">
+                <section className="flex-col">
                     <CustomInput label="Пример с длинным название инпута">
                         <input ref={exampleInput} type="text" className={exampleInputError ?  "error" : null} required
-                        onChange={() => {setexampleInputValue(exampleInput.current.value)}} />
+                        onChange={() => {setExampleInputValue(exampleInput.current.value)}} />
                     </CustomInput>
                     <p>{"Инпут: " + exampleInputValue}</p>
                     <button disabled={disableErrorButton} onClick={handleErrorButton}>Сделать ошибку</button>
@@ -127,22 +144,10 @@ export default function PageDev() {
                 <section className="flex-col">
                     <CustomInput label="Пример текстареа">
                         <textarea ref={exampleTextarea} required
-                        onChange={() => {setexampleTextareaValue(exampleTextarea.current.value)}}></textarea>
+                        onChange={() => {setExampleTextareaValue(exampleTextarea.current.value)}}></textarea>
                     </CustomInput>
                     <p>{"Текстареа: " + exampleTextareaValue}</p>
                 </section>
-
-                <section className="flex-col">
-                    <CustomInput label="Инпут с паролем" password={true}>
-                        <input type="password" id="password" required/>
-                    </CustomInput>
-
-                    <CustomInput label="Инпут с повтором пароля" password={true}>
-                        <input type="password" id="password-again" required />
-                    </CustomInput>
-
-                    <button onClick={() => {localStorage.clear()}}>Delete userData</button>
-                </section> */}
             </article>
         </>
     )

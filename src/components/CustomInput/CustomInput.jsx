@@ -6,18 +6,19 @@ import imgEyeClosed from "../../assets/icons/EyeClosed.svg"
 import "./CustomInput.css"
 
 export default function CustomInput(props) {
-    const [showPassword, setShowPassword] = useState(false)
-    function toggleShowPassword() {
-        setShowPassword(!showPassword)
+    // const [showPassword, setShowPassword] = useState(false)
 
-        // Не совсем правильно, но работает
-        let child = $("#" + props.children.props.id)
-        if (child.attr("type") === "password") {
-            child.attr("type", "text")
-        } else {
-            child.attr("type", "password")
-        }
-    }
+    // function toggleShowPassword() {
+    //     setShowPassword(!showPassword)
+
+    //     // Не совсем правильно, но работает
+    //     let child = $("#" + props.children.props.id)
+    //     if (child.attr("type") === "password") {
+    //         child.attr("type", "text")
+    //     } else {
+    //         child.attr("type", "password")
+    //     }
+    // }
 
     return (
         <div className={`custom-input-wrapper ${props.password ? "custom-input-password" : null} ${props.className || ""}`} style={props.style}>
@@ -25,11 +26,11 @@ export default function CustomInput(props) {
             <label htmlFor={props.children.props.id}>{props.label}</label>
 
             {/* Для инпута с паролем кнопка показа пароля */}
-            {props.password &&
+            {/* {props.password &&
                 <button type="button" onClick={toggleShowPassword}>
                     {showPassword ? <img src={imgEyeClosed} alt="show-password" /> : <img src={imgEyeOpen} alt="hide-password" />}
                 </button>
-            }
+            } */}
         </div>
     )
 }

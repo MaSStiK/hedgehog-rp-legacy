@@ -10,7 +10,7 @@ export default function ButtonProfile(props) {
             style={props.style} >
 
             {props.src &&
-                <img src={props.src} alt="userpic" />
+                <img src={props.src} alt="user-profile" />
             }
             
             {(props.text || props.subText) &&

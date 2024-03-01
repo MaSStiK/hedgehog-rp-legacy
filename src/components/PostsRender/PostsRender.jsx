@@ -95,7 +95,7 @@ function PostRender(props) {
             {postAttachments.length
                 ? <>
                     {postAttachments.length !== 1
-                        ? <div className="post__attachments-wrapper">
+                        ? <div className="post__attachments-container">
                             <div className="post__attachments">
                                 {postAttachments.map((attach, index) => {
                                     return <img src={attach} alt="post-attachment" key={index} />

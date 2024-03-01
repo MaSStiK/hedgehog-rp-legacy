@@ -2,23 +2,21 @@ import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Aside from "../Aside/Aside"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
-import { CONSTS } from "../Global"
+import { setPageTitle } from "../Global"
 
 import "./PageAbout.css"
 
 export default function PageAbout() {
+    useEffect(() => {setPageTitle("О нас")}, [])
     const NavigateTo = useNavigate()
 
-    useEffect(() => {
-        document.title = "О нас" + CONSTS.pageName
-    })
 
     return (
         <>
             <Aside />
 
             <article>
-                <h4 className="page-title text-dark">/ О нас</h4>
+                <h4 className="page-title">/ О нас</h4>
 
                 <section className="flex-col">
                     <h3>"Ежиное РП"</h3>

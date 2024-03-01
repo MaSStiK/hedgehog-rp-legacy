@@ -4,7 +4,7 @@
 @import "./link.css";
 @import "./button.css";
 @import "./page-loading.css";
-@import "./new-year.css";
+@import "./effects.css";
 
 
 :root {
@@ -58,19 +58,19 @@
 }
 
 
-/* Скролл */
+/* Scroll */
 *::-webkit-scrollbar {
     width: 4px;
     height: 4px;
 }
 
-/* Подложка скролла в цвет фона */
+/* Scroll track в цвет фона */
 *::-webkit-scrollbar-track {
     border-radius: var(--border-radius);
-    background-color: #00000000;
+    background-color: transparent;
 }
 
-/* Скрол цвета основного блока */
+/* Scroll полоска прокрутки */
 *::-webkit-scrollbar-thumb {
     border-radius: var(--border-radius);
     background-color: var(--border-primary-color);

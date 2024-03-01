@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom"
 import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
-import { CONSTS } from "../Global"
+import { setPageTitle } from "../Global"
 import PostsRender from "../PostsRender/PostsRender"
 import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
 
@@ -11,24 +11,22 @@ import "./PageCountry.css"
 import "./PageCountry-phone.css"
 
 export default function PageCountry() {
+    useEffect(() => {setPageTitle("Страна")}, [])
+
     const Context = useContext(DataContext)
     const URLparams = useParams()
     const isSelfRender = Context.userData ? Context.userData.country_id === URLparams.id : false
 
-    const [countryNotFound, setcountryNotFound] = useState(false);
-    const [showCopyMessage, setshowCopyMessage] = useState(false);
+    const [countryNotFound, setCountryNotFound] = useState(false);
+    const [showCopyMessage, setShowCopyMessage] = useState(false);
     
-    const [countryData, setcountryData] = useState({});
+    const [countryData, setCountryData] = useState({});
 
-
-    useEffect(() => {
-        document.title = "Страна" + CONSTS.pageName
-    }, [])
 
     function handleCopyButton() {
         navigator.clipboard.writeText(countryData.tag)
-        setshowCopyMessage(true)
-        setTimeout(() => setshowCopyMessage(false), 2000)
+        setShowCopyMessage(true)
+        setTimeout(() => setShowCopyMessage(false), 2000)
     }
 
     // Когда загрузились все юзеры
@@ -37,16 +35,16 @@ export default function PageCountry() {
             return
         }
         
-        let findedUser = Context.users.find(user => user.id === URLparams.id.slice(1))
+        let foundUser = Context.users.find(user => user.id === URLparams.id.slice(1))
 
-        if (!findedUser) {
-            setcountryNotFound(true)
-            setcountryData({})
+        if (!foundUser) {
+            setCountryNotFound(true)
+            setCountryData({})
             return
         }
 
-        setcountryData(findedUser)
-        document.title = findedUser.country_title + CONSTS.pageName
+        setCountryData(foundUser)
+        setPageTitle(foundUser.country_title)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [URLparams.id, Context.users])
 
@@ -57,7 +55,7 @@ export default function PageCountry() {
             <Aside />
             
                 <article>
-                    <h4 className="page-title text-dark">/ Страна</h4>
+                    <h4 className="page-title">/ Страна</h4>
 
                     {/* Если страна найдена */}
                     {Object.keys(countryData).length
@@ -65,7 +63,7 @@ export default function PageCountry() {
                             <section className="flex-col">
                                 <div className="country-page__top">
                                     <div className="country-page__top-photo">
-                                        <img src={countryData.country_photo ? countryData.country_photo : imgBasePhoto} alt="userpic" />
+                                        <img src={countryData.country_photo ? countryData.country_photo : imgBasePhoto} alt="country-profile" />
                                     </div>
                                     <div className="country-page__top-name">
                                         <h2>{countryData.country_title}</h2>

@@ -25,7 +25,7 @@
 
 
 /* Блок с прокруткой картинок */
-.post__attachments-wrapper {
+.post__attachments-container {
     height: 100%;
     white-space: nowrap;
     overflow-x: auto;
@@ -33,7 +33,7 @@
 }
 
 /* Более толстый скрол */
-.post__attachments-wrapper::-webkit-scrollbar {
+.post__attachments-container::-webkit-scrollbar {
     height: 8px;
 }
 

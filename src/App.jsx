@@ -1,11 +1,12 @@
 // Импорт основных библиотек
 import { useContext, useEffect, useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { DataContext } from "./components/Context"
-import { GSAPI } from "./components/GS-API";
+import { GSAPI } from "./components/API";
 import { setPageLoading } from "./components/Global";
 import Modal from "./components/Modal/Modal"
+import $ from "jquery"
 
 // Импорт стилей
 import "./styles/style.css";
@@ -31,38 +32,37 @@ import Support from "./components/PageSupport/PageSupport";
 import SupportCreatorsOfCountries from "./components/PageSupport/PageSupport_CreatorsOfCountries";
 
 import About from "./components/PageAbout/PageAbout";
-
+import Settings from "./components/PageSettings/PageSettings";
 
 import Dev from "./components/PageDev/PageDev";
 
 import NotFound from "./components/PageNotFound/PageNotFound";
 
 
-
 export default function App() {
     const NavigateTo = useNavigate()
     const Context = useContext(DataContext) // Помять приложения, устанавливаем при запуске приложения
 
-    // Передаем в контекст юзердату и его сеттер
+    // Передаем в контекст userData и его сеттер
     let userData = localStorage.userData ? JSON.parse(localStorage.userData) : null
     const [ContextUserData, setContextUserData] = useState(userData);
     Context.userData = ContextUserData
-    Context.setuserData = setContextUserData
+    Context.setUserData = setContextUserData
 
     // Ставим в контекст isAdmin
     const [ContextIsAdmin, setContextIsAdmin] = useState(userData ? userData.id === "291195777" : false);
     Context.isAdmin = ContextIsAdmin
-    Context.setisAdmin = setContextIsAdmin
+    Context.setIsAdmin = setContextIsAdmin
 
     // Передаем в контекст массив всех юзеров
     const [ContextUsers, setContextUsers] = useState([]);
     Context.users = ContextUsers
-    Context.setusers = setContextUsers
+    Context.setUsers = setContextUsers
 
     // Передаем в контекст массив всех загруженных постов
     const [ContextPosts, setContextPosts] = useState([]);
     Context.posts = ContextPosts
-    Context.setposts = setContextPosts
+    Context.setPosts = setContextPosts
 
     // Передаем в контекст Модальное окно
     const [ModalData, setModalData] = useState([]);
@@ -73,7 +73,7 @@ export default function App() {
         // Анимация загрузки страницы
         setPageLoading()
         try {
-            // После загрузки приложения делаем проверку токена, если он изменился - требуем залогинится заного
+            // После загрузки приложения делаем проверку токена, если он изменился - требуем залогиниться заново
             if (Context.userData) {
                 GSAPI("authorizeByToken", {token: Context.userData.token}, (data) => {
                     console.log("GSAPI: authorizeByToken");
@@ -110,7 +110,7 @@ export default function App() {
                 // После получения всех юзеров обновляем список в контексте
                 setContextUsers(data)
 
-                // Если нету юзердаты - останавливаем загрузку
+                // Если нету userData - останавливаем загрузку
                 if (!Context.userData) {
                     setPageLoading(false)
                 }
@@ -119,7 +119,7 @@ export default function App() {
             // Если вдруг произошла ошибка - останавливаем загрузку
             setPageLoading(false)
 
-            // Если произошла какая то ошибка, то удаляем юзердату и требуем залогинится заного
+            // Если произошла какая то ошибка, то удаляем userData и требуем залогиниться заново
             delete localStorage.userData
             delete Context.userData
             alert(`Произошла непредвиденная ошибка:\n${error}`)
@@ -127,6 +127,19 @@ export default function App() {
             return
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+
+    // Если установлен стиль для сайта
+    useEffect(() => {
+        // По умолчанию новый год
+        if (localStorage.pageEffect === undefined) {
+            localStorage.pageEffect = "newYear"
+        }
+
+        if (localStorage.pageEffect) {
+            $("body").attr("effect", localStorage.pageEffect)
+        }
     }, [])
 
     return (
@@ -141,40 +154,41 @@ export default function App() {
 
                     <Route path="/home" element={<Home />} />
 
-                    <Route path="/news" element={<News />} />
+                    <Route exact path="/news" element={<News />} />
                     <Route path="/news/:id" element={<NewsPost />} />
-                    <Route path="/news/add" element={
+                    <Route exact path="/news/add" element={
                         <ProtectedRoute isAllowed={Context.userData}>
                             <NewsAdd />
                         </ProtectedRoute>
                     }/>
 
-                    <Route path="/users" element={<Users />} />
+                    <Route exact path="/users" element={<Users />} />
                     <Route path="/users/:id" element={<User />} />
-                    <Route path="/users/edit" element={
+                    <Route exact path="/users/edit" element={
                         <ProtectedRoute isAllowed={Context.userData}>
                             <UserEdit />
                         </ProtectedRoute>
                     }/>
 
-                    <Route path="/countries" element={<Countries />} />
+                    <Route exact path="/countries" element={<Countries />} />
                     <Route path="/countries/:id" element={<Country />} />
-                    <Route path="/countries/edit" element={
+                    <Route exact path="/countries/edit" element={
                         <ProtectedRoute isAllowed={Context.userData}>
                             <CountryEdit />
                         </ProtectedRoute>
                     }/>
 
 
-                    <Route path="/nations" element={<Nations />} />
+                    <Route exact path="/nations" element={<Nations />} />
 
-                    <Route path="/tools" element={<Tools />} />
+                    <Route exact path="/tools" element={<Tools />} />
                     <Route path="/tools/exit" element={<Tools doExit={true} />} />
 
-                    <Route path="/support" element={<Support />} />
-                    <Route path="/support/сreators-of-countries" element={<SupportCreatorsOfCountries />} />
+                    <Route exact path="/support" element={<Support />} />
+                    <Route path="/support/creators-of-countries" element={<SupportCreatorsOfCountries />} />
 
                     <Route path="/about" element={<About />} />
+                    <Route path="/settings" element={<Settings />} />
 
                     <Route path="/dev" element={
                         <ProtectedRoute isAllowed={Context.isAdmin}>

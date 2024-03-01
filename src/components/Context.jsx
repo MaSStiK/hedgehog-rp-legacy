@@ -3,17 +3,17 @@ import { createContext } from "react";
 // Создание контекста приложения
 export const DataContext = createContext({
     userData: {},
-    setuserData: () => {},
+    setUserData: () => {},
 
     isAdmin: false,
-    setisAdmin: () => {},
+    setIsAdmin: () => {},
 
     users: [],
-    setusers: () => {},
+    setUsers: () => {},
 
     posts: [],
-    setposts: () => {},
+    setPosts: () => {},
 
     modalData: undefined,
     setModalData: () => {},
-});
+})

@@ -1,30 +1,30 @@
 import { useEffect, useContext, useRef, useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import Aside from "../Aside/Aside"
-import { CONSTS, setPageLoading } from "../Global"
-import { GSAPI } from "../GS-API"
-import { LINKAPI } from "../LINK-API"
+import { CONSTS, setPageTitle, setPageLoading } from "../Global"
+import { GSAPI } from "../API";
 
 
 import "./PageCountryEdit.css"
 
 export default function PageCountryEdit() {
+    useEffect(() => {setPageTitle(Context.userData.country_id ? "Изменение страны" : "Создание страны")}, [])
     const Context = useContext(DataContext)
     const NavigateTo = useNavigate()
 
-    const [countryBioMainLenght, setcountryBioMainLenght] = useState(0);
-    const [countryBioMoreLenght, setcountryBioMoreLenght] = useState(0);
-    const [countryPhotoPreview, setcountryPhotoPreview] = useState("")
+    const [countryBioMainLength, setCountryBioMainLength] = useState(0);
+    const [countryBioMoreLength, setCountryBioMoreLength] = useState(0);
+    const [countryPhotoPreview, setCountryPhotoPreview] = useState("")
 
-    const [errorText, seterrorText] = useState("") // Текст ошибки
-    const [titleInputError, settitleInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
-    const [tagInputError, settagInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
-    const [bioMainInputError, setbioMainInputError] = useState(false) // Отображать ли ошибку инпута Описания
-    const [bioMoreInputError, setbioMoreInputError] = useState(false) // Отображать ли ошибку инпута Доп Описания
-    const [photoInputError, setphotoInputError] = useState(false) // Отображать ли ошибку инпута Сслыка на фото
-    const [disableSubmitButton, setdisableSubmitButton] = useState(true) // Отключить ли кнопку сохранения
+    const [errorText, setErrorText] = useState("") // Текст ошибки
+    const [titleInputError, setTitleInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
+    const [tagInputError, setTagInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
+    const [bioMainInputError, setBioMainInputError] = useState(false) // Отображать ли ошибку инпута Описания
+    const [bioMoreInputError, setBioMoreInputError] = useState(false) // Отображать ли ошибку инпута Доп Описания
+    const [photoInputError, setPhotoInputError] = useState(false) // Отображать ли ошибку инпута Ссылка на фото
+    const [disableSubmitButton, setDisableSubmitButton] = useState(true) // Отключить ли кнопку сохранения
 
     const basePhotoSrc = "https://is.gd/fzchSz" // Сокращенная ссылка на базовое фото
 
@@ -35,11 +35,6 @@ export default function PageCountryEdit() {
     const countryBioMoreInput = useRef()
 
     useEffect(() => {
-        document.title = `${Context.userData.country_id ? "Изменение" : "Создание"} страны | Ежиное-РП`
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    useEffect(() => {
         countryTitleInput.current.value = Context.userData.country_title
         countryTagInput.current.value = Context.userData.country_tag
 
@@ -48,11 +43,11 @@ export default function PageCountryEdit() {
 
         // countryBioMainInput.current.value = Context.userData.country_bio_main.replaceAll("<br>","\n")
         countryBioMainInput.current.value = Context.userData.country_bio_main
-        setcountryBioMainLenght(countryBioMainInput.current.value.length) // Обновляем значение длины описания
+        setCountryBioMainLength(countryBioMainInput.current.value.length) // Обновляем значение длины описания
 
         // countryBioMoreInput.current.value = Context.userData.country_bio_more.replaceAll("<br>","\n")
         countryBioMoreInput.current.value = Context.userData.country_bio_more
-        setcountryBioMoreLenght(countryBioMoreInput.current.value.length) // Обновляем значение длины доп описания
+        setCountryBioMoreLength(countryBioMoreInput.current.value.length) // Обновляем значение длины доп описания
         
         handleInputUpdate()
     }, [Context.userData])
@@ -69,41 +64,41 @@ export default function PageCountryEdit() {
                     || img.naturalHeight < CONSTS.photoPxMin
                     || img.naturalWidth > CONSTS.photoPxMax
                     || img.naturalHeight > CONSTS.photoPxMax) {
-                    seterrorText("Не удалось загрузить картинку")
-                    setcountryPhotoPreview("")
-                    setphotoInputError(true)
+                    setErrorText("Не удалось загрузить картинку")
+                    setCountryPhotoPreview("")
+                    setPhotoInputError(true)
                     return
                 }
 
                 // Если размер подходит - ставим превью
-                setcountryPhotoPreview(src)
+                setCountryPhotoPreview(src)
             }
 
             img.onerror = () => {
-                seterrorText("Не удалось загрузить картинку")
-                setcountryPhotoPreview("")
-                setphotoInputError(true)
+                setErrorText("Не удалось загрузить картинку")
+                setCountryPhotoPreview("")
+                setPhotoInputError(true)
             }
         } else {
-            setcountryPhotoPreview("")
+            setCountryPhotoPreview("")
         }
     }
 
 
     // При обновлении любого из инпутов
     function handleInputUpdate() {
-        seterrorText("")
-        settitleInputError(false)
-        settagInputError(false)
-        setbioMainInputError(false)
-        setbioMoreInputError(false)
-        setphotoInputError(false)
-        setdisableSubmitButton(countryTitleInput.current.value.length < CONSTS.countryTitleMin) // Если меньше 1 символа в названии страны
+        setErrorText("")
+        setTitleInputError(false)
+        setTagInputError(false)
+        setBioMainInputError(false)
+        setBioMoreInputError(false)
+        setPhotoInputError(false)
+        setDisableSubmitButton(countryTitleInput.current.value.length < CONSTS.countryTitleMin) // Если меньше 1 символа в названии страны
         
         countryTagInput.current.value = countryTagInput.current.value.replaceAll(" ", "_")
     }
 
-    // Ивент субмит у формы создания/изменения страны
+    // Ивент submit у формы создания/изменения страны
     function submitForm() {
         handleInputUpdate() // Сброс всех ошибок
 
@@ -116,19 +111,19 @@ export default function PageCountryEdit() {
 
         // Проверка длины Названия
         if (formTitle.length < CONSTS.countryTitleMin || formTitle.length > CONSTS.countryTitleMax) {
-            seterrorText(formTitle.length < CONSTS.countryTitleMin
+            setErrorText(formTitle.length < CONSTS.countryTitleMin
                 ? `Название меньше ${CONSTS.countryTitleMin} символов`
                 : `Название больше ${CONSTS.countryTitleMax} символов`
             )
-            settitleInputError(true)
+            setTitleInputError(true)
             return
         }
 
 
         // Проверка длины тега
         if (formTag.length > CONSTS.countryTagMax + 1) {
-            seterrorText(`Тег больше ${CONSTS.countryTagMax} символов`)
-            settagInputError(true)
+            setErrorText(`Тег больше ${CONSTS.countryTagMax} символов`)
+            setTagInputError(true)
             return
         }
 
@@ -136,8 +131,8 @@ export default function PageCountryEdit() {
         try {
             btoa(formTag)
         } catch {
-            seterrorText(`Тег содержит запрещенные символы`)
-            settagInputError(true)
+            setErrorText(`Тег содержит запрещенные символы`)
+            setTagInputError(true)
             return
         }
 
@@ -149,8 +144,8 @@ export default function PageCountryEdit() {
 
         // Проверка длины фото
         if (formPhoto.length > CONSTS.photoMax) {
-            seterrorText(`Ссылка на картинку больше ${CONSTS.photoMax} символов`)
-            setphotoInputError(true)
+            setErrorText(`Ссылка на картинку больше ${CONSTS.photoMax} символов`)
+            setPhotoInputError(true)
             return
         }
 
@@ -162,22 +157,22 @@ export default function PageCountryEdit() {
 
         // Проверка длины описания
         if (formBioMain.length > CONSTS.countryBioMainMax) {
-            seterrorText(`Описание больше ${CONSTS.countryBioMainMax} символов`)
-            setbioMainInputError(true)
+            setErrorText(`Описание больше ${CONSTS.countryBioMainMax} символов`)
+            setBioMainInputError(true)
             return
         }
 
 
         // Проверка длины доп описания
         if (formBioMore.length > CONSTS.countryBioMoreMax) {
-            seterrorText(`Доп. описание больше ${CONSTS.countryBioMoreMax} символов`)
-            setbioMoreInputError(true)
+            setErrorText(`Доп. описание больше ${CONSTS.countryBioMoreMax} символов`)
+            setBioMoreInputError(true)
             return
         }
 
         
         // Отключаем кнопку только в случае если прошло все проверки
-        setdisableSubmitButton(true)
+        setDisableSubmitButton(true)
         setPageLoading()
 
         // Обновленные данные о стране
@@ -194,7 +189,7 @@ export default function PageCountryEdit() {
         //     // Если получилось сократить ссылку - сохраняем ее
         //     newCountryData.country_photo = data
 
-        //     // После чего начинаем отпарвку информации
+        //     // После чего начинаем отправки информации
         //     sendData(newCountryData)
         // })
 
@@ -213,9 +208,9 @@ export default function PageCountryEdit() {
     
                 // Если тег не уникальный
                 if (!data.success || !Object.keys(data).length) {
-                    seterrorText("Введенный тег занят")
-                    settagInputError(true)
-                    setdisableSubmitButton(false)
+                    setErrorText("Введенный тег занят")
+                    setTagInputError(true)
+                    setDisableSubmitButton(false)
                     setPageLoading(false)
                     return
                 }
@@ -225,7 +220,7 @@ export default function PageCountryEdit() {
         }
 
         function sendCountryBioMain() {
-            // Если главное описание не меняелось - проверка доп описания
+            // Если главное описание не менялось - проверка доп описания
             if (newCountryData.country_bio_main === Context.userData.country_bio_main) {
                 sendCountryBioMore()
                 return
@@ -236,9 +231,9 @@ export default function PageCountryEdit() {
                 console.log("GSAPI: PUTcountryBioMain");
 
                 if (!data.success || !Object.keys(data).length) {
-                    seterrorText("Не удалось сохранить описание")
-                    setbioMainInputError(true)
-                    setdisableSubmitButton(false)
+                    setErrorText("Не удалось сохранить описание")
+                    setBioMainInputError(true)
+                    setDisableSubmitButton(false)
                     setPageLoading(false)
                     return
                 }
@@ -250,7 +245,7 @@ export default function PageCountryEdit() {
         }
 
         function sendCountryBioMore() {
-            // Если доп описание не меняелось - сохраняем информацию
+            // Если доп описание не менялось - сохраняем информацию
             if (newCountryData.country_bio_more === Context.userData.country_bio_more) {
                 saveCountryData()
                 return
@@ -261,9 +256,9 @@ export default function PageCountryEdit() {
                 console.log("GSAPI: PUTcountryBioMore");
 
                 if (!data.success || !Object.keys(data).length) {
-                    seterrorText("Не удалось сохранить доп. описание")
-                    setbioMoreInputError(true)
-                    setdisableSubmitButton(false)
+                    setErrorText("Не удалось сохранить доп. описание")
+                    setBioMoreInputError(true)
+                    setDisableSubmitButton(false)
                     setPageLoading(false)
                     return
                 }
@@ -285,12 +280,12 @@ export default function PageCountryEdit() {
             newUserData.country_photo = newCountryData.country_photo
 
             localStorage.userData = JSON.stringify(newUserData)
-            Context.setuserData(newUserData)
+            Context.setUserData(newUserData)
 
             // Удаляем старого юзера и загружаем нового
             let usersWithoutUser = Context.users.filter((user) => {return user.id !== Context.userData.id})
             usersWithoutUser.push(newUserData)
-            Context.setusers(usersWithoutUser)
+            Context.setUsers(usersWithoutUser)
 
             setPageLoading(false)
             NavigateTo("/countries/" + newCountryData.country_id)
@@ -303,7 +298,7 @@ export default function PageCountryEdit() {
 
             <article>
                 {/* Добавить изменение надписи на "Создание страны" если страна у юзера пустая */}
-                <h4 className="page-title text-dark">{`/ ${Context.userData.country_id ? "Изменение" : "Создание"} страны`}</h4>
+                <h4 className="page-title">{`/ ${Context.userData.country_id ? "Изменение" : "Создание"} страны`}</h4>
 
                 <section className="flex-col country-edit">
                     <CustomInput label="ID Страны">
@@ -368,7 +363,7 @@ export default function PageCountryEdit() {
                             maxLength={CONSTS.photoMax}
                             onInput={() => {
                                 checkImageSource(countryPhotoInput.current.value) // Проверяем картинку
-                                handleInputUpdate() // Так же тригирим апдейт всех полей
+                                handleInputUpdate() // Так же обновляем все поля
                             }}
                             required
                         />
@@ -379,30 +374,30 @@ export default function PageCountryEdit() {
                         <img src={countryPhotoPreview} alt="preview" />
                     }
                     
-                    <CustomInput label={`Описание страны (${countryBioMainLenght} / ${CONSTS.countryBioMainMax})`}>
+                    <CustomInput label={`Описание страны (${countryBioMainLength} / ${CONSTS.countryBioMainMax})`}>
                         <textarea
                             ref={countryBioMainInput}
                             id="form-bio"
                             className={bioMainInputError ? "error" : null}
                             maxLength={CONSTS.countryBioMainMax}
                             onInput={() => {
-                                setcountryBioMainLenght(countryBioMainInput.current.value.length) // Обновляем значение длины описания
-                                handleInputUpdate() // Так же тригирим апдейт всех полей
+                                setCountryBioMainLength(countryBioMainInput.current.value.length) // Обновляем значение длины описания
+                                handleInputUpdate() // Так же обновляем все поля
                             }}
                             required 
                         ></textarea>
                     </CustomInput>
                     <small>Длина описания до {CONSTS.countryBioMainMax} символов</small>
 
-                    <CustomInput label={`Доп. описание (${countryBioMoreLenght} / ${CONSTS.countryBioMoreMax})`}>
+                    <CustomInput label={`Доп. описание (${countryBioMoreLength} / ${CONSTS.countryBioMoreMax})`}>
                         <textarea
                             ref={countryBioMoreInput}
                             id="form-bio"
                             className={bioMoreInputError ? "error" : null}
                             maxLength={CONSTS.countryBioMoreMax}
                             onInput={() => {
-                                setcountryBioMoreLenght(countryBioMoreInput.current.value.length) // Обновляем значение длины доп описания
-                                handleInputUpdate() // Так же тригирим апдейт всех полей
+                                setCountryBioMoreLength(countryBioMoreInput.current.value.length) // Обновляем значение длины доп описания
+                                handleInputUpdate() // Так же обновляем все поля
                             }}
                             required 
                         ></textarea>

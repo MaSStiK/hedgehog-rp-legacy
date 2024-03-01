@@ -1,5 +1,6 @@
-/* Анимированый фон */
-body::before {
+/* Новогодний эффект */
+/* Анимированный фон */
+body[effect=newYear]::before {
     content: "";
     position: fixed;
     top: 0;
@@ -14,7 +15,7 @@ body::before {
 }
 
 /* Шапочки */
-section::after {
+body[effect=newYear] section::after {
     content: "";
     position: absolute;
     top: -18px;

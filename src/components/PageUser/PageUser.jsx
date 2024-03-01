@@ -4,33 +4,30 @@ import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
 import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
-import { VKAPI } from "../VK-API"
-import { CONSTS } from "../Global"
+import { VKAPI } from "../API"
+import { setPageTitle } from "../Global"
 
 import "./PageUser.css"
 import "./PageUser-phone.css"
 
 
 export default function PageUser() {
+    useEffect(() => {setPageTitle("Участник")}, [])
     const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
     const URLparams = useParams()
     const isSelfRender = Context.userData ? Context.userData.id === URLparams.id : false
 
-    const [userNotFound, setuserNotFound] = useState(false);
-    const [showCopyMessage, setshowCopyMessage] = useState(false);
+    const [userNotFound, setUserNotFound] = useState(false);
+    const [showCopyMessage, setShowCopyMessage] = useState(false);
     
-    const [userData, setuserData] = useState({});
-    const [userDataVk, setuserDataVk] = useState({});
-
-    useEffect(() => {
-        document.title = "Участник" + CONSTS.pageName
-    }, [])
+    const [userData, setUserData] = useState({});
+    const [userDataVk, setUserDataVk] = useState({});
 
     function handleCopyButton() {
         navigator.clipboard.writeText(userData.tag)
-        setshowCopyMessage(true)
-        setTimeout(() => setshowCopyMessage(false), 2000)
+        setShowCopyMessage(true)
+        setTimeout(() => setShowCopyMessage(false), 2000)
     }
 
     function handleExitProfile() {
@@ -46,27 +43,27 @@ export default function PageUser() {
             return
         }
 
-        let findedUser = Context.users.find(user => user.id === URLparams.id)
+        let foundUser = Context.users.find(user => user.id === URLparams.id)
 
-        if (!findedUser) {
-            setuserNotFound(true)
-            setuserData({})
-            setuserDataVk({})
+        if (!foundUser) {
+            setUserNotFound(true)
+            setUserData({})
+            setUserDataVk({})
             return
         }
 
-        setuserData(findedUser)
-        document.title = findedUser.name + CONSTS.pageName
+        setUserData(foundUser)
+        setPageTitle(foundUser.name)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [URLparams.id, Context.users])
 
     useEffect(() => {
-        setuserDataVk({})
+        setUserDataVk({})
 
         // Если юзер в кэше
         if (sessionStorage["vkUser" + URLparams.id]) {
             let hashVkUser = JSON.parse(sessionStorage["vkUser" + URLparams.id])
-            setuserDataVk({
+            setUserDataVk({
                 photo: hashVkUser.photo,
                 name: hashVkUser.name
             })
@@ -85,7 +82,7 @@ export default function PageUser() {
                     name: `${vkData.first_name} ${vkData.last_name}`
                 })
 
-                setuserDataVk({
+                setUserDataVk({
                     photo: vkData.photo_200,
                     name: `${vkData.first_name} ${vkData.last_name}`
                 })
@@ -97,14 +94,14 @@ export default function PageUser() {
         <>
             <Aside />
             <article>
-                <h4 className="page-title text-dark">/ Участник</h4>
+                <h4 className="page-title">/ Участник</h4>
 
                 {/* Если юзер найден */}
                 {Object.keys(userData).length
                     ? <section className="flex-col">
                         <div className="user-profile__top">
                             <div className="user-profile__top-photo">
-                                <img src={userData.photo ? userData.photo : imgBasePhoto} alt="userpic" />
+                                <img src={userData.photo ? userData.photo : imgBasePhoto} alt="user-profile" />
                             </div>
                             <div className="user-profile__top-name">
                                 <h2>{userData.name}</h2>

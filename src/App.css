@@ -19,7 +19,7 @@ body {
 
 /* Блок навигации */
 aside {
-    width: 212px; /* 200px размер навигации + 12px скролл */
+    width: 212px; /* 200px размер навигации + 12px scroll */
     height: 100%; /* Высота во всю страницу */
 
     z-index: var(--z-nav-content);
@@ -27,10 +27,10 @@ aside {
 
 /* Блок страницы */
 article {
-    width: 562px; /* 550px размер страницы + 12px скролл */
+    width: 562px; /* 550px размер страницы + 12px scroll */
     height: 100%; /* Высота во всю страницу */
     padding: 20px 12px 20px 0px; /* Внешний отступ блоков - 20px */
-    overflow-y: auto; /* Скроллбар обычный */
+    overflow-y: auto; /* scroll обычный */
     overflow-x: hidden;
     /* -ms-overflow-style: -ms-autohiding-scrollbar; */
 
@@ -44,7 +44,7 @@ article {
 /* CSS for other than iOS devices */ 
 @supports not (-webkit-touch-callout: none) {
     article {
-        overflow-y: overlay; /* Скроллбар поверх */
+        overflow-y: overlay; /* Scroll поверх */
     }
 }
 
@@ -63,6 +63,7 @@ section {
 
 /* Заголовки страниц */
 .page-title {
+    color: var(--text-dark);
     margin-left: var(--article-gap);
 }
 
@@ -88,7 +89,7 @@ section {
 }
 
 
-/* Скрыть обьект (не использовать) */
+/* Скрыть объект (не использовать) */
 .hidden {
     display: none !important;
 }

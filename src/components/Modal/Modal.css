@@ -32,8 +32,8 @@
 
 #modal__close-button {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 8px;
+    right: 8px;
 }
 
 .modal__title {

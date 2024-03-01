@@ -1,8 +1,6 @@
 import $ from "jquery";
 
 export const CONSTS = {
-    pageName: " | Ежиное-РП",
-
     loginTokenMax: 200,
 
     userNameMin: 1,
@@ -24,6 +22,10 @@ export const CONSTS = {
     photoMax: 512,
     photoPxMin: 40,
     photoPxMax: 1920,
+}
+
+export function setPageTitle(title) {
+    document.title = `${title} | Ежиное-РП`
 }
 
 

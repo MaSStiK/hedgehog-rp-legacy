@@ -4,20 +4,17 @@ import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import Aside from "../Aside/Aside"
-import { CONSTS, sortAlphabetically } from "../Global"
+import { setPageTitle, sortAlphabetically } from "../Global"
 
 import "./PageCountries.css"
 
 export default function PageCountries() {
+    useEffect(() => {setPageTitle("Все страны")}, [])
+
     const Context = useContext(DataContext)
     const searchRef = useRef()
 
-    const [countriesRender, setcountriesRender] = useState([]);
-
-    useEffect(() => {
-        document.title = "Все страны" + CONSTS.pageName
-    }, [])
-
+    const [countriesRender, setCountriesRender] = useState([]);
 
     function getCountries(data) {
         let countries = []
@@ -38,7 +35,7 @@ export default function PageCountries() {
 
     useEffect(() => {
         // При обновлении контекста так же обновляется и массив
-        setcountriesRender(sortAlphabetically(getCountries(Context.users), "country_title"))
+        setCountriesRender(sortAlphabetically(getCountries(Context.users), "country_title"))
         searchCountries()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Context.users])
@@ -50,7 +47,7 @@ export default function PageCountries() {
             || country.country_tag.toLowerCase().includes(searchRef.current.value.toLowerCase())
             || country.country_id.toLowerCase().includes(searchRef.current.value.toLowerCase())
         )
-        setcountriesRender(filteredUsers)
+        setCountriesRender(filteredUsers)
     }
 
     return (
@@ -58,7 +55,7 @@ export default function PageCountries() {
             <Aside />
             
             <article>
-                <h4 className="page-title text-dark">/ Все страны</h4>
+                <h4 className="page-title">/ Все страны</h4>
 
                 <section className="flex-col">
                     <CustomInput label="Поиск страны">

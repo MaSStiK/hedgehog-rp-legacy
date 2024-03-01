@@ -2,17 +2,14 @@ import { useEffect, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import Aside from "../Aside/Aside"
-import { CONSTS } from "../Global"
+import { setPageTitle } from "../Global"
 
 import "./PageTools.css"
 
 export default function PageTools(props) {
+    useEffect(() => {setPageTitle("Инструменты")}, [])
     const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
-
-    useEffect(() => {
-        document.title = "Инструменты" + CONSTS.pageName
-    })
 
     function handleExitProfile() {
         localStorage.clear()
@@ -31,7 +28,7 @@ export default function PageTools(props) {
             <Aside />
 
             <article>
-                <h4 className="page-title text-dark">/ Инструменты</h4>
+                <h4 className="page-title">/ Инструменты</h4>
 
                 <section className="flex-col">
                     <h3>Запасной выход из профиля <br/><p>(Удаление всего хеша)</p></h3>

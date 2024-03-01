@@ -1,5 +1,5 @@
 /* Основной стиль инпута */
-input {
+input[type=text] {
     display: block;
     width: 100%;
     height: var(--button-height);
@@ -20,7 +20,7 @@ textarea {
     display: block;
     width: 100%;
     height: 80px; /* По умолчанию высота в 80px */
-    min-height: var(--button-height); /* Минимальный размер павен размеру инпута */
+    min-height: var(--button-height); /* Минимальный размер равен размеру инпута */
     max-height: 200px; /* Максимальный размер */
     padding: var(--button-padding);
 
@@ -33,7 +33,7 @@ textarea {
     border: 1px solid var(--border-input);
     border-radius: var(--border-radius);
 
-    resize: vertical; /* Ресайз только вертикальный */
+    resize: vertical; /* resize только вертикальный */
 }
 
 
@@ -54,26 +54,26 @@ textarea {
 
 
 /* При выборе инпута / текстареа (Кроме неизменяемых) */
-input:not(:read-only):focus,
+input[type=text]:not(:read-only):focus,
 textarea:not(:read-only):focus {
     border: 1px solid var(--border-input-focus);
 }
 
 /* Неизменяемые с серым текстом */
-input:read-only,
+input[type=text]:read-only,
 textarea:read-only {
     color: var(--text-gray);
     cursor: not-allowed;
 }
 
 /* Плейсхолдер */
-input::placeholder {
+input[type=text]::placeholder {
     color: var(--text-dark);
 }
 
-/* фикс автоввода */
-input:-webkit-autofill, 
-input:-webkit-autofill:focus {
+/* Фикс авто ввода */
+input[type=text]:-webkit-autofill, 
+input[type=text]:-webkit-autofill:focus {
     transition: background-color 600000s 0s, color 600000s 0s;
 }
 
@@ -82,7 +82,7 @@ input:-webkit-autofill:focus {
     height: auto;
     position: relative;
 
-    margin-top: 8px; /* Оступ между инпутами - 20px */
+    margin-top: 8px; /* Отступ между инпутами - 20px */
 }
 
 .custom-input-wrapper label {
@@ -92,7 +92,7 @@ input:-webkit-autofill:focus {
     left: 4px;
 
     color: var(--text-dark);
-    /* Отключаем взаимодействие с лейблом */
+    /* Отключаем взаимодействие с label */
     pointer-events: none;
 
     white-space: nowrap;
@@ -101,9 +101,9 @@ input:-webkit-autofill:focus {
 }
 
 /* Перемещаем текст выше если в инпуте есть значение или инпут активен */
-.custom-input-wrapper input:focus:not(:read-only) ~ label,
-.custom-input-wrapper input:valid:not(:read-only) ~ label,
-.custom-input-wrapper input:read-only ~ label,
+.custom-input-wrapper input[type=text]:focus:not(:read-only) ~ label,
+.custom-input-wrapper input[type=text]:valid:not(:read-only) ~ label,
+.custom-input-wrapper input[type=text]:read-only ~ label,
 .custom-input-wrapper textarea:focus:not(:read-only) ~ label,
 .custom-input-wrapper textarea:valid:not(:read-only) ~ label,
 .custom-input-wrapper textarea:read-only ~ label {
@@ -116,25 +116,25 @@ input:-webkit-autofill:focus {
 }
 
 /* При нажатии на инпут зеленая обводка */
-.custom-input-wrapper input:focus:not(:read-only),
+.custom-input-wrapper input[type=text]:focus:not(:read-only),
 .custom-input-wrapper textarea:focus:not(:read-only) {
     border: 1px solid var(--border-input-focus);
 }
 
 
 /* При нажатии на инпут зеленый текст лейбла */
-.custom-input-wrapper input:focus:not(:read-only) ~ label,
+.custom-input-wrapper input[type=text]:focus:not(:read-only) ~ label,
 .custom-input-wrapper textarea:focus:not(:read-only) ~ label {
     color: var(--border-input-focus);
     
 }
 
 /* Стиль для ошибки */
-.custom-input-wrapper input.error:not(:read-only) {
+.custom-input-wrapper input[type=text].error:not(:read-only) {
     border: 1px solid var(--border-input-error);
 }
 
-.custom-input-wrapper input.error:not(:read-only) ~ label {
+.custom-input-wrapper input[type=text].error:not(:read-only) ~ label {
     color: var(--border-input-error);
 }
 

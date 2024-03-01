@@ -1,17 +1,13 @@
 import { useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Aside from "../Aside/Aside"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
-import { CONSTS, sortAlphabetically } from "../Global"
+import { setPageTitle, sortAlphabetically } from "../Global"
 
 import "./PageSupport.css"
 
 export default function SupportCreatorsOfCountries() {
-    const NavigateTo = useNavigate()
-
-    useEffect(() => {
-        document.title = "Помощь" + CONSTS.pageName
-    })
+    useEffect(() => {setPageTitle("Помощь")}, [])
 
     const creators = [
         {title: "Эллада", id: 396771911, name: "Алексей Дедов"},
@@ -36,14 +32,20 @@ export default function SupportCreatorsOfCountries() {
             <Aside />
 
             <article>
-                <h4 className="page-title text-dark">/ Помощь</h4>
+                <h4 className="page-title">/ Помощь</h4>
 
                 <section className="flex-col">
                     <h3>Текстовый список создателей стран</h3>
 
                     <ul className="support__ul flex-col">
                         {sortAlphabetically(creators, "title").map((creator) => (
-                            <li><p>{creator.title} - <Link to={"https://vk.com/id" + creator.id} className="text-link" target="_blank">{creator.name}</Link></p></li>
+                            <li>
+                                <p>{creator.title} - <Link to={"https://vk.com/id" + creator.id}
+                                        className="text-link"
+                                        target="_blank">{creator.name}
+                                    </Link>
+                                </p>
+                            </li>
                         ))}
                     </ul>
                 </section>

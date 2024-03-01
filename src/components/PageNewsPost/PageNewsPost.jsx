@@ -3,23 +3,20 @@ import { Link, useParams } from "react-router-dom"
 import { DataContext } from "../Context"
 import Aside from "../Aside/Aside"
 import PostsRender from "../PostsRender/PostsRender"
-import { GSAPI } from "../GS-API"
-import { CONSTS } from "../Global"
+import { GSAPI } from "../API"
+import { setPageTitle } from "../Global"
 
 import "./PageNewsPost.css"
 import "./PageNewsPost-phone.css"
 
 
 export default function PageNewsPost() {
+    useEffect(() => {setPageTitle("Новости")}, [])
     const Context = useContext(DataContext)
     const URLparams = useParams()
 
     const [postData, setpostData] = useState([]);
     const [postNotFound, setpostNotFound] = useState(false);
-
-    useEffect(() => {
-        document.title = "Новости" + CONSTS.pageName
-    })
 
     useEffect(() => {
         // Загрузка постов по post_id
@@ -41,7 +38,7 @@ export default function PageNewsPost() {
             <Aside />
 
             <article>
-                <h4 className="page-title text-dark">/ Новости</h4>
+                <h4 className="page-title">/ Новости</h4>
 
                 {/* Если пост найден */}
                 {Object.keys(postData).length

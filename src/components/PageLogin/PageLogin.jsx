@@ -2,24 +2,19 @@ import { useRef, useEffect, useState, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
-import { GSAPI } from "../GS-API"
-import { VKAPI } from "../VK-API"
-import { CONSTS, setPageLoading } from "../Global"
-import imgLogo from "../../assets/logo/logo-fullsize.png"
+import { GSAPI, VKAPI } from "../API"
+import { CONSTS, setPageTitle, setPageLoading } from "../Global"
+import imgLogo from "../../assets/logo/logoFullSize.png"
 import imgCopy from "../../assets/icons/Copy.svg"
-import { LINKAPI } from "../LINK-API"
 
 import "./PageLogin.css"
 import "./PageLogin-phone.css"
 
 
 export default function PageLogin() {
+    useEffect(() => {setPageTitle("Вход")}, [])
     const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
-
-    useEffect(() => {
-        document.title = "Вход" + CONSTS.pageName
-    }, [])
 
     // Уникальный ключ
     function generateVkCode() {
@@ -28,7 +23,7 @@ export default function PageLogin() {
 
     const [showCopyMessage, setshowCopyMessage] = useState(false) // Спрятать ли сообщение об скопированом коде
 
-    const [vkCode, setvkCode] = useState(generateVkCode()) // Создаем ключ для отправки в вк
+    const [vkCode] = useState(generateVkCode()) // Создаем ключ для отправки в вк (state что бы при обновлении страницы не обновлялся код)
 
     function handleCopyButton() {
         navigator.clipboard.writeText(vkCode)
@@ -65,24 +60,24 @@ export default function PageLogin() {
             data = data.response
 
             // Перебираем все последние сообщения в чате
-            let vkFindedUserId = data.items.find(message => message.last_message.text === vkCode)
+            let vkfoundUserId = data.items.find(message => message.last_message.text === vkCode)
 
             // Если не нашел
-            if (!vkFindedUserId) {
+            if (!vkfoundUserId) {
                 seterrorVkFindText("Сообщение не найдено!")
                 setdisableSubmitButton(false)
                 setPageLoading(false)
                 return
             }
 
-            vkFindedUserId = vkFindedUserId.last_message.from_id
+            vkfoundUserId = vkfoundUserId.last_message.from_id
 
             let newToken = (Math.random().toString(32).substring(2) + Date.now().toString(32) + Math.random().toString(32).substring(2)).toUpperCase()
 
-            GSAPI("authorizeById", {vk_id: vkFindedUserId.toString(), token: newToken}, (data) => {
+            GSAPI("authorizeById", {vk_id: vkfoundUserId.toString(), token: newToken}, (data) => {
                 // Если не нашло - регаем нового юзера
                 if (!data.success || !Object.keys(data).length) {
-                    registrateNewUser(vkFindedUserId, newToken)
+                    registrateNewUser(vkfoundUserId, newToken)
                     return
                 }
 
@@ -91,12 +86,12 @@ export default function PageLogin() {
                 newUserData.token = newToken // Ставим токен
                 localStorage.userData = JSON.stringify(newUserData)
 
-                Context.setuserData(newUserData)
-                Context.setisAdmin(newUserData.id === "291195777")
+                Context.setUserData(newUserData)
+                Context.setIsAdmin(newUserData.id === "291195777")
 
                 // Отправляем сообщение пользователю
                 let VKAPImessage = `Вы успешно вошли!\nТокен авторизации для входа в аккаунт на других устройствах:\n${newToken}`
-                VKAPI("messages.send", {peer_id: vkFindedUserId, random_id: 0, message: VKAPImessage}, () => {
+                VKAPI("messages.send", {peer_id: vkfoundUserId, random_id: 0, message: VKAPImessage}, () => {
                     NavigateTo("/")
                     setdisableSubmitButton(false)
                     setPageLoading(false)
@@ -179,7 +174,7 @@ export default function PageLogin() {
 
                     // Если успех - сохраняем и открываем главную
                     localStorage.userData = JSON.stringify(newUserData)
-                    Context.setuserData(newUserData)
+                    Context.setUserData(newUserData)
                     // Тут не проверяем на админа, ибо новый админ не создается
                     NavigateTo("/")
                 })
@@ -221,8 +216,8 @@ export default function PageLogin() {
             newUserData.token = loginToken // Ставим токен
             localStorage.userData = JSON.stringify(newUserData)
 
-            Context.setuserData(newUserData)
-            Context.setisAdmin(newUserData.id === "291195777")
+            Context.setUserData(newUserData)
+            Context.setIsAdmin(newUserData.id === "291195777")
 
             // Отправляем сообщение пользователю
             let VKAPImessage = `Вы успешно вошли в свой аккаунт по токену!`
@@ -235,7 +230,7 @@ export default function PageLogin() {
     return (
         <article id="article-login">
             <div className="logo-wrapper">
-                <img src={imgLogo} alt="logo" onClick={() => {NavigateTo("/")}} />
+                <img src={imgLogo} alt="logotype" onClick={() => {NavigateTo("/")}} />
             </div>
 
             <section>

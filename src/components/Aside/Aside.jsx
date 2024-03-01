@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { DataContext } from "../Context"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import imgLogo from "../../assets/logo/logo-fullsize.png"
+import imgLogo from "../../assets/logo/logoFullSize.png"
 import imgBurger from "../../assets/icons/Burger.svg"
 import imgClose from "../../assets/icons/Close.svg"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
@@ -14,10 +14,10 @@ export default function Aside() {
     const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
 
-    const [hideNavMenu, sethideNavMenu] = useState(true);
+    const [hideNavMenu, setHideNavMenu] = useState(true);
 
     function handleShowNavMenu () {
-        sethideNavMenu(!hideNavMenu)
+        setHideNavMenu(!hideNavMenu)
     }
 
     return (
@@ -35,7 +35,7 @@ export default function Aside() {
             />
 
             {/* Кнопка профиля в мобильной навигации */}
-            {Context.userData && // Если есть юзердата - рендерим мобильную кнопку профиля
+            {Context.userData && // Если есть userData - рендер мобильной кнопки профиля
                 <ButtonProfile
                     id="nav-phone-user"
                     className="phone-show tp"
@@ -66,12 +66,12 @@ export default function Aside() {
                     />
 
                     <div id="nav-logo">
-                        <img src={imgLogo} alt="nav-logo" onClick={() => {NavigateTo("/")}} />
+                        <img src={imgLogo} alt="logotype" onClick={() => {NavigateTo("/")}} />
                     </div>
                     
                     <ul>
                         <li>
-                            {Context.userData // Если есть юзердата - рендерим кнопку профиля
+                            {Context.userData // Если есть userData - рендер кнопку профиля
                                 ? <ButtonProfile
                                     src={Context.userData.photo}
                                     text={Context.userData.name}
@@ -85,9 +85,9 @@ export default function Aside() {
                             }
                         </li>
                         
-                        {Context.userData && // Если есть юзердата - ренлерим кнопку страны
+                        {Context.userData && // Если есть userData - рендер кнопки страны
                             <li>
-                                {Context.userData.country_id // Если страны нету - рендерим кнопку для создания страны
+                                {Context.userData.country_id // Если страны нету - рендер кнопки для создания страны
                                     ? <ButtonProfile
                                         src={Context.userData.country_photo}
                                         text={Context.userData.country_title}
@@ -107,7 +107,7 @@ export default function Aside() {
                         <li><NavLink to={"/news"}>Новости</NavLink></li>
                         <li><NavLink to={"/users"}>Участники</NavLink></li>
                         <li><NavLink to={"/countries"}>Страны</NavLink></li>
-                        <li><NavLink to={"/nations"}>Нации</NavLink></li>
+                        {/* <li><NavLink to={"/nations"}>Нации</NavLink></li> */}
 
                         <div className={"divider"}></div>
 
@@ -115,9 +115,12 @@ export default function Aside() {
                         <li><NavLink to={"/support"}>Помощь</NavLink></li>
                         <li><NavLink to={"/about"}>О нас</NavLink></li>
 
+                        <div className="divider"></div>
+                        <li><NavLink to={"/settings"}>Настройки</NavLink></li>
+
+
                         {Context.isAdmin &&
                             <>
-                                <div className="divider"></div>
                                 <li><NavLink to={"/dev"}>dev</NavLink></li>
                             </>
                         }
