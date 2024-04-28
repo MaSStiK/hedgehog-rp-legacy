@@ -1,8 +1,19 @@
-@media screen and (max-width: 840px) {
-    /* Обвертка навигации */
+/* Скрываем мобильные кнопки */
+#nav-menu-bg,
+#nav-logo-phone,
+#nav-phone-country,
+#nav-phone-user,
+#nav-menu-open,
+#nav-menu-close {
+    display: none;
+}
+
+@media screen and (max-width: 900px) {
+    /* Обвертка навигации, по умолчанию скрыта на телефоне */
     .nav-wrapper {
+        display: none;
         width: 200px;
-        padding: 0px 0px 60px 0px;
+        padding: 0px 0px var(--gap-medium) 0px;
         
         background-color: var(--bg-secondary);
         border-left: 1px solid var(--border-primary);
@@ -16,7 +27,7 @@
 
     /* Навигация */
     nav {
-        width: calc(100% - 8px - 8px); /* Растояние между контентом и скролом - 8px и слево - 8px */
+        width: calc(100% - 8px - 8px); /* Расстояние между контентом и прокруткой - 8px и слева - 8px */
         margin: 0 auto;
 
         gap: 0px;
@@ -28,52 +39,52 @@
 
     #nav-logo-phone {
         display: flex;
-        width: var(--button-big-height);
-        height: var(--button-big-height);
+        width: var(--button-height-big);
+        height: var(--button-height-big);
 
         margin-left: 8px;
     }
 
     #nav-logo-phone img {
-        width: var(--button-big-height);
-        height: var(--button-big-height);
+        width: var(--button-height-big);
+        height: var(--button-height-big);
     }
 
 
-    /* Кнопку открвтия навигации видно только на маленьких экранах */
-    #nav-menu-show {
+    /* Кнопку открытия навигации видно только на маленьких экранах */
+    #nav-menu-open {
         display: flex;
-        width: var(--button-big-height);
-        height: var(--button-big-height);
+        width: var(--button-height-big);
+        height: var(--button-height-big);
 
         position: absolute;
         top: 0px;
         right: 8px;
     }
 
-    #nav-menu-show img {
-        width: var(--button-big-img-size);
-        height: var(--button-big-img-size);
+    #nav-menu-open img {
+        width: var(--button-img-big);
+        height: var(--button-img-big);
     }
 
     /* Кнопка закрытия навигации */
-    #nav-menu-hide {
+    #nav-menu-close {
         display: flex;
-        width: var(--button-big-height);
-        height: var(--button-big-height);
+        width: var(--button-height-big);
+        height: var(--button-height-big);
 
         margin-left: auto;
 
         margin: 0px 0 12px auto;
     }
 
-    #nav-menu-hide img {
-        width: var(--button-big-img-size);
-        height: var(--button-big-img-size);
+    #nav-menu-close img {
+        width: var(--button-img-big);
+        height: var(--button-img-big);
     }
 
     /* Скрытие полосы у навигации */
-    #nav-menu-hide::after {
+    #nav-menu-close::after {
         content: "";
         width: 2px;
         height: 49px;
@@ -87,7 +98,6 @@
 
     /* Подложка навигации */
     #nav-menu-bg {
-        display: block;
         width: 100%;
         height: calc(100% - 50px);
 
@@ -102,18 +112,34 @@
     }
 
     /* Показывать ли меню */
-    .hide-nav-menu {
-        display: none !important;
+    .show-nav-menu {
+        display: block !important;
     }
 
     /* Кнопка юзера в моб. версии */
     #nav-phone-user {
-        width: var(--button-big-height);
-        height: var(--button-big-height);
+        width: var(--button-height-big);
+        height: var(--button-height-big);
 
         display: flex;
         position: absolute;
         top: 0px;
-        right: calc(var(--button-big-height) + 8px + 8px);
+        right: calc(var(--button-height-big) + 8px + 8px); /* Двойной отступ по 8px */
+    }
+
+    /* Кнопка страны в моб. версии */
+    #nav-phone-country {
+        width: var(--button-height-big);
+        height: var(--button-height-big);
+
+        display: flex;
+        position: absolute;
+        top: 0px;
+        right: calc(var(--button-height-big) + 8px + var(--button-height-big) + 8px + 8px); /* Двойной отступ по 8px */
+    }
+
+    /* Уменьшение кнопок в навигации */
+    nav ul li a {
+        height: var(--button-height);
     }
 }

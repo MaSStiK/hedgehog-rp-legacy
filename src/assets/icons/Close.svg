@@ -1,6 +1,3 @@
-<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Close">
-<path id="Vertical" d="M8.72768 25.2723L25.2723 8.72769" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vertical_2" d="M25.2723 25.2723L8.72767 8.72769" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="white"/>
 </svg>

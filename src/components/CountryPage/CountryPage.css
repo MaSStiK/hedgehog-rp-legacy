@@ -1,0 +1,73 @@
+/* Верхняя часть профиля */
+.country-page__top {
+    display: flex;
+    height: 100px;
+    gap: var(--gap-small);
+}
+
+/* Блок с именем и тегом */
+.country-page__top-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--gap-small);
+}
+
+/* Высота текста и обрезка */
+.country-page__top-name h2 {
+    max-height: 58px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.country-page__top-tag {
+    width: fit-content;
+    align-items: center;
+    gap: var(--button-gap);
+    cursor: pointer;
+}
+
+/* Фотография */
+.country-page__top-photo {
+    height: 100px;
+}
+
+/* Круглая форма */
+.country-page__top-photo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    
+    background-color: var(--bg-primary);
+    object-fit: cover;
+}
+
+/* Кнопки в стране */
+.country-page__buttons {
+    flex-wrap: wrap;
+}
+
+
+/* Строка с информацией */
+.country-page__row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.country-page__row > p {
+    width: 40%;
+}
+
+.country-page__row > a {
+    width: 60%;
+}
+
+
+/* Колонна с информацией (Описание) */
+.country-page__column {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+}

@@ -1,82 +1,3 @@
-/* Основной стиль инпута */
-input[type=text] {
-    display: block;
-    width: 100%;
-    height: var(--button-height);
-    padding: var(--button-padding);
-
-    color: var(--text-white);
-    font-size: var(--p-size);
-    text-decoration: none;
-
-    outline: none;
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-input);
-    border-radius: var(--border-radius);
-}
-
-/* Текстареа */
-textarea {
-    display: block;
-    width: 100%;
-    height: 80px; /* По умолчанию высота в 80px */
-    min-height: var(--button-height); /* Минимальный размер равен размеру инпута */
-    max-height: 200px; /* Максимальный размер */
-    padding: var(--button-padding);
-
-    color: var(--text-white);
-    font-size: var(--p-size);
-    text-decoration: none;
-
-    outline: none;
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-input);
-    border-radius: var(--border-radius);
-
-    resize: vertical; /* resize только вертикальный */
-}
-
-
-/* Текст стилизованный под текстареа */
-.textarea-block {
-    width: 100%;
-    padding: var(--button-padding);
-
-    color: var(--text-white);
-    text-decoration: none;
-
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-input);
-    border-radius: var(--border-radius);
-
-    white-space: pre-wrap;
-}
-
-
-/* При выборе инпута / текстареа (Кроме неизменяемых) */
-input[type=text]:not(:read-only):focus,
-textarea:not(:read-only):focus {
-    border: 1px solid var(--border-input-focus);
-}
-
-/* Неизменяемые с серым текстом */
-input[type=text]:read-only,
-textarea:read-only {
-    color: var(--text-gray);
-    cursor: not-allowed;
-}
-
-/* Плейсхолдер */
-input[type=text]::placeholder {
-    color: var(--text-dark);
-}
-
-/* Фикс авто ввода */
-input[type=text]:-webkit-autofill, 
-input[type=text]:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
-}
-
 .custom-input-wrapper {
     width: 100%;
     height: auto;
@@ -157,8 +78,8 @@ input[type=text]:-webkit-autofill:focus {
 /* Кнопка внутри обвертки */
 .custom-input-password button {
     /* Кнопка внутри инпута 28px на 28px */
-    width: var(--button-img-size);
-    height: var(--button-img-size);
+    width: var(--button-img);
+    height: var(--button-img);
 
     position: absolute;
     top: 4px;
@@ -168,6 +89,6 @@ input[type=text]:-webkit-autofill:focus {
 /* Картинка внутри обвертки */
 .custom-input-password button img {
     /* Картинка внутри кнопки 28px на 28px */
-    width: var(--button-img-size);
-    height: var(--button-img-size);
+    width: var(--button-img);
+    height: var(--button-img);
 }

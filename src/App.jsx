@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { DataContext } from "./components/Context"
+import { DataContext, CreateContext } from "./components/Context"
 import { GSAPI } from "./components/API";
 import { setPageLoading } from "./components/Global";
 import Modal from "./components/Modal/Modal"
@@ -13,61 +13,41 @@ import "./styles/style.css";
 import "./App.css";
 import "./App-phone.css";
 
+// Импорт навигации
+import Aside from "./components/Aside/Aside"
+
 // Импорт страниц
-import Login from "./components/PageLogin/PageLogin";
+import Login from "./components/LoginPage/LoginPage";
 
-import Home from "./components/PageHome/PageHome";
-import News from "./components/PageNews/PageNews";
-import NewsPost from "./components/PageNewsPost/PageNewsPost";
-import NewsAdd from "./components/PageNewsAdd/PageNewsAdd";
-import User from "./components/PageUser/PageUser";
-import Users from "./components/PageUsers/PageUsers";
-import UserEdit from "./components/PageUserEdit/PageUserEdit";
-import Country from "./components/PageCountry/PageCountry";
-import Countries from "./components/PageCountries/PageCountries";
-import CountryEdit from "./components/PageCountryEdit/PageCountryEdit";
-import Nations from "./components/PageNations/PageNations";
-import Tools from "./components/PageTools/PageTools";
-import Support from "./components/PageSupport/PageSupport";
-import SupportCreatorsOfCountries from "./components/PageSupport/PageSupport_CreatorsOfCountries";
+import Home from "./components/HomePage/HomePage";
+import News from "./components/NewsPage/NewsPage";
+import NewsPost from "./components/NewsPostPage/NewsPostPage";
+import NewsAdd from "./components/NewsAddPage/NewsAddPage";
+import User from "./components/UserPage/UserPage";
+import UserList from "./components/UserListPage/UserListPage";
+import UserEdit from "./components/UserEditPage/UserEditPage";
+import Country from "./components/CountryPage/CountryPage";
+import CountryList from "./components/CountryListPage/CountryListPage";
+import CountryEdit from "./components/CountryEditPage/CountryEditPage";
+import Nation from "./components/NationPage/NationPage";
+import Tools from "./components/ToolsPage/ToolsPage";
+import Support from "./components/SupportPage/SupportPage";
+import SupportCreatorsList from "./components/SupportPage/SupportPage_CreatorsList";
+import SupportAuthToken from "./components/SupportPage/SupportPage_AuthToken";
+import SupportFeedback from "./components/SupportPage/SupportPage_Feedback";
 
-import About from "./components/PageAbout/PageAbout";
-import Settings from "./components/PageSettings/PageSettings";
+import About from "./components/AboutPage/AboutPage";
+import Settings from "./components/SettingsPage/SettingsPage";
 
-import Dev from "./components/PageDev/PageDev";
+import Dev from "./components/DevPage/DevPage";
 
-import NotFound from "./components/PageNotFound/PageNotFound";
+import NotFound from "./components/NotFoundPage/NotFoundPage";
 
 
 export default function App() {
     const NavigateTo = useNavigate()
-    const Context = useContext(DataContext) // Помять приложения, устанавливаем при запуске приложения
+    const Context = CreateContext(useContext(DataContext)) // Помять приложения, устанавливаем при запуске
 
-    // Передаем в контекст userData и его сеттер
-    let userData = localStorage.userData ? JSON.parse(localStorage.userData) : null
-    const [ContextUserData, setContextUserData] = useState(userData);
-    Context.userData = ContextUserData
-    Context.setUserData = setContextUserData
-
-    // Ставим в контекст isAdmin
-    const [ContextIsAdmin, setContextIsAdmin] = useState(userData ? userData.id === "291195777" : false);
-    Context.isAdmin = ContextIsAdmin
-    Context.setIsAdmin = setContextIsAdmin
-
-    // Передаем в контекст массив всех юзеров
-    const [ContextUsers, setContextUsers] = useState([]);
-    Context.users = ContextUsers
-    Context.setUsers = setContextUsers
-
-    // Передаем в контекст массив всех загруженных постов
-    const [ContextPosts, setContextPosts] = useState([]);
-    Context.posts = ContextPosts
-    Context.setPosts = setContextPosts
-
-    // Передаем в контекст Модальное окно
-    const [ModalData, setModalData] = useState([]);
-    Context.modalData = ModalData
-    Context.setModalData = setModalData
 
     useEffect(() => {
         // Анимация загрузки страницы
@@ -91,7 +71,7 @@ export default function App() {
                     let newUserData = {...data.data}
                     newUserData.token = Context.userData.token
                     localStorage.userData = JSON.stringify(newUserData)
-                    setContextUserData(newUserData)
+                    Context.setUserData(newUserData)
                 })
             }
 
@@ -100,7 +80,7 @@ export default function App() {
                 console.log("GSAPI: GETposts offset=0");
 
                 // После получения всех постов обновляем список в контексте
-                setContextPosts(data)
+                Context.setPosts(data)
             })
 
             // Загрузка всех юзеров
@@ -108,7 +88,7 @@ export default function App() {
                 console.log("GSAPI: GETusers");
 
                 // После получения всех юзеров обновляем список в контексте
-                setContextUsers(data)
+                Context.setUsers(data)
 
                 // Если нету userData - останавливаем загрузку
                 if (!Context.userData) {
@@ -145,8 +125,11 @@ export default function App() {
     return (
         <>
             <Modal>
-                {ModalData}
+                {Context.modalData}
             </Modal>
+
+            {/* Отображаем Aside на всех страницах кроме  */}
+            {!window.location.href.toLowerCase().endsWith("/login") && <Aside />}
 
             <DataContext.Provider value={Context}>
                 <Routes>
@@ -162,31 +145,33 @@ export default function App() {
                         </ProtectedRoute>
                     }/>
 
-                    <Route exact path="/users" element={<Users />} />
-                    <Route path="/users/:id" element={<User />} />
-                    <Route exact path="/users/edit" element={
+                    <Route path="/user/:id" element={<User />} />
+                    <Route exact path="/user" element={<UserList />} />
+                    <Route exact path="/user/edit" element={
                         <ProtectedRoute isAllowed={Context.userData}>
                             <UserEdit />
                         </ProtectedRoute>
                     }/>
 
-                    <Route exact path="/countries" element={<Countries />} />
-                    <Route path="/countries/:id" element={<Country />} />
-                    <Route exact path="/countries/edit" element={
+                    <Route path="/country/:id" element={<Country />} />
+                    <Route exact path="/country" element={<CountryList />} />
+                    <Route exact path="/country/edit" element={
                         <ProtectedRoute isAllowed={Context.userData}>
                             <CountryEdit />
                         </ProtectedRoute>
                     }/>
 
 
-                    <Route exact path="/nations" element={<Nations />} />
+                    <Route exact path="/nation" element={<Nation />} />
 
                     <Route exact path="/tools" element={<Tools />} />
-                    <Route path="/tools/exit" element={<Tools doExit={true} />} />
+                    <Route path="/tools/exit" element={<Tools doLogout={true} />} />
 
                     <Route exact path="/support" element={<Support />} />
-                    <Route path="/support/creators-of-countries" element={<SupportCreatorsOfCountries />} />
-
+                    <Route path="/support/feedback" element={<SupportFeedback />} />
+                    <Route path="/support/auth-token" element={<SupportAuthToken />} />
+                    <Route path="/support/creators-list" element={<SupportCreatorsList />} />
+                    
                     <Route path="/about" element={<About />} />
                     <Route path="/settings" element={<Settings />} />
 

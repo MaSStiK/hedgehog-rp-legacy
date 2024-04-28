@@ -5,29 +5,45 @@ import imgClose from "../../assets/icons/Close.svg"
 
 import "./Modal.css"
 
-export default function Modal(props) {
+export default function Modal({
+    children,
+    ...props
+}) {
     const Context = useContext(DataContext)
 
-    function closeModal() {
-        Context.setModalData({})
+    const [hoverCLoseModal, setHoverCloseModal] = useState();
+
+    // Функция закрытия модального окна, срабатывает при нажатии на крестик или вне окна
+    function closeModal(event) {
+        if (event.target.className === "modal-wrapper") {
+            Context.setModalData({})
+        }
     }
 
     return (
-        <>
-            {Object.keys(props.children).length
-                ? <div className={`modal__wrapper`} onClick={closeModal}>
-                    <div className="modal__container flex-col" onClick={(event) => event.stopPropagation()}>
-                        <ButtonImage 
+        <>  
+            {/* Отображаем модальное окно в случае если есть children */}
+            {Object.keys(children).length !== 0 &&
+                <div
+                    className={`modal-wrapper`}
+                    onClick={(event) => closeModal(event)}
+                    // onMouseDown={(event) => closeModal(event)}
+                >
+                    <dialog className="modal" open>
+                        {/* Контент модального окна */}
+                        <div className="modal__content">
+                            {children}
+                        </div>
+
+                        {/* Кнопка закрытия модального окна */}
+                        <ButtonImage
                             id="modal__close-button"
                             src={imgClose}
                             alt="close-modal"
-                            onClick={closeModal}
+                            onClick={(closeModal)}
                         />
-
-                        {props.children}
-                    </div>
+                    </dialog>
                   </div>
-                : null
             }
         </>
     )

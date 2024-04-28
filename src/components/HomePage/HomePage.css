@@ -1,0 +1,47 @@
+/* Блок с информацией */
+.home__link-wrapper {
+    width: 50%;
+    height: 280px;
+    border-radius: var(--border-radius);
+
+    position: relative;
+    cursor: pointer;
+}
+
+/* Наведение на пк */
+@media (hover: hover) {
+    .home__link-wrapper:hover,
+    .home__link-wrapper:focus-visible {
+        scale: 1.03;
+    }
+}
+
+/* Клик на телефоне */
+@media (hover: none) {
+    .home__link-wrapper:active {
+        scale: 1.03;
+    }
+}
+
+.home__link-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+}
+
+.home__link-wrapper h3 {
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(transparent, #000000BB);
+
+    text-align: center;
+
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+iframe {
+    width: 100%;
+}

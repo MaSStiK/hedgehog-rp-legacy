@@ -1,72 +1,106 @@
-import { useState, useContext } from "react"
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react"
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { DataContext } from "../Context"
+import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import imgLogo from "../../assets/logo/logoFullSize.png"
-import imgBurger from "../../assets/icons/Burger.svg"
+import imgMenu from "../../assets/icons/Menu.svg"
 import imgClose from "../../assets/icons/Close.svg"
-import ButtonProfile from "../ButtonProfile/ButtonProfile"
+import imgLogin from "../../assets/icons/Login.svg"
+import imgAdd from "../../assets/icons/Add.svg"
+
+
+// Иконки страниц
+import imgHome from "../../assets/icons/Home.svg"
+import imgNews from "../../assets/icons/News.svg"
+import imgUser from "../../assets/icons/User.svg"
+import imgCountry from "../../assets/icons/Country.svg"
+import imgTool from "../../assets/icons/Tool.svg"
+import imgHelp from "../../assets/icons/Help.svg"
+import imgInfo from "../../assets/icons/Info.svg"
+import imgSettings from "../../assets/icons/Settings.svg"
+import imgDev from "../../assets/icons/Dev.svg"
+
 
 import "./Aside.css"
 import "./Aside-phone.css"
 
 export default function Aside() {
     const NavigateTo = useNavigate()
+    const Location = useLocation();
     const Context = useContext(DataContext)
 
-    const [hideNavMenu, setHideNavMenu] = useState(true);
+    // Состояние открытого или закрытого меню навигации на телефоне
+    const [showNavMenu, setShowNavMenu] = useState(false) // По умолчанию не показываем
 
-    function handleShowNavMenu () {
-        setHideNavMenu(!hideNavMenu)
-    }
+    // При обновлении ссылки закрываем навигацию
+    useEffect(() => {
+        setShowNavMenu(false)
+      }, [Location]);
 
     return (
         <aside>
             {/* Темный фон во время открытого меню навигации */}
-           <div id="nav-menu-bg" className={`phone-show ${hideNavMenu ? "hide-nav-menu" : null}`} onClick={handleShowNavMenu}></div>
+            <div
+                id="nav-menu-bg"
+                className={showNavMenu ? "show-nav-menu" : ""}
+                onClick={() => setShowNavMenu(false)}
+            ></div>
 
             {/* Лого в мобильной навигации */}
-            <ButtonImage 
+            <ButtonImage
                 id="nav-logo-phone"
-                className="phone-show tp"
+                className="tp"
                 src={imgLogo}
                 alt="logotype"
-                onClick={() => {NavigateTo("/")}}
+                onClick={() => NavigateTo("/")}
             />
+
+            {/* Кнопка страны в мобильной навигации */}
+            {Context.userData && // Если есть userData - рендер мобильной кнопки профиля
+                <ButtonProfile
+                    id="nav-phone-country"
+                    className="tp"
+                    src={Context.userData.country_photo}
+                    onClick={() => NavigateTo("/country/" + Context.userData.country_id)}
+                />
+            }
 
             {/* Кнопка профиля в мобильной навигации */}
             {Context.userData && // Если есть userData - рендер мобильной кнопки профиля
                 <ButtonProfile
                     id="nav-phone-user"
-                    className="phone-show tp"
+                    className="tp"
                     src={Context.userData.photo}
-                    onClick={() => {NavigateTo("/users/" + Context.userData.id)}} 
+                    onClick={() => NavigateTo("/user/" + Context.userData.id)}
                 />
             }
 
             {/* Кнопка открытия мобильного меню навигации */}
-            <ButtonImage 
-                id="nav-menu-show"
-                className="phone-show tp"
-                src={imgBurger}
+            <ButtonImage
+                id="nav-menu-open"
+                className="tp"
+                src={imgMenu}
                 alt="open-menu"
-                onClick={handleShowNavMenu}
+                onClick={() => setShowNavMenu(true)}
             />
 
             {/* Контейнер навигации */}
-            <div className={`nav-wrapper ${hideNavMenu ? "hide-nav-menu" : null}`}>
+            <div className={`nav-wrapper ${showNavMenu ? "show-nav-menu" : ""}`}>
                 <nav>
                     {/* Закрытие мобильного меню */}
-                    <ButtonImage 
-                        id="nav-menu-hide"
-                        className="phone-show tp"
+                    <ButtonImage
+                        id="nav-menu-close"
+                        className="tp"
                         src={imgClose}
                         alt="close-menu"
-                        onClick={handleShowNavMenu}
+                        onClick={() => setShowNavMenu(false)}
                     />
 
                     <div id="nav-logo">
-                        <img src={imgLogo} alt="logotype" onClick={() => {NavigateTo("/")}} />
+                        <NavLink to={"/"}>
+                            <img src={imgLogo} alt="logotype" />
+                        </NavLink>
                     </div>
                     
                     <ul>
@@ -76,12 +110,16 @@ export default function Aside() {
                                     src={Context.userData.photo}
                                     text={Context.userData.name}
                                     subText={Context.userData.tag}
-                                    onClick={() => {NavigateTo("/users/" + Context.userData.id)}} 
-                                    style={{marginBottom: "var(--block-gap)"}}
+                                    onClick={() => NavigateTo("/user/" + Context.userData.id)}
+                                    style={{marginBottom: "var(--gap-small)"}}
                                   />
-                                : <Link to={"/login"}>
-                                    <button className="green">Авторизация</button>
-                                  </Link>
+                                : <ButtonImage
+                                    src={imgLogin}
+                                    text="Авторизация"
+                                    className="green"
+                                    width100
+                                    onClick={() => NavigateTo("/login")}
+                                  />
                             }
                         </li>
                         
@@ -92,36 +130,41 @@ export default function Aside() {
                                         src={Context.userData.country_photo}
                                         text={Context.userData.country_title}
                                         subText={Context.userData.country_tag}
-                                        onClick={() => {NavigateTo("/countries/" + Context.userData.country_id)}} 
+                                        onClick={() => NavigateTo("/country/" + Context.userData.country_id)}
                                       />
-                                    : <Link to={"/countries/edit"}>
-                                        <button className="green">Моя страна</button>
-                                      </Link>
+                                    : <ButtonImage
+                                        src={imgAdd}
+                                        text={"Создать страну"}
+                                        className="green"
+                                        width100
+                                        onClick={() => NavigateTo("/country/edit")}
+
+                                    />
                                 }
                             </li>
                         }
 
-                        <div className="divider"></div>
+                        <hr />
 
-                        <li><NavLink to={"/"}>Главная</NavLink></li>
-                        <li><NavLink to={"/news"}>Новости</NavLink></li>
-                        <li><NavLink to={"/users"}>Участники</NavLink></li>
-                        <li><NavLink to={"/countries"}>Страны</NavLink></li>
-                        {/* <li><NavLink to={"/nations"}>Нации</NavLink></li> */}
+                        <li><NavLink to={"/"}><img src={imgHome} alt="nav-icon" />Главная</NavLink></li>
+                        <li><NavLink to={"/news"}><img src={imgNews} alt="nav-icon" />Новости</NavLink></li>
+                        <li><NavLink to={"/user"}><img src={imgUser} alt="nav-icon" />Участники</NavLink></li>
+                        <li><NavLink to={"/country"}><img src={imgCountry} alt="nav-icon" />Страны</NavLink></li>
+                        {/* <li><NavLink to={"/nation"}>Нации</NavLink></li> */}
 
-                        <div className={"divider"}></div>
+                        <hr />
 
-                        <li><NavLink to={"/tools"}>Инструменты</NavLink></li>
-                        <li><NavLink to={"/support"}>Помощь</NavLink></li>
-                        <li><NavLink to={"/about"}>О нас</NavLink></li>
+                        <li><NavLink to={"/tools"}><img src={imgTool} alt="nav-icon" />Инструменты</NavLink></li>
+                        <li><NavLink to={"/support"}><img src={imgHelp} alt="nav-icon" />Помощь</NavLink></li>
+                        <li><NavLink to={"/about"}><img src={imgInfo} alt="nav-icon" />О нас</NavLink></li>
 
-                        <div className="divider"></div>
-                        <li><NavLink to={"/settings"}>Настройки</NavLink></li>
+                        <hr />
+                        <li><NavLink to={"/settings"}><img src={imgSettings} alt="nav-icon" />Настройки</NavLink></li>
 
 
                         {Context.isAdmin &&
                             <>
-                                <li><NavLink to={"/dev"}>dev</NavLink></li>
+                                <li><NavLink to={"/dev"}><img src={imgDev} alt="nav-icon" />dev</NavLink></li>
                             </>
                         }
                     </ul>

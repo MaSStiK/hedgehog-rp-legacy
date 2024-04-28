@@ -4,7 +4,7 @@
     height: 100%;
     padding: 20px 0; /* Внешний отступ блоков - 20px */
 
-    overflow: overlay; /* Скроллбар поверх */
+    overflow: overlay; /* Прокрутка поверх */
     -ms-overflow-style: -ms-autohiding-scrollbar;
 
     z-index: var(--z-nav);
@@ -12,18 +12,18 @@
 
 /* Навигация */
 nav {
-    width: calc(100% - 8px); /* Растояние между контентом и скролом - 8px */
+    width: calc(100% - 8px); /* Расстояние между контентом и прокруткой - 8px */
 
     display: flex;
     flex-direction: column;
-    gap: var(--block-gap);
+    gap: var(--gap-small);
 }
 
 /* Кнопки */
 nav ul {
     display: flex;
     flex-direction: column;
-    /* gap: var(--block-gap); */
+    /* gap: var(--gap-small); */
 }
 
 /* Контейнер кнопки */
@@ -31,55 +31,83 @@ nav ul li {
     user-select: none;
 }
 
-/* Кнопка */
+/* Кнопка профиля и страны */
+nav ul li button {
+    height: var(--button-height-big);
+}
+
+/* Кнопка навигации */
 nav ul li a {
     width: 100%;
-    height: var(--button-big-height);
-    background-color: var(--button-bg-tp);
+    height: var(--button-height-big);
+    padding: var(--button-padding);
     position: relative;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: var(--button-gap);
+
+    outline: none;
     border-radius: var(--border-radius);
+    background-color: var(--button-bg-tp);
 
     cursor: pointer;
 }
 
-nav ul li button {
-    height: var(--button-big-height);
+nav ul li a img {
+    width: var(--button-img);
+    height: var(--button-img);
 }
 
 /* Активная вкладка навигации (Стрелочка сбоку) */
 nav ul li a.active::after {
-    content: ">";
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-image: url("../../assets/icons/Arrow-right.svg");
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     right: 20px;
 }
 
-/* Только для десктопных устройств */
+/* Наведение на пк */
 @media (hover: hover) {
-    nav ul li a:hover, nav ul li a:active {
+    nav ul li a:hover,
+    nav ul li a:focus-visible {
+        background-color: var(--button-hover-tp);
+    }
+}
+
+/* Клик на телефоне */
+@media (hover: none) {
+    nav ul li a:active {
         background-color: var(--button-hover-tp);
     }
 }
 
 
 /* Разделитель в навигации с отступами */
-nav ul .divider {
-    margin: var(--block-gap) auto; /* Центр */
+nav ul hr {
+    margin: var(--gap-small) auto; /* Центр */
 }
 
 
 /* Логотип */
 #nav-logo {
     width: 100%;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+#nav-logo a {
+    width: 100px;
+    height: 100px;
+}
+
 #nav-logo img {
     width: 100px;
-    cursor: pointer;
+    height: 100px;
 }

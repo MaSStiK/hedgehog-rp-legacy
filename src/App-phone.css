@@ -1,5 +1,5 @@
 /* Контент в 100% */
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 900px) {
     /* Основной контейнер всего контента */
     #root {
         width: 100%; /* Ширина во всю страницу */
@@ -24,13 +24,11 @@
     /* Блок страницы */
     article {
         width: 100%; /* Ширина во всю страницу */
-        padding: 70px var(--article-gap) var(--article-gap) var(--article-gap); /* Отступ сверху 50px + 20px */
+        padding: 70px var(--gap-medium) var(--gap-medium) var(--gap-medium); /* Отступ сверху 50px + 20px */
     }
 
     /* Блок с контентом */
     section {
-        width: min(550px, 100%); /* 550px размер страницы и скролл сбоку страницы */
-        
         margin: 0 auto; /* По центру страницы */
     }
 }

@@ -2,8 +2,10 @@
 /* body[theme=default] */
 
 /* Новогодняя тема */
+/* body[theme=snow] */
+
 /* Анимированный фон */
-body[theme=newYear]::before {
+body[theme=snow]::before {
     content: "";
     position: fixed;
     top: 0;
@@ -12,19 +14,18 @@ body[theme=newYear]::before {
     height: 100%;
     z-index: var(--z-under);
     background-image: url("https://i.gifer.com/5WWU.gif");
+    background-size: 500px;
     opacity: 0.25;
-    /* background-size: cover; */
-    /* background-repeat: no-repeat; */
 }
 
 /* Шапочки */
-body[theme=newYear] section::after {
+body[theme=snow] section::after {
     content: "";
     position: absolute;
     top: -18px;
     right: -13px;
-    width: var(--button-big-img-size);
-    height: var(--button-big-img-size);
+    width: var(--button-img-big);
+    height: var(--button-img-big);
     background-image: url("https://cdn-icons-png.flaticon.com/512/9181/9181465.png");
     background-size: contain;
     background-repeat: no-repeat;

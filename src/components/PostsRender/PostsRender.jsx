@@ -1,61 +1,25 @@
 import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
+import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import PostShare from "./PostShare";
 import imgShare from "../../assets/icons/Share.svg"
-import imgCopy from "../../assets/icons/Copy.svg"
-import imgVk from "../../assets/tools/vk.png"
 
 
 import "./Post.css"
 import "./Post-phone.css"
 
-function PostRender(props) {
-    const NavigateTo = useNavigate()
-
+function PostRender({
+    post,
+    postAuthor,
+    ...props
+}) {
     const Context = useContext(DataContext)
-    
 
-    function handleShare(postId, postTitle, postImg) {
-        Context.setModalData(
-            <>
-                <h3 className="modal__title">Поделиться новостью</h3>
-                
-                <div className="flex-row" style={{flexWrap: "wrap"}}>
-                    <ButtonImage
-                        src={imgVk}
-                        text={"Отправить в вк"}
-                        onClick={() =>  {
-                            // Отпраялем и закрываем модальное окно
-                            let url = "https://vk.com/share.php"
-                            url += "?url=" + encodeURIComponent("https://masstik.github.io/hedgehog.rp/#/news/" + postId)
-                            url += "&title=" + encodeURIComponent(postTitle)
-                            url += "&image=" + encodeURIComponent(postImg)
-                            url += "&noparse=true"
-
-                            window.open(url, "", "toolbar=0,status=0,popup=1,width=500,height=500")
-                            Context.setModalData({})
-                        }}
-                    />
-
-                    <ButtonImage
-                        src={imgCopy}
-                        text={"Скопировать ссылку"}
-                        onClick={() => {
-                            // Копируем ссылку и закрываем модальное окно
-                            navigator.clipboard.writeText("https://masstik.github.io/hedgehog.rp/#/news/" + postId)
-                            Context.setModalData({})
-                        }}
-                    />
-                </div>
-            </>
-        )
-    }
-
-
-    // Дата появления в беседе
-    let date = new Date(Number(props.post.timestamp))
+    // Дата создания поста
+    let date = new Date(Number(post.timestamp))
 
     let hours = date.getHours().toString()
     hours = hours.length !== 2 ? "0" + hours : hours // Формат часов 00
@@ -71,25 +35,25 @@ function PostRender(props) {
 
     let year = date.getFullYear()
 
-    let postAttachments = JSON.parse(props.post.attachments) // Картинки в посте
+    let postAttachments = JSON.parse(post.attachments) // Картинки в посте
 
     return (
-        <section className="post" id={`post-${props.post.post_id}`}>
-            <div className="post__top">
-                <Link to={"/countries/" + props.postAuthor.country_id}>
+        <section className="post flex-col" id={`post-${post.post_id}`}>
+            <div className="post__top flex-row">
+                <Link to={"/country/" + postAuthor.country_id}>
                     <ButtonProfile
-                        src={props.postAuthor.country_photo}
-                        text={props.postAuthor.country_title}
-                        subText={props.postAuthor.country_tag} 
+                        src={postAuthor.country_photo}
+                        text={postAuthor.country_title}
+                        subText={postAuthor.country_tag} 
                     />
                 </Link>
                 <small className="text-gray">{`${day}.${month}.${year}`}<br/>{`${hours}:${minutes}`}</small>
             </div>
-            
-            <h3>{props.post.post_title}</h3>
-
-            {props.post.post_text &&
-                <p>{props.post.post_text}</p>
+            {/* Заголовок поста */}
+            <h3>{post.post_title}</h3>
+            {/* Текст поста не обязателен */}
+            {post.post_text &&
+                <p>{post.post_text}</p>
             }
 
             {postAttachments.length
@@ -98,25 +62,32 @@ function PostRender(props) {
                         ? <div className="post__attachments-container">
                             <div className="post__attachments">
                                 {postAttachments.map((attach, index) => {
-                                    return <img src={attach} alt="post-attachment" key={index} />
+                                    return <ImageFullscreen key={index}>
+                                        <img src={attach} alt="post-attachment" />
+                                    </ImageFullscreen>
                                 })}
                             </div>
                           </div> 
-                        : <img src={postAttachments[0]} alt="post-attachment" className="post__attachment__single-img" />
+                        : <ImageFullscreen>
+                            <img src={postAttachments[0]} alt="post-attachment" className="post__attachment__single-img" />
+                          </ImageFullscreen>
                     }
                     </>
                 : null
             }
 
             <div className=" flex-row post__buttons">
-                <ButtonImage 
+                <ButtonImage
+                    className="tp"
                     src={imgShare}
-                    alt="close-menu"
+                    alt="post-share"
+                    text="Поделиться"
                     onClick={() => {
-                        handleShare(
-                            props.post.post_id,
-                            props.post.post_title,
-                            postAttachments.length ? postAttachments[0] : props.postAuthor.country_photo
+                        PostShare(
+                            Context,
+                            post.post_id,
+                            post.post_title,
+                            postAttachments.length ? postAttachments[0] : postAuthor.country_photo
                         )
                     }}
                 />
@@ -125,11 +96,15 @@ function PostRender(props) {
     )
 }
 
-export default function PostsRender(props) {
+export default function PostsRender({
+    posts = [],
+    users = [],
+    ...props
+}) {
     return (
         <>
-            {props.posts.map((post) => {
-                let postAuthor = props.users.find(user => user.country_id === post.country_id)
+            {posts.map((post) => {
+                let postAuthor = users.find(user => user.country_id === post.country_id)
 
                 // Если автора нету - не возвращаем
                 if (postAuthor) {
@@ -146,10 +121,4 @@ export default function PostsRender(props) {
             })}
         </>
     )
-}
-
-
-PostsRender.defaultProps = {
-    posts: [],
-    users: []
 }

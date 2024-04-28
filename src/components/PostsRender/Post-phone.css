@@ -1,5 +1,5 @@
 /* Контент в 100% */
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 900px) {
     /* В телефоне обычный скролл */
     .post__attachments-container::-webkit-scrollbar {
         height: 4px;

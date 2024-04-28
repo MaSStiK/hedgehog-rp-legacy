@@ -1,10 +1,22 @@
 /* Кнопка с иконкой (Как прозрачная, но 36x36) */
 .button-image {
-    width: auto; /* Высота как у обычноый кнопки, а ширина обтягивает картинку + padding */
+    /* Высота как у обычной кнопки*/
+    width: fit-content; /* Ширина кнопки зависит от контента  и обтягивает его*/
+    min-width: var(--button-height); /* Минимальная ширина кнопки является высота и получается квадратная форма */
+}
+
+/* Кнопка во всю ширину */
+.button-image_width100 {
+    width: 100%;
+}
+
+/* Контент кнопки слева, а не по центру */
+.button-image_atStart {
+    justify-content: flex-start;
 }
 
 /* Иконка в кнопке чуть меньше кнопки */
 .button-image img {
-    width: var(--button-img-size);
-    height: var(--button-img-size);
+    width: var(--button-img);
+    height: var(--button-img);
 }

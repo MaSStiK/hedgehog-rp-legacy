@@ -1,7 +1,8 @@
 import $ from "jquery";
 
+// Объект описывающий длину значений
 export const CONSTS = {
-    loginTokenMax: 200,
+    loginTokenMax: 50,
 
     userNameMin: 1,
     userNameMax: 64,
@@ -9,7 +10,7 @@ export const CONSTS = {
     userPhotoMax: 256,
 
     countryTitleMin: 1,
-    countryTitleMax: 128,
+    countryTitleMax: 64,
     countryTagMax: 32,
     countryBioMainMax: 850,
     countryBioMoreMax: 850,
@@ -24,6 +25,7 @@ export const CONSTS = {
     photoPxMax: 1920,
 }
 
+// Функция для установки заголовка страницы
 export function setPageTitle(title) {
     document.title = `${title} | Ежиное-РП`
 }

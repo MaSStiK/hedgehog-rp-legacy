@@ -1,26 +1,36 @@
-// import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
+import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
 
 import "./ButtonProfile.css"
 
-export default function ButtonProfile(props) {
+// Большая кнопка с профилем или страной
+export default function ButtonProfile({
+    id,
+    className,
+    style,
+    onClick,
+    src,
+    text,
+    subText,
+    ...props
+}) {
     return (
-        <button id={props.id || ""} 
-            className={`button-profile ${props.className || ""}`} 
-            onClick={props.onClick} 
-            style={props.style} >
-
-            {props.src &&
-                <img src={props.src} alt="user-profile" />
-            }
+        <button
+            id={id || ""} 
+            className={`button-profile ${className || ""}`} 
+            style={style}
+            onClick={onClick} 
+        >
+            <img src={src || imgBasePhoto} alt="profile-icon" />
             
-            {(props.text || props.subText) &&
+            {/* Если есть текст или subText - отображаем блок с текстом */}
+            {(text || subText) &&
                 <div className="button-profile__text">
-                    {props.text && // Если текст не указан, то не рендерим его
-                        <p className="text-cut">{props.text}</p>
+                    {text && // Если текст не указан, то не рендерим его
+                        <p className="text-cut">{text}</p>
                     }
 
-                    {props.subText && // Если сабтекст не указан, то не рендерим его
-                        <small className="text-cut text-gray">{props.subText}</small>
+                    {subText && // Если subText не указан, то не рендерим его
+                        <small className="text-cut text-gray">{subText}</small>
                     }
                 </div>
             }

@@ -1,11 +1,35 @@
 import { useState } from "react"
 import $ from "jquery"
-import imgEyeOpen from "../../assets/icons/EyeOpen.svg"
-import imgEyeClosed from "../../assets/icons/EyeClosed.svg"
 
 import "./CustomInput.css"
 
-export default function CustomInput(props) {
+
+/* 
+Пример использования
+
+<CustomInput label="Пример использования">
+    <input
+        ref={exampleInput}
+        type="text"
+        className={exampleInputError ?  "error" : null}
+        onChange={() => {handler}}
+        required
+    />
+</CustomInput>
+
+required - ОБЯЗАТЕЛЕН !!!
+*/
+
+
+// Кастомный инпут с label который заменяет placeholder и при активации label переносится на верхнюю часть инпута
+export default function CustomInput({
+    id,
+    className,
+    style,
+    label,
+    children,
+    ...props
+}) {
     // const [showPassword, setShowPassword] = useState(false)
 
     // function toggleShowPassword() {
@@ -21,9 +45,16 @@ export default function CustomInput(props) {
     // }
 
     return (
-        <div className={`custom-input-wrapper ${props.password ? "custom-input-password" : null} ${props.className || ""}`} style={props.style}>
-            {props.children}
-            <label htmlFor={props.children.props.id}>{props.label}</label>
+        <div
+            id={id || ""}
+            className={`custom-input-wrapper ${className || ""}`}
+            style={style}
+        >
+            {/* Передаваемый инпут */}
+            {children}
+
+            {/* Его label / placeholder */}
+            <label htmlFor={children.props.id}>{label}</label>
 
             {/* Для инпута с паролем кнопка показа пароля */}
             {/* {props.password &&

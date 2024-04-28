@@ -1,24 +1,21 @@
+/* Блок с новостью */
+.post {}
+
 /* Верхняя часть поста (автор и время публикации) */
-.post {
-    display: flex;
-    flex-direction: column;
-    gap: var(--block-gap);
-}
-
 .post__top {
-    display: flex;
     justify-content: space-between;
-    gap: var(--block-gap);
+    gap: 0;
 }
 
-.post p {
+/* Текст поста */
+.post > p {
     white-space: pre-wrap;
 }
 
 
 /* Оставляем место под время */
 .post__top a {
-    width: calc(100% - 76px);
+    width: calc(100% - 80px);
 }
 
 
@@ -31,7 +28,6 @@
 /* Блок с прокруткой картинок */
 .post__attachments-container {
     height: 100%;
-    white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
 }
@@ -43,12 +39,13 @@
 
 .post__attachments {
     display: flex;
-    gap: var(--block-gap);
-    padding-bottom: var(--block-gap);
+    gap: var(--gap-small);
+    padding-bottom: var(--gap-small);
 }
 
 .post__attachments img {
     display: inline-block;
+    width: auto;
     height: 350px;
     object-fit: contain;
     border-radius: var(--border-radius);

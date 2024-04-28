@@ -27,16 +27,16 @@ aside {
 
 /* Блок страницы */
 article {
-    width: 562px; /* 550px размер страницы + 12px scroll */
+    width: 624px; /* 600px размер страницы + 20px отступ + 4px полоса прокрутки */
     height: 100%; /* Высота во всю страницу */
-    padding: 20px 12px 20px 0px; /* Внешний отступ блоков - 20px */
+    padding: 20px 20px 20px 0px; /* Внешний отступ блоков - 20px */
     overflow-y: auto; /* scroll обычный */
     overflow-x: hidden;
     /* -ms-overflow-style: -ms-autohiding-scrollbar; */
 
     display: flex;
     flex-direction: column;
-    gap: var(--article-gap);
+    gap: var(--gap-medium);
 
     scrollbar-gutter: stable;
 }
@@ -50,26 +50,27 @@ article {
 
 /* Блок с контентом */
 section {
-    width: 100%;
+    width: min(600px, 100%);
     height: auto; /* Высота определяется контентом блока */
     position: relative;
 
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     border-radius: var(--border-radius);
-    padding: var(--block-gap);
+    padding: var(--gap-small);
 }
 
 
 /* Заголовки страниц */
 .page-title {
     color: var(--text-dark);
-    margin-left: var(--article-gap);
+    margin-left: var(--gap-medium);
 }
 
-/* Разделение внутри блока */
-.divider {
+/* Разделитель */
+hr {
     width: 100%;
+    border: none; /* отключаем стандартную обводку и ставим обводку 1px */
     border-bottom: 1px solid var(--border-primary);
 }
 
@@ -78,26 +79,22 @@ section {
 .flex-row {
     display: flex;
     flex-direction: row;
-    gap: var(--block-gap);
+    gap: var(--gap-small);
 }
 
 /* Блок - флекс колонна */
 .flex-col {
     display: flex;
     flex-direction: column;
-    gap: var(--block-gap);
+    gap: var(--gap-small);
+}
+
+.border-radius {
+    border-radius: var(--border-radius);
 }
 
 
 /* Скрыть объект (не использовать) */
 .hidden {
     display: none !important;
-}
-
-
-/* Объекты которые не видно на большом экране */
-@media screen and (min-width: 840px) {
-    .phone-show {
-        display: none !important;
-    }
 }
