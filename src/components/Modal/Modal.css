@@ -20,15 +20,6 @@
 
 /* Модальное окно */
 dialog.modal {
-    display: flex;
-
-    position: relative;
-    border: none;
-    background-color: transparent;
-}
-
-.modal__content {
-    display: inline-block;
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     border-radius: var(--border-radius);
@@ -52,17 +43,16 @@ dialog.modal {
     .modal-wrapper:hover #modal__close-button {
         background-color: var(--button-hover);
     }
-
     /* При наведении на модальное окно кнопка становится обычной */
-    .modal__content:hover ~ #modal__close-button {
+    dialog.modal:hover #modal__close-button {
         background-color: var(--button-bg);
     }
 }
 
 @media screen and (max-width: 840px) {
-    /* На телефоне кнопка не absolute */
+    /* На телефоне кнопка сверху */
     #modal__close-button {
-        position: static;
-        margin-left: 8px;
+        top: calc(-1 * (var(--button-height) + 8px));
+        right: 0;
     }
 }

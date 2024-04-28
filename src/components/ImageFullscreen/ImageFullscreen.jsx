@@ -17,12 +17,17 @@ export default function ImageFullscreen({
                 <MapInteractionCSS
                     defaultValue={{
                         scale: 1,
-                        translation: { x: 0, y: 0 }
+                        translation: {
+                            x: 0,
+                            y: 0
+                        }
                     }}
                     minScale={0.5}
                     maxScale={5}
                 >
-                    <img src={children.props.src} alt="fullscreen" />
+                    <div className="image-fullscreen__modal-wrapper">
+                        <img src={children.props.src} alt="fullscreen" />
+                    </div>
                 </MapInteractionCSS>
             </div>
         )

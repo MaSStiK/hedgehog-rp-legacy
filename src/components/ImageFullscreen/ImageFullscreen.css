@@ -3,22 +3,35 @@
     cursor: zoom-in;
 }
 
+/* Картинка внутри блока с картиной для полноэкранного просмотра */
 .image-fullscreen img {
     width: 100%;
 }
 
+/* Модальное окно с функцией просмотра картинки */
 .image-fullscreen__modal {
-    max-width: 80vw;
-    max-height: 80vh;
-
+    width: 90vw;
+    height: 80vh;
 }
 
-.image-fullscreen__modal img {
-    max-width: 80vw;
-    max-height: 80vh;
-}
 
 /* Отключаем transition */
 .image-fullscreen__modal div {
     transition: 0s all;
+}
+
+/* Блок удерживающий картинку по центру */
+.image-fullscreen__modal-wrapper {
+    width: 90vw;
+    height: 80vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-fullscreen__modal-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }

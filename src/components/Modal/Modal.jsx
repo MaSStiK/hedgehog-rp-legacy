@@ -11,13 +11,9 @@ export default function Modal({
 }) {
     const Context = useContext(DataContext)
 
-    const [hoverCLoseModal, setHoverCloseModal] = useState();
-
     // Функция закрытия модального окна, срабатывает при нажатии на крестик или вне окна
-    function closeModal(event) {
-        if (event.target.className === "modal-wrapper") {
-            Context.setModalData({})
-        }
+    function closeModal() {
+        Context.setModalData({})
     }
 
     return (
@@ -26,14 +22,15 @@ export default function Modal({
             {Object.keys(children).length !== 0 &&
                 <div
                     className={`modal-wrapper`}
-                    onClick={(event) => closeModal(event)}
-                    // onMouseDown={(event) => closeModal(event)}
+                    onMouseDown={(event) => {
+                        if (event.target.className === "modal-wrapper") {
+                            closeModal()
+                        }
+                    }}
                 >
                     <dialog className="modal" open>
                         {/* Контент модального окна */}
-                        <div className="modal__content">
-                            {children}
-                        </div>
+                        {children}
 
                         {/* Кнопка закрытия модального окна */}
                         <ButtonImage
