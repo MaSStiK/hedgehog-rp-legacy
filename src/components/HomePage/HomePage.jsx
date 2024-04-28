@@ -5,6 +5,9 @@ import PostsRender from "../PostsRender/PostsRender"
 import { setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import imgNews from "../../assets/icons/News.svg"
+import imgHomeAA from "../../assets/images/Home-Ace_Attorney.png"
+import imgVk from "../../assets/images/vk.svg"
+import imgYoutube from "../../assets/images/youtube.svg"
 
 import "./HomePage.css"
 import "./HomePage-phone.css"
@@ -15,10 +18,6 @@ export default function HomePage() {
     const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
 
-    const imgVkGroup = "https://sun9-60.userapi.com/impg/oEWyVY7z0mShE_4NiWZjLJRUtlblNoS-p0Ph4Q/6rgXOaV54GI.jpg?size=1080x1021&quality=95&sign=7521bfdf054e784b2b37a022c4ec2fdf&type=album"
-    const imgYoutubeChannel = "https://sun9-75.userapi.com/impg/InAN-EkKVY2m_b5O35GiDeI1MEJDkpI6a8Rr4A/e6KrwnAUh-w.jpg?size=176x176&quality=96&sign=3c161604cc42ae88ab597906173bff60&type=album"
-
-
     function navigateToNews() {
         // sessionStorage.scrollToNews = post_id
         NavigateTo("/news")
@@ -28,21 +27,26 @@ export default function HomePage() {
         <article>
             <h4 className="page-title">h/home</h4>
 
-            <section className="flex-row">
-                <Link className="home__link-wrapper" to="https://vk.com/hedgehogs_army" target="_blank">
-                    <img src={imgVkGroup} alt="link-vk" />
-                    <h3>Наша группа в ВК</h3>
-                </Link>
-
-                <Link className="home__link-wrapper" to="https://www.youtube.com/@hedgehogs_army" target="_blank">
-                    <img src={imgYoutubeChannel} alt="link-youtube" />
-                    <h3>Мы в Youtube</h3>
-                </Link>
-            </section>
-
+            <img className="home__image-AA" src={imgHomeAA} alt="Home-Ace_Attorney" style={{marginBottom: "-20px"}} />
             <section className="flex-col">
                 <h1>Новое видео на канале</h1>
                 <iframe width="520" height="280" src="https://www.youtube.com/embed/x2gx7yKC54s?si=DUBOXLomABWx7FLY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                <div className="flex-row" style={{flexWrap: "wrap"}}>
+                    <ButtonImage
+                        className="tp"
+                        src={imgVk}
+                        alt="vk"
+                        text="Группа в ВК"
+                        onClick={() => window.open("https://vk.com/hedgehogs_army", "_blank")}
+                    />
+                    <ButtonImage
+                        className="tp"
+                        src={imgYoutube}
+                        alt="vk"
+                        text="Канал на YouTube"
+                        onClick={() => window.open("https://www.youtube.com/@hedgehogs_army", "_blank")}
+                    />
+                </div>
             </section>
 
             <PostsRender

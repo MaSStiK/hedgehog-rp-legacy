@@ -45,3 +45,11 @@
 iframe {
     width: 100%;
 }
+
+
+/* Картинка из игры с персонажами */
+.home__image-AA {
+    width: min(600px, 100%);
+
+    margin: 0 auto;
+}
