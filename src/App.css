@@ -63,8 +63,10 @@ section {
 
 /* Заголовки страниц */
 .page-title {
+    width: min(600px, 100%);
     color: var(--text-dark);
-    margin-left: var(--gap-medium);
+    padding-left: var(--gap-medium);
+    margin: 0 auto;
 }
 
 /* Разделитель */
