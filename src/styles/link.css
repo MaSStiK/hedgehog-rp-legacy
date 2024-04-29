@@ -40,8 +40,8 @@ a {
 
 .link-image::after {
     content: "";
-    width: --img-small;
-    height: --img-small;
+    width: var(--img-small);
+    height: var(--img-small);
     opacity: 0.5; /* Серая картинка */
     background-image: url("../assets/icons//Linkout.svg");
     background-size: contain;
