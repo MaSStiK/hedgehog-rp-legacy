@@ -10,7 +10,7 @@ export default function PostShare(Context, postId, postTitle, postImg) {
     function shareVK() {
         
         let url = "https://vk.com/share.php"
-        url += "?url=" + encodeURIComponent("https://hedgehog-rp.ru/#/news/" + postId)
+        url += "?url=" + encodeURIComponent("https://hedgehog-rp.ru/news/" + postId)
         url += "&title=" + encodeURIComponent(postTitle)
         url += "&image=" + encodeURIComponent(postImg)
         url += "&noparse=true"
@@ -22,7 +22,7 @@ export default function PostShare(Context, postId, postTitle, postImg) {
     // Копируем ссылку и закрываем модальное окно
     function copyLink() {
         
-        navigator.clipboard.writeText("https://hedgehog-rp.ru/#/news/" + postId)
+        navigator.clipboard.writeText("https://hedgehog-rp.ru/news/" + postId)
         Context.setModalData({}) // Закрытие модального окна
     }
 
