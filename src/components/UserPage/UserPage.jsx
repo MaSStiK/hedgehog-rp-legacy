@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"
-import { Link, useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
@@ -123,14 +123,13 @@ export default function UserPage() {
                     {/* Кнопка изменения профиля и выхода из аккаунта если отображается профиль владельца страницы */}
                     {isSelfRender &&
                         <div className="user-profile__buttons flex-row">
-                            <Link to={"/user/edit"}>
-                                <ButtonImage
-                                    src={imgEdit}
-                                    text="Изменить профиль (В разработке)"
-                                    className="green"
-                                    disabled
-                                />
-                            </Link>
+                            <ButtonImage
+                                src={imgEdit}
+                                text="Изменить профиль (В разработке)"
+                                className="green"
+                                onClick={() => NavigateTo("/user/edit")}
+                                disabled
+                            />
 
                             {/* Кнопка выхода если отображается профиль владельца страницы */}
                             <ButtonImage
@@ -143,30 +142,38 @@ export default function UserPage() {
                     }
 
                     <hr />
-                    <div className="user-profile__row">
+                    <div className="user-profile__row flex-row">
                         <p className="text-gray">ВКонтакте</p>
-                        <Link to={`https://vk.com/id${userData.id}`} target="_blank">
-                            <ButtonProfile
-                                className="tp"
-                                src={userDataVk.photo}
-                                text={userDataVk.name}
-                            />
-                        </Link>
+                        <ButtonProfile
+                            className="tp"
+                            src={userDataVk.photo}
+                            text={userDataVk.name}
+                            onClick={() => window.open(`https://vk.com/id${userData.id}`, "_blank")}
+                        />
                     </div>
                     
                     {/* Если есть страна - отображаем */}
                     {userData.country_id &&
                         <>
                             <hr />
-                            <div className="user-profile__row">
+                            <div className="user-profile__row flex-row">
                                 <p className="text-gray">Страна</p>
-                                <Link to={`/country/${userData.country_id}`}>
-                                    <ButtonProfile
+                                {userData.country_id !== "c769201685" // Если страна админа - ссылка на обновления
+                                    ? <ButtonProfile
                                         className="tp"
                                         src={userData.country_photo}
                                         text={userData.country_title}
-                                    />
-                                </Link>
+                                        subText={userData.country_tag}
+                                        onClick={() => NavigateTo(`/country/${userData.country_id}`)}
+                                      />
+                                    : <ButtonProfile
+                                        className="tp"
+                                        src={userData.country_photo}
+                                        text={userData.country_title}
+                                        onClick={() => NavigateTo(`/changelogs`)}
+                                      />
+ 
+                                }
                             </div>
                         </>
                     }
@@ -189,13 +196,12 @@ export default function UserPage() {
                     {userNotFound &&
                         <section className="flex-col">
                             <h2>Участник не найден!</h2>
-                            <Link to={"/user"}>
-                                <ButtonImage
-                                    src={imgUser}
-                                    text="К списку участников"
-                                    width100
-                                />
-                            </Link>
+                            <ButtonImage
+                                src={imgUser}
+                                text="К списку участников"
+                                width100
+                                onClick={() => NavigateTo("/user")}
+                            />
                         </section>
                     }
                 </>

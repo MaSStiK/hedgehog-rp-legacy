@@ -11,8 +11,8 @@ import "./NewsAddPage-phone.css"
 
 export default function NewsAddPage() {
     useEffect(() => {setPageTitle("Создание новости")}, [])
-    const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
+    const NavigateTo = useNavigate()
 
     const [postTextLength, setPostTextLength] = useState(0)
     const [postPhotoPreview, setPostPhotoPreview] = useState("")

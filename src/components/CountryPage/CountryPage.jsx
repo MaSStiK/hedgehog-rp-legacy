@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState, useRef } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
@@ -17,20 +17,20 @@ import "./CountryPage-phone.css"
 
 export default function CountryPage() {
     useEffect(() => {setPageTitle("Страна")}, [])
-
     const Context = useContext(DataContext)
+    const NavigateTo = useNavigate()
     const URLparams = useParams()
     const isSelfRender = Context.userData ? Context.userData.country_id === URLparams.id : false
 
     const [countryNotFound, setCountryNotFound] = useState(false);
     const [showCopyMessage, setShowCopyMessage] = useState(false);
     
-    const [countryData, setCountryData] = useState({});
+    const [userData, setUserData] = useState({});
     const [pageTitleText, setPageTitleText] = useState("");
 
 
     function CopyTag() {
-        navigator.clipboard.writeText(countryData.tag)
+        navigator.clipboard.writeText(userData.tag)
         setShowCopyMessage(true)
         setTimeout(() => setShowCopyMessage(false), 2000)
     }
@@ -45,13 +45,13 @@ export default function CountryPage() {
 
         if (!foundUser) {
             setCountryNotFound(true)
-            setCountryData({})
+            setUserData({})
             setPageTitle("Страна не найдена")
             setPageTitleText(URLparams.id)
             return
         }
 
-        setCountryData(foundUser)
+        setUserData(foundUser)
         setPageTitle(foundUser.country_title)
         setPageTitleText(foundUser.country_id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -64,20 +64,20 @@ export default function CountryPage() {
             <h4 className="page-title">{`h/country/${pageTitleText}`}</h4>
 
             {/* Если страна найдена */}
-            {Object.keys(countryData).length
+            {Object.keys(userData).length
                 ? <>
                     <section className="flex-col">
                         <div className="country-page__top">
                             <div className="country-page__top-photo">
                                 <ImageFullscreen>
-                                    <img src={countryData.country_photo ? countryData.country_photo : imgBasePhoto} alt="country-profile" />
+                                    <img src={userData.country_photo ? userData.country_photo : imgBasePhoto} alt="country-profile" />
                                 </ImageFullscreen>
                             </div>
                             <div className="country-page__top-name">
-                                <h2>{countryData.country_title}</h2>
+                                <h2>{userData.country_title}</h2>
                                 <div className="country-page__top-tag flex-row" onClick={CopyTag}>
                                     <img className="image-gray" src={imgCopy} alt="copy-tag" />
-                                    <p className="text-cut text-gray">{showCopyMessage ? "Скопировано" : countryData.country_tag}</p>
+                                    <p className="text-cut text-gray">{showCopyMessage ? "Скопировано" : userData.country_tag}</p>
                                 </div>
                             </div>
                         </div>
@@ -85,47 +85,46 @@ export default function CountryPage() {
                         {/* Кнопка редактирования страны если отображается страна владельца */}
                         {isSelfRender &&
                             <div className="country-page__buttons flex-row">
-                                <Link to={"/country/edit"}>
-                                    <ButtonImage
-                                        src={imgEdit}
-                                        text="Изменить страну"
-                                        className="green"
-                                        width100
-                                    />
-                                </Link>
+                                <ButtonImage
+                                    src={imgEdit}
+                                    text="Изменить страну"
+                                    className="green"
+                                    width100
+                                    onClick={() => NavigateTo("/country/edit")}
+                                />
                             </div>
                         }
 
                         <hr />
                         <div className="country-page__row">
                             <p className="text-gray">Автор страны</p>
-                            <Link to={`/user/${countryData.id}`}>
-                                <ButtonProfile
-                                    className="tp"
-                                    src={countryData.photo}
-                                    text={countryData.name}
-                                />
-                            </Link>
+                            <ButtonProfile
+                                className="tp"
+                                src={userData.photo}
+                                text={userData.name}
+                                subText={userData.tag}
+                                onClick={() => NavigateTo(`/user/${userData.id}`)}
+                            />
                         </div>
 
                         {/* Если есть описание - отображаем */}
-                        {countryData.country_bio_main &&
+                        {userData.country_bio_main &&
                             <>
                                 <hr />
                                 <div className="country-page__column">
                                     <p className="text-gray">Описание</p>
-                                    <p className="textarea-block">{countryData.country_bio_main}</p>
+                                    <p className="textarea-block">{userData.country_bio_main}</p>
                                 </div>
                             </>
                         }
 
                         {/* Если есть доп описание - отображаем */}
-                        {countryData.country_bio_more &&
+                        {userData.country_bio_more &&
                             <>
                                 <hr />
                                 <div className="flex-col">
                                     <p className="text-gray">Доп. описание</p>
-                                    <p className="textarea-block">{countryData.country_bio_more}</p>
+                                    <p className="textarea-block">{userData.country_bio_more}</p>
                                 </div>
                             </>
                         }
@@ -135,13 +134,12 @@ export default function CountryPage() {
                     {/* Кнопка появляется если просматривает владелец */}
                     {isSelfRender &&
                         <section>
-                            <Link to={"/news/add"}>
-                                <ButtonImage
-                                    src={imgEdit}
-                                    text="Написать новость"
-                                    width100
-                                />
-                            </Link>
+                            <ButtonImage
+                                src={imgEdit}
+                                text="Написать новость"
+                                width100
+                                onClick={() => NavigateTo("/news/add")}
+                            />
                         </section>
                     }
 
@@ -156,13 +154,12 @@ export default function CountryPage() {
                     {countryNotFound && 
                         <section className="country-page flex-col">
                             <h2>Страна не найдена!</h2>
-                            <Link to={"/country"}>
-                                <ButtonImage
-                                    src={imgCountry}
-                                    text="К списку стран"
-                                    width100
-                                />
-                            </Link>
+                            <ButtonImage
+                                src={imgCountry}
+                                text="К списку стран"
+                                width100
+                                onClick={() => NavigateTo("/country")}
+                            />
                         </section>
                     }
                 </>

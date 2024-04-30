@@ -12,9 +12,9 @@ export default function ToolsPage({
     ...props
 }) {
     useEffect(() => {setPageTitle("Инструменты")}, [])
-    const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
-
+    const NavigateTo = useNavigate()
+    
     function logoutProfile() {
         localStorage.clear()
         NavigateTo("/")

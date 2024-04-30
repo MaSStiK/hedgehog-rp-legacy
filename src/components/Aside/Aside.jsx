@@ -19,6 +19,7 @@ import imgTool from "../../assets/icons/Tool.svg"
 import imgHelp from "../../assets/icons/Help.svg"
 import imgInfo from "../../assets/icons/Info.svg"
 import imgSettings from "../../assets/icons/Settings.svg"
+import imgUpdate from "../../assets/icons/Update.svg"
 import imgDev from "../../assets/icons/Dev.svg"
 
 
@@ -26,9 +27,9 @@ import "./Aside.css"
 import "./Aside-phone.css"
 
 export default function Aside() {
-    const NavigateTo = useNavigate()
-    const Location = useLocation();
     const Context = useContext(DataContext)
+    const NavigateTo = useNavigate()
+    const Location = useLocation()
 
     // Состояние открытого или закрытого меню навигации на телефоне
     const [showNavMenu, setShowNavMenu] = useState(false) // По умолчанию не показываем
@@ -105,7 +106,7 @@ export default function Aside() {
                     
                     <ul>
                         <li>
-                            {Context.userData // Если есть userData - рендер кнопку профиля
+                            {Context.userData // Если есть userData - рендер кнопку профиля, иначе кнопку Авторизации
                                 ? <ButtonProfile
                                     src={Context.userData.photo}
                                     text={Context.userData.name}
@@ -145,28 +146,19 @@ export default function Aside() {
                         }
 
                         <hr />
-
                         <li><NavLink to={"/"}><img src={imgHome} alt="nav-icon" />Главная</NavLink></li>
                         <li><NavLink to={"/news"}><img src={imgNews} alt="nav-icon" />Новости</NavLink></li>
                         <li><NavLink to={"/user"}><img src={imgUser} alt="nav-icon" />Участники</NavLink></li>
                         <li><NavLink to={"/country"}><img src={imgCountry} alt="nav-icon" />Страны</NavLink></li>
                         {/* <li><NavLink to={"/nation"}>Нации</NavLink></li> */}
-
                         <hr />
-
                         <li><NavLink to={"/tools"}><img src={imgTool} alt="nav-icon" />Инструменты</NavLink></li>
                         <li><NavLink to={"/support"}><img src={imgHelp} alt="nav-icon" />Помощь</NavLink></li>
                         <li><NavLink to={"/about"}><img src={imgInfo} alt="nav-icon" />О нас</NavLink></li>
-
                         <hr />
                         <li><NavLink to={"/settings"}><img src={imgSettings} alt="nav-icon" />Настройки</NavLink></li>
-
-
-                        {Context.isAdmin &&
-                            <>
-                                <li><NavLink to={"/dev"}><img src={imgDev} alt="nav-icon" />dev</NavLink></li>
-                            </>
-                        }
+                        <li><NavLink to={"/changelogs"}><img src={imgUpdate} alt="nav-icon" />Обновления</NavLink></li>
+                        {Context.isAdmin && <li><NavLink to={"/dev"}><img src={imgDev} alt="nav-icon" />dev</NavLink></li>}
                     </ul>
                 </nav>
             </div>

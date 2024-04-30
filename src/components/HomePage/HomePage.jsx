@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import PostsRender from "../PostsRender/PostsRender"
 import { setPageTitle } from "../Global"

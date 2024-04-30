@@ -38,16 +38,15 @@ import SupportFeedback from "./components/SupportPage/SupportPage_Feedback";
 
 import About from "./components/AboutPage/AboutPage";
 import Settings from "./components/SettingsPage/SettingsPage";
-
+import Changelogs from "./components/ChangelogsPage/ChangelogsPage";
 import Dev from "./components/DevPage/DevPage";
 
 import NotFound from "./components/NotFoundPage/NotFoundPage";
 
 
 export default function App() {
-    const NavigateTo = useNavigate()
     const Context = CreateContext(useContext(DataContext)) // Помять приложения, устанавливаем при запуске
-
+    const NavigateTo = useNavigate()
 
     useEffect(() => {
         // Анимация загрузки страницы
@@ -174,6 +173,7 @@ export default function App() {
                     
                     <Route path="/about" element={<About />} />
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="/changelogs" element={<Changelogs />} />
 
                     <Route path="/dev" element={
                         <ProtectedRoute isAllowed={Context.isAdmin}>

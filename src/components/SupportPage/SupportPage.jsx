@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle } from "../Global"
@@ -18,7 +18,7 @@ export default function SupportPage() {
             <h4 className="page-title">h/help</h4>
 
             <section className="flex-col">
-                <h3>Статьи для решения проблем и вопросов</h3>
+                <h1>Статьи для решения проблем и вопросов</h1>
                 <ButtonImage
                     src={imgHelp}
                     text="Где оставить обратную связь (идеи/баги)"

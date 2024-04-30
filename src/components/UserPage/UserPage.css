@@ -58,6 +58,6 @@
     width: 40%;
 }
 
-.user-profile__row > a {
+.user-profile__row > button {
     width: 60%;
 }

@@ -1,5 +1,5 @@
 import { useEffect, useContext, useRef, useState } from "react"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
@@ -9,8 +9,8 @@ import "./CountryListPage.css"
 
 export default function CountryListPage() {
     useEffect(() => {setPageTitle("Все страны")}, [])
-
     const Context = useContext(DataContext)
+    const NavigateTo = useNavigate()
     const searchRef = useRef()
 
     const [countryList, setCountryList] = useState([]);
@@ -54,18 +54,25 @@ export default function CountryListPage() {
             <h4 className="page-title">h/country</h4>
 
             <section className="flex-col">
+                <h1>Список стран</h1>
                 <CustomInput label="Поиск страны">
                     <input type="text" ref={searchRef} onInput={searchCountries} required />
                 </CustomInput>
-                {countryList.map((country) => (
-                    <Link to={"/country/" + country.country_id} key={country.country_id}>
-                        <ButtonProfile
-                            src={country.country_photo}
-                            text={country.country_title}
-                            subText={country.country_tag} 
-                        />
-                    </Link>
-                ))}
+                {countryList.map((country) => {
+                    // Не рендерим "Изменения"
+                    if (country.country_id !== "c769201685") {
+                        return (
+                            <ButtonProfile
+                                key={country.country_id}
+                                src={country.country_photo}
+                                text={country.country_title}
+                                subText={country.country_tag}
+                                onClick={() => NavigateTo("/country/" + country.country_id)}
+                            />
+                        )
+                    }
+                    return null
+                })}
             </section>
         </article>
     )

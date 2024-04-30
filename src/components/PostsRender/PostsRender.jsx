@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
@@ -17,6 +17,7 @@ function PostRender({
     ...props
 }) {
     const Context = useContext(DataContext)
+    const NavigateTo = useNavigate()
 
     // Дата создания поста
     let date = new Date(Number(post.timestamp))
@@ -38,15 +39,14 @@ function PostRender({
     let postAttachments = JSON.parse(post.attachments) // Картинки в посте
 
     return (
-        <section className="post flex-col" id={`post-${post.post_id}`}>
+        <section className="post flex-col" id={`post-${post.post_id}`} key={post.post_id}>
             <div className="post__top flex-row">
-                <Link to={"/country/" + postAuthor.country_id}>
-                    <ButtonProfile
-                        src={postAuthor.country_photo}
-                        text={postAuthor.country_title}
-                        subText={postAuthor.country_tag} 
-                    />
-                </Link>
+                <ButtonProfile
+                    src={postAuthor.country_photo}
+                    text={postAuthor.country_title}
+                    subText={postAuthor.country_tag} 
+                    onClick={() => NavigateTo("/country/" + postAuthor.country_id)}
+                />
                 <small className="text-gray">{`${day}.${month}.${year}`}<br/>{`${hours}:${minutes}`}</small>
             </div>
             {/* Заголовок поста */}

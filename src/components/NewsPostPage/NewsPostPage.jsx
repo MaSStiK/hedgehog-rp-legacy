@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import PostsRender from "../PostsRender/PostsRender"
 import { GSAPI } from "../API"
@@ -14,6 +14,7 @@ import "./NewsPostPage-phone.css"
 export default function NewsPostPage() {
     useEffect(() => {setPageTitle("Новости")}, [])
     const Context = useContext(DataContext)
+    const NavigateTo = useNavigate()
     const URLparams = useParams()
 
     const [postData, setPostData] = useState([]);
@@ -47,13 +48,12 @@ export default function NewsPostPage() {
                     />
 
                     <section className="flex-col">
-                        <Link to={"/news"}>
-                            <ButtonImage
-                                src={imgNews}
-                                text="Читать новости"
-                                width100
-                            />
-                        </Link>
+                        <ButtonImage
+                            src={imgNews}
+                            text="Читать новости"
+                            width100
+                            onClick={() => NavigateTo("/news")}
+                        />
                     </section>
                 </>
                 
@@ -63,13 +63,12 @@ export default function NewsPostPage() {
                     {postNotFound &&
                         <section className="flex-col">
                             <h2>Новость не найдена!</h2>
-                            <Link to={"/news"}>
-                                <ButtonImage
-                                    src={imgNews}
-                                    text="Читать новости"
-                                    width100
-                                />
-                            </Link>
+                            <ButtonImage
+                                src={imgNews}
+                                text="Читать новости"
+                                width100
+                                onClick={() => NavigateTo("/news")}
+                            />
                         </section>
                     }
                 </>

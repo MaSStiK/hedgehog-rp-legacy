@@ -14,7 +14,7 @@
 
 
 /* Оставляем место под время */
-.post__top a {
+.post__top button {
     width: calc(100% - 80px);
 }
 

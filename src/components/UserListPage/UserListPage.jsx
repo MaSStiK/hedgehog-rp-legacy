@@ -1,5 +1,5 @@
 import { useEffect, useContext, useRef, useState } from "react"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
@@ -10,6 +10,7 @@ import "./UserListPage.css"
 export default function UserListPage() {
     useEffect(() => {setPageTitle("Все участники")}, [])
     const Context = useContext(DataContext)
+    const NavigateTo = useNavigate()
     const searchRef = useRef()
 
     const [usersRender, setUsersRender] = useState([]);
@@ -36,17 +37,18 @@ export default function UserListPage() {
             <h4 className="page-title">h/user</h4>
 
             <section className="flex-col">
+                <h1>Список участников</h1>
                 <CustomInput label="Поиск участника">
                     <input type="text" ref={searchRef} onInput={searchUsers} required />
                 </CustomInput>
                 {usersRender.map((user) => (
-                    <Link to={"/user/" + user.id} key={user.id}>
-                        <ButtonProfile
-                            src={user.photo}
-                            text={user.name}
-                            subText={user.tag} 
-                        />
-                    </Link>
+                    <ButtonProfile
+                        key={user.id}
+                        src={user.photo}
+                        text={user.name}
+                        subText={user.tag}
+                        onClick={() => NavigateTo("/user/" + user.id)}
+                    />
                 ))}
             </section>
         </article>
