@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle } from "../Global"
 
 import imgInfo from "../../assets/icons/Info.svg"

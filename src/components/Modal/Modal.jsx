@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import { DataContext } from "../Context"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import imgClose from "../../assets/icons/Close.svg"

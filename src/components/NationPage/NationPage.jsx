@@ -1,14 +1,10 @@
-import { useEffect, useContext } from "react"
-import { useNavigate } from "react-router-dom"
-import { DataContext } from "../Context"
+import { useEffect } from "react"
 import { setPageTitle } from "../Global"
 
 import "./NationPage.css"
 
 export default function NationPage() {
     useEffect(() => {setPageTitle("Нации")}, [])
-    const NavigateTo = useNavigate()
-    const Context = useContext(DataContext)
 
     return (
         <article>

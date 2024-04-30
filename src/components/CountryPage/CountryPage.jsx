@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState, useRef } from "react"
+import { useEffect, useContext, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import ButtonImage from "../ButtonImage/ButtonImage"

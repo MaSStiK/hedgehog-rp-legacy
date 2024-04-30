@@ -1,5 +1,4 @@
 import { useEffect, useContext, useState } from "react"
-import { useParams } from "react-router-dom"
 import { DataContext } from "../Context"
 import PostsRender from "../PostsRender/PostsRender"
 import { GSAPI } from "../API";
@@ -14,17 +13,16 @@ import "./NewsPage-phone.css"
 export default function NewsPage() {
     useEffect(() => {setPageTitle("Новости")}, [])
     const Context = useContext(DataContext)
-    const URLparams = useParams()
 
 
-    const [disableLoadButton, setdisableLoadButton] = useState(false);
+    const [disableLoadButton, setDisableLoadButton] = useState(false);
     const [showLoadButton, setshowLoadButton] = useState(true);
 
     let postsOffset = 0
 
 
     function loadMorePosts() {
-        setdisableLoadButton(true)
+        setDisableLoadButton(true)
         postsOffset += 10
 
         // Загрузка всех постов
@@ -40,7 +38,7 @@ export default function NewsPage() {
                 setshowLoadButton(false)
             }
 
-            setdisableLoadButton(false)
+            setDisableLoadButton(false)
         })
     }
 

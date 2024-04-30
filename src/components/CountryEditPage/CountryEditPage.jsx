@@ -9,6 +9,7 @@ import { GSAPI } from "../API";
 import "./CountryEditPage.css"
 
 export default function CountryEditPage() {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {setPageTitle(Context.userData.country_id ? "Изменение страны" : "Создание страны")}, [])
     const Context = useContext(DataContext)
     const NavigateTo = useNavigate()

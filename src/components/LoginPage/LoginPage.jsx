@@ -8,7 +8,6 @@ import { CONSTS, setPageTitle, setPageLoading } from "../Global"
 import imgLogo from "../../assets/logo/logoFullSize.png"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgLogin from "../../assets/icons/Login.svg"
-import imgLinkout from "../../assets/icons/Linkout.svg"
 
 
 

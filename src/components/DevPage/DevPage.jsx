@@ -41,10 +41,6 @@ export default function DevPage() {
         setTimeout(() => setDisableErrorButton(false), 2000)
     }
 
-    // Загрузка всех иконок
-    const images = require.context('../../assets/icons', true);
-    const imageList = images.keys().map(image => images(image));
-
     const test = {
         a: 0,
         b: 0,

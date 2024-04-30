@@ -1,6 +1,5 @@
-import { useEffect, useContext } from "react"
+import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { DataContext } from "../Context"
 import { setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import imgLogout from "../../assets/icons/Logout.svg"
@@ -12,7 +11,6 @@ export default function ToolsPage({
     ...props
 }) {
     useEffect(() => {setPageTitle("Инструменты")}, [])
-    const Context = useContext(DataContext)
     const NavigateTo = useNavigate()
     
     function logoutProfile() {

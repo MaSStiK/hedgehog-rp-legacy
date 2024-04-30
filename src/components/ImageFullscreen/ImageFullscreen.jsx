@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react"
+import { useContext } from "react"
 import { DataContext } from "../Context"
 import { MapInteractionCSS } from "react-map-interaction";
 // https://blog.logrocket.com/adding-zoom-pan-pinch-react-web-apps/

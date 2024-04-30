@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle } from "../Global"
 import { VKAPI } from "../API"
-import imgLinkout from "../../assets/icons/Linkout.svg"
 
 
 import "./AboutPage.css"

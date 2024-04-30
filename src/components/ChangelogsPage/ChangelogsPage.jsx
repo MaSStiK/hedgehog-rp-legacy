@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from "react"
+import { useState, useEffect, useContext } from "react"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import { DataContext } from "../Context"
