@@ -96,7 +96,7 @@ export default function CountryPage() {
                         }
 
                         <hr />
-                        <div className="country-page__row">
+                        <div className="country-page__row flex-row">
                             <p className="text-gray">Автор страны</p>
                             <ButtonProfile
                                 className="tp"
