@@ -22,7 +22,7 @@ export default function ButtonImage({
             onClick={onClick} 
             disabled={disabled}
         >
-            <img src={src || ""} alt={alt || "button-image"} />
+            <img src={src || ""} alt={alt || "button-image"} draggable="false" />
 
             {text && <p>{text}</p>}
         </button>

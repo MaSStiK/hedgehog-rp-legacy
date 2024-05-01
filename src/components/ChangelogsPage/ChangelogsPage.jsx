@@ -43,13 +43,13 @@ export default function ChangelogsPage() {
                                             <div className="post__attachments">
                                             {changelog.attach.map((attach, index) => {
                                                 return <ImageFullscreen key={index}>
-                                                    <img src={attach} alt="post-attachment" />
+                                                    <img src={attach} alt="post-attachment" draggable="false" />
                                                 </ImageFullscreen>
                                             })}
                                             </div>
                                         </div> 
                                         : <ImageFullscreen>
-                                            <img src={changelog.attach[0]} alt="post-attachment" className="post__attachment__single-img" />
+                                            <img src={changelog.attach[0]} alt="post-attachment" className="post__attachment__single-img" draggable="false" />
                                         </ImageFullscreen>
                                     }
                                     </>

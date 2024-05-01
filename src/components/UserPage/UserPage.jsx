@@ -108,13 +108,13 @@ export default function UserPage() {
                     <div className="user-profile__top">
                         <div className="user-profile__top-photo">
                             <ImageFullscreen>
-                                <img src={userData.photo ? userData.photo : imgBasePhoto} alt="user-profile" />
+                                <img src={userData.photo ? userData.photo : imgBasePhoto} alt="user-profile" draggable="false" />
                             </ImageFullscreen>
                         </div>
                         <div className="user-profile__top-name">
                             <h2>{userData.name}</h2>
                             <div className="user-profile__top-tag flex-row" onClick={CopyTag}>
-                                <img className="image-gray" src={imgCopy} alt="copy-tag" />
+                                <img className="image-gray" src={imgCopy} alt="copy-tag" draggable="false" />
                                 <p className="text-cut text-gray">{showCopyMessage ? "Скопировано" : userData.tag}</p>
                             </div>
                         </div>

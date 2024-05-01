@@ -27,7 +27,7 @@ export default function HomePage() {
         <article>
             <h4 className="page-title">h/home</h4>
 
-            <img className="home__image-AA" src={imgHomeAA} alt="Home-Ace_Attorney" style={{marginBottom: "-20px"}} />
+            <img className="home__image-AA" src={imgHomeAA} alt="Home-Ace_Attorney" draggable="false" />
             <section className="flex-col">
                 <h1>Новое видео на канале</h1>
                 <iframe width="520" height="280" src="https://www.youtube.com/embed/x2gx7yKC54s?si=DUBOXLomABWx7FLY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>

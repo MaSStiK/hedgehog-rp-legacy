@@ -231,7 +231,7 @@ export default function LoginPage() {
     return (
         <article id="article-login">
             <div className="logo-wrapper">
-                <img src={imgLogo} alt="logotype" onClick={() => {NavigateTo("/")}} />
+                <img src={imgLogo} alt="logotype" onClick={() => {NavigateTo("/")}} draggable="false" />
             </div>
 
             <section>

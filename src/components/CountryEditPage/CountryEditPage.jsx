@@ -360,7 +360,7 @@ export default function CountryEditPage() {
 
                 <small>Длина ссылки до {CONSTS.photoMax} символов<br/>Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px<br/>Замена на стандартную картинку если поле пустое</small>
                 {countryPhotoPreview &&
-                    <img src={countryPhotoPreview} alt="preview" />
+                    <img src={countryPhotoPreview} alt="preview" draggable="false" />
                 }
                 
                 <CustomInput label={`Описание страны (${countryBioMainLength} / ${CONSTS.countryBioMainMax})`}>

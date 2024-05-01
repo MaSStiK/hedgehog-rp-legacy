@@ -70,13 +70,13 @@ export default function CountryPage() {
                         <div className="country-page__top">
                             <div className="country-page__top-photo">
                                 <ImageFullscreen>
-                                    <img src={userData.country_photo ? userData.country_photo : imgBasePhoto} alt="country-profile" />
+                                    <img src={userData.country_photo ? userData.country_photo : imgBasePhoto} alt="country-profile" draggable="false" />
                                 </ImageFullscreen>
                             </div>
                             <div className="country-page__top-name">
                                 <h2>{userData.country_title}</h2>
                                 <div className="country-page__top-tag flex-row" onClick={CopyTag}>
-                                    <img className="image-gray" src={imgCopy} alt="copy-tag" />
+                                    <img className="image-gray" src={imgCopy} alt="copy-tag" draggable="false" />
                                     <p className="text-cut text-gray">{showCopyMessage ? "Скопировано" : userData.country_tag}</p>
                                 </div>
                             </div>

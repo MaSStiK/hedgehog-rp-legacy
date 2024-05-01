@@ -45,6 +45,7 @@ import NotFound from "./components/NotFoundPage/NotFoundPage";
 
 
 export default function App() {
+    // Своя функция "CreateContext" которая вписывает useState в контекст
     const Context = CreateContext(useContext(DataContext)) // Помять приложения, устанавливаем при запуске
     const NavigateTo = useNavigate()
 

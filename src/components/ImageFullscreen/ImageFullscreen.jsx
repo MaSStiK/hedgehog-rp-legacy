@@ -26,7 +26,7 @@ export default function ImageFullscreen({
                     maxScale={5}
                 >
                     <div className="image-fullscreen__modal-wrapper">
-                        <img src={children.props.src} alt="fullscreen" />
+                        <img src={children.props.src} alt="fullscreen" draggable="false" />
                     </div>
                 </MapInteractionCSS>
             </div>

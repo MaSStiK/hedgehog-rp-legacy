@@ -20,7 +20,7 @@ export default function ButtonProfile({
             style={style}
             onClick={onClick} 
         >
-            <img src={src || imgBasePhoto} alt="profile-icon" />
+            <img src={src || imgBasePhoto} alt="profile-icon" draggable="false" />
             
             {/* Если есть текст или subText - отображаем блок с текстом */}
             {(text || subText) &&
