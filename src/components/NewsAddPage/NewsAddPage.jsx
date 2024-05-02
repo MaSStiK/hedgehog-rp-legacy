@@ -22,7 +22,7 @@ export default function NewsAddPage() {
     const [errorText, setErrorText] = useState("") // Текст ошибки
     const [titleInputError, setTitleInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
     const [textInputError, setTextInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
-    const [photoInputError, setPhotoInputError] = useState(false) // Отображать ли ошибку инпута Сслыка на фото
+    const [photoInputError, setPhotoInputError] = useState(false) // Отображать ли ошибку инпута Ссылка на фото
     const [disableAddButton, setDisableAddButton] = useState(true) // Отключить ли кнопку Добавления картинки
     const [disableSubmitButton, setDisableSubmitButton] = useState(true) // Отключить ли кнопку сохранения
     
@@ -192,7 +192,7 @@ export default function NewsAddPage() {
                         maxLength={CONSTS.postTextMax}
                         onInput={() => {
                             setPostTextLength(postTextInput.current.value.length) // Обновляем значение длины текста
-                            handleInputUpdate() // Так же тригирим апдейт всех полей
+                            handleInputUpdate() // Так же обновляем все инпуты
                         }}
                         required 
                     ></textarea>
@@ -223,7 +223,7 @@ export default function NewsAddPage() {
                                     maxLength={CONSTS.photoMax}
                                     onInput={() => {
                                         checkImageSource(postPhotoInput.current.value)
-                                        handleInputUpdate() // Так же тригирим апдейт всех полей
+                                        handleInputUpdate() // Так же обновляем все инпуты
                                     }}
                                     required
                                 />

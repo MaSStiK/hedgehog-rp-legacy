@@ -19,7 +19,7 @@
 }
 
 .button-profile__text {
-    /* 40px картинка и оступы с боков */
+    /* 40px картинка и отступы с боков */
     width: calc(100% - var(--button-profile-img) - var(--button-gap) - var(--button-padding));
     display: flex;
     flex-direction: column;

@@ -16,7 +16,7 @@ export default function NewsPage() {
 
 
     const [disableLoadButton, setDisableLoadButton] = useState(false);
-    const [showLoadButton, setshowLoadButton] = useState(true);
+    const [showLoadButton, setShowLoadButton] = useState(true);
 
     let postsOffset = 0
 
@@ -35,7 +35,7 @@ export default function NewsPage() {
 
             // Если постов меньше 10 - не загружаем больше
             if (data.length < 10) {
-                setshowLoadButton(false)
+                setShowLoadButton(false)
             }
 
             setDisableLoadButton(false)
