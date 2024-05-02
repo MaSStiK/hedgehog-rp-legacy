@@ -14,7 +14,7 @@ import "./NewsPostPage-phone.css"
 export default function NewsPostPage() {
     useEffect(() => {setPageTitle("Новости")}, [])
     const Context = useContext(DataContext)
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
     const URLparams = useParams()
 
     const [postData, setPostData] = useState([]);
@@ -52,7 +52,7 @@ export default function NewsPostPage() {
                             src={imgNews}
                             text="Читать новости"
                             width100
-                            onClick={() => NavigateTo("/news")}
+                            onClick={() => Navigate("/news")}
                         />
                     </section>
                 </>
@@ -67,7 +67,7 @@ export default function NewsPostPage() {
                                 src={imgNews}
                                 text="Читать новости"
                                 width100
-                                onClick={() => NavigateTo("/news")}
+                                onClick={() => Navigate("/news")}
                             />
                         </section>
                     }

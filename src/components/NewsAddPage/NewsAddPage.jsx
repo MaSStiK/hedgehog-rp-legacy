@@ -12,7 +12,7 @@ import "./NewsAddPage-phone.css"
 export default function NewsAddPage() {
     useEffect(() => {setPageTitle("Создание новости")}, [])
     const Context = useContext(DataContext)
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
 
     const [postTextLength, setPostTextLength] = useState(0)
     const [postPhotoPreview, setPostPhotoPreview] = useState("")
@@ -160,7 +160,7 @@ export default function NewsAddPage() {
             posts.unshift(newPostData)
             Context.setPosts(posts)
 
-            NavigateTo("/news")
+            Navigate("/news")
 
             setPageLoading(false)
         })

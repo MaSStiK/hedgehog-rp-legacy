@@ -90,13 +90,3 @@ hr {
     flex-direction: column;
     gap: var(--gap-small);
 }
-
-.border-radius {
-    border-radius: var(--border-radius);
-}
-
-
-/* Скрыть объект (не использовать) */
-.hidden {
-    display: none !important;
-}

@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react"
+import { useNavigate } from "react-router-dom";
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import { DataContext } from "../Context"
@@ -9,6 +10,7 @@ export default function ChangelogsRender({
     ...props
 }) {
     const Context = useContext(DataContext)
+    const Navigate = useNavigate()
 
     // Ищем профиль со страной изменений
     const [changelogProfile, setChangelogProfile] = useState(Context.users.find(user => user.country_id === "c769201685"))
@@ -27,6 +29,7 @@ export default function ChangelogsRender({
                                 <ButtonProfile
                                     src={changelogProfile.country_photo}
                                     text={changelogProfile.country_title}
+                                    onClick={() => Navigate("/changelogs")}
                                 />
                                 <small className="text-gray">{changelog.date}</small>
                             </div>

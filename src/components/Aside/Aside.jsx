@@ -28,7 +28,7 @@ import "./Aside-phone.css"
 
 export default function Aside() {
     const Context = useContext(DataContext)
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
     const Location = useLocation()
 
     // Состояние открытого или закрытого меню навигации на телефоне
@@ -54,7 +54,7 @@ export default function Aside() {
                 className="tp"
                 src={imgLogo}
                 alt="logotype"
-                onClick={() => NavigateTo("/")}
+                onClick={() => Navigate("/")}
             />
 
             {/* Кнопка страны в мобильной навигации */}
@@ -63,7 +63,7 @@ export default function Aside() {
                     id="nav-phone-country"
                     className="tp"
                     src={Context.userData.country_photo}
-                    onClick={() => NavigateTo("/country/" + Context.userData.country_id)}
+                    onClick={() => Navigate("/country/" + Context.userData.country_id)}
                 />
             }
 
@@ -73,7 +73,7 @@ export default function Aside() {
                     id="nav-phone-user"
                     className="tp"
                     src={Context.userData.photo}
-                    onClick={() => NavigateTo("/user/" + Context.userData.id)}
+                    onClick={() => Navigate("/user/" + Context.userData.id)}
                 />
             }
 
@@ -111,7 +111,7 @@ export default function Aside() {
                                     src={Context.userData.photo}
                                     text={Context.userData.name}
                                     subText={Context.userData.tag}
-                                    onClick={() => NavigateTo("/user/" + Context.userData.id)}
+                                    onClick={() => Navigate("/user/" + Context.userData.id)}
                                     style={{marginBottom: "var(--gap-small)"}}
                                   />
                                 : <ButtonImage
@@ -119,7 +119,7 @@ export default function Aside() {
                                     text="Авторизация"
                                     className="green"
                                     width100
-                                    onClick={() => NavigateTo("/login")}
+                                    onClick={() => Navigate("/login")}
                                   />
                             }
                         </li>
@@ -131,14 +131,14 @@ export default function Aside() {
                                         src={Context.userData.country_photo}
                                         text={Context.userData.country_title}
                                         subText={Context.userData.country_tag}
-                                        onClick={() => NavigateTo("/country/" + Context.userData.country_id)}
+                                        onClick={() => Navigate("/country/" + Context.userData.country_id)}
                                       />
                                     : <ButtonImage
                                         src={imgAdd}
                                         text={"Создать страну"}
                                         className="green"
                                         width100
-                                        onClick={() => NavigateTo("/country/edit")}
+                                        onClick={() => Navigate("/country/edit")}
 
                                     />
                                 }

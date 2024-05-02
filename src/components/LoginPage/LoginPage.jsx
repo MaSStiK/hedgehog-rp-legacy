@@ -16,7 +16,7 @@ import "./LoginPage-phone.css"
 
 export default function LoginPage() {
     useEffect(() => {setPageTitle("Вход")}, [])
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
     const Context = useContext(DataContext)
 
     // Уникальный ключ
@@ -92,7 +92,7 @@ export default function LoginPage() {
                 let VKAPImessage = `Вы успешно вошли!\nТокен авторизации для входа в аккаунт на других устройствах`
                 VKAPI("messages.send", {peer_id: vkFoundUserId, random_id: 0, message: VKAPImessage}, () => {
                     VKAPI("messages.send", {peer_id: vkFoundUserId, random_id: 0, message: newToken}, () => {
-                        NavigateTo("/")
+                        Navigate("/")
                         setDisableCodeButton(false)
                         setPageLoading(false)
                     })
@@ -169,7 +169,7 @@ export default function LoginPage() {
                         localStorage.userData = JSON.stringify(newUserData)
                         Context.setUserData(newUserData)
                         // Тут не проверяем на админа, ибо новый админ не создается
-                        NavigateTo("/")
+                        Navigate("/")
                     })
                 })
             })
@@ -223,7 +223,7 @@ export default function LoginPage() {
             // Отправляем сообщение пользователю
             let VKAPImessage = `Вы успешно вошли в свой аккаунт по токену!`
             VKAPI("messages.send", {peer_id: parseInt(newUserData.vk_id), random_id: 0, message: VKAPImessage}, () => {
-                NavigateTo("/")
+                Navigate("/")
             })
         })
     }
@@ -231,7 +231,7 @@ export default function LoginPage() {
     return (
         <article id="article-login">
             <div className="logo-wrapper">
-                <img src={imgLogo} alt="logotype" onClick={() => {NavigateTo("/")}} draggable="false" />
+                <img src={imgLogo} alt="logotype" onClick={() => {Navigate("/")}} draggable="false" />
             </div>
 
             <section>

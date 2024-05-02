@@ -10,7 +10,7 @@ import "./CountryListPage.css"
 export default function CountryListPage() {
     useEffect(() => {setPageTitle("Все страны")}, [])
     const Context = useContext(DataContext)
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
     const searchRef = useRef()
 
     const [countryList, setCountryList] = useState([]);
@@ -67,7 +67,7 @@ export default function CountryListPage() {
                                 src={country.country_photo}
                                 text={country.country_title}
                                 subText={country.country_tag}
-                                onClick={() => NavigateTo("/country/" + country.country_id)}
+                                onClick={() => Navigate("/country/" + country.country_id)}
                             />
                         )
                     }

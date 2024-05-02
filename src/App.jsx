@@ -47,7 +47,7 @@ import NotFound from "./components/NotFoundPage/NotFoundPage";
 export default function App() {
     // Своя функция "CreateContext" которая вписывает useState в контекст
     const Context = CreateContext(useContext(DataContext)) // Помять приложения, устанавливаем при запуске
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
 
     useEffect(() => {
         // Анимация загрузки страницы
@@ -63,7 +63,7 @@ export default function App() {
                     if (!data.success || !Object.keys(data).length) { 
                         delete localStorage.userData
                         delete Context.userData
-                        NavigateTo("/login")
+                        Navigate("/login")
                         window.location.reload()
                         return
                     }
@@ -103,7 +103,7 @@ export default function App() {
             delete localStorage.userData
             delete Context.userData
             alert(`Произошла непредвиденная ошибка:\n${error}`)
-            NavigateTo("/login")
+            Navigate("/login")
             return
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

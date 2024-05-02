@@ -11,11 +11,11 @@ export default function ToolsPage({
     ...props
 }) {
     useEffect(() => {setPageTitle("Инструменты")}, [])
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
     
     function logoutProfile() {
         localStorage.clear()
-        NavigateTo("/")
+        Navigate("/")
         window.location.reload()
     }
 

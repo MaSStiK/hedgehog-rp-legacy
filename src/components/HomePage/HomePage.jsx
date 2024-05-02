@@ -20,7 +20,7 @@ import "./HomePage-phone.css"
 
 export default function HomePage() {
     useEffect(() => {setPageTitle("Главная")}, [])
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
     const Context = useContext(DataContext)
 
     return (
@@ -62,7 +62,7 @@ export default function HomePage() {
                             src={imgNews}
                             text="Читать новости"
                             width100
-                            onClick={() => NavigateTo("/news")}
+                            onClick={() => Navigate("/news")}
                         />
                     </section>
 
@@ -75,7 +75,7 @@ export default function HomePage() {
                             src={imgUpdate}
                             text="Все обновления"
                             width100
-                            onClick={() => NavigateTo("/changelogs")}
+                            onClick={() => Navigate("/changelogs")}
                         />
                     </section>
                   </>

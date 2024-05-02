@@ -12,7 +12,7 @@ export default function CountryEditPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {setPageTitle(Context.userData.country_id ? "Изменение страны" : "Создание страны")}, [])
     const Context = useContext(DataContext)
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
 
     const [countryBioMainLength, setCountryBioMainLength] = useState(0);
     const [countryBioMoreLength, setCountryBioMoreLength] = useState(0);
@@ -280,7 +280,7 @@ export default function CountryEditPage() {
             Context.setUsers(usersWithoutUser)
 
             setPageLoading(false)
-            NavigateTo("/country/" + newCountryData.country_id)
+            Navigate("/country/" + newCountryData.country_id)
         }
     }
 

@@ -10,7 +10,7 @@ import "./UserListPage.css"
 export default function UserListPage() {
     useEffect(() => {setPageTitle("Все участники")}, [])
     const Context = useContext(DataContext)
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
     const searchRef = useRef()
 
     const [usersRender, setUsersRender] = useState([]);
@@ -47,7 +47,7 @@ export default function UserListPage() {
                         src={user.photo}
                         text={user.name}
                         subText={user.tag}
-                        onClick={() => NavigateTo("/user/" + user.id)}
+                        onClick={() => Navigate("/user/" + user.id)}
                     />
                 ))}
             </section>

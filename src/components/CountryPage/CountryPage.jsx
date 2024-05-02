@@ -18,7 +18,7 @@ import "./CountryPage-phone.css"
 export default function CountryPage() {
     useEffect(() => {setPageTitle("Страна")}, [])
     const Context = useContext(DataContext)
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
     const URLparams = useParams()
     const isSelfRender = Context.userData ? Context.userData.country_id === URLparams.id : false
 
@@ -90,7 +90,7 @@ export default function CountryPage() {
                                     text="Изменить страну"
                                     className="green"
                                     width100
-                                    onClick={() => NavigateTo("/country/edit")}
+                                    onClick={() => Navigate("/country/edit")}
                                 />
                             </div>
                         }
@@ -103,7 +103,7 @@ export default function CountryPage() {
                                 src={userData.photo}
                                 text={userData.name}
                                 subText={userData.tag}
-                                onClick={() => NavigateTo(`/user/${userData.id}`)}
+                                onClick={() => Navigate(`/user/${userData.id}`)}
                             />
                         </div>
 
@@ -138,7 +138,7 @@ export default function CountryPage() {
                                 src={imgEdit}
                                 text="Написать новость"
                                 width100
-                                onClick={() => NavigateTo("/news/add")}
+                                onClick={() => Navigate("/news/add")}
                             />
                         </section>
                     }
@@ -158,7 +158,7 @@ export default function CountryPage() {
                                 src={imgCountry}
                                 text="К списку стран"
                                 width100
-                                onClick={() => NavigateTo("/country")}
+                                onClick={() => Navigate("/country")}
                             />
                         </section>
                     }

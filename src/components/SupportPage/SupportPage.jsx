@@ -10,7 +10,7 @@ import "./SupportPage.css"
 
 export default function SupportPage() {
     useEffect(() => {setPageTitle("Помощь")}, [])
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
 
     return (
         <article>
@@ -23,21 +23,21 @@ export default function SupportPage() {
                     text="Где оставить обратную связь (идеи/баги)"
                     width100
                     atStart
-                    onClick={() => NavigateTo("feedback")}
+                    onClick={() => Navigate("feedback")}
                 />
                 <ButtonImage
                     src={imgHelp}
                     text="Что такое токен авторизации"
                     width100
                     atStart
-                    onClick={() => NavigateTo("auth-token")}
+                    onClick={() => Navigate("auth-token")}
                 />
                 <ButtonImage
                     src={imgInfo}
                     text="Текстовый список создателей стран"
                     width100
                     atStart
-                    onClick={() => NavigateTo("creators-list")}
+                    onClick={() => Navigate("creators-list")}
                 />
             </section>
         </article>

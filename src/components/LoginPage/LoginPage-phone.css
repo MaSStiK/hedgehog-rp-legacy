@@ -1,4 +1,7 @@
 /* Контент в 100% */
 @media screen and (max-width: 900px) {
-    
+    #article-login .logo-wrapper {
+        width: min(100px, 100%);
+        height: 100px;
+    }
 }

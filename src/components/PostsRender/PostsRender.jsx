@@ -17,7 +17,7 @@ function PostRender({
     ...props
 }) {
     const Context = useContext(DataContext)
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
 
     // Дата создания поста
     let date = new Date(Number(post.timestamp))
@@ -45,7 +45,7 @@ function PostRender({
                     src={postAuthor.country_photo}
                     text={postAuthor.country_title}
                     subText={postAuthor.country_tag} 
-                    onClick={() => NavigateTo("/country/" + postAuthor.country_id)}
+                    onClick={() => Navigate("/country/" + postAuthor.country_id)}
                 />
                 <small className="text-gray">{`${day}.${month}.${year}`}<br/>{`${hours}:${minutes}`}</small>
             </div>

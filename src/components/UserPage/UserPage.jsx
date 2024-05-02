@@ -18,7 +18,7 @@ import "./UserPage-phone.css"
 
 export default function UserPage() {
     useEffect(() => {setPageTitle("Участник")}, [])
-    const NavigateTo = useNavigate()
+    const Navigate = useNavigate()
     const Context = useContext(DataContext)
     const URLparams = useParams()
     const isSelfRender = Context.userData ? Context.userData.id === URLparams.id : false
@@ -39,7 +39,7 @@ export default function UserPage() {
     function logoutProfile() {
         delete localStorage.userData
         delete Context.userData
-        NavigateTo("/")
+        Navigate("/")
         window.location.reload()
     }
 
@@ -127,7 +127,7 @@ export default function UserPage() {
                                 src={imgEdit}
                                 text="Изменить профиль (В разработке)"
                                 className="green"
-                                onClick={() => NavigateTo("/user/edit")}
+                                onClick={() => Navigate("/user/edit")}
                                 disabled
                             />
 
@@ -164,13 +164,13 @@ export default function UserPage() {
                                         src={userData.country_photo}
                                         text={userData.country_title}
                                         subText={userData.country_tag}
-                                        onClick={() => NavigateTo(`/country/${userData.country_id}`)}
+                                        onClick={() => Navigate(`/country/${userData.country_id}`)}
                                       />
                                     : <ButtonProfile
                                         className="tp"
                                         src={userData.country_photo}
                                         text={userData.country_title}
-                                        onClick={() => NavigateTo(`/changelogs`)}
+                                        onClick={() => Navigate(`/changelogs`)}
                                       />
  
                                 }
@@ -200,7 +200,7 @@ export default function UserPage() {
                                 src={imgUser}
                                 text="К списку участников"
                                 width100
-                                onClick={() => NavigateTo("/user")}
+                                onClick={() => Navigate("/user")}
                             />
                         </section>
                     }
