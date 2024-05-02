@@ -9,6 +9,11 @@ import imgHomeAA from "../../assets/images/Home-Ace_Attorney.png"
 import imgVk from "../../assets/images/vk.svg"
 import imgYoutube from "../../assets/images/youtube.svg"
 
+import imgUpdate from "../../assets/icons/Update.svg"
+import ChangelogsRender from "../ChangelogsPage/ChangelogsRender"
+import changelogs from "../ChangelogsPage/changelogs"
+
+
 import "./HomePage.css"
 import "./HomePage-phone.css"
 
@@ -17,11 +22,6 @@ export default function HomePage() {
     useEffect(() => {setPageTitle("Главная")}, [])
     const NavigateTo = useNavigate()
     const Context = useContext(DataContext)
-
-    function navigateToNews() {
-        // sessionStorage.scrollToNews = post_id
-        NavigateTo("/news")
-    }
 
     return (
         <article>
@@ -49,19 +49,38 @@ export default function HomePage() {
                 </div>
             </section>
 
-            <PostsRender
-                posts={[...Context.posts].slice(0, 1)}
-                users={Context.users}
-            />
+            {/* Отображаем последнюю новость и обновление после загрузки */}
+            {Context.posts.length
+                ? <>
+                    <section className="home__post flex-col">
+                        <h1>Самое актуальное</h1>
+                        <PostsRender
+                            posts={[...Context.posts].slice(0, 1)}
+                            users={Context.users}
+                        />
+                        <ButtonImage
+                            src={imgNews}
+                            text="Читать новости"
+                            width100
+                            onClick={() => NavigateTo("/news")}
+                        />
+                    </section>
 
-            <section>
-                <ButtonImage
-                    src={imgNews}
-                    text="Читать новости"
-                    width100
-                    onClick={navigateToNews}
-                />
-            </section>
+                    <section className="home__post flex-col">
+                        <h1>Новое на сайте</h1>
+                        <ChangelogsRender
+                            changelogs={[...changelogs].slice(0, 1)}
+                        />
+                        <ButtonImage
+                            src={imgUpdate}
+                            text="Все обновления"
+                            width100
+                            onClick={() => NavigateTo("/changelogs")}
+                        />
+                    </section>
+                  </>
+                : null
+            }
         </article>
     )
 }

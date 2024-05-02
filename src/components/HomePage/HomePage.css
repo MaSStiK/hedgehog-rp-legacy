@@ -8,3 +8,9 @@
 iframe {
     width: 100%;
 }
+
+.home__post section {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+}

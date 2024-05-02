@@ -146,19 +146,71 @@ export default function Aside() {
                         }
 
                         <hr />
-                        <li><NavLink to={"/"}><img src={imgHome} alt="nav-icon" draggable="false" />Главная</NavLink></li>
-                        <li><NavLink to={"/news"}><img src={imgNews} alt="nav-icon" draggable="false" />Новости</NavLink></li>
-                        <li><NavLink to={"/user"}><img src={imgUser} alt="nav-icon" draggable="false" />Участники</NavLink></li>
-                        <li><NavLink to={"/country"}><img src={imgCountry} alt="nav-icon" draggable="false" />Страны</NavLink></li>
+                        <li>
+                            <NavLink to={"/"}>
+                                <img src={imgHome} alt="nav-icon" draggable="false" />
+                                <p>Главная</p>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={"/news"}>
+                                <img src={imgNews} alt="nav-icon" draggable="false" />
+                                <p>Новости</p>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={"/user"}>
+                                <img src={imgUser} alt="nav-icon" draggable="false" />
+                                <p>Участники</p>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={"/country"}>
+                                <img src={imgCountry} alt="nav-icon" draggable="false" />
+                                <p>Страны</p>
+                            </NavLink>
+                        </li>
                         {/* <li><NavLink to={"/nation"}>Нации</NavLink></li> */}
                         <hr />
-                        <li><NavLink to={"/tools"}><img src={imgTool} alt="nav-icon" draggable="false" />Инструменты</NavLink></li>
-                        <li><NavLink to={"/support"}><img src={imgHelp} alt="nav-icon" draggable="false" />Помощь</NavLink></li>
-                        <li><NavLink to={"/about"}><img src={imgInfo} alt="nav-icon" draggable="false" />О нас</NavLink></li>
+                        <li>
+                            <NavLink to={"/tools"}>
+                                <img src={imgTool} alt="nav-icon" draggable="false" />
+                                <p>Инструменты</p>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={"/support"}>
+                                <img src={imgHelp} alt="nav-icon" draggable="false" />
+                                <p>Помощь</p>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={"/about"}>
+                                <img src={imgInfo} alt="nav-icon" draggable="false" />
+                                <p>О нас</p>
+                            </NavLink>
+                        </li>
                         <hr />
-                        <li><NavLink to={"/settings"}><img src={imgSettings} alt="nav-icon" draggable="false" />Настройки</NavLink></li>
-                        <li><NavLink to={"/changelogs"}><img src={imgUpdate} alt="nav-icon" draggable="false" />Обновления</NavLink></li>
-                        {Context.isAdmin && <li><NavLink to={"/dev"}><img src={imgDev} alt="nav-icon" draggable="false" />dev</NavLink></li>}
+                        <li>
+                            <NavLink to={"/settings"}>
+                                <img src={imgSettings} alt="nav-icon" draggable="false" />
+                                <p>Настройки</p>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={"/changelogs"}>
+                                <img src={imgUpdate} alt="nav-icon" draggable="false" />
+                                <p>Обновления</p>
+                            </NavLink>
+                        </li>
+                        {Context.isAdmin && 
+                            <li>
+                                <NavLink to={"/dev"}>
+                                    <img src={imgDev} alt="nav-icon" draggable="false" />
+                                    <p>dev</p>
+                                </NavLink>
+                            </li>
+                        }
                     </ul>
                 </nav>
             </div>
