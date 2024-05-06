@@ -122,26 +122,22 @@ export default function CountryEditPage() {
 
 
         // Проверка длины тега
-        if (formTag.length > CONSTS.countryTagMax + 1) {
+        if (formTag.length > CONSTS.countryTagMax) {
             setErrorText(`Тег больше ${CONSTS.countryTagMax} символов`)
             setTagInputError(true)
             return
         }
 
         // Проверка наличия запрещенных символов
-        try {
-            btoa(formTag)
-        } catch {
+        const regex = /^[A-Za-z0-9_-]+$/; // Допускаем пробелы, подчеркивания и тире
+        if (!regex.test(formTag)) {
             setErrorText(`Тег содержит запрещенные символы`)
             setTagInputError(true)
             return
         }
 
         // Если тег пустой - ставим по умолчанию
-        if (!formTag) {
-            formTag = "@c" + Context.userData.id
-        }
-
+        if (!formTag) formTag = Context.userData.country_id ? Context.userData.country_id : "c" + Context.userData.id
 
         // Проверка длины фото
         if (formPhoto.length > CONSTS.photoMax) {
@@ -179,7 +175,7 @@ export default function CountryEditPage() {
         // Обновленные данные о стране
         let newCountryData = {
             country_id: "c" + Context.userData.id, // Уникальный id страны
-            country_tag: formTag, // Тег для упрощенного поиска
+            country_tag: "@" + formTag, // Тег для упрощенного поиска
             country_title: formTitle, // Отображаемое название страны
             country_bio_main: formBioMain, // Описание страны
             country_bio_more: formBioMore, // Доп описание страны
@@ -321,7 +317,7 @@ export default function CountryEditPage() {
                         ref={countryTagInput}
                         type="text"
                         id="form-tag"
-                        maxLength={CONSTS.countryTagMax + 1}
+                        maxLength={CONSTS.countryTagMax}
                         onInput={handleInputUpdate}
                         onBlur={() => {
                             // Если строка пустая - ставим id страны
@@ -335,7 +331,7 @@ export default function CountryEditPage() {
                 <small className="text-gray">
                     • Длина до {CONSTS.countryTagMax} символов
                     <br/>• Без пробелов
-                    <br/>• Латиница, цифры и спецсимволы
+                    <br/>• Доступные символы: Латиница, цифры, - и _
                 </small>
 
                 <CustomInput label="Ссылка на флаг страны" error={photoInputError}>
