@@ -9,6 +9,7 @@ import imgListSearch from "../../assets/icons/ListSearch.svg"
 import imgCross from "../../assets/icons/Cross.svg"
 
 import "./CountryListPage.css"
+import "./CountryListPage-phone.css"
 
 export default function CountryListPage() {
     useEffect(() => {setPageTitle("Все страны")}, [])

@@ -1,0 +1,6 @@
+@media screen and (max-width: 400px) {
+    /* Скрываем текст у кнопки отчистки поля поиска */
+    .country-list__search .button-image p {
+        display: none;
+    }
+}

@@ -9,6 +9,7 @@ import imgUserSearch from "../../assets/icons/UserSearch.svg"
 import imgCross from "../../assets/icons/Cross.svg"
 
 import "./UserListPage.css"
+import "./UserListPage-phone.css"
 
 export default function UserListPage() {
     useEffect(() => {setPageTitle("Все участники")}, [])

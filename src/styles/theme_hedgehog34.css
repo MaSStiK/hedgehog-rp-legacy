@@ -39,6 +39,7 @@ body[theme=hedgehog34] .custom-input textarea:valid:not(:read-only) ~ label,
 body[theme=hedgehog34] .custom-input textarea:read-only ~ label {
     translate: 0px -22px;
     color: #000000;
+    background-color: transparent;
 }
 
 /* Желтый фон инпута при активации */
@@ -76,10 +77,16 @@ body[theme=hedgehog34] button:disabled {
     background-color: rgb(180, 239, 173) !important;
 }
 
+body[theme=hedgehog34] button:disabled p {
+    color: #00000099;
+}
+
 /* Меняем белые иконки на черные */
 body[theme=hedgehog34] .button-image:not(.no-filter) img,
 body[theme=hedgehog34] nav ul li a img,
-body[theme=hedgehog34] nav ul li a::after {
+body[theme=hedgehog34] nav ul li a::after,
+body[theme=hedgehog34] .custom-input_img img,
+body[theme=hedgehog34] .image-gray {
     filter: invert(1);
 }
 
@@ -87,4 +94,14 @@ body[theme=hedgehog34] nav ul li a::after {
 /* Маркер прокрутки */
 body[theme=hedgehog34] *::-webkit-scrollbar-thumb {
     background-color: #fff;
+}
+
+@media screen and (max-width: 900px) {
+    body[theme=hedgehog34] aside {
+        background-color: #93c393;
+    }
+
+    body[theme=hedgehog34] .nav-wrapper {
+        background-color: #aae5a4;
+    }
 }

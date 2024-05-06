@@ -51,7 +51,7 @@ export default function Aside() {
             {/* Лого в мобильной навигации */}
             <ButtonImage
                 id="nav-logo-phone"
-                className="tp"
+                className="tp no-filter"
                 src={imgLogo}
                 alt="logotype"
                 onClick={() => Navigate("/")}
