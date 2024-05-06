@@ -27,7 +27,7 @@ export default function SupportPage() {
                 />
                 <ButtonImage
                     src={imgHelp}
-                    text="Что такое токен авторизации"
+                    text="Как использовать токен авторизации"
                     width100
                     atStart
                     onClick={() => Navigate("auth-token")}

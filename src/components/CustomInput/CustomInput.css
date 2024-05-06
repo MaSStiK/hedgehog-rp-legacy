@@ -1,4 +1,5 @@
-.custom-input-wrapper {
+/* Блок с кастомным инпутом */
+.custom-input {
     width: 100%;
     height: auto;
     position: relative;
@@ -6,66 +7,59 @@
     margin-top: 8px; /* Отступ между инпутами - 20px */
 }
 
-.custom-input-wrapper label {
+/* Кастомный placeholder */
+.custom-input label {
     position: absolute;
     padding: 0 4px;
     top: 8px;
     left: 4px;
 
-    color: var(--text-dark);
-    /* Отключаем взаимодействие с label */
-    pointer-events: none;
-
+    /* По умолчанию размер текста тега p */
+    color: var(--border-input);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    pointer-events: none; /* Отключаем взаимодействие с label */
 }
 
 /* Перемещаем текст выше если в инпуте есть значение или инпут активен */
-.custom-input-wrapper input[type=text]:focus:not(:read-only) ~ label,
-.custom-input-wrapper input[type=text]:valid:not(:read-only) ~ label,
-.custom-input-wrapper input[type=text]:read-only ~ label,
-.custom-input-wrapper textarea:focus:not(:read-only) ~ label,
-.custom-input-wrapper textarea:valid:not(:read-only) ~ label,
-.custom-input-wrapper textarea:read-only ~ label {
+.custom-input input[type=text]:focus:not(:read-only) ~ label,
+.custom-input input[type=text]:valid:not(:read-only) ~ label,
+.custom-input input[type=text]:read-only ~ label,
+.custom-input textarea:focus:not(:read-only) ~ label,
+.custom-input textarea:valid:not(:read-only) ~ label,
+.custom-input textarea:read-only ~ label {
     translate: 0px -16px;
-
     font-size: var(--p-small-size);
-    color: var(--border-input);
-
+    color: var(--text-dark);
     background-color: var(--bg-secondary);
 }
 
 /* При нажатии на инпут зеленая обводка */
-.custom-input-wrapper input[type=text]:focus:not(:read-only),
-.custom-input-wrapper textarea:focus:not(:read-only) {
+.custom-input input[type=text]:focus:not(:read-only),
+.custom-input textarea:focus:not(:read-only) {
     border: 1px solid var(--border-input-focus);
 }
 
 
 /* При нажатии на инпут зеленый текст лейбла */
-.custom-input-wrapper input[type=text]:focus:not(:read-only) ~ label,
-.custom-input-wrapper textarea:focus:not(:read-only) ~ label {
+.custom-input input[type=text]:focus:not(:read-only) ~ label,
+.custom-input textarea:focus:not(:read-only) ~ label {
     color: var(--border-input-focus);
-    
-}
-
-/* Стиль для ошибки */
-.custom-input-wrapper input[type=text].error:not(:read-only) {
-    border: 1px solid var(--border-input-error);
-}
-
-.custom-input-wrapper input[type=text].error:not(:read-only) ~ label {
-    color: var(--border-input-error);
 }
 
 
 /* Стиль для ошибки */
-.custom-input-wrapper textarea.error:not(:read-only) {
+.custom-input.error input[type=text]:not(:read-only),
+.custom-input.error textarea:not(:read-only) {
     border: 1px solid var(--border-input-error);
+    /* color: var(--border-input-error); */
 }
 
-.custom-input-wrapper textarea.error:not(:read-only) ~ label {
+/* При ошибке лейб красный */
+.custom-input.error input[type=text]:not(:read-only) ~ label,
+.custom-input.error textarea:not(:read-only) ~ label {
     color: var(--border-input-error);
 }
 

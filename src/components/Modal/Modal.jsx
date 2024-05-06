@@ -1,14 +1,11 @@
 import { useContext } from "react"
 import { DataContext } from "../Context"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import imgClose from "../../assets/icons/Close.svg"
+import imgCross from "../../assets/icons/Cross.svg"
 
 import "./Modal.css"
 
-export default function Modal({
-    children,
-    ...props
-}) {
+export default function Modal({ children }) {
     const Context = useContext(DataContext)
 
     // Функция закрытия модального окна, срабатывает при нажатии на крестик или вне окна
@@ -35,7 +32,7 @@ export default function Modal({
                         {/* Кнопка закрытия модального окна */}
                         <ButtonImage
                             id="modal__close-button"
-                            src={imgClose}
+                            src={imgCross}
                             alt="close-modal"
                             onClick={(closeModal)}
                         />

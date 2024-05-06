@@ -5,10 +5,11 @@ import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { DataContext } from "../Context"
 import { setPageTitle } from "../Global"
-import imgBasePhoto from "../../assets/replace/base-photo.png"
+import imgProfileBase from "../../assets/replace/profile-base.png"
 import imgHome from "../../assets/icons/Home.svg"
 import imgTool from "../../assets/icons/Tool.svg"
 import imgCopy from "../../assets/icons/Copy.svg"
+import imgAt from "../../assets/icons/At.svg"
 
 
 import "./DevPage.css"
@@ -19,12 +20,11 @@ export default function DevPage() {
 
     function openModal() {
         Context.setModalData(
-            <div style={{width: "min(500px, 100%)", padding: "var(--gap-small)"}}>
+            <div style={{height: "var(--modal-height-max)", overflow: "auto", padding: "var(--gap-small)"}}>
                 <p>{JSON.stringify(Context.userData, false, 4)}</p>
             </div>
         )
     }
-
 
     const [exampleInputValue, setExampleInputValue] = useState("");
     const [exampleTextareaValue, setExampleTextareaValue] = useState("");
@@ -41,21 +41,6 @@ export default function DevPage() {
         setTimeout(() => setDisableErrorButton(false), 2000)
     }
 
-    const test = {
-        a: 0,
-        b: 0,
-        c: {
-            name: 1,
-            color: 1,
-            label: {
-                a: {
-                    name: 1
-                },
-                b: 15
-            }
-        }
-    }
-
     return (
         <article>
             <h4 className="page-title">h/dev</h4>
@@ -67,32 +52,18 @@ export default function DevPage() {
                 <h4>Never gonna make you cry</h4>
                 <p>Never gonna say goodbye</p>
                 <p><small>Never gonna tell a lie and hurt you</small></p>
-            </section>
 
-            <section className="flex-col">
                 {/* Отобразить userData из context */}
                 <button className="green" onClick={openModal}>show userData</button>
-                
-                {/* Кнопка профиля */}
-                <ButtonProfile
-                    text={"Имя ок да"}
-                    subText={"Не имя"}
-                    src={imgBasePhoto}
-                />
-
-                {/* Кнопка профиля только с текстом */}
-                <ButtonProfile
-                    text={"Имя ок нет"}
-                    src={imgBasePhoto}
-                />
-
-                {/* Кнопка профиля без текста */}
-                <ButtonProfile
-                    src={imgBasePhoto}
-                />
             </section>
 
             <section className="flex-col">
+                {/* Кнопка профиля */}
+                <ButtonProfile
+                    src={imgProfileBase}
+                    text={"Имя участника"}
+                    subText={"@тег"}
+                />
                 <button>gray (default)</button>
                 <button className="green">green (confirm)</button>
                 <button className="red">red (cancel)</button>
@@ -104,15 +75,21 @@ export default function DevPage() {
                     <ButtonImage
                         src={imgHome}
                         alt="button-test"
-                        text="Кнопка с текстом"
+                        text="Кнопка с текстом по центру"
+                        width100
                     />
-
+                    <ButtonImage
+                        // src={imgHome}
+                        alt="button-test"
+                        text="Кнопка с текстом слева"
+                        width100
+                        atStart
+                    />
                     <ButtonImage
                         src={imgTool}
                         alt="button-test"
                         className="green"
                     />
-
                     <ButtonImage
                         src={imgCopy}
                         alt="button-test"
@@ -121,18 +98,26 @@ export default function DevPage() {
                 </div>
             </section>
 
-            <section className="flex-col">
+            {/* <section className="flex-col">
                 <p style={{whiteSpace: "pre-wrap"}}>
-                    {JSON.stringify(test, null, 4)}
+                    {JSON.stringify({name: "name", array: [{a: 1, b: 2}, {a: 3, b: 4}]}, null, 4)}
                 </p>
-            </section>
+            </section> */}
                 
             <section className="flex-col">
-                <CustomInput label="Пример с длинным название инпута">
+                <CustomInput label="Только читаемый инпут">
+                    <input
+                        type="text"
+                        value={"Пример описания"}
+                        readOnly
+                        required
+                    />
+                </CustomInput>
+
+                <CustomInput label="Пример с длинным название инпута" error={exampleInputError}>
                     <input
                         ref={exampleInput}
                         type="text"
-                        className={exampleInputError ?  "error" : null}
                         onChange={() => {setExampleInputValue(exampleInput.current.value)}}
                         required
                     />
@@ -140,15 +125,19 @@ export default function DevPage() {
                 <p>{"Инпут: " + exampleInputValue}</p>
                 <button disabled={disableErrorButton} onClick={handleErrorButton}>Сделать ошибку</button>
 
-                <CustomInput label="Только читаемый инпут">
-                    <input type="text" required readOnly value={"Пример описания"} />
+                <CustomInput label="Инпут с картинкой" error={exampleInputError} src={imgAt}>
+                    <input
+                        type="text"
+                        required
+                    />
                 </CustomInput>
-            </section>
-
-            <section className="flex-col">
+                
                 <CustomInput label="Пример текстареа">
-                    <textarea ref={exampleTextarea} required
-                    onChange={() => {setExampleTextareaValue(exampleTextarea.current.value)}}></textarea>
+                    <textarea
+                        ref={exampleTextarea}
+                        required
+                        onChange={() => {setExampleTextareaValue(exampleTextarea.current.value)}}
+                    ></textarea>
                 </CustomInput>
                 <p>{"Текстареа: " + exampleTextareaValue}</p>
             </section>

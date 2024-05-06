@@ -20,7 +20,10 @@ export default function SettingsPage() {
                 <h3>Эффекты страницы</h3>
 
                 <div className="settings__theme-input flex-row">
-                    <input type="radio" name="page-theme" id="theme-default"
+                    <input
+                        id="theme-default"
+                        type="radio"
+                        name="page-theme"
                         onChange={() => {handleChangeTheme("default")}}
                         defaultChecked={localStorage.pageTheme === "default" || localStorage.pageTheme === undefined}
                     />
@@ -36,6 +39,17 @@ export default function SettingsPage() {
                         defaultChecked={localStorage.pageTheme === "snow"}
                     />
                     <label htmlFor="theme-snow">Зимняя тема</label>
+                </div>
+
+                <div className="settings__theme-input flex-row">
+                    <input
+                        id="theme-hedgehog34"
+                        type="radio"
+                        name="page-theme"
+                        onChange={() => {handleChangeTheme("hedgehog34")}}
+                        defaultChecked={localStorage.pageTheme === "hedgehog34"}
+                    />
+                    <label htmlFor="theme-hedgehog34">hedgehog34</label>
                 </div>
             </section>
         </article>

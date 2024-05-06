@@ -18,7 +18,6 @@ import Aside from "./components/Aside/Aside"
 
 // Импорт страниц
 import Login from "./components/LoginPage/LoginPage";
-
 import Home from "./components/HomePage/HomePage";
 import News from "./components/NewsPage/NewsPage";
 import NewsPost from "./components/NewsPostPage/NewsPostPage";
@@ -35,8 +34,8 @@ import Support from "./components/SupportPage/SupportPage";
 import SupportCreatorsList from "./components/SupportPage/SupportPage_CreatorsList";
 import SupportAuthToken from "./components/SupportPage/SupportPage_AuthToken";
 import SupportFeedback from "./components/SupportPage/SupportPage_Feedback";
-
 import About from "./components/AboutPage/AboutPage";
+
 import Settings from "./components/SettingsPage/SettingsPage";
 import Changelogs from "./components/ChangelogsPage/ChangelogsPage";
 import Dev from "./components/DevPage/DevPage";
@@ -50,74 +49,78 @@ export default function App() {
     const Navigate = useNavigate()
 
     useEffect(() => {
-        // Анимация загрузки страницы
-        setPageLoading()
-        try {
-            // После загрузки приложения делаем проверку токена, если он изменился - требуем залогиниться заново
-            if (Context.userData) {
+        setPageLoading() // Анимация загрузки страницы
+
+        // После загрузки приложения делаем проверку токена, если он изменился - требуем залогиниться заново
+        if (Context.userData) {
+            new Promise((resolve, reject) => {
+                // Если есть userData, но нету токена - отчищаем данные
+                if (!Context.userData.token) {
+                    return reject()
+                }
+
                 GSAPI("authorizeByToken", {token: Context.userData.token}, (data) => {
                     console.log("GSAPI: authorizeByToken");
-                    setPageLoading(false)
 
                     // Если токен изменился
                     if (!data.success || !Object.keys(data).length) { 
-                        delete localStorage.userData
-                        delete Context.userData
-                        Navigate("/login")
-                        window.location.reload()
-                        return
+                        return reject()
                     }
 
-                    let newUserData = {...data.data}
-                    newUserData.token = Context.userData.token
-                    localStorage.userData = JSON.stringify(newUserData)
-                    Context.setUserData(newUserData)
+                    resolve(data.data)
                 })
-            }
-
-            // Загрузка всех постов
-            GSAPI("GETposts", {offset: 0}, (data) => {
-                console.log("GSAPI: GETposts offset=0");
-
-                // После получения всех постов обновляем список в контексте
-                Context.setPosts(data)
             })
-
-            // Загрузка всех юзеров
-            GSAPI("GETusers", {}, (data) => {
-                console.log("GSAPI: GETusers");
-
-                // После получения всех юзеров обновляем список в контексте
-                Context.setUsers(data)
-
-                // Если нету userData - останавливаем загрузку
-                if (!Context.userData) {
-                    setPageLoading(false)
-                }
+            .then(newUserData => {
+                newUserData.token = Context.userData.token // Устанавливаем токен т.к. его не передаем
+                localStorage.userData = JSON.stringify(newUserData) // Сохраняем в память браузера
+                Context.setUserData(newUserData) // Сохраняем в память приложения
             })
-        } catch(error) {
-            // Если вдруг произошла ошибка - останавливаем загрузку
-            setPageLoading(false)
-
-            // Если произошла какая то ошибка, то удаляем userData и требуем залогиниться заново
-            delete localStorage.userData
-            delete Context.userData
-            alert(`Произошла непредвиденная ошибка:\n${error}`)
-            Navigate("/login")
-            return
+            .catch(() => {
+                // delete localStorage.userData
+                delete localStorage.clear() // Удаляем всю информацию
+                delete Context.userData
+                window.location.reload()
+            })
         }
+
+        // Загрузка всех юзеров
+        function getUsers() {
+            return new Promise((resolve, reject) => {
+                GSAPI("GETusers", {}, (data) => {
+                    console.log("GSAPI: GETusers");
+                    Context.setUsers(data) // Сохраняем в память приложения
+                    resolve()
+                })
+            })
+        }
+
+        // Загрузка всех постов
+        function getPosts() {
+            return new Promise((resolve, reject) => {
+                GSAPI("GETposts", {offset: 0}, (data) => {
+                    console.log("GSAPI: GETposts offset=0");
+                    Context.setPosts(data) // После получения всех постов обновляем список в контексте
+                    resolve()
+                })
+            })
+        }
+
+        // Когда выполнятся обе загрузки - останавливаем анимацию загрузки страницы
+        Promise.all([getUsers(), getPosts()])
+        .then(() => {
+            setPageLoading(false)
+        })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
     // Если установлен стиль для сайта
     useEffect(() => {
-        // По умолчанию новый год
-        if (localStorage.pageTheme === undefined) {
+        if (localStorage.pageTheme === undefined) { // Если в памяти нету темы - по умолчанию никакой
             localStorage.pageTheme = "default"
         }
-
-        if (localStorage.pageTheme) {
+        
+        if (localStorage.pageTheme) {// Устанавливаем тему
             $("body").attr("theme", localStorage.pageTheme)
         }
     }, [])
@@ -128,7 +131,7 @@ export default function App() {
                 {Context.modalData}
             </Modal>
 
-            {/* Отображаем Aside на всех страницах кроме  */}
+            {/* Отображаем Aside на всех страницах кроме /login */}
             {!window.location.href.toLowerCase().endsWith("/login") && <Aside />}
 
             <DataContext.Provider value={Context}>
@@ -140,25 +143,31 @@ export default function App() {
                     <Route exact path="/news" element={<News />} />
                     <Route path="/news/:id" element={<NewsPost />} />
                     <Route exact path="/news/add" element={
-                        <ProtectedRoute isAllowed={Context.userData}>
-                            <NewsAdd />
-                        </ProtectedRoute>
+                        <ProtectedRoute
+                            isAllowed={Context.userData}
+                            to="/news"
+                            element={<NewsAdd />} 
+                        />
                     }/>
 
                     <Route path="/user/:id" element={<User />} />
                     <Route exact path="/user" element={<UserList />} />
                     <Route exact path="/user/edit" element={
-                        <ProtectedRoute isAllowed={Context.userData}>
-                            <UserEdit />
-                        </ProtectedRoute>
+                        <ProtectedRoute
+                            isAllowed={Context.userData}
+                            to="/user"
+                            element={<UserEdit />} 
+                        />
                     }/>
 
                     <Route path="/country/:id" element={<Country />} />
                     <Route exact path="/country" element={<CountryList />} />
                     <Route exact path="/country/edit" element={
-                        <ProtectedRoute isAllowed={Context.userData}>
-                            <CountryEdit />
-                        </ProtectedRoute>
+                        <ProtectedRoute
+                            isAllowed={Context.userData}
+                            to="/country"
+                            element={<CountryEdit />} 
+                        />
                     }/>
 
 
@@ -177,9 +186,10 @@ export default function App() {
                     <Route path="/changelogs" element={<Changelogs />} />
 
                     <Route path="/dev" element={
-                        <ProtectedRoute isAllowed={Context.isAdmin}>
-                            <Dev />
-                        </ProtectedRoute>
+                        <ProtectedRoute
+                            isAllowed={Context.isAdmin}
+                            element={<Dev />} 
+                        />
                     }/>
 
                     <Route exact path="/" element={<Home />} />

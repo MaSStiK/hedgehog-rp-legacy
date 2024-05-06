@@ -5,7 +5,7 @@ import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import imgLogo from "../../assets/logo/logoFullSize.png"
 import imgMenu from "../../assets/icons/Menu.svg"
-import imgClose from "../../assets/icons/Close.svg"
+import imgCross from "../../assets/icons/Cross.svg"
 import imgLogin from "../../assets/icons/Login.svg"
 import imgAdd from "../../assets/icons/Add.svg"
 
@@ -68,13 +68,21 @@ export default function Aside() {
             }
 
             {/* Кнопка профиля в мобильной навигации */}
-            {Context.userData && // Если есть userData - рендер мобильной кнопки профиля
-                <ButtonProfile
+            {Context.userData // Если есть userData - рендер мобильной кнопки профиля
+                ? <ButtonProfile
                     id="nav-phone-user"
                     className="tp"
                     src={Context.userData.photo}
                     onClick={() => Navigate("/user/" + Context.userData.id)}
-                />
+                  />
+                : <ButtonImage
+                    src={imgLogin}
+                    id="nav-phone-login"
+                    text="Авторизация"
+                    className="tp"
+                    width100
+                    onClick={() => Navigate("/login")}
+                  />
             }
 
             {/* Кнопка открытия мобильного меню навигации */}
@@ -93,7 +101,7 @@ export default function Aside() {
                     <ButtonImage
                         id="nav-menu-close"
                         className="tp"
-                        src={imgClose}
+                        src={imgCross}
                         alt="close-menu"
                         onClick={() => setShowNavMenu(false)}
                     />

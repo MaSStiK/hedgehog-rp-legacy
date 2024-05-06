@@ -5,13 +5,13 @@ export const CONSTS = {
     loginTokenMax: 50,
 
     userNameMin: 1,
-    userNameMax: 64,
+    userNameMax: 32,
     userBioMax: 850,
     userPhotoMax: 256,
 
     countryTitleMin: 1,
-    countryTitleMax: 64,
-    countryTagMax: 32,
+    countryTitleMax: 32,
+    countryTagMax: 16,
     countryBioMainMax: 850,
     countryBioMoreMax: 850,
 

@@ -20,8 +20,8 @@ import "./HomePage-phone.css"
 
 export default function HomePage() {
     useEffect(() => {setPageTitle("Главная")}, [])
-    const Navigate = useNavigate()
     const Context = useContext(DataContext)
+    const Navigate = useNavigate()
 
     return (
         <article>
@@ -33,14 +33,14 @@ export default function HomePage() {
                 <iframe width="520" height="280" src="https://www.youtube.com/embed/x2gx7yKC54s?si=DUBOXLomABWx7FLY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 <div className="flex-row" style={{flexWrap: "wrap"}}>
                     <ButtonImage
-                        className="tp"
+                        className="tp no-filter"
                         src={imgVk}
                         alt="vk"
                         text="Группа в ВК"
                         onClick={() => window.open("https://vk.com/hedgehogs_army", "_blank")}
                     />
                     <ButtonImage
-                        className="tp"
+                        className="tp no-filter"
                         src={imgYoutube}
                         alt="vk"
                         text="Канал на YouTube"
@@ -49,14 +49,14 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* Отображаем последнюю новость и обновление после загрузки */}
-            {Context.posts.length
+            {/* Отображаем последнюю новость и последнее обновление после загрузки постов и юзеров */}
+            {Context.posts.length && Context.users.length
                 ? <>
-                    <section className="home__post flex-col">
+                    <section className="flex-col">
                         <h1>Самое актуальное</h1>
                         <PostsRender
                             posts={[...Context.posts].slice(0, 1)}
-                            users={Context.users}
+                            noSection
                         />
                         <ButtonImage
                             src={imgNews}
@@ -66,10 +66,11 @@ export default function HomePage() {
                         />
                     </section>
 
-                    <section className="home__post flex-col">
+                    <section className="flex-col">
                         <h1>Новое на сайте</h1>
                         <ChangelogsRender
                             changelogs={[...changelogs].slice(0, 1)}
+                            noSection
                         />
                         <ButtonImage
                             src={imgUpdate}

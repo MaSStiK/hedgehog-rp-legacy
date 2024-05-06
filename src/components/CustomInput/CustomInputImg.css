@@ -1,0 +1,34 @@
+/* Инпут с картинкой (Отступ слева для картинки) */
+.custom-input_img input {
+    padding-left: calc(4px + var(--button-img) + 4px);
+}
+
+/* Картинка внутри инпута */
+.custom-input_img img {
+    width: var(--button-img);
+    height: var(--button-img);
+
+    position: absolute;
+    top: 6px;
+    left: 4px;
+
+    /* Картинка серая */
+    opacity: .25;
+}
+
+/* Кастомный placeholder (Больший отступ с лева) */
+.custom-input_img label {
+    /* Отступ на 4px меньше т.к. label имеет padding */
+    left: calc(4px + var(--button-img));
+}
+
+/* Перемещаем текст выше если в инпуте есть значение или инпут активен */
+.custom-input_img input[type=text]:focus:not(:read-only) ~ label,
+.custom-input_img input[type=text]:valid:not(:read-only) ~ label,
+.custom-input_img input[type=text]:read-only ~ label,
+.custom-input_img textarea:focus:not(:read-only) ~ label,
+.custom-input_img textarea:valid:not(:read-only) ~ label,
+.custom-input_img textarea:read-only ~ label {
+    /* translate: -28px -16px; */
+    translate: 0 -16px;
+}

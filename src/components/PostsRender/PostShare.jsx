@@ -2,7 +2,6 @@ import ButtonImage from "../ButtonImage/ButtonImage"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgVk from "../../assets/images/vk.svg"
 
-
 import "./PostShare-modal.css"
 
 export default function PostShare(Context, postId, postTitle, postImg) {

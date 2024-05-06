@@ -1,17 +1,14 @@
-import { useState } from "react"
-import $ from "jquery"
-
 import "./CustomInput.css"
+import "./CustomInputImg.css"
 
 
 /* 
 Пример использования
 
-<CustomInput label="Пример использования">
+<CustomInput label="Пример использования" error={exampleInputError}>
     <input
         ref={exampleInput}
         type="text"
-        className={exampleInputError ?  "error" : null}
         onChange={() => {handler}}
         required
     />
@@ -24,44 +21,31 @@ required - ОБЯЗАТЕЛЕН !!!
 // Кастомный инпут с label который заменяет placeholder и при активации label переносится на верхнюю часть инпута
 export default function CustomInput({
     id,
-    className,
+    className="",
     style,
-    label,
-    children,
-    ...props
+    label="Пример заголовка",
+    error,
+    src,
+    alt="input-image",
+    children
 }) {
-    // const [showPassword, setShowPassword] = useState(false)
-
-    // function toggleShowPassword() {
-    //     setShowPassword(!showPassword)
-
-    //     // Не совсем правильно, но работает
-    //     let child = $("#" + props.children.props.id)
-    //     if (child.attr("type") === "password") {
-    //         child.attr("type", "text")
-    //     } else {
-    //         child.attr("type", "password")
-    //     }
-    // }
-
+    // Добавляем стиль-модификатор перед передаваемыми классами
+    if (src) className = "custom-input_img " + className
+    if (error) className = "error " + className
     return (
         <div
-            id={id || ""}
-            className={`custom-input-wrapper ${className || ""}`}
+            id={id}
+            className={`custom-input ${className}`}
             style={style}
         >
             {/* Передаваемый инпут */}
             {children}
 
+            {/* Картинка справа если ее передают */}
+            {src && <img src={src} alt={alt} draggable="false" />}
+
             {/* Его label / placeholder */}
             <label htmlFor={children.props.id}>{label}</label>
-
-            {/* Для инпута с паролем кнопка показа пароля */}
-            {/* {props.password &&
-                <button type="button" onClick={toggleShowPassword}>
-                    {showPassword ? <img src={imgEyeClosed} alt="show-password" /> : <img src={imgEyeOpen} alt="hide-password" />}
-                </button>
-            } */}
         </div>
     )
 }

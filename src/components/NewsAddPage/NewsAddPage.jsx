@@ -2,8 +2,11 @@ import { useEffect, useContext, useState, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
+import ButtonImage from "../ButtonImage/ButtonImage"
 import { CONSTS, setPageTitle, setPageLoading } from "../Global"
 import { GSAPI } from "../API"
+import imgAdd from "../../assets/icons/Add.svg"
+import imgCross from "../../assets/icons/Cross.svg"
 
 import "./NewsAddPage.css"
 import "./NewsAddPage-phone.css"
@@ -23,8 +26,8 @@ export default function NewsAddPage() {
     const [titleInputError, setTitleInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
     const [textInputError, setTextInputError] = useState(false) // Отображать ли ошибку инпута Названия страны
     const [photoInputError, setPhotoInputError] = useState(false) // Отображать ли ошибку инпута Ссылка на фото
-    const [disableAddButton, setDisableAddButton] = useState(true) // Отключить ли кнопку Добавления картинки
-    const [disableSubmitButton, setDisableSubmitButton] = useState(true) // Отключить ли кнопку сохранения
+    const [disableAddButton, setDisableAddButton] = useState(true) // Состояние кнопки Добавления картинки
+    const [disableSubmitButton, setDisableSubmitButton] = useState(true) // Состояние кнопки сохранения
     
     const postTitleInput = useRef()
     const postTextInput = useRef()
@@ -171,24 +174,27 @@ export default function NewsAddPage() {
             <h4 className="page-title">h/news/add</h4>
 
             <section className="flex-col news-add">
-                <CustomInput label="Заголовок новости">
+                <CustomInput label="Заголовок новости" error={titleInputError}>
                     <input
                         ref={postTitleInput}
                         type="text"
                         id="form-title"
-                        className={titleInputError ? "error" : null}
                         maxLength={CONSTS.postTitleMax}
                         onInput={handleInputUpdate}
                         required
                     />
                 </CustomInput>
-                <small>Длина заголовка от {CONSTS.postTitleMin} до {CONSTS.postTitleMax} символов</small>
+                <small className="text-gray">
+                    <p className="text-red" style={{display: "inline"}}>*</p> Обязательное поле
+                    <br/>• Длина от {CONSTS.postTitleMin} до {CONSTS.postTitleMax} символов
+                </small>
 
-                <CustomInput label={`Текст новости (${postTextLength} / ${CONSTS.postTextMax})`}>
+                <CustomInput label={`Текст новости (${postTextLength} / ${CONSTS.postTextMax})`}
+                    error={textInputError}
+                >
                     <textarea
                         ref={postTextInput}
                         id="form-text"
-                        className={textInputError ? "error" : null}
                         maxLength={CONSTS.postTextMax}
                         onInput={() => {
                             setPostTextLength(postTextInput.current.value.length) // Обновляем значение длины текста
@@ -197,29 +203,17 @@ export default function NewsAddPage() {
                         required 
                     ></textarea>
                 </CustomInput>
-                <small>Длина текста до {CONSTS.postTextMax} символов</small>
-                
-                {/* Отображение загруженных картинок */}
-                {attachments.map((attach) => {
-                    return <div className="news-add__attachment-preview" key={attach.id}>
-                        <img src={attach.url} alt="preview" />
-                        <button onClick={() => {
-                            setAttach(attachments.filter(el => el.id !== attach.id))
-                        }}
-                        >Удалить</button>
-                    </div>
-                })}
+                <small className="text-gray">• Длина до {CONSTS.postTextMax} символов</small>
                 
                 {/* Отображение блок добавления картинок */}
                 {showAttachments &&
                     <>
                         <div className="news-add__input-row">
-                            <CustomInput label="Добавить картинку">
+                            <CustomInput label="Ссылка на картинку" error={photoInputError}>
                                 <input
+                                    id="form-photo"
                                     ref={postPhotoInput}
                                     type="text"
-                                    id="form-photo"
-                                    className={photoInputError ? "error" : null}
                                     maxLength={CONSTS.photoMax}
                                     onInput={() => {
                                         checkImageSource(postPhotoInput.current.value)
@@ -229,14 +223,40 @@ export default function NewsAddPage() {
                                 />
                             </CustomInput>
 
-                            <button className="green" onClick={addAttachment} disabled={disableAddButton}>Добавить</button>
+                            <ButtonImage
+                                src={imgAdd}
+                                alt="image-add"
+                                text="Добавить"
+                                className="green"
+                                onClick={addAttachment}
+                                disabled={disableAddButton}
+                            />
                         </div>
-                        <small>Длина ссылки до {CONSTS.photoMax} символов<br/>Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px<br/>Максимум {CONSTS.attachmentsCountMax} картинок</small>
+                        <small className="text-gray">
+                            • Длина до {CONSTS.photoMax} символов
+                            <br/>• Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px
+                            <br/>• Максимум {CONSTS.attachmentsCountMax} картинок
+                        </small>
                         {postPhotoPreview &&
                             <img src={postPhotoPreview} alt="preview" />
                         }
                     </>
                 }
+
+                {/* Отображение загруженных картинок */}
+                {attachments.map((attach) => {
+                    return <div className="news-add__attachment-preview" key={attach.id}>
+                        <img src={attach.url} alt="preview" />
+
+                        <ButtonImage
+                            src={imgCross}
+                            alt="image-delete"
+                            text="Удалить"
+                            className="green"
+                            onClick={() => setAttach(attachments.filter(el => el.id !== attach.id))}
+                        />
+                    </div>
+                })}
                 
                 {errorText &&
                     <p className="text-red">{errorText}</p>

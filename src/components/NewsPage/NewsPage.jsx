@@ -48,7 +48,6 @@ export default function NewsPage() {
 
             <PostsRender
                 posts={Context.posts}
-                users={Context.users}
             />
 
             {showLoadButton &&

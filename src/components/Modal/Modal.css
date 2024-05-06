@@ -1,3 +1,14 @@
+:root {
+    --modal-width-max: 90vw;
+    --modal-height-max: 80vh;
+}
+
+@media screen and (max-width: 900px) {
+    :root {
+        --modal-height-max: 50vh;
+    }
+}
+
 /* Темный фон модального окна */
 .modal-wrapper {
     width: 100%;
@@ -20,6 +31,10 @@
 
 /* Модальное окно */
 dialog.modal {
+    max-width: var(--modal-width-max);
+    max-height: var(--modal-height-max);
+    box-sizing: content-box;
+
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     border-radius: var(--border-radius);

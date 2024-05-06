@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom"
 
-export default function ProtectedRoute({ children, isAllowed }) {
-    if (!isAllowed) {
-        return <Navigate to={"/"} />
-    }
-
-    return children
+export default function ProtectedRoute({
+    isAllowed,
+    to="/",
+    element,
+}) {
+    if (!isAllowed) return <Navigate to={to} />
+    return element
 }

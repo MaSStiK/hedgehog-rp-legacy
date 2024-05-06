@@ -5,10 +5,7 @@ import { MapInteractionCSS } from "react-map-interaction";
 
 import "./ImageFullscreen.css"
 
-export default function ImageFullscreen({
-    children,
-    ...props
-}) {
+export default function ImageFullscreen({ children }) {
     const Context = useContext(DataContext)
 
     function openFullscreen() {

@@ -1,9 +1,9 @@
-/* Обычная тема */
-/* body[theme=default] */
+@import "./theme_hedgehog34.css";
 
-/* Новогодняя тема */
-/* body[theme=snow] */
+/* Обычная тема body[theme=default] */
+/* Без изменений... duh */
 
+/* Новогодняя тема body[theme=snow]*/
 /* Анимированный фон */
 body[theme=snow]::before {
     content: "";

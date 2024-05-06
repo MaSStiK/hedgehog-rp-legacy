@@ -6,10 +6,7 @@ import imgLogout from "../../assets/icons/Logout.svg"
 
 import "./ToolsPage.css"
 
-export default function ToolsPage({
-    doLogout,
-    ...props
-}) {
+export default function ToolsPage({ doLogout }) {
     useEffect(() => {setPageTitle("Инструменты")}, [])
     const Navigate = useNavigate()
     

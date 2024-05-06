@@ -44,7 +44,6 @@ export default function NewsPostPage() {
                 ? <>
                     <PostsRender
                         posts={postData}
-                        users={Context.users}
                     />
 
                     <section className="flex-col">

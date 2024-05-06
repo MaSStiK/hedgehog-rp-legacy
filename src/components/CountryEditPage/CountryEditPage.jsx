@@ -4,6 +4,7 @@ import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import { CONSTS, setPageTitle, setPageLoading } from "../Global"
 import { GSAPI } from "../API";
+import imgAt from "../../assets/icons/At.svg"
 
 
 import "./CountryEditPage.css"
@@ -24,7 +25,7 @@ export default function CountryEditPage() {
     const [bioMainInputError, setBioMainInputError] = useState(false) // Отображать ли ошибку инпута Описания
     const [bioMoreInputError, setBioMoreInputError] = useState(false) // Отображать ли ошибку инпута Доп Описания
     const [photoInputError, setPhotoInputError] = useState(false) // Отображать ли ошибку инпута Ссылка на фото
-    const [disableSubmitButton, setDisableSubmitButton] = useState(true) // Отключить ли кнопку сохранения
+    const [disableSubmitButton, setDisableSubmitButton] = useState(true) // Состояние кнопки сохранения
 
     const basePhotoSrc = "https://is.gd/fzchSz" // Сокращенная ссылка на базовое фото
 
@@ -36,7 +37,7 @@ export default function CountryEditPage() {
 
     useEffect(() => {
         countryTitleInput.current.value = Context.userData.country_title
-        countryTagInput.current.value = Context.userData.country_tag
+        countryTagInput.current.value = Context.userData.country_tag.substr(1);
 
         countryPhotoInput.current.value = Context.userData.country_photo
         checkImageSource(countryPhotoInput.current.value) // Обновляем превью картинки
@@ -300,55 +301,48 @@ export default function CountryEditPage() {
                     />
                 </CustomInput>
 
-                <CustomInput label="Название страны">
+                <CustomInput label="Название страны" error={titleInputError}>
                     <input
                         ref={countryTitleInput}
                         type="text"
                         id="form-title"
-                        className={titleInputError ? "error" : null}
                         maxLength={CONSTS.countryTitleMax}
                         onInput={handleInputUpdate}
                         required
                     />
                 </CustomInput>
-                <small>Длина названия от {CONSTS.countryTitleMin} до {CONSTS.countryTitleMax} символов</small>
+                <small className="text-gray">
+                    <p className="text-red" style={{display: "inline"}}>*</p> Обязательное поле
+                    <br/>• Длина от {CONSTS.countryTitleMin} до {CONSTS.countryTitleMax} символов
+                </small>
 
-                <CustomInput label="Тег страны">
+                <CustomInput label="Тег страны" error={tagInputError} src={imgAt}>
                     <input
                         ref={countryTagInput}
                         type="text"
                         id="form-tag"
-                        className={tagInputError ? "error" : null}
                         maxLength={CONSTS.countryTagMax + 1}
                         onInput={handleInputUpdate}
-                        onFocus={() => {
-                            // Если при нажатии нету символов - добавляем @ в начало
-                            if (!countryTagInput.current.value) {
-                                countryTagInput.current.value = "@"
-                            }
-                        }}
                         onBlur={() => {
-                            // Если остался только символ @ - удаляем его
-                            if (countryTagInput.current.value === "@") {
-                                countryTagInput.current.value = ""
-                            }
-
-                            // Если строка не пустая, но начинается не с @ - добавляем в начало и обрезаем строку
-                            if (countryTagInput.current.value && !countryTagInput.current.value.startsWith("@")) {
-                                countryTagInput.current.value = "@" + countryTagInput.current.value.slice(0, CONSTS.countryTagMax)
+                            // Если строка пустая - ставим id страны
+                            if (countryTagInput.current.value === "") {
+                                countryTagInput.current.value = Context.userData.country_id ? Context.userData.country_id : "c" + Context.userData.id
                             }
                         }}
                         required
                     />
                 </CustomInput>
-                <small>Без пробелов<br/>Длина тега до {CONSTS.countryTagMax} символов<br/>Только латиница, цифры и спецсимволы</small>
+                <small className="text-gray">
+                    • Длина до {CONSTS.countryTagMax} символов
+                    <br/>• Без пробелов
+                    <br/>• Латиница, цифры и спецсимволы
+                </small>
 
-                <CustomInput label="Ссылка на флаг страны">
+                <CustomInput label="Ссылка на флаг страны" error={photoInputError}>
                     <input
                         ref={countryPhotoInput}
                         type="text"
                         id="form-photo"
-                        className={photoInputError ? "error" : null}
                         maxLength={CONSTS.photoMax}
                         onInput={() => {
                             checkImageSource(countryPhotoInput.current.value) // Проверяем картинку
@@ -358,16 +352,21 @@ export default function CountryEditPage() {
                     />
                 </CustomInput>
 
-                <small>Длина ссылки до {CONSTS.photoMax} символов<br/>Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px<br/>Замена на стандартную картинку если поле пустое</small>
+                <small className="text-gray">
+                    • Длина до {CONSTS.photoMax} символов
+                    <br/>• Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px
+                    <br/>• Замена на стандартную картинку если поле пустое
+                </small>
                 {countryPhotoPreview &&
                     <img src={countryPhotoPreview} alt="preview" draggable="false" />
                 }
                 
-                <CustomInput label={`Описание страны (${countryBioMainLength} / ${CONSTS.countryBioMainMax})`}>
+                <CustomInput label={`Описание страны (${countryBioMainLength} / ${CONSTS.countryBioMainMax})`}
+                    error={bioMainInputError}
+                >
                     <textarea
                         ref={countryBioMainInput}
                         id="form-bio"
-                        className={bioMainInputError ? "error" : null}
                         maxLength={CONSTS.countryBioMainMax}
                         onInput={() => {
                             setCountryBioMainLength(countryBioMainInput.current.value.length) // Обновляем значение длины описания
@@ -376,13 +375,16 @@ export default function CountryEditPage() {
                         required 
                     ></textarea>
                 </CustomInput>
-                <small>Длина описания до {CONSTS.countryBioMainMax} символов</small>
+                <small className="text-gray">
+                    • Длина до {CONSTS.countryBioMainMax} символов
+                </small>
 
-                <CustomInput label={`Доп. описание (${countryBioMoreLength} / ${CONSTS.countryBioMoreMax})`}>
+                <CustomInput label={`Доп. описание (${countryBioMoreLength} / ${CONSTS.countryBioMoreMax})`}
+                    error={bioMoreInputError}
+                >
                     <textarea
                         ref={countryBioMoreInput}
                         id="form-bio"
-                        className={bioMoreInputError ? "error" : null}
                         maxLength={CONSTS.countryBioMoreMax}
                         onInput={() => {
                             setCountryBioMoreLength(countryBioMoreInput.current.value.length) // Обновляем значение длины доп описания
@@ -391,7 +393,9 @@ export default function CountryEditPage() {
                         required 
                     ></textarea>
                 </CustomInput>
-                <small>Доп. описание до {CONSTS.countryBioMoreMax} символов</small>
+                <small className="text-gray">
+                    • Длина до {CONSTS.countryBioMoreMax} символов
+                </small>
                 
                 {errorText &&
                     <p className="text-red">{errorText}</p>

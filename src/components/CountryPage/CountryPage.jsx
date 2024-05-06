@@ -6,7 +6,7 @@ import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle } from "../Global"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import PostsRender from "../PostsRender/PostsRender"
-import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
+import imgBasePhoto from "../../assets/replace/photo-empty.png"
 import imgEdit from "../../assets/icons/Edit.svg"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgCountry from "../../assets/icons/Country.svg"
@@ -145,7 +145,6 @@ export default function CountryPage() {
 
                     <PostsRender
                         posts={[...Context.posts].filter(post => post.country_id === URLparams.id)}
-                        users={Context.users}
                     />
                 </>
 

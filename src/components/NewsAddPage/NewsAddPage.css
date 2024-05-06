@@ -17,13 +17,8 @@
     gap: var(--gap-small);
 }
 
-.news-add__input-row input {
-    width: 100%;
-}
-
-.news-add__input-row button {
-    width: 200px;
-    height: var(--button-height);;
+.news-add__input-row .custom-input {
+    flex: 1;
 }
 
 .news-add > img {
@@ -40,11 +35,7 @@
     gap: var(--gap-small);
 }
 
-.news-add__attachment-preview button {
-    width: 150px;
-}
-
-.news-add__attachment-preview img {
+.news-add__attachment-preview > img {
     width: 50px;
     height: 50px;
     object-fit: contain;

@@ -25,7 +25,7 @@ function getMethodUrl(method, params, token) {
 
 
 // Отправить запрос
-export function VKAPI(method, params, func=null, token=process.env.REACT_APP_VK_TOKEN) {
+export function VKAPI(method, params={}, func=null, token=process.env.REACT_APP_VK_TOKEN) {
     $.ajax({
         url: getMethodUrl(method, params, token),
         method: "GET",

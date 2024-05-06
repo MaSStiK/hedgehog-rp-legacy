@@ -21,10 +21,17 @@ export const DataContext = createContext({
 // Устанавливаем стейты в приложении
 export function CreateContext(Context) {
     // Передаем в контекст userData и его сеттер
-    let userData = localStorage.userData ? JSON.parse(localStorage.userData) : null
+    let userData
+    try {
+        userData = localStorage.userData ? JSON.parse(localStorage.userData) : null
+    } catch {
+        delete localStorage.userData
+        userData = null
+    }
     const [ContextUserData, setContextUserData] = useState(userData);
     Context.userData = ContextUserData
     Context.setUserData = setContextUserData
+    
 
     // Ставим в контекст isAdmin
     const [ContextIsAdmin, setContextIsAdmin] = useState(userData ? userData.id === "291195777" : false);

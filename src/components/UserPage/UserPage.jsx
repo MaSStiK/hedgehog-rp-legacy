@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
-import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
+import imgBasePhoto from "../../assets/replace/photo-empty.png"
 import { VKAPI } from "../API"
 import { setPageTitle } from "../Global"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
@@ -146,8 +146,8 @@ export default function UserPage() {
                         <p className="text-gray">ВКонтакте</p>
                         <ButtonProfile
                             className="tp"
-                            src={userDataVk.photo}
-                            text={userDataVk.name}
+                            src={userDataVk.photo || imgBasePhoto}
+                            text={userDataVk.name || "Загрузка"}
                             onClick={() => window.open(`https://vk.com/id${userData.id}`, "_blank")}
                         />
                     </div>

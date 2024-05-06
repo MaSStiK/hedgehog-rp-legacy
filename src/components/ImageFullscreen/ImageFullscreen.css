@@ -8,10 +8,10 @@
     width: 100%;
 }
 
-/* Модальное окно с функцией просмотра картинки */
+/* Модальное окно с функцией просмотра картинки (В максимальную ширину и высоту) */
 .image-fullscreen__modal {
-    width: 90vw;
-    height: 80vh;
+    width: var(--modal-width-max);
+    height: var(--modal-height-max);
 }
 
 
@@ -22,9 +22,8 @@
 
 /* Блок удерживающий картинку по центру */
 .image-fullscreen__modal-wrapper {
-    width: 90vw;
-    height: 80vh;
-
+    width: var(--modal-width-max);
+    height: var(--modal-height-max);
     display: flex;
     justify-content: center;
     align-items: center;

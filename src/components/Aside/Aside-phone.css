@@ -3,6 +3,7 @@
 #nav-logo-phone,
 #nav-phone-country,
 #nav-phone-user,
+#nav-phone-login,
 #nav-menu-open,
 #nav-menu-close {
     display: none;
@@ -114,6 +115,16 @@
     /* Показывать ли меню */
     .show-nav-menu {
         display: block !important;
+    }
+
+    #nav-phone-login {
+        width: fit-content;
+        height: var(--button-height-big);
+
+        display: flex;
+        position: absolute;
+        top: 0px;
+        right: calc(var(--button-height-big) + 8px + 8px); /* Двойной отступ по 8px */
     }
 
     /* Кнопка юзера в моб. версии */

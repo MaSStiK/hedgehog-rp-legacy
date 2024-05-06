@@ -1,26 +1,25 @@
-import imgBasePhoto from "../../assets/replace/base-photo-empty.png"
+import imgBasePhoto from "../../assets/replace/photo-empty.png"
 
 import "./ButtonProfile.css"
 
 // Большая кнопка с профилем или страной
 export default function ButtonProfile({
     id,
-    className,
+    className="",
     style,
     onClick,
-    src,
+    src=imgBasePhoto,
     text,
-    subText,
-    ...props
+    subText
 }) {
     return (
         <button
-            id={id || ""} 
-            className={`button-profile ${className || ""}`} 
+            id={id} 
+            className={`button-profile ${className}`} 
             style={style}
             onClick={onClick} 
         >
-            <img src={src || imgBasePhoto} alt="profile-icon" draggable="false" />
+            <img src={src} alt="profile-icon" draggable="false" />
             
             {/* Если есть текст или subText - отображаем блок с текстом */}
             {(text || subText) &&
