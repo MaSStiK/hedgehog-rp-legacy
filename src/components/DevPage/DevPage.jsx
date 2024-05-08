@@ -11,6 +11,8 @@ import imgTool from "../../assets/icons/Tool.svg"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgAt from "../../assets/icons/At.svg"
 
+import $ from "jquery";
+
 
 import "./DevPage.css"
 

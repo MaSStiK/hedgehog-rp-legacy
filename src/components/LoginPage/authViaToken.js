@@ -13,7 +13,7 @@ export default function authViaToken(Context, token) {
             return reject(`Код больше ${CONSTS.loginTokenMax} символов`)
         }
 
-        GSAPI("authorizeByToken", {token: token}, (data) => {
+        GSAPI("authViaToken", {token: token}, (data) => {
             // Если не нашло по токену
             if (!data.success || !Object.keys(data).length) {
                 return reject("Токен не действителен")

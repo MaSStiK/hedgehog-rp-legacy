@@ -19,7 +19,7 @@ export default function authViaCode(Context, vkCode) {
         return new Promise((resolve, reject) => {
             // Создаем новый длинный токен
             let newToken = (Math.random().toString(32).substring(2) + Date.now().toString(32) + Math.random().toString(32).substring(2)).toUpperCase()
-            GSAPI("authorizeById", {vk_id: vk_id.toString(), token: newToken}, (data) => {
+            GSAPI("authViaCode", {vk_id: vk_id.toString(), token: newToken}, (data) => {
                 // Если не нашло - регистрируем нового юзера
                 if (!data.success || !Object.keys(data).length) {
                     registrateNewUser(vk_id, newToken)
@@ -84,8 +84,7 @@ function registrateNewUser(user_id, newToken) {
                 country_tag: "",
                 country_title: "",
                 country_photo: "",
-                country_bio_main: "",
-                country_bio_more: "",
+                country_bio: "",
             }
 
             // Отправляем пользователя

@@ -59,8 +59,9 @@ export default function App() {
                     return reject()
                 }
 
-                GSAPI("authorizeByToken", {token: Context.userData.token}, (data) => {
-                    console.log("GSAPI: authorizeByToken");
+
+                GSAPI("authViaToken", {token: Context.userData.token}, (data) => {
+                    console.log("GSAPI: authViaToken");
 
                     // Если токен изменился
                     if (!data.success || !Object.keys(data).length) { 

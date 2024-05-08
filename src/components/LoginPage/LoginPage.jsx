@@ -81,6 +81,8 @@ export default function LoginPage() {
 
     return (
         <article id="article-login">
+            <h4 className="page-title">h/login</h4>
+
             <div className="logo-wrapper">
                 <img src={imgLogo} alt="logotype" onClick={() => {Navigate("/")}} draggable="false" />
             </div>

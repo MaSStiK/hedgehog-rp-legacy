@@ -27,7 +27,7 @@ export default function SupportPageCreatorsList() {
 
     return (
         <article>
-            <h4 className="page-title">h/help/creators_list</h4>
+            <h4 className="page-title">h/support/creators_list</h4>
 
             <section className="flex-col">
                 <h1>Текстовый список создателей стран</h1>

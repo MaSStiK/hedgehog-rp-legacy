@@ -12,8 +12,7 @@ export const CONSTS = {
     countryTitleMin: 1,
     countryTitleMax: 32,
     countryTagMax: 16,
-    countryBioMainMax: 850,
-    countryBioMoreMax: 850,
+    countryBioMax: 2000,
 
     postTitleMin: 1,
     postTitleMax: 128,

@@ -65,7 +65,6 @@ section {
 .page-title {
     width: min(600px, 100%);
     color: var(--text-dark);
-    padding-left: var(--gap-medium);
     margin: 0 auto;
 }
 

@@ -14,7 +14,7 @@ export default function SupportPage() {
 
     return (
         <article>
-            <h4 className="page-title">h/help</h4>
+            <h4 className="page-title">h/support</h4>
 
             <section className="flex-col">
                 <h1>Статьи для решения проблем и вопросов</h1>

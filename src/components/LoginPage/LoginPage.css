@@ -1,7 +1,7 @@
 /* Страница входа */
 #article-login {
     /* Одинаковый отступ со всех сторон страницы */
-    padding: var(--gap-medium);
+    padding: var(--gap-small);
 }
 
 /* Логотип над формой */
@@ -37,4 +37,10 @@
 
 #article-login section button {
     width: 100%;
+}
+
+/* Заголовок */
+#article-login .page-title {
+    width: min(384px, 100%);
+    margin: 0 auto;
 }

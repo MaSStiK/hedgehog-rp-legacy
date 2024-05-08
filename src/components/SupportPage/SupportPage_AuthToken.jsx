@@ -9,7 +9,7 @@ export default function SupportPageAuthToken() {
 
     return (
         <article>
-            <h4 className="page-title">h/help/auth_token</h4>
+            <h4 className="page-title">h/support/auth_token</h4>
 
             <section className="flex-col">
                 <h1>Как использовать токен авторизации</h1>

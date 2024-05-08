@@ -108,27 +108,15 @@ export default function CountryPage() {
                         </div>
 
                         {/* Если есть описание - отображаем */}
-                        {userData.country_bio_main &&
+                        {userData.country_bio &&
                             <>
                                 <hr />
                                 <div className="country-page__column">
                                     <p className="text-gray">Описание</p>
-                                    <p className="textarea-block">{userData.country_bio_main}</p>
+                                    <p className="textarea-block">{userData.country_bio}</p>
                                 </div>
                             </>
                         }
-
-                        {/* Если есть доп описание - отображаем */}
-                        {userData.country_bio_more &&
-                            <>
-                                <hr />
-                                <div className="flex-col">
-                                    <p className="text-gray">Доп. описание</p>
-                                    <p className="textarea-block">{userData.country_bio_more}</p>
-                                </div>
-                            </>
-                        }
-
                     </section>
                     
                     {/* Кнопка появляется если просматривает владелец */}

@@ -148,8 +148,8 @@ export default function NewsAddPage() {
             timestamp: dateNow // Дата создания поста
         }
 
-        GSAPI("POSTpost", {data: JSON.stringify(newPostData), token: Context.userData.token}, (data) => {
-            console.log("GSAPI: POSTpost");
+        GSAPI("POSTaddPost", {data: JSON.stringify(newPostData), token: Context.userData.token}, (data) => {
+            console.log("GSAPI: POSTaddPost");
 
             // Если не удалось сохранить
             if (!data.success || !Object.keys(data).length) {

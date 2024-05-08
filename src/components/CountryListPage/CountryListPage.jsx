@@ -28,8 +28,7 @@ export default function CountryListPage() {
                     country_tag: user.country_tag,
                     country_title: user.country_title,
                     country_photo: user.country_photo,
-                    // country_bio_main: user.country_bio_main,
-                    // country_bio_more: user.country_bio_more,
+                    country_bio: user.country_bio,
                 })
             }
         }
@@ -77,15 +76,15 @@ export default function CountryListPage() {
                     </CustomInput>
 
                     <ButtonImage
-                            src={imgCross}
-                            alt="clear-search"
-                            text="Отчистить"
-                            onClick={() => {
-                                // Отчищаем поле и активируем поиск
-                                searchRef.current.value = ""
-                                searchCountries()
-                            }}
-                            disabled={searchRef.current ? !searchRef.current.value : true}
+                        src={imgCross}
+                        alt="clear-search"
+                        text="Отчистить"
+                        onClick={() => {
+                            // Отчищаем поле и активируем поиск
+                            searchRef.current.value = ""
+                            searchCountries()
+                        }}
+                        disabled={searchRef.current ? !searchRef.current.value : true}
                     />
                 </div>
 

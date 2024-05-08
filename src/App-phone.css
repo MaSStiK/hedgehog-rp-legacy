@@ -24,7 +24,7 @@
     /* Блок страницы */
     article {
         width: 100%; /* Ширина во всю страницу */
-        padding: 70px var(--gap-medium) var(--gap-medium) var(--gap-medium); /* Отступ сверху 50px + 20px */
+        padding: 62px var(--gap-small) var(--gap-small) var(--gap-small); /* Отступ сверху 50px + 12px */
     }
 
     /* Блок с контентом */

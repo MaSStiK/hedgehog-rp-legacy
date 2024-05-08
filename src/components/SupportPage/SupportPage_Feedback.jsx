@@ -10,7 +10,7 @@ export default function SupportPageFeedback() {
 
     return (
         <article>
-            <h4 className="page-title">h/help/feedback</h4>
+            <h4 className="page-title">h/support/feedback</h4>
 
             <section className="flex-col">
                 <h1>Где можно опубликовать идеи для сайта и отправить обнаруженные баги?</h1>

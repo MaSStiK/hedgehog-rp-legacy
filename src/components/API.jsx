@@ -1,16 +1,16 @@
 import $ from "jquery";
 
-const GOOGLE_API = "https://script.google.com/macros/s/AKfycby0ajEKJKjRzOIYqPIgnKW8nl2v2er66Tcmz8dVMe1ENdIoj_kFff3gYH2-KAm7y-jp4Q/exec"
+const GOOGLE_API = "https://script.google.com/macros/s/AKfycbyELPPKvVXDlNl_-2I_Xt2OHlLvZE3ew-0lddd7PT-hTmPYQrfd9tDMUupjlGKJ1LxIyg/exec"
 
 // Отправить запрос
 export function GSAPI(action, data={}, func) {
     $.ajax({
-        crossDomain: true,
         url: GOOGLE_API + "?action=" + action,
-        method: "GET",
-        dataType: "JSONP",
+        method: "POST",
+        crossDomain: true,
+        // dataType: "JSONP", 
         data: data,
-        success: func,
+        success: data => func(JSON.parse(data)),
     })
 }
 
