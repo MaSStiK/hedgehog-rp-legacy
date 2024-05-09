@@ -50,8 +50,8 @@ export default function HomePage() {
             </section>
 
             {/* Отображаем последнюю новость и последнее обновление после загрузки постов и юзеров */}
-            {Context.posts.length && Context.users.length
-                ? <>
+            {Context.posts.length !== 0 && Context.users.length !== 0 &&
+                <>
                     <section className="flex-col">
                         <h1>Самое актуальное</h1>
                         <PostsRender
@@ -79,8 +79,7 @@ export default function HomePage() {
                             onClick={() => Navigate("/changelogs")}
                         />
                     </section>
-                  </>
-                : null
+                </>
             }
         </article>
     )

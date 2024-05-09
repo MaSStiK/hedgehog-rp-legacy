@@ -5,9 +5,6 @@ export const DataContext = createContext({
     userData: {},
     setUserData: () => {},
 
-    isAdmin: false,
-    setIsAdmin: () => {},
-
     users: [],
     setUsers: () => {},
 
@@ -32,12 +29,6 @@ export function CreateContext(Context) {
     Context.userData = ContextUserData
     Context.setUserData = setContextUserData
     
-
-    // Ставим в контекст isAdmin
-    const [ContextIsAdmin, setContextIsAdmin] = useState(userData ? userData.id === "291195777" : false);
-    Context.isAdmin = ContextIsAdmin
-    Context.setIsAdmin = setContextIsAdmin
-
     // Передаем в контекст массив всех юзеров
     const [ContextUsers, setContextUsers] = useState([]);
     Context.users = ContextUsers

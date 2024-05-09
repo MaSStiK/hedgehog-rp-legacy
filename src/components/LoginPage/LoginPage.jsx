@@ -3,10 +3,9 @@ import { Link, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import { GSAPI, VKAPI } from "../API"
 import { CONSTS, setPageTitle, setPageLoading } from "../Global"
-import authViaCode from "./authViaCode"
-import authViaToken from "./authViaToken"
+import AuthViaCode from "./authViaCode"
+import AuthViaToken from "./authViaToken"
 import imgLogo from "../../assets/logo/logoFullSize.png"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgLogin from "../../assets/icons/Login.svg"
@@ -49,7 +48,7 @@ export default function LoginPage() {
         setErrorCodeText() // Убираем ошибку
         setPageLoading() // Ставим анимацию загрузки
 
-        authViaCode(Context, vkCode) // Ищем пользователя который отправил код
+        AuthViaCode(Context, vkCode) // Ищем пользователя который отправил код
         .then(() => { // Если успех
             setPageLoading(false)
             Navigate("/")
@@ -67,7 +66,7 @@ export default function LoginPage() {
         setDisableTokenButton(true)
         setPageLoading()
 
-        authViaToken(Context, tokenInput.current.value)
+        AuthViaToken(Context, tokenInput.current.value)
         .then(() => {
             setPageLoading(false)
             Navigate("/")

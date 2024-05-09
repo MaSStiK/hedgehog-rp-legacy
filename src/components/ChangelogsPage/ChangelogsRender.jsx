@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react"
+import { useContext } from "react"
 import { useNavigate } from "react-router-dom";
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
@@ -29,8 +29,8 @@ export default function ChangelogsRender({
                 <h3>{changelog.title}</h3>
                 <p>{changelog.text}</p>
                 
-                {changelog.attach.length
-                    ? <>
+                {changelog.attach.length !== 0 &&
+                    <>
                         {changelog.attach.length !== 1
                             ? <div className="post__attachments-container">
                                 <div className="post__attachments">
@@ -45,8 +45,7 @@ export default function ChangelogsRender({
                                 <img src={changelog.attach[0]} alt="post-attachment" className="post__attachment__single-img" draggable="false" />
                             </ImageFullscreen>
                         }
-                        </>
-                    : null
+                    </>
                 }
             </>
         )

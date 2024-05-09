@@ -172,11 +172,21 @@ export default function UserPage() {
                                         text={userData.country_title}
                                         onClick={() => Navigate(`/changelogs`)}
                                       />
- 
                                 }
                             </div>
                         </>
                     }
+
+                    {/* Если есть роли - отображаем */}
+                    {/* {userData.roles.length !== 0 &&
+                        <>
+                            <hr />
+                            <div className="user-profile__row flex-row">
+                                <p className="text-gray">Роли</p>
+                                <p className="text-white">{userData.roles.join(" | ")}</p>
+                            </div>
+                        </>
+                    } */}
                     
 
                     {/* Если есть описание - отображаем */}

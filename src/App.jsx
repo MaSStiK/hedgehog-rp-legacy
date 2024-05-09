@@ -1,6 +1,6 @@
 // Импорт основных библиотек
 import { useContext, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { DataContext, CreateContext } from "./components/Context"
 import { GSAPI } from "./components/API";
@@ -46,7 +46,6 @@ import NotFound from "./components/NotFoundPage/NotFoundPage";
 export default function App() {
     // Своя функция "CreateContext" которая вписывает useState в контекст
     const Context = CreateContext(useContext(DataContext)) // Помять приложения, устанавливаем при запуске
-    const Navigate = useNavigate()
 
     useEffect(() => {
         setPageLoading() // Анимация загрузки страницы
@@ -59,9 +58,8 @@ export default function App() {
                     return reject()
                 }
 
-
-                GSAPI("authViaToken", {token: Context.userData.token}, (data) => {
-                    console.log("GSAPI: authViaToken");
+                GSAPI("AuthViaToken", {token: Context.userData.token}, (data) => {
+                    console.log("GSAPI: AuthViaToken");
 
                     // Если токен изменился
                     if (!data.success || !Object.keys(data).length) { 
@@ -188,8 +186,8 @@ export default function App() {
 
                     <Route path="/dev" element={
                         <ProtectedRoute
-                            isAllowed={Context.isAdmin}
-                            element={<Dev />} 
+                            isAllowed={Context.userData.roles.includes("admin")}
+                            element={<Dev />}
                         />
                     }/>
 

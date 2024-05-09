@@ -58,8 +58,8 @@ export default function PostRender({
                 {post.post_text && <p>{post.post_text}</p> }
     
                 {/* Если картинок нету - не рендерим блок с ними */}
-                {postAttachments.length
-                    ? <>
+                {postAttachments.length !== 0 &&
+                    <>
                         {/* Если картинок много - блок с ограниченной высотой, иначе одна картинка которую растягивает на всю ширину */}
                         {postAttachments.length !== 1
                             ? <div className="post__attachments-container">
@@ -75,8 +75,7 @@ export default function PostRender({
                                 <img src={postAttachments[0]} alt="post-attachment" className="post__attachment__single-img" draggable="false" />
                               </ImageFullscreen>
                         }
-                        </>
-                    : null
+                    </>
                 }
     
                 <div className=" flex-row post__buttons">

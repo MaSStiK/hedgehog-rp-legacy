@@ -1,7 +1,7 @@
 import { GSAPI, VKAPI } from "../API"
 import { CONSTS } from "../Global"
 
-export default function authViaToken(Context, token) {
+export default function AuthViaToken(Context, token) {
     return new Promise((resolve, reject) => {
         // Если токен пустой
         if (!token) {
@@ -13,7 +13,7 @@ export default function authViaToken(Context, token) {
             return reject(`Код больше ${CONSTS.loginTokenMax} символов`)
         }
 
-        GSAPI("authViaToken", {token: token}, (data) => {
+        GSAPI("AuthViaToken", {token: token}, (data) => {
             // Если не нашло по токену
             if (!data.success || !Object.keys(data).length) {
                 return reject("Токен не действителен")
@@ -25,7 +25,6 @@ export default function authViaToken(Context, token) {
             localStorage.userData = JSON.stringify(newUserData)
 
             Context.setUserData(newUserData)
-            Context.setIsAdmin(newUserData.id === "291195777")
 
             // Отправляем сообщение пользователю
             VKAPI("messages.send", {peer_id: parseInt(newUserData.vk_id), random_id: 0, message: "Вы успешно вошли в свой аккаунт по токену!"})

@@ -15,11 +15,10 @@ export default function ChangelogsPage() {
         <article>
             <h4 className="page-title">h/changelogs</h4>
 
-            {Context.posts.length && Context.users.length
-                ? <ChangelogsRender
+            {Context.posts.length !== 0 && Context.users.length !== 0 &&
+                <ChangelogsRender
                     changelogs={changelogs}
-                  />
-                : null
+                />
             }
         </article>
     )
