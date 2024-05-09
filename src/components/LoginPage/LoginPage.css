@@ -1,7 +1,7 @@
 /* Страница входа */
 #article-login {
-    /* Одинаковый отступ со всех сторон страницы */
-    padding: var(--gap-small);
+    /* Сверху отступ больше*/
+    padding: var(--gap-medium) var(--gap-small) var(--gap-small) var(--gap-small);
 }
 
 /* Логотип над формой */
