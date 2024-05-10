@@ -53,19 +53,16 @@ export default function App() {
         // После загрузки приложения делаем проверку токена, если он изменился - требуем залогиниться заново
         if (Context.userData) {
             new Promise((resolve, reject) => {
-                // Если есть userData, но нету токена - отчищаем данные
-                if (!Context.userData.token) {
-                    return reject()
-                }
+                // Если есть userData, но нету токена - критическая ошибка
+                if (!Context.userData.token) return reject()
 
                 GSAPI("AuthViaToken", {token: Context.userData.token}, (data) => {
                     console.log("GSAPI: AuthViaToken");
 
                     // Если токен изменился
-                    if (!data.success || !Object.keys(data).length) { 
-                        return reject()
-                    }
+                    if (!data.success || !Object.keys(data).length) return reject()
 
+                    // Если авторизация успешная - сохраняем данные
                     resolve(data.data)
                 })
             })
@@ -74,7 +71,7 @@ export default function App() {
                 localStorage.userData = JSON.stringify(newUserData) // Сохраняем в память браузера
                 Context.setUserData(newUserData) // Сохраняем в память приложения
             })
-            .catch(() => {
+            .catch(() => { // Отчищаем данные
                 // delete localStorage.userData
                 delete localStorage.clear() // Удаляем всю информацию
                 delete Context.userData
@@ -186,7 +183,7 @@ export default function App() {
 
                     <Route path="/dev" element={
                         <ProtectedRoute
-                            isAllowed={Context.userData.roles.includes("admin")}
+                            isAllowed={Context.userData ? Context.userData.roles.includes("admin") : false}
                             element={<Dev />}
                         />
                     }/>

@@ -14,7 +14,6 @@ export default function NewsPage() {
     useEffect(() => {setPageTitle("Новости")}, [])
     const Context = useContext(DataContext)
 
-
     const [disableLoadButton, setDisableLoadButton] = useState(false);
     const [showLoadButton, setShowLoadButton] = useState(true);
 
@@ -33,7 +32,7 @@ export default function NewsPage() {
             let posts = [...Context.posts]
             Context.setPosts(posts.concat(data))
 
-            // Если постов меньше 10 - не загружаем больше
+            // Если постов меньше 10 - убираем кнопку загрузки т.к. больше нету возможности загрузить
             if (data.length < 10) {
                 setShowLoadButton(false)
             }

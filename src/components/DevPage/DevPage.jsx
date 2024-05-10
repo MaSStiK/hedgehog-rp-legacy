@@ -20,10 +20,10 @@ export default function DevPage() {
     useEffect(() => {setPageTitle("dev")}, [])
     const Context = useContext(DataContext)
 
-    function openModal() {
+    function openModal(data) {
         Context.setModalData(
             <div style={{height: "var(--modal-height-max)", overflow: "auto", padding: "var(--gap-small)"}}>
-                <p>{JSON.stringify(Context.userData, false, 4)}</p>
+                <p>{JSON.stringify(data, false, 4)}</p>
             </div>
         )
     }
@@ -56,7 +56,8 @@ export default function DevPage() {
                 <p><small>Never gonna tell a lie and hurt you</small></p>
 
                 {/* Отобразить userData из context */}
-                <button className="green" onClick={openModal}>show userData</button>
+                <button className="green" onClick={() => openModal(Context.userData)}>userData</button>
+                <button className="green" onClick={() => openModal(Context)}>Context</button>
             </section>
 
             <section className="flex-col">

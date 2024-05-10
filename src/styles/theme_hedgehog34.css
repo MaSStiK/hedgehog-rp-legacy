@@ -82,9 +82,9 @@ body[theme=hedgehog34] button:disabled p {
 }
 
 /* Меняем белые иконки на черные */
-body[theme=hedgehog34] .button-image:not(.no-filter) img,
 body[theme=hedgehog34] nav ul li a img,
 body[theme=hedgehog34] nav ul li a::after,
+body[theme=hedgehog34] .button-image:not(.no-filter) img,
 body[theme=hedgehog34] .custom-input_img img,
 body[theme=hedgehog34] .image-gray {
     filter: invert(1);
@@ -96,6 +96,7 @@ body[theme=hedgehog34] *::-webkit-scrollbar-thumb {
     background-color: #fff;
 }
 
+/* Контент в 100% */
 @media screen and (max-width: 900px) {
     body[theme=hedgehog34] aside {
         background-color: #93c393;

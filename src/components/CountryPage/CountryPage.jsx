@@ -8,6 +8,7 @@ import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import PostsRender from "../PostsRender/PostsRender"
 import imgBasePhoto from "../../assets/replace/photo-empty.png"
 import imgEdit from "../../assets/icons/Edit.svg"
+import imgAdd from "../../assets/icons/Add.svg"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgCountry from "../../assets/icons/Country.svg"
 
@@ -123,8 +124,8 @@ export default function CountryPage() {
                     {isSelfRender &&
                         <section>
                             <ButtonImage
-                                src={imgEdit}
-                                text="Написать новость"
+                                src={imgAdd}
+                                text="Создать новость"
                                 width100
                                 onClick={() => Navigate("/news/add")}
                             />

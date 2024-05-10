@@ -3,6 +3,7 @@
     --modal-height-max: 80vh;
 }
 
+/* Контент в 100% */
 @media screen and (max-width: 900px) {
     :root {
         --modal-height-max: 50vh;

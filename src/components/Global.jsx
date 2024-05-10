@@ -6,20 +6,21 @@ export const CONSTS = {
 
     userNameMin: 1,
     userNameMax: 32,
-    userBioMax: 850,
-    userPhotoMax: 256,
+    userTagMax: 16,
+    userBioMax: 5000,
+    // userPhotoMax: 256,
 
     countryTitleMin: 1,
     countryTitleMax: 32,
     countryTagMax: 16,
-    countryBioMax: 2000,
+    countryBioMax: 5000,
 
     postTitleMin: 1,
     postTitleMax: 128,
     postTextMax: 850,
     attachmentsCountMax: 10,
 
-    photoMax: 512,
+    photoMax: 5000,
     photoPxMin: 40,
     photoPxMax: 1920,
 }

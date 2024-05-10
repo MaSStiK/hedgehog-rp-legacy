@@ -9,6 +9,7 @@
     display: none;
 }
 
+/* Контент в 100% */
 @media screen and (max-width: 900px) {
     /* Обвертка навигации, по умолчанию скрыта на телефоне */
     .nav-wrapper {

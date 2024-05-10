@@ -211,7 +211,7 @@ export default function Aside() {
                                 <p>Обновления</p>
                             </NavLink>
                         </li>
-                        {Context.userData.roles.includes("admin") && 
+                        {(Context.userData ? Context.userData.roles.includes("admin") : false) && 
                             <li>
                                 <NavLink to={"/dev"}>
                                     <img src={imgDev} alt="nav-icon" draggable="false" />
