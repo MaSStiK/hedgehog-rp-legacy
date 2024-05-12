@@ -125,10 +125,9 @@ export default function UserPage() {
                         <div className="user-profile__buttons flex-row">
                             <ButtonImage
                                 src={imgEdit}
-                                text="Изменить профиль (В разработке)"
+                                text="Изменить профиль"
                                 className="green"
                                 onClick={() => Navigate("/user/edit")}
-                                disabled
                             />
 
                             {/* Кнопка выхода если отображается профиль владельца страницы */}
@@ -162,14 +161,14 @@ export default function UserPage() {
                                     ? <ButtonProfile
                                         className="tp"
                                         src={userData.country_photo}
-                                        text={userData.country_title}
+                                        text={userData.country_name}
                                         subText={userData.country_tag}
                                         onClick={() => Navigate(`/country/${userData.country_id}`)}
                                       />
                                     : <ButtonProfile
                                         className="tp"
                                         src={userData.country_photo}
-                                        text={userData.country_title}
+                                        text={userData.country_name}
                                         onClick={() => Navigate(`/changelogs`)}
                                       />
                                 }

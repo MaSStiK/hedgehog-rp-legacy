@@ -61,7 +61,7 @@ export default function NewsPostPage() {
                 : <> 
                     {postNotFound &&
                         <section className="flex-col">
-                            <h2>Новость не найдена!</h2>
+                            <h2>Пост не найдена!</h2>
                             <ButtonImage
                                 src={imgNews}
                                 text="Читать новости"

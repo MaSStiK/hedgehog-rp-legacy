@@ -7,6 +7,7 @@ import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle, sortAlphabetically } from "../Global"
 import imgUserSearch from "../../assets/icons/UserSearch.svg"
 import imgCross from "../../assets/icons/Cross.svg"
+import imgBasePhoto from "../../assets/replace/photo-empty.png"
 
 import "./UserListPage.css"
 import "./UserListPage-phone.css"
@@ -69,16 +70,33 @@ export default function UserListPage() {
                         disabled={searchRef.current ? !searchRef.current.value : true}
                     />
                 </div>
-                
-                {usersRender.map((user) => (
-                    <ButtonProfile
-                        key={user.id}
-                        src={user.photo}
-                        text={user.name}
-                        subText={user.tag}
-                        onClick={() => Navigate("/user/" + user.id)}
-                    />
-                ))}
+
+                {usersRender.length !== 0
+                    ? <>
+                        {usersRender.map((user) => (
+                            <ButtonProfile
+                                key={user.id}
+                                src={user.photo}
+                                text={user.name}
+                                subText={user.tag}
+                                onClick={() => Navigate("/user/" + user.id)}
+                            />
+                        ))}
+                      </>
+                    : <>
+                        {/* Предпоказ */}
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                      </>
+                }
             </section>
         </article>
     )

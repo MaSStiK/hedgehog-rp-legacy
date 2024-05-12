@@ -33,11 +33,20 @@ export default function Aside() {
 
     // Состояние открытого или закрытого меню навигации на телефоне
     const [showNavMenu, setShowNavMenu] = useState(false) // По умолчанию не показываем
+    const [showAside, setShowAside] = useState(false)
 
     // При обновлении ссылки закрываем навигацию
     useEffect(() => {
         setShowNavMenu(false)
-      }, [Location]);
+
+        // Отображаем Aside на всех страницах кроме /login
+        setShowAside(!Location.pathname.toLowerCase().endsWith("/login"))
+
+    }, [Location]);
+
+    if (!showAside) {
+        return false
+    }
 
     return (
         <aside>
@@ -137,7 +146,7 @@ export default function Aside() {
                                 {Context.userData.country_id // Если страны нету - рендер кнопки для создания страны
                                     ? <ButtonProfile
                                         src={Context.userData.country_photo}
-                                        text={Context.userData.country_title}
+                                        text={Context.userData.country_name}
                                         subText={Context.userData.country_tag}
                                         onClick={() => Navigate("/country/" + Context.userData.country_id)}
                                       />

@@ -53,7 +53,7 @@ export default function CountryPage() {
         }
 
         setUserData(foundUser)
-        setPageTitle(foundUser.country_title)
+        setPageTitle(foundUser.country_name)
         setPageTitleText(foundUser.country_id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [URLparams.id, Context.users])
@@ -75,7 +75,7 @@ export default function CountryPage() {
                                 </ImageFullscreen>
                             </div>
                             <div className="country-page__top-name">
-                                <h2>{userData.country_title}</h2>
+                                <h2>{userData.country_name}</h2>
                                 <div className="country-page__top-tag flex-row" onClick={CopyTag}>
                                     <img className="image-gray" src={imgCopy} alt="copy-tag" draggable="false" />
                                     <p className="text-cut text-gray">{showCopyMessage ? "Скопировано" : userData.country_tag}</p>
@@ -90,7 +90,6 @@ export default function CountryPage() {
                                     src={imgEdit}
                                     text="Изменить страну"
                                     className="green"
-                                    width100
                                     onClick={() => Navigate("/country/edit")}
                                 />
                             </div>
@@ -125,7 +124,7 @@ export default function CountryPage() {
                         <section>
                             <ButtonImage
                                 src={imgAdd}
-                                text="Создать новость"
+                                text="Создать пост"
                                 width100
                                 onClick={() => Navigate("/news/add")}
                             />

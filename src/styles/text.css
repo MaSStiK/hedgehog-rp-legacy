@@ -17,6 +17,7 @@
     --text-link: #6D5FE4;
 }
 
+/* Контент в 100% */
 @media screen and (max-width: 900px) {
     :root {
         --h1-size: 22px;

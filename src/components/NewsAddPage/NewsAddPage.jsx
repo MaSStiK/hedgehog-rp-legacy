@@ -13,7 +13,7 @@ import "./NewsAddPage-phone.css"
 
 
 export default function NewsAddPage() {
-    useEffect(() => {setPageTitle("Создание новости")}, [])
+    useEffect(() => {setPageTitle("Создание поста")}, [])
     const Context = useContext(DataContext)
     const Navigate = useNavigate()
 
@@ -174,7 +174,7 @@ export default function NewsAddPage() {
             <h4 className="page-title">h/news/add</h4>
 
             <section className="flex-col news-add">
-                <CustomInput label="Заголовок новости" error={titleInputError}>
+                <CustomInput label="Заголовок поста" error={titleInputError}>
                     <input
                         ref={postTitleInput}
                         type="text"
@@ -189,7 +189,7 @@ export default function NewsAddPage() {
                     <br/>• Длина от {CONSTS.postTitleMin} до {CONSTS.postTitleMax} символов
                 </small>
 
-                <CustomInput label={`Текст новости (${postTextLength} / ${CONSTS.postTextMax})`}
+                <CustomInput label={`Текст поста (${postTextLength} / ${CONSTS.postTextMax})`}
                     error={textInputError}
                 >
                     <textarea
@@ -203,7 +203,6 @@ export default function NewsAddPage() {
                         required 
                     ></textarea>
                 </CustomInput>
-                <small className="text-gray">• Длина до {CONSTS.postTextMax} символов</small>
                 
                 {/* Отображение блок добавления картинок */}
                 {showAttachments &&
@@ -233,8 +232,7 @@ export default function NewsAddPage() {
                             />
                         </div>
                         <small className="text-gray">
-                            • Длина до {CONSTS.photoMax} символов
-                            <br/>• Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px
+                            • Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px
                             <br/>• Максимум {CONSTS.attachmentsCountMax} картинок
                         </small>
                         {postPhotoPreview &&

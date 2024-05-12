@@ -27,7 +27,7 @@ export default function PostShare(Context, postId, postTitle, postImg) {
 
     Context.setModalData(
         <div className="post-share flex-col">
-            <h3 className="post-share__title">Поделиться новостью</h3>
+            <h3 className="post-share__title">Поделиться постом</h3>
             <ButtonImage
                 className="tp"
                 src={imgVk}

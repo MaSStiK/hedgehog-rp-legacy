@@ -1,5 +1,5 @@
 // Импорт основных библиотек
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { DataContext, CreateContext } from "./components/Context"
@@ -109,7 +109,6 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
     // Если установлен стиль для сайта
     useEffect(() => {
         if (localStorage.pageTheme === undefined) { // Если в памяти нету темы - по умолчанию никакой
@@ -127,8 +126,7 @@ export default function App() {
                 {Context.modalData}
             </Modal>
 
-            {/* Отображаем Aside на всех страницах кроме /login */}
-            {!window.location.href.toLowerCase().endsWith("/login") && <Aside />}
+            <Aside />
 
             <DataContext.Provider value={Context}>
                 <Routes>

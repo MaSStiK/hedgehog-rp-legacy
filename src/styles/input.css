@@ -28,7 +28,7 @@ textarea {
     height: 200px; /* По умолчанию высота в 200px */
     min-height: var(--button-height); /* Минимальный размер равен размеру инпута */
     max-height: 500px; /* Максимальный размер */
-    padding: var(--button-padding);
+    padding: 8px var(--button-padding) var(--button-padding) var(--button-padding); /* Сверху отступ больше */
 
     color: var(--text-white);
     font-size: var(--p-size);

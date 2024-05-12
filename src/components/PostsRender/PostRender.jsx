@@ -45,7 +45,7 @@ export default function PostRender({
                 <div className="post__top flex-row">
                     <ButtonProfile
                         src={postAuthor.country_photo}
-                        text={postAuthor.country_title}
+                        text={postAuthor.country_name}
                         subText={postAuthor.country_tag} 
                         onClick={() => Navigate("/country/" + postAuthor.country_id)}
                     />

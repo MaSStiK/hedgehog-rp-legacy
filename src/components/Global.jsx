@@ -8,7 +8,6 @@ export const CONSTS = {
     userNameMax: 32,
     userTagMax: 16,
     userBioMax: 5000,
-    // userPhotoMax: 256,
 
     countryTitleMin: 1,
     countryTitleMax: 32,
@@ -17,7 +16,7 @@ export const CONSTS = {
 
     postTitleMin: 1,
     postTitleMax: 128,
-    postTextMax: 850,
+    postTextMax: 5000,
     attachmentsCountMax: 10,
 
     photoMax: 5000,

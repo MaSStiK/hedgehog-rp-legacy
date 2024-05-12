@@ -33,7 +33,7 @@ export default function AuthViaCode(Context, vkCode) {
                 favorite: {}, // Избранные
                 country_id: "",
                 country_tag: "",
-                country_title: "",
+                country_name: "",
                 country_photo: "",
                 country_bio: "",
             }

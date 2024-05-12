@@ -21,7 +21,7 @@ export default function ChangelogsRender({
                 <div className="post__top flex-row">
                     <ButtonProfile
                         src={changelogProfile.country_photo}
-                        text={changelogProfile.country_title}
+                        text={changelogProfile.country_name}
                         onClick={() => Navigate("/changelogs")}
                     />
                     <small className="text-gray">{changelog.date}</small>

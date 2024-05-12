@@ -7,6 +7,7 @@ import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle, sortAlphabetically } from "../Global"
 import imgListSearch from "../../assets/icons/ListSearch.svg"
 import imgCross from "../../assets/icons/Cross.svg"
+import imgBasePhoto from "../../assets/replace/photo-empty.png"
 
 import "./CountryListPage.css"
 import "./CountryListPage-phone.css"
@@ -24,11 +25,11 @@ export default function CountryListPage() {
         for (let user of data) {
             if (user.country_id !== "") {
                 countries.push({
-                    country_id: user.country_id,
-                    country_tag: user.country_tag,
-                    country_title: user.country_title,
-                    country_photo: user.country_photo,
-                    country_bio: user.country_bio,
+                    country_id      : user.country_id,
+                    country_name    : user.country_name,
+                    country_tag     : user.country_tag,
+                    country_bio     : user.country_bio,
+                    country_photo   : user.country_photo,
                 })
             }
         }
@@ -37,7 +38,7 @@ export default function CountryListPage() {
 
     useEffect(() => {
         // При обновлении контекста так же обновляется и массив
-        setCountryList(sortAlphabetically(getCountries(Context.users), "country_title"))
+        setCountryList(sortAlphabetically(getCountries(Context.users), "country_name"))
         searchCountries()
 
         // Когда загрузили массив участников - активируем инпут (только на пк)
@@ -46,11 +47,11 @@ export default function CountryListPage() {
     }, [Context.users])
     
     function searchCountries(search) {
-        let filteredUsers = sortAlphabetically(getCountries(Context.users), "country_title")
+        let filteredUsers = sortAlphabetically(getCountries(Context.users), "country_name")
         if (search) {
             filteredUsers = filteredUsers.filter(
                 // Если есть поисковая строка в названии страны или в теге или в id
-                country => country.country_title.toLowerCase().includes(search)
+                country => country.country_name.toLowerCase().includes(search)
                 || country.country_tag.toLowerCase().includes(search)
                 || country.country_id.toLowerCase().includes(search)
             )
@@ -88,21 +89,33 @@ export default function CountryListPage() {
                     />
                 </div>
 
-                {countryList.map((country) => {
-                    // Не рендерим "Изменения"
-                    if (country.country_id !== "c769201685") {
-                        return (
-                            <ButtonProfile
-                                key={country.country_id}
-                                src={country.country_photo}
-                                text={country.country_title}
-                                subText={country.country_tag}
-                                onClick={() => Navigate("/country/" + country.country_id)}
-                            />
-                        )
-                    }
-                    return null
-                })}
+                {countryList.length !== 0
+                    ? <>
+                        {countryList.map((country) => {
+                            // Не рендерим "Изменения"
+                            if (country.country_id !== "c769201685") {
+                                return (
+                                    <ButtonProfile
+                                        key={country.country_id}
+                                        src={country.country_photo}
+                                        text={country.country_name}
+                                        subText={country.country_tag}
+                                        onClick={() => Navigate("/country/" + country.country_id)}
+                                    />
+                                )
+                            }
+                            return null
+                        })}
+                      </>
+                    : <>
+                        {/* Предпоказ */}
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile src={imgBasePhoto} />
+                      </>
+                    
+                }
             </section>
         </article>
     )
