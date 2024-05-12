@@ -138,7 +138,7 @@ export default function App() {
                     <Route path="/news/:id" element={<NewsPost />} />
                     <Route exact path="/news/add" element={
                         <ProtectedRoute
-                            isAllowed={Context.userData}
+                            isAllowed={Context.userData && Context.userData.country_id}
                             to="/news"
                             element={<NewsAdd />} 
                         />
