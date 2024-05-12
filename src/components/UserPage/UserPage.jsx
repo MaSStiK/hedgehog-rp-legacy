@@ -28,7 +28,6 @@ export default function UserPage() {
     
     const [userData, setUserData] = useState({});
     const [userDataVk, setUserDataVk] = useState({});
-    const [pageTitleText, setPageTitleText] = useState("");
 
     function CopyTag() {
         navigator.clipboard.writeText(userData.tag)
@@ -56,13 +55,11 @@ export default function UserPage() {
             setUserData({})
             setUserDataVk({})
             setPageTitle("Участник не найден")
-            setPageTitleText(URLparams.id)
             return
         }
 
         setUserData(foundUser)
         setPageTitle(foundUser.name)
-        setPageTitleText(foundUser.id)
     }, [URLparams.id, Context.users])
 
     useEffect(() => {
@@ -100,7 +97,7 @@ export default function UserPage() {
 
     return (
         <article>
-            <h4 className="page-title">{`h/user/${pageTitleText}`}</h4>
+            <h4 className="page-title">{`h/user/${URLparams.id}`}</h4>
 
             {/* Если юзер найден */}
             {Object.keys(userData).length

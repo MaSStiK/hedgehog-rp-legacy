@@ -27,7 +27,6 @@ export default function CountryPage() {
     const [showCopyMessage, setShowCopyMessage] = useState(false);
     
     const [userData, setUserData] = useState({});
-    const [pageTitleText, setPageTitleText] = useState("");
 
 
     function CopyTag() {
@@ -48,13 +47,11 @@ export default function CountryPage() {
             setCountryNotFound(true)
             setUserData({})
             setPageTitle("Страна не найдена")
-            setPageTitleText(URLparams.id)
             return
         }
 
         setUserData(foundUser)
         setPageTitle(foundUser.country_name)
-        setPageTitleText(foundUser.country_id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [URLparams.id, Context.users])
 
@@ -62,7 +59,7 @@ export default function CountryPage() {
 
     return (
         <article>
-            <h4 className="page-title">{`h/country/${pageTitleText}`}</h4>
+            <h4 className="page-title">{`h/country/${URLparams.id}`}</h4>
 
             {/* Если страна найдена */}
             {Object.keys(userData).length
