@@ -134,9 +134,9 @@ export default function App() {
 
                     <Route path="/home" element={<Home />} />
 
-                    <Route exact path="/news" element={<News />} />
+                    <Route path="/news" element={<News />} />
                     <Route path="/news/:id" element={<NewsPost />} />
-                    <Route exact path="/news/add" element={
+                    <Route path="/news/add" element={
                         <ProtectedRoute
                             isAllowed={Context.userData && Context.userData.country_id}
                             to="/news"
@@ -144,9 +144,9 @@ export default function App() {
                         />
                     }/>
 
+                    <Route path="/user" element={<UserList />} />
                     <Route path="/user/:id" element={<User />} />
-                    <Route exact path="/user" element={<UserList />} />
-                    <Route exact path="/user/edit" element={
+                    <Route path="/user/edit" element={
                         <ProtectedRoute
                             isAllowed={Context.userData}
                             to="/user"
@@ -154,9 +154,9 @@ export default function App() {
                         />
                     }/>
 
+                    <Route path="/country" element={<CountryList />} />
                     <Route path="/country/:id" element={<Country />} />
-                    <Route exact path="/country" element={<CountryList />} />
-                    <Route exact path="/country/edit" element={
+                    <Route path="/country/edit" element={
                         <ProtectedRoute
                             isAllowed={Context.userData}
                             to="/country"
@@ -165,12 +165,12 @@ export default function App() {
                     }/>
 
 
-                    <Route exact path="/nation" element={<Nation />} />
+                    <Route path="/nation" element={<Nation />} />
 
-                    <Route exact path="/tools" element={<Tools />} />
+                    <Route path="/tools" element={<Tools />} />
                     <Route path="/tools/exit" element={<Tools doLogout={true} />} />
 
-                    <Route exact path="/support" element={<Support />} />
+                    <Route path="/support" element={<Support />} />
                     <Route path="/support/feedback" element={<SupportFeedback />} />
                     <Route path="/support/auth-token" element={<SupportAuthToken />} />
                     <Route path="/support/creators-list" element={<SupportCreatorsList />} />
@@ -186,7 +186,7 @@ export default function App() {
                         />
                     }/>
 
-                    <Route exact path="/" element={<Home />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </DataContext.Provider>
