@@ -9,7 +9,7 @@ import AuthViaToken from "./authViaToken"
 import imgLogo from "../../assets/logo/logoFullSize.png"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgLogin from "../../assets/icons/Login.svg"
-
+import imgPaste from "../../assets/icons/Paste.svg"
 
 import "./LoginPage.css"
 import "./LoginPage-phone.css"
@@ -120,16 +120,30 @@ export default function LoginPage() {
                     <small className="text-gray link-image">Как использовать токен авторизации</small>
                 </Link>
 
-                <CustomInput label="Токен авторизации" error={errorTokenText}>
-                    <input
-                        ref={tokenInput}
-                        type="text"
-                        id="form-code"
-                        maxLength={CONSTS.loginTokenMax}
-                        onInput={handleInputUpdate}
-                        required
+                <div className="login__token-row flex-row">
+                    <CustomInput label="Токен авторизации" error={errorTokenText}>
+                        <input
+                            ref={tokenInput}
+                            type="text"
+                            id="form-code"
+                            maxLength={CONSTS.loginTokenMax}
+                            onInput={handleInputUpdate}
+                            required
+                        />
+                    </CustomInput>
+                    <ButtonImage
+                        src={imgPaste}
+                        text="Вставить"
+                        onClick={() => {
+                            // Вставляем текст из буфера обмена
+                            navigator.clipboard.readText()
+                            .then(text => {
+                                tokenInput.current.value = text
+                                handleInputUpdate() // Обновляем инпуты
+                            })
+                        }}
                     />
-                </CustomInput>
+                </div>
                 {errorTokenText && <p className="text-red" style={{textAlign: "center"}}>{errorTokenText}</p> }
 
                 <ButtonImage

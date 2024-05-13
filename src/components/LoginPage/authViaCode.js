@@ -15,7 +15,7 @@ export default function AuthViaCode(Context, vkCode) {
             const foundUserData = data.response.profiles.find(user => user.id === foundUser.last_message.from_id)
 
             // Создаем новый длинный токен
-            let newToken = (Math.random().toString(32).substring(2) + Date.now().toString(32) + Math.random().toString(32).substring(2)).toUpperCase()
+            let newToken = (Math.random().toString(32).substring(2) + Date.now().toString(32) + Math.random().toString(32).substring(6)).toUpperCase()
             let dateNow = Date.now() // Дата создания аккаунта
     
             // Создаем массив со всей информацией о пользователе, он будет использован если будет регистрация

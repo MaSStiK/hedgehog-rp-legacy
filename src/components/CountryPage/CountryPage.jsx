@@ -121,7 +121,7 @@ export default function CountryPage() {
                         <section>
                             <ButtonImage
                                 src={imgAdd}
-                                text="Создать пост"
+                                text="Новый пост"
                                 width100
                                 onClick={() => Navigate("/news/add")}
                             />

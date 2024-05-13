@@ -35,7 +35,7 @@
     text-align: center;
 }
 
-#article-login section button {
+#article-login section > button {
     width: 100%;
 }
 
@@ -43,4 +43,16 @@
 #article-login .page-title {
     width: min(384px, 100%);
     margin: 0 auto;
+}
+
+.login__token-row {
+    align-items: flex-end;
+}
+
+.login__token-row .custom-input {
+    flex: 1;
+}
+
+.login__token-row button {
+    height: var(--button-height);
 }
