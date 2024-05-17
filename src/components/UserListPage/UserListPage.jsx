@@ -71,7 +71,7 @@ export default function UserListPage() {
                     />
                 </div>
 
-                {usersRender.length !== 0
+                {Context.users.length !== 0
                     ? <>
                         {usersRender.map((user) => (
                             <ButtonProfile

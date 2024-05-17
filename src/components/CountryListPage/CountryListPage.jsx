@@ -89,7 +89,7 @@ export default function CountryListPage() {
                     />
                 </div>
 
-                {countryList.length !== 0
+                {Context.users.length !== 0
                     ? <>
                         {countryList.map((country) => {
                             // Не рендерим "Изменения"
