@@ -121,18 +121,17 @@ export default function UserPage() {
                     {isSelfRender &&
                         <div className="user-profile__buttons flex-row">
                             <ButtonImage
-                                src={imgEdit}
-                                text="Изменить"
-                                className="green"
-                                onClick={() => Navigate("/user/edit")}
-                            />
-
-                            {/* Кнопка выхода если отображается профиль владельца страницы */}
-                            <ButtonImage
                                 src={imgLogout}
                                 text="Выйти"
                                 className="red"
                                 onClick={logoutProfile}
+                            />
+
+                            <ButtonImage
+                                src={imgEdit}
+                                text="Изменить"
+                                className="green"
+                                onClick={() => Navigate("/user/edit")}
                             />
                         </div>
                     }
