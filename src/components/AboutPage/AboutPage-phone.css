@@ -2,7 +2,7 @@
 @media screen and (max-width: 900px) {
     /* Текст отзыва шире */
     .review__text {
-        width: 90%;
+        width: 100%;
         text-align: center;
     }
 }
