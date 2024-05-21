@@ -7,6 +7,7 @@ import AboutReviews from "./AboutReviews"
 import imgBasePhoto from "../../assets/replace/photo-empty.png"
 
 import "./AboutPage.css"
+import "./AboutPage-phone.css"
 
 export default function AboutPage() {
     useEffect(() => {setPageTitle("О нас")}, [])
