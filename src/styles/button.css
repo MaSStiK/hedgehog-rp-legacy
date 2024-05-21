@@ -41,7 +41,7 @@ button {
     gap: var(--button-gap);
 
     color: var(--text-white);
-    font-size: var(--p-size);
+    font-size: var(--p);
     text-decoration: none;
 
     outline: none;

@@ -9,7 +9,7 @@ a {
 }
 
 .text-link {
-    font-size: var(--p-size);
+    font-size: var(--p);
     color: var(--text-link);
     cursor: pointer;
     

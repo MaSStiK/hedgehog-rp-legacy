@@ -31,7 +31,7 @@
 .custom-input textarea:valid:not(:read-only) ~ label,
 .custom-input textarea:read-only ~ label {
     translate: 0px -16px;
-    font-size: var(--p-small-size);
+    font-size: var(--p-small);
     color: var(--text-dark);
     background-color: var(--bg-secondary);
 }

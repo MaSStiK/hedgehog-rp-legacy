@@ -26,40 +26,54 @@
 
 
 /* Блок с прокруткой картинок */
+.post__attachments-wrapper {
+    overflow: hidden;
+}
+
 .post__attachments-container {
-    height: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-/* Более толстый Scroll */
-.post__attachments-container::-webkit-scrollbar {
-    height: 8px;
-}
-
-.post__attachments {
+    height: 324px; /* Ставим фиксированную высоту что бы убрать отступ */
     display: flex;
-    gap: var(--gap-small);
-    padding-bottom: var(--gap-small);
+    position: relative;
+    top: 0;
+    left: 0;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
-.post__attachments img {
-    display: inline-block;
-    width: auto;
-    height: 350px;
-    object-fit: contain;
+.post__attachment {
     border-radius: var(--border-radius);
 }
 
+.post__attachment img {
+    height: 324px;
+    padding: var(--gap-small);
+    object-fit: contain;
+    transition: all 0s;
+}
 
 /* Если картинка одна - во всю ширину блока, не зависимо от высоты */
-.post__attachment__single-img {
+.post__attachment_single {
     width: 100%;
     object-fit: contain;
     border-radius: var(--border-radius);
 }
 
 
+/* Слайдер картинок */
+.post__attachments-control {
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+/* Нумерация картинки */
+.post__attachments-control span {
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+
+/* Кнопки под постом */
 .post__buttons {
-    
+    justify-content: flex-start;
 }

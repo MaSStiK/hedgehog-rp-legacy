@@ -92,7 +92,7 @@ export default function CountryListPage() {
                 {Context.users.length !== 0
                     ? <>
                         {countryList.map((country) => {
-                            // Не рендерим "Изменения"
+                            // Не рендерим "Обновления"
                             if (country.country_id !== "c769201685") {
                                 return (
                                     <ButtonProfile
@@ -114,7 +114,6 @@ export default function CountryListPage() {
                         <ButtonProfile src={imgBasePhoto} />
                         <ButtonProfile src={imgBasePhoto} />
                       </>
-                    
                 }
             </section>
         </article>

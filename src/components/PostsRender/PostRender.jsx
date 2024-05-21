@@ -1,11 +1,15 @@
-import { useContext } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
-import PostShare from "./PostShare";
+import PostShare from "./PostShare"
+
 import imgShare from "../../assets/icons/Share.svg"
+import imgArrowLeft from "../../assets/icons/Arrow-left.svg"
+import imgArrowRight from "../../assets/icons/Arrow-right.svg"
+
 
 export default function PostRender({
     post,
@@ -25,6 +29,27 @@ export default function PostRender({
         )
     }
 
+    let postAttachments = JSON.parse(post.attachments) // Картинки в посте
+    const [attachCounter, setAttachCounter] = useState(1) // Счетчик картинок в посте
+    const [attachWidth, setAttachWidth] = useState(0) // Ширина картинки (Во всю ширину поста)
+    const attachContainer = useRef()
+
+    function resizeAttach() { // Установка ширины картинки
+        setAttachWidth(attachContainer.current ? attachContainer.current.offsetWidth : 0)
+    }
+    window.addEventListener("resize", (resizeAttach)) // Обновляем ширину картинки при изменении ширины браузера
+    useEffect(resizeAttach, [attachContainer]) // Устанавливаем ширину картинки как только контейнер с картинками доступен
+    
+    function sliderPrev() { // Предыдущий элемент
+        // Если первый элемент - ставим последний
+        setAttachCounter(attachCounter === 1 ? postAttachments.length : attachCounter - 1)
+    }
+
+    function sliderNext() { // Следующий элемент
+        // Если последний элемент - ставим первый
+        setAttachCounter(attachCounter === postAttachments.length ? 1 : attachCounter + 1)
+    }
+
     // Дата создания поста
     let date = new Date(Number(post.timestamp))
     let hours = date.getHours().toString()
@@ -36,8 +61,6 @@ export default function PostRender({
     minutes = minutes.length !== 2 ? "0" + minutes : minutes // Формат минут 00
     day = day.length !== 2 ? "0" + day : day // Формат дня 00
     month = month.length !== 2 ? "0" + month : month // Формат месяца 00
-
-    let postAttachments = JSON.parse(post.attachments) // Картинки в посте
 
     function generatePost() {
         return (
@@ -62,25 +85,42 @@ export default function PostRender({
                     <>
                         {/* Если картинок много - блок с ограниченной высотой, иначе одна картинка которую растягивает на всю ширину */}
                         {postAttachments.length !== 1
-                            ? <div className="post__attachments-container">
-                                <div className="post__attachments">
-                                    {postAttachments.map((attach, index) => {
-                                        return <ImageFullscreen key={index}>
-                                            <img src={attach} alt="post-attachment" draggable="false" />
-                                        </ImageFullscreen>
-                                    })}
+                            ? <>
+                                <div className="post__attachments-wrapper" ref={attachContainer}>
+                                    <div className="post__attachments-container" style={{left: `${-attachWidth * (attachCounter - 1)}px`}}>
+                                        {postAttachments.map((attach, index) => (
+                                            <div className="post__attachment" key={index}>
+                                                <ImageFullscreen>
+                                                    <img src={attach} alt="post-attachment" draggable="false" style={{width: attachWidth}} />
+                                                </ImageFullscreen>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
-                              </div> 
+
+                                <div className="flex-row post__attachments-control">
+                                    <ButtonImage
+                                        src={imgArrowLeft}
+                                        alt="image-prev"
+                                        onClick={sliderPrev}
+                                    />
+                                    <p><span>{attachCounter}</span> из <span>{postAttachments.length}</span></p>
+                                    <ButtonImage
+                                        src={imgArrowRight}
+                                        alt="image-next"
+                                        onClick={sliderNext}
+                                    />
+                                </div>
+                              </> 
                             : <ImageFullscreen>
-                                <img src={postAttachments[0]} alt="post-attachment" className="post__attachment__single-img" draggable="false" />
-                              </ImageFullscreen>
+                                <img src={postAttachments[0]} alt="post-attachment" className="post__attachment_single" draggable="false" />
+                            </ImageFullscreen>
                         }
                     </>
                 }
     
-                <div className=" flex-row post__buttons">
+                <div className="flex-row post__buttons">
                     <ButtonImage
-                        className="tp"
                         src={imgShare}
                         alt="post-share"
                         text="Поделиться"
@@ -103,10 +143,13 @@ export default function PostRender({
         )
     } else { // Если передаем noSection - рендер в обычном div (без bg и border)
         return (
-            <div key={post.post_id} id={`post-${post.post_id}`} className="post flex-col">
+            <div
+                key={post.post_id}
+                id={`post-${post.post_id}`} 
+                className="post flex-col"
+            >
                 {generatePost()}
             </div>
         )
     }
-
 }

@@ -2,7 +2,7 @@ import ButtonImage from "../ButtonImage/ButtonImage"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgVk from "../../assets/images/vk.svg"
 
-import "./PostShare-modal.css"
+import "./PostShare.css"
 
 export default function PostShare(Context, postId, postTitle, postImg) {
     // Отправляем и закрываем модальное окно

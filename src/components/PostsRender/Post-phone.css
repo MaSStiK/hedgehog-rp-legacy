@@ -1,11 +1,8 @@
 /* Контент в 100% */
 @media screen and (max-width: 900px) {
-    /* В телефоне обычный scroll */
-    .post__attachments-container::-webkit-scrollbar {
-        height: 4px;
-    }
-
-    .post__attachments img {
-        height: 150px;
+    /* Уменьшаем картинку */
+    .post__attachments-container,
+    .post__attachment img {
+        height: 224px;
     }
 }

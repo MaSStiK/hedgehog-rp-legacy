@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle } from "../Global"
 import { VKAPI } from "../API"
+import AboutReviews from "./AboutReviews"
 import imgBasePhoto from "../../assets/replace/photo-empty.png"
-
 
 import "./AboutPage.css"
 
@@ -68,7 +68,7 @@ export default function AboutPage() {
             </section>
 
             <section className="flex-col">
-                <h3>Наша группа в вк</h3>
+                <h1>Наша группа в вк</h1>
                 <ButtonProfile
                     src={groupDataVk.length ? groupDataVk[0].photo_100 : imgBasePhoto}
                     text={groupDataVk.length ? groupDataVk[0].name : "Загрузка"}
@@ -77,7 +77,21 @@ export default function AboutPage() {
             </section>
 
             <section className="flex-col">
-                <h3>По техническим вопросам сайта</h3>
+                <h2>По вопросам группы и беседы в вк</h2>
+                <ButtonProfile
+                    src={userDataVk.length ? userDataVk[1].photo_100 : imgBasePhoto}
+                    text={userDataVk.length ? `${userDataVk[1].first_name} ${userDataVk[1].last_name}` : "Загрузка"}
+                    onClick={() => window.open("https://vk.com/id396771911", "_blank")}
+                />
+                <ButtonProfile
+                    src={userDataVk.length ? userDataVk[2].photo_100 : imgBasePhoto}
+                    text={userDataVk.length ? `${userDataVk[2].first_name} ${userDataVk[2].last_name}` : "Загрузка"}
+                    onClick={() => window.open("https://vk.com/id307642230", "_blank")}
+                />
+            </section>
+
+            <section className="flex-col">
+                <h2>По техническим вопросам сайта</h2>
                 <ButtonProfile
                     src={userDataVk.length ? userDataVk[0].photo_100 : imgBasePhoto}
                     text={userDataVk.length ? `${userDataVk[0].first_name} ${userDataVk[0].last_name}` : "Загрузка"}
@@ -88,23 +102,7 @@ export default function AboutPage() {
                 </Link>
             </section>
 
-            <section className="flex-col">
-                <h3>По вопросам группы и беседы в вк</h3>
-                <ButtonProfile
-                    src={userDataVk.length ? userDataVk[1].photo_100 : imgBasePhoto}
-                    text={userDataVk.length ? `${userDataVk[1].first_name} ${userDataVk[1].last_name}` : "Загрузка"}
-                    onClick={() => window.open("https://vk.com/id396771911", "_blank")}
-                />
-            </section>
-
-            <section className="flex-col">
-                <h3>Администратор беседы</h3>
-                <ButtonProfile
-                    src={userDataVk.length ? userDataVk[2].photo_100 : imgBasePhoto}
-                    text={userDataVk.length ? `${userDataVk[2].first_name} ${userDataVk[2].last_name}` : "Загрузка"}
-                    onClick={() => window.open("https://vk.com/id307642230", "_blank")}
-                />
-            </section>
+            <AboutReviews />
         </article>
     )
 }
