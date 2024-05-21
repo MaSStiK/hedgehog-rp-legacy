@@ -85,7 +85,7 @@ export default function CountryPage() {
                             <div className="country-page__buttons flex-row">
                                 <ButtonImage
                                     src={imgEdit}
-                                    text="Изменить страну"
+                                    text="Изменить"
                                     className="green"
                                     onClick={() => Navigate("/country/edit")}
                                 />

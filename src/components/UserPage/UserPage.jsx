@@ -122,7 +122,7 @@ export default function UserPage() {
                         <div className="user-profile__buttons flex-row">
                             <ButtonImage
                                 src={imgEdit}
-                                text="Изменить профиль"
+                                text="Изменить"
                                 className="green"
                                 onClick={() => Navigate("/user/edit")}
                             />
@@ -130,7 +130,7 @@ export default function UserPage() {
                             {/* Кнопка выхода если отображается профиль владельца страницы */}
                             <ButtonImage
                                 src={imgLogout}
-                                text="Выйти из профиля"
+                                text="Выйти"
                                 className="red"
                                 onClick={logoutProfile}
                             />
