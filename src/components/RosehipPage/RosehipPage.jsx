@@ -7,6 +7,7 @@ import imgArrowDown from "../../assets/icons/Arrow-down.svg"
 import imgArrowUp from "../../assets/icons/Arrow-up.svg"
 
 import "./RosehipPage.css"
+import "./RosehipPage-phone.css"
 
 export default function RosehipPage() {
     useEffect(() => {setPageTitle("Шиповник")}, [])
