@@ -1,0 +1,32 @@
+/* Фотография */
+.dossier__photo {
+    width: 140px;
+}
+
+.dossier__photo img {
+    width: 140px;
+    height: 140px;
+    background-color: var(--bg-primary);
+    border: 1px solid white;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+}
+
+/* Информация о существе */
+.dossier__info {
+    gap: 4px;
+}
+
+/* Имя */
+.dossier__info h3 {
+    margin-bottom: var(--gap-small);
+}
+
+
+/* Блок с досье */
+.dossier__dossier {
+    border: 1px solid var(--border-input);
+    border-radius: var(--border-radius);
+    white-space: pre-wrap;
+    padding: var(--gap-small);
+}

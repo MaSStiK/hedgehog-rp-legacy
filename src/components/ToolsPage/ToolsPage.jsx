@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
+import imgRosehip from "../../assets/images/Tools/rosehip.png"
 import imgLogout from "../../assets/icons/Logout.svg"
 
 import "./ToolsPage.css"
@@ -27,6 +28,15 @@ export default function ToolsPage({ doLogout }) {
     return (
         <article>
             <h4 className="page-title">h/tools</h4>
+
+            <section className="flex-col">
+                <h1>Шиповник <small className="text-gray">(feat. Даня)</small></h1>
+                <ButtonImage
+                    src={imgRosehip}
+                    text="Список Шиповника"
+                    onClick={() => Navigate("./rosehip")}
+                />
+            </section>
 
             <section className="flex-col">
                 <h3>Запасной выход из профиля <br/><p className="text-gray">(Удаление всего хеша)</p></h3>

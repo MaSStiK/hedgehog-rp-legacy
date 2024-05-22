@@ -29,13 +29,16 @@ import Country from "./components/CountryPage/CountryPage";
 import CountryList from "./components/CountryListPage/CountryListPage";
 import CountryEdit from "./components/CountryEditPage/CountryEditPage";
 import Nation from "./components/NationPage/NationPage";
+
 import Tools from "./components/ToolsPage/ToolsPage";
+import RosehipPage from "./components/RosehipPage/RosehipPage";
+
 import Support from "./components/SupportPage/SupportPage";
 import SupportCreatorsList from "./components/SupportPage/SupportPage_CreatorsList";
 import SupportAuthToken from "./components/SupportPage/SupportPage_AuthToken";
 import SupportFeedback from "./components/SupportPage/SupportPage_Feedback";
-import About from "./components/AboutPage/AboutPage";
 
+import About from "./components/AboutPage/AboutPage";
 import Settings from "./components/SettingsPage/SettingsPage";
 import Changelogs from "./components/ChangelogsPage/ChangelogsPage";
 import Dev from "./components/DevPage/DevPage";
@@ -169,6 +172,7 @@ export default function App() {
 
                     <Route path="/tools" element={<Tools />} />
                     <Route path="/tools/exit" element={<Tools doLogout={true} />} />
+                    <Route path="/tools/rosehip" element={<RosehipPage />} />
 
                     <Route path="/support" element={<Support />} />
                     <Route path="/support/feedback" element={<SupportFeedback />} />

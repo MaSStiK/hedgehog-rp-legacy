@@ -5,7 +5,7 @@ import PostsRender from "../PostsRender/PostsRender"
 import { setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import imgNews from "../../assets/icons/News.svg"
-import imgHomeAA from "../../assets/images/Home-Ace_Attorney.png"
+import imgHomeAA from "../../assets/images/Home/Home-Ace_Attorney.png"
 import imgVk from "../../assets/images/vk.svg"
 import imgYoutube from "../../assets/images/youtube.svg"
 

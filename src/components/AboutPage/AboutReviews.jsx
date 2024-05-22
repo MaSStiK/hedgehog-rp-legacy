@@ -2,7 +2,10 @@ import { useState, useRef, useEffect } from "react"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 
-import imgReviewStar from "../../assets/images/review-star.png"
+import imgReviewStar from "../../assets/images/About/review-star.png"
+import imgItpedia from "../../assets/images/About/itpedia.gif"
+import imgIcarly from "../../assets/images/About/icarly.gif"
+import imgArtas from "../../assets/images/About/artas.gif"
 import imgArrowLeft from "../../assets/icons/Arrow-left.svg"
 import imgArrowRight from "../../assets/icons/Arrow-right.svg"
 
@@ -30,17 +33,17 @@ export default function AboutReviews() {
 
     const reviews = [
         {
-            photo: "https://psv4.userapi.com/c909518/u291195777/docs/d35/a85efc2c98ea/sticker.gif?extra=Hs-VW0LAPfAGJ2m3PxHWX0tBmtaSSZEGbNnoPzRIWAMkg7-k5bzMJ577FFZqVGnN7vwAaYM0RwvfTQ2kt7kXeOPeoW6N6_SkEhgdWT61Peakp08vvwNdnUR6v_KKzEnBAjnfKuYSw0NqXbP3MLwI2zAk",
+            photo: imgItpedia,
             name: "Алексей Шевцов",
             text: `Есть только черный и зеленый.\nВсе остальное - оттенки.\n\n"Ежиное РП" - один из лучших проектов. Он уступает лишь нашему магазину вещей JolyBELL. Доставки есть во все страны, в которых есть McDonald’s.`
         },
         {
-            photo: "https://media.tenor.com/O4NpEw8ohA0AAAAM/miranda-cosgrove-i-carly.gif",
+            photo: imgIcarly,
             name: "Карли Шей",
             text: `"Ежиное РП" это лучшее, что придумало человечество (после iCarly).\n\nЕсли бы ежи могли бы делать спаггети тако, цены бы им не было. А им и так нет. Мнение человека слева  и справа - база. Слава Сиэтльской Республике Кулсториробоба.`
         },
         {
-            photo: "https://psv4.userapi.com/c237131/u383610339/docs/d25/7ed846b096c7/papich-arthas.gif?extra=9VmAdKxWc8lI8mdELGvpMZtttXW4yaTHDMUmAQ7eD92p4y1QGreQZGuMWORgCZxkJQb_fAbjr6UTZzM1uSRgI9CcT9TM3iKgwOO-Js9UclVjlDPOo4lg7gg_hQAaaDMRefqXMMk2rntRyuq4Shv7BEFi",
+            photo: imgArtas,
             name: "Виталий Папич",
             text: `Когда меня добавили в беседу и я создал свою страну, первыми моими словами были:\n"О, найс, я щас убью всех, бл**ь."\nЭто хороший проект, который мне очень понравился. Да здравствует Дото-Винницкая Республика! Слава Єжинiï!.`
         },
