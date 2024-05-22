@@ -5,6 +5,7 @@ import { GSAPI } from "../API"
 import { setPageTitle } from "../Global"
 import imgArrowDown from "../../assets/icons/Arrow-down.svg"
 import imgArrowUp from "../../assets/icons/Arrow-up.svg"
+import imgClassified from "../../assets/images/Tools/classified.png"
 
 import "./RosehipPage.css"
 import "./RosehipPage-phone.css"
@@ -63,7 +64,10 @@ function RenderDossier({dossier}) {
             <div className="flex-row">
                 <div className="dossier__photo">
                     <ImageFullscreen>
-                        <img src={dossier.photo} alt="dossier" draggable="false" />
+                        {dossier.photo
+                            ? <img src={dossier.photo} alt="dossier" draggable="false" className="dossier__photo_border" />
+                            : <img src={imgClassified} alt="dossier" draggable="false" />
+                        }
                     </ImageFullscreen>
                 </div>
                 <div className="flex-col dossier__info">

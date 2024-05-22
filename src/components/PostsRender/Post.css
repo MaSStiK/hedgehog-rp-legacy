@@ -41,6 +41,7 @@
 
 .post__attachment {
     border-radius: var(--border-radius);
+    background-color: var(--bg-primary);
 }
 
 .post__attachment img {
