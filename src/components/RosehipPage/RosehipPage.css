@@ -20,6 +20,10 @@
     gap: 4px;
 }
 
+.dossier__info .text-red {
+    /* font-weight: 800; */
+}
+
 /* Имя */
 .dossier__info h3 {
     margin-bottom: var(--gap-small);

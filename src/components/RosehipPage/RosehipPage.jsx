@@ -75,7 +75,7 @@ function RenderDossier({dossier}) {
                     {dossier.date && <p>Дата рождения: {dossier.date}</p>}
                     {dossier.city && <p>Город: {dossier.city}</p>}
                     {dossier.danger && <p>{dossier.danger}</p>}
-                    {dossier.eliminated && <p className="text-red">Ликвидирован: {dossier.eliminated}</p>}
+                    {dossier.eliminated && <p className="text-red strong">Ликвидирован: {dossier.eliminated}</p>}
                 </div>
             </div>
 

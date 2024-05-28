@@ -64,9 +64,12 @@ p, .p {
 }
 
 small, .small {
-    font-weight: 200;
     font-size: var(--p-small);
-    white-space: pre-wrap;
+    font-weight: 300;
+}
+
+strong, .strong {
+    font-weight: 600;
 }
 
 /* Лейбл инпута */
