@@ -67,7 +67,7 @@ export default function Aside() {
             />
 
             {/* Кнопка страны в мобильной навигации */}
-            {Context.userData.country_id && // Если есть userData - рендер мобильной кнопки профиля
+            {Context.userData?.country_id && // Если есть userData - рендер мобильной кнопки профиля
                 <ButtonProfile
                     id="nav-phone-country"
                     className="tp"
