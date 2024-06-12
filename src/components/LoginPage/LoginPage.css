@@ -42,7 +42,6 @@
 /* Заголовок */
 #article-login .page-title {
     width: min(384px, 100%);
-    margin: 0 auto;
 }
 
 .login__token-row {
