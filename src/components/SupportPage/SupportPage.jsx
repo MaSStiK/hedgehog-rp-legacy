@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import { setPageTitle } from "../Global"
 
-import imgInfo from "../../assets/icons/Info.svg"
-import imgHelp from "../../assets/icons/Help.svg"
+import imgInfo from "../../assets/svg/Info.svg"
+import imgHelp from "../../assets/svg/Help.svg"
 
 import "./SupportPage.css"
 

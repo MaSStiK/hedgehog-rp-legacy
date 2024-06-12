@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import { setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import imgCopy from "../../assets/icons/Copy.svg"
+import imgCopy from "../../assets/svg/Copy.svg"
 import imgRosehip from "../../assets/images/Tools/rosehip.png"
-import imgSearch from "../../assets/icons/Search.svg"
+import imgSearch from "../../assets/svg/Search.svg"
 
 import "./ToolsPage.css"
 

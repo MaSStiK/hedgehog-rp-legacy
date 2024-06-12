@@ -6,10 +6,10 @@ import ButtonImage from "../ButtonImage/ButtonImage"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import { timestampToDate } from "../Global";
 import PostShare from "./PostShare"
-import imgShare from "../../assets/icons/Share.svg"
-import imgEdit from "../../assets/icons/Edit.svg"
-import imgArrowLeft from "../../assets/icons/Arrow-left.svg"
-import imgArrowRight from "../../assets/icons/Arrow-right.svg"
+import imgShare from "../../assets/svg/Share.svg"
+import imgEdit from "../../assets/svg/Edit.svg"
+import imgArrowLeft from "../../assets/svg/Arrow-left.svg"
+import imgArrowRight from "../../assets/svg/Arrow-right.svg"
 
 
 export default function PostRender({

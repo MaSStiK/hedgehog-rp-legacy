@@ -7,8 +7,8 @@ import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import { formValidate, sendForm } from "./NewsEdit.js"
 import CheckImgSrc from "../CheckImgSrc.js"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
-import imgAdd from "../../assets/icons/Add.svg"
-import imgCross from "../../assets/icons/Cross.svg"
+import imgAdd from "../../assets/svg/Plus.svg"
+import imgCross from "../../assets/svg/Cross.svg"
 
 import "./NewsEditPage.css"
 

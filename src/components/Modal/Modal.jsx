@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { DataContext } from "../Context"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import imgCross from "../../assets/icons/Cross.svg"
+import imgCross from "../../assets/svg/Cross.svg"
 
 import "./Modal.css"
 

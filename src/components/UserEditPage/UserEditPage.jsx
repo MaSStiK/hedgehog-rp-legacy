@@ -6,7 +6,7 @@ import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import { formValidate, sendForm } from "./UserEdit"
 import CheckImgSrc from "../CheckImgSrc.js"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
-import imgAt from "../../assets/icons/At.svg"
+import imgAt from "../../assets/svg/At.svg"
 
 import "./UserEditPage.css"
 

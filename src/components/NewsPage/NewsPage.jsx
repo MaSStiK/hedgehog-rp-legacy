@@ -4,7 +4,7 @@ import PostsRender from "../PostsRender/PostsRender"
 import { GSAPI } from "../API";
 import { CONFIG, setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import imgNews from "../../assets/icons/News.svg"
+import imgNews from "../../assets/svg/News.svg"
 
 import "./NewsPage.css"
 import "./NewsPage-phone.css"

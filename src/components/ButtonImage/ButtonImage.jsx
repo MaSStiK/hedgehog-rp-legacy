@@ -1,4 +1,4 @@
-import imgReplaceMe from "../../assets/icons/ReplaceMe.svg"
+import imgReplaceMe from "../../assets/svg/ReplaceMe.svg"
 import "./ButtonImage.css"
 
 // Кнопка с картинкой, но так же есть возможность отобразить текст после картинки

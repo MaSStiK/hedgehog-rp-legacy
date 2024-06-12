@@ -67,7 +67,7 @@ nav ul li a.active::after {
     content: "";
     width: 20px;
     height: 20px;
-    background-image: url("../../assets/icons/Arrow-right.svg");
+    background-image: url("../../assets/svg/Arrow-right.svg");
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

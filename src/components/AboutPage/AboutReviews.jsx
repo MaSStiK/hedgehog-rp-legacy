@@ -6,8 +6,8 @@ import imgReviewStar from "../../assets/images/About/review-star.png"
 import imgItpedia from "../../assets/images/About/itpedia.gif"
 import imgIcarly from "../../assets/images/About/icarly.gif"
 import imgArtas from "../../assets/images/About/artas.gif"
-import imgArrowLeft from "../../assets/icons/Arrow-left.svg"
-import imgArrowRight from "../../assets/icons/Arrow-right.svg"
+import imgArrowLeft from "../../assets/svg/Arrow-left.svg"
+import imgArrowRight from "../../assets/svg/Arrow-right.svg"
 
 export default function AboutReviews() {
     const [reviewsCounter, setReviewsCounter] = useState(1) // Счетчик отзывов

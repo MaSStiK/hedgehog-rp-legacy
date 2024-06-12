@@ -5,8 +5,8 @@ import ButtonImage from "../ButtonImage/ButtonImage"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import { DataContext } from "../Context"
 
-import imgArrowLeft from "../../assets/icons/Arrow-left.svg"
-import imgArrowRight from "../../assets/icons/Arrow-right.svg"
+import imgArrowLeft from "../../assets/svg/Arrow-left.svg"
+import imgArrowRight from "../../assets/svg/Arrow-right.svg"
 
 
 export default function ChangelogRender({

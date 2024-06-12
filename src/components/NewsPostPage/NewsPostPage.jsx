@@ -6,7 +6,7 @@ import { GSAPI } from "../API"
 import { setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
-import imgNews from "../../assets/icons/News.svg"
+import imgNews from "../../assets/svg/News.svg"
 
 import "./NewsPostPage.css"
 
