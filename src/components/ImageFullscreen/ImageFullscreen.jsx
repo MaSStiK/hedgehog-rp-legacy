@@ -21,6 +21,7 @@ export default function ImageFullscreen({ children }) {
                     }}
                     minScale={0.5}
                     maxScale={5}
+                    showControls={true}
                 >
                     <div className="image-fullscreen__modal-wrapper">
                         <img src={children.props.src} alt="fullscreen" draggable="false" />
