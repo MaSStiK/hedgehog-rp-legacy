@@ -8,7 +8,7 @@ import { formValidate, sendForm } from "./NewsAdd.js"
 import CheckImgSrc from "../CheckImgSrc.js"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import imgAdd from "../../assets/svg/Plus.svg"
-import imgCross from "../../assets/svg/Cross.svg"
+import imgMinus from "../../assets/svg/Minus.svg"
 
 import "./NewsAddPage.css"
 
@@ -218,7 +218,7 @@ export default function NewsAddPage() {
                                     </ImageFullscreen>
 
                                     <ButtonImage
-                                        src={imgCross}
+                                        src={imgMinus}
                                         alt="image-delete"
                                         className="red"
                                         onClick={() => setAttachments(attachments.filter(el => el.id !== attach.id))}
