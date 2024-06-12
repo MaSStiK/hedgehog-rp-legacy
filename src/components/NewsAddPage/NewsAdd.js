@@ -41,6 +41,7 @@ export function sendForm(Context, formTitle, formText, attachments, publicationD
             post_title  : formTitle, // Заголовок поста
             post_text   : formText, // Текст поста
             attachments : JSON.stringify(Array.from(attachments, (attach) => attach.url)), // Прикрепленные картинки
+            season      : "4", // Текущий сезон
             timestamp   : publicationDate // Дата создания поста
         }
 

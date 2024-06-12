@@ -31,9 +31,6 @@ export function formValidate(formTitle, formText, attachments) {
 
 export function sendForm(Context, post, formTitle, formText, attachments) {
     return new Promise((resolve, reject) => {
-        // Дата создания
-        let dateNow = Date.now()
-
         // Данные нового поста
         const newPostData = {
             country_id  : post.country_id, // id страны
@@ -41,6 +38,7 @@ export function sendForm(Context, post, formTitle, formText, attachments) {
             post_title  : formTitle, // Заголовок поста
             post_text   : formText, // Текст поста
             attachments : JSON.stringify(Array.from(attachments, (attach) => attach.url)), // Прикрепленные картинки
+            season      : post.season, // Текущий сезон
             timestamp   : post.timestamp // Дата создания поста
         }
 

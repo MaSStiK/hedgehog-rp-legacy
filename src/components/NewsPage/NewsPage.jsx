@@ -20,7 +20,6 @@ export default function NewsPage() {
     function loadMorePosts() {
         setDisableLoadButton(true)
         GSAPI("GETposts", {offset: Context.postsOffset + CONFIG.POSTS_AMOUNT, amount: CONFIG.POSTS_AMOUNT}, (data) => {
-            console.log(data);
             console.log("GSAPI: GETposts offset=" + (Context.postsOffset + CONFIG.POSTS_AMOUNT))
 
             Context.setPostsOffset(Context.postsOffset + CONFIG.POSTS_AMOUNT)
