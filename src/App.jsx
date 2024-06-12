@@ -4,8 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { DataContext, CreateContext } from "./components/Context"
 import { GSAPI } from "./components/API";
-import { setPageLoading } from "./components/Global";
+import { CONFIG, setPageLoading } from "./components/Global";
 import Modal from "./components/Modal/Modal"
+import { CountryPostsSave } from "./components/CountryPage/CountryPostsLoad"
 import $ from "jquery"
 
 // Импорт стилей
@@ -22,6 +23,7 @@ import Home from "./components/HomePage/HomePage";
 import News from "./components/NewsPage/NewsPage";
 import NewsPost from "./components/NewsPostPage/NewsPostPage";
 import NewsAdd from "./components/NewsAddPage/NewsAddPage";
+import NewsEdit from "./components/NewsEditPage/NewsEditPage";
 import User from "./components/UserPage/UserPage";
 import UserList from "./components/UserListPage/UserListPage";
 import UserEdit from "./components/UserEditPage/UserEditPage";
@@ -32,6 +34,7 @@ import Nation from "./components/NationPage/NationPage";
 
 import Tools from "./components/ToolsPage/ToolsPage";
 import RosehipPage from "./components/RosehipPage/RosehipPage";
+import ToolsMessagesFindPage from "./components/ToolsMessagesFindPage/ToolsMessagesFindPage";
 
 import Support from "./components/SupportPage/SupportPage";
 import SupportCreatorsList from "./components/SupportPage/SupportPage_CreatorsList";
@@ -96,9 +99,11 @@ export default function App() {
         // Загрузка всех постов
         function getPosts() {
             return new Promise((resolve, reject) => {
-                GSAPI("GETposts", {offset: 0}, (data) => {
-                    console.log("GSAPI: GETposts offset=0");
-                    Context.setPosts(data) // После получения всех постов обновляем список в контексте
+                let offset = 0
+                GSAPI("GETposts", {offset: offset, amount: CONFIG.POSTS_AMOUNT}, (data) => {
+                    console.log(`GSAPI: GETposts {offset: ${offset}, amount: ${CONFIG.POSTS_AMOUNT}}`);
+                    Context.setPosts(data.posts) // После получения всех постов обновляем общий список в контексте
+                    CountryPostsSave(Context, data.posts) // Сохраняем полученные данные в объект постов стран
                     resolve()
                 })
             })
@@ -146,6 +151,13 @@ export default function App() {
                             element={<NewsAdd />} 
                         />
                     }/>
+                    <Route path="/news/edit" element={
+                        <ProtectedRoute
+                            isAllowed={Context.userData && Context.userData.country_id}
+                            to="/news"
+                            element={<NewsEdit />} 
+                        />
+                    }/>
 
                     <Route path="/user" element={<UserList />} />
                     <Route path="/user/:id" element={<User />} />
@@ -167,12 +179,18 @@ export default function App() {
                         />
                     }/>
 
-
                     <Route path="/nation" element={<Nation />} />
 
                     <Route path="/tools" element={<Tools />} />
                     <Route path="/tools/exit" element={<Tools doLogout={true} />} />
                     <Route path="/tools/rosehip" element={<RosehipPage />} />
+                    <Route path="/tools/find-message" element={
+                        <ProtectedRoute
+                            isAllowed={Context.userData && Context.userData.country_id}
+                            to="/tools"
+                            element={<ToolsMessagesFindPage />} 
+                        />
+                    }/>
 
                     <Route path="/support" element={<Support />} />
                     <Route path="/support/feedback" element={<SupportFeedback />} />

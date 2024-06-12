@@ -15,8 +15,8 @@ export default function ButtonImage({
     disabled
 }) {
     // Добавляем стиль-модификатор перед передаваемыми классами
-    if (width100) className = "button-image_width100 " + className
-    if (atStart) className = "button-image_atStart " + className
+    if (width100) className = "button-image_width100 " + className // Кнопка в 100% ширины
+    if (atStart) className = "button-image_atStart " + className // Контент кнопки в начале
     return (
         <button
             id={id} 

@@ -4,6 +4,7 @@ import { DataContext } from "../Context"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle } from "../Global"
+import { CountryPostsLoad, PostsObjectToArray } from "./CountryPostsLoad"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import PostsRender from "../PostsRender/PostsRender"
 import imgBasePhoto from "../../assets/replace/photo-empty.png"
@@ -11,7 +12,6 @@ import imgEdit from "../../assets/icons/Edit.svg"
 import imgAdd from "../../assets/icons/Add.svg"
 import imgCopy from "../../assets/icons/Copy.svg"
 import imgCountry from "../../assets/icons/Country.svg"
-
 
 import "./CountryPage.css"
 import "./CountryPage-phone.css"
@@ -21,28 +21,29 @@ export default function CountryPage() {
     const Context = useContext(DataContext)
     const Navigate = useNavigate()
     const URLparams = useParams()
+
+    // Отображается ли страна авторизованного, если нету данных о входе - автоматически false
     const isSelfRender = Context.userData ? Context.userData.country_id === URLparams.id : false
 
-    const [countryNotFound, setCountryNotFound] = useState(false);
-    const [showCopyMessage, setShowCopyMessage] = useState(false);
-    
-    const [userData, setUserData] = useState({});
-
+    const [countryNotFound, setCountryNotFound] = useState(false)
+    const [showCopyMessage, setShowCopyMessage] = useState(false) // Сообщение о скопированном теге
+    const [showPreload, setShowPreload] = useState(true) // Прелоад
+    const [renderPosts, setRenderPosts] = useState([]) // Посты страны
+    const [userData, setUserData] = useState({}) // Найденная информация о стране (Внутри информации пользователя)
 
     function CopyTag() {
-        navigator.clipboard.writeText(userData.tag)
+        navigator.clipboard.writeText(userData.country_tag)
         setShowCopyMessage(true)
         setTimeout(() => setShowCopyMessage(false), 2000)
     }
 
     // Когда загрузились все юзеры
     useEffect(() => {
-        if (!Object.keys(Context.users).length) {
-            return
-        }
+        // Если они еще не загрузились - не отображаем
+        if (!Object.keys(Context.users).length || !Object.keys(Context.posts).length) return
         
+        // Поиск пользователя по id
         let foundUser = Context.users.find(user => user.id === URLparams.id.slice(1))
-
         if (!foundUser) {
             setCountryNotFound(true)
             setUserData({})
@@ -52,10 +53,16 @@ export default function CountryPage() {
 
         setUserData(foundUser)
         setPageTitle(foundUser.country_name)
+        setRenderPosts(PostsObjectToArray(Context.countryPosts[URLparams.id])) // Первичный рендер постов которые загрузились вместе со всеми постами
+
+        // Загрузка постов страны
+        CountryPostsLoad(Context, 0, URLparams.id)
+        .then(postsArray => {
+            setRenderPosts(postsArray)
+            setShowPreload(false)
+        })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [URLparams.id, Context.users])
-
-
+    }, [URLparams.id, Context.users, Context.posts])
 
     return (
         <article>
@@ -115,6 +122,8 @@ export default function CountryPage() {
                             </>
                         }
                     </section>
+
+                    
                     
                     {/* Кнопка появляется если просматривает владелец */}
                     {isSelfRender &&
@@ -129,14 +138,20 @@ export default function CountryPage() {
                     }
 
                     <PostsRender
-                        posts={[...Context.posts].filter(post => post.country_id === URLparams.id)}
+                        posts={renderPosts}
                     />
-                </>
+
+                    {showPreload &&
+                        <section>
+                            <p>Загрузка постов</p>
+                        </section>
+                    }
+                  </>
 
                 // Если страна не найдена, будет показан только когда будет ошибка
                 : <>
-                    {countryNotFound && 
-                        <section className="country-page flex-col">
+                    {countryNotFound
+                        ? <section className="country-page flex-col">
                             <h2>Страна не найдена!</h2>
                             <ButtonImage
                                 src={imgCountry}
@@ -144,7 +159,40 @@ export default function CountryPage() {
                                 width100
                                 onClick={() => Navigate("/country")}
                             />
-                        </section>
+                          </section>
+
+                        // Предпоказ страницы
+                        : <section className="flex-col">
+                            <div className="country-page__top">
+                                <div className="country-page__top-photo">
+                                    <ImageFullscreen>
+                                        <img src={imgBasePhoto} alt="country-profile" draggable="false" />
+                                    </ImageFullscreen>
+                                </div>
+                                <div className="country-page__top-name">
+                                    <h2 className="text-preview">LoremLoremCountry</h2>
+                                    <p className="text-preview">@LoremCountry</p>
+                                </div>
+                            </div>
+
+                            <hr />
+                            <div className="country-page__row flex-row">
+                                <p className="text-gray">Автор страны</p>
+                                <ButtonProfile className="tp" text="LoremLoremUser" preview />
+                            </div>
+
+                            <hr />
+                            <div className="country-page__column">
+                                <p className="text-gray">Описание</p>
+                                <p className="textarea-block">
+                                    <span className="text-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                    <br />
+                                    <span className="text-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, non.</span>
+                                    <br />
+                                    <span className="text-preview">Lorem ipsum dolor sit amet.</span>
+                                </p>
+                            </div>
+                          </section>
                     }
                 </>
             }

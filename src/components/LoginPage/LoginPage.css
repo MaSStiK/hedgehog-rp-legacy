@@ -1,13 +1,13 @@
 /* Страница входа */
 #article-login {
     /* Сверху отступ больше*/
-    padding: var(--gap-medium) var(--gap-small) var(--gap-small) var(--gap-small);
+    padding: var(--gap-medium);
 }
 
 /* Логотип над формой */
 #article-login .logo-wrapper {
-    width: min(200px, 100%);
-    height: 200px;
+    width: min(140px, 100%);
+    height: 140px;
     display: flex;
     justify-content: center;
     align-items: center;

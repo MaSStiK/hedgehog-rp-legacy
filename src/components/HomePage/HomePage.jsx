@@ -30,7 +30,7 @@ export default function HomePage() {
             <img className="home__image-AA" src={imgHomeAA} alt="Home-Ace_Attorney" draggable="false" />
             <section className="flex-col">
                 <h1>Новое видео на канале</h1>
-                <iframe width="520" height="280" src="https://www.youtube.com/embed/x2gx7yKC54s?si=DUBOXLomABWx7FLY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                <iframe width="520" height="280" src="https://www.youtube.com/embed/1yeE1jlYFnc?si=wsqkPsAl4VAA1FZm" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                 <div className="flex-row" style={{flexWrap: "wrap"}}>
                     <ButtonImage
                         className="tp no-filter"

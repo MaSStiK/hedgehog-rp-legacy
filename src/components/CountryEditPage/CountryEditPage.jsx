@@ -2,8 +2,10 @@ import { useEffect, useContext, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
-import { CONSTS, setPageTitle, setPageLoading } from "../Global"
+import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import { formValidate, sendForm } from "./CountryEdit"
+import CheckImgSrc from "../CheckImgSrc.js"
+import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import imgAt from "../../assets/icons/At.svg"
 
 
@@ -32,7 +34,7 @@ export default function CountryEditPage() {
         tagInput.current.value = Context.userData.country_tag.substr(1);
 
         photoInput.current.value = Context.userData.country_photo
-        checkImageSource(photoInput.current.value) // Обновляем превью картинки
+        checkPhoto(photoInput.current.value) // Обновляем превью картинки
 
         // bioInput.current.value = Context.userData.country_bio_.replaceAll("<br>","\n")
         bioInput.current.value = Context.userData.country_bio
@@ -43,31 +45,17 @@ export default function CountryEditPage() {
 
 
     // Проверка существования картинки
-    function checkImageSource(src) {
-        if (src) {
-            const img = new Image();
-            img.src = src;
-            
-            img.onload = () => {
-                if (img.naturalWidth < CONSTS.photoPxMin // Если картинка больше или меньше заданных значений
-                    || img.naturalHeight < CONSTS.photoPxMin
-                    || img.naturalWidth > CONSTS.photoPxMax
-                    || img.naturalHeight > CONSTS.photoPxMax) {
-                    setErrorText("Не удалось загрузить картинку")
-                    setPhotoPreview("")
-                    setInputError("photo")
-                    return
-                }
-
-                // Если размер подходит - ставим превью
+    function checkPhoto(imageSrc) {
+        if (imageSrc) {
+            CheckImgSrc(imageSrc)
+            .then(src => {
                 setPhotoPreview(src)
-            }
-
-            img.onerror = () => {
-                setErrorText("Не удалось загрузить картинку")
-                setPhotoPreview("")
+            })
+            .catch(error => {
+                setErrorText(error)
                 setInputError("photo")
-            }
+                setPhotoPreview("")
+            })
         } else {
             setPhotoPreview("")
         }
@@ -78,7 +66,7 @@ export default function CountryEditPage() {
     function handleInputUpdate() {
         setErrorText("")
         setInputError()
-        setDisableSubmitButton(nameInput.current.value.length < CONSTS.countryTitleMin) // Если меньше 1 символа в названии страны
+        setDisableSubmitButton(nameInput.current.value.length < CONFIG.COUNTRY_TITLE_MIN) // Если меньше 1 символа в названии страны
         
         tagInput.current.value = tagInput.current.value.replaceAll(" ", "_")
     }
@@ -151,14 +139,14 @@ export default function CountryEditPage() {
                         ref={nameInput}
                         type="text"
                         id="form-title"
-                        maxLength={CONSTS.countryTitleMax}
+                        maxLength={CONFIG.COUNTRY_TITLE_MAX}
                         onInput={handleInputUpdate}
                         required
                     />
                 </CustomInput>
                 <small className="text-gray">
                     <p className="text-red" style={{display: "inline"}}>*</p> Обязательное поле
-                    <br/>• Длина от {CONSTS.countryTitleMin} до {CONSTS.countryTitleMax} символов
+                    <br />• Длина от {CONFIG.COUNTRY_TITLE_MIN} до {CONFIG.COUNTRY_TITLE_MAX} символов
                 </small>
 
                 <CustomInput label="Тег страны" error={inputError === "tag"} src={imgAt}>
@@ -166,7 +154,7 @@ export default function CountryEditPage() {
                         ref={tagInput}
                         type="text"
                         id="form-tag"
-                        maxLength={CONSTS.countryTagMax}
+                        maxLength={CONFIG.COUNTRY_TAG_MAX}
                         onInput={handleInputUpdate}
                         onBlur={() => {
                             // Если строка пустая - ставим id страны
@@ -178,9 +166,9 @@ export default function CountryEditPage() {
                     />
                 </CustomInput>
                 <small className="text-gray">
-                    • Длина до {CONSTS.countryTagMax} символов
-                    <br/>• Без пробелов
-                    <br/>• Доступные символы: Латиница, цифры, - и _
+                    • Длина до {CONFIG.COUNTRY_TAG_MAX} символов
+                    <br />• Без пробелов
+                    <br />• Доступные символы: Латиница, цифры, - и _
                 </small>
 
                 <CustomInput label="Ссылка на картинку страны" error={inputError === "photo"}>
@@ -188,9 +176,9 @@ export default function CountryEditPage() {
                         ref={photoInput}
                         type="text"
                         id="form-photo"
-                        maxLength={CONSTS.photoMax}
+                        maxLength={CONFIG.PHOTO_LINK_MAX}
                         onInput={() => {
-                            checkImageSource(photoInput.current.value) // Проверяем картинку
+                            checkPhoto(photoInput.current.value) // Проверяем картинку
                             handleInputUpdate() // Так же обновляем все поля
                         }}
                         required
@@ -198,18 +186,25 @@ export default function CountryEditPage() {
                 </CustomInput>
 
                 <small className="text-gray">
-                    • Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px
-                    <br/>• Замена на стандартную картинку если поле пустое
+                    • Размер картинки от {CONFIG.PHOTO_PX_MIN}px/{CONFIG.PHOTO_PX_MIN}px до {CONFIG.PHOTO_PX_MAX}px/{CONFIG.PHOTO_PX_MAX}px
+                    <br />• Будет установлено стандартная картинка если поле пустое
                 </small>
                 {photoPreview &&
-                    <img src={photoPreview} alt="preview" draggable="false" />
+                    <>
+                        <p className="country-edit__preview-text">Предпросмотр картинки</p>
+                        <div className="country-edit__preview">
+                            <ImageFullscreen>
+                                <img src={photoPreview} alt="preview" />
+                            </ImageFullscreen>
+                        </div>
+                    </>
                 }
                 
-                <CustomInput label={`Описание страны (${bioLength} / ${CONSTS.countryBioMax})`} error={inputError === "bio"}>
+                <CustomInput label={`Описание страны (${bioLength} / ${CONFIG.COUNTRY_BIO_MAX})`} error={inputError === "bio"}>
                     <textarea
                         ref={bioInput}
                         id="form-bio"
-                        maxLength={CONSTS.countryBioMax}
+                        maxLength={CONFIG.COUNTRY_BIO_MAX}
                         onInput={() => {
                             setBioLength(bioInput.current.value.length) // Обновляем значение длины описания
                             handleInputUpdate() // Так же обновляем все поля
@@ -219,7 +214,7 @@ export default function CountryEditPage() {
                 </CustomInput>
                 
                 {errorText &&
-                    <p className="text-red">{errorText}</p>
+                    <p className="text-red" style={{textAlign: "center"}}>{errorText}</p>
                 }
 
                 <button onClick={submitForm} disabled={disableSubmitButton} className="green">Сохранить</button>

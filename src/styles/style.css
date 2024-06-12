@@ -20,16 +20,26 @@
     --gap-small: 12px;
     --gap-medium: 20px;
 
+    /* Ширина scrollbar */
+    --scrollbar-width: 6px;
+
     /* Уровни слоев */
     --z-under: -1; /* Под основным контентом */
     --z-main: 0; /* Основной контент */
     --z-over: 1; /* Над основным контентом */
-    --z-nav-bg: 8; /* Подложка навигации (Черный фон) */
-    --z-nav-content: 9; /* Верх навигации */
-    --z-nav: 10; /* Меню навигации */
-    --z-modal: 11; /* Модальное окно (над навигацией) */
-    --z-loading: 12; /* Загрузка над модальным окном */
-    --z-top: 13; /* Над всем */
+    --z-nav-bg: 3; /* Подложка навигации (Черный фон) */
+    --z-nav-content: 4; /* Верх навигации */
+    --z-nav: 5; /* Меню навигации */
+    --z-modal: 10; /* Модальное окно (над навигацией) */
+    --z-loading: 100; /* Загрузка над модальным окном */
+}
+
+/* Контент в 100% */
+@media screen and (max-width: 900px) {
+    /* Полоса прокрутки тоньше на телефоне */
+    :root {
+        --scrollbar-width: 4px
+    }
 }
 
 
@@ -48,7 +58,7 @@
 
 /* Полоса прокрутки */
 *::-webkit-scrollbar {
-    width: 6px;
+    width: var(--scrollbar-width);
 }
 
 /* Задний фон полосы прокрутки */
@@ -61,12 +71,4 @@
 *::-webkit-scrollbar-thumb {
     border-radius: var(--border-radius);
     background-color: var(--border-primary);
-}
-
-/* Контент в 100% */
-@media screen and (max-width: 900px) {
-    /* Полоса прокрутки тоньше на телефоне */
-    *::-webkit-scrollbar {
-        width: 4px;
-    }
 }

@@ -76,5 +76,6 @@
 
 /* Кнопки под постом */
 .post__buttons {
+    flex-wrap: wrap;
     justify-content: flex-start;
 }

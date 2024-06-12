@@ -141,8 +141,8 @@ export default function UserPage() {
                         <p className="text-gray">ВКонтакте</p>
                         <ButtonProfile
                             className="tp"
-                            src={userDataVk.photo || imgBasePhoto}
-                            text={userDataVk.name || "Загрузка"}
+                            src={userDataVk?.photo}
+                            text={userDataVk?.name}
                             onClick={() => window.open(`https://vk.com/id${userData.id}`, "_blank")}
                         />
                     </div>
@@ -198,8 +198,8 @@ export default function UserPage() {
                 
                 // Если пользователь не найден, будет показан только когда будет ошибка
                 : <> 
-                    {userNotFound &&
-                        <section className="flex-col">
+                    {userNotFound
+                        ? <section className="flex-col">
                             <h2>Участник не найден!</h2>
                             <ButtonImage
                                 src={imgUser}
@@ -207,7 +207,46 @@ export default function UserPage() {
                                 width100
                                 onClick={() => Navigate("/user")}
                             />
-                        </section>
+                          </section>
+
+                        // Предпоказ страницы
+                        : <section className="flex-col">
+                            <div className="user-profile__top">
+                                <div className="user-profile__top-photo">
+                                    <ImageFullscreen>
+                                        <img src={imgBasePhoto} alt="user-profile" draggable="false" />
+                                    </ImageFullscreen>
+                                </div>
+                                <div className="user-profile__top-name">
+                                    <h2 className="text-preview">LoremLoremUser</h2>
+                                    <p className="text-preview">@LoremUser</p>
+                                </div>
+                            </div>
+        
+                            <hr />
+                            <div className="user-profile__row flex-row">
+                                <p className="text-gray">ВКонтакте</p>
+                                <ButtonProfile className="tp" text="LoremLoremVK" preview />
+                            </div>
+                            
+                            <hr />
+                            <div className="user-profile__row flex-row">
+                                <p className="text-gray">Страна</p>
+                                <ButtonProfile className="tp" text="LoremLoremCountry" preview />
+                            </div>
+        
+                            <hr />
+                            <div className="flex-col">
+                                <p className="text-gray">О себе</p>
+                                <p className="textarea-block">
+                                    <span className="text-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, ad unde.</span>
+                                    <br />
+                                    <span className="text-preview">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                    <br />
+                                    <span className="text-preview">Lorem, ipsum.</span>
+                                </p>
+                            </div>
+                         </section>
                     }
                 </>
             }

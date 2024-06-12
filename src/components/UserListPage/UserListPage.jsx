@@ -7,7 +7,6 @@ import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle, sortAlphabetically } from "../Global"
 import imgUserSearch from "../../assets/icons/UserSearch.svg"
 import imgCross from "../../assets/icons/Cross.svg"
-import imgBasePhoto from "../../assets/replace/photo-empty.png"
 
 import "./UserListPage.css"
 import "./UserListPage-phone.css"
@@ -30,8 +29,9 @@ export default function UserListPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Context.users])
     
-    function searchUsers(search) {
+    function searchUsers() {
         let sortedUsers = sortAlphabetically(Context.users, "name")
+        let search = searchRef.current.value.toLowerCase()
         if (search) {
             sortedUsers = sortedUsers.filter(
                 // Если есть поисковая строка в имени юзера или в теге или в id
@@ -53,7 +53,7 @@ export default function UserListPage() {
                         <input
                             type="text"
                             ref={searchRef}
-                            onInput={() => searchUsers(searchRef.current.value.toLowerCase())}
+                            onInput={searchUsers}
                             required
                         />
                     </CustomInput>
@@ -71,7 +71,7 @@ export default function UserListPage() {
                     />
                 </div>
 
-                {Context.users.length !== 0
+                {Context.users.length
                     ? <>
                         {usersRender.map((user) => (
                             <ButtonProfile
@@ -85,16 +85,16 @@ export default function UserListPage() {
                       </>
                     : <>
                         {/* Предпоказ */}
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile text="LoremLorem" preview />
+                        <ButtonProfile text="LoremLoremLorem" preview />
+                        <ButtonProfile text="LoremLoremLo" preview />
+                        <ButtonProfile text="LoremLoremLor" preview />
+                        <ButtonProfile text="LoremLoremLo" preview />
+                        <ButtonProfile text="LoremLor" preview />
+                        <ButtonProfile text="LoremLoremLoremLorem" preview />
+                        <ButtonProfile text="LoremLoremLo" preview />
+                        <ButtonProfile text="LoremLoremLor" preview />
+                        <ButtonProfile text="LoremLorem" preview />
                       </>
                 }
             </section>

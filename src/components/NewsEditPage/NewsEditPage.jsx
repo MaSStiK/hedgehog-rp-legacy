@@ -3,54 +3,55 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import { CONFIG, setPageTitle, setPageLoading, timestampToDate } from "../Global"
-import { formValidate, sendForm } from "./NewsAdd.js"
+import { CONFIG, setPageTitle, setPageLoading } from "../Global"
+import { formValidate, sendForm } from "./NewsEdit.js"
 import CheckImgSrc from "../CheckImgSrc.js"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import imgAdd from "../../assets/icons/Add.svg"
 import imgCross from "../../assets/icons/Cross.svg"
 
-import "./NewsAddPage.css"
+import "./NewsEditPage.css"
 
-export default function NewsAddPage() {
-    useEffect(() => {setPageTitle("Создание поста")}, [])
+
+export default function NewsEditPage() {
+    useEffect(() => {setPageTitle("Изменение поста")}, [])
     const Context = useContext(DataContext)
     const Navigate = useNavigate()
     const Location = useLocation()
-
+    
     const [errorText, setErrorText] = useState("") // Текст ошибки
     const [inputError, setInputError] = useState() // Отображать ли ошибку инпута
-    const [TextLength, setTextLength] = useState(0) // Длина поля с текстом
+    const [textLength, setTextLength] = useState(0) // Длина поля с текстом
     const [photoPreview, setPhotoPreview] = useState("") // Превью картинки
     const [attachments, setAttachments] = useState([]) // Список картинок
     const [disableAddButton, setDisableAddButton] = useState(true) // Состояние кнопки Добавления картинки
-    const [publicationDate, setPublicationDate] = useState({}) // Дата публикации (добавляем три нуля)
-    const [selectedDate, setSelectedDate] = useState("now")
-    const [disableSubmitButton, setDisableSubmitButton] = useState(true) // Состояние кнопки сохранения
+    const [disableSubmitButton, setDisableSubmitButton] = useState(false) // Состояние кнопки сохранения (По умолчанию включена)
     
     const titleInput = useRef()
     const textInput = useRef()
     const photoInput = useRef()
 
-    // Если пост создается из сообщения
     useEffect(() => {
-        if (Location.state) {
-            // Заполняем поля
-            textInput.current.value = Location.state.text
-            setSelectedDate("timestamp") // Устанавливаем выбор по timestamp
-            setPublicationDate(timestampToDate(Location.state?.date * 1000))
-    
-            // Собираем массив картинок (Добавляем ко времени их порядковый номер)
-            let attachmentsArray = []
-            Location.state.attachments.forEach((attach, index) => {
-                if (attach.type === "photo") {
-                    // Получаем самый большой размер картинки
-                    attach.photo.sizes.sort((a, b) => b.width - a.width).sort((a, b) => b.height - a.height)
-                    attachmentsArray.push({id: Date.now() + index, url: attach.photo.sizes[0].url})
-                }
-            })
-            setAttachments(attachmentsArray)
+        // Если перешли на редактирование поста без данных о посте или без post_id или попытка изменить пост не своей страны - перекидываем на главную
+        if (!Location.state
+            || !Location.state?.post_id
+            || Location.state?.country_id !== Context.userData?.country_id
+        ) {
+            Navigate("/")
+            return
         }
+
+        // Заполняем поля
+        titleInput.current.value = Location.state.post_title
+        textInput.current.value = Location.state.post_text
+        setTextLength(Location.state.post_text.length)
+
+        // Собираем массив картинок (Добавляем ко времени их порядковый номер)
+        let attachmentsArray = JSON.parse(Location.state.attachments).map((attach, index) => {
+            return {id: Date.now() + index, url: attach}
+        })
+
+        setAttachments(attachmentsArray)
     }, [Location.state])
 
     // При обновлении любого из инпутов
@@ -110,12 +111,9 @@ export default function NewsAddPage() {
             setInputError(error.input)
         })
         .then(resolved => {
-            // Если не было ошибки - отправляем
+            // Если не было ошибки - отправляем изменения
             if (resolved) {
-                // Если выбрана дата публикации сейчас - то ставим текущую дату, иначе - дата сообщения
-                let _publicationDate = selectedDate === "now" ? Date.now() : Location.state?.date * 1000
-                
-                sendForm(Context, formTitle, formText, attachments, _publicationDate)
+                sendForm(Context, Location.state, formTitle, formText, attachments)
                 .then(() => { // Если успешно сохранились изменения
                     setPageLoading(false)
                     Navigate("/news")
@@ -131,7 +129,7 @@ export default function NewsAddPage() {
 
     return (
         <article>
-            <h4 className="page-title">h/news/add</h4>
+            <h4 className="page-title">h/news/edit</h4>
 
             <section className="flex-col news-add">
                 <CustomInput label="Заголовок поста" error={inputError === "title"}>
@@ -149,7 +147,7 @@ export default function NewsAddPage() {
                     <br />• Длина от {CONFIG.POST_TITLE_MIN} до {CONFIG.POST_TITLE_MAX} символов
                 </small>
 
-                <CustomInput label={`Текст поста (${TextLength} / ${CONFIG.POST_TEXT_MAX})`} error={inputError === "text"}>
+                <CustomInput label={`Текст поста (${textLength} / ${CONFIG.POST_TEXT_MAX})`} error={inputError === "text"}>
                     <textarea
                         ref={textInput}
                         id="form-text"
@@ -216,7 +214,6 @@ export default function NewsAddPage() {
                                     <ImageFullscreen>
                                         <img src={attach.url} alt="preview" />
                                     </ImageFullscreen>
-
                                     <ButtonImage
                                         src={imgCross}
                                         alt="image-delete"
@@ -234,37 +231,12 @@ export default function NewsAddPage() {
                 {attachments.length === 10 &&
                     <small className="text-gray">• Достигнуто максимальное кол-во картинок</small>
                 }
-
-                {Location.state?.date &&
-                    <>
-                        <p>Отображаемое дата публикации:</p>
-                        <div className="settings__radio-input flex-row">
-                            <input
-                                id="publication-timestamp"
-                                type="radio"
-                                name="publication-date"
-                                onChange={() => setSelectedDate("timestamp")}
-                                defaultChecked={true}
-                            />
-                            <label htmlFor="publication-timestamp">Дата отправки сообщения<br />({publicationDate.stringTime} {publicationDate.stringDate})</label>
-                        </div>
-                        <div className="settings__radio-input flex-row">
-                            <input
-                                id="publication-now"
-                                type="radio"
-                                name="publication-date"
-                                onChange={() => setSelectedDate("now")}
-                            />
-                            <label htmlFor="publication-now">Сейчас</label>
-                        </div>
-                    </>
-                }
                 
                 {errorText &&
                     <p className="text-red" style={{textAlign: "center"}}>{errorText}</p>
                 }
 
-                <button onClick={submitForm} disabled={disableSubmitButton} className="green">Создать</button>
+                <button onClick={submitForm} disabled={disableSubmitButton} className="green">Изменить</button>
             </section>
         </article>
     )

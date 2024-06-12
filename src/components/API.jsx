@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-const GOOGLE_API = "https://script.google.com/macros/s/AKfycbzrK6QjlHwtspOjiZvhyzuEcE5_cYOtmIvmBxJZ_iD0_6DyQ-FpljfZd3vYMAHia6xE/exec"
+const GOOGLE_API = "https://script.google.com/macros/s/AKfycbw6a6pi6rN24gmRit-0TIwFvY5NoIPfh4ZC6pF0pERN936-14Evgr8qJRpsHCgJkT8HsQ/exec"
 
 // Отправить запрос
 export function GSAPI(action, data={}, func) {
@@ -22,7 +22,6 @@ function getMethodUrl(method, params, token) {
     params["v"] = "5.131"
     return "https://api.vk.com/method/" + method + "?" + $.param(params)
 }
-
 
 // Отправить запрос
 export function VKAPI(method, params={}, func=null, token=process.env.REACT_APP_VK_TOKEN) {

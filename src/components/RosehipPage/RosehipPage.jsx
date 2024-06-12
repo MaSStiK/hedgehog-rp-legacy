@@ -14,12 +14,12 @@ export default function RosehipPage() {
     useEffect(() => {setPageTitle("Шиповник")}, [])
     
     const [rosehipData, setRosehipData] = useState(sessionStorage.rosehip ? JSON.parse(sessionStorage.rosehip) : []);
-    const [showMessage, setShowMessage] = useState(true);
+    const [showPreload, setShowPreload] = useState(true); // Прелоад
 
     useEffect(() => {
         GSAPI("GETrosehip", {}, (data) => {
             console.log("GSAPI: GETrosehip");
-            setShowMessage(false)
+            setShowPreload(false)
             data = data.reverse()
     
             setRosehipData(data) // Отправляем данные в массив для рендера
@@ -37,7 +37,7 @@ export default function RosehipPage() {
                 <h3>Данный список представляет собой сведения о существах, представляющих угрозу существования Кулсториробоба и его жителям</h3>
             </section>
 
-            {showMessage && 
+            {showPreload && 
                 <section>
                     {rosehipData.length
                         ? <p>Загрузка обновленных данных</p>

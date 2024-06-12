@@ -10,8 +10,11 @@ export default function ButtonProfile({
     onClick,
     src=imgBasePhoto,
     text,
-    subText
+    subText,
+    preview
 }) {
+    // Добавляем стиль-модификатор перед передаваемыми классами
+    if (preview) className = "button-profile_preview " + className// Предпросмотр кнопки профиля
     return (
         <button
             id={id} 

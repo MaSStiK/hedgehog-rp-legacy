@@ -42,7 +42,7 @@ export default function ChangelogRender({
     function generatePost() {
         return (
             <>
-                <div className="post__top flex-row">
+                <div className="flex-row post__top">
                     <ButtonProfile
                         src={changelogProfile.country_photo}
                         text={changelogProfile.country_name}

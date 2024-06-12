@@ -4,9 +4,10 @@ import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import { timestampToDate } from "../Global";
 import PostShare from "./PostShare"
-
 import imgShare from "../../assets/icons/Share.svg"
+import imgEdit from "../../assets/icons/Edit.svg"
 import imgArrowLeft from "../../assets/icons/Arrow-left.svg"
 import imgArrowRight from "../../assets/icons/Arrow-right.svg"
 
@@ -27,6 +28,11 @@ export default function PostRender({
             post.post_title,
             postAttachments.length ? postAttachments[0] : postAuthor.country_photo
         )
+    }
+
+    // Функция открытия страницы с редактированием поста
+    function handlePostEdit() {
+        Navigate("/news/edit", {state: post})
     }
 
     let postAttachments = JSON.parse(post.attachments) // Картинки в посте
@@ -51,28 +57,19 @@ export default function PostRender({
     }
 
     // Дата создания поста
-    let date = new Date(Number(post.timestamp))
-    let hours = date.getHours().toString()
-    let minutes = date.getMinutes().toString()
-    let day = date.getDate().toString()
-    let month = (date.getMonth() + 1).toString() // Добавляем 1 т.к. месяц начинается с нуля
-    let year = date.getFullYear()
-    hours = hours.length !== 2 ? "0" + hours : hours // Формат часов 00
-    minutes = minutes.length !== 2 ? "0" + minutes : minutes // Формат минут 00
-    day = day.length !== 2 ? "0" + day : day // Формат дня 00
-    month = month.length !== 2 ? "0" + month : month // Формат месяца 00
+    let date = timestampToDate(Number(post.timestamp))
 
     function generatePost() {
         return (
             <>
-                <div className="post__top flex-row">
+                <div className="flex-row post__top">
                     <ButtonProfile
                         src={postAuthor.country_photo}
                         text={postAuthor.country_name}
                         subText={postAuthor.country_tag} 
                         onClick={() => Navigate("/country/" + postAuthor.country_id)}
                     />
-                    <small className="text-gray">{`${day}.${month}.${year}`}<br/>{`${hours}:${minutes}`}</small>
+                    <small className="text-gray">{date.stringDate}<br />{date.stringTime}</small>
                 </div>
                 {/* Заголовок поста */}
                 <h3>{post.post_title}</h3>
@@ -118,7 +115,8 @@ export default function PostRender({
                         }
                     </>
                 }
-    
+
+                {/* Кнопки под постом */}
                 <div className="flex-row post__buttons">
                     <ButtonImage
                         src={imgShare}
@@ -126,6 +124,16 @@ export default function PostRender({
                         text="Поделиться"
                         onClick={handlePostShare}
                     />
+
+                    {/* Если пост авторизованного пользователя */}
+                    {Context.userData?.id === postAuthor.id &&
+                        <ButtonImage
+                            src={imgEdit}
+                            alt="post-edit"
+                            text="Изменить"
+                            onClick={handlePostEdit}
+                        />
+                    }
                 </div>
             </>
         )
@@ -136,7 +144,7 @@ export default function PostRender({
             <section
                 key={post.post_id}
                 id={`post-${post.post_id}`}
-                className="post flex-col"
+                className="flex-col post"
             >
                 {generatePost()}
             </section>
@@ -146,7 +154,7 @@ export default function PostRender({
             <div
                 key={post.post_id}
                 id={`post-${post.post_id}`} 
-                className="post flex-col"
+                className="flex-col post"
             >
                 {generatePost()}
             </div>

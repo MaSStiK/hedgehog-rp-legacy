@@ -7,7 +7,6 @@ import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle, sortAlphabetically } from "../Global"
 import imgListSearch from "../../assets/icons/ListSearch.svg"
 import imgCross from "../../assets/icons/Cross.svg"
-import imgBasePhoto from "../../assets/replace/photo-empty.png"
 
 import "./CountryListPage.css"
 import "./CountryListPage-phone.css"
@@ -46,8 +45,9 @@ export default function CountryListPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Context.users])
     
-    function searchCountries(search) {
+    function searchCountries() {
         let filteredUsers = sortAlphabetically(getCountries(Context.users), "country_name")
+        let search = searchRef.current.value.toLowerCase()
         if (search) {
             filteredUsers = filteredUsers.filter(
                 // Если есть поисковая строка в названии страны или в теге или в id
@@ -71,7 +71,7 @@ export default function CountryListPage() {
                         <input
                             type="text"
                             ref={searchRef}
-                            onInput={() => searchCountries(searchRef.current.value.toLowerCase())}
+                            onInput={searchCountries}
                             required
                         />
                     </CustomInput>
@@ -109,10 +109,11 @@ export default function CountryListPage() {
                       </>
                     : <>
                         {/* Предпоказ */}
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
-                        <ButtonProfile src={imgBasePhoto} />
+                        <ButtonProfile text="LoremLoremLorem" preview />
+                        <ButtonProfile text="LoremLorem" preview />
+                        <ButtonProfile text="LoremLoremLor" preview />
+                        {/* <ButtonProfile text="LoremLoremLo" preview /> */}
+                        <ButtonProfile text="LoremLoremLoremLorem" preview />
                       </>
                 }
             </section>

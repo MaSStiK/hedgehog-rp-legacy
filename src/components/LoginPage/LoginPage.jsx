@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import { CONSTS, setPageTitle, setPageLoading } from "../Global"
+import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import AuthViaCode from "./authViaCode"
 import AuthViaToken from "./authViaToken"
 import imgLogo from "../../assets/logo/logoFullSize.png"
@@ -105,7 +105,7 @@ export default function LoginPage() {
                 {showCopyMessage && <p className="text-gray" style={{textAlign: "center"}}>Скопировано</p> }
 
                 <small className="text-gray">
-                    • Вы автоматически зарегистрируетесь, если у вас еще нет аккаунта<br/>
+                    • Вы автоматически зарегистрируетесь, если у вас еще нет аккаунта<br />
                     • Не перезагружайте эту страницу во время отправки сообщения
                 </small>
                 <p>После отправки кода нажмите на кнопку</p>
@@ -126,7 +126,7 @@ export default function LoginPage() {
                             ref={tokenInput}
                             type="text"
                             id="form-code"
-                            maxLength={CONSTS.loginTokenMax}
+                            maxLength={CONFIG.AUTH_TOKEN_MAX}
                             onInput={handleInputUpdate}
                             required
                         />

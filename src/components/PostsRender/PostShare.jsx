@@ -20,8 +20,7 @@ export default function PostShare(Context, postId, postTitle, postImg) {
 
     // Копируем ссылку и закрываем модальное окно
     function copyLink() {
-        
-        navigator.clipboard.writeText("https://hedgehog-rp.ru/news/" + postId)
+        navigator.clipboard.writeText(window.location.origin + "/news/" + postId)
         Context.setModalData({}) // Закрытие модального окна
     }
 
@@ -29,14 +28,16 @@ export default function PostShare(Context, postId, postTitle, postImg) {
         <div className="post-share flex-col">
             <h3 className="post-share__title">Поделиться постом</h3>
             <ButtonImage
-                className="tp"
                 src={imgVk}
+                alt="vk"
+                className="tp"
                 text={"Поделиться в вк"}
                 onClick={shareVK}
             />
             <ButtonImage
-                className="tp"
                 src={imgCopy}
+                alt="copy"
+                className="tp"
                 text={"Скопировать ссылку"}
                 onClick={copyLink}
             />

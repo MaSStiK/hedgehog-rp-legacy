@@ -15,7 +15,8 @@ export default function ChangelogsPage() {
         <article>
             <h4 className="page-title">h/changelogs</h4>
 
-            {Context.posts.length !== 0 && Context.users.length !== 0 &&
+            {/* Отображаем обновления когда пользователи и посты */}
+            {Context.users.length !== 0 && Context.posts.length !== 0 && 
                 <ChangelogsRender
                     changelogs={changelogs}
                 />

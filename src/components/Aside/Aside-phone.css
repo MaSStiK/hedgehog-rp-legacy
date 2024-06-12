@@ -14,8 +14,8 @@
     /* Обвертка навигации, по умолчанию скрыта на телефоне */
     .nav-wrapper {
         display: none;
-        width: 200px;
-        padding: 0px 0px var(--gap-medium) 0px;
+        width: calc(201px + var(--gap-small) + var(--gap-small)); /* Ширина 200px + отступы */
+        padding: 0px 0px var(--gap-small) 0px;
         
         background-color: var(--bg-secondary);
         border-left: 1px solid var(--border-primary);
@@ -23,13 +23,16 @@
         position: fixed;
         top: 0px;
         right: 0;
+    }
 
-        /* display: none; */
+    /* Добавляем scrollbar отступ снизу */
+    .nav-wrapper::-webkit-scrollbar-track {
+        margin: var(--gap-small) 0;
     }
 
     /* Навигация */
     nav {
-        width: calc(100% - 8px - 8px); /* Расстояние между контентом и прокруткой - 8px и слева - 8px */
+        width: calc(100% - var(--gap-small) - var(--gap-small)); /* Расстояние между контентом и прокруткой - отступы */
         margin: 0 auto;
 
         gap: 0px;
@@ -74,9 +77,6 @@
         display: flex;
         width: var(--button-height-big);
         height: var(--button-height-big);
-
-        margin-left: auto;
-
         margin: 0px 0 12px auto;
     }
 
@@ -93,7 +93,7 @@
 
         position: fixed;
         top: 0;
-        right: 199px;
+        right: 224px;
 
         background-color: var(--bg-secondary);
     }

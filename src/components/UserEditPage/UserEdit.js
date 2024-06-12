@@ -1,21 +1,21 @@
 import { GSAPI } from "../API";
-import { CONSTS } from "../Global"
+import { CONFIG } from "../Global"
 
 export function formValidate(formName, formTag, formPhoto, formBio) {
     return new Promise((resolve, reject) => {
         // Проверка длины Названия
-        if (formName.length < CONSTS.userNameMin) {
-            return reject({text: `Название меньше ${CONSTS.userNameMin} символов`, input: "name"})
+        if (formName.length < CONFIG.USER_NAME_MIN) {
+            return reject({text: `Название меньше ${CONFIG.USER_NAME_MIN} символов`, input: "name"})
         }
 
-        if (formName.length > CONSTS.userNameMax) {
-            return reject({text: `Название больше ${CONSTS.userNameMax} символов`, input: "name"})
+        if (formName.length > CONFIG.USER_NAME_MAX) {
+            return reject({text: `Название больше ${CONFIG.USER_NAME_MAX} символов`, input: "name"})
         }
 
 
         // Проверка длины тега
-        if (formTag.length > CONSTS.userTagMax) {
-            return reject({text: `Тег больше ${CONSTS.userTagMax} символов`, input: "tag"})
+        if (formTag.length > CONFIG.USER_TAG_MAX) {
+            return reject({text: `Тег больше ${CONFIG.USER_TAG_MAX} символов`, input: "tag"})
         }
 
         // Проверка наличия запрещенных символов
@@ -26,14 +26,14 @@ export function formValidate(formName, formTag, formPhoto, formBio) {
 
 
         // Проверка длины фото
-        if (formPhoto.length > CONSTS.photoMax) {
-            return reject({text: `Ссылка на картинку больше ${CONSTS.photoMax} символов`, input: "photo"})
+        if (formPhoto.length > CONFIG.PHOTO_LINK_MAX) {
+            return reject({text: `Ссылка на картинку больше ${CONFIG.PHOTO_LINK_MAX} символов`, input: "photo"})
         }
         
 
         // Проверка длины описания
-        if (formBio.length > CONSTS.userBioMax) {
-            return reject({text: `Описание больше ${CONSTS.userBioMax} символов`, input: "bio"})
+        if (formBio.length > CONFIG.USER_BIO_MAX) {
+            return reject({text: `Описание больше ${CONFIG.USER_BIO_MAX} символов`, input: "bio"})
         }
 
         // Если прошло все проверки
@@ -45,7 +45,7 @@ export function sendForm(Context, formName, formTag, formPhoto, formBio) {
     return new Promise((resolve, reject) => {
         // Новые данные о стране
         let newUserData = {
-            name   : formName, // Название страны
+            name    : formName, // Название страны
             tag     : "@" + formTag, // Тег страны
             bio     : formBio, // Описание страны
             photo   : formPhoto, // Флаг/картинка страны
@@ -61,7 +61,7 @@ export function sendForm(Context, formName, formTag, formPhoto, formBio) {
             }
 
             // Сохранение информации локально
-            let userData = {...Context.userData}
+            let userData    = {...Context.userData}
             userData.name   = newUserData.name
             userData.tag    = newUserData.tag
             userData.photo  = newUserData.photo

@@ -1,14 +1,21 @@
-.user-edit {
-    align-items: center;
+.user-edit > button {
+    margin: 0 auto;
 }
 
-.user-edit small {
-    width: 100%;
-    text-align: left;
+/* Текст превью */
+.user-edit__preview-text {
+    text-align: center;
 }
 
-.user-edit > img {
+/* Картинка с превью */
+.user-edit__preview {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.user-edit__preview img {
     width: 100%;
     height: 100px;
     object-fit: contain;
+    border-radius: var(--border-radius);
 }

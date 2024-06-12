@@ -28,3 +28,11 @@
 .button-profile__text p, .button-profile__text small {
     text-align: left;
 }
+
+/* Превью кнопки */
+.button-profile_preview .button-profile__text p,
+.button-profile_preview .button-profile__text small {
+    width: fit-content;
+    color: transparent;
+    background-color: var(--bg-primary);
+}

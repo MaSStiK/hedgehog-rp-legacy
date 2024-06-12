@@ -19,7 +19,7 @@ export default function SettingsPage() {
             <section className="se flex-col">
                 <h3>Эффекты страницы</h3>
 
-                <div className="settings__theme-input flex-row">
+                <div className="settings__radio-input flex-row">
                     <input
                         id="theme-default"
                         type="radio"
@@ -30,7 +30,7 @@ export default function SettingsPage() {
                     <label htmlFor="theme-default">По умолчанию</label>
                 </div>
                 
-                <div className="settings__theme-input flex-row">
+                <div className="settings__radio-input flex-row">
                     <input
                         id="theme-snow"
                         type="radio"
@@ -41,7 +41,7 @@ export default function SettingsPage() {
                     <label htmlFor="theme-snow">Зимняя тема</label>
                 </div>
 
-                <div className="settings__theme-input flex-row">
+                <div className="settings__radio-input flex-row">
                     <input
                         id="theme-hedgehog34"
                         type="radio"

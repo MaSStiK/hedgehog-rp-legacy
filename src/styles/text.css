@@ -102,3 +102,11 @@ label {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
+/* Превью текста */
+.text-preview {
+    width: fit-content;
+    color: transparent;
+    background-color: var(--bg-primary);
+}

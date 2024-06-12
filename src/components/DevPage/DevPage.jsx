@@ -1,24 +1,29 @@
 import { useState, useEffect, useRef, useContext } from "react"
 import { Link } from "react-router-dom"
-import CustomInput from "../CustomInput/CustomInput"
-import ButtonImage from "../ButtonImage/ButtonImage"
-import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { DataContext } from "../Context"
 import { setPageTitle } from "../Global"
-import imgProfileBase from "../../assets/replace/profile-base.png"
+import { GSAPI } from "../API";
+import CustomInput from "../CustomInput/CustomInput"
+import ButtonProfile from "../ButtonProfile/ButtonProfile"
+import ButtonImage from "../ButtonImage/ButtonImage"
+import imgCopy from "../../assets/icons/Copy.svg"
 import imgHome from "../../assets/icons/Home.svg"
 import imgTool from "../../assets/icons/Tool.svg"
-import imgCopy from "../../assets/icons/Copy.svg"
 import imgAt from "../../assets/icons/At.svg"
-
-import $ from "jquery";
-
+import imgProfileBase from "../../assets/replace/profile-base.png"
 
 import "./DevPage.css"
 
 export default function DevPage() {
     useEffect(() => {setPageTitle("dev")}, [])
     const Context = useContext(DataContext)
+
+    // useEffect(() => {
+    //     console.log("GETevent");
+    //     GSAPI("GETevent", {}, (data) => {
+    //         console.log(data);
+    //     })
+    // })
 
     function openModal(data) {
         Context.setModalData(
@@ -61,18 +66,75 @@ export default function DevPage() {
             </section>
 
             <section className="flex-col">
-                {/* Кнопка профиля */}
+                {/* Кнопки профиля */}
                 <ButtonProfile
                     src={imgProfileBase}
                     text={"Имя участника"}
                     subText={"@тег"}
                 />
-                <button>gray (default)</button>
-                <button className="green">green (confirm)</button>
-                <button className="red">red (cancel)</button>
-                <button className="tp">tp (transparent)</button>
-                <button disabled>disabled</button>
-                <Link to={"#"} className="text-link">Текст-ссылка по которой можно куда то попасть</Link>
+                <ButtonProfile
+                    text="Какой то текст типа lorem"
+                    preview
+                />
+
+                {/* Кнопки с картинками */}
+                <ButtonImage
+                    src={imgTool}
+                    alt="button-test"
+                    text="gray (default)"
+                />
+                <ButtonImage
+                    src={imgTool}
+                    alt="button-test"
+                    className="green"
+                    text="green (confirm)"
+                />
+                <ButtonImage
+                    src={imgTool}
+                    alt="button-test"
+                    className="red"
+                    text="red (cancel)"
+                />
+                <ButtonImage
+                    src={imgTool}
+                    alt="button-test"
+                    className="tp"
+                    text="tp (transparent)"
+                />
+                <ButtonImage
+                    src={imgTool}
+                    alt="button-test"
+                    text="disabled"
+                    disabled={true}
+                />
+
+                {/* Кнопки в строку */}
+                <div className="flex-row">
+                    <ButtonImage
+                        src={imgTool}
+                        alt="button-test"
+                    />
+                    <ButtonImage
+                        src={imgTool}
+                        alt="button-test"
+                        className="green"
+                    />
+                    <ButtonImage
+                        src={imgTool}
+                        alt="button-test"
+                        className="red"
+                    />
+                    <ButtonImage
+                        src={imgTool}
+                        alt="button-test"
+                        className="tp"
+                    />
+                    <ButtonImage
+                        src={imgTool}
+                        alt="button-test"
+                        disabled={true}
+                    />
+                </div>
 
                 <div className="flex-row" style={{flexWrap: "wrap"}}>
                     <ButtonImage
@@ -88,17 +150,8 @@ export default function DevPage() {
                         width100
                         atStart
                     />
-                    <ButtonImage
-                        src={imgTool}
-                        alt="button-test"
-                        className="green"
-                    />
-                    <ButtonImage
-                        src={imgCopy}
-                        alt="button-test"
-                        className="red"
-                    />
                 </div>
+                <Link to={"#"} className="text-link">Текст-ссылка по которой можно куда то попасть</Link>
             </section>
 
             {/* <section className="flex-col">

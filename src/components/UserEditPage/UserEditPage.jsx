@@ -2,8 +2,10 @@ import { useEffect, useContext, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
-import { CONSTS, setPageTitle, setPageLoading } from "../Global"
+import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import { formValidate, sendForm } from "./UserEdit"
+import CheckImgSrc from "../CheckImgSrc.js"
+import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
 import imgAt from "../../assets/icons/At.svg"
 
 import "./UserEditPage.css"
@@ -31,7 +33,7 @@ export default function UserEditPage() {
         tagInput.current.value = Context.userData.tag.substr(1);
 
         photoInput.current.value = Context.userData.photo
-        checkImageSource(photoInput.current.value) // Обновляем превью картинки
+        checkPhoto(photoInput.current.value) // Обновляем превью картинки
 
         bioInput.current.value = Context.userData.bio
         setBioLength(bioInput.current.value.length) // Обновляем значение длины описания
@@ -41,31 +43,17 @@ export default function UserEditPage() {
 
 
     // Проверка существования картинки
-    function checkImageSource(src) {
-        if (src) {
-            const img = new Image();
-            img.src = src;
-            
-            img.onload = () => {
-                if (img.naturalWidth < CONSTS.photoPxMin // Если картинка больше или меньше заданных значений
-                    || img.naturalHeight < CONSTS.photoPxMin
-                    || img.naturalWidth > CONSTS.photoPxMax
-                    || img.naturalHeight > CONSTS.photoPxMax) {
-                    setErrorText("Не удалось загрузить картинку")
-                    setPhotoPreview("")
-                    setInputError("photo")
-                    return
-                }
-
-                // Если размер подходит - ставим превью
+    function checkPhoto(imageSrc) {
+        if (imageSrc) {
+            CheckImgSrc(imageSrc)
+            .then(src => {
                 setPhotoPreview(src)
-            }
-
-            img.onerror = () => {
-                setErrorText("Не удалось загрузить картинку")
-                setPhotoPreview("")
+            })
+            .catch(error => {
+                setErrorText(error)
                 setInputError("photo")
-            }
+                setPhotoPreview("")
+            })
         } else {
             setPhotoPreview("")
         }
@@ -76,7 +64,7 @@ export default function UserEditPage() {
     function handleInputUpdate() {
         setErrorText("")
         setInputError()
-        setDisableSubmitButton(nameInput.current.value.length < CONSTS.userNameMin) // Если меньше 1 символа в имени
+        setDisableSubmitButton(nameInput.current.value.length < CONFIG.USER_NAME_MIN) // Если меньше 1 символа в имени
         
         tagInput.current.value = tagInput.current.value.replaceAll(" ", "_")
     }
@@ -103,7 +91,7 @@ export default function UserEditPage() {
             // Отключаем кнопку только в случае если прошло все проверки
             setDisableSubmitButton(true)
             setPageLoading()
-            return true // И возвращаем успех
+            return true // И возвращаем успех (Это тут нужно что бы перепрыгнуть на код ниже catch)
         })
         .catch(error => { // Если ошибка во время валидации
             setErrorText(error.text)
@@ -119,8 +107,7 @@ export default function UserEditPage() {
                 })
                 .catch(error => { // Если ошибка
                     setErrorText(error)
-                    if (error === "Введенный тег занят") setInputError("tag")
-
+                    if (error === "Введенный тег занят") setInputError("tag") // Если ошибка связана с тегом
                     setDisableSubmitButton(false)
                     setPageLoading(false)
                 })
@@ -148,14 +135,14 @@ export default function UserEditPage() {
                         ref={nameInput}
                         type="text"
                         id="form-name"
-                        maxLength={CONSTS.userNameMax}
+                        maxLength={CONFIG.USER_NAME_MAX}
                         onInput={handleInputUpdate}
                         required
                     />
                 </CustomInput>
                 <small className="text-gray">
                     <p className="text-red" style={{display: "inline"}}>*</p> Обязательное поле
-                    <br/>• Длина от {CONSTS.userNameMin} до {CONSTS.userNameMax} символов
+                    <br />• Длина от {CONFIG.USER_NAME_MIN} до {CONFIG.USER_NAME_MAX} символов
                 </small>
 
                 <CustomInput label="Тег профиля" error={inputError === "tag"} src={imgAt}>
@@ -163,7 +150,7 @@ export default function UserEditPage() {
                         ref={tagInput}
                         type="text"
                         id="form-tag"
-                        maxLength={CONSTS.userTagMax}
+                        maxLength={CONFIG.USER_TAG_MAX}
                         onInput={handleInputUpdate}
                         onBlur={() => {
                             // Если строка пустая - ставим id
@@ -175,9 +162,9 @@ export default function UserEditPage() {
                     />
                 </CustomInput>
                 <small className="text-gray">
-                    • Длина до {CONSTS.userTagMax} символов
-                    <br/>• Без пробелов
-                    <br/>• Доступные символы: Латиница, цифры, - и _
+                    • Длина до {CONFIG.USER_TAG_MAX} символов
+                    <br />• Без пробелов
+                    <br />• Доступные символы: Латиница, цифры, - и _
                 </small>
 
                 <CustomInput label="Ссылка на картинку профиля" error={inputError === "photo"}>
@@ -185,28 +172,34 @@ export default function UserEditPage() {
                         ref={photoInput}
                         type="text"
                         id="form-photo"
-                        maxLength={CONSTS.photoMax}
+                        maxLength={CONFIG.PHOTO_LINK_MAX}
                         onInput={() => {
-                            checkImageSource(photoInput.current.value) // Проверяем картинку
+                            checkPhoto(photoInput.current.value) // Проверяем картинку
                             handleInputUpdate() // Так же обновляем все поля
                         }}
                         required
                     />
                 </CustomInput>
-
                 <small className="text-gray">
-                    • Размер картинки от {CONSTS.photoPxMin}px/{CONSTS.photoPxMin}px до {CONSTS.photoPxMax}px/{CONSTS.photoPxMax}px
-                    <br/>• Замена на стандартную картинку если поле пустое
+                    • Размер картинки от {CONFIG.PHOTO_PX_MIN}px/{CONFIG.PHOTO_PX_MIN}px до {CONFIG.PHOTO_PX_MAX}px/{CONFIG.PHOTO_PX_MAX}px
+                    <br />• Будет установлено стандартная картинка если поле пустое
                 </small>
                 {photoPreview &&
-                    <img src={photoPreview} alt="preview" draggable="false" />
+                    <>
+                        <p className="news-add__preview-text">Предпросмотр картинки</p>
+                        <div className="news-add__preview">
+                            <ImageFullscreen>
+                                <img src={photoPreview} alt="preview" />
+                            </ImageFullscreen>
+                        </div>
+                    </>
                 }
                 
-                <CustomInput label={`Описание профиля (${bioLength} / ${CONSTS.userBioMax})`} error={inputError === "bio"}>
+                <CustomInput label={`Описание профиля (${bioLength} / ${CONFIG.USER_BIO_MAX})`} error={inputError === "bio"}>
                     <textarea
                         ref={bioInput}
                         id="form-bio"
-                        maxLength={CONSTS.userBioMax}
+                        maxLength={CONFIG.USER_BIO_MAX}
                         onInput={() => {
                             setBioLength(bioInput.current.value.length) // Обновляем значение длины описания
                             handleInputUpdate() // Так же обновляем все поля
@@ -216,7 +209,7 @@ export default function UserEditPage() {
                 </CustomInput>
                 
                 {errorText &&
-                    <p className="text-red">{errorText}</p>
+                    <p className="text-red" style={{textAlign: "center"}}>{errorText}</p>
                 }
 
                 <button onClick={submitForm} disabled={disableSubmitButton} className="green">Сохранить</button>

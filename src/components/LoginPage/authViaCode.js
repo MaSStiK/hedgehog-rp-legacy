@@ -7,9 +7,7 @@ export default function AuthViaCode(Context, vkCode) {
             const foundUser = data.response.items.find(msg => msg.last_message.text === vkCode)
 
             // Если не нашло пользователя с таким кодом - показываем ошибку
-            if (!foundUser) {
-                return reject("Сообщение не найдено!")
-            }
+            if (!foundUser) return reject("Сообщение не найдено!")
 
             // Находим информацию о пользователе написавшем сообщение
             const foundUserData = data.response.profiles.find(user => user.id === foundUser.last_message.from_id)
@@ -40,10 +38,7 @@ export default function AuthViaCode(Context, vkCode) {
 
             GSAPI("AuthViaCode", {vk_id: foundUserData.id.toString(), token: newToken, data: JSON.stringify(newUserData)}, (data) => {
                 // Если ошибка
-                if (!data.success || !Object.keys(data).length) {
-                    reject("Произошла ошибка во время регистрации")
-                    return
-                }
+                if (!data.success || !Object.keys(data).length) return reject("Произошла ошибка во время регистрации")
     
                 // Если успех - сохраняем информацию
                 let userData = data.data

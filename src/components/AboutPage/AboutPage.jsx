@@ -16,8 +16,8 @@ export default function AboutPage() {
 
     useEffect(() => {
         // Если юзер в кэше
-        if (sessionStorage.vkUsersAboutPage) {
-            setUserDataVk(JSON.parse(sessionStorage.vkUsersAboutPage))
+        if (sessionStorage.aboutPageVkUsers) {
+            setUserDataVk(JSON.parse(sessionStorage.aboutPageVkUsers))
             return
         }
 
@@ -27,7 +27,7 @@ export default function AboutPage() {
                 data = data.response
 
                 // Сохраняем юзера
-                sessionStorage.vkUsersAboutPage = JSON.stringify(data)
+                sessionStorage.aboutPageVkUsers = JSON.stringify(data)
                 setUserDataVk(data)
             }
         })
@@ -35,8 +35,8 @@ export default function AboutPage() {
 
     useEffect(() => {
         // Если группа в кэше
-        if (sessionStorage.vkGroupAboutPage) {
-            setGroupDataVk(JSON.parse(sessionStorage.vkGroupAboutPage))
+        if (sessionStorage.aboutPageVkGroup) {
+            setGroupDataVk(JSON.parse(sessionStorage.aboutPageVkGroup))
             return
         }
 
@@ -46,7 +46,7 @@ export default function AboutPage() {
                 data = data.response
 
                 // Сохраняем группу
-                sessionStorage.vkGroupAboutPage = JSON.stringify(data)
+                sessionStorage.aboutPageVkGroup = JSON.stringify(data)
                 setGroupDataVk(data)
             }
         })
@@ -60,19 +60,19 @@ export default function AboutPage() {
             <section className="flex-col">
                 <h1>«Ежиное РП»</h1>
                 <p>Это группа единомышленников и друзей, которые объединились, чтобы писать историю собственного мира.
-                    <br/>Это творческая команда, которая занимается одновременно
-                    <br/>- Историей
-                    <br/>- Литературой
-                    <br/>- Искусством
-                    <br/>- Картографией
+                    <br />Это творческая команда, которая занимается одновременно
+                    <br />- Историей
+                    <br />- Литературой
+                    <br />- Искусством
+                    <br />- Картографией
                 </p>
             </section>
 
             <section className="flex-col">
                 <h1>Наша группа в вк</h1>
                 <ButtonProfile
-                    src={groupDataVk.length ? groupDataVk[0].photo_100 : imgBasePhoto}
-                    text={groupDataVk.length ? groupDataVk[0].name : "Загрузка"}
+                    src={groupDataVk[0]?.photo_100 || imgBasePhoto}
+                    text={groupDataVk[0]?.name}
                     onClick={() => window.open("https://vk.com/public196009619", "_blank")}
                 />
             </section>
@@ -80,13 +80,13 @@ export default function AboutPage() {
             <section className="flex-col">
                 <h2>По вопросам группы и беседы в вк</h2>
                 <ButtonProfile
-                    src={userDataVk.length ? userDataVk[1].photo_100 : imgBasePhoto}
-                    text={userDataVk.length ? `${userDataVk[1].first_name} ${userDataVk[1].last_name}` : "Загрузка"}
+                    src={userDataVk[1]?.photo_100 || imgBasePhoto}
+                    text={`${userDataVk[1]?.first_name || ""} ${userDataVk[1]?.last_name || ""}`}
                     onClick={() => window.open("https://vk.com/id396771911", "_blank")}
                 />
                 <ButtonProfile
-                    src={userDataVk.length ? userDataVk[2].photo_100 : imgBasePhoto}
-                    text={userDataVk.length ? `${userDataVk[2].first_name} ${userDataVk[2].last_name}` : "Загрузка"}
+                    src={userDataVk[2]?.photo_100 || imgBasePhoto}
+                    text={`${userDataVk[2]?.first_name || ""} ${userDataVk[2]?.last_name || ""}`}
                     onClick={() => window.open("https://vk.com/id307642230", "_blank")}
                 />
             </section>
@@ -94,8 +94,8 @@ export default function AboutPage() {
             <section className="flex-col">
                 <h2>По техническим вопросам сайта</h2>
                 <ButtonProfile
-                    src={userDataVk.length ? userDataVk[0].photo_100 : imgBasePhoto}
-                    text={userDataVk.length ? `${userDataVk[0].first_name} ${userDataVk[0].last_name}` : "Загрузка"}
+                    src={userDataVk[0]?.photo_100 || imgBasePhoto}
+                    text={`${userDataVk[0]?.first_name || ""} ${userDataVk[0]?.last_name || ""}`}
                     onClick={() => window.open("https://vk.com/id291195777", "_blank")}
                 />
                 <Link className="about__link-support" to={"/support/feedback"}>

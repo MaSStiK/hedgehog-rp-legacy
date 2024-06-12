@@ -31,7 +31,7 @@
 
 /* Обычная кнопка (Серая) */
 button {
-    width: 200px;
+    width: min(200px, 100%);
     min-height: var(--button-height);
     padding: var(--button-padding);
 
