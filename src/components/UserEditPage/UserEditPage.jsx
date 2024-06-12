@@ -195,7 +195,7 @@ export default function UserEditPage() {
                     </>
                 }
                 
-                <CustomInput label={`Описание профиля (${bioLength} / ${CONFIG.USER_BIO_MAX})`} error={inputError === "bio"}>
+                <CustomInput label={`О себе (${bioLength} / ${CONFIG.USER_BIO_MAX})`} error={inputError === "bio"}>
                     <textarea
                         ref={bioInput}
                         id="form-bio"
