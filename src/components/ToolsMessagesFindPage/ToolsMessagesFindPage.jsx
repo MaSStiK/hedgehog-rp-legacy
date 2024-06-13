@@ -60,7 +60,7 @@ export default function ToolsMessagesFindPage() {
             <h4 className="page-title">h/tools</h4>
 
             <section className={`vk-messages-section flex-col ${vkData.messages.length !== 0 && "vk-messages-section_min-height"}`}>
-                <h1>Поиск сообщения</h1>
+                <h1>Новость из сообщения в ВК</h1>
                 <p>Найдите нужное сообщение и нажмите на него для создания новости.
                     <br />Если нужное сообщения нет найдено, то вы можете загрузить больше сообщений.
                 </p>
