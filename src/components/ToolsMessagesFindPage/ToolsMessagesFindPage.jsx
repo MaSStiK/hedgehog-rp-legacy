@@ -80,7 +80,7 @@ export default function ToolsMessagesFindPage() {
                             <ButtonImage
                                 src={imgCross}
                                 alt="clear-search"
-                                text="Отчистить"
+                                text="Отмена"
                                 onClick={() => {
                                     // Отчищаем поле и активируем поиск
                                     searchRef.current.value = ""

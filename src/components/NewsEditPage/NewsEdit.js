@@ -31,6 +31,8 @@ export function formValidate(formTitle, formText, attachments) {
 
 export function sendForm(Context, post, formTitle, formText, attachments) {
     return new Promise((resolve, reject) => {
+        // Пользователь может поменять поля post_title, post_text, attachments
+
         // Данные нового поста
         const newPostData = {
             country_id  : post.country_id, // id страны
@@ -42,7 +44,7 @@ export function sendForm(Context, post, formTitle, formText, attachments) {
             timestamp   : post.timestamp // Дата создания поста
         }
 
-        GSAPI("PUTpost", {data: JSON.stringify(newPostData), post_id: post.post_id, token: Context.userData.token}, (data) => {
+        GSAPI("PUTpost", {data: JSON.stringify(newPostData), token: Context.userData.token}, (data) => {
             console.log("GSAPI: PUTpost");
 
             // Если ошибка

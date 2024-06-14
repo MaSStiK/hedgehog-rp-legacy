@@ -19,9 +19,11 @@ export default function CountryListPage() {
 
     const [countryList, setCountryList] = useState([]);
 
+    // Получаем список стран для отображения
     function getCountries(data) {
         let countries = []
         for (let user of data) {
+            // Не отображаем людей без стран и "Обновления"
             if (user.country_id !== "") {
                 countries.push({
                     country_id      : user.country_id,
@@ -46,17 +48,20 @@ export default function CountryListPage() {
     }, [Context.users])
     
     function searchCountries() {
-        let filteredUsers = sortAlphabetically(getCountries(Context.users), "country_name")
+        let filteredCountries = sortAlphabetically(getCountries(Context.users), "country_name")
         let search = searchRef.current.value.toLowerCase()
         if (search) {
-            filteredUsers = filteredUsers.filter(
+            filteredCountries = filteredCountries.filter(
                 // Если есть поисковая строка в названии страны или в теге или в id
                 country => country.country_name.toLowerCase().includes(search)
                 || country.country_tag.toLowerCase().includes(search)
                 || country.country_id.toLowerCase().includes(search)
             )
         }
-        setCountryList(filteredUsers)
+
+        // Удаляем "Обновления" из списка
+        filteredCountries = filteredCountries.filter(country => country.country_id !== "c769201685")
+        setCountryList(filteredCountries)
     }
 
     return (
@@ -79,7 +84,7 @@ export default function CountryListPage() {
                     <ButtonImage
                         src={imgCross}
                         alt="clear-search"
-                        text="Отчистить"
+                        text="Отмена"
                         onClick={() => {
                             // Отчищаем поле и активируем поиск
                             searchRef.current.value = ""
@@ -91,28 +96,22 @@ export default function CountryListPage() {
 
                 {Context.users.length !== 0
                     ? <>
-                        {countryList.map((country) => {
-                            // Не рендерим "Обновления"
-                            if (country.country_id !== "c769201685") {
-                                return (
-                                    <ButtonProfile
-                                        key={country.country_id}
-                                        src={country.country_photo}
-                                        text={country.country_name}
-                                        subText={country.country_tag}
-                                        onClick={() => Navigate("/country/" + country.country_id)}
-                                    />
-                                )
-                            }
-                            return null
-                        })}
+                        {countryList.map((country) => (
+                            <ButtonProfile
+                                key={country.country_id}
+                                src={country.country_photo}
+                                text={country.country_name}
+                                subText={country.country_tag}
+                                onClick={() => Navigate("/country/" + country.country_id)}
+                            />
+                        ))}
                       </>
                     : <>
                         {/* Предпоказ */}
                         <ButtonProfile text="LoremLoremLorem" preview />
                         <ButtonProfile text="LoremLorem" preview />
                         <ButtonProfile text="LoremLoremLor" preview />
-                        {/* <ButtonProfile text="LoremLoremLo" preview /> */}
+                        <ButtonProfile text="LoremLoremLo" preview />
                         <ButtonProfile text="LoremLoremLoremLorem" preview />
                       </>
                 }

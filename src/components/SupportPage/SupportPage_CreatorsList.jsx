@@ -31,6 +31,7 @@ export default function SupportPageCreatorsList() {
 
             <section className="flex-col">
                 <h1>Текстовый список создателей стран</h1>
+                <p>(Не актуально)</p>
 
                 <ul className="support__ul flex-col">
                     {sortAlphabetically(creators, "title").map((creator) => (

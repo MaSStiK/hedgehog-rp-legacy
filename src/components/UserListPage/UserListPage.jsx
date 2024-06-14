@@ -40,6 +40,9 @@ export default function UserListPage() {
                 || user.id.toLowerCase().includes(search)
             )
         }
+
+        // Удаляем админа из списка
+        sortedUsers = sortedUsers.filter(user => user.id !== "769201685")
         setUsersRender(sortedUsers)
     }
     return (
@@ -61,7 +64,7 @@ export default function UserListPage() {
                     <ButtonImage
                         src={imgCross}
                         alt="clear-search"
-                        text="Отчистить"
+                        text="Отмена"
                         onClick={() => {
                             // Отчищаем поле и активируем поиск
                             searchRef.current.value = ""
