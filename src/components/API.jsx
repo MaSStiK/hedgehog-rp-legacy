@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-const GOOGLE_API = "https://script.google.com/macros/s/AKfycbz5Mh9gFAYtdyBPEx12EMfcfJroG1_7jMA8wcy66iLFZtpTpv113JoTQZ7rKdCn1CJU8w/exec"
+const GOOGLE_API = "https://script.google.com/macros/s/AKfycbzrs09WXv1oiLSuRyJhNVGV_oQ6qZKSapHktefp5t4JU1IzRiCgvphl6EMU2Qe5NSlzAw/exec"
 
 // Отправить запрос
 export function GSAPI(action, data={}, func) {

@@ -27,8 +27,9 @@ export default function AuthViaCode(Context, vkCode) {
                 bio: "", // Описание
                 photo: foundUserData.photo_100, // Фото профиля
                 timestamp: dateNow, // Дата регистрации
-                roles: [], // Роли
-                favorite: {}, // Избранные
+                roles: "[]", // Роли
+                settings: "{}", // Настройки
+                favorite: "{}", // Избранные
                 country_id: "",
                 country_tag: "",
                 country_name: "",
