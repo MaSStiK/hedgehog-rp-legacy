@@ -237,7 +237,7 @@ export default function NewsAddPage() {
 
                 {Location.state?.date &&
                     <>
-                        <p>Отображаемое дата публикации:</p>
+                        <p>Отображаемая дата публикации:</p>
                         <div className="settings__radio-input flex-row">
                             <input
                                 id="publication-timestamp"
