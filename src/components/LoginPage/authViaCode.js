@@ -1,7 +1,6 @@
 import { GSAPI, VKAPI } from "../API"
 
 export default function AuthViaCode(Context, vkCode) {
-    let test = 123
     return new Promise((resolve, reject) => {
         VKAPI("messages.getConversations", {extended: 1}, (data) => {
             // Перебираем все последние сообщения в чате и находим кто отправил код 
