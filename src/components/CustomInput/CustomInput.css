@@ -1,0 +1,88 @@
+/* Блок с кастомным инпутом */
+.custom-input {
+    width: 100%;
+    height: auto;
+    position: relative;
+
+    margin-top: 8px; /* Отступ между инпутами - 20px */
+}
+
+/* Кастомный placeholder */
+.custom-input label {
+    position: absolute;
+    padding: 0 4px;
+    top: 8px;
+    left: 4px;
+
+    /* По умолчанию размер текста тега p */
+    color: var(--text-input-label);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    pointer-events: none; /* Отключаем взаимодействие с label */
+}
+
+/* Перемещаем текст выше если в инпуте есть значение или инпут активен */
+.custom-input input[type=text]:focus:not(:read-only) ~ label,
+.custom-input input[type=text]:valid:not(:read-only) ~ label,
+.custom-input input[type=text]:read-only ~ label,
+.custom-input textarea:focus:not(:read-only) ~ label,
+.custom-input textarea:valid:not(:read-only) ~ label,
+.custom-input textarea:read-only ~ label {
+    translate: 0px -16px;
+    font-size: var(--p-small);
+    color: var(--text-input-label);
+    background-color: var(--bg-secondary);
+}
+
+/* При нажатии на инпут зеленая обводка */
+.custom-input input[type=text]:focus:not(:read-only),
+.custom-input textarea:focus:not(:read-only) {
+    border: 1px solid var(--border-input-focus);
+}
+
+
+/* При нажатии на инпут зеленый текст лейбла */
+.custom-input input[type=text]:focus:not(:read-only) ~ label,
+.custom-input textarea:focus:not(:read-only) ~ label {
+    color: var(--border-input-focus);
+}
+
+
+/* Стиль для ошибки */
+.custom-input.error input[type=text]:not(:read-only),
+.custom-input.error textarea:not(:read-only) {
+    border: 1px solid var(--border-input-error);
+    /* color: var(--border-input-error); */
+}
+
+/* При ошибке лейб красный */
+.custom-input.error input[type=text]:not(:read-only) ~ label,
+.custom-input.error textarea:not(:read-only) ~ label {
+    color: var(--border-input-error);
+}
+
+
+/* Инпут с паролем */
+.custom-input-password input {
+    padding-right: 44px; /* 32px + 12px */
+}
+
+/* Кнопка внутри обвертки */
+.custom-input-password button {
+    /* Кнопка внутри инпута 28px на 28px */
+    width: var(--button-img);
+    height: var(--button-img);
+
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+/* Картинка внутри обвертки */
+.custom-input-password button img {
+    /* Картинка внутри кнопки 28px на 28px */
+    width: var(--button-img);
+    height: var(--button-img);
+}

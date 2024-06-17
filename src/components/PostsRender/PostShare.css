@@ -1,0 +1,7 @@
+.post-share {
+    padding: var(--gap-small);
+}
+
+.post-share__title {
+    width: fit-content;
+}

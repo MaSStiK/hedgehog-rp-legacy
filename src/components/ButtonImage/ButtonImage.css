@@ -1,0 +1,28 @@
+/* Кнопка с иконкой (Как прозрачная, но 36x36) */
+.button-image {
+    /* Высота как у обычной кнопки*/
+    width: fit-content; /* Ширина кнопки зависит от контента  и обтягивает его*/
+    min-width: var(--button-height); /* Минимальная ширина кнопки является высота и получается квадратная форма */
+    gap: 0;
+}
+
+/* Отключили gap у кнопки и даем тексту отступ с обеих сторон 4px */
+.button-image p {
+    padding: 0 var(--button-gap);
+}
+
+/* Кнопка во всю ширину */
+.button-image_width100 {
+    width: 100%;
+}
+
+/* Контент кнопки слева, а не по центру */
+.button-image_atStart {
+    justify-content: flex-start;
+}
+
+/* Иконка в кнопке чуть меньше кнопки */
+.button-image img {
+    width: var(--button-img);
+    height: var(--button-img);
+}

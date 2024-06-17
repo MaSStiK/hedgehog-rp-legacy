@@ -1,0 +1,8 @@
+/* Строка поиска */
+.user-list__search {
+    align-items: flex-end;
+}
+
+.user-list__search .custom-input {
+    flex: 1;
+}

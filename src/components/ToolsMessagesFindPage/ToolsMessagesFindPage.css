@@ -1,0 +1,85 @@
+/* Секция с блоком */
+.vk-messages-section {
+    max-height: calc(100% - 40px);
+}
+
+/* Устанавливаем минимальную высоту после загрузки сообщений */
+.vk-messages-section.vk-messages-section_min-height {
+    min-height: 460px;
+}
+
+/* Блок с прокруткой */
+.vk-messages {
+    overflow: auto;
+    padding: var(--gap-small) var(--gap-small) var(--gap-small) 0; /* Отступ от scroll и вертикальный отступ */
+    margin: calc(-1 * var(--gap-small)) 0; /* Прижимаем блок к hr и нижнему краю */
+}
+
+/* Полоса прокрутки с отступом сверху и снизу */
+.vk-messages::-webkit-scrollbar-track {
+    margin: var(--gap-small) 0;
+}
+
+/* Поиск по сообщениям */
+.vk-messages__search {
+    align-items: flex-end;
+}
+
+.vk-messages__search .custom-input {
+    flex: 1;
+}
+
+/* Информация о загрузке */
+.vk-messages__search-info {
+    gap: 4px;
+}
+
+/* Блок с сообщением */
+.vk-message {
+    width: 100%;
+    gap: 8px;
+    padding: 8px 4px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* Картинка профиля */
+.vk-message__user-image {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+/* Блок с информацией */
+.vk-message__info {
+    width: 100%;
+    gap: 0px;
+    margin-top: 2px;
+}
+
+/* Имя профиля */
+.vk-message__info-name {
+    font-weight: 700;
+    font-size: 12.5px;
+    color: #71aaeb;
+}
+
+/* Время */
+.vk-message__info-name span {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(130, 130, 130);
+    margin-left: 8px;
+}
+
+/* Текст сообщения */
+.vk-message__info-text {
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.vk-message__info-attachments {
+    flex-wrap: wrap;
+    margin-top: 12px;
+}

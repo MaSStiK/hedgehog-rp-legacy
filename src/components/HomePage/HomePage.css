@@ -1,0 +1,10 @@
+/* Картинка из игры с персонажами */
+.home__image-AA {
+    width: min(600px, 100%);
+    margin: 0 auto -30px auto;
+}
+
+/* Видео с ютуб */
+iframe {
+    width: 100%;
+}

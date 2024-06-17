@@ -1,0 +1,41 @@
+.tp.button-toTop {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+    position: absolute;
+    bottom: calc(var(--gap-small) * 5);
+    left: calc(50% + 482px);
+    transform: translateX(-50%);
+    z-index: var(--z-above);
+    background-color: #FFFFFF22;
+}
+
+
+/* Наведение на пк */
+@media (hover: hover) {
+    .tp.button-toTop:hover,
+    .tp.button-toTop:focus-visible {
+        background-color: var(--button-hover);
+    }
+}
+
+.tp.button-toTop img {
+    width: 48px;
+    height: 48px;
+}
+
+@media screen and (max-width: 1060px) {
+    .tp.button-toTop {
+        left: unset;
+        right: 16px;
+        transform: translate(0, 0);
+    }
+}
+
+/* На телефоне скрываем кнопку */
+@media screen and (max-width: 760px) {
+    .tp.button-toTop {
+        display: none;
+    }
+}

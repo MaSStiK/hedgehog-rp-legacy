@@ -1,0 +1,76 @@
+:root {
+    --modal-width-max: 90vw;
+    --modal-height-max: 80vh;
+}
+
+/* Контент в 100% */
+@media screen and (max-width: 900px) {
+    :root {
+        --modal-width-max: 96vw;
+        --modal-height-max: 60vh;
+    }
+}
+
+/* Темный фон модального окна */
+.modal-wrapper {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--gap-small);
+
+    background-color: var(--bg-transparent);
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    cursor: pointer;
+    z-index: var(--z-modal);
+}
+
+/* Модальное окно */
+dialog.modal {
+    max-width: var(--modal-width-max);
+    max-height: var(--modal-height-max);
+    box-sizing: content-box;
+
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius);
+
+    position: relative;
+    cursor: default;
+}
+
+
+/* Кнопка закрытия модального окна */
+#modal__close-button {
+    height: var(--button-height);
+    position: absolute;
+    top: 0;
+    right: calc(-1 * (var(--button-height) + 8px));
+}
+
+/* Наведение на пк */
+@media (hover: hover) {
+    /* При наведении на фон кнопка становится наведенной */
+    .modal-wrapper:hover #modal__close-button {
+        background-color: var(--button-hover);
+    }
+    /* При наведении на модальное окно кнопка становится обычной */
+    dialog.modal:hover #modal__close-button {
+        background-color: var(--button-bg);
+    }
+}
+
+/* Контент в 100% */
+@media screen and (max-width: 900px) {
+    /* На телефоне кнопка сверху */
+    #modal__close-button {
+        top: calc(-1 * (var(--button-height) + 8px));
+        right: 0;
+    }
+}

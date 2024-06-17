@@ -1,0 +1,22 @@
+/* Контент в 100% */
+@media screen and (max-width: 900px) {
+    /* Страница входа */
+    #article-login {
+        /* Одинаковый отступ со всех сторон страницы */
+        padding: var(--gap-small);
+    }
+
+    #article-login .logo-wrapper {
+        width: min(100px, 100%);
+        height: 100px;
+    }
+}
+
+
+/* Скрываем текст в кнопке с картинкой */
+@media screen and (max-width: 400px) {
+    /* Скрываем текст у кнопки отчистки поля поиска */
+    .login__token-row .button-image p {
+        display: none;
+    }
+}

@@ -1,0 +1,82 @@
+/* Блок с постом */
+.post {}
+
+/* Верхняя часть поста (автор и время публикации) */
+.post__top {
+    justify-content: space-between;
+    gap: 0;
+}
+
+/* Текст поста */
+.post > p {
+    color: var(--text-light);
+    white-space: pre-wrap;
+}
+
+
+/* Оставляем место под время */
+.post__top button {
+    width: calc(100% - 80px);
+}
+
+
+/* Время */
+.post__top > small {
+    text-align: right;
+}
+
+
+/* Блок с прокруткой картинок */
+.post__attachments-wrapper {
+    overflow: hidden;
+}
+
+.post__attachments-container {
+    height: 324px; /* Ставим фиксированную высоту что бы убрать отступ */
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.post__attachment {
+    border-radius: var(--border-radius);
+    background-color: var(--bg-primary);
+}
+
+.post__attachment img {
+    height: 324px;
+    padding: var(--gap-small);
+    object-fit: contain;
+    transition: all 0s;
+}
+
+/* Если картинка одна - во всю ширину блока, не зависимо от высоты */
+.post__attachment_single {
+    width: 100%;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+}
+
+
+/* Слайдер картинок */
+.post__attachments-control {
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+/* Нумерация картинки */
+.post__attachments-control span {
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+
+/* Кнопки под постом */
+.post__buttons {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
