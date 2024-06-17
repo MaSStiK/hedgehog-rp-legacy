@@ -1,8 +1,0 @@
-/* Строка поиска */
-.country-list__search {
-    align-items: flex-end;
-}
-
-.country-list__search .custom-input {
-    flex: 1;
-}

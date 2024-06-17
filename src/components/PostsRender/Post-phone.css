@@ -1,8 +1,0 @@
-/* Контент в 100% */
-@media screen and (max-width: 900px) {
-    /* Уменьшаем картинку */
-    .post__attachments-container,
-    .post__attachment img {
-        height: 224px;
-    }
-}

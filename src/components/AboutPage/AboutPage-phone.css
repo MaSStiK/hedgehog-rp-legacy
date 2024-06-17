@@ -1,8 +1,0 @@
-/* Контент в 100% */
-@media screen and (max-width: 900px) {
-    /* Текст отзыва шире */
-    .review__text {
-        width: 100%;
-        text-align: center;
-    }
-}
