@@ -3,10 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonImage from "../ButtonImage/ButtonImage"
+import StyledSelect from "../StyledSelect";
 import { CONFIG, setPageTitle, setPageLoading, timestampToDate } from "../Global"
 import { formValidate, sendForm } from "./NewsAdd.js"
 import CheckImgSrc from "../CheckImgSrc.js"
-import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import Fullscreen from "../Fullscreen/Fullscreen"
 import imgAdd from "../../assets/svg/Plus.svg"
 import imgMinus from "../../assets/svg/Minus.svg"
 
@@ -32,11 +33,17 @@ export default function NewsAddPage() {
     const textInput = useRef()
     const photoInput = useRef()
 
+    const timestampOptions = [
+        {value: "timestamp", label: `Дата отправки сообщения\n(${publicationDate.stringTime} ${publicationDate.stringDate})`},
+        {value: "now", label: "Сейчас"},
+    ]
+
     // Если пост создается из сообщения
     useEffect(() => {
         if (Location.state) {
             // Заполняем поля
             textInput.current.value = Location.state.text
+            setTextLength(Location.state.text.length)
             setSelectedDate("timestamp") // Устанавливаем выбор по timestamp
             setPublicationDate(timestampToDate(Location.state?.date * 1000))
     
@@ -114,8 +121,8 @@ export default function NewsAddPage() {
             if (resolved) {
                 // Если выбрана дата публикации сейчас - то ставим текущую дату, иначе - дата сообщения
                 let _publicationDate = selectedDate === "now" ? Date.now() : Location.state?.date * 1000
-                
-                sendForm(Context, formTitle, formText, attachments, _publicationDate)
+
+                sendForm(Context, formTitle, formText, attachments, _publicationDate, Location.state?.from_id)
                 .then(() => { // Если успешно сохранились изменения
                     setPageLoading(false)
                     Navigate("/news")
@@ -185,6 +192,7 @@ export default function NewsAddPage() {
                                 alt="image-add"
                                 text="Добавить"
                                 className="green"
+                                title="Добавить картинку"
                                 onClick={addAttachment}
                                 disabled={disableAddButton}
                             />
@@ -197,9 +205,9 @@ export default function NewsAddPage() {
                             <>
                                 <p className="news-add__preview-text">Предпросмотр картинки</p>
                                 <div className="news-add__preview">
-                                    <ImageFullscreen>
+                                    <Fullscreen>
                                         <img src={photoPreview} alt="preview" />
-                                    </ImageFullscreen>
+                                    </Fullscreen>
                                 </div>
                             </>
                         }
@@ -213,14 +221,15 @@ export default function NewsAddPage() {
                         <div className="flex-row news-add__attachments">
                             {attachments.map((attach) => {
                                 return <div className="flex-col" key={attach.id}>
-                                    <ImageFullscreen>
+                                    <Fullscreen>
                                         <img src={attach.url} alt="preview" />
-                                    </ImageFullscreen>
+                                    </Fullscreen>
 
                                     <ButtonImage
                                         src={imgMinus}
                                         alt="image-delete"
                                         className="red"
+                                        title="Удалить картинку"
                                         onClick={() => setAttachments(attachments.filter(el => el.id !== attach.id))}
                                     />
                                 </div>
@@ -235,30 +244,17 @@ export default function NewsAddPage() {
                     <small className="text-gray">• Достигнуто максимальное кол-во картинок</small>
                 }
 
-                {Location.state?.date &&
-                    <>
-                        <p>Отображаемая дата публикации:</p>
-                        <div className="settings__radio-input flex-row">
-                            <input
-                                id="publication-timestamp"
-                                type="radio"
-                                name="publication-date"
-                                onChange={() => setSelectedDate("timestamp")}
-                                defaultChecked={true}
-                            />
-                            <label htmlFor="publication-timestamp">Дата отправки сообщения<br />({publicationDate.stringTime} {publicationDate.stringDate})</label>
-                        </div>
-                        <div className="settings__radio-input flex-row">
-                            <input
-                                id="publication-now"
-                                type="radio"
-                                name="publication-date"
-                                onChange={() => setSelectedDate("now")}
-                            />
-                            <label htmlFor="publication-now">Сейчас</label>
-                        </div>
-                    </>
-                }
+                <p>Отображаемая дата публикации</p>
+                <StyledSelect
+                    options={timestampOptions}
+                    values={[timestampOptions[selectedDate === "timestamp" ? 0 : 1]]} // Значение по умолчанию
+                    searchable={false}
+                    dropdownGap={4}
+                    color="var(--border-input)"
+                    disabled={!Location.state?.date}
+                    dropdownPosition="top"
+                    onChange={value => setSelectedDate(value[0].value)}
+                />
                 
                 {errorText &&
                     <p className="text-red" style={{textAlign: "center"}}>{errorText}</p>

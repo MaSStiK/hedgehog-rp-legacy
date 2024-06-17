@@ -36,7 +36,8 @@ export default function SupportPageCreatorsList() {
                 <ul className="support__ul flex-col">
                     {sortAlphabetically(creators, "title").map((creator) => (
                         <li>
-                            <p>{creator.title} - <Link to={"https://vk.com/id" + creator.id}
+                            <p className="text-light">{creator.title} -&nbsp;
+                                <Link to={"https://vk.com/id" + creator.id}
                                     className="text-link"
                                     target="_blank">{creator.name}
                                 </Link>

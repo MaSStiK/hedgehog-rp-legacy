@@ -14,14 +14,15 @@ export default function AuthViaToken(Context, token) {
             if (!data.success || !Object.keys(data).length) return reject("Токен не действителен")
 
             // Если успех - сохраняем и открываем главную
-            let newUserData = data.data
-            newUserData.token = token // Ставим токен
-            localStorage.userData = JSON.stringify(newUserData)
-
-            Context.setUserData(newUserData)
+            let userData = data.data
+            userData.token = token // Ставим токен
+            localStorage.UserData = JSON.stringify(userData)
+            Context.setUserData(userData)
+            localStorage.PageSettings = JSON.stringify(userData.settings) // Сохраняем настройки в память браузера
+            Context.setPageSettings(userData.settings) // Сохраняем настройки
 
             // Отправляем сообщение пользователю
-            VKAPI("messages.send", {peer_id: Number(newUserData.vk_id), random_id: 0, message: "Вы успешно вошли в свой аккаунт по токену!"})
+            VKAPI("messages.send", {peer_id: Number(userData.vk_id), random_id: 0, message: "Вы успешно вошли в свой аккаунт по токену!"})
             resolve()
         })
     })

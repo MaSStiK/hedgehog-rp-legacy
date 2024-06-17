@@ -5,16 +5,18 @@
     --h1: 24px;
     --h2: 22px;
     --h3: 20px;
-    --h4: 16px;
+    --h4: 18px;
     --p: 16px;
     --p-small: 12px;
 
     /* Цвет текста */
     --text-white: rgba(255,255,255, 1);
+    --text-light: rgb(255,255,255, 0.9); /* 90% прозрачность */
     --text-gray: rgba(255,255,255, 0.5); /* 50% прозрачность */
     --text-dark: rgba(255,255,255, 0.3); /* 30% прозрачность */
     --text-red: #D60027;
-    --text-link: #8b81e6;
+    --text-link: #8B81E6;
+    --text-input-label: #B6B6B6
 }
 
 /* Контент в 100% */
@@ -23,7 +25,7 @@
         --h1: 22px;
         --h2: 20px;
         --h3: 16px;
-        --h4: 14px;
+        --h4: 15px;
         --p: 14px;
     }
 }
@@ -81,6 +83,10 @@ label {
 /* Стили для цвета текста */
 .text-white {
     color: var(--text-white);
+}
+
+.text-light {
+    color: var(--text-light);
 }
 
 .text-gray {

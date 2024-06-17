@@ -14,7 +14,7 @@ export default function PostsRender({
     return (
         <>
             {posts.map((post) => {
-                let postAuthor = Context.users.find(user => user.country_id === post.country_id)
+                let postAuthor = Context.Users.find(user => user.country_id === post.country_id)
 
                 // Если автор не найден - не возвращаем
                 if (postAuthor) {

@@ -39,7 +39,7 @@ export default function NewsPostPage() {
             <h4 className="page-title">h/news</h4>
 
             {/* Если пост найден */}
-            {Object.keys(postData).length && Context.users.length
+            {Object.keys(postData).length && Context.Users.length
                 ? <>
                     <PostsRender
                         posts={postData}
@@ -49,6 +49,7 @@ export default function NewsPostPage() {
                         <ButtonImage
                             src={imgNews}
                             text="Читать новости"
+                            title="Перейти на страницу новостей"
                             width100
                             onClick={() => Navigate("/news")}
                         />
@@ -63,6 +64,7 @@ export default function NewsPostPage() {
                             <ButtonImage
                                 src={imgNews}
                                 text="Читать новости"
+                                title="Перейти на страницу новостей"
                                 width100
                                 onClick={() => Navigate("/news")}
                             />

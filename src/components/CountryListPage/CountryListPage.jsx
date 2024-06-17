@@ -39,16 +39,16 @@ export default function CountryListPage() {
 
     useEffect(() => {
         // При обновлении контекста так же обновляется и массив
-        setCountryList(sortAlphabetically(getCountries(Context.users), "country_name"))
+        setCountryList(sortAlphabetically(getCountries(Context.Users), "country_name"))
         searchCountries()
 
         // Когда загрузили массив участников - активируем инпут (только на пк)
-        if (Context.users.length && window.innerWidth >= 900) searchRef.current.focus()
+        if (Context.Users.length && window.innerWidth >= 900) searchRef.current.focus()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [Context.users])
+    }, [Context.Users])
     
     function searchCountries() {
-        let filteredCountries = sortAlphabetically(getCountries(Context.users), "country_name")
+        let filteredCountries = sortAlphabetically(getCountries(Context.Users), "country_name")
         let search = searchRef.current.value.toLowerCase()
         if (search) {
             filteredCountries = filteredCountries.filter(
@@ -85,6 +85,7 @@ export default function CountryListPage() {
                         src={imgCross}
                         alt="clear-search"
                         text="Отмена"
+                        title="Отменить поиск"
                         onClick={() => {
                             // Отчищаем поле и активируем поиск
                             searchRef.current.value = ""
@@ -94,7 +95,7 @@ export default function CountryListPage() {
                     />
                 </div>
 
-                {Context.users.length !== 0
+                {Context.Users.length !== 0
                     ? <>
                         {countryList.map((country) => (
                             <ButtonProfile

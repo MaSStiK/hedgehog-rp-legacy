@@ -1,8 +1,9 @@
 import { useEffect, useContext } from "react"
 import { setPageTitle } from "../Global"
 import { DataContext } from "../Context"
+import ButtonToTop from "../ButtonToTop/ButtonToTop"
 import ChangelogsRender from "./ChangelogsRender"
-import changelogs from "./changelogs"
+import Changelogs from "./Changelogs"
 
 
 import "./ChangelogsPage.css"
@@ -14,11 +15,12 @@ export default function ChangelogsPage() {
     return (
         <article>
             <h4 className="page-title">h/changelogs</h4>
+            <ButtonToTop />
 
             {/* Отображаем обновления когда пользователи и посты */}
-            {Context.users.length !== 0 && Context.posts.length !== 0 && 
+            {Context.Users.length !== 0 && Context.Posts.length !== 0 && 
                 <ChangelogsRender
-                    changelogs={changelogs}
+                    changelogs={Changelogs}
                 />
             }
         </article>

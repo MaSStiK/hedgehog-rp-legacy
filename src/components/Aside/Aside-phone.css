@@ -33,9 +33,11 @@
     /* Навигация */
     nav {
         width: calc(100% - var(--gap-small) - var(--gap-small)); /* Расстояние между контентом и прокруткой - отступы */
-        margin: 0 auto;
-
+        padding: 0;
+        border-radius: none;
+        border: none;
         gap: 0px;
+        margin: 0 auto;
     }
 
     #nav-logo {

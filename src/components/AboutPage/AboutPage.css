@@ -64,7 +64,7 @@
 
 /* Нумерация картинки */
 .reviews-control span {
-    width: 20px;
+    min-width: 20px;
     display: inline-block;
     text-align: center;
 }

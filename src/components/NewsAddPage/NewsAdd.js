@@ -29,15 +29,20 @@ export function formValidate(formTitle, formText, attachments) {
     })
 }
 
-export function sendForm(Context, formTitle, formText, attachments, publicationDate) {
+export function sendForm(Context, formTitle, formText, attachments, publicationDate, publisher_id) {
     return new Promise((resolve, reject) => {
         // Дата создания
         let dateNow = Date.now()
 
+        let country_id = Context.UserData.country_id
+        if (publisher_id) { // Если передаем id публикующего - берем его id
+            country_id = "c" + publisher_id
+        }
+
         // Данные нового поста
         const newPostData = {
-            country_id  : Context.userData.country_id, // id страны
-            post_id     : Context.userData.country_id + "_" + dateNow, // id поста (Он не зависит от даты публикации, он всегда привязан ко времени)
+            country_id  : country_id, // id страны
+            post_id     : country_id + "_" + dateNow, // id поста (Он не зависит от даты публикации, он всегда привязан ко времени)
             post_title  : formTitle, // Заголовок поста
             post_text   : formText, // Текст поста
             attachments : JSON.stringify(Array.from(attachments, (attach) => attach.url)), // Прикрепленные картинки
@@ -45,7 +50,7 @@ export function sendForm(Context, formTitle, formText, attachments, publicationD
             timestamp   : publicationDate // Дата создания поста
         }
 
-        GSAPI("POSTpost", {data: JSON.stringify(newPostData), token: Context.userData.token}, (data) => {
+        GSAPI("POSTpost", {data: JSON.stringify(newPostData), token: Context.UserData.token}, (data) => {
             console.log("GSAPI: POSTpost");
 
             // Если ошибка
@@ -53,12 +58,12 @@ export function sendForm(Context, formTitle, formText, attachments, publicationD
                 return reject(data.error)
             }
 
-            let posts = [...Context.posts]
+            let posts = [...Context.Posts]
             posts.unshift(newPostData) // Вставляем новый пост в начало всех постов
             Context.setPosts(posts)
 
             // Добавляем пост в объект постов стран
-            let countryPosts = {...Context.countryPosts}
+            let countryPosts = {...Context.CountryPosts}
             if (newPostData.country_id in countryPosts) { // Если такая страна уже есть в объекте - добавляем пост
                 countryPosts[newPostData.country_id][newPostData.post_id] = newPostData
             } else { // Если нету - создаем объект из id страны

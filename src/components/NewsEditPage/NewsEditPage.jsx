@@ -6,7 +6,7 @@ import ButtonImage from "../ButtonImage/ButtonImage"
 import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import { formValidate, sendForm } from "./NewsEdit.js"
 import CheckImgSrc from "../CheckImgSrc.js"
-import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import Fullscreen from "../Fullscreen/Fullscreen"
 import imgAdd from "../../assets/svg/Plus.svg"
 import imgMinus from "../../assets/svg/Minus.svg"
 
@@ -35,7 +35,7 @@ export default function NewsEditPage() {
         // Если перешли на редактирование поста без данных о посте или без post_id или попытка изменить пост не своей страны - перекидываем на главную
         if (!Location.state
             || !Location.state?.post_id
-            || Location.state?.country_id !== Context.userData?.country_id
+            || Location.state?.country_id !== Context.UserData?.country_id
         ) {
             Navigate("/")
             return
@@ -183,6 +183,7 @@ export default function NewsEditPage() {
                                 alt="image-add"
                                 text="Добавить"
                                 className="green"
+                                title="Добавить картинку"
                                 onClick={addAttachment}
                                 disabled={disableAddButton}
                             />
@@ -195,9 +196,9 @@ export default function NewsEditPage() {
                             <>
                                 <p className="news-add__preview-text">Предпросмотр картинки</p>
                                 <div className="news-add__preview">
-                                    <ImageFullscreen>
+                                    <Fullscreen>
                                         <img src={photoPreview} alt="preview" />
-                                    </ImageFullscreen>
+                                    </Fullscreen>
                                 </div>
                             </>
                         }
@@ -211,13 +212,14 @@ export default function NewsEditPage() {
                         <div className="flex-row news-add__attachments">
                             {attachments.map((attach) => {
                                 return <div className="flex-col" key={attach.id}>
-                                    <ImageFullscreen>
+                                    <Fullscreen>
                                         <img src={attach.url} alt="preview" />
-                                    </ImageFullscreen>
+                                    </Fullscreen>
                                     <ButtonImage
                                         src={imgMinus}
                                         alt="image-delete"
                                         className="red"
+                                        title="Удалить картинку"
                                         onClick={() => setAttachments(attachments.filter(el => el.id !== attach.id))}
                                     />
                                 </div>

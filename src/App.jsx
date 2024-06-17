@@ -1,5 +1,5 @@
 // Импорт основных библиотек
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { DataContext, CreateContext } from "./components/Context"
@@ -7,7 +7,7 @@ import { GSAPI } from "./components/API";
 import { CONFIG, setPageLoading } from "./components/Global";
 import Modal from "./components/Modal/Modal"
 import { CountryPostsSave } from "./components/CountryPage/CountryPostsLoad"
-import $ from "jquery"
+import SetTheme from "./components/SetTheme";
 
 // Импорт стилей
 import "./styles/style.css";
@@ -45,6 +45,7 @@ import About from "./components/AboutPage/AboutPage";
 import Settings from "./components/SettingsPage/SettingsPage";
 import Changelogs from "./components/ChangelogsPage/ChangelogsPage";
 import Dev from "./components/DevPage/DevPage";
+import DevElements from "./components/DevPage/DevElementsPage";
 
 import NotFound from "./components/NotFoundPage/NotFoundPage";
 
@@ -57,12 +58,12 @@ export default function App() {
         setPageLoading() // Анимация загрузки страницы
 
         // После загрузки приложения делаем проверку токена, если он изменился - требуем залогиниться заново
-        if (Context.userData) {
+        if (Context.UserData) {
             new Promise((resolve, reject) => {
                 // Если есть userData, но нету токена - критическая ошибка
-                if (!Context.userData.token) return reject()
+                if (!Context.UserData.token) return reject()
 
-                GSAPI("AuthViaToken", {token: Context.userData.token}, (data) => {
+                GSAPI("AuthViaToken", {token: Context.UserData.token}, (data) => {
                     console.log("GSAPI: AuthViaToken");
 
                     // Если токен изменился
@@ -73,14 +74,16 @@ export default function App() {
                 })
             })
             .then(newUserData => {
-                newUserData.token = Context.userData.token // Устанавливаем токен т.к. его не передаем
-                localStorage.userData = JSON.stringify(newUserData) // Сохраняем в память браузера
+                newUserData.token = Context.UserData.token // Устанавливаем токен т.к. его не передаем
+                localStorage.UserData = JSON.stringify(newUserData) // Сохраняем в память браузера
                 Context.setUserData(newUserData) // Сохраняем в память приложения
+                localStorage.PageSettings = JSON.stringify(newUserData.settings) // Сохраняем настройки в память браузера
+                Context.setPageSettings(newUserData.settings) // Сохраняем настройки
             })
             .catch(() => { // Отчищаем данные
-                // delete localStorage.userData
-                delete localStorage.clear() // Удаляем всю информацию
-                delete Context.userData
+                localStorage.clear() // Удаляем всю информацию
+                sessionStorage.clear() // Удаляем всю информацию
+                delete Context.UserData
                 window.location.reload()
             })
         }
@@ -119,19 +122,13 @@ export default function App() {
 
     // Если установлен стиль для сайта
     useEffect(() => {
-        if (localStorage.pageTheme === undefined) { // Если в памяти нету темы - по умолчанию никакой
-            localStorage.pageTheme = "default"
-        }
-        
-        if (localStorage.pageTheme) {// Устанавливаем тему
-            $("body").attr("theme", localStorage.pageTheme)
-        }
-    }, [])
+        SetTheme(Context)
+    }, [Context, Context.PageSettings])
 
     return (
         <>
             <Modal>
-                {Context.modalData}
+                {Context.Modal}
             </Modal>
 
             <Aside />
@@ -146,14 +143,14 @@ export default function App() {
                     <Route path="/news/:id" element={<NewsPost />} />
                     <Route path="/news/add" element={
                         <ProtectedRoute
-                            isAllowed={Context.userData && Context.userData.country_id}
+                            isAllowed={Context.UserData?.country_id}
                             to="/news"
                             element={<NewsAdd />} 
                         />
                     }/>
                     <Route path="/news/edit" element={
                         <ProtectedRoute
-                            isAllowed={Context.userData && Context.userData.country_id}
+                            isAllowed={Context.UserData?.country_id}
                             to="/news"
                             element={<NewsEdit />} 
                         />
@@ -163,7 +160,7 @@ export default function App() {
                     <Route path="/user/:id" element={<User />} />
                     <Route path="/user/edit" element={
                         <ProtectedRoute
-                            isAllowed={Context.userData}
+                            isAllowed={Context.UserData}
                             to="/user"
                             element={<UserEdit />} 
                         />
@@ -173,7 +170,7 @@ export default function App() {
                     <Route path="/country/:id" element={<Country />} />
                     <Route path="/country/edit" element={
                         <ProtectedRoute
-                            isAllowed={Context.userData}
+                            isAllowed={Context.UserData}
                             to="/country"
                             element={<CountryEdit />} 
                         />
@@ -186,7 +183,7 @@ export default function App() {
                     <Route path="/tools/rosehip" element={<RosehipPage />} />
                     <Route path="/tools/find-message" element={
                         <ProtectedRoute
-                            isAllowed={Context.userData && Context.userData.country_id}
+                            isAllowed={Context.UserData?.country_id}
                             to="/tools"
                             element={<ToolsMessagesFindPage />} 
                         />
@@ -203,10 +200,18 @@ export default function App() {
 
                     <Route path="/dev" element={
                         <ProtectedRoute
-                            isAllowed={Context.userData ? Context.userData.roles.includes("admin") : false}
+                            isAllowed={Context.UserData ? Context.UserData.roles.includes("admin") : false}
                             element={<Dev />}
                         />
                     }/>
+
+                    <Route path="/dev/elements" element={
+                        <ProtectedRoute
+                            isAllowed={Context.UserData ? Context.UserData.roles.includes("admin") : false}
+                            element={<DevElements />}
+                        />
+                    }/>
+
 
                     <Route path="/" element={<Home />} />
                     <Route path="*" element={<NotFound />} />

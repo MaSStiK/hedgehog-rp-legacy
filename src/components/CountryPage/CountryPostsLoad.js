@@ -17,7 +17,7 @@ export function CountryPostsLoad(Context, offset, country_id) {
 
 // Добавление и сохранение постов в контекст
 export function CountryPostsSave(Context, postsObject) {
-    let countryPosts = {...Context.countryPosts}
+    let countryPosts = {...Context.CountryPosts}
     postsObject.forEach(post => {
         if (post.country_id in countryPosts) { // Если такая страна уже есть в объекте - добавляем пост
             countryPosts[post.country_id][post.post_id] = post

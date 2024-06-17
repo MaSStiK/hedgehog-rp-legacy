@@ -9,6 +9,7 @@
 
 /* Текст поста */
 .post > p {
+    color: var(--text-light);
     white-space: pre-wrap;
 }
 

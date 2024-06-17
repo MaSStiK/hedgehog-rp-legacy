@@ -3,6 +3,7 @@ import { DataContext } from "../Context"
 import PostsRender from "../PostsRender/PostsRender"
 import { GSAPI } from "../API";
 import { CONFIG, setPageTitle } from "../Global"
+import ButtonToTop from "../ButtonToTop/ButtonToTop"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import imgNews from "../../assets/svg/News.svg"
 
@@ -19,13 +20,13 @@ export default function NewsPage() {
     // Загрузка постов по offset
     function loadMorePosts() {
         setDisableLoadButton(true)
-        GSAPI("GETposts", {offset: Context.postsOffset + CONFIG.POSTS_AMOUNT, amount: CONFIG.POSTS_AMOUNT}, (data) => {
-            console.log("GSAPI: GETposts offset=" + (Context.postsOffset + CONFIG.POSTS_AMOUNT))
+        GSAPI("GETposts", {offset: Context.PostsOffset + CONFIG.POSTS_AMOUNT, amount: CONFIG.POSTS_AMOUNT}, (data) => {
+            console.log("GSAPI: GETposts offset=" + (Context.PostsOffset + CONFIG.POSTS_AMOUNT))
 
-            Context.setPostsOffset(Context.postsOffset + CONFIG.POSTS_AMOUNT)
+            Context.setPostsOffset(Context.PostsOffset + CONFIG.POSTS_AMOUNT)
     
             // После получения всех постов обновляем общий список в контексте
-            let posts = [...Context.posts]
+            let posts = [...Context.Posts]
             Context.setPosts(posts.concat(data.posts))
     
             // Если вернул remain:false - прячем кнопку
@@ -37,16 +38,18 @@ export default function NewsPage() {
     return (
         <article>
             <h4 className="page-title">h/news</h4>
+            <ButtonToTop />
 
             <PostsRender
-                posts={Context.posts.sort((a, b) => b.timestamp - a.timestamp)}
+                posts={Context.Posts.sort((a, b) => b.timestamp - a.timestamp)}
             />
 
             {showLoadButton &&
                 <section className="flex-col">
                     <ButtonImage
                         src={imgNews}
-                        text={"Загрузить еще"}
+                        text="Загрузить еще"
+                        title="Загрузить больше новостей"
                         width100
                         onClick={loadMorePosts}
                         disabled={disableLoadButton}

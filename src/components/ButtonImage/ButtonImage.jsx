@@ -6,6 +6,7 @@ export default function ButtonImage({
     id,
     className="",
     style,
+    title,
     onClick,
     src=imgReplaceMe,
     alt="button-image",
@@ -22,6 +23,7 @@ export default function ButtonImage({
             id={id} 
             className={`button-image ${className}`}
             style={style}
+            title={title}
             onClick={onClick} 
             disabled={disabled}
         >

@@ -21,7 +21,7 @@ body[theme=snow] section::after {
     right: -13px;
     width: var(--button-img-big);
     height: var(--button-img-big);
-    background-image: url("https://cdn-icons-png.flaticon.com/512/9181/9181465.png");
+    background-image: url("../../assets/images/settings/snow-theme_img.png");
     background-size: contain;
     background-repeat: no-repeat;
     rotate: 30deg;

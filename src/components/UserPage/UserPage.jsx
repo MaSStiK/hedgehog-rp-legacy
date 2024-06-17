@@ -6,7 +6,7 @@ import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import imgBasePhoto from "../../assets/replace/photo-empty.png"
 import { VKAPI } from "../API"
 import { setPageTitle } from "../Global"
-import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import Fullscreen from "../Fullscreen/Fullscreen"
 import imgEdit from "../../assets/svg/Edit.svg"
 import imgLogout from "../../assets/svg/Logout.svg"
 import imgCopy from "../../assets/svg/Copy.svg"
@@ -21,7 +21,7 @@ export default function UserPage() {
     const Navigate = useNavigate()
     const Context = useContext(DataContext)
     const URLparams = useParams()
-    const isSelfRender = Context.userData ? Context.userData.id === URLparams.id : false
+    const isSelfRender = Context.UserData ? Context.UserData.id === URLparams.id : false
 
     const [userNotFound, setUserNotFound] = useState(false);
     const [showCopyMessage, setShowCopyMessage] = useState(false);
@@ -36,19 +36,19 @@ export default function UserPage() {
     }
 
     function logoutProfile() {
-        delete localStorage.userData
-        delete Context.userData
+        sessionStorage.clear()
+        delete localStorage.UserData
+        delete Context.UserData
         Navigate("/")
         window.location.reload()
     }
 
     // Когда загрузились все юзеры
     useEffect(() => {
-        if (!Object.keys(Context.users).length) {
-            return
-        }
+        // Если профиль еще не загрузились - не отображаем
+        if (!Context.Users.length) return
 
-        let foundUser = Context.users.find(user => user.id === URLparams.id)
+        let foundUser = Context.Users.find(user => user.id === URLparams.id)
 
         if (!foundUser) {
             setUserNotFound(true)
@@ -60,7 +60,7 @@ export default function UserPage() {
 
         setUserData(foundUser)
         setPageTitle(foundUser.name)
-    }, [URLparams.id, Context.users])
+    }, [URLparams.id, Context.Users])
 
     useEffect(() => {
         setUserDataVk({})
@@ -104,9 +104,9 @@ export default function UserPage() {
                 ? <section className="flex-col">
                     <div className="user-profile__top">
                         <div className="user-profile__top-photo">
-                            <ImageFullscreen>
+                            <Fullscreen>
                                 <img src={userData.photo ? userData.photo : imgBasePhoto} alt="user-profile" draggable="false" />
-                            </ImageFullscreen>
+                            </Fullscreen>
                         </div>
                         <div className="user-profile__top-name">
                             <h2>{userData.name}</h2>
@@ -124,6 +124,7 @@ export default function UserPage() {
                                 src={imgLogout}
                                 text="Выйти"
                                 className="red"
+                                title="Выйти из профиля"
                                 onClick={logoutProfile}
                             />
 
@@ -131,6 +132,7 @@ export default function UserPage() {
                                 src={imgEdit}
                                 text="Изменить"
                                 className="green"
+                                title="Изменить профиль"
                                 onClick={() => Navigate("/user/edit")}
                             />
                         </div>
@@ -204,6 +206,7 @@ export default function UserPage() {
                             <ButtonImage
                                 src={imgUser}
                                 text="К списку участников"
+                                title="Перейти к списку участников"
                                 width100
                                 onClick={() => Navigate("/user")}
                             />
@@ -213,9 +216,9 @@ export default function UserPage() {
                         : <section className="flex-col">
                             <div className="user-profile__top">
                                 <div className="user-profile__top-photo">
-                                    <ImageFullscreen>
+                                    <Fullscreen>
                                         <img src={imgBasePhoto} alt="user-profile" draggable="false" />
-                                    </ImageFullscreen>
+                                    </Fullscreen>
                                 </div>
                                 <div className="user-profile__top-name">
                                     <h2 className="text-preview">LoremLoremUser</h2>

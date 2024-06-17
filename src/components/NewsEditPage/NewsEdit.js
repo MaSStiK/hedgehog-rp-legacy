@@ -44,7 +44,7 @@ export function sendForm(Context, post, formTitle, formText, attachments) {
             timestamp   : post.timestamp // Дата создания поста
         }
 
-        GSAPI("PUTpost", {data: JSON.stringify(newPostData), token: Context.userData.token}, (data) => {
+        GSAPI("PUTpost", {data: JSON.stringify(newPostData), token: Context.UserData.token}, (data) => {
             console.log("GSAPI: PUTpost");
 
             // Если ошибка
@@ -52,7 +52,7 @@ export function sendForm(Context, post, formTitle, formText, attachments) {
                 return reject(data.error)
             }
 
-            let posts = [...Context.posts]
+            let posts = [...Context.Posts]
             const postIndex = posts.findIndex(_post => _post.post_id === post.post_id) // Находим пост по его id
             if (postIndex >= 0) { // Если пост найден - заменяем его и сохраняем
                 posts[postIndex] = newPostData // Заменяем пост на новую версию
@@ -60,7 +60,7 @@ export function sendForm(Context, post, formTitle, formText, attachments) {
             }
 
             // Изменяем пост в объект постов стран
-            let countryPosts = {...Context.countryPosts}
+            let countryPosts = {...Context.CountryPosts}
             countryPosts[newPostData.country_id][post.post_id] = newPostData
             Context.setCountryPosts(countryPosts) // Сохраняем в посты страны в контексте
 

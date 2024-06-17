@@ -15,7 +15,7 @@
     left: 4px;
 
     /* По умолчанию размер текста тега p */
-    color: var(--border-input);
+    color: var(--text-input-label);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -32,7 +32,7 @@
 .custom-input textarea:read-only ~ label {
     translate: 0px -16px;
     font-size: var(--p-small);
-    color: var(--text-dark);
+    color: var(--text-input-label);
     background-color: var(--bg-secondary);
 }
 

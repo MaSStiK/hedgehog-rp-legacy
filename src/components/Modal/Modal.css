@@ -6,7 +6,8 @@
 /* Контент в 100% */
 @media screen and (max-width: 900px) {
     :root {
-        --modal-height-max: 50vh;
+        --modal-width-max: 96vw;
+        --modal-height-max: 60vh;
     }
 }
 
@@ -18,7 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: var(--gap-medium);
+    padding: var(--gap-small);
 
     background-color: var(--bg-transparent);
 
@@ -65,7 +66,8 @@ dialog.modal {
     }
 }
 
-@media screen and (max-width: 840px) {
+/* Контент в 100% */
+@media screen and (max-width: 900px) {
     /* На телефоне кнопка сверху */
     #modal__close-button {
         top: calc(-1 * (var(--button-height) + 8px));

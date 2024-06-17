@@ -17,10 +17,23 @@
 
 /* Навигация */
 nav {
-    width: calc(100% - var(--gap-small)); /* Расстояние между контентом и прокруткой - 12px */
+    width: 200px;
     display: flex;
     flex-direction: column;
     gap: var(--gap-small);
+}
+
+
+/* Навигация с задним фоном на пк */
+@media screen and (min-width: 900px) {
+    body[bg] nav {
+        width: calc(100% - var(--gap-small));
+        padding: 0 var(--gap-small) var(--gap-small) var(--gap-small);
+
+        background-color: var(--bg-secondary);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-primary);
+    }
 }
 
 /* Кнопки */

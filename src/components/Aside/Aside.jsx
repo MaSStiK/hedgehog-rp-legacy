@@ -15,6 +15,7 @@ import imgHome from "../../assets/svg/Home.svg"
 import imgNews from "../../assets/svg/News.svg"
 import imgUser from "../../assets/svg/User.svg"
 import imgCountry from "../../assets/svg/Country.svg"
+import imgMap from "../../assets/svg/Map.svg"
 import imgTool from "../../assets/svg/Tool.svg"
 import imgHelp from "../../assets/svg/Help.svg"
 import imgInfo from "../../assets/svg/Info.svg"
@@ -63,32 +64,34 @@ export default function Aside() {
                 className="tp no-filter"
                 src={imgLogo}
                 alt="logotype"
+                title="Перейти на главную страницу"
                 onClick={() => Navigate("/")}
             />
 
             {/* Кнопка страны в мобильной навигации */}
-            {Context.userData?.country_id && // Если есть userData - рендер мобильной кнопки профиля
+            {Context.UserData?.country_id && // Если есть userData - рендер мобильной кнопки профиля
                 <ButtonProfile
                     id="nav-phone-country"
                     className="tp"
-                    src={Context.userData.country_photo}
-                    onClick={() => Navigate("/country/" + Context.userData.country_id)}
+                    src={Context.UserData.country_photo}
+                    onClick={() => Navigate("/country/" + Context.UserData.country_id)}
                 />
             }
 
             {/* Кнопка профиля в мобильной навигации */}
-            {Context.userData // Если есть userData - рендер мобильной кнопки профиля
+            {Context.UserData // Если есть userData - рендер мобильной кнопки профиля
                 ? <ButtonProfile
                     id="nav-phone-user"
                     className="tp"
-                    src={Context.userData.photo}
-                    onClick={() => Navigate("/user/" + Context.userData.id)}
+                    src={Context.UserData.photo}
+                    onClick={() => Navigate("/user/" + Context.UserData.id)}
                   />
                 : <ButtonImage
                     src={imgLogin}
                     id="nav-phone-login"
                     text="Авторизация"
                     className="tp"
+                    title="Перейти на страницу авторизации"
                     width100
                     onClick={() => Navigate("/login")}
                   />
@@ -100,6 +103,7 @@ export default function Aside() {
                 className="tp"
                 src={imgMenu}
                 alt="open-menu"
+                title="Открыть меню навигации"
                 onClick={() => setShowNavMenu(true)}
             />
 
@@ -112,48 +116,51 @@ export default function Aside() {
                         className="tp"
                         src={imgCross}
                         alt="close-menu"
+                        title="Закрыть меню навигации"
                         onClick={() => setShowNavMenu(false)}
                     />
 
                     <div id="nav-logo">
-                        <NavLink to={"/"}>
-                            <img src={imgLogo} alt="logotype" />
+                        <NavLink to="/">
+                            <img src={imgLogo} alt="logotype" title="Перейти на главную страницу" />
                         </NavLink>
                     </div>
                     
                     <ul>
                         <li>
-                            {Context.userData // Если есть userData - рендер кнопку профиля, иначе кнопку Авторизации
+                            {Context.UserData // Если есть userData - рендер кнопку профиля, иначе кнопку Авторизации
                                 ? <ButtonProfile
-                                    src={Context.userData.photo}
-                                    text={Context.userData.name}
-                                    subText={Context.userData.tag}
-                                    onClick={() => Navigate("/user/" + Context.userData.id)}
+                                    src={Context.UserData.photo}
+                                    text={Context.UserData.name}
+                                    subText={Context.UserData.tag}
+                                    onClick={() => Navigate("/user/" + Context.UserData.id)}
                                     style={{marginBottom: "var(--gap-small)"}}
                                   />
                                 : <ButtonImage
                                     src={imgLogin}
                                     text="Авторизация"
                                     className="green"
+                                    title="Перейти на страницу авторизации"
                                     width100
                                     onClick={() => Navigate("/login")}
                                   />
                             }
                         </li>
                         
-                        {Context.userData && // Если есть userData - рендер кнопки страны
+                        {Context.UserData && // Если есть userData - рендер кнопки страны
                             <li>
-                                {Context.userData.country_id // Если страны нету - рендер кнопки для создания страны
+                                {Context.UserData?.country_id // Если страны нету - рендер кнопки для создания страны
                                     ? <ButtonProfile
-                                        src={Context.userData.country_photo}
-                                        text={Context.userData.country_name}
-                                        subText={Context.userData.country_tag}
-                                        onClick={() => Navigate("/country/" + Context.userData.country_id)}
+                                        src={Context.UserData.country_photo}
+                                        text={Context.UserData.country_name}
+                                        subText={Context.UserData.country_tag}
+                                        onClick={() => Navigate("/country/" + Context.UserData.country_id)}
                                       />
                                     : <ButtonImage
                                         src={imgAdd}
                                         text={"Создать страну"}
                                         className="green"
+                                        title="Перейти на страницу создания страны"
                                         width100
                                         onClick={() => Navigate("/country/edit")}
 
@@ -164,65 +171,71 @@ export default function Aside() {
 
                         <hr />
                         <li>
-                            <NavLink to={"/"}>
+                            <NavLink to="/">
                                 <img src={imgHome} alt="nav-icon" draggable="false" />
                                 <p>Главная</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/news"}>
+                            <NavLink to="/news">
                                 <img src={imgNews} alt="nav-icon" draggable="false" />
                                 <p>Новости</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/user"}>
+                            <NavLink to="/user">
                                 <img src={imgUser} alt="nav-icon" draggable="false" />
                                 <p>Участники</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/country"}>
+                            <NavLink to="/country">
                                 <img src={imgCountry} alt="nav-icon" draggable="false" />
                                 <p>Страны</p>
                             </NavLink>
                         </li>
-                        {/* <li><NavLink to={"/nation"}>Нации</NavLink></li> */}
+                        <li>
+                            <NavLink to="https://map.hedgehog-rp.ru">
+                                <img src={imgMap} alt="nav-icon" draggable="false" />
+                                <p>Карта мира</p>
+                            </NavLink>
+                        </li>
+                        {/* <li><NavLink to="/nation">Нации</NavLink></li> */}
                         <hr />
                         <li>
-                            <NavLink to={"/tools"}>
+                            <NavLink to="/tools">
                                 <img src={imgTool} alt="nav-icon" draggable="false" />
                                 <p>Инструменты</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/support"}>
+                            <NavLink to="/support">
                                 <img src={imgHelp} alt="nav-icon" draggable="false" />
                                 <p>Помощь</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/about"}>
+                            <NavLink to="/about">
                                 <img src={imgInfo} alt="nav-icon" draggable="false" />
                                 <p>О нас</p>
                             </NavLink>
                         </li>
                         <hr />
                         <li>
-                            <NavLink to={"/settings"}>
+                            <NavLink to="/settings">
                                 <img src={imgSettings} alt="nav-icon" draggable="false" />
                                 <p>Настройки</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/changelogs"}>
+                            <NavLink to="/changelogs">
                                 <img src={imgUpdate} alt="nav-icon" draggable="false" />
                                 <p>Обновления</p>
                             </NavLink>
                         </li>
-                        {(Context.userData ? Context.userData.roles.includes("admin") : false) && 
+                        {(Context.UserData ? Context.UserData.roles.includes("admin") : false) && 
                             <li>
-                                <NavLink to={"/dev"}>
+                                <NavLink to="/dev">
                                     <img src={imgDev} alt="nav-icon" draggable="false" />
                                     <p>dev</p>
                                 </NavLink>

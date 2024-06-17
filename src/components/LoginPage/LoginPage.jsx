@@ -4,8 +4,8 @@ import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import { CONFIG, setPageTitle, setPageLoading } from "../Global"
-import AuthViaCode from "./authViaCode"
-import AuthViaToken from "./authViaToken"
+import AuthViaCode from "./AuthViaCode"
+import AuthViaToken from "./AuthViaToken"
 import imgLogo from "../../assets/logo/logoFullSize.png"
 import imgCopy from "../../assets/svg/Copy.svg"
 import imgLogin from "../../assets/svg/Login.svg"
@@ -88,13 +88,14 @@ export default function LoginPage() {
 
             <section>
                 <h1>Вход в аккаунт</h1>
-                <p>Для входа или регистрации отправьте код ниже <Link to={"https://vk.com/write-202912556"} target="_blank" className="text-link">нашему боту «Географ»</Link></p>
+                <p className="text-light">Для входа или регистрации отправьте код ниже <Link to="https://vk.com/write-202912556" target="_blank" className="text-link">нашему боту «Географ»</Link></p>
 
                 <ButtonImage
                     className="tp"
                     src={imgCopy}
                     alt="copy-code"
                     text={vkCode}
+                    title="Скопировать код"
                     onClick={() => {
                         navigator.clipboard.writeText(vkCode)
                         setShowCopyMessage(true)
@@ -108,15 +109,15 @@ export default function LoginPage() {
                     • Вы автоматически зарегистрируетесь, если у вас еще нет аккаунта<br />
                     • Не перезагружайте эту страницу во время отправки сообщения
                 </small>
-                <p>После отправки кода нажмите на кнопку</p>
+                <p className="text-light">После отправки кода нажмите на кнопку</p>
 
                 {errorCodeText && <p className="text-red" style={{textAlign: "center"}}>{errorCodeText}</p> }
-                <button onClick={handleAuthViaCode} disabled={disableCodeButton}>Отправил</button>
+                <button onClick={handleAuthViaCode} title="Проверить код" disabled={disableCodeButton}>Отправил</button>
                 
                 <hr />
 
-                <p>Или введите актуальный токен авторизации, который вам отправлял бот</p>
-                <Link className="login__link-support" to={"/support/auth-token"}>
+                <p className="text-light">Или введите актуальный токен авторизации, который вам отправлял бот</p>
+                <Link className="login__link-support" to="/support/auth-token">
                     <small className="text-gray link-image">Как использовать токен авторизации</small>
                 </Link>
 
@@ -134,6 +135,7 @@ export default function LoginPage() {
                     <ButtonImage
                         src={imgPaste}
                         text="Вставить"
+                        title="Вставить токен"
                         onClick={() => {
                             // Вставляем текст из буфера обмена
                             navigator.clipboard.readText()
@@ -149,6 +151,7 @@ export default function LoginPage() {
                 <ButtonImage
                     src={imgLogin}
                     text="Войти"
+                    title="Войти в аккаунт"
                     onClick={handleAuthViaToken}
                     disabled={disableTokenButton}
                 />

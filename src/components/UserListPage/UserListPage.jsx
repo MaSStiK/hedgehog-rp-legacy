@@ -21,16 +21,16 @@ export default function UserListPage() {
 
     useEffect(() => {
         // При обновлении контекста так же обновляется и массив
-        setUsersRender(sortAlphabetically(Context.users, "name"))
+        setUsersRender(sortAlphabetically(Context.Users, "name"))
         searchUsers()
 
         // Когда загрузили массив участников - активируем инпут (только на пк)
-        if (Context.users.length && window.innerWidth >= 900) searchRef.current.focus()
+        if (Context.Users.length && window.innerWidth >= 900) searchRef.current.focus()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [Context.users])
+    }, [Context.Users])
     
     function searchUsers() {
-        let sortedUsers = sortAlphabetically(Context.users, "name")
+        let sortedUsers = sortAlphabetically(Context.Users, "name")
         let search = searchRef.current.value.toLowerCase()
         if (search) {
             sortedUsers = sortedUsers.filter(
@@ -65,6 +65,7 @@ export default function UserListPage() {
                         src={imgCross}
                         alt="clear-search"
                         text="Отмена"
+                        title="Отменить поиск"
                         onClick={() => {
                             // Отчищаем поле и активируем поиск
                             searchRef.current.value = ""
@@ -74,7 +75,7 @@ export default function UserListPage() {
                     />
                 </div>
 
-                {Context.users.length
+                {Context.Users.length
                     ? <>
                         {usersRender.map((user) => (
                             <ButtonProfile

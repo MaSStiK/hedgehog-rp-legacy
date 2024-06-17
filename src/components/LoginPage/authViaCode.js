@@ -44,9 +44,10 @@ export default function AuthViaCode(Context, vkCode) {
                 // Если успех - сохраняем информацию
                 let userData = data.data
                 userData.token = newToken // Устанавливаем токен т.к. не передаем его
-                localStorage.userData = JSON.stringify(userData)
-        
+                localStorage.UserData = JSON.stringify(userData)
                 Context.setUserData(userData)
+                localStorage.PageSettings = JSON.stringify(userData.settings) // Сохраняем настройки в память браузера
+                Context.setPageSettings(userData.settings) // Сохраняем настройки
 
                 // Если обычный вход
                 if (!data.registration) {

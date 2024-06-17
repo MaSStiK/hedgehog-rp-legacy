@@ -1,0 +1,46 @@
+/* Курсор приближения для картинок которые можно открыть на весь экран */
+.fullscreen-image {
+    cursor: zoom-in;
+}
+
+/* Картинка внутри блока с картиной для полноэкранного просмотра */
+.fullscreen-image img {
+    width: 100%;
+}
+
+
+/* Модальное окно с функцией просмотра картинки (В максимальную ширину и высоту) */
+.fullscreen {
+    width: var(--modal-width-max);
+    height: var(--modal-height-max);
+    position: relative;
+}
+
+.fullscreen__controls {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    z-index: var(--z-over);
+}
+
+/* Отключаем transition */
+.fullscreen div {
+    transition: 0s all;
+}
+
+/* Блок удерживающий картинку по центру */
+.fullscreen__image-wrapper {
+    width: var(--modal-width-max);
+    height: var(--modal-height-max);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+}
+
+.fullscreen__image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}

@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import Fullscreen from "../Fullscreen/Fullscreen"
 import { GSAPI } from "../API"
 import { setPageTitle } from "../Global"
 import imgArrowDown from "../../assets/svg/Arrow-down.svg"
 import imgArrowUp from "../../assets/svg/Arrow-up.svg"
-import imgClassified from "../../assets/images/Tools/classified.png"
+import imgClassified from "../../assets/images/tools/classified.png"
 
 import "./RosehipPage.css"
 import "./RosehipPage-phone.css"
@@ -34,7 +34,7 @@ export default function RosehipPage() {
 
             <section className="flex-col">
                 <h1>Шиповник <small className="text-gray">(feat. Даня)</small></h1>
-                <h3>Данный список представляет собой сведения о существах, представляющих угрозу существования Кулсториробоба и его жителям</h3>
+                <h4 className="text-light">Данный список представляет собой сведения о существах, представляющих угрозу существования Кулсториробоба и его жителям</h4>
             </section>
 
             {showPreload && 
@@ -63,12 +63,12 @@ function RenderDossier({dossier}) {
         <section className="flex-col">
             <div className="flex-row">
                 <div className="dossier__photo">
-                    <ImageFullscreen>
+                    <Fullscreen>
                         {dossier.photo
                             ? <img src={dossier.photo} alt="dossier" draggable="false" className="dossier__photo_border" />
                             : <img src={imgClassified} alt="dossier" draggable="false" />
                         }
-                    </ImageFullscreen>
+                    </Fullscreen>
                 </div>
                 <div className="flex-col dossier__info">
                     {dossier.name && <h3>{dossier.name}</h3>}
@@ -89,6 +89,7 @@ function RenderDossier({dossier}) {
                     <ButtonImage
                         src={openDossier ? imgArrowUp : imgArrowDown}
                         text={openDossier ? "Свернуть полное досье" : "Раскрыть полное досье"}
+                        title={openDossier ? "Свернуть полное досье" : "Раскрыть полное досье"}
                         onClick={() => setOpenDossier(!openDossier)}
                     />
                 </>

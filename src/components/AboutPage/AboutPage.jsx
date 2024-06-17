@@ -59,7 +59,7 @@ export default function AboutPage() {
 
             <section className="flex-col">
                 <h1>«Ежиное РП»</h1>
-                <p>Это группа единомышленников и друзей, которые объединились, чтобы писать историю собственного мира.
+                <p className="text-light">Это группа единомышленников и друзей, которые объединились, чтобы писать историю собственного мира.
                     <br />Это творческая команда, которая занимается одновременно
                     <br />- Историей
                     <br />- Литературой
@@ -98,7 +98,7 @@ export default function AboutPage() {
                     text={`${userDataVk[0]?.first_name || ""} ${userDataVk[0]?.last_name || ""}`}
                     onClick={() => window.open("https://vk.com/id291195777", "_blank")}
                 />
-                <Link className="about__link-support" to={"/support/feedback"}>
+                <Link className="about__link-support" to="/support/feedback">
                     <small className="text-gray link-image">Где оставить обратную связь (идеи/баги)</small>
                 </Link>
             </section>

@@ -5,7 +5,7 @@ import CustomInput from "../CustomInput/CustomInput"
 import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import { formValidate, sendForm } from "./CountryEdit"
 import CheckImgSrc from "../CheckImgSrc.js"
-import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import Fullscreen from "../Fullscreen/Fullscreen"
 import imgAt from "../../assets/svg/At.svg"
 
 
@@ -13,7 +13,7 @@ import "./CountryEditPage.css"
 
 export default function CountryEditPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => {setPageTitle(Context.userData.country_id ? "Изменение страны" : "Создание страны")}, [])
+    useEffect(() => {setPageTitle(Context.UserData?.country_id ? "Изменение страны" : "Создание страны")}, [])
     const Context = useContext(DataContext)
     const Navigate = useNavigate()
 
@@ -30,18 +30,18 @@ export default function CountryEditPage() {
     const bioInput = useRef()
 
     useEffect(() => {
-        nameInput.current.value = Context.userData.country_name
-        tagInput.current.value = Context.userData.country_tag.substr(1);
+        nameInput.current.value = Context.UserData.country_name
+        tagInput.current.value = Context.UserData.country_tag.substr(1);
 
-        photoInput.current.value = Context.userData.country_photo
+        photoInput.current.value = Context.UserData.country_photo
         checkPhoto(photoInput.current.value) // Обновляем превью картинки
 
-        // bioInput.current.value = Context.userData.country_bio_.replaceAll("<br>","\n")
-        bioInput.current.value = Context.userData.country_bio
+        // bioInput.current.value = Context.UserData.country_bio_.replaceAll("<br>","\n")
+        bioInput.current.value = Context.UserData.country_bio
         setBioLength(bioInput.current.value.length) // Обновляем значение длины описания
         
         handleInputUpdate()
-    }, [Context.userData])
+    }, [Context.UserData])
 
 
     // Проверка существования картинки
@@ -81,7 +81,7 @@ export default function CountryEditPage() {
         let formBio = bioInput.current.value
 
         // Если тег пустой - ставим по умолчанию
-        if (!formTag) formTag = Context.userData.country_id || "c" + Context.userData.id
+        if (!formTag) formTag = Context.UserData.country_id || "c" + Context.UserData.id
 
         // Если фото пустое - загружаем стандартное
         if (!photoPreview) {
@@ -105,7 +105,7 @@ export default function CountryEditPage() {
                 sendForm(Context, formName, formTag, formPhoto, formBio)
                 .then(() => { // Если успешно сохранились изменения
                     setPageLoading(false)
-                    Navigate("/country/c" + Context.userData.id)
+                    Navigate("/country/c" + Context.UserData.id)
                 })
                 .catch(error => { // Если ошибка
                     setErrorText(error)
@@ -121,14 +121,14 @@ export default function CountryEditPage() {
     return (
         <article>
             {/* Добавить изменение надписи на "Создание страны" если страна у юзера пустая */}
-            <h4 className="page-title">{`h/country/${Context.userData.country_id ? "edit" : "create"}`}</h4>
+            <h4 className="page-title">{`h/country/${Context.UserData?.country_id ? "edit" : "create"}`}</h4>
 
             <section className="flex-col country-edit">
                 <CustomInput label="ID Страны">
                     <input
                         type="text"
                         id="form-id"
-                        value={Context.userData.country_id || "c" + Context.userData.id}
+                        value={Context.UserData?.country_id || "c" + Context.UserData.id}
                         readOnly
                         required
                     />
@@ -159,7 +159,7 @@ export default function CountryEditPage() {
                         onBlur={() => {
                             // Если строка пустая - ставим id страны
                             if (tagInput.current.value === "") {
-                                tagInput.current.value = Context.userData.country_id || "c" + Context.userData.id
+                                tagInput.current.value = Context.UserData?.country_id || "c" + Context.UserData.id
                             }
                         }}
                         required
@@ -193,9 +193,9 @@ export default function CountryEditPage() {
                     <>
                         <p className="country-edit__preview-text">Предпросмотр картинки</p>
                         <div className="country-edit__preview">
-                            <ImageFullscreen>
+                            <Fullscreen>
                                 <img src={photoPreview} alt="preview" />
-                            </ImageFullscreen>
+                            </Fullscreen>
                         </div>
                     </>
                 }

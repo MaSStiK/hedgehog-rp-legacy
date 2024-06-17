@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import Fullscreen from "../Fullscreen/Fullscreen"
 import { timestampToDate } from "../Global";
 import PostShare from "./PostShare"
 import imgShare from "../../assets/svg/Share.svg"
@@ -87,9 +87,9 @@ export default function PostRender({
                                     <div className="post__attachments-container" style={{left: `${-attachWidth * (attachCounter - 1)}px`}}>
                                         {postAttachments.map((attach, index) => (
                                             <div className="post__attachment" key={index}>
-                                                <ImageFullscreen>
+                                                <Fullscreen>
                                                     <img src={attach} alt="post-attachment" draggable="false" style={{width: attachWidth}} />
-                                                </ImageFullscreen>
+                                                </Fullscreen>
                                             </div>
                                         ))}
                                     </div>
@@ -99,19 +99,21 @@ export default function PostRender({
                                     <ButtonImage
                                         src={imgArrowLeft}
                                         alt="image-prev"
+                                        title="Предыдущая картинка"
                                         onClick={sliderPrev}
                                     />
                                     <p><span>{attachCounter}</span> из <span>{postAttachments.length}</span></p>
                                     <ButtonImage
                                         src={imgArrowRight}
                                         alt="image-next"
+                                        title="Следующая картинка"
                                         onClick={sliderNext}
                                     />
                                 </div>
                               </> 
-                            : <ImageFullscreen>
+                            : <Fullscreen>
                                 <img src={postAttachments[0]} alt="post-attachment" className="post__attachment_single" draggable="false" />
-                            </ImageFullscreen>
+                            </Fullscreen>
                         }
                     </>
                 }
@@ -122,15 +124,17 @@ export default function PostRender({
                         src={imgShare}
                         alt="post-share"
                         text="Поделиться"
+                        title="Поделиться постом"
                         onClick={handlePostShare}
                     />
 
                     {/* Если пост авторизованного пользователя */}
-                    {Context.userData?.id === postAuthor.id &&
+                    {Context.UserData?.id === postAuthor.id &&
                         <ButtonImage
                             src={imgEdit}
                             alt="post-edit"
                             text="Изменить"
+                            title="Изменить пост"
                             onClick={handlePostEdit}
                         />
                     }

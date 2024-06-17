@@ -20,6 +20,7 @@ export default function ButtonProfile({
             id={id} 
             className={`button-profile ${className}`} 
             style={style}
+            title={text ? `Открыть профиль ${text}` : "Открыть профиль"}
             onClick={onClick} 
         >
             <img src={src} alt="profile-icon" draggable="false" />

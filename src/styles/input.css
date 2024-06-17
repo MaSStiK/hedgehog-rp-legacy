@@ -48,7 +48,7 @@ textarea {
     width: 100%;
     padding: var(--button-padding);
 
-    color: var(--text-white);
+    color: var(--text-light);
     text-decoration: none;
 
     background-color: var(--bg-secondary);

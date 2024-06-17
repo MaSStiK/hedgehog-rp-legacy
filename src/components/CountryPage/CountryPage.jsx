@@ -5,7 +5,8 @@ import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle } from "../Global"
 import { CountryPostsLoad, PostsObjectToArray } from "./CountryPostsLoad"
-import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import Fullscreen from "../Fullscreen/Fullscreen"
+import ButtonToTop from "../ButtonToTop/ButtonToTop"
 import PostsRender from "../PostsRender/PostsRender"
 import imgBasePhoto from "../../assets/replace/photo-empty.png"
 import imgEdit from "../../assets/svg/Edit.svg"
@@ -23,7 +24,7 @@ export default function CountryPage() {
     const URLparams = useParams()
 
     // Отображается ли страна авторизованного, если нету данных о входе - автоматически false
-    const isSelfRender = Context.userData ? Context.userData.country_id === URLparams.id : false
+    const isSelfRender = Context.UserData ? Context.UserData?.country_id === URLparams.id : false
 
     const [countryNotFound, setCountryNotFound] = useState(false)
     const [showCopyMessage, setShowCopyMessage] = useState(false) // Сообщение о скопированном теге
@@ -39,11 +40,11 @@ export default function CountryPage() {
 
     // Когда загрузились все юзеры
     useEffect(() => {
-        // Если они еще не загрузились - не отображаем
-        if (!Object.keys(Context.users).length || !Object.keys(Context.posts).length) return
+        // Если профиль еще не загрузились - не отображаем
+        if (!Context.Users.length || !Context.Posts.length) return
         
         // Поиск пользователя по id
-        let foundUser = Context.users.find(user => user.id === URLparams.id.slice(1))
+        let foundUser = Context.Users.find(user => user.id === URLparams.id.slice(1))
         if (!foundUser) {
             setCountryNotFound(true)
             setUserData({})
@@ -53,7 +54,7 @@ export default function CountryPage() {
 
         setUserData(foundUser)
         setPageTitle(foundUser.country_name)
-        setRenderPosts(PostsObjectToArray(Context.countryPosts[URLparams.id])) // Первичный рендер постов которые загрузились вместе со всеми постами
+        setRenderPosts(PostsObjectToArray(Context.CountryPosts[URLparams.id])) // Первичный рендер постов которые загрузились вместе со всеми постами
 
         // Загрузка постов страны
         CountryPostsLoad(Context, 0, URLparams.id)
@@ -62,11 +63,12 @@ export default function CountryPage() {
             setShowPreload(false)
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [URLparams.id, Context.users, Context.posts])
+    }, [URLparams.id, Context.Users, Context.Posts])
 
     return (
         <article>
             <h4 className="page-title">{`h/country/${URLparams.id}`}</h4>
+            <ButtonToTop />
 
             {/* Если страна найдена */}
             {Object.keys(userData).length
@@ -74,9 +76,9 @@ export default function CountryPage() {
                     <section className="flex-col">
                         <div className="country-page__top">
                             <div className="country-page__top-photo">
-                                <ImageFullscreen>
+                                <Fullscreen>
                                     <img src={userData.country_photo ? userData.country_photo : imgBasePhoto} alt="country-profile" draggable="false" />
-                                </ImageFullscreen>
+                                </Fullscreen>
                             </div>
                             <div className="country-page__top-name">
                                 <h2>{userData.country_name}</h2>
@@ -94,6 +96,7 @@ export default function CountryPage() {
                                     src={imgEdit}
                                     text="Изменить"
                                     className="green"
+                                    title="Изменить данные о стране"
                                     onClick={() => Navigate("/country/edit")}
                                 />
                             </div>
@@ -131,6 +134,7 @@ export default function CountryPage() {
                             <ButtonImage
                                 src={imgAdd}
                                 text="Новый пост"
+                                title="Создать новый пост"
                                 width100
                                 onClick={() => Navigate("/news/add")}
                             />
@@ -156,6 +160,7 @@ export default function CountryPage() {
                             <ButtonImage
                                 src={imgCountry}
                                 text="К списку стран"
+                                title="Перейти к списку стран"
                                 width100
                                 onClick={() => Navigate("/country")}
                             />
@@ -165,9 +170,9 @@ export default function CountryPage() {
                         : <section className="flex-col">
                             <div className="country-page__top">
                                 <div className="country-page__top-photo">
-                                    <ImageFullscreen>
+                                    <Fullscreen>
                                         <img src={imgBasePhoto} alt="country-profile" draggable="false" />
-                                    </ImageFullscreen>
+                                    </Fullscreen>
                                 </div>
                                 <div className="country-page__top-name">
                                     <h2 className="text-preview">LoremLoremCountry</h2>

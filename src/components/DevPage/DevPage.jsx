@@ -1,22 +1,30 @@
 import { useState, useEffect, useRef, useContext } from "react"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
-import { setPageTitle } from "../Global"
+import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import { GSAPI } from "../API";
+import AdminAuthViaToken from "./AdminAuthViaToken"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import imgCopy from "../../assets/svg/Copy.svg"
+
 import imgHome from "../../assets/svg/Home.svg"
+import imgSearch from "../../assets/svg/Search.svg"
 import imgTool from "../../assets/svg/Tool.svg"
 import imgAt from "../../assets/svg/At.svg"
 import imgProfileBase from "../../assets/replace/profile-base.png"
+
+import imgLogo from "../../assets/logo/logoFullSize.png"
+import imgCopy from "../../assets/svg/Copy.svg"
+import imgLogin from "../../assets/svg/Login.svg"
+import imgPaste from "../../assets/svg/Paste.svg"
 
 import "./DevPage.css"
 
 export default function DevPage() {
     useEffect(() => {setPageTitle("dev")}, [])
     const Context = useContext(DataContext)
+    const Navigate = useNavigate()
 
     // useEffect(() => {
     //     console.log("GETevent");
@@ -26,26 +34,40 @@ export default function DevPage() {
     // })
 
     function openModal(data) {
-        Context.setModalData(
+        Context.setModal(
             <div style={{height: "var(--modal-height-max)", overflow: "auto", padding: "var(--gap-small)"}}>
                 <p>{JSON.stringify(data, false, 4)}</p>
             </div>
         )
     }
 
-    const [exampleInputValue, setExampleInputValue] = useState("");
-    const [exampleTextareaValue, setExampleTextareaValue] = useState("");
-    const [exampleInputError, setExampleInputError] = useState(false);
-    const [disableErrorButton, setDisableErrorButton] = useState(false);
+    const [errorTokenText, setErrorTokenText] = useState() // Текст ошибки при входе через токен
+    const [disableTokenButton, setDisableTokenButton] = useState(true) // Состояние кнопки входа по токену
 
-    const exampleInput = useRef()
-    const exampleTextarea = useRef()
+    const tokenInput = useRef()
 
-    function handleErrorButton() {
-        setExampleInputError(true)
-        setTimeout(() => setExampleInputError(false), 2000)
-        setDisableErrorButton(true)
-        setTimeout(() => setDisableErrorButton(false), 2000)
+    // При обновлении инпута с токеном
+    function handleInputUpdate() {
+        setErrorTokenText()
+        setDisableTokenButton(!tokenInput.current.value.length) // Если в поле с токеном 0 символов - ошибка
+    }
+
+    // Вход по токену
+    function handleAuthViaToken() {
+        handleInputUpdate() // Убираем ошибки
+        setDisableTokenButton(true)
+        setPageLoading()
+
+        AdminAuthViaToken(Context, tokenInput.current.value)
+        .then(() => {
+            setPageLoading(false)
+            Navigate("/")
+        })
+        .catch(error => {
+            setErrorTokenText(error)
+            setDisableTokenButton(false)
+            setPageLoading(false)
+        })
     }
 
     return (
@@ -53,149 +75,94 @@ export default function DevPage() {
             <h4 className="page-title">h/dev</h4>
 
             <section className="flex-col">
-                <h1>Never gonna give you up</h1>
-                <h2>Never gonna let you down</h2>
-                <h3>Never gonna run around and desert you</h3>
-                <h4>Never gonna make you cry</h4>
-                <p>Never gonna say goodbye</p>
-                <p><small>Never gonna tell a lie and hurt you</small></p>
+                <h1>Вход в аккаунт <span className="p text-gray">Без уведомления</span></h1>
 
-                {/* Отобразить userData из context */}
-                <button className="green" onClick={() => openModal(Context.userData)}>userData</button>
-                <button className="green" onClick={() => openModal(Context)}>Context</button>
+                <div className="login__token-row flex-row">
+                    <CustomInput label="Токен авторизации" error={errorTokenText}>
+                        <input
+                            ref={tokenInput}
+                            type="text"
+                            id="form-code"
+                            maxLength={CONFIG.AUTH_TOKEN_MAX}
+                            onInput={handleInputUpdate}
+                            required
+                        />
+                    </CustomInput>
+                    <ButtonImage
+                        src={imgPaste}
+                        text="Вставить"
+                        title="Вставить токен"
+                        onClick={() => {
+                            // Вставляем текст из буфера обмена
+                            navigator.clipboard.readText()
+                            .then(text => {
+                                tokenInput.current.value = text
+                                handleInputUpdate() // Обновляем инпуты
+                            })
+                        }}
+                    />
+                </div>
+                {errorTokenText && <p className="text-red" style={{textAlign: "center"}}>{errorTokenText}</p> }
+
+                <ButtonImage
+                    src={imgLogin}
+                    text="Войти"
+                    title="Войти в аккаунт"
+                    width100
+                    onClick={handleAuthViaToken}
+                    disabled={disableTokenButton}
+                />
             </section>
 
             <section className="flex-col">
-                {/* Кнопки профиля */}
-                <ButtonProfile
-                    src={imgProfileBase}
-                    text={"Имя участника"}
-                    subText={"@тег"}
-                />
-                <ButtonProfile
-                    text="Какой то текст типа lorem"
-                    preview
-                />
-
-                {/* Кнопки с картинками */}
+                <h1>Новость из сообщения в ВК <span className="p text-gray">Из любого</span></h1>
                 <ButtonImage
-                    src={imgTool}
-                    alt="button-test"
-                    text="gray (default)"
+                    src={imgSearch}
+                    alt="find"
+                    text="Найти сообщение"
+                    title="Перейти к поиску сообщений"
+                    width100
+                    onClick={() => Navigate("/tools/find-message", {state: {noFilter: true}})}
                 />
-                <ButtonImage
-                    src={imgTool}
-                    alt="button-test"
-                    className="green"
-                    text="green (confirm)"
-                />
-                <ButtonImage
-                    src={imgTool}
-                    alt="button-test"
-                    className="red"
-                    text="red (cancel)"
-                />
-                <ButtonImage
-                    src={imgTool}
-                    alt="button-test"
-                    className="tp"
-                    text="tp (transparent)"
-                />
-                <ButtonImage
-                    src={imgTool}
-                    alt="button-test"
-                    text="disabled"
-                    disabled={true}
-                />
-
-                {/* Кнопки в строку */}
-                <div className="flex-row">
+            </section>
+            
+            {/* Полезные кнопки */}
+            <section className="flex-col">
+                <div className="flex-row flex-wrap">
                     <ButtonImage
                         src={imgTool}
                         alt="button-test"
-                    />
-                    <ButtonImage
-                        src={imgTool}
-                        alt="button-test"
+                        text="Context"
+                        title="Context"
                         className="green"
+                        onClick={() => openModal(Context)}
                     />
                     <ButtonImage
                         src={imgTool}
                         alt="button-test"
-                        className="red"
+                        text="Context.UserData"
+                        title="Context.UserData"
+                        className="green"
+                        onClick={() => openModal(Context.UserData)}
                     />
                     <ButtonImage
                         src={imgTool}
                         alt="button-test"
-                        className="tp"
-                    />
-                    <ButtonImage
-                        src={imgTool}
-                        alt="button-test"
-                        disabled={true}
+                        text="Context.PageSettings"
+                        title="Context.PageSettings"
+                        className="green"
+                        onClick={() => openModal(Context.PageSettings)}
                     />
                 </div>
 
-                <div className="flex-row" style={{flexWrap: "wrap"}}>
-                    <ButtonImage
-                        src={imgHome}
-                        alt="button-test"
-                        text="Кнопка с текстом по центру"
-                        width100
-                    />
-                    <ButtonImage
-                        // src={imgHome}
-                        alt="button-test"
-                        text="Кнопка с текстом слева"
-                        width100
-                        atStart
-                    />
-                </div>
-                <Link to={"#"} className="text-link">Текст-ссылка по которой можно куда то попасть</Link>
-            </section>
-
-            {/* <section className="flex-col">
-                <p style={{whiteSpace: "pre-wrap"}}>
-                    {JSON.stringify({name: "name", array: [{a: 1, b: 2}, {a: 3, b: 4}]}, null, 4)}
-                </p>
-            </section> */}
-                
-            <section className="flex-col">
-                <CustomInput label="Только читаемый инпут">
-                    <input
-                        type="text"
-                        value={"Пример описания"}
-                        readOnly
-                        required
-                    />
-                </CustomInput>
-
-                <CustomInput label="Пример с длинным название инпута" error={exampleInputError}>
-                    <input
-                        ref={exampleInput}
-                        type="text"
-                        onChange={() => {setExampleInputValue(exampleInput.current.value)}}
-                        required
-                    />
-                </CustomInput>
-                <p>{"Инпут: " + exampleInputValue}</p>
-                <button disabled={disableErrorButton} onClick={handleErrorButton}>Сделать ошибку</button>
-
-                <CustomInput label="Инпут с картинкой" error={exampleInputError} src={imgAt}>
-                    <input
-                        type="text"
-                        required
-                    />
-                </CustomInput>
-                
-                <CustomInput label="Пример текстареа">
-                    <textarea
-                        ref={exampleTextarea}
-                        required
-                        onChange={() => {setExampleTextareaValue(exampleTextarea.current.value)}}
-                    ></textarea>
-                </CustomInput>
-                <p>{"Текстареа: " + exampleTextareaValue}</p>
+                <ButtonImage
+                    src={imgTool}
+                    alt="button-test"
+                    text="dev/elements"
+                    title="dev/elements"
+                    className="green"
+                    onClick={() => Navigate("/dev/elements")}
+                />
             </section>
         </article>
     )

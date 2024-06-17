@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from "react"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import Fullscreen from "../Fullscreen/Fullscreen"
 
-import imgReviewStar from "../../assets/images/About/review-star.png"
-import imgItpedia from "../../assets/images/About/itpedia.gif"
-import imgIcarly from "../../assets/images/About/icarly.gif"
-import imgArtas from "../../assets/images/About/artas.gif"
+import imgReviewStar from "../../assets/images/about/review-star.png"
+import imgItpedia from "../../assets/images/about/itpedia.gif"
+import imgIcarly from "../../assets/images/about/icarly.gif"
+import imgArtas from "../../assets/images/about/artas.gif"
 import imgArrowLeft from "../../assets/svg/Arrow-left.svg"
 import imgArrowRight from "../../assets/svg/Arrow-right.svg"
 
@@ -60,9 +60,9 @@ export default function AboutReviews() {
                         <div className="review" key={i}>
                             <div className="flex-col review__content" style={{width: reviewsWidth}}>
                                 <div className="review__photo">
-                                    <ImageFullscreen>
+                                    <Fullscreen>
                                         <img src={review.photo} alt="review" draggable="false"/>
-                                    </ImageFullscreen>
+                                    </Fullscreen>
                                 </div>
                                 <h3 className="review__name">{review.name}</h3>
                                 <div className="flex-row review__stars">
@@ -79,17 +79,20 @@ export default function AboutReviews() {
 
                 </div>
             </div>
-
+            
+            {/* Переключение отзывов */}
             <div className="flex-row reviews-control">
                 <ButtonImage
                     src={imgArrowLeft}
                     alt="image-prev"
+                    title="Предыдущий отзыв"
                     onClick={sliderPrev}
                 />
                 <p><span>{reviewsCounter}</span> из <span>{reviews.length}</span></p>
                 <ButtonImage
                     src={imgArrowRight}
                     alt="image-next"
+                    title="Следующий отзыв"
                     onClick={sliderNext}
                 />
             </div>

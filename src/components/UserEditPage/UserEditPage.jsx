@@ -5,7 +5,7 @@ import CustomInput from "../CustomInput/CustomInput"
 import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import { formValidate, sendForm } from "./UserEdit"
 import CheckImgSrc from "../CheckImgSrc.js"
-import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import Fullscreen from "../Fullscreen/Fullscreen"
 import imgAt from "../../assets/svg/At.svg"
 
 import "./UserEditPage.css"
@@ -29,17 +29,17 @@ export default function UserEditPage() {
     const bioInput = useRef()
 
     useEffect(() => {
-        nameInput.current.value = Context.userData.name
-        tagInput.current.value = Context.userData.tag.substr(1);
+        nameInput.current.value = Context.UserData.name
+        tagInput.current.value = Context.UserData.tag.substr(1);
 
-        photoInput.current.value = Context.userData.photo
+        photoInput.current.value = Context.UserData.photo
         checkPhoto(photoInput.current.value) // Обновляем превью картинки
 
-        bioInput.current.value = Context.userData.bio
+        bioInput.current.value = Context.UserData.bio
         setBioLength(bioInput.current.value.length) // Обновляем значение длины описания
         
         handleInputUpdate()
-    }, [Context.userData])
+    }, [Context.UserData])
 
 
     // Проверка существования картинки
@@ -79,7 +79,7 @@ export default function UserEditPage() {
         let formBio = bioInput.current.value
 
         // Если тег пустой - ставим по умолчанию
-        if (!formTag) formTag = Context.userData.id
+        if (!formTag) formTag = Context.UserData.id
 
         // Если фото пустое - загружаем стандартное
         if (!photoPreview) {
@@ -103,7 +103,7 @@ export default function UserEditPage() {
                 sendForm(Context, formName, formTag, formPhoto, formBio)
                 .then(() => { // Если успешно сохранились изменения
                     setPageLoading(false)
-                    Navigate("/user/" + Context.userData.id)
+                    Navigate("/user/" + Context.UserData.id)
                 })
                 .catch(error => { // Если ошибка
                     setErrorText(error)
@@ -124,7 +124,7 @@ export default function UserEditPage() {
                     <input
                         type="text"
                         id="form-id"
-                        value={Context.userData.id}
+                        value={Context.UserData.id}
                         readOnly
                         required
                     />
@@ -155,7 +155,7 @@ export default function UserEditPage() {
                         onBlur={() => {
                             // Если строка пустая - ставим id
                             if (tagInput.current.value === "") {
-                                tagInput.current.value = Context.userData.id
+                                tagInput.current.value = Context.UserData.id
                             }
                         }}
                         required
@@ -188,9 +188,9 @@ export default function UserEditPage() {
                     <>
                         <p className="news-add__preview-text">Предпросмотр картинки</p>
                         <div className="news-add__preview">
-                            <ImageFullscreen>
+                            <Fullscreen>
                                 <img src={photoPreview} alt="preview" />
-                            </ImageFullscreen>
+                            </Fullscreen>
                         </div>
                     </>
                 }

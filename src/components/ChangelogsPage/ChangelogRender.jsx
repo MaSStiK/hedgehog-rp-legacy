@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useContext } from "react"
 import { useNavigate } from "react-router-dom";
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import ImageFullscreen from "../ImageFullscreen/ImageFullscreen"
+import Fullscreen from "../Fullscreen/Fullscreen"
 import { DataContext } from "../Context"
 
 import imgArrowLeft from "../../assets/svg/Arrow-left.svg"
@@ -17,7 +17,7 @@ export default function ChangelogRender({
     const Navigate = useNavigate()
 
     // Ищем профиль со страной изменений
-    let changelogProfile = Context.users.find(user => user.country_id === "c769201685")
+    let changelogProfile = Context.Users.find(user => user.country_id === "c769201685")
 
     const [attachCounter, setAttachCounter] = useState(1) // Счетчик картинок в посте
     const [attachWidth, setAttachWidth] = useState(0) // Ширина картинки (Во всю ширину поста)
@@ -61,9 +61,9 @@ export default function ChangelogRender({
                                     <div className="post__attachments-container" style={{left: `${-attachWidth * (attachCounter - 1)}px`}}>
                                         {changelog.attach.map((attach, index) => (
                                             <div className="post__attachment" key={index}>
-                                                <ImageFullscreen>
+                                                <Fullscreen>
                                                     <img src={attach} alt="post-attachment" draggable="false" style={{width: attachWidth}} />
-                                                </ImageFullscreen>
+                                                </Fullscreen>
                                             </div>
                                         ))}
                                     </div>
@@ -72,19 +72,21 @@ export default function ChangelogRender({
                                     <ButtonImage
                                         src={imgArrowLeft}
                                         alt="image-prev"
+                                        title="Предыдущая картинка"
                                         onClick={sliderPrev}
                                     />
                                     <p><span>{attachCounter}</span> из <span>{changelog.attach.length}</span></p>
                                     <ButtonImage
                                         src={imgArrowRight}
                                         alt="image-next"
+                                        title="Следующая картинка"
                                         onClick={sliderNext}
                                     />
                                 </div>
                               </>
-                            : <ImageFullscreen>
+                            : <Fullscreen>
                                 <img src={changelog.attach[0]} alt="post-attachment" className="post__attachment_single" draggable="false" />
-                            </ImageFullscreen>
+                            </Fullscreen>
                         }
                     </>
                 }

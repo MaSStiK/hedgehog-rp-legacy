@@ -21,6 +21,7 @@ export default function SupportPage() {
                 <ButtonImage
                     src={imgHelp}
                     text="Где оставить обратную связь (идеи/баги)"
+                    title="Где оставить обратную связь (идеи/баги)"
                     width100
                     atStart
                     onClick={() => Navigate("feedback")}
@@ -28,6 +29,7 @@ export default function SupportPage() {
                 <ButtonImage
                     src={imgHelp}
                     text="Как использовать токен авторизации"
+                    title="Как использовать токен авторизации"
                     width100
                     atStart
                     onClick={() => Navigate("auth-token")}
@@ -35,6 +37,7 @@ export default function SupportPage() {
                 <ButtonImage
                     src={imgInfo}
                     text="Текстовый список создателей стран"
+                    title="Текстовый список создателей стран"
                     width100
                     atStart
                     onClick={() => Navigate("creators-list")}

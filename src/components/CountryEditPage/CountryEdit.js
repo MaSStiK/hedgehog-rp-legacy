@@ -29,7 +29,6 @@ export function sendForm(Context, formName, formTag, formPhoto, formBio) {
     return new Promise((resolve, reject) => {
         // Новые данные о стране
         let newCountryData = {
-            country_id      : Context.userData.country_id || "c" + Context.userData.id, // Уникальный id страны
             country_name    : formName, // Название страны
             country_tag     : "@" + formTag, // Тег страны
             country_photo   : formPhoto, // Флаг/картинка страны
@@ -37,7 +36,7 @@ export function sendForm(Context, formName, formTag, formPhoto, formBio) {
         }
 
         // Всю главную информацию отправляем всегда
-        GSAPI("PUTcountry", {token: Context.userData.token, data: JSON.stringify(newCountryData)}, (data) => {
+        GSAPI("PUTcountry", {token: Context.UserData.token, data: JSON.stringify(newCountryData)}, (data) => {
             console.log("GSAPI: PUTcountry");
 
             // Если ошибка
@@ -46,19 +45,18 @@ export function sendForm(Context, formName, formTag, formPhoto, formBio) {
             }
 
             // Сохранение информации локально
-            let userData = {...Context.userData}
-            userData.country_id     = newCountryData.country_id
-            userData.country_name   = newCountryData.country_name
-            userData.country_tag    = newCountryData.country_tag
-            userData.country_photo  = newCountryData.country_photo
-            userData.country_bio    = newCountryData.country_bio
-            localStorage.userData = JSON.stringify(userData) // В память браузера сохраняем строку
-            Context.setUserData(userData)
+            let UserData = {...Context.UserData}
+            UserData.country_name   = newCountryData.country_name
+            UserData.country_tag    = newCountryData.country_tag
+            UserData.country_photo  = newCountryData.country_photo
+            UserData.country_bio    = newCountryData.country_bio
+            localStorage.UserData = JSON.stringify(UserData) // В память браузера сохраняем строку
+            Context.setUserData(UserData)
 
             // Удаляем старого юзера и сохраняем нового
-            let usersWithoutUser = Context.users.filter((user) => {return user.id !== Context.userData.id})
-            usersWithoutUser.push(userData)
-            Context.setUsers(usersWithoutUser)
+            let users = Context.Users.filter(user => user.id !== Context.UserData.id)
+            users.push(UserData)
+            Context.setUsers(users)
 
             resolve()
         })

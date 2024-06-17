@@ -1,5 +1,8 @@
 @import "./themes/theme_snow.css";
 @import "./themes/theme_hedgehog34.css";
 
+/* Картинка заднего фона */
+@import "./themes/background.css";
+
 /* Обычная тема body[theme=default] */
 /* Без изменений... duh */

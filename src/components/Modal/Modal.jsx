@@ -10,7 +10,7 @@ export default function Modal({ children }) {
 
     // Функция закрытия модального окна, срабатывает при нажатии на крестик или вне окна
     function closeModal() {
-        Context.setModalData({})
+        Context.setModal({})
     }
 
     return (
@@ -34,6 +34,7 @@ export default function Modal({ children }) {
                             id="modal__close-button"
                             src={imgCross}
                             alt="close-modal"
+                            title="Закрыть окно"
                             onClick={(closeModal)}
                         />
                     </dialog>

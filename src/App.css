@@ -25,6 +25,13 @@ aside {
     z-index: var(--z-nav-content);
 }
 
+/* Навигация с задним фоном на пк */
+@media screen and (min-width: 900px) {
+    body[bg] aside {
+        width: calc(220px + var(--gap-small) + var(--scrollbar-width)); /* 200px размер навигации + 12px + scroll */
+    }
+}
+
 /* Блок страницы */
 article {
     width: calc(600px + var(--gap-medium) + var(--scrollbar-width)); /* 600px размер страницы + 20px отступ + 6px полоса прокрутки */
@@ -93,4 +100,9 @@ hr {
     display: flex;
     flex-direction: column;
     gap: var(--gap-small);
+}
+
+/* Блок - флекс перенос строки */
+.flex-wrap {
+    flex-wrap: wrap;
 }
