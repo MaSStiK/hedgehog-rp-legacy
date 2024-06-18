@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import { DataContext } from "../Context"
 import { setPageTitle } from "../Global"
-import StyledSelect from "../StyledSelect";
+import StyledSelect from "../CustomSelect/CustomSelect";
 import SettingsSave from "./SettingsSave";
 
 import "./SettingsPage.css"
@@ -52,28 +52,22 @@ export default function SettingsPage() {
                 <h3>Эффекты страницы</h3>
                 <StyledSelect
                     options={effectsOptions}
-                    values={[effectsOptions[
+                    values={effectsOptions[
                         effectsOptions.findIndex(option => option.value === Settings["theme"]) >= 0
                         ? effectsOptions.findIndex(option => option.value === Settings["theme"])
                         : 0
-                    ]]} // Значение по умолчанию
-                    searchable={false}
-                    dropdownGap={4}
-                    color="var(--border-input)"
+                    ]} // Значение по умолчанию
                     onChange={value => changeSettings("theme", value[0].value)}
                 />
 
                 <h3>Задний фон страницы</h3>
                 <StyledSelect
                     options={backgroundsOptions}
-                    values={[backgroundsOptions[
+                    values={backgroundsOptions[
                         backgroundsOptions.findIndex(option => option.value === Settings["bg"]) >= 0
                         ? backgroundsOptions.findIndex(option => option.value === Settings["bg"])
                         : 0
-                    ]]} // Значение по умолчанию
-                    searchable={false}
-                    dropdownGap={4}
-                    color="var(--border-input)"
+                    ]} // Значение по умолчанию
                     onChange={value => changeSettings("bg", value[0].value)}
                 />
 
@@ -82,15 +76,13 @@ export default function SettingsPage() {
                 <h3>Кнопка "Наверх страницы"</h3>
                 <StyledSelect
                     options={buttonToTopOptions}
-                    values={[buttonToTopOptions[
+                    values={buttonToTopOptions[
                         buttonToTopOptions.findIndex(option => option.value === Settings["buttonToTop"]) >= 0
                         ? buttonToTopOptions.findIndex(option => option.value === Settings["buttonToTop"])
                         : 0
-                    ]]} // Значение по умолчанию
-                    searchable={false}
-                    dropdownGap={4}
-                    color="var(--border-input)"
+                    ]} // Значение по умолчанию
                     onChange={value => changeSettings("buttonToTop", value[0].value)}
+                    dropdownPosition="top"
                 />
             </section>
         </article>
