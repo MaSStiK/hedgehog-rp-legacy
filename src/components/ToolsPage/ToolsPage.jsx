@@ -56,7 +56,7 @@ export default function ToolsPage({ doLogout }) {
                                 alt="find"
                                 text="Найти сообщение"
                                 title="Перейти к поиску сообщений"
-                                onClick={() => Navigate("find-message")}
+                                onClick={() => Navigate("message-news")}
                               />
                             : <p>Скачало вам нужно создать свою страну</p>
                         }

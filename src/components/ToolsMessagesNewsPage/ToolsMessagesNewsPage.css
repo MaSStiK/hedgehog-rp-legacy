@@ -10,6 +10,7 @@
 
 /* Блок с прокруткой */
 .vk-messages {
+    min-height: 145px;
     overflow: auto;
     padding: var(--gap-small) var(--gap-small) var(--gap-small) 0; /* Отступ от scroll и вертикальный отступ */
     margin: calc(-1 * var(--gap-small)) 0; /* Прижимаем блок к hr и нижнему краю */

@@ -34,7 +34,7 @@ import Nation from "./components/NationPage/NationPage";
 
 import Tools from "./components/ToolsPage/ToolsPage";
 import RosehipPage from "./components/RosehipPage/RosehipPage";
-import ToolsMessagesFindPage from "./components/ToolsMessagesFindPage/ToolsMessagesFindPage";
+import ToolsMessagesNewsPage from "./components/ToolsMessagesNewsPage/ToolsMessagesNewsPage";
 
 import Support from "./components/SupportPage/SupportPage";
 import SupportCreatorsList from "./components/SupportPage/SupportPage_CreatorsList";
@@ -181,11 +181,11 @@ export default function App() {
                     <Route path="/tools" element={<Tools />} />
                     <Route path="/tools/exit" element={<Tools doLogout={true} />} />
                     <Route path="/tools/rosehip" element={<RosehipPage />} />
-                    <Route path="/tools/find-message" element={
+                    <Route path="/tools/message-news" element={
                         <ProtectedRoute
                             isAllowed={Context.UserData?.country_id}
                             to="/tools"
-                            element={<ToolsMessagesFindPage />} 
+                            element={<ToolsMessagesNewsPage />} 
                         />
                     }/>
 

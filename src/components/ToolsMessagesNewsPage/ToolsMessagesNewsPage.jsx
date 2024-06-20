@@ -10,10 +10,10 @@ import imgListSearch from "../../assets/svg/ListSearch.svg"
 import imgCross from "../../assets/svg/Cross.svg"
 import imgLoad from "../../assets/svg/Load.svg"
 
-import "./ToolsMessagesFindPage.css"
-import "./ToolsMessagesFindPage-phone.css"
+import "./ToolsMessagesNewsPage.css"
+import "./ToolsMessagesNewsPage-phone.css"
 
-export default function ToolsMessagesFindPage() {
+export default function ToolsMessagesNewsPage() {
     useEffect(() => {setPageTitle("Поиск сообщения")}, [])
     const Context = useContext(DataContext)
     const Location = useLocation()
@@ -59,7 +59,7 @@ export default function ToolsMessagesFindPage() {
 
     return (
         <article>
-            <h4 className="page-title">h/tools</h4>
+            <h4 className="page-title">h/tools/message-news</h4>
 
             <section className={`vk-messages-section flex-col ${vkData.messages.length !== 0 && "vk-messages-section_min-height"}`}>
                 <h1>Новость из сообщения в ВК</h1>

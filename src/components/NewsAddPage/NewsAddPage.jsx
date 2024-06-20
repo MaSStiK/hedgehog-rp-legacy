@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import StyledSelect from "../CustomSelect/CustomSelect.jsx";
+import CustomSelect from "../CustomSelect/CustomSelect.jsx";
 import { CONFIG, setPageTitle, setPageLoading, timestampToDate } from "../Global"
 import { formValidate, sendForm } from "./NewsAdd.js"
 import CheckImgSrc from "../CheckImgSrc.js"
@@ -245,7 +245,7 @@ export default function NewsAddPage() {
                 }
 
                 <p>Отображаемая дата публикации</p>
-                <StyledSelect
+                <CustomSelect
                     options={timestampOptions}
                     values={timestampOptions[selectedDate === "timestamp" ? 0 : 1]} // Значение по умолчанию
                     disabled={!Location.state?.date}

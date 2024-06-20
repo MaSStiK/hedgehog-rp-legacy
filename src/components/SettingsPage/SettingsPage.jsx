@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import { DataContext } from "../Context"
 import { setPageTitle } from "../Global"
-import StyledSelect from "../CustomSelect/CustomSelect";
+import CustomSelect from "../CustomSelect/CustomSelect";
 import SettingsSave from "./SettingsSave";
 
 import "./SettingsPage.css"
@@ -50,7 +50,7 @@ export default function SettingsPage() {
 
             <section className="flex-col">
                 <h3>Эффекты страницы</h3>
-                <StyledSelect
+                <CustomSelect
                     options={effectsOptions}
                     values={effectsOptions[
                         effectsOptions.findIndex(option => option.value === Settings["theme"]) >= 0
@@ -61,7 +61,7 @@ export default function SettingsPage() {
                 />
 
                 <h3>Задний фон страницы</h3>
-                <StyledSelect
+                <CustomSelect
                     options={backgroundsOptions}
                     values={backgroundsOptions[
                         backgroundsOptions.findIndex(option => option.value === Settings["bg"]) >= 0
@@ -74,7 +74,7 @@ export default function SettingsPage() {
                 <hr />
 
                 <h3>Кнопка "Наверх страницы"</h3>
-                <StyledSelect
+                <CustomSelect
                     options={buttonToTopOptions}
                     values={buttonToTopOptions[
                         buttonToTopOptions.findIndex(option => option.value === Settings["buttonToTop"]) >= 0

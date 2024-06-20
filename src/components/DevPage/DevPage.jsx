@@ -122,7 +122,7 @@ export default function DevPage() {
                     text="Найти сообщение"
                     title="Перейти к поиску сообщений"
                     width100
-                    onClick={() => Navigate("/tools/find-message", {state: {noFilter: true}})}
+                    onClick={() => Navigate("/tools/message-news", {state: {noFilter: true}})}
                 />
             </section>
             
