@@ -3,10 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import CustomSelect from "../CustomSelect/CustomSelect.jsx";
+import CustomSelect from "../CustomSelect/CustomSelect";
 import { CONFIG, setPageTitle, setPageLoading, timestampToDate } from "../Global"
-import { formValidate, sendForm } from "./NewsAdd.js"
-import CheckImgSrc from "../CheckImgSrc.js"
+import { formValidate, sendForm } from "./NewsAdd"
+import CheckImgSrc from "../CheckImgSrc"
 import Fullscreen from "../Fullscreen/Fullscreen"
 import imgAdd from "../../assets/svg/Plus.svg"
 import imgMinus from "../../assets/svg/Minus.svg"

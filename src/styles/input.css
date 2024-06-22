@@ -2,6 +2,8 @@
     --border-input: #666666;
     --border-input-focus: #1CA02C;
     --border-input-error: #D60027;
+
+    --range-thumb: #999999;
 }
 
 /* Основной стиль инпута */

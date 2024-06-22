@@ -1,7 +1,7 @@
 import { GSAPI } from "../API";
 
 export default function SettingsSave(Context, pageSettings) {
-    // Новые данные о стране
+    // Новые данные о настройках
     let newUserData = {
         settings: pageSettings, // Новые настройки
     }
@@ -11,9 +11,7 @@ export default function SettingsSave(Context, pageSettings) {
         console.log("GSAPI: PUTuser");
 
         // Если ошибка
-        if (!data.success || !Object.keys(data).length) {
-            return
-        }
+        if (!data.success || !Object.keys(data).length) return
 
         // Сохранение информации локально
         let userData = {...Context.UserData}

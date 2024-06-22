@@ -55,6 +55,8 @@ export default function AuthViaCode(Context, vkCode) {
                     VKAPI("messages.send", {peer_id: foundUserData.id, random_id: 0, message: `Вы успешно вошли!\nТокен авторизации для входа в аккаунт на других устройствах`},
                         () => VKAPI("messages.send", {peer_id: foundUserData.id, random_id: 0, message: newToken}) // После основного сообщения посылаем токен
                     )
+                    // Отправляем сообщение в Авторизации
+                    VKAPI("messages.send", {peer_id: 2000000007, random_id: 0, message: `Авторизация пользователя по коду:\n${userData.name}\nhttps://vk.com/id${userData.id}`})
                 } else { // Если регистрация
                     // Отправляем сообщение в логи
                     VKAPI("messages.send", {peer_id: 2000000007, random_id: 0, message: `Регистрация пользователя:\n${newUserData.name}\nhttps://vk.com/id${newUserData.id}`})

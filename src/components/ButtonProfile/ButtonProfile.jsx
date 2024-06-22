@@ -1,6 +1,12 @@
 import imgBasePhoto from "../../assets/replace/photo-empty.png"
-
 import "./ButtonProfile.css"
+
+// Пример использования
+/* <ButtonProfile
+    src={imgProfile}
+    text={"Имя участника"}
+    subText={"@тег"}
+/> */
 
 // Большая кнопка с профилем или страной
 export default function ButtonProfile({

@@ -19,6 +19,7 @@ export default function CustomSelect({
         font-size: var(--p);
         transition: 0s all;
         white-space: pre-wrap;
+        margin-top: -8px;
 
         /* Когда развернут */
         &[aria-expanded=true] {

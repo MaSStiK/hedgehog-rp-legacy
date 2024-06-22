@@ -2,20 +2,13 @@ import { useState, useEffect, useRef, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import { CONFIG, setPageTitle, setPageLoading } from "../Global"
-import { GSAPI } from "../API";
 import AdminAuthViaToken from "./AdminAuthViaToken"
 import CustomInput from "../CustomInput/CustomInput"
-import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
 
-import imgHome from "../../assets/svg/Home.svg"
 import imgSearch from "../../assets/svg/Search.svg"
 import imgTool from "../../assets/svg/Tool.svg"
-import imgAt from "../../assets/svg/At.svg"
-import imgProfileBase from "../../assets/replace/profile-base.png"
 
-import imgLogo from "../../assets/logo/logoFullSize.png"
-import imgCopy from "../../assets/svg/Copy.svg"
 import imgLogin from "../../assets/svg/Login.svg"
 import imgPaste from "../../assets/svg/Paste.svg"
 

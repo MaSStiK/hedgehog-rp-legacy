@@ -1,0 +1,15 @@
+/* Контент в 100% */
+@media screen and (max-width: 900px) {
+
+}
+
+/* Делаем блок в столбик */
+@media screen and (max-width: 400px) {
+    .dice__luck {
+        flex-direction: column;
+    }
+
+    .dice__luck-wrapper {
+        flex: none;
+    }
+}

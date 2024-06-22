@@ -33,8 +33,9 @@ import CountryEdit from "./components/CountryEditPage/CountryEditPage";
 import Nation from "./components/NationPage/NationPage";
 
 import Tools from "./components/ToolsPage/ToolsPage";
-import RosehipPage from "./components/RosehipPage/RosehipPage";
 import ToolsMessagesNewsPage from "./components/ToolsMessagesNewsPage/ToolsMessagesNewsPage";
+import DicePage from "./components/DicePage/DicePage";
+import RosehipPage from "./components/RosehipPage/RosehipPage";
 
 import Support from "./components/SupportPage/SupportPage";
 import SupportCreatorsList from "./components/SupportPage/SupportPage_CreatorsList";
@@ -186,6 +187,13 @@ export default function App() {
                             isAllowed={Context.UserData?.country_id}
                             to="/tools"
                             element={<ToolsMessagesNewsPage />} 
+                        />
+                    }/>
+                    <Route path="/tools/dice" element={
+                        <ProtectedRoute
+                            isAllowed={Context.UserData}
+                            to="/tools"
+                            element={<DicePage />} 
                         />
                     }/>
 

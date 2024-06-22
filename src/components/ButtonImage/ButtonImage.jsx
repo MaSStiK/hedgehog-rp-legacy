@@ -1,6 +1,15 @@
 import imgReplaceMe from "../../assets/svg/ReplaceMe.svg"
 import "./ButtonImage.css"
 
+// Пример использования
+/* <ButtonImage
+    src={imgButton}
+    alt="button-test"
+    className=""
+    text="text"
+    title="title"
+/> */
+
 // Кнопка с картинкой, но так же есть возможность отобразить текст после картинки
 export default function ButtonImage({
     id,

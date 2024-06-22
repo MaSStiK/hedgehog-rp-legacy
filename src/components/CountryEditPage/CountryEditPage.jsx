@@ -4,7 +4,7 @@ import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import { formValidate, sendForm } from "./CountryEdit"
-import CheckImgSrc from "../CheckImgSrc.js"
+import CheckImgSrc from "../CheckImgSrc"
 import Fullscreen from "../Fullscreen/Fullscreen"
 import imgAt from "../../assets/svg/At.svg"
 

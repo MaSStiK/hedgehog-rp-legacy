@@ -4,7 +4,7 @@ import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import { formValidate, sendForm } from "./UserEdit"
-import CheckImgSrc from "../CheckImgSrc.js"
+import CheckImgSrc from "../CheckImgSrc"
 import Fullscreen from "../Fullscreen/Fullscreen"
 import imgAt from "../../assets/svg/At.svg"
 
@@ -65,7 +65,6 @@ export default function UserEditPage() {
         setErrorText("")
         setInputError()
         setDisableSubmitButton(nameInput.current.value.length < CONFIG.USER_NAME_MIN) // Если меньше 1 символа в имени
-        
         tagInput.current.value = tagInput.current.value.replaceAll(" ", "_")
     }
 

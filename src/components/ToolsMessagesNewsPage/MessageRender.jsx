@@ -23,7 +23,7 @@ export default function MessageRender({
             <button className="vk-message tp flex-row" onClick={postCreate}>
                 <img className="vk-message__user-image" src={profile.photo_50} alt="user" />
                 <div className="vk-message__info flex-col">
-                    <p className="vk-message__info-name">{profile.first_name} {profile.last_name}<span>{date.stringDate} ({date.stringTime})</span></p>
+                    <p className="vk-message__info-name">{profile.first_name} {profile.last_name}<span>{date.stringDate} • {date.stringTime}</span></p>
                     <p className="vk-message__info-text text-light">{message.text}</p>
                     {message.attachments.length !== 0 &&
                         <div className="vk-message__info-attachments flex-row">
