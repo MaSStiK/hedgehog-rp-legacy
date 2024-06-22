@@ -36,7 +36,7 @@ export default function DiceRoll(Context, textEvent, DiceType, additionalValue, 
                 }
                 
                 // Отправляем сообщение в беседу
-                VKAPI("messages.send", {peer_id: 2000000005, random_id: 0, disable_mentions: 0, message: message})
+                VKAPI("messages.send", {peer_id: 2000000001, random_id: 0, disable_mentions: 0, message: message})
                 messageSended = true // Сообщение было отправлено
             }
 
