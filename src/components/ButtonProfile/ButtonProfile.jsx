@@ -17,17 +17,19 @@ export default function ButtonProfile({
     src=imgBasePhoto,
     text,
     subText,
+    noPadding,
     preview
 }) {
     // Добавляем стиль-модификатор перед передаваемыми классами
-    if (preview) className = "button-profile_preview " + className// Предпросмотр кнопки профиля
+    if (noPadding) className = "button-profile_noPadding " + className // Предпросмотр кнопки профиля
+    if (preview) className = "button-profile_preview " + className // Предпросмотр кнопки профиля
     return (
         <button
             id={id} 
             className={`button-profile ${className}`} 
             style={style}
             title={text ? `Открыть профиль ${text}` : "Открыть профиль"}
-            onClick={onClick} 
+            onClick={onClick}
         >
             <img src={src} alt="profile-icon" draggable="false" />
             

@@ -26,3 +26,10 @@
     width: var(--button-img);
     height: var(--button-img);
 }
+
+/* Мобильное сжатие */
+@media screen and (max-width: 400px) {
+    .button-image_phoneTextHide p {
+        display: none;
+    }
+}

@@ -5,6 +5,7 @@ import CustomSelect from "../CustomSelect/CustomSelect";
 import SettingsSave from "./SettingsSave";
 
 import "./SettingsPage.css"
+import "./SettingsPage-phone.css"
 
 const effectsOptions = [
     {value: "default", label: "По умолчанию"},
@@ -70,20 +71,22 @@ export default function SettingsPage() {
                     ]} // Значение по умолчанию
                     onChange={value => changeSettings("bg", value[0].value)}
                 />
+                
+                <div className="flex-col settings__phone-hide">
+                    <hr />
 
-                <hr />
-
-                <h3>Кнопка "Наверх страницы"</h3>
-                <CustomSelect
-                    options={buttonToTopOptions}
-                    values={buttonToTopOptions[
-                        buttonToTopOptions.findIndex(option => option.value === Settings["buttonToTop"]) >= 0
-                        ? buttonToTopOptions.findIndex(option => option.value === Settings["buttonToTop"])
-                        : 0
-                    ]} // Значение по умолчанию
-                    onChange={value => changeSettings("buttonToTop", value[0].value)}
-                    dropdownPosition="top"
-                />
+                    <h3>Кнопка "Наверх страницы"<br /><p className="text-gray">(Доступна только на пк)</p></h3>
+                    <CustomSelect
+                        options={buttonToTopOptions}
+                        values={buttonToTopOptions[
+                            buttonToTopOptions.findIndex(option => option.value === Settings["buttonToTop"]) >= 0
+                            ? buttonToTopOptions.findIndex(option => option.value === Settings["buttonToTop"])
+                            : 0
+                        ]} // Значение по умолчанию
+                        onChange={value => changeSettings("buttonToTop", value[0].value)}
+                        dropdownPosition="top"
+                    />
+                </div>
             </section>
         </article>
     )

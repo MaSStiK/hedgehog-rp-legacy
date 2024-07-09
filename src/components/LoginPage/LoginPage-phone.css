@@ -11,12 +11,3 @@
         height: 100px;
     }
 }
-
-
-/* Скрываем текст в кнопке с картинкой */
-@media screen and (max-width: 400px) {
-    /* Скрываем текст у кнопки отчистки поля поиска */
-    .login__token-row .button-image p {
-        display: none;
-    }
-}

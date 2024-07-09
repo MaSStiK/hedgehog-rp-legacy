@@ -1,27 +1,28 @@
 /* Блок с постом */
-.post {}
+/* .post {} */
 
 /* Верхняя часть поста (автор и время публикации) */
 .post__top {
     justify-content: space-between;
-    gap: 0;
 }
 
 /* Текст поста */
-.post > p {
-    color: var(--text-light);
+.post__text {
     white-space: pre-wrap;
 }
 
 
 /* Оставляем место под время */
-.post__top button {
-    width: calc(100% - 80px);
+.post__top .button-profile {
+    /* width: calc(100% - 120px); */
+    flex: 1;
 }
 
 
-/* Время */
-.post__top > small {
+/* Информация о посте (Время, Сезон) */
+.post__top-info {
+    width: fit-content;
+    gap: 0;
     text-align: right;
 }
 
@@ -51,6 +52,7 @@
     object-fit: contain;
     transition: all 0s;
 }
+
 
 /* Если картинка одна - во всю ширину блока, не зависимо от высоты */
 .post__attachment_single {

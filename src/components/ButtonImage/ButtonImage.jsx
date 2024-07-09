@@ -22,11 +22,13 @@ export default function ButtonImage({
     text,
     width100,
     atStart,
+    phoneTextHide,
     disabled
 }) {
     // Добавляем стиль-модификатор перед передаваемыми классами
     if (width100) className = "button-image_width100 " + className // Кнопка в 100% ширины
     if (atStart) className = "button-image_atStart " + className // Контент кнопки в начале
+    if (phoneTextHide) className = "button-image_phoneTextHide " + className // Контент кнопки в начале
     return (
         <button
             id={id} 

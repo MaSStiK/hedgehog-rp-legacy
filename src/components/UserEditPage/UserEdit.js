@@ -4,37 +4,22 @@ import { CONFIG } from "../Global"
 export function formValidate(formName, formTag, formPhoto, formBio) {
     return new Promise((resolve, reject) => {
         // Проверка длины Названия
-        if (formName.length < CONFIG.USER_NAME_MIN) {
-            return reject({text: `Название меньше ${CONFIG.USER_NAME_MIN} символов`, input: "name"})
-        }
-
-        if (formName.length > CONFIG.USER_NAME_MAX) {
-            return reject({text: `Название больше ${CONFIG.USER_NAME_MAX} символов`, input: "name"})
-        }
-
+        if (formName.length < CONFIG.USER_NAME_MIN) return reject({text: `Название меньше ${CONFIG.USER_NAME_MIN} символов`, input: "name"})
+        if (formName.length > CONFIG.USER_NAME_MAX) return reject({text: `Название больше ${CONFIG.USER_NAME_MAX} символов`, input: "name"})
 
         // Проверка длины тега
-        if (formTag.length > CONFIG.USER_TAG_MAX) {
-            return reject({text: `Тег больше ${CONFIG.USER_TAG_MAX} символов`, input: "tag"})
-        }
+        if (formTag.length < CONFIG.USER_TAG_MIN) return reject({text: `Тег меньше ${CONFIG.USER_TAG_MIN} символов`, input: "tag"})
+        if (formTag.length > CONFIG.USER_TAG_MAX) return reject({text: `Тег больше ${CONFIG.USER_TAG_MAX} символов`, input: "tag"})
 
         // Проверка наличия запрещенных символов
         const regex = /^[A-Za-z0-9_-]+$/; // Допускаем пробелы, подчеркивания и тире
-        if (!regex.test(formTag)) {
-            return reject({text: `Тег содержит запрещенные символы`, input: "tag"})
-        }
-
+        if (!regex.test(formTag)) return reject({text: `Тег содержит запрещенные символы`, input: "tag"})
 
         // Проверка длины фото
-        if (formPhoto.length > CONFIG.PHOTO_LINK_MAX) {
-            return reject({text: `Ссылка на картинку больше ${CONFIG.PHOTO_LINK_MAX} символов`, input: "photo"})
-        }
+        if (formPhoto.length > CONFIG.PHOTO_LINK_MAX) return reject({text: `Ссылка на картинку больше ${CONFIG.PHOTO_LINK_MAX} символов`, input: "photo"})
         
-
         // Проверка длины описания
-        if (formBio.length > CONFIG.USER_BIO_MAX) {
-            return reject({text: `Описание больше ${CONFIG.USER_BIO_MAX} символов`, input: "bio"})
-        }
+        if (formBio.length > CONFIG.USER_BIO_MAX) return reject({text: `Описание больше ${CONFIG.USER_BIO_MAX} символов`, input: "bio"})
 
         // Если прошло все проверки
         resolve()

@@ -99,7 +99,7 @@ export default function AboutPage() {
                     onClick={() => window.open("https://vk.com/id291195777", "_blank")}
                 />
                 <Link className="about__link-support" to="/support/feedback">
-                    <small className="text-gray link-image">Где оставить обратную связь (идеи/баги)</small>
+                    <small className="text-gray link-image">Где оставить обратную связь (идеи или баги)</small>
                 </Link>
             </section>
 

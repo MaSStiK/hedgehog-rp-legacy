@@ -8,7 +8,6 @@ import CheckImgSrc from "../CheckImgSrc"
 import Fullscreen from "../Fullscreen/Fullscreen"
 import imgAt from "../../assets/svg/At.svg"
 
-
 import "./CountryEditPage.css"
 
 export default function CountryEditPage() {
@@ -66,9 +65,8 @@ export default function CountryEditPage() {
     function handleInputUpdate() {
         setErrorText("")
         setInputError()
-        setDisableSubmitButton(nameInput.current.value.length < CONFIG.COUNTRY_TITLE_MIN) // Если меньше 1 символа в названии страны
-        
-        tagInput.current.value = tagInput.current.value.replaceAll(" ", "_")
+        setDisableSubmitButton(nameInput.current.value.length < CONFIG.COUNTRY_NAME_MIN) // Если меньше 1 символа в названии страны
+        tagInput.current.value = tagInput.current.value.replaceAll(" ", "_") // Удаляем лишнии символы из тега
     }
 
     // Ивент submit у формы создания/изменения страны
@@ -139,14 +137,14 @@ export default function CountryEditPage() {
                         ref={nameInput}
                         type="text"
                         id="form-title"
-                        maxLength={CONFIG.COUNTRY_TITLE_MAX}
+                        maxLength={CONFIG.COUNTRY_NAME_MAX}
                         onInput={handleInputUpdate}
                         required
                     />
                 </CustomInput>
                 <small className="text-gray">
                     <p className="text-red" style={{display: "inline"}}>*</p> Обязательное поле
-                    <br />• Длина от {CONFIG.COUNTRY_TITLE_MIN} до {CONFIG.COUNTRY_TITLE_MAX} символов
+                    <br />• Длина от {CONFIG.COUNTRY_NAME_MIN} до {CONFIG.COUNTRY_NAME_MAX} символов
                 </small>
 
                 <CustomInput label="Тег страны" error={inputError === "tag"} src={imgAt}>
@@ -166,7 +164,7 @@ export default function CountryEditPage() {
                     />
                 </CustomInput>
                 <small className="text-gray">
-                    • Длина до {CONFIG.COUNTRY_TAG_MAX} символов
+                    • Длина от {CONFIG.COUNTRY_TAG_MIN} до {CONFIG.COUNTRY_TAG_MAX} символов
                     <br />• Без пробелов
                     <br />• Доступные символы: Латиница, цифры, - и _
                 </small>

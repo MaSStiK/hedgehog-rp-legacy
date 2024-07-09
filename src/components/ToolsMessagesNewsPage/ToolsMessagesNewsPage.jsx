@@ -84,6 +84,7 @@ export default function ToolsMessagesNewsPage() {
                                 alt="clear-search"
                                 text="Отмена"
                                 title="Отменит поиск"
+                                phoneTextHide
                                 onClick={() => {
                                     // Отчищаем поле и активируем поиск
                                     searchRef.current.value = ""

@@ -4,7 +4,7 @@ import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import Fullscreen from "../Fullscreen/Fullscreen"
-import { timestampToDate } from "../Global";
+import { CONFIG, timestampToDate } from "../Global";
 import PostShare from "./PostShare"
 import imgShare from "../../assets/svg/Share.svg"
 import imgEdit from "../../assets/svg/Edit.svg"
@@ -65,17 +65,24 @@ export default function PostRender({
                 <div className="flex-row post__top">
                     <ButtonProfile
                         src={postAuthor.country_photo}
-                        text={postAuthor.country_name}
-                        subText={postAuthor.country_tag} 
+                        text={post.author}
+                        subText={postAuthor.country_tag}
+                        className="tp"
+                        noPadding
                         onClick={() => Navigate("/country/" + postAuthor.country_id)}
                     />
-                    <small className="text-gray">{date.stringDate}<br />{date.stringTime}</small>
+                    <div className="flex-col post__top-info"
+                        title={`Пост опубликован ${date.postFullDate} в ${date.stringTime}\nСезон ${post.season}`}
+                    >
+                        <small className="text-gray">{date.postDate} • {date.stringTime}</small>
+                        {Number(post.season) !== CONFIG.CURRENT_SEASON && <small className="text-gray">Сезон {post.season}</small>}
+                    </div>
                 </div>
                 {/* Заголовок поста */}
                 <h3>{post.post_title}</h3>
     
                 {/* Текст поста не обязателен */}
-                {post.post_text && <p>{post.post_text}</p> }
+                {post.post_text && <p className="post__text text-light">{post.post_text}</p> }
     
                 {/* Если картинок нету - не рендерим блок с ними */}
                 {postAttachments.length !== 0 &&
@@ -125,6 +132,7 @@ export default function PostRender({
                         alt="post-share"
                         text="Поделиться"
                         title="Поделиться постом"
+                        phoneTextHide
                         onClick={handlePostShare}
                     />
 
@@ -135,6 +143,7 @@ export default function PostRender({
                             alt="post-edit"
                             text="Изменить"
                             title="Изменить пост"
+                            phoneTextHide
                             onClick={handlePostEdit}
                         />
                     }

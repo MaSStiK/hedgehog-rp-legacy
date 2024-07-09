@@ -9,7 +9,6 @@ import imgListSearch from "../../assets/svg/ListSearch.svg"
 import imgCross from "../../assets/svg/Cross.svg"
 
 import "./CountryListPage.css"
-import "./CountryListPage-phone.css"
 
 export default function CountryListPage() {
     useEffect(() => {setPageTitle("Все страны")}, [])
@@ -86,6 +85,7 @@ export default function CountryListPage() {
                         alt="clear-search"
                         text="Отмена"
                         title="Отменить поиск"
+                        phoneTextHide
                         onClick={() => {
                             // Отчищаем поле и активируем поиск
                             searchRef.current.value = ""

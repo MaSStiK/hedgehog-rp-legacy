@@ -4,10 +4,11 @@ import { CONFIG } from "../Global"
 export function formValidate(formName, formTag, formPhoto, formBio) {
     return new Promise((resolve, reject) => {
         // Проверка длины Названия
-        if (formName.length < CONFIG.COUNTRY_TITLE_MIN) return reject({text: `Название меньше ${CONFIG.COUNTRY_TITLE_MIN} символов`, input: "title"})
-        if (formName.length > CONFIG.COUNTRY_TITLE_MAX) return reject({text: `Название больше ${CONFIG.COUNTRY_TITLE_MAX} символов`, input: "title"})
+        if (formName.length < CONFIG.COUNTRY_NAME_MIN) return reject({text: `Название меньше ${CONFIG.COUNTRY_NAME_MIN} символов`, input: "title"})
+        if (formName.length > CONFIG.COUNTRY_NAME_MAX) return reject({text: `Название больше ${CONFIG.COUNTRY_NAME_MAX} символов`, input: "title"})
 
         // Проверка длины тега
+        if (formTag.length < CONFIG.COUNTRY_TAG_MIN) return reject({text: `Тег меньше ${CONFIG.COUNTRY_TAG_MIN} символов`, input: "tag"})
         if (formTag.length > CONFIG.COUNTRY_TAG_MAX) return reject({text: `Тег больше ${CONFIG.COUNTRY_TAG_MAX} символов`, input: "tag"})
 
         // Проверка наличия запрещенных символов

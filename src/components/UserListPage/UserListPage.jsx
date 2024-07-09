@@ -9,7 +9,6 @@ import imgUserSearch from "../../assets/svg/UserSearch.svg"
 import imgCross from "../../assets/svg/Cross.svg"
 
 import "./UserListPage.css"
-import "./UserListPage-phone.css"
 
 export default function UserListPage() {
     useEffect(() => {setPageTitle("Все участники")}, [])
@@ -66,6 +65,7 @@ export default function UserListPage() {
                         alt="clear-search"
                         text="Отмена"
                         title="Отменить поиск"
+                        phoneTextHide
                         onClick={() => {
                             // Отчищаем поле и активируем поиск
                             searchRef.current.value = ""

@@ -1,3 +1,4 @@
+/* Кнопка Наверх страницы */
 .tp.button-toTop {
     width: 60px;
     height: 60px;
@@ -11,6 +12,12 @@
     background-color: #FFFFFF22;
 }
 
+/* Картинка внутри */
+.tp.button-toTop img {
+    width: 48px;
+    height: 48px;
+}
+
 
 /* Наведение на пк */
 @media (hover: hover) {
@@ -20,11 +27,9 @@
     }
 }
 
-.tp.button-toTop img {
-    width: 48px;
-    height: 48px;
-}
 
+
+/* Привязываем кнопку к правому краю */
 @media screen and (max-width: 1060px) {
     .tp.button-toTop {
         left: unset;

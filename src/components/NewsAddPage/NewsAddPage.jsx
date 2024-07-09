@@ -25,13 +25,17 @@ export default function NewsAddPage() {
     const [photoPreview, setPhotoPreview] = useState("") // Превью картинки
     const [attachments, setAttachments] = useState([]) // Список картинок
     const [disableAddButton, setDisableAddButton] = useState(true) // Состояние кнопки Добавления картинки
-    const [publicationDate, setPublicationDate] = useState({}) // Дата публикации (добавляем три нуля)
+    const [publicationDate, setPublicationDate] = useState({}) // Дата публикации
     const [selectedDate, setSelectedDate] = useState("now")
     const [disableSubmitButton, setDisableSubmitButton] = useState(true) // Состояние кнопки сохранения
+
+    const [countryData, setCountryData] = useState({}) // Информация о стране в которой выходит пост
+
     
     const titleInput = useRef()
     const textInput = useRef()
     const photoInput = useRef()
+    const authorInput = useRef()
 
     const timestampOptions = [
         {value: "timestamp", label: `Дата отправки сообщения\n(${publicationDate.stringTime} ${publicationDate.stringDate})`},
@@ -43,6 +47,7 @@ export default function NewsAddPage() {
         if (Location.state) {
             // Заполняем поля
             textInput.current.value = Location.state.text
+
             setTextLength(Location.state.text.length)
             setSelectedDate("timestamp") // Устанавливаем выбор по timestamp
             setPublicationDate(timestampToDate(Location.state?.date * 1000))
@@ -60,11 +65,21 @@ export default function NewsAddPage() {
         }
     }, [Location.state])
 
+    // Устанавливаем название страны
+    useEffect(() => {
+        // Ставим название страны когда загрузятся все пользователи
+        if (Context.Users.length) {
+            let countryData = [...Context.Users].find(user => user.id === (Location.state ? String(Location.state?.from_id) : Context.UserData.id))
+            setCountryData(countryData)
+            authorInput.current.value = countryData ? countryData.country_name : "Страна не найдена"
+        }
+    }, [Context.Users])
+
     // При обновлении любого из инпутов
     function handleInputUpdate() {
         setErrorText("")
         setInputError()
-        setDisableSubmitButton(titleInput.current.value.length < CONFIG.COUNTRY_TITLE_MIN) // Если меньше 1 символа в заголовке поста
+        setDisableSubmitButton(titleInput.current.value.length < CONFIG.COUNTRY_NAME_MIN) // Если меньше 1 символа в заголовке поста
     }
 
     // Проверка существования картинки
@@ -104,8 +119,10 @@ export default function NewsAddPage() {
         let formTitle = titleInput.current.value
         let formText = textInput.current.value
         // let formPhoto = countryPhotoInput.current.value
+        let formAuthor = authorInput.current.value
 
-        formValidate(formTitle, formText, attachments)
+
+        formValidate(formTitle, formText, attachments, formAuthor)
         .then(() => {
             // Отключаем кнопку только в случае если прошло все проверки
             setDisableSubmitButton(true)
@@ -120,9 +137,9 @@ export default function NewsAddPage() {
             // Если не было ошибки - отправляем
             if (resolved) {
                 // Если выбрана дата публикации сейчас - то ставим текущую дату, иначе - дата сообщения
-                let _publicationDate = selectedDate === "now" ? Date.now() : Location.state?.date * 1000
+                let publicationDate = selectedDate === "now" ? Date.now() : Location.state?.date * 1000
 
-                sendForm(Context, formTitle, formText, attachments, _publicationDate, Location.state?.from_id)
+                sendForm(Context, formTitle, formText, attachments, formAuthor, publicationDate, Location.state?.from_id)
                 .then(() => { // Если успешно сохранились изменения
                     setPageLoading(false)
                     Navigate("/news")
@@ -244,13 +261,33 @@ export default function NewsAddPage() {
                     <small className="text-gray">• Достигнуто максимальное кол-во картинок</small>
                 }
 
-                <p>Отображаемая дата публикации</p>
+                <p>Дата публикации</p>
                 <CustomSelect
                     options={timestampOptions}
                     values={timestampOptions[selectedDate === "timestamp" ? 0 : 1]} // Значение по умолчанию
                     disabled={!Location.state?.date}
                     onChange={value => setSelectedDate(value[0].value)}
                 />
+
+                <CustomInput label="Автор поста" error={inputError === "author"}>
+                    <input
+                        ref={authorInput}
+                        type="text"
+                        id="form-author"
+                        maxLength={CONFIG.COUNTRY_NAME_MAX}
+                        onInput={handleInputUpdate}
+                        onBlur={() => {
+                            // Если строка пустая - ставим id страны
+                            if (authorInput.current.value === "") {
+                                authorInput.current.value = countryData ? countryData.country_name : "Страна не найдена"
+                            }
+                        }}
+                        required
+                    />
+                </CustomInput>
+                <small className="text-gray">
+                    • Длина от {CONFIG.COUNTRY_NAME_MIN} до {CONFIG.COUNTRY_NAME_MAX} символов
+                </small>
                 
                 {errorText &&
                     <p className="text-red" style={{textAlign: "center"}}>{errorText}</p>

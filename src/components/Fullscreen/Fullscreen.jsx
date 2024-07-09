@@ -47,7 +47,7 @@ export default function Fullscreen({ children }) {
                     <Controls />
                     <TransformComponent>
                         <div className="fullscreen__image-wrapper">
-                            <img src={children.props.src} alt="map" draggable="false" />
+                            <img src={children.props.src} alt="full-screen" draggable="false" />
                         </div>
                     </TransformComponent>
                 </TransformWrapper>

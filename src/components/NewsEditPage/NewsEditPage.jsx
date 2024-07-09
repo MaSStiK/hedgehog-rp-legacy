@@ -30,6 +30,7 @@ export default function NewsEditPage() {
     const titleInput = useRef()
     const textInput = useRef()
     const photoInput = useRef()
+    const authorInput = useRef()
 
     useEffect(() => {
         // Если перешли на редактирование поста без данных о посте или без post_id или попытка изменить пост не своей страны - перекидываем на главную
@@ -45,6 +46,7 @@ export default function NewsEditPage() {
         titleInput.current.value = Location.state.post_title
         textInput.current.value = Location.state.post_text
         setTextLength(Location.state.post_text.length)
+        authorInput.current.value = Location.state.author
 
         // Собираем массив картинок (Добавляем ко времени их порядковый номер)
         let attachmentsArray = JSON.parse(Location.state.attachments).map((attach, index) => {
@@ -58,7 +60,7 @@ export default function NewsEditPage() {
     function handleInputUpdate() {
         setErrorText("")
         setInputError()
-        setDisableSubmitButton(titleInput.current.value.length < CONFIG.COUNTRY_TITLE_MIN) // Если меньше 1 символа в заголовке поста
+        setDisableSubmitButton(titleInput.current.value.length < CONFIG.COUNTRY_NAME_MIN) // Если меньше 1 символа в заголовке поста
     }
 
     // Проверка существования картинки
@@ -98,8 +100,9 @@ export default function NewsEditPage() {
         let formTitle = titleInput.current.value
         let formText = textInput.current.value
         // let formPhoto = countryPhotoInput.current.value
+        let formAuthor = authorInput.current.value
 
-        formValidate(formTitle, formText, attachments)
+        formValidate(formTitle, formText, attachments, formAuthor)
         .then(() => {
             // Отключаем кнопку только в случае если прошло все проверки
             setDisableSubmitButton(true)
@@ -113,7 +116,7 @@ export default function NewsEditPage() {
         .then(resolved => {
             // Если не было ошибки - отправляем изменения
             if (resolved) {
-                sendForm(Context, Location.state, formTitle, formText, attachments)
+                sendForm(Context, Location.state, formTitle, formText, attachments, formAuthor)
                 .then(() => { // Если успешно сохранились изменения
                     setPageLoading(false)
                     Navigate("/news")
@@ -233,6 +236,26 @@ export default function NewsEditPage() {
                 {attachments.length === 10 &&
                     <small className="text-gray">• Достигнуто максимальное кол-во картинок</small>
                 }
+
+                <CustomInput label="Автор поста" error={inputError === "author"}>
+                    <input
+                        ref={authorInput}
+                        type="text"
+                        id="form-author"
+                        maxLength={CONFIG.COUNTRY_NAME_MAX}
+                        onInput={handleInputUpdate}
+                        onBlur={() => {
+                            // Если строка пустая - ставим id страны
+                            if (authorInput.current.value === "") {
+                                authorInput.current.value = Location.state?.author ? Location.state?.author : "Страна не найдена"
+                            }
+                        }}
+                        required
+                    />
+                </CustomInput>
+                <small className="text-gray">
+                    • Длина от {CONFIG.COUNTRY_NAME_MIN} до {CONFIG.COUNTRY_NAME_MAX} символов
+                </small>
                 
                 {errorText &&
                     <p className="text-red" style={{textAlign: "center"}}>{errorText}</p>

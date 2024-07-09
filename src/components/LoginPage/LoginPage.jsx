@@ -136,6 +136,7 @@ export default function LoginPage() {
                         src={imgPaste}
                         text="Вставить"
                         title="Вставить токен"
+                        phoneTextHide
                         onClick={() => {
                             // Вставляем текст из буфера обмена
                             navigator.clipboard.readText()

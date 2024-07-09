@@ -5,11 +5,13 @@ export const CONFIG = {
     AUTH_TOKEN_MAX:     50,     // Макс. Токен
     USER_NAME_MIN:      1,      // Мин.  Имя пользователя
     USER_NAME_MAX:      32,     // Макс. Имя пользователя
+    USER_TAG_MIN:       1,      // Мин.  Тег пользователя
     USER_TAG_MAX:       16,     // Макс. Тег пользователя
     USER_BIO_MAX:       5000,   // Макс. Описание пользователя
 
-    COUNTRY_TITLE_MIN:  1,      // Мин.  Название страны
-    COUNTRY_TITLE_MAX:  32,     // Макс. Название страны
+    COUNTRY_NAME_MIN:   1,      // Мин.  Название страны
+    COUNTRY_NAME_MAX:   32,     // Макс. Название страны
+    COUNTRY_TAG_MIN:    1,      // Мин.  Тег страны
     COUNTRY_TAG_MAX:    16,     // Макс. Тег страны
     COUNTRY_BIO_MAX:    5000,   // Макс. Описание страны
 
@@ -19,12 +21,12 @@ export const CONFIG = {
     POST_ATTACH_MAX:    10,     // Макс. Кол-во картинок
 
     PHOTO_LINK_MAX:     5000,   // Макс. Ссылка на фото
-    PHOTO_PX_MIN:       20,     // Мин. Размер фото
+    PHOTO_PX_MIN:       20,     // Мин.  Размер фото
     PHOTO_PX_MAX:       1920,   // Макс. Размер фото
 
     POSTS_AMOUNT:       10,     // Кол-во передаваемых постов за одну загрузку
-
-    DICE_TEXT_MAX:      200,   // Макс. Длина события броска кубика
+    DICE_TEXT_MAX:      200,    // Макс.  Длина события броска кубика
+    CURRENT_SEASON:     4,      // Текущий сезон
 }
 
 // Функция для установки заголовка страницы
@@ -63,6 +65,39 @@ export function timestampToDate(timestamp) {
     day = day.length !== 2 ? "0" + day : day // Формат дня 00
     month = month.length !== 2 ? "0" + month : month // Формат месяца 00
 
+    const MONTHS = {
+        "01": "янв",
+        "02": "фев",
+        "03": "мар",
+        "04": "апр",
+        "05": "май",
+        "06": "июн",
+        "07": "июл",
+        "08": "авг",
+        "09": "сен",
+        "10": "окт",
+        "11": "ноя",
+        "12": "дек",
+    }
+
+    const FULL_MONTHS = {
+        "01": "января",
+        "02": "февраля",
+        "03": "марта",
+        "04": "апреля",
+        "05": "мая",
+        "06": "июня",
+        "07": "июля",
+        "08": "августа",
+        "09": "сентября",
+        "10": "октября",
+        "11": "ноября",
+        "12": "декабря",
+    }
+
+    let nowDate = new Date()
+    let nowYear = nowDate.getFullYear()
+
     return {
         hours: hours,
         minutes: minutes,
@@ -70,6 +105,8 @@ export function timestampToDate(timestamp) {
         month: month,
         year: year,
         stringTime: `${hours}:${minutes}`,
-        stringDate: `${day}.${month}.${year}`
+        stringDate: `${day}.${month}.${year}`,
+        postDate: `${day} ${MONTHS[month]}${year !== nowYear ? " " + year : ""}`, // Если не текущий год - отображаем год
+        postFullDate: `${day} ${FULL_MONTHS[month]}${year !== nowYear ? " " + year : ""}`, // Если не текущий год - отображаем год
     }
 }

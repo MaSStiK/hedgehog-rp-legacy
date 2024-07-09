@@ -1,5 +1,10 @@
+/* Блок с выбором удачи */
 .dice__luck {
     align-items: center;
+}
+
+.dice__luck div {
+    transition: 0s all;
 }
 
 /* Обвертка range инпута */

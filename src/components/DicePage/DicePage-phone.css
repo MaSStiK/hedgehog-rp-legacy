@@ -3,8 +3,9 @@
 
 }
 
-/* Делаем блок в столбик */
+/* Мобильное сжатие */
 @media screen and (max-width: 400px) {
+    /* Делаем блок в столбик */
     .dice__luck {
         flex-direction: column;
     }

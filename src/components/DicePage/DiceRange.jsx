@@ -32,6 +32,7 @@ export default function name({
                     ...props.style,
                     width: "var(--button-img)",
                     height: "var(--button-img)",
+                    transition: ".2s all",
                     borderRadius: "50%",
                     backgroundColor: state[0] === 0 ? "var(--range-thumb)" : (state[0] > 0 ? "var(--border-input-focus)" : "var(--border-input-error)")
                 }}

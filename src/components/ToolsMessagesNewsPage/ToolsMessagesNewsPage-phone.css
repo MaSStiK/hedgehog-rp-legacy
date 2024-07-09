@@ -7,12 +7,8 @@
     }
 }
 
+/* Мобильное сжатие */
 @media screen and (max-width: 400px) {
-    /* Скрываем текст в кнопке с картинкой */
-    .vk-messages__search .button-image p {
-        display: none;
-    }
-
     /* Информация о загрузке */
     .vk-messages__search-info {
         flex-direction: column;

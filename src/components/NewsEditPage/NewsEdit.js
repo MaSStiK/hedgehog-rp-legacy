@@ -1,35 +1,28 @@
 import { GSAPI } from "../API";
 import { CONFIG } from "../Global"
 
-export function formValidate(formTitle, formText, attachments) {
+export function formValidate(formTitle, formText, attachments, formAuthor) {
     return new Promise((resolve, reject) => {
         // Проверка длины Названия
-        if (formTitle.length < CONFIG.POST_TITLE_MIN) {
-            return reject({text: `Заголовок меньше ${CONFIG.POST_TITLE_MIN} символов`, input: "title"})
-        }
-
-        if (formTitle.length > CONFIG.POST_TITLE_MAX) {
-            return reject({text: `Заголовок больше ${CONFIG.POST_TITLE_MAX} символов`, input: "title"})
-        }
-
+        if (formTitle.length < CONFIG.POST_TITLE_MIN) return reject({text: `Заголовок меньше ${CONFIG.POST_TITLE_MIN} символов`, input: "title"})
+        if (formTitle.length > CONFIG.POST_TITLE_MAX) return reject({text: `Заголовок больше ${CONFIG.POST_TITLE_MAX} символов`, input: "title"})
 
         // Проверка длины Текста
-        if (formText.length > CONFIG.POST_TEXT_MAX) {
-            return reject({text: `Текст больше ${CONFIG.POST_TEXT_MAX} символов`, input: "text"})
-        }
-
+        if (formText.length > CONFIG.POST_TEXT_MAX) return reject({text: `Текст больше ${CONFIG.POST_TEXT_MAX} символов`, input: "text"})
 
         // Проверка кол-во фото
-        if (attachments.length > CONFIG.POST_ATTACH_MAX) {
-            return reject({text: `Картинок больше ${CONFIG.POST_ATTACH_MAX}`, input: "photo"})
-        }
+        if (attachments.length > CONFIG.POST_ATTACH_MAX) return reject({text: `Картинок больше ${CONFIG.POST_ATTACH_MAX}`, input: "photo"})
+
+        // Проверка автора
+        if (formAuthor.length < CONFIG.COUNTRY_NAME_MIN) return reject({text: `Тег меньше ${CONFIG.COUNTRY_NAME_MIN} символов`, input: "tag"})
+        if (formAuthor.length > CONFIG.COUNTRY_NAME_MAX) return reject({text: `Тег больше ${CONFIG.COUNTRY_NAME_MAX} символов`, input: "tag"})
 
         // Если прошло все проверки
         resolve()
     })
 }
 
-export function sendForm(Context, post, formTitle, formText, attachments) {
+export function sendForm(Context, post, formTitle, formText, attachments, formAuthor) {
     return new Promise((resolve, reject) => {
         // Пользователь может поменять поля post_title, post_text, attachments
 
@@ -40,6 +33,7 @@ export function sendForm(Context, post, formTitle, formText, attachments) {
             post_title  : formTitle, // Заголовок поста
             post_text   : formText, // Текст поста
             attachments : JSON.stringify(Array.from(attachments, (attach) => attach.url)), // Прикрепленные картинки
+            author      : formAuthor, // Автор поста
             season      : post.season, // Текущий сезон
             timestamp   : post.timestamp // Дата создания поста
         }

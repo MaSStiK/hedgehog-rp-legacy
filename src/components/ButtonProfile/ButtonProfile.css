@@ -36,3 +36,8 @@
     color: transparent;
     background-color: var(--bg-primary);
 }
+
+.button-profile_noPadding {
+    padding-right: 0;
+    padding-left: 0;
+}

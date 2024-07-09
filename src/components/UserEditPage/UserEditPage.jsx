@@ -161,7 +161,7 @@ export default function UserEditPage() {
                     />
                 </CustomInput>
                 <small className="text-gray">
-                    • Длина до {CONFIG.USER_TAG_MAX} символов
+                    • Длина от {CONFIG.USER_TAG_MIN} до {CONFIG.USER_TAG_MAX} символов
                     <br />• Без пробелов
                     <br />• Доступные символы: Латиница, цифры, - и _
                 </small>
