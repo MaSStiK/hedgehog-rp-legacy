@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react"
 import { setPageTitle } from "../Global"
 import { DataContext } from "../Context"
+import PostPreview from "../PostPreview/PostPreview"
 import ButtonToTop from "../ButtonToTop/ButtonToTop"
 import ChangelogsRender from "./ChangelogsRender"
 import Changelogs from "./Changelogs"
@@ -18,10 +19,16 @@ export default function ChangelogsPage() {
             <ButtonToTop />
 
             {/* Отображаем обновления когда пользователи и посты */}
-            {Context.Users.length !== 0 && Context.Posts.length !== 0 && 
-                <ChangelogsRender
+            {(Context.Users.length && Context.Posts.length)
+                ? <ChangelogsRender
                     changelogs={Changelogs}
                 />
+
+                : <>
+                    <PostPreview />
+                    <PostPreview />
+                    <PostPreview />
+                  </>
             }
         </article>
     )

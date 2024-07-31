@@ -64,7 +64,7 @@ export default function Aside() {
                 className="tp no-filter"
                 src={imgLogo}
                 alt="logotype"
-                title="Перейти на главную страницу"
+                title="Открыть главную страницу"
                 onClick={() => Navigate("/")}
             />
 
@@ -91,7 +91,7 @@ export default function Aside() {
                     id="nav-phone-login"
                     text="Авторизация"
                     className="tp"
-                    title="Перейти на страницу авторизации"
+                    title="Открыть страницу авторизации"
                     width100
                     onClick={() => Navigate("/login")}
                   />
@@ -122,7 +122,7 @@ export default function Aside() {
 
                     <div id="nav-logo">
                         <NavLink to="/">
-                            <img src={imgLogo} alt="logotype" title="Перейти на главную страницу" />
+                            <img src={imgLogo} alt="logotype" title="Открыть главную страницу" />
                         </NavLink>
                     </div>
                     
@@ -140,7 +140,7 @@ export default function Aside() {
                                     src={imgLogin}
                                     text="Авторизация"
                                     className="green"
-                                    title="Перейти на страницу авторизации"
+                                    title="Открыть страницу авторизации"
                                     width100
                                     onClick={() => Navigate("/login")}
                                   />
@@ -160,7 +160,7 @@ export default function Aside() {
                                         src={imgAdd}
                                         text={"Создать страну"}
                                         className="green"
-                                        title="Перейти на страницу создания страны"
+                                        title="Открыть страницу создания страны"
                                         width100
                                         onClick={() => Navigate("/country/edit")}
 

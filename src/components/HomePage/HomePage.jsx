@@ -2,9 +2,11 @@ import { useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import PostsRender from "../PostsRender/PostsRender"
+import PostPreview from "../PostPreview/PostPreview"
 import { setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonToTop from "../ButtonToTop/ButtonToTop"
+
 import imgNews from "../../assets/svg/News.svg"
 import imgHomeAA from "../../assets/images/home/Home-Ace_Attorney.png"
 import imgVk from "../../assets/images/vk.svg"
@@ -28,6 +30,26 @@ export default function HomePage() {
             <ButtonToTop />
 
             <img className="home__image-AA" src={imgHomeAA} alt="Home-Ace_Attorney" draggable="false" />
+
+            <section className="flex-col">
+                <h1>Последние новости</h1>
+                {(Context.Posts.length && Context.Users.length)
+                    ? <PostsRender
+                        posts={[...Context.Posts].slice(0, 1)}
+                        noSection
+                      />
+                    : <PostPreview noSection />
+                }
+                
+                <ButtonImage
+                    src={imgNews}
+                    text="Читать новости"
+                    title="Открыть страницу новостей"
+                    width100
+                    onClick={() => Navigate("/news")}
+                />
+            </section>
+
             <section className="flex-col">
                 <h1>Новое видео на канале</h1>
                 <iframe width="520" height="280" src="https://www.youtube.com/embed/1yeE1jlYFnc?si=wsqkPsAl4VAA1FZm" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
@@ -51,40 +73,24 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* Отображаем последнюю новость и последнее обновление после загрузки постов и юзеров */}
-            {Context.Posts.length !== 0 && Context.Users.length !== 0 &&
-                <>
-                    <section className="flex-col">
-                        <h1>Самое актуальное</h1>
-                        <PostsRender
-                            posts={[...Context.Posts].slice(0, 1)}
-                            noSection
-                        />
-                        <ButtonImage
-                            src={imgNews}
-                            text="Читать новости"
-                            title="Перейти на страницу новостей"
-                            width100
-                            onClick={() => Navigate("/news")}
-                        />
-                    </section>
+            <section className="flex-col">
+                <h1>Обновления на сайте</h1>
+                {(Context.Posts.length && Context.Users.length)
+                    ? <ChangelogsRender
+                        changelogs={[...changelogs].slice(0, 1)}
+                        noSection
+                      />
+                    : <PostPreview noSection />
+                }
 
-                    <section className="flex-col">
-                        <h1>Новое на сайте</h1>
-                        <ChangelogsRender
-                            changelogs={[...changelogs].slice(0, 1)}
-                            noSection
-                        />
-                        <ButtonImage
-                            src={imgUpdate}
-                            text="Все обновления"
-                            title="Перейти на страницу обновлений"
-                            width100
-                            onClick={() => Navigate("/changelogs")}
-                        />
-                    </section>
-                </>
-            }
+                <ButtonImage
+                    src={imgUpdate}
+                    text="Все обновления"
+                    title="Открыть страницу обновлений"
+                    width100
+                    onClick={() => Navigate("/changelogs")}
+                />
+            </section>
         </article>
     )
 }

@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from "react"
 import { DataContext } from "../Context"
 import PostsRender from "../PostsRender/PostsRender"
+import PostPreview from "../PostPreview/PostPreview"
 import { GSAPI } from "../API";
 import { CONFIG, setPageTitle } from "../Global"
 import ButtonToTop from "../ButtonToTop/ButtonToTop"
@@ -29,7 +30,7 @@ export default function NewsPage() {
             let posts = [...Context.Posts]
             Context.setPosts(posts.concat(data.posts))
     
-            // Если вернул remain:false - прячем кнопку
+            // Если вернул remain: false - прячем кнопку
             if (!data.remain) setShowLoadButton(false) 
             setDisableLoadButton(false)
         })
@@ -40,9 +41,18 @@ export default function NewsPage() {
             <h4 className="page-title">h/news</h4>
             <ButtonToTop />
 
-            <PostsRender
-                posts={Context.Posts.sort((a, b) => b.timestamp - a.timestamp)}
-            />
+            {/* Отображаем обновления когда пользователи и посты */}
+            {(Context.Users.length && Context.Posts.length)
+                ? <PostsRender
+                    posts={Context.Posts.sort((a, b) => b.timestamp - a.timestamp)}
+                  />
+
+                : <>
+                    <PostPreview />
+                    <PostPreview />
+                    <PostPreview />
+                  </>
+            }
 
             {showLoadButton &&
                 <section className="flex-col">

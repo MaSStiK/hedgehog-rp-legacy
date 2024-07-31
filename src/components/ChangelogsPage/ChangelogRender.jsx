@@ -46,6 +46,8 @@ export default function ChangelogRender({
                     <ButtonProfile
                         src={changelogProfile.country_photo}
                         text={changelogProfile.country_name}
+                        className="tp"
+                        noPadding
                         onClick={() => Navigate("/changelogs")}
                     />
                     <small className="text-gray">{changelog.date}</small>
