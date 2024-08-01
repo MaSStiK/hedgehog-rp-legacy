@@ -7,12 +7,6 @@ import SettingsSave from "./SettingsSave";
 import "./SettingsPage.css"
 import "./SettingsPage-phone.css"
 
-const effectsOptions = [
-    {value: "default", label: "По умолчанию"},
-    {value: "snow", label: "Зимняя тема"},
-    // {value: "hedgehog34", label: "hedgehog34"},
-]
-
 const backgroundsOptions = [
     {value: "bg1", label: "Лесной (По умолчанию)"},
     {value: "bg2", label: "Ночной"},
@@ -21,6 +15,12 @@ const backgroundsOptions = [
     {value: "bgSnow", label: "Зимний ёж"},
     // {value: "bgLink", label: "Свой фон"},
     {value: "false", label: "Отключен"},
+]
+
+const effectsOptions = [
+    {value: "default", label: "По умолчанию"},
+    {value: "snow", label: "Зимняя тема"},
+    // {value: "hedgehog34", label: "hedgehog34"},
 ]
 
 const buttonToTopOptions = [
@@ -50,17 +50,6 @@ export default function SettingsPage() {
             <h4 className="page-title">h/settings</h4>
 
             <section className="flex-col">
-                <h3>Эффекты страницы</h3>
-                <CustomSelect
-                    options={effectsOptions}
-                    values={effectsOptions[
-                        effectsOptions.findIndex(option => option.value === Settings["theme"]) >= 0
-                        ? effectsOptions.findIndex(option => option.value === Settings["theme"])
-                        : 0
-                    ]} // Значение по умолчанию
-                    onChange={value => changeSettings("theme", value[0].value)}
-                />
-
                 <h3>Задний фон страницы</h3>
                 <CustomSelect
                     options={backgroundsOptions}
@@ -70,6 +59,17 @@ export default function SettingsPage() {
                         : 0
                     ]} // Значение по умолчанию
                     onChange={value => changeSettings("bg", value[0].value)}
+                />
+
+                <h3>Эффекты страницы</h3>
+                <CustomSelect
+                    options={effectsOptions}
+                    values={effectsOptions[
+                        effectsOptions.findIndex(option => option.value === Settings["theme"]) >= 0
+                        ? effectsOptions.findIndex(option => option.value === Settings["theme"])
+                        : 0
+                    ]} // Значение по умолчанию
+                    onChange={value => changeSettings("theme", value[0].value)}
                 />
                 
                 <div className="flex-col settings__phone-hide">
