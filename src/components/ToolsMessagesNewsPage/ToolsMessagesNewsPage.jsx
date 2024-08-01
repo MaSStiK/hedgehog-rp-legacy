@@ -64,7 +64,7 @@ export default function ToolsMessagesNewsPage() {
             <section className={`vk-messages-section flex-col ${vkData.messages.length !== 0 && "vk-messages-section_min-height"}`}>
                 <h1>Новость из сообщения в ВК</h1>
                 <p className="text-light">Найдите нужное сообщение и нажмите на него для создания новости.
-                    <br />Если нужное сообщения нет найдено, то вы можете загрузить больше сообщений.
+                    <br />Если нужное сообщение не найдено, то вы можете загрузить больше сообщений.
                 </p>
                 {isMessagesLoaded
                     ? <>
