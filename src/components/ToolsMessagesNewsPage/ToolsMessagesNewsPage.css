@@ -1,16 +1,14 @@
 /* Секция с блоком */
-.vk-messages-section {
-    max-height: calc(100% - 40px);
-}
+.vk-messages-section {}
 
-/* Устанавливаем минимальную высоту после загрузки сообщений */
 .vk-messages-section.vk-messages-section_min-height {
-    min-height: 460px;
+    height: calc(100% - 22px - var(--gap-medium));
+    min-height: 600px;
 }
 
 /* Блок с прокруткой */
 .vk-messages {
-    min-height: 145px;
+    height: 100%;
     overflow: auto;
     padding: var(--gap-small) var(--gap-small) var(--gap-small) 0; /* Отступ от scroll и вертикальный отступ */
     margin: calc(-1 * var(--gap-small)) 0; /* Прижимаем блок к hr и нижнему краю */

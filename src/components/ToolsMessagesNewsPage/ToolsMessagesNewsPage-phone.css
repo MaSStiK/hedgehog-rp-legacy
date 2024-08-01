@@ -1,9 +1,11 @@
 /* Скрываем текст в кнопке с картинкой */
 @media screen and (max-width: 900px) {
     /* Секция с блоком */
-    .vk-messages-section {
-        /* Секция отступ в 12px */
-        max-height: calc(100% - 30px);
+    .vk-messages-section {}
+    
+    /* Секция отступ в 12px */
+    .vk-messages-section.vk-messages-section_min-height {
+        height: calc(100% - 31px);
     }
 }
 
