@@ -3,7 +3,7 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import imgLogo from "../../assets/logo/logoFullSize.png"
+import imgLogo from "../../assets/logotype538.png"
 import imgMenu from "../../assets/svg/Menu.svg"
 import imgCross from "../../assets/svg/Cross.svg"
 import imgLogin from "../../assets/svg/Login.svg"

@@ -11,7 +11,7 @@ import imgTool from "../../assets/svg/Tool.svg"
 import imgAt from "../../assets/svg/At.svg"
 import imgProfileBase from "../../assets/replace/profile-base.png"
 
-import imgLogo from "../../assets/logo/logoFullSize.png"
+import imgLogo from "../../assets/logotype538.png"
 import imgCopy from "../../assets/svg/Copy.svg"
 import imgLogin from "../../assets/svg/Login.svg"
 import imgPaste from "../../assets/svg/Paste.svg"
