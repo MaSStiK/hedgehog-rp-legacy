@@ -58,8 +58,9 @@ export default function HomePage() {
                 
                 <Link to="https://tv.hedgehog-rp.ru/watch/s4e5">
                     <img className="home__thumbnail" src={imgThumbnail} alt="thumbnail" />
+                    <h3>4 сезон 5 серия | Коллапс</h3>
                 </Link>
-                <h3>4 сезон 5 серия | Коллапс</h3>
+                
                 <div className="flex-row flex-wrap">
                     <ButtonImage
                         className="tp no-filter"
