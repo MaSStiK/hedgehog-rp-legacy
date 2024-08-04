@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import PostsRender from "../PostsRender/PostsRender"
 import PostPreview from "../PostPreview/PostPreview"
@@ -9,6 +9,7 @@ import ButtonToTop from "../ButtonToTop/ButtonToTop"
 
 import imgNews from "../../assets/svg/News.svg"
 import imgHomeAA from "../../assets/images/home/Home-Ace_Attorney.png"
+import imgThumbnail from "../../assets/images/home/video-thumbnail.jpg"
 import imgVk from "../../assets/images/vk.svg"
 import imgYoutube from "../../assets/images/youtube.svg"
 
@@ -51,8 +52,14 @@ export default function HomePage() {
             </section>
 
             <section className="flex-col">
-                <h1>Новое видео на канале</h1>
-                <iframe width="520" height="280" src="https://www.youtube.com/embed/1yeE1jlYFnc?si=wsqkPsAl4VAA1FZm" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                <h1>Новое видео на Ежином ТВ</h1>
+
+                {/* <iframe width="520" height="280" src="https://www.youtube.com/embed/1yeE1jlYFnc?si=wsqkPsAl4VAA1FZm" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> */}
+                
+                <Link to="https://tv.hedgehog-rp.ru/watch/s4e5">
+                    <img className="home__thumbnail" src={imgThumbnail} alt="thumbnail" />
+                </Link>
+                <h3>4 сезон 5 серия | Коллапс</h3>
                 <div className="flex-row flex-wrap">
                     <ButtonImage
                         className="tp no-filter"
