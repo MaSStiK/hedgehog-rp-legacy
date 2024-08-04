@@ -16,6 +16,7 @@ import imgNews from "../../assets/svg/News.svg"
 import imgUser from "../../assets/svg/User.svg"
 import imgCountry from "../../assets/svg/Country.svg"
 import imgMap from "../../assets/svg/Map.svg"
+import imgVideo from "../../assets/svg/Video.svg"
 import imgTool from "../../assets/svg/Tool.svg"
 import imgHelp from "../../assets/svg/Help.svg"
 import imgInfo from "../../assets/svg/Info.svg"
@@ -198,6 +199,12 @@ export default function Aside() {
                             <NavLink to="https://map.hedgehog-rp.ru">
                                 <img src={imgMap} alt="nav-icon" draggable="false" />
                                 <p>Карта мира</p>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="https://tv.hedgehog-rp.ru">
+                                <img src={imgVideo} alt="nav-icon" draggable="false" />
+                                <p>Ежиное ТВ</p>
                             </NavLink>
                         </li>
                         {/* <li><NavLink to="/nation">Нации</NavLink></li> */}
