@@ -9,7 +9,7 @@ import ButtonToTop from "../ButtonToTop/ButtonToTop"
 
 import imgNews from "../../assets/svg/News.svg"
 import imgHomeAA from "../../assets/images/home/Home-Ace_Attorney.png"
-import imgThumbnail from "../../assets/images/home/video-thumbnail.jpg"
+import imgThumbnail from "../../assets/images/home/video-thumbnail.png"
 import imgVk from "../../assets/images/vk.svg"
 import imgYoutube from "../../assets/images/youtube.svg"
 
