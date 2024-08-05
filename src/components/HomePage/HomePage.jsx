@@ -58,7 +58,7 @@ export default function HomePage() {
                 
                 <Link to="https://tv.hedgehog-rp.ru/watch/s4e6">
                     <img className="home__thumbnail" src={imgThumbnail} alt="thumbnail" />
-                    <h3>4 сезон 5 серия | Коллапс</h3>
+                    <h3>4 сезон 6 серия | Лефанляндский вопрос</h3>
                 </Link>
                 
                 <div className="flex-row flex-wrap">
