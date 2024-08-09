@@ -7,7 +7,7 @@ import DiceRange from "./DiceRange"
 import DiceRoll from "./DiceRoll"
 import { CONFIG, setPageTitle } from "../Global"
 import $ from "jquery";
-import imgDice from "../../assets/images/tools/Dice.svg"
+import imgDice from "../../assets/tools/Dice.svg"
 
 import "./DicePage.css"
 import "./DicePage-phone.css"

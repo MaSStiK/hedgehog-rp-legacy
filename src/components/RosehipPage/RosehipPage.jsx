@@ -5,7 +5,7 @@ import { GSAPI } from "../API"
 import { setPageTitle } from "../Global"
 import imgArrowDown from "../../assets/svg/Arrow-down.svg"
 import imgArrowUp from "../../assets/svg/Arrow-up.svg"
-import imgClassified from "../../assets/images/tools/classified.png"
+import imgClassified from "../../assets/tools/classified.png"
 
 import "./RosehipPage.css"
 import "./RosehipPage-phone.css"

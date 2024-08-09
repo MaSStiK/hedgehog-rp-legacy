@@ -5,8 +5,8 @@ import { setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import imgCopy from "../../assets/svg/Copy.svg"
 import imgSearch from "../../assets/svg/Search.svg"
-import imgRosehip from "../../assets/images/tools/Rosehip.png"
-import imgDice from "../../assets/images/tools/Dice.svg"
+import imgRosehip from "../../assets/tools/Rosehip.png"
+import imgDice from "../../assets/tools/Dice.svg"
 
 import "./ToolsPage.css"
 

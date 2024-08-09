@@ -1,6 +1,6 @@
 import ButtonImage from "../ButtonImage/ButtonImage"
 import imgCopy from "../../assets/svg/Copy.svg"
-import imgVk from "../../assets/images/vk.svg"
+import imgVk from "../../assets/vk.svg"
 
 import "./PostShare.css"
 

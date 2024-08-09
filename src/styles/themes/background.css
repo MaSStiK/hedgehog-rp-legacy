@@ -5,21 +5,21 @@ body[bg] {
 }
 
 body[bg=bg1] {
-    background-image: url("../../assets/images/settings/bg1.png");
+    background-image: url("../../assets/settings/bg1.png");
 }
 
 body[bg=bg2] {
-    background-image: url("../../assets/images/settings/bg2.png");
+    background-image: url("../../assets/settings/bg2.png");
 }
 
 body[bg=bg3] {
-    background-image: url("../../assets/images/settings/bg3.png");
+    background-image: url("../../assets/settings/bg3.png");
 }
 
 body[bg=bg4] {
-    background-image: url("../../assets/images/settings/bg4.png");
+    background-image: url("../../assets/settings/bg4.png");
 }
 
 body[bg=bgSnow] {
-    background-image: url("../../assets/images/settings/bgSnow.png");
+    background-image: url("../../assets/settings/bgSnow.png");
 }
