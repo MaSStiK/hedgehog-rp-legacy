@@ -45,7 +45,7 @@ export default function CountryPage() {
         
         // Поиск пользователя по id
         let foundUser = Context.Users.find(user => user.id === URLparams.id.slice(1))
-        if (!foundUser) {
+        if (!foundUser || !foundUser.country_id) {
             setCountryNotFound(true)
             setUserData({})
             setPageTitle("Страна не найдена")

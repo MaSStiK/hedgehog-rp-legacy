@@ -47,6 +47,7 @@ export function sendForm(Context, formName, formTag, formPhoto, formBio) {
 
             // Сохранение информации локально
             let UserData = {...Context.UserData}
+            UserData.country_id     = Context.UserData.country_id || "c" + Context.UserData.id
             UserData.country_name   = newCountryData.country_name
             UserData.country_tag    = newCountryData.country_tag
             UserData.country_photo  = newCountryData.country_photo
