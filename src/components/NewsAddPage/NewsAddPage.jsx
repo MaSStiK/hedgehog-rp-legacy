@@ -43,12 +43,7 @@ export default function NewsAddPage() {
 
     // Если пост создается из сообщения
     useEffect(() => {
-        console.log("useEffect");
-        console.log(Location.state);
-        
         if (Location.state && !sessionStorage.savedPostData) { // Если есть state но нету сохраненной информации о посте
-            console.log(Location.state);
-            
             // Заполняем поля
             textInput.current.value = Location.state.text
             setTextLength(Location.state.text.length)
@@ -91,7 +86,13 @@ export default function NewsAddPage() {
         if (Context.Users.length) {
             let countryData = [...Context.Users].find(user => user.id === (Location.state ? String(Location.state?.from_id) : Context.UserData.id))
             setCountryData(countryData)
-            if (!sessionStorage.savedPostData) { // Если есть сохраненные данные о посте - не устанавливаем название страны
+
+            try { 
+                let savedPostData = JSON.parse(sessionStorage.savedPostData)
+                if (!savedPostData.authorInput) { // Если есть сохраненные данные о посте - не устанавливаем название страны
+                    authorInput.current.value = countryData ? countryData.country_name : "Страна не найдена"
+                }
+            } catch {
                 authorInput.current.value = countryData ? countryData.country_name : "Страна не найдена"
             }
         }
