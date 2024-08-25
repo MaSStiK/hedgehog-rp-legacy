@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { DataContext } from "../Context"
 import CustomInput from "../CustomInput/CustomInput"
 import ButtonImage from "../ButtonImage/ButtonImage"
-import { CONFIG, setPageTitle, setPageLoading } from "../Global"
+import { CONFIG, setPageTitle, setPageLoading, timestampToDate } from "../Global"
 import { formValidate, sendForm } from "./NewsEdit"
 import CheckImgSrc from "../CheckImgSrc"
 import Fullscreen from "../Fullscreen/Fullscreen"
@@ -25,6 +25,7 @@ export default function NewsEditPage() {
     const [photoPreview, setPhotoPreview] = useState("") // Превью картинки
     const [attachments, setAttachments] = useState([]) // Список картинок
     const [disableAddButton, setDisableAddButton] = useState(true) // Состояние кнопки Добавления картинки
+    const [publicationDate, setPublicationDate] = useState({}) // Дата публикации
     const [disableSubmitButton, setDisableSubmitButton] = useState(false) // Состояние кнопки сохранения (По умолчанию включена)
     
     const titleInput = useRef()
@@ -42,18 +43,33 @@ export default function NewsEditPage() {
             return
         }
 
-        // Заполняем поля
-        titleInput.current.value = Location.state.post_title
-        textInput.current.value = Location.state.post_text
-        setTextLength(Location.state.post_text.length)
-        authorInput.current.value = Location.state.author
+        setPublicationDate(timestampToDate(Number(Location.state?.timestamp)))
 
-        // Собираем массив картинок (Добавляем ко времени их порядковый номер)
-        let attachmentsArray = JSON.parse(Location.state.attachments).map((attach, index) => {
-            return {id: Date.now() + index, url: attach}
-        })
+        if (sessionStorage.savedPostData) {
+            try { // Если произойдет ошибка - ну... ниче не будет
+                let savedPostData = JSON.parse(sessionStorage.savedPostData)
+    
+                // Заполняем поля
+                titleInput.current.value = savedPostData.titleInput
+                textInput.current.value = savedPostData.textInput
+                setTextLength(savedPostData.textInput.length)
+                setAttachments(savedPostData.attachments)
+                authorInput.current.value = savedPostData.authorInput
+            } catch {}
+        } else {
+            // Заполняем поля
+            titleInput.current.value = Location.state.post_title
+            textInput.current.value = Location.state.post_text
+            setTextLength(Location.state.post_text.length)
 
-        setAttachments(attachmentsArray)
+            // Собираем массив картинок (Добавляем ко времени их порядковый номер)
+            let attachmentsArray = JSON.parse(Location.state.attachments).map((attach, index) => {
+                return {id: Date.now() + index, url: attach}
+            })
+
+            setAttachments(attachmentsArray)
+            authorInput.current.value = Location.state.author
+        }
     }, [Location.state])
 
     // При обновлении любого из инпутов
@@ -61,7 +77,21 @@ export default function NewsEditPage() {
         setErrorText("")
         setInputError()
         setDisableSubmitButton(titleInput.current.value.length < CONFIG.COUNTRY_NAME_MIN) // Если меньше 1 символа в заголовке поста
+        savePageData() // Сохраняем данные на странице
     }
+
+    // Сохраняем данные на странице что бы после перезагрузки их не потерять
+    function savePageData() {
+        sessionStorage.savedPostData = JSON.stringify({
+            titleInput: titleInput.current.value,
+            textInput: textInput.current.value,
+            attachments: attachments,
+            authorInput: authorInput.current.value ? authorInput.current.value : (Location.state?.author ? Location.state?.author : "Страна не найдена"),
+        })
+    }
+
+    // Когда картинка загрузиться в state - сохраняем ее в sessionStorage
+    useEffect(savePageData, [attachments])
 
     // Проверка существования картинки
     function checkPhoto(imageSrc) {
@@ -236,6 +266,15 @@ export default function NewsEditPage() {
                 {attachments.length === 10 &&
                     <small className="text-gray">• Достигнуто максимальное кол-во картинок</small>
                 }
+
+                <CustomInput label="Дата публикации">
+                    <input
+                        type="text"
+                        value={`${publicationDate.stringTime} ${publicationDate.stringDate}`}
+                        readOnly
+                        required
+                    />
+                </CustomInput>
 
                 <CustomInput label="Автор поста" error={inputError === "author"}>
                     <input

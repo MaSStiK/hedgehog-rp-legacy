@@ -32,6 +32,7 @@ export default function PostRender({
 
     // Функция открытия страницы с редактированием поста
     function handlePostEdit() {
+        delete sessionStorage.savedPostData // Удаляем данные о сохраненном посте
         Navigate("/news/edit", {state: post})
     }
 

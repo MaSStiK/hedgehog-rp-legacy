@@ -125,8 +125,6 @@ export default function CountryPage() {
                             </>
                         }
                     </section>
-
-                    
                     
                     {/* Кнопка появляется если просматривает владелец */}
                     {isSelfRender &&
@@ -136,7 +134,10 @@ export default function CountryPage() {
                                 text="Новый пост"
                                 title="Создать новый пост"
                                 width100
-                                onClick={() => Navigate("/news/add")}
+                                onClick={() => {
+                                    delete sessionStorage.savedPostData // Удаляем данные о сохраненном посте
+                                    Navigate("/news/add")
+                                }}
                             />
                         </section>
                     }

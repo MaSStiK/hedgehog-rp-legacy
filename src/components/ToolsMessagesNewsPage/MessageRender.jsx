@@ -9,6 +9,7 @@ export default function MessageRender({
 
     // Открываем создание поста
     function postCreate() {
+        delete sessionStorage.savedPostData // Удаляем данные о сохраненном посте
         Navigate("/news/add", {state: message})
     }
 

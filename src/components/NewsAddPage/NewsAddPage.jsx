@@ -30,7 +30,6 @@ export default function NewsAddPage() {
     const [disableSubmitButton, setDisableSubmitButton] = useState(true) // Состояние кнопки сохранения
 
     const [countryData, setCountryData] = useState({}) // Информация о стране в которой выходит пост
-
     
     const titleInput = useRef()
     const textInput = useRef()
@@ -44,10 +43,14 @@ export default function NewsAddPage() {
 
     // Если пост создается из сообщения
     useEffect(() => {
-        if (Location.state) {
+        console.log("useEffect");
+        console.log(Location.state);
+        
+        if (Location.state && !sessionStorage.savedPostData) { // Если есть state но нету сохраненной информации о посте
+            console.log(Location.state);
+            
             // Заполняем поля
             textInput.current.value = Location.state.text
-
             setTextLength(Location.state.text.length)
             setSelectedDate("timestamp") // Устанавливаем выбор по timestamp
             setPublicationDate(timestampToDate(Location.state?.date * 1000))
@@ -63,6 +66,23 @@ export default function NewsAddPage() {
             })
             setAttachments(attachmentsArray)
         }
+
+        if (sessionStorage.savedPostData) {
+            try { // Если произойдет ошибка - ну... ниче не будет
+                let savedPostData = JSON.parse(sessionStorage.savedPostData)
+    
+                // Заполняем поля
+                titleInput.current.value = savedPostData.titleInput
+                textInput.current.value = savedPostData.textInput
+                setTextLength(savedPostData.textInput.length)
+                setAttachments(savedPostData.attachments)
+                if (Location.state) setPublicationDate(timestampToDate(Location.state?.date * 1000))
+                setSelectedDate(savedPostData.selectedDate)
+                authorInput.current.value = savedPostData.authorInput
+            } catch {}
+        }
+
+        handleInputUpdate() // После вставки данных
     }, [Location.state])
 
     // Устанавливаем название страны
@@ -71,7 +91,9 @@ export default function NewsAddPage() {
         if (Context.Users.length) {
             let countryData = [...Context.Users].find(user => user.id === (Location.state ? String(Location.state?.from_id) : Context.UserData.id))
             setCountryData(countryData)
-            authorInput.current.value = countryData ? countryData.country_name : "Страна не найдена"
+            if (!sessionStorage.savedPostData) { // Если есть сохраненные данные о посте - не устанавливаем название страны
+                authorInput.current.value = countryData ? countryData.country_name : "Страна не найдена"
+            }
         }
     }, [Context.Users])
 
@@ -80,7 +102,22 @@ export default function NewsAddPage() {
         setErrorText("")
         setInputError()
         setDisableSubmitButton(titleInput.current.value.length < CONFIG.COUNTRY_NAME_MIN) // Если меньше 1 символа в заголовке поста
+        savePageData() // Сохраняем данные на странице
     }
+
+    // Сохраняем данные на странице что бы после перезагрузки их не потерять
+    function savePageData() {
+        sessionStorage.savedPostData = JSON.stringify({
+            titleInput: titleInput.current.value,
+            textInput: textInput.current.value,
+            attachments: attachments,
+            selectedDate: selectedDate,
+            authorInput: authorInput.current.value ? authorInput.current.value : (countryData ? countryData.country_name : "Страна не найдена"),
+        })
+    }
+
+    // Когда картинка загрузиться в state - сохраняем ее в sessionStorage
+    useEffect(savePageData, [attachments, selectedDate])
 
     // Проверка существования картинки
     function checkPhoto(imageSrc) {
