@@ -16,8 +16,6 @@ export function CreateContext(Context) {
     let userData
     try {
         userData = getCookie("UserData") ? JSON.parse(getCookie("UserData")) : null
-        console.log(userData);
-        
     } catch {
         userData = null
     }
