@@ -51,7 +51,7 @@ export function sendForm(Context, formName, formTag, formPhoto, formBio) {
             UserData.tag    = newUserData.tag
             UserData.photo  = newUserData.photo
             UserData.bio    = newUserData.bio
-            localStorage.UserData = JSON.stringify(UserData) // В память браузера сохраняем строку
+            document.cookie = `UserData=${JSON.stringify(UserData)}; path=/; max-age=2592000; SameSite=Strict` // Сохраняем в куки
             Context.setUserData(UserData)
 
             // Удаляем старого юзера и сохраняем нового

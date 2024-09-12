@@ -76,14 +76,17 @@ export default function App() {
             })
             .then(newUserData => {
                 newUserData.token = Context.UserData.token // Устанавливаем токен т.к. его не передаем
-                localStorage.UserData = JSON.stringify(newUserData) // Сохраняем в память браузера
+
+                document.cookie = `UserData=${JSON.stringify(newUserData)}; path=/; max-age=2592000; SameSite=Strict` // Сохраняем в куки
                 Context.setUserData(newUserData) // Сохраняем в память приложения
+
                 localStorage.PageSettings = JSON.stringify(newUserData.settings) // Сохраняем настройки в память браузера
                 Context.setPageSettings(newUserData.settings) // Сохраняем настройки
             })
             .catch(() => { // Отчищаем данные
                 localStorage.clear() // Удаляем всю информацию
                 sessionStorage.clear() // Удаляем всю информацию
+                document.cookie = `UserData=""; path=/; max-age=2592000; SameSite=Strict` // Удаляем куки
                 delete Context.UserData
                 window.location.reload()
             })

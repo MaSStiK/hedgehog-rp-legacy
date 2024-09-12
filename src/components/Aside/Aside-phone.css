@@ -151,9 +151,4 @@
         top: 0px;
         right: calc(var(--button-height-big) + 8px + var(--button-height-big) + 8px + 8px); /* Двойной отступ по 8px */
     }
-
-    /* Уменьшение кнопок в навигации */
-    nav ul li a {
-        height: var(--button-height);
-    }
 }

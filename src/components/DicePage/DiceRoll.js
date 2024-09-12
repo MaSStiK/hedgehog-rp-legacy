@@ -55,7 +55,7 @@ export default function DiceRoll(Context, textEvent, DiceType, additionalValue, 
             //     // Сохранение информации локально
             //     let userData = {...Context.UserData}
             //     userData.settings = newUserData.settings
-            //     localStorage.UserData = JSON.stringify(userData) // В память браузера сохраняем строку
+            //     document.cookie = `UserData=${JSON.stringify(UserData)}; path=/; max-age=2592000; SameSite=Strict` // Сохраняем новые данные в куки
             //     Context.setUserData(userData)
 
             //     // Удаляем старого юзера и сохраняем нового

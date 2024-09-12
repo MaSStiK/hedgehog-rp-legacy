@@ -42,12 +42,12 @@ export default function AuthViaCode(Context, vkCode) {
                 if (!data.success || !Object.keys(data).length) return reject("Произошла ошибка во время регистрации")
     
                 // Если успех - сохраняем информацию
-                let userData = data.data
-                userData.token = newToken // Устанавливаем токен т.к. не передаем его
-                localStorage.UserData = JSON.stringify(userData)
-                Context.setUserData(userData)
-                localStorage.PageSettings = JSON.stringify(userData.settings) // Сохраняем настройки в память браузера
-                Context.setPageSettings(userData.settings) // Сохраняем настройки
+                let UserData = data.data
+                UserData.token = newToken // Устанавливаем токен т.к. не передаем его
+                document.cookie = `UserData=${JSON.stringify(UserData)}; path=/; max-age=2592000; SameSite=Strict`
+                Context.setUserData(UserData)
+                localStorage.PageSettings = JSON.stringify(UserData.settings) // Сохраняем настройки в память браузера
+                Context.setPageSettings(UserData.settings) // Сохраняем настройки
 
                 // Если обычный вход
                 if (!data.registration) {
@@ -56,7 +56,7 @@ export default function AuthViaCode(Context, vkCode) {
                         () => VKAPI("messages.send", {peer_id: foundUserData.id, random_id: 0, message: newToken}) // После основного сообщения посылаем токен
                     )
                     // Отправляем сообщение в Авторизации
-                    VKAPI("messages.send", {peer_id: 2000000007, random_id: 0, message: `Авторизация пользователя по коду:\n${userData.name}\nhttps://vk.com/id${userData.id}`})
+                    VKAPI("messages.send", {peer_id: 2000000007, random_id: 0, message: `Авторизация пользователя по коду:\n${UserData.name}\nhttps://vk.com/id${UserData.id}`})
                 } else { // Если регистрация
                     // Отправляем сообщение в логи
                     VKAPI("messages.send", {peer_id: 2000000007, random_id: 0, message: `Регистрация пользователя:\n${newUserData.name}\nhttps://vk.com/id${newUserData.id}`})

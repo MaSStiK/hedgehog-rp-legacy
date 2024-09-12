@@ -195,6 +195,7 @@ export default function Aside() {
                                 <p>Страны</p>
                             </NavLink>
                         </li>
+                        {/* <li><NavLink to="/nation">Нации</NavLink></li> */}
                         <li>
                             <NavLink to="https://map.hedgehog-rp.ru">
                                 <img src={imgMap} alt="nav-icon" draggable="false" />
@@ -207,7 +208,6 @@ export default function Aside() {
                                 <p>Ежиное ТВ</p>
                             </NavLink>
                         </li>
-                        {/* <li><NavLink to="/nation">Нации</NavLink></li> */}
                         <hr />
                         <li>
                             <NavLink to="/tools">

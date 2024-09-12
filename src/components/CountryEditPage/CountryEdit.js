@@ -52,7 +52,7 @@ export function sendForm(Context, formName, formTag, formPhoto, formBio) {
             UserData.country_tag    = newCountryData.country_tag
             UserData.country_photo  = newCountryData.country_photo
             UserData.country_bio    = newCountryData.country_bio
-            localStorage.UserData = JSON.stringify(UserData) // В память браузера сохраняем строку
+            document.cookie = `UserData=${JSON.stringify(UserData)}; path=/; max-age=2592000; SameSite=Strict` // Сохраняем новые данные в куки
             Context.setUserData(UserData)
 
             // Удаляем старого юзера и сохраняем нового

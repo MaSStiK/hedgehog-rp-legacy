@@ -37,7 +37,7 @@ export default function UserPage() {
 
     function logoutProfile() {
         sessionStorage.clear()
-        delete localStorage.UserData
+        document.cookie = `UserData=""; path=/; max-age=-1; SameSite=Strict` // Удаляем куки
         delete Context.UserData
         Navigate("/")
         window.location.reload()

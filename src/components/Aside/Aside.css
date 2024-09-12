@@ -49,13 +49,13 @@ nav ul li {
 
 /* Кнопка профиля и страны */
 nav ul li button {
-    height: var(--button-height-big);
+    height: var(--button-height-nav);
 }
 
 /* Кнопка навигации */
 nav ul li a {
     width: 100%;
-    height: var(--button-height-big);
+    height: var(--button-height-nav);
     padding: var(--button-padding);
     position: relative;
 
@@ -71,8 +71,8 @@ nav ul li a {
 }
 
 nav ul li a img {
-    width: var(--button-img);
-    height: var(--button-img);
+    width: var(--button-img-nav);
+    height: var(--button-img-nav);
 }
 
 /* Активная вкладка навигации (Стрелочка сбоку) */
@@ -81,10 +81,13 @@ nav ul li a.active::after {
     width: 20px;
     height: 20px;
     background-image: url("../../assets/svg/Arrow-right.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     right: var(--button-gap);
+    transform: translateY(-50%);
 }
 
 /* Наведение на пк */

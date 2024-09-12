@@ -19,6 +19,10 @@
     --button-height: 36px;
     --button-img: 24px;
 
+    /* Кнопки в навигации */
+    --button-height-nav: 36px;
+    --button-img-nav: 24px;
+
     /* Большая кнопка (для профиля и тд.) */
     --button-height-big: 48px;
     --button-img-big: 36px;
@@ -27,6 +31,13 @@
     --button-padding: 4px;
     --button-gap: 4px;
 
+}
+
+@media screen and (max-width: 900px) {
+    :root {
+        --button-height-nav: 30px;
+        --button-img-nav: 20px;
+    }
 }
 
 /* Обычная кнопка (Серая) */
