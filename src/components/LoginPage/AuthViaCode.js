@@ -42,9 +42,9 @@ export default function AuthViaCode(Context, vkCode) {
                 if (!data.success || !Object.keys(data).length) return reject("Произошла ошибка во время регистрации")
     
                 // Если успех - сохраняем информацию
+                document.cookie = `auth_token=${newToken}; path=/; max-age=31104000; SameSite=Strict` // Сохраняем токен
                 let UserData = data.data
-                UserData.token = newToken // Устанавливаем токен т.к. не передаем его
-                document.cookie = `UserData=${JSON.stringify(UserData)}; path=/; max-age=2592000; SameSite=Strict`
+                localStorage.UserData = JSON.stringify(UserData)
                 Context.setUserData(UserData)
                 localStorage.PageSettings = JSON.stringify(UserData.settings) // Сохраняем настройки в память браузера
                 Context.setPageSettings(UserData.settings) // Сохраняем настройки

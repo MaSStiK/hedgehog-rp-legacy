@@ -39,30 +39,6 @@ export default function DiceRoll(Context, textEvent, DiceType, additionalValue, 
                 VKAPI("messages.send", {peer_id: 2000000001, random_id: 0, disable_mentions: 0, message: message})
                 messageSended = true // Сообщение было отправлено
             }
-
-            // Новые данные о настройках
-            // let newUserData = {
-            //     settings: {...Context.UserData.settings, diceCooldown: Date.now()}, // Новые настройки
-            // }
-
-            // // Всю главную информацию отправляем всегда
-            // GSAPI("PUTuser", {token: Context.UserData.token, data: JSON.stringify(newUserData)}, (data) => {
-            //     console.log("GSAPI: PUTuser");
-
-            //     // Если ошибка
-            //     if (!data.success || !Object.keys(data).length) return
-
-            //     // Сохранение информации локально
-            //     let userData = {...Context.UserData}
-            //     userData.settings = newUserData.settings
-            //     document.cookie = `UserData=${JSON.stringify(UserData)}; path=/; max-age=2592000; SameSite=Strict` // Сохраняем новые данные в куки
-            //     Context.setUserData(userData)
-
-            //     // Удаляем старого юзера и сохраняем нового
-            //     let users = Context.Users.filter(user => user.id !== Context.UserData.id)
-            //     users.push(userData)
-            //     Context.setUsers(users)
-            // })
         }
 
         resolve({

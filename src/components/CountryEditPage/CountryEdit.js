@@ -37,7 +37,7 @@ export function sendForm(Context, formName, formTag, formPhoto, formBio) {
         }
 
         // Всю главную информацию отправляем всегда
-        GSAPI("PUTcountry", {token: Context.UserData.token, data: JSON.stringify(newCountryData)}, (data) => {
+        GSAPI("PUTcountry", {token: Context.AuthToken, data: JSON.stringify(newCountryData)}, (data) => {
             console.log("GSAPI: PUTcountry");
 
             // Если ошибка
@@ -52,7 +52,8 @@ export function sendForm(Context, formName, formTag, formPhoto, formBio) {
             UserData.country_tag    = newCountryData.country_tag
             UserData.country_photo  = newCountryData.country_photo
             UserData.country_bio    = newCountryData.country_bio
-            document.cookie = `UserData=${JSON.stringify(UserData)}; path=/; max-age=2592000; SameSite=Strict` // Сохраняем новые данные в куки
+            
+            localStorage.UserData = JSON.stringify(UserData) // В память браузера сохраняем строку
             Context.setUserData(UserData)
 
             // Удаляем старого юзера и сохраняем нового

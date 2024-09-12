@@ -110,3 +110,10 @@ export function timestampToDate(timestamp) {
         postFullDate: `${day} ${FULL_MONTHS[month]}${year !== nowYear ? " " + year : ""}`, // Если не текущий год - отображаем год
     }
 }
+
+export function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace("/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1'") + "=([^;]*)" //eslint-disable-line
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}

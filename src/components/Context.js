@@ -1,28 +1,26 @@
 import { useState, createContext } from "react";
+import { getCookie } from "./Global";
 
 // Создание контекста приложения
 export const DataContext = createContext({})
-
-function getCookie(name) {
-    let matches = document.cookie.match(new RegExp(
-      "(?:^|; )" + name.replace("/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1'") + "=([^;]*)" //eslint-disable-line
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
 
 // Устанавливаем стейты в приложении
 export function CreateContext(Context) {
     // Передаем в контекст userData и его сеттер
     let userData
     try {
-        userData = getCookie("UserData") ? JSON.parse(getCookie("UserData")) : null
+        userData = localStorage.UserData ? JSON.parse(localStorage.UserData) : null
     } catch {
+        delete localStorage.UserData
         userData = null
     }
 
     const [ContextUserData, setContextUserData] = useState(userData);
     Context.UserData = ContextUserData
     Context.setUserData = setContextUserData
+
+    // Получаем токен авторизации
+    Context.AuthToken = getCookie("auth_token") ? getCookie("auth_token") : null
 
 
     // Настройки сайта

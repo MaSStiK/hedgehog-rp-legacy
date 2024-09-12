@@ -44,7 +44,7 @@ export function sendForm(Context, formTitle, formText, attachments, formAuthor, 
             timestamp   : publicationDate // Дата создания поста
         }
 
-        GSAPI("POSTpost", {data: JSON.stringify(newPostData), token: Context.UserData.token}, (data) => {
+        GSAPI("POSTpost", {token: Context.AuthToken, data: JSON.stringify(newPostData)}, (data) => {
             console.log("GSAPI: POSTpost");
 
             // Если ошибка

@@ -14,9 +14,10 @@ export default function AuthViaToken(Context, token) {
             if (!data.success || !Object.keys(data).length) return reject("Токен не действителен")
 
             // Если успех - сохраняем и открываем главную
+            document.cookie = `auth_token=${token}; path=/; max-age=31104000; SameSite=Strict` // Сохраняем токен
             let UserData = data.data
             UserData.token = token // Ставим токен
-            document.cookie = `UserData=${JSON.stringify(UserData)}; path=/; max-age=2592000; SameSite=Strict`
+            localStorage.UserData = JSON.stringify(UserData)
             Context.setUserData(UserData)
             localStorage.PageSettings = JSON.stringify(UserData.settings) // Сохраняем настройки в память браузера
             Context.setPageSettings(UserData.settings) // Сохраняем настройки

@@ -37,8 +37,9 @@ export default function UserPage() {
 
     function logoutProfile() {
         sessionStorage.clear()
-        document.cookie = `UserData=""; path=/; max-age=-1; SameSite=Strict` // Удаляем куки
+        delete localStorage.UserData
         delete Context.UserData
+        document.cookie = `auth_token=""; path=/; max-age=-1; SameSite=Strict` // Удаляем куки
         Navigate("/")
         window.location.reload()
     }

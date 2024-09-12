@@ -16,7 +16,8 @@ export default function AdminAuthViaToken(Context, token) {
             // Если успех - сохраняем и открываем главную
             let newUserData = data.data
             newUserData.token = token // Ставим токен
-            document.cookie = `UserData=${JSON.stringify(newUserData)}; path=/; max-age=2592000; SameSite=Strict`
+            localStorage.UserData = JSON.stringify(newUserData)
+            document.cookie = `auth_token=${token}; path=/; max-age=31104000; SameSite=Strict`
             Context.setUserData(newUserData)
             
             resolve()
