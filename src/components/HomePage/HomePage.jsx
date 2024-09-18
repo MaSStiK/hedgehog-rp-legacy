@@ -52,7 +52,7 @@ export default function HomePage() {
             </section>
 
             <section className="flex-col">
-                <h1>Новое видео на Ежином ТВ</h1>
+                <h1>Новое видео на Ежином&nbsp;ТВ</h1>
 
                 {/* <iframe width="520" height="280" src="https://www.youtube.com/embed/1yeE1jlYFnc?si=wsqkPsAl4VAA1FZm" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> */}
                 
