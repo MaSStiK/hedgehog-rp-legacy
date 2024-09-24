@@ -54,7 +54,7 @@ export default function ToolsPage({ doLogout }) {
             {/* Если пользователь авторизован */}
             {Context.UserData &&
                 <section className="flex-col">
-                    <h3>Игральная кость</h3>
+                    <h1>Игральная кость</h1>
                     <h4 className="text-light">Узнайте вероятность исхода различных событий с помощью интерактивной игральной кости</h4>
                     <ButtonImage
                         src={imgDice}
