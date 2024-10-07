@@ -13,7 +13,7 @@ export default function SupportPageFeedback() {
             <h4 className="page-title">h/support/feedback</h4>
 
             <section className="flex-col">
-                <h1>Где можно опубликовать идеи для сайта и отправить обнаруженные баги?</h1>
+                <h1>Где можно опубликовать идеи для сайта или отправить обнаруженные баги?</h1>
                 <p className="text-light">Чтобы оставить заявку, требуется выполнить вход или зарегистрироваться на платформе <Link className="text-link" to="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</Link>.</p>
                 <p className="text-light">После этого вы можете перейти в <Link className="text-link" to="https://github.com/MaSStiK/hedgehog-rp/issues" target="_blank" rel="noopener noreferrer">официальный репозиторий нашего веб-сайта</Link> на GitHub и там создать новую заявку.</p>
                 <Fullscreen>
