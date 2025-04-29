@@ -6,7 +6,7 @@ import imgCalendar from "../../assets/svg/Calendar.svg"
 
 function getCalendar(calendar) {
     if (!calendar.event_2020 && !calendar.event_2021 && !calendar.event_2022 && !calendar.event_2023 && !calendar.event_2024 && !calendar.event_2025) {
-        return <p className="calendar-text">Либо Данил не заполнил календарь, либо сегодня не было значимых событий</p>
+        return <p className="calendar-text">Либо Даниил не заполнил календарь, либо сегодня не было значимых событий</p>
     }
     
     return (
