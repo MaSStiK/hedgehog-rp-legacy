@@ -50,8 +50,7 @@ export default function HomeCalendar() {
                 : <section className="flex-col">
                         <div className="flex-row">
                             <img src={imgCalendar} alt="calendar" />
-                            <h3 className="text-preview">00 xxx,</h3>
-                            <h3 className="text-preview">Вторник</h3>
+                            <h3 className="text-preview">00 xxx, Вторник</h3>
                         </div>
                         <div>
                             <p className="text-preview">Нового года не будет!</p>
