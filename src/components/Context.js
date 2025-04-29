@@ -62,5 +62,10 @@ export function CreateContext(Context) {
     Context.PostsOffset = PostsOffset
     Context.setPostsOffset = setPostsOffset
 
+    // Календарь
+    const [Calendar, setCalendar] = useState([]);
+    Context.Calendar = Calendar
+    Context.setCalendar = setCalendar
+
     return Context
 }

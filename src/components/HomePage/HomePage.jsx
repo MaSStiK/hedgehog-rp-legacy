@@ -6,6 +6,7 @@ import PostPreview from "../PostPreview/PostPreview"
 import { setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import ButtonToTop from "../ButtonToTop/ButtonToTop"
+import HomeCalendar from "./HomeCalendar"
 
 import imgNews from "../../assets/svg/News.svg"
 import imgHomeAA from "../../assets/home/Home-Ace_Attorney.png"
@@ -31,6 +32,8 @@ export default function HomePage() {
             <ButtonToTop />
 
             <img className="home__image-AA" src={imgHomeAA} alt="Home-Ace_Attorney" draggable="false" />
+
+            <HomeCalendar />
 
             <section className="flex-col">
                 <h1>Последние новости</h1>

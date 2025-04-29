@@ -4,6 +4,10 @@
     margin: 0 auto -30px auto;
 }
 
+.calendar-text {
+    font-variant-numeric: tabular-nums;
+}
+
 /* Видео с ютуб */
 iframe {
     width: 100%;

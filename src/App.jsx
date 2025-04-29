@@ -119,6 +119,13 @@ export default function App() {
         .then(() => {
             setPageLoading(false)
         })
+
+        
+        // Загрузка календаря
+        GSAPI("GETcalendar", {}, (data) => {
+            console.log("GSAPI: GETcalendar");
+            Context.setCalendar(data) // Сохраняем в память приложения
+        })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
