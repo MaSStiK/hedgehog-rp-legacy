@@ -13,12 +13,12 @@ function getCalendar(calendar) {
     
     return (
         <>
-            {calendar.event_2020 && <p className="calendar-text">- 2020 ({calendar.year_2020}): {calendar.event_2020}</p>}
-            {calendar.event_2021 && <p className="calendar-text">- 2021 ({calendar.year_2021}): {calendar.event_2021}</p>}
-            {calendar.event_2022 && <p className="calendar-text">- 2022 ({calendar.year_2022}): {calendar.event_2022}</p>}
-            {calendar.event_2023 && <p className="calendar-text">- 2023 ({calendar.year_2023}): {calendar.event_2023}</p>}
-            {calendar.event_2024 && <p className="calendar-text">- 2024 ({calendar.year_2024}): {calendar.event_2024}</p>}
-            {calendar.event_2025 && <p className="calendar-text">- 2025 ({calendar.year_2025}): {calendar.event_2025}</p>}
+            {calendar.event_2020 && <p className="calendar-text">• 2020 ({calendar.year_2020}): {calendar.event_2020}</p>}
+            {calendar.event_2021 && <p className="calendar-text">• 2021 ({calendar.year_2021}): {calendar.event_2021}</p>}
+            {calendar.event_2022 && <p className="calendar-text">• 2022 ({calendar.year_2022}): {calendar.event_2022}</p>}
+            {calendar.event_2023 && <p className="calendar-text">• 2023 ({calendar.year_2023}): {calendar.event_2023}</p>}
+            {calendar.event_2024 && <p className="calendar-text">• 2024 ({calendar.year_2024}): {calendar.event_2024}</p>}
+            {calendar.event_2025 && <p className="calendar-text">• 2025 ({calendar.year_2025}): {calendar.event_2025}</p>}
         </>
     )
 }
