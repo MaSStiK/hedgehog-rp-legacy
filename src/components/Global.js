@@ -95,6 +95,8 @@ export function timestampToDate(timestamp) {
         "12": "декабря",
     }
 
+    const weekdays = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+
     let nowDate = new Date()
     let nowYear = nowDate.getFullYear()
 
@@ -103,11 +105,13 @@ export function timestampToDate(timestamp) {
         minutes: minutes,
         day: day,
         month: month,
+        monthName: FULL_MONTHS[month],
         year: year,
         stringTime: `${hours}:${minutes}`,
         stringDate: `${day}.${month}.${year}`,
         postDate: `${day} ${MONTHS[month]}${year !== nowYear ? " " + year : ""}`, // Если не текущий год - отображаем год
         postFullDate: `${day} ${FULL_MONTHS[month]}${year !== nowYear ? " " + year : ""}`, // Если не текущий год - отображаем год
+        weekday: weekdays[date.getDay()]
     }
 }
 
