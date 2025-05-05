@@ -40,7 +40,7 @@ export function sendForm(Context, formTitle, formText, attachments, formAuthor, 
             post_text   : formText, // Текст поста
             attachments : JSON.stringify(Array.from(attachments, (attach) => attach.url)), // Прикрепленные картинки
             author      : formAuthor, // Автор поста
-            season      : "4", // Текущий сезон
+            season      : CONFIG.CURRENT_SEASON, // Текущий сезон
             timestamp   : publicationDate // Дата создания поста
         }
 
