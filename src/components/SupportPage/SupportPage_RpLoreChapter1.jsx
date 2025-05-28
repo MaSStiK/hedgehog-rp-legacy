@@ -17,7 +17,7 @@ export default function SupportPageFeedback() {
 
     return (
         <article>
-            <h4 className="page-title">h/support/rp_lore_chapter1</h4>
+            <h4 className="page-title">h/support/rp_lore/chapter1</h4>
 
             <section className="flex-col">
                 <h1>Глава I - Кулсториробоб</h1>
