@@ -39,7 +39,6 @@ import DicePage from "./components/DicePage/DicePage";
 import RosehipPage from "./components/RosehipPage/RosehipPage";
 
 import Support from "./components/SupportPage/SupportPage";
-import SupportCreatorsList from "./components/SupportPage/SupportPage_CreatorsList";
 import SupportAuthToken from "./components/SupportPage/SupportPage_AuthToken";
 import SupportFeedback from "./components/SupportPage/SupportPage_Feedback";
 import SupportRpLoreChapter1 from "./components/SupportPage/SupportPage_RpLoreChapter1";
@@ -212,7 +211,6 @@ export default function App() {
                     <Route path="/support" element={<Support />} />
                     <Route path="/support/feedback" element={<SupportFeedback />} />
                     <Route path="/support/auth-token" element={<SupportAuthToken />} />
-                    <Route path="/support/creators-list" element={<SupportCreatorsList />} />
                     <Route path="/support/rp_lore_chapter1" element={<SupportRpLoreChapter1 />} />
                     
                     <Route path="/about" element={<About />} />
