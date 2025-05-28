@@ -12,36 +12,30 @@ export default function SupportPage() {
     useEffect(() => {setPageTitle("Помощь")}, [])
     const Navigate = useNavigate()
 
+    const articles = [
+        {title: "Где оставить обратную связь (идеи или баги)", icon: imgHelp, link: "feedback"},
+        {title: "Как использовать токен авторизации", icon: imgHelp, link: "auth-token"},
+        {title: "Текстовый список создателей стран", icon: imgInfo, link: "creators-list"},
+        {title: "История РП: Глава I - Кулсториробоб", icon: imgInfo, link: "rp_lore_chapter1"},
+    ]
+
     return (
         <article>
             <h4 className="page-title">h/support</h4>
 
             <section className="flex-col">
                 <h1>Статьи для решения проблем и вопросов</h1>
-                <ButtonImage
-                    src={imgHelp}
-                    text="Где оставить обратную связь (идеи или баги)"
-                    title="Где оставить обратную связь (идеи или баги)"
-                    width100
-                    atStart
-                    onClick={() => Navigate("feedback")}
-                />
-                <ButtonImage
-                    src={imgHelp}
-                    text="Как использовать токен авторизации"
-                    title="Как использовать токен авторизации"
-                    width100
-                    atStart
-                    onClick={() => Navigate("auth-token")}
-                />
-                <ButtonImage
-                    src={imgInfo}
-                    text="Текстовый список создателей стран"
-                    title="Текстовый список создателей стран"
-                    width100
-                    atStart
-                    onClick={() => Navigate("creators-list")}
-                />
+                {articles.map((article, i) => (
+                    <ButtonImage
+                        key={i}
+                        src={article.icon}
+                        text={article.title}
+                        title={article.title}
+                        width100
+                        atStart
+                        onClick={() => Navigate(article.link)}
+                    />
+                ))}
             </section>
         </article>
     )
