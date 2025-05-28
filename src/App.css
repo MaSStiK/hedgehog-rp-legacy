@@ -106,3 +106,7 @@ hr {
 .flex-wrap {
     flex-wrap: wrap;
 }
+
+.border-radius {
+    border-radius: var(--border-radius);
+}
