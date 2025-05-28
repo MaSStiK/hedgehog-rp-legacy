@@ -8,6 +8,7 @@ import { CONFIG, setPageLoading } from "./components/Global";
 import Modal from "./components/Modal/Modal"
 import { CountryPostsSave } from "./components/CountryPage/CountryPostsLoad"
 import SetTheme from "./components/SetTheme";
+import Confetti from "./components/theme_party_confetti";
 
 // Импорт стилей
 import "./styles/style.css";
@@ -41,6 +42,7 @@ import Support from "./components/SupportPage/SupportPage";
 import SupportCreatorsList from "./components/SupportPage/SupportPage_CreatorsList";
 import SupportAuthToken from "./components/SupportPage/SupportPage_AuthToken";
 import SupportFeedback from "./components/SupportPage/SupportPage_Feedback";
+import SupportRpLoreChapter1 from "./components/SupportPage/SupportPage_RpLoreChapter1";
 
 import About from "./components/AboutPage/AboutPage";
 import Settings from "./components/SettingsPage/SettingsPage";
@@ -132,10 +134,12 @@ export default function App() {
     // Если установлен стиль для сайта
     useEffect(() => {
         SetTheme(Context)
+        Confetti(Context.PageSettings.theme === "party") // Инициализация конфетти
     }, [Context, Context.PageSettings])
 
     return (
         <>
+
             <Modal>
                 {Context.Modal}
             </Modal>
@@ -209,6 +213,7 @@ export default function App() {
                     <Route path="/support/feedback" element={<SupportFeedback />} />
                     <Route path="/support/auth-token" element={<SupportAuthToken />} />
                     <Route path="/support/creators-list" element={<SupportCreatorsList />} />
+                    <Route path="/support/rp_lore_chapter1" element={<SupportRpLoreChapter1 />} />
                     
                     <Route path="/about" element={<About />} />
                     <Route path="/settings" element={<Settings />} />

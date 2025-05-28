@@ -29,6 +29,10 @@ export const CONFIG = {
     CURRENT_SEASON:     5,      // Текущий сезон
 }
 
+export function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // Функция для установки заголовка страницы
 export function setPageTitle(title) {
     document.title = `${title} | Ежиное-РП`

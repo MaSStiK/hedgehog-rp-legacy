@@ -1,8 +1,23 @@
+/* Обычная тема body[theme=default] */
+/* Без изменений... duh */
+
+#theme-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Новогодняя тема body[theme=snow]*/
 @import "./themes/theme_snow.css";
-@import "./themes/theme_hedgehog34.css";
+
+/* Новогодняя тема body[theme=party]*/
+@import "./themes/theme_party.css";
+
+/* Бог мне судья body[theme=hedgehog34]*/
+/* @import "./themes/theme_hedgehog34.css"; */
 
 /* Картинка заднего фона */
 @import "./themes/background.css";
-
-/* Обычная тема body[theme=default] */
-/* Без изменений... duh */

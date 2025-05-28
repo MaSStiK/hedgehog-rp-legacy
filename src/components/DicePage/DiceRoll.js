@@ -1,9 +1,7 @@
 import { VKAPI } from "../API"
-import { CONFIG } from "../Global"
+import { CONFIG, getRandomInt} from "../Global"
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+
 
 export default function DiceRoll(Context, textEvent, DiceType, additionalValue, DiceSendVk) {
     return new Promise((resolve, reject) => {

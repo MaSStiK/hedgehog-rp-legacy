@@ -5,8 +5,6 @@ import { timestampToDate } from "../Global"
 import imgCalendar from "../../assets/svg/Calendar.svg"
 
 function getCalendar(calendar) {
-    console.log(calendar);
-    
     if (!calendar.event_2020 && !calendar.event_2021 && !calendar.event_2022 && !calendar.event_2023 && !calendar.event_2024 && !calendar.event_2025) {
         return <p className="calendar-text">Либо Даниил не заполнил календарь, либо сегодня не было значимых событий</p>
     }
@@ -33,8 +31,6 @@ export default function HomeCalendar() {
             const date = timestampToDate(new Date())
             const today = `${date.day}.${date.month}`
             const todayCalendar = Context.Calendar.find(item => item.date === today)
-            console.log(today);
-            console.log(todayCalendar);
             setCalendar(todayCalendar)
             setCurrentDate({day: date.day, month: date.monthName, weekday: date.weekday})
         }

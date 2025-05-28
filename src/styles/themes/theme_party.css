@@ -1,6 +1,6 @@
-/* Новогодняя тема body[theme=snow]*/
+/* Праздничная тема body[theme=party]*/
 /* Анимированный фон */
-body[theme=snow]::before {
+/* body[theme=party]::before {
     content: "";
     position: fixed;
     top: 0;
@@ -8,21 +8,21 @@ body[theme=snow]::before {
     width: 100%;
     height: 100%;
     z-index: var(--z-under);
-    background-image: url("../../assets/settings/theme-snow/snow.gif");
+    background-image: url("../../assets/settings/theme-party/party");
     background-size: 500px;
     opacity: 0.25;
-}
+} */
 
-/* Шапочки */
-body[theme=snow] section::after {
+/* Праздничные колпаки */
+body[theme=party] section::after {
     content: "";
     position: absolute;
-    top: -18px;
-    right: -13px;
+    top: -17px;
+    right: -14px;
     width: var(--button-img-big);
     height: var(--button-img-big);
-    background-image: url("../../assets/settings/theme-snow/hat.png");
+    background-image: url("../../assets/settings/theme-party/party-hat.png");
     background-size: contain;
     background-repeat: no-repeat;
-    rotate: 28deg;
+    rotate: 18deg;
 }

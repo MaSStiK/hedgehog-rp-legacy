@@ -20,7 +20,8 @@ const backgroundsOptions = [
 const effectsOptions = [
     {value: "default", label: "По умолчанию"},
     {value: "snow", label: "Зимняя тема"},
-    // {value: "hedgehog34", label: "hedgehog34"},
+    {value: "party", label: "Праздничная тема"},
+    // {value: "hedgehog34", label: "hedgehog34"}, // Плохо работает
 ]
 
 const buttonToTopOptions = [
@@ -75,7 +76,7 @@ export default function SettingsPage() {
                 <div className="flex-col settings__phone-hide">
                     <hr />
 
-                    <h3>Кнопка "Наверх страницы"<br /><p className="text-gray">(Доступна только на пк)</p></h3>
+                    <h3>Кнопка прокрутки страницы наверх</h3>
                     <CustomSelect
                         options={buttonToTopOptions}
                         values={buttonToTopOptions[
