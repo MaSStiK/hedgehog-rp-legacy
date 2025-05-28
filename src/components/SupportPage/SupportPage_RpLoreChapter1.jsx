@@ -4,9 +4,15 @@ import { setPageTitle } from "../Global"
 import Fullscreen from "../Fullscreen/Fullscreen"
 import $ from "jquery"
 
+import imgScreenshot1 from "../../assets/support/RpLoreChapter1/screenshot-1.png"
+import imgScreenshot2 from "../../assets/support/RpLoreChapter1/screenshot-2.png"
+import imgScreenshot3 from "../../assets/support/RpLoreChapter1/screenshot-3.png"
+import imgScreenshot4 from "../../assets/support/RpLoreChapter1/screenshot-4.png"
+import imgScreenshot5 from "../../assets/support/RpLoreChapter1/screenshot-5.png"
+
 import "./SupportPage.css"
 
-export default function SupportPageFeedback() {
+export default function SupportPage_RpLoreChapter1() {
     useEffect(() => {setPageTitle("История РП: Глава I - Кулсториробоб")}, [])
 
     const scrollToTitle = (title) => {
@@ -37,7 +43,7 @@ export default function SupportPageFeedback() {
                 
                 <Fullscreen>
                     <img
-                        src="https://ochakovo-gazeta.ru/files/data/user/AiF/nastya/files/2020/2020.09.03-1599115821.3916_ezh.jpeg"
+                        src={imgScreenshot1}
                         alt="screenshot"
                         className="border-radius"
                         style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
@@ -57,7 +63,7 @@ export default function SupportPageFeedback() {
                 <p className="text-light">Случившаяся в 2089 году гражданская война стала одной из кровавейших - миллионы армий шли друг на друга просто в попытках не потерять независимость. Ежиную Армию возглавил Ууе Кэрион.</p>
                 <Fullscreen>
                     <img
-                        src="https://sun9-11.userapi.com/impg/gHxzGT8ZSC5UF0BlPUkow8vjEN1BG4V1su-fwQ/HvXNphQI7UA.jpg?size=2394x1232&quality=96&sign=400e410dc8871293b6fac6dbbeef6af2&type=album"
+                        src={imgScreenshot2}
                         alt="screenshot"
                         className="border-radius"
                         style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
@@ -76,7 +82,7 @@ export default function SupportPageFeedback() {
                 <p className="text-light">В тот же момент, планета впервые столкнулась с глобальной войной - случилось два инопланетных вторжения, которые еле-еле были отражены. Последовавшая политическая нестабильность оконнчательно разрушила оставшиеся империи.</p>
                 <Fullscreen>
                     <img
-                        src="https://sun9-41.userapi.com/impg/SBqRBomnoqfDGntdAUw6im_aUHMzuHvhNeSXJg/E7s3hd-QYTc.jpg?size=1600x785&quality=96&sign=8656f90c2277b14fc2efc46c654f93ff&type=album"
+                        src={imgScreenshot3}
                         alt="screenshot"
                         className="border-radius"
                         style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
@@ -89,7 +95,7 @@ export default function SupportPageFeedback() {
                 <p className="text-light">Впервые за много столетий, ни одна страна не вела империалистических войн. До момента, пока в результате выборов президента Ежинии, пост не занял Ууе Кэрион...</p>
                 <Fullscreen>
                     <img
-                        src="https://sun9-55.userapi.com/impg/HMQH2NRoYdl0w-DSgpfEvHP8xP2Qw1ZIOC8XsQ/jRCJpBEp7Iw.jpg?size=1053x539&quality=96&sign=7091e4111437bac775a35c5b144ee3c5&type=album"
+                        src={imgScreenshot4}
                         alt="screenshot"
                         className="border-radius"
                         style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
@@ -104,7 +110,7 @@ export default function SupportPageFeedback() {
                 <p className="text-light">Ближе к концу эпохи оказалось, что группа бандитов уничтожила древнюю магическую сферу, из которой стали вылезать саурианцы - ящероподобные дикари, которые уничтожили Кулсториробоб. Его жителям пришлось мигрировать на лунную сторону планеты и начать там новую жизнь...</p>
                 <Fullscreen>
                     <img
-                        src="https://sun9-68.userapi.com/impg/J58OVtE1T3J8WkYW4lHt9J_d3aKETWR15NSyvg/2ADPHOLL89U.jpg?size=1280x683&quality=96&sign=be7e3e7bacb7672b10ff75256ad8593c&type=album"
+                        src={imgScreenshot5}
                         alt="screenshot"
                         className="border-radius"
                         style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}

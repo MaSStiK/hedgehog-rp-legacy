@@ -2,6 +2,8 @@ import { useEffect } from "react"
 import { setPageTitle } from "../Global"
 import Fullscreen from "../Fullscreen/Fullscreen"
 
+import imgScreenshot from "../../assets/support/AuthToken/screenshot.png"
+
 import "./SupportPage.css"
 
 export default function SupportPageAuthToken() {
@@ -16,7 +18,7 @@ export default function SupportPageAuthToken() {
                 <p className="text-light">После завершения процесса входа в ваш аккаунт или его регистрации, бот отправляет вам уведомление о успешной авторизации. В дополнение к этому, он передает вам "Токен авторизации", который можно скопировать и применить для входа в аккаунт на данном или другом устройстве.</p>
                 <Fullscreen>
                     <img
-                        src="https://sun9-47.userapi.com/impg/MIY1Ao_E5XVbkLcWG2_D7lhcqwcflnicsYYzfQ/jYkGl1VlIv8.jpg?size=525x171&quality=96&sign=231e223c1613d33400b63670f2604476&type=album"
+                        src={imgScreenshot}
                         alt="screenshot"
                         className="border-radius"
                         style={{border: "1px solid var(--border-primary)"}}

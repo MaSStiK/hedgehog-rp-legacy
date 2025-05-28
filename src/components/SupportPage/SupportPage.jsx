@@ -15,7 +15,6 @@ export default function SupportPage() {
     const articles = [
         {title: "Где оставить обратную связь (идеи или баги)", icon: imgHelp, link: "feedback"},
         {title: "Как использовать токен авторизации", icon: imgHelp, link: "auth-token"},
-        {title: "Текстовый список создателей стран", icon: imgInfo, link: "creators-list"},
         {title: "История РП: Глава I - Кулсториробоб", icon: imgInfo, link: "rp_lore_chapter1"},
     ]
 
