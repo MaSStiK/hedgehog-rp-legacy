@@ -4,6 +4,7 @@ body[bg] {
     background-repeat: no-repeat;
 }
 
+/* Затемнение на 50 процентов */
 body[bg=bg1] {
     background-image: url("../../assets/settings/bg1.png");
 }
@@ -22,4 +23,9 @@ body[bg=bg4] {
 
 body[bg=bgSnow] {
     background-image: url("../../assets/settings/bgSnow.png");
+}
+
+/* Затемнение на 20 процентов */
+body[bg=bgParty] {
+    background-image: url("../../assets/settings/bgParty.png");
 }

@@ -26,3 +26,7 @@ body[theme=party] section::after {
     background-repeat: no-repeat;
     rotate: 18deg;
 }
+
+body[theme=party] .home__image-AA {
+    content: url("../../assets/settings/theme-party/Ace_Attorney party.png");
+}

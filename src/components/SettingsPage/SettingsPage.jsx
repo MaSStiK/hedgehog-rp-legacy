@@ -13,6 +13,7 @@ const backgroundsOptions = [
     {value: "bg3", label: "Подсолнух и ёж"},
     {value: "bg4", label: "Поле ромашек"},
     {value: "bgSnow", label: "Зимний ёж"},
+    {value: "bgParty", label: "Праздничный"},
     // {value: "bgLink", label: "Свой фон"},
     {value: "false", label: "Отключен"},
 ]
