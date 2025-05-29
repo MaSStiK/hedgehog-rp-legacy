@@ -16,6 +16,7 @@ export default function SupportPage() {
         {title: "Где оставить обратную связь (идеи или баги)", icon: imgHelp, link: "feedback"},
         {title: "Как использовать токен авторизации", icon: imgHelp, link: "auth-token"},
         {title: "История РП: Глава I - Кулсториробоб", icon: imgInfo, link: "rp_lore_chapter1"},
+        {title: "История РП: Глава II - Лунная сторона Кулсториробоба", icon: imgInfo, link: "rp_lore_chapter2"},
     ]
 
     return (

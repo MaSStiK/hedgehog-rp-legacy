@@ -42,6 +42,7 @@ import Support from "./components/SupportPage/SupportPage";
 import SupportAuthToken from "./components/SupportPage/SupportPage_AuthToken";
 import SupportFeedback from "./components/SupportPage/SupportPage_Feedback";
 import SupportRpLoreChapter1 from "./components/SupportPage/SupportPage_RpLoreChapter1";
+import SupportRpLoreChapter2 from "./components/SupportPage/SupportPage_RpLoreChapter2";
 
 import About from "./components/AboutPage/AboutPage";
 import Settings from "./components/SettingsPage/SettingsPage";
@@ -212,6 +213,7 @@ export default function App() {
                     <Route path="/support/feedback" element={<SupportFeedback />} />
                     <Route path="/support/auth-token" element={<SupportAuthToken />} />
                     <Route path="/support/rp_lore_chapter1" element={<SupportRpLoreChapter1 />} />
+                    <Route path="/support/rp_lore_chapter2" element={<SupportRpLoreChapter2 />} />
                     
                     <Route path="/about" element={<About />} />
                     <Route path="/settings" element={<Settings />} />

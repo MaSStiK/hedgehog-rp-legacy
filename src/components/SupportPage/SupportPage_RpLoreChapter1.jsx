@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { Link } from "react-router-dom";
 import { setPageTitle } from "../Global"
 import Fullscreen from "../Fullscreen/Fullscreen"
+import ButtonToTop from "../ButtonToTop/ButtonToTop"
 import $ from "jquery"
 
 import imgScreenshot1 from "../../assets/support/RpLoreChapter1/screenshot-1.png"
@@ -14,16 +14,12 @@ import "./SupportPage.css"
 
 export default function SupportPage_RpLoreChapter1() {
     useEffect(() => {setPageTitle("История РП: Глава I - Кулсториробоб")}, [])
-
-    const scrollToTitle = (title) => {
-        $("article").animate({
-            scrollTop: $(title).offset().top
-        }, 250);
-    };
+    const scrollToTitle = (title) => { $("article").animate({scrollTop: $(title).offset().top}, 250) }
 
     return (
         <article>
             <h4 className="page-title">h/support/rp_lore/chapter1</h4>
+            <ButtonToTop />
 
             <section className="flex-col">
                 <h1>Глава I - Кулсториробоб</h1>
