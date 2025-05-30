@@ -25,7 +25,7 @@ export default function SupportPage_RpLoreChapter3() {
                 <h2>Оглавление</h2>
                 <p>• <span className="text-link" onClick={() => scrollToTitle("#title1")}>Предвоенный синдром</span><br/>
                 • <span className="text-link" onClick={() => scrollToTitle("#title2")}>IX мировая, межвоенный кризис, X мировая</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title3")}>Заключительный этап</span><br/>
+                • <span className="text-link" onClick={() => scrollToTitle("#title3")}>Заключительный этап</span>
                 </p>
 
                 <h2 id="title1">Предвоенный синдром</h2>
@@ -38,8 +38,7 @@ export default function SupportPage_RpLoreChapter3() {
                     <img
                         src={imgScreenshot1}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
 
@@ -55,8 +54,7 @@ export default function SupportPage_RpLoreChapter3() {
                     <img
                         src={imgScreenshot2}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
 
@@ -73,8 +71,7 @@ export default function SupportPage_RpLoreChapter3() {
                     <img
                         src={imgScreenshot3}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
             </section>

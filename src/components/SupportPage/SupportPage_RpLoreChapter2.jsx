@@ -47,8 +47,7 @@ export default function SupportPage_RpLoreChapter2() {
                     <img
                         src={imgScreenshot1}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
 
@@ -62,8 +61,7 @@ export default function SupportPage_RpLoreChapter2() {
                     <img
                         src={imgScreenshot2}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
 
@@ -80,8 +78,7 @@ export default function SupportPage_RpLoreChapter2() {
                     <img
                         src={imgScreenshot3}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
 
@@ -94,8 +91,7 @@ export default function SupportPage_RpLoreChapter2() {
                     <img
                         src={imgScreenshot4}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
 
@@ -108,8 +104,7 @@ export default function SupportPage_RpLoreChapter2() {
                     <img
                         src={imgScreenshot5}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
 
@@ -124,8 +119,7 @@ export default function SupportPage_RpLoreChapter2() {
                     <img
                         src={imgScreenshot6}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
             </section>

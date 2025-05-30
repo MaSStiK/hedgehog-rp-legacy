@@ -18,6 +18,8 @@ export default function SupportPage() {
         {title: "История РП: Глава I - Кулсториробоб", icon: imgInfo, link: "rp_lore_chapter1"},
         {title: "История РП: Глава II - Лунная сторона Кулсториробоба", icon: imgInfo, link: "rp_lore_chapter2"},
         {title: "История РП: Глава III - Развязка", icon: imgInfo, link: "rp_lore_chapter3"},
+        {title: "История РП: Глава IV - Планета Динахон Системы Базиликс", icon: imgInfo, link: "rp_lore_chapter4"},
+        {title: "История РП: Глава V - Родной дом", icon: imgInfo, link: "rp_lore_chapter5"},
     ]
 
     return (

@@ -44,6 +44,8 @@ import SupportFeedback from "./components/SupportPage/SupportPage_Feedback";
 import SupportRpLoreChapter1 from "./components/SupportPage/SupportPage_RpLoreChapter1";
 import SupportRpLoreChapter2 from "./components/SupportPage/SupportPage_RpLoreChapter2";
 import SupportRpLoreChapter3 from "./components/SupportPage/SupportPage_RpLoreChapter3";
+import SupportRpLoreChapter4 from "./components/SupportPage/SupportPage_RpLoreChapter4";
+import SupportRpLoreChapter5 from "./components/SupportPage/SupportPage_RpLoreChapter5";
 
 import About from "./components/AboutPage/AboutPage";
 import Settings from "./components/SettingsPage/SettingsPage";
@@ -216,6 +218,8 @@ export default function App() {
                     <Route path="/support/rp_lore_chapter1" element={<SupportRpLoreChapter1 />} />
                     <Route path="/support/rp_lore_chapter2" element={<SupportRpLoreChapter2 />} />
                     <Route path="/support/rp_lore_chapter3" element={<SupportRpLoreChapter3 />} />
+                    <Route path="/support/rp_lore_chapter4" element={<SupportRpLoreChapter4 />} />
+                    <Route path="/support/rp_lore_chapter5" element={<SupportRpLoreChapter5 />} />
                     
                     <Route path="/about" element={<About />} />
                     <Route path="/settings" element={<Settings />} />
