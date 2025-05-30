@@ -30,6 +30,7 @@ body[bg=bgParty] {
     background-image: url("../../assets/settings/bgParty.png");
 }
 
+/* Затемнение на 30 процентов */
 body[bg=bgParty2] {
     background-image: url("../../assets/settings/bgParty2.png");
 }
