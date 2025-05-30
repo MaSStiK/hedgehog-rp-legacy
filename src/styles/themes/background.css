@@ -29,3 +29,7 @@ body[bg=bgSnow] {
 body[bg=bgParty] {
     background-image: url("../../assets/settings/bgParty.png");
 }
+
+body[bg=bgParty2] {
+    background-image: url("../../assets/settings/bgParty2.png");
+}

@@ -17,11 +17,13 @@ export default function SetTheme(Context) {
         Context.setPageSettings(PageSettings)
     }
     
-    if (Context.PageSettings["theme"]) {// Устанавливаем тему
+    // Устанавливаем тему
+    if (Context.PageSettings["theme"]) {
         $("body").attr("theme", Context.PageSettings["theme"])
     }
 
-    if (Context.PageSettings["bg"] !== "false") {// Устанавливаем задний фон
+    // Устанавливаем задний фон
+    if (Context.PageSettings["bg"] !== "false") {
         $("body").attr("bg", Context.PageSettings["bg"])
     } else { // Если задний фон отключен
         $("body").removeAttr("bg")
