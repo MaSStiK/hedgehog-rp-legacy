@@ -1,9 +1,9 @@
 import { VKAPI } from "../API"
 
-export default function MessagesGet(Context, offset, disableFilter) {
+export default function MessagesGet(Context, vkConv, offset, disableFilter) {
     return new Promise((resolve, reject) => {
         // Получаем список сообщений от лица мотя бота
-        VKAPI("messages.getHistory", {peer_id: 2000000001, count: 200, offset: offset, rev: 0, extended: 1}, (data) => {
+        VKAPI("messages.getHistory", {peer_id: vkConv, count: 200, offset: offset, rev: 0, extended: 1}, (data) => {
             let messages = data.response.items
             
             // Если фильтр не отключен

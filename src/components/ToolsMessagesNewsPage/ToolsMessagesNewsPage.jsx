@@ -6,12 +6,18 @@ import CustomInput from "../CustomInput/CustomInput"
 import MessagesGet from "./MessagesGet"
 import MessageRender from "./MessageRender"
 import ButtonImage from "../ButtonImage/ButtonImage"
+import CustomSelect from "../CustomSelect/CustomSelect";
 import imgListSearch from "../../assets/svg/ListSearch.svg"
 import imgCross from "../../assets/svg/Cross.svg"
 import imgLoad from "../../assets/svg/Load.svg"
 
 import "./ToolsMessagesNewsPage.css"
 import "./ToolsMessagesNewsPage-phone.css"
+
+const VKConversations = [
+    {value: "2000000001", label: "Основная беседа"},
+    {value: "2000000008", label: "Постамат"},
+]
 
 export default function ToolsMessagesNewsPage() {
     useEffect(() => {setPageTitle("Поиск сообщения")}, [])
@@ -25,17 +31,29 @@ export default function ToolsMessagesNewsPage() {
     const [vkMessages, setVkMessages] = useState([])
     const [vkMessagesOffset, setVkMessagesOffset] = useState(0)
 
+    const [vkConvSelected, setVkConvSelected] = useState(VKConversations[0].value);
+
     const searchRef = useRef()
     
     // Получение сообщений при загрузке страницы
     useEffect(() => {
-        MessagesLoad(0)
-    }, [])
+        MessagesLoad(vkConvSelected, 0)
+    }, [vkConvSelected])
 
-    function MessagesLoad(offset) {
+    function changeVkConv(id) {
+        setVkData({messages: [], profiles: []})
+        setVkMessages([])
+        setVkMessagesOffset(0)
+        setVkConvSelected(id)
+    }
+
+    function MessagesLoad(vkConversation, offset) {
         setDisableLoadButton(true) // Блокируем кнопку
 
-        MessagesGet(Context, offset, Location.state?.noFilter)
+        console.log(vkData);
+        
+
+        MessagesGet(Context, vkConversation, offset, Location.state?.noFilter)
         .then(data => {
             data.messages = [...vkData.messages].concat(data.messages)
             setVkData(data) // Обновляем все посты
@@ -68,7 +86,16 @@ export default function ToolsMessagesNewsPage() {
                 </p>
                 {isMessagesLoaded
                     ? <>
-                        <small className="text-gray">• Сообщения без текста не будут отображаться</small>
+                        <h3>Выберите беседу</h3>
+                        <CustomSelect
+                            options={VKConversations}
+                            values={VKConversations[
+                                VKConversations.findIndex(option => option.value === vkConvSelected) >= 0
+                                ? VKConversations.findIndex(option => option.value === vkConvSelected)
+                                : 0
+                            ]} // Значение по умолчанию
+                            onChange={value => changeVkConv(value[0].value)}
+                        />
                         <div className="vk-messages__search flex-row">
                             <CustomInput label="Поиск сообщения" src={imgListSearch}>
                                 <input
@@ -98,6 +125,7 @@ export default function ToolsMessagesNewsPage() {
                             <span className="small text-gray">|</span>
                             <span className="small text-gray">Из них ваши: {vkData.messages.length}</span>
                         </div>
+                        <small className="text-gray">• Сообщения без текста не отображаются</small>
                         <hr />
                         <div className="vk-messages">
                             {vkMessages.length
@@ -119,7 +147,7 @@ export default function ToolsMessagesNewsPage() {
                             alt="load-more"
                             text="Загрузить больше"
                             title="Загрузить больше сообщений"
-                            onClick={() => MessagesLoad(vkMessagesOffset + 200)}
+                            onClick={() => MessagesLoad(vkConvSelected, vkMessagesOffset + 200)}
                             disabled={disableLoadButton}
                             width100
                         />
