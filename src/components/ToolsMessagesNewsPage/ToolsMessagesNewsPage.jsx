@@ -30,8 +30,7 @@ export default function ToolsMessagesNewsPage() {
     const [vkData, setVkData] = useState({messages: [], profiles: []})
     const [vkMessages, setVkMessages] = useState([])
     const [vkMessagesOffset, setVkMessagesOffset] = useState(0)
-
-    const [vkConvSelected, setVkConvSelected] = useState(VKConversations[0].value);
+    const [vkConvSelected, setVkConvSelected] = useState(VKConversations[1].value);
 
     const searchRef = useRef()
     
