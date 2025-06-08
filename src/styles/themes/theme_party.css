@@ -17,7 +17,7 @@
 body[theme=party] section::after {
     content: "";
     position: absolute;
-    top: -17px;
+    top: -20px;
     right: -14px;
     width: var(--button-img-big);
     height: var(--button-img-big);
