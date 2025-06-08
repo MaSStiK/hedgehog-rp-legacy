@@ -59,9 +59,9 @@ export default function HomePage() {
 
                 {/* <iframe width="520" height="280" src="https://www.youtube.com/embed/1yeE1jlYFnc?si=wsqkPsAl4VAA1FZm" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> */}
                 
-                <Link to="https://tv.hedgehog-rp.ru/watch/s4e13">
+                <Link to="https://tv.hedgehog-rp.ru/watch/s4e14">
                     <img className="home__thumbnail" src={imgThumbnail} alt="thumbnail" />
-                    <h3>4 сезон 13 серия | Разгрузка</h3>
+                    <h3>4 сезон 14 серия | Предвоенный синдром</h3>
                 </Link>
                 
                 <div className="flex-row flex-wrap">
