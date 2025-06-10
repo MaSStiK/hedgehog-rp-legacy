@@ -27,8 +27,8 @@ export default function ToolsMessagesNewsPage() {
     const [isMessagesLoaded, setIsMessagesLoaded] = useState(false) // Показывать сообщение о загрузке сообщений
     const [disableLoadButton, setDisableLoadButton] = useState(false) // Блокировать кнопку загрузки сообщений
 
-    const [vkData, setVkData] = useState({messages: [], profiles: []})
-    const [vkMessages, setVkMessages] = useState([])
+    const [vkData, setVkData] = useState({messages: [], profiles: []}) // Стейт для сохранения всей информации об текущей выбранной беседы
+    const [vkMessages, setVkMessages] = useState([]) // Список отображаемых сообщений (для поиска) (НЕ УДАЛЯЯЯЯТЬ)
     const [vkMessagesOffset, setVkMessagesOffset] = useState(0)
     const [vkConvSelected, setVkConvSelected] = useState(VKConversations[1].value);
 
@@ -49,12 +49,10 @@ export default function ToolsMessagesNewsPage() {
     function MessagesLoad(vkConversation, offset) {
         setDisableLoadButton(true) // Блокируем кнопку
 
-        console.log(vkData);
-        
-
         MessagesGet(Context, vkConversation, offset, Location.state?.noFilter)
         .then(data => {
             data.messages = [...vkData.messages].concat(data.messages)
+            data.profiles = data.profiles ? data.profiles : vkData.profiles // Если возвращает data.profiles = undefined
             setVkData(data) // Обновляем все посты
             setVkMessages(data.messages) // И список отображаемых постов
             setVkMessagesOffset(offset) // Обновляем offset

@@ -12,7 +12,6 @@ export default function MessagesGet(Context, vkConv, offset, disableFilter) {
             }  else {
                 messages = messages.filter(message => message.text)
             }
-
             resolve({messages: messages, profiles: data.response.profiles})
             
         }, process.env.REACT_APP_VK_TOKEN_USERBOT)
