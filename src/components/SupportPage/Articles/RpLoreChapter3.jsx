@@ -1,16 +1,16 @@
 import { useEffect } from "react"
-import { setPageTitle } from "../Global"
-import Fullscreen from "../Fullscreen/Fullscreen"
-import ButtonToTop from "../ButtonToTop/ButtonToTop"
+import { setPageTitle } from "../../Global"
+import Fullscreen from "../../Fullscreen/Fullscreen"
+import ButtonToTop from "../../ButtonToTop/ButtonToTop"
 import $ from "jquery"
 
-import imgScreenshot1 from "../../assets/support/RpLoreChapter3/screenshot-1.png"
-import imgScreenshot2 from "../../assets/support/RpLoreChapter3/screenshot-2.png"
-import imgScreenshot3 from "../../assets/support/RpLoreChapter3/screenshot-3.png"
+import imgScreenshot1 from "../../../assets/support/RpLoreChapter3/screenshot-1.png"
+import imgScreenshot2 from "../../../assets/support/RpLoreChapter3/screenshot-2.png"
+import imgScreenshot3 from "../../../assets/support/RpLoreChapter3/screenshot-3.png"
 
-import "./SupportPage.css"
+import "../SupportPage.css"
 
-export default function SupportPage_RpLoreChapter3() {
+export default function RpLoreChapter3() {
     useEffect(() => {setPageTitle("История РП: Глава III - Развязка")}, [])
     const scrollToTitle = (title) => { $("article").animate({scrollTop: $(title).offset().top}, 250) }
 

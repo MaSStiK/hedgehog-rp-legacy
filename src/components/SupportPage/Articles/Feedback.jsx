@@ -1,14 +1,14 @@
 import { useEffect } from "react"
 import { Link } from "react-router-dom";
-import { setPageTitle } from "../Global"
-import Fullscreen from "../Fullscreen/Fullscreen"
+import { setPageTitle } from "../../Global"
+import Fullscreen from "../../Fullscreen/Fullscreen"
 
-import imgScreenshot1 from "../../assets/support/Feedback/screenshot-1.png"
-import imgScreenshot2 from "../../assets/support/Feedback/screenshot-2.png"
+import imgScreenshot1 from "../../../assets/support/Feedback/screenshot-1.png"
+import imgScreenshot2 from "../../../assets/support/Feedback/screenshot-2.png"
 
-import "./SupportPage.css"
+import "../SupportPage.css"
 
-export default function SupportPageFeedback() {
+export default function Feedback() {
     useEffect(() => {setPageTitle("Помощь")}, [])
 
     return (
@@ -23,16 +23,14 @@ export default function SupportPageFeedback() {
                     <img
                         src={imgScreenshot1}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
                 <Fullscreen>
                     <img
                         src={imgScreenshot2}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)", objectFit: "contain"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
                 <p className="text-light">Ваша заявка будет рассмотрена в ближайшее время!</p>

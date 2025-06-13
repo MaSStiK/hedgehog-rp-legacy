@@ -1,0 +1,64 @@
+/* Блок с прокруткой сезонов */
+.seasons-wrapper {
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+.seasons-container {
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.season {
+    background-color: var(--bg-primary);
+}
+
+.season__content {
+    height: 100%;
+    padding-bottom: var(--gap-small);
+}
+
+.season__info {
+    flex: 1;
+    padding: 0 var(--gap-small);
+}
+
+.season__info button {
+    margin-top: auto;
+}
+
+.season__name {
+    font-size: var(--h2);
+}
+
+/* Звездочки */
+.season__stars {
+    gap: 4px;
+}
+
+.season__stars img {
+    width: var(--button-img-big);
+}
+
+/* Текст отзыва */
+.season__text {
+    width: 80%;
+    text-align: center;
+}
+
+
+/* Слайдер картинок */
+.seasons-control {
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+/* Нумерация картинки */
+.seasons-control span {
+    min-width: 20px;
+    display: inline-block;
+    text-align: center;
+}

@@ -4,6 +4,6 @@
 }
 
 .support__img {
-    border: "1px solid var(--border-primary)";
-    object-fit: "contain";
+    border: 1px solid var(--border-primary);
+    object-fit: contain;
 }

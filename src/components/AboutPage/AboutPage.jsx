@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
 import { setPageTitle } from "../Global"
 import { VKAPI } from "../API"
+import AboutSeasons from "./AboutSeasons"
 import AboutReviews from "./AboutReviews"
 import imgBasePhoto from "../../assets/replace/photo-empty.png"
 
@@ -68,6 +69,8 @@ export default function AboutPage() {
                 </p>
             </section>
 
+            <AboutSeasons />
+
             <section className="flex-col">
                 <h1>Наша группа в вк</h1>
                 <ButtonProfile
@@ -78,7 +81,7 @@ export default function AboutPage() {
             </section>
 
             <section className="flex-col">
-                <h2>По вопросам группы и беседы в вк</h2>
+                <h1>По вопросам группы и беседы в вк</h1>
                 <ButtonProfile
                     src={userDataVk[1]?.photo_100 || imgBasePhoto}
                     text={`${userDataVk[1]?.first_name || ""} ${userDataVk[1]?.last_name || ""}`}
@@ -92,7 +95,7 @@ export default function AboutPage() {
             </section>
 
             <section className="flex-col">
-                <h2>По техническим вопросам сайта</h2>
+                <h1>По техническим вопросам сайта</h1>
                 <ButtonProfile
                     src={userDataVk[0]?.photo_100 || imgBasePhoto}
                     text={`${userDataVk[0]?.first_name || ""} ${userDataVk[0]?.last_name || ""}`}

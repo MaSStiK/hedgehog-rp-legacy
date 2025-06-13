@@ -8,6 +8,7 @@
 
 /* Отключили gap у кнопки и даем тексту отступ с обеих сторон 4px */
 .button-image p {
+    text-align: left;
     padding: 0 var(--button-gap);
 }
 

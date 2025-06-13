@@ -1,12 +1,12 @@
 import { useEffect } from "react"
-import { setPageTitle } from "../Global"
-import Fullscreen from "../Fullscreen/Fullscreen"
+import { setPageTitle } from "../../Global"
+import Fullscreen from "../../Fullscreen/Fullscreen"
 
-import imgScreenshot from "../../assets/support/AuthToken/screenshot.png"
+import imgScreenshot from "../../../assets/support/AuthToken/screenshot.png"
 
-import "./SupportPage.css"
+import "../SupportPage.css"
 
-export default function SupportPageAuthToken() {
+export default function AuthToken() {
     useEffect(() => {setPageTitle("Помощь")}, [])
 
     return (
@@ -20,8 +20,7 @@ export default function SupportPageAuthToken() {
                     <img
                         src={imgScreenshot}
                         alt="screenshot"
-                        className="border-radius"
-                        style={{border: "1px solid var(--border-primary)"}}
+                        className="border-radius support__img"
                     />
                 </Fullscreen>
                 

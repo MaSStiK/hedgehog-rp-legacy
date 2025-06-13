@@ -11,7 +11,7 @@ export default function NotFoundPage() {
             <h4 className="page-title">h/error404</h4>
 
             <section>
-                <h2>Страница не найдена!</h2>
+                <h1>Страница не найдена!</h1>
             </section>
         </article>
     )

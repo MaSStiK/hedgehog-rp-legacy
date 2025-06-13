@@ -1,19 +1,19 @@
 import { useEffect } from "react"
-import { setPageTitle } from "../Global"
-import Fullscreen from "../Fullscreen/Fullscreen"
-import ButtonToTop from "../ButtonToTop/ButtonToTop"
+import { setPageTitle } from "../../Global"
+import Fullscreen from "../../Fullscreen/Fullscreen"
+import ButtonToTop from "../../ButtonToTop/ButtonToTop"
 import $ from "jquery"
 
-import imgScreenshot1 from "../../assets/support/RpLoreChapter2/screenshot-1.png"
-import imgScreenshot2 from "../../assets/support/RpLoreChapter2/screenshot-2.png"
-import imgScreenshot3 from "../../assets/support/RpLoreChapter2/screenshot-3.png"
-import imgScreenshot4 from "../../assets/support/RpLoreChapter2/screenshot-4.png"
-import imgScreenshot5 from "../../assets/support/RpLoreChapter2/screenshot-5.png"
-import imgScreenshot6 from "../../assets/support/RpLoreChapter2/screenshot-6.png"
+import imgScreenshot1 from "../../../assets/support/RpLoreChapter2/screenshot-1.png"
+import imgScreenshot2 from "../../../assets/support/RpLoreChapter2/screenshot-2.png"
+import imgScreenshot3 from "../../../assets/support/RpLoreChapter2/screenshot-3.png"
+import imgScreenshot4 from "../../../assets/support/RpLoreChapter2/screenshot-4.png"
+import imgScreenshot5 from "../../../assets/support/RpLoreChapter2/screenshot-5.png"
+import imgScreenshot6 from "../../../assets/support/RpLoreChapter2/screenshot-6.png"
 
-import "./SupportPage.css"
+import "../SupportPage.css"
 
-export default function SupportPage_RpLoreChapter2() {
+export default function RpLoreChapter2() {
     useEffect(() => {setPageTitle("История РП: Глава II - Лунная сторона Кулсториробоба")}, [])
     const scrollToTitle = (title) => { $("article").animate({scrollTop: $(title).offset().top}, 250) }
 

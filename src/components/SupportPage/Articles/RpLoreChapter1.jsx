@@ -1,18 +1,18 @@
 import { useEffect } from "react"
-import { setPageTitle } from "../Global"
-import Fullscreen from "../Fullscreen/Fullscreen"
-import ButtonToTop from "../ButtonToTop/ButtonToTop"
+import { setPageTitle } from "../../Global"
+import Fullscreen from "../../Fullscreen/Fullscreen"
+import ButtonToTop from "../../ButtonToTop/ButtonToTop"
 import $ from "jquery"
 
-import imgScreenshot1 from "../../assets/support/RpLoreChapter1/screenshot-1.png"
-import imgScreenshot2 from "../../assets/support/RpLoreChapter1/screenshot-2.png"
-import imgScreenshot3 from "../../assets/support/RpLoreChapter1/screenshot-3.png"
-import imgScreenshot4 from "../../assets/support/RpLoreChapter1/screenshot-4.png"
-import imgScreenshot5 from "../../assets/support/RpLoreChapter1/screenshot-5.png"
+import imgScreenshot1 from "../../../assets/support/RpLoreChapter1/screenshot-1.png"
+import imgScreenshot2 from "../../../assets/support/RpLoreChapter1/screenshot-2.png"
+import imgScreenshot3 from "../../../assets/support/RpLoreChapter1/screenshot-3.png"
+import imgScreenshot4 from "../../../assets/support/RpLoreChapter1/screenshot-4.png"
+import imgScreenshot5 from "../../../assets/support/RpLoreChapter1/screenshot-5.png"
 
-import "./SupportPage.css"
+import "../SupportPage.css"
 
-export default function SupportPage_RpLoreChapter1() {
+export default function RpLoreChapter1() {
     useEffect(() => {setPageTitle("История РП: Глава I - Кулсториробоб")}, [])
     const scrollToTitle = (title) => { $("article").animate({scrollTop: $(title).offset().top}, 250) }
 

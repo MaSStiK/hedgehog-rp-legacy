@@ -86,7 +86,7 @@ export default function Aside() {
                     className="tp"
                     src={Context.UserData.photo}
                     onClick={() => Navigate("/user/" + Context.UserData.id)}
-                  />
+                />
                 : <ButtonImage
                     src={imgLogin}
                     id="nav-phone-login"
@@ -95,7 +95,7 @@ export default function Aside() {
                     title="Открыть страницу авторизации"
                     width100
                     onClick={() => Navigate("/login")}
-                  />
+                />
             }
 
             {/* Кнопка открытия мобильного меню навигации */}
@@ -136,7 +136,7 @@ export default function Aside() {
                                     subText={Context.UserData.tag}
                                     onClick={() => Navigate("/user/" + Context.UserData.id)}
                                     style={{marginBottom: "var(--gap-small)"}}
-                                  />
+                                />
                                 : <ButtonImage
                                     src={imgLogin}
                                     text="Авторизация"
@@ -144,7 +144,7 @@ export default function Aside() {
                                     title="Открыть страницу авторизации"
                                     width100
                                     onClick={() => Navigate("/login")}
-                                  />
+                                />
                             }
                         </li>
                         
@@ -156,7 +156,7 @@ export default function Aside() {
                                         text={Context.UserData.country_name}
                                         subText={Context.UserData.country_tag}
                                         onClick={() => Navigate("/country/" + Context.UserData.country_id)}
-                                      />
+                                    />
                                     : <ButtonImage
                                         src={imgAdd}
                                         text={"Создать страну"}
