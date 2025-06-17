@@ -59,12 +59,13 @@ export default function AboutSeasons() {
                                 </Fullscreen>
                                 <div className="flex-col season__info">
                                     <h2>Глава {season.chapter}</h2>
+                                    <p>{season.desc}</p>
                                     <div>
+                                        <hr />
                                         <h4>Начало: {season.start}</h4>
                                         <h4>Планета: {season.planet}</h4>
                                         <h4>Система: {season.system}</h4>
                                     </div>
-                                    <p>{season.desc}</p>
 
                                     <ButtonImage
                                         src={imgInfo}

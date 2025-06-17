@@ -25,6 +25,19 @@
     padding: 0 var(--gap-small);
 }
 
+.season__info > div {
+    width: fit-content;
+}
+
+.season__info > div hr {
+    margin-bottom: var(--gap-small);
+}
+
+.season__info h4 {
+    font-size: var(--p-small);
+    font-style: italic;
+}
+
 .season__info button {
     margin-top: auto;
 }
