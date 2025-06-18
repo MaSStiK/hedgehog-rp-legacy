@@ -1,6 +1,6 @@
 static_sites:
   - name: hedgehog-rp
-    buildCommand: npm install && npm run build
+    buildCommand: npm run build
     publishDirectory: build
     redirects:
       - source: "/*"
