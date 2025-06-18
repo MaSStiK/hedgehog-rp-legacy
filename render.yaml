@@ -2,7 +2,7 @@ static_sites:
   - name: hedgehog-rp
     buildCommand: npm run build
     publishDirectory: build
-    redirects:
-      - source: "/*"
+    routes:
+      - type: rewrite
+        source: "/*"
         destination: "/index.html"
-        status: 200
