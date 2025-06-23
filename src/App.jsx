@@ -2,7 +2,7 @@
 import { useContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { DataContext, CreateContext } from "./components/Context"
+import { DataContext } from "./components/Context"
 import { GSAPI } from "./components/API";
 import { CONFIG, setPageLoading } from "./components/Global";
 import Modal from "./components/Modal/Modal"
@@ -51,8 +51,7 @@ import NotFound from "./components/NotFoundPage/NotFoundPage";
 
 
 export default function App() {
-    // Своя функция "CreateContext" которая вписывает useState в контекст
-    const Context = CreateContext(useContext(DataContext)) // Помять приложения, устанавливаем при запуске
+    const Context = useContext(DataContext) // Помять приложения, устанавливаем при запуске
 
     useEffect(() => {
         setPageLoading() // Анимация загрузки страницы
@@ -136,102 +135,99 @@ export default function App() {
 
     return (
         <>
-
             <Modal>
                 {Context.Modal}
             </Modal>
 
             <Aside />
 
-            <DataContext.Provider value={Context}>
-                <Routes>
-                    <Route path="/login" element={<Login />} />
+            <Routes>
+                <Route path="/login" element={<Login />} />
 
-                    <Route path="/home" element={<Home />} />
+                <Route path="/home" element={<Home />} />
 
-                    <Route path="/news" element={<News />} />
-                    <Route path="/news/:id" element={<NewsPost />} />
-                    <Route path="/news/add" element={
-                        <ProtectedRoute
-                            isAllowed={Context.UserData?.country_id}
-                            to="/news"
-                            element={<NewsAdd />} 
-                        />
-                    }/>
-                    <Route path="/news/edit" element={
-                        <ProtectedRoute
-                            isAllowed={Context.UserData?.country_id}
-                            to="/news"
-                            element={<NewsEdit />} 
-                        />
-                    }/>
+                <Route path="/news" element={<News />} />
+                <Route path="/news/:id" element={<NewsPost />} />
+                <Route path="/news/add" element={
+                    <ProtectedRoute
+                        isAllowed={Context.UserData?.country_id}
+                        to="/news"
+                        element={<NewsAdd />} 
+                    />
+                }/>
+                <Route path="/news/edit" element={
+                    <ProtectedRoute
+                        isAllowed={Context.UserData?.country_id}
+                        to="/news"
+                        element={<NewsEdit />} 
+                    />
+                }/>
 
-                    <Route path="/user" element={<UserList />} />
-                    <Route path="/user/:id" element={<User />} />
-                    <Route path="/user/edit" element={
-                        <ProtectedRoute
-                            isAllowed={Context.UserData}
-                            to="/user"
-                            element={<UserEdit />} 
-                        />
-                    }/>
+                <Route path="/user" element={<UserList />} />
+                <Route path="/user/:id" element={<User />} />
+                <Route path="/user/edit" element={
+                    <ProtectedRoute
+                        isAllowed={Context.UserData}
+                        to="/user"
+                        element={<UserEdit />} 
+                    />
+                }/>
 
-                    <Route path="/country" element={<CountryList />} />
-                    <Route path="/country/:id" element={<Country />} />
-                    <Route path="/country/edit" element={
-                        <ProtectedRoute
-                            isAllowed={Context.UserData}
-                            to="/country"
-                            element={<CountryEdit />} 
-                        />
-                    }/>
+                <Route path="/country" element={<CountryList />} />
+                <Route path="/country/:id" element={<Country />} />
+                <Route path="/country/edit" element={
+                    <ProtectedRoute
+                        isAllowed={Context.UserData}
+                        to="/country"
+                        element={<CountryEdit />} 
+                    />
+                }/>
 
-                    <Route path="/nation" element={<Nation />} />
+                <Route path="/nation" element={<Nation />} />
 
-                    <Route path="/tools" element={<Tools />} />
-                    <Route path="/tools/exit" element={<Tools doLogout={true} />} />
-                    <Route path="/tools/rosehip" element={<RosehipPage />} />
-                    <Route path="/tools/message-news" element={
-                        <ProtectedRoute
-                            isAllowed={Context.UserData?.country_id}
-                            to="/tools"
-                            element={<ToolsMessagesNewsPage />} 
-                        />
-                    }/>
-                    <Route path="/tools/dice" element={
-                        <ProtectedRoute
-                            isAllowed={Context.UserData}
-                            to="/tools"
-                            element={<DicePage />} 
-                        />
-                    }/>
+                <Route path="/tools" element={<Tools />} />
+                <Route path="/tools/exit" element={<Tools doLogout={true} />} />
+                <Route path="/tools/rosehip" element={<RosehipPage />} />
+                <Route path="/tools/message-news" element={
+                    <ProtectedRoute
+                        isAllowed={Context.UserData?.country_id}
+                        to="/tools"
+                        element={<ToolsMessagesNewsPage />} 
+                    />
+                }/>
+                <Route path="/tools/dice" element={
+                    <ProtectedRoute
+                        isAllowed={Context.UserData}
+                        to="/tools"
+                        element={<DicePage />} 
+                    />
+                }/>
 
-                    <Route path="/support" element={<SupportPage />} />
-                    <Route path="/support/:id" element={<SupportArticle />} />
-                    
-                    <Route path="/about" element={<About />} />
-                    <Route path="/settings" element={<Settings />} />
-                    <Route path="/changelogs" element={<Changelogs />} />
+                <Route path="/support" element={<SupportPage />} />
+                <Route path="/support/:id" element={<SupportArticle />} />
+                
+                <Route path="/about" element={<About />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/changelogs" element={<Changelogs />} />
 
-                    <Route path="/dev" element={
-                        <ProtectedRoute
-                            isAllowed={Context.UserData ? Context.UserData.roles.includes("admin") : false}
-                            element={<Dev />}
-                        />
-                    }/>
+                <Route path="/dev" element={
+                    <ProtectedRoute
+                        isAllowed={Context.UserData ? Context.UserData.roles.includes("admin") : false}
+                        element={<Dev />}
+                    />
+                }/>
 
-                    <Route path="/dev/elements" element={
-                        <ProtectedRoute
-                            isAllowed={Context.UserData ? Context.UserData.roles.includes("admin") : false}
-                            element={<DevElements />}
-                        />
-                    }/>
+                <Route path="/dev/elements" element={
+                    <ProtectedRoute
+                        isAllowed={Context.UserData ? Context.UserData.roles.includes("admin") : false}
+                        element={<DevElements />}
+                    />
+                }/>
 
 
-                    <Route path="/" element={<Home />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </DataContext.Provider>
+                <Route path="/" element={<Home />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
         </>
     )
 }

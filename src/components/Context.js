@@ -4,8 +4,7 @@ import { getCookie } from "./Global";
 // Создание контекста приложения
 export const DataContext = createContext({})
 
-// Устанавливаем стейты в приложении
-export function CreateContext(Context) {
+export function DataProvider({ children }) {
     // Передаем в контекст userData и его сеттер
     let userData
     try {
@@ -15,57 +14,37 @@ export function CreateContext(Context) {
         userData = null
     }
 
-    const [ContextUserData, setContextUserData] = useState(userData);
-    Context.UserData = ContextUserData
-    Context.setUserData = setContextUserData
+    const [UserData, setUserData] = useState(userData);
 
     // Получаем токен авторизации
-    Context.AuthToken = getCookie("auth_token") ? getCookie("auth_token") : null
-
+    const AuthToken = getCookie("auth_token") ? getCookie("auth_token") : null
 
     // Настройки сайта
-    let PageSettings
+    let pageSettings
     try {
-        PageSettings = localStorage.PageSettings ? JSON.parse(localStorage.PageSettings) : {}
+        pageSettings = localStorage.PageSettings ? JSON.parse(localStorage.PageSettings) : {}
     } catch {
         delete localStorage.PageSettings
-        PageSettings = {}
+        pageSettings = {}
     }
 
-    const [ContextPageSettings, setContextPageSettings] = useState(PageSettings);
-    Context.PageSettings = ContextPageSettings
-    Context.setPageSettings = setContextPageSettings
-    
-    
-    // Массив всех юзеров
-    const [ContextUsers, setContextUsers] = useState([]);
-    Context.Users = ContextUsers
-    Context.setUsers = setContextUsers
+    const [PageSettings, setPageSettings] = useState(pageSettings);
 
-    // Массив Общего списка загруженных постов
-    const [ContextPosts, setContextPosts] = useState([]);
-    Context.Posts = ContextPosts
-    Context.setPosts = setContextPosts
+    const [Users, setUsers] = useState([]); // Массив всех юзеров
+    const [Posts, setPosts] = useState([]); // Массив Общего списка загруженных постов
+    const [CountryPosts, setCountryPosts] = useState({}); // Объект с постами каждой страны
+    const [Modal, setModal] = useState({}); // Модальное окно
+    const [PostsOffset, setPostsOffset] = useState(0); // Offset постов
+    const [Calendar, setCalendar] = useState([]); // Календарь
 
-    // Объект с постами каждой страны
-    const [CountryPosts, setCountryPosts] = useState({});
-    Context.CountryPosts = CountryPosts
-    Context.setCountryPosts = setCountryPosts
+    return (
+        <DataContext.Provider value={{
+            UserData, setUserData, AuthToken, PageSettings, setPageSettings,
+            Users, setUsers, Posts, setPosts, CountryPosts, setCountryPosts,
+            Modal, setModal, PostsOffset, setPostsOffset, Calendar, setCalendar
 
-    // Модальное окно
-    const [Modal, setModal] = useState({});
-    Context.Modal = Modal
-    Context.setModal = setModal
-
-    // Offset постов
-    const [PostsOffset, setPostsOffset] = useState(0);
-    Context.PostsOffset = PostsOffset
-    Context.setPostsOffset = setPostsOffset
-
-    // Календарь
-    const [Calendar, setCalendar] = useState([]);
-    Context.Calendar = Calendar
-    Context.setCalendar = setCalendar
-
-    return Context
+        }}>
+            {children}
+        </DataContext.Provider>
+    );
 }
