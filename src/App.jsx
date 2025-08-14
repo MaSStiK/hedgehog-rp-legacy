@@ -44,6 +44,7 @@ import SupportArticle from "./components/SupportPage/SupportPage_Article";
 import About from "./components/AboutPage/AboutPage";
 import Settings from "./components/SettingsPage/SettingsPage";
 import Changelogs from "./components/ChangelogsPage/ChangelogsPage";
+import PolicyPage from "./components/PolicyPage/PolicyPage";
 import Dev from "./components/DevPage/DevPage";
 import DevElements from "./components/DevPage/DevElementsPage";
 
@@ -209,6 +210,7 @@ export default function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/changelogs" element={<Changelogs />} />
+                <Route path="/policy" element={<PolicyPage />} />
 
                 <Route path="/dev" element={
                     <ProtectedRoute
