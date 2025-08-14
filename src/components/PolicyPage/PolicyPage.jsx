@@ -3,6 +3,7 @@ import { setPageTitle } from "../Global"
 
 export default function PolicyPage() {
     useEffect(() => {setPageTitle("Политика конфиденциальности")}, [])
+    console.log(1);
 
     return (
         <article>
