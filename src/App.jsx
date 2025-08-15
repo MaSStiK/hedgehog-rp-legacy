@@ -34,8 +34,8 @@ import CountryEdit from "./components/CountryEditPage/CountryEditPage";
 import Nation from "./components/NationPage/NationPage";
 
 import Tools from "./components/ToolsPage/ToolsPage";
-import ToolsMessagesNewsPage from "./components/ToolsMessagesNewsPage/ToolsMessagesNewsPage";
-// import DicePage from "./components/DicePage/DicePage";
+// import ToolsMessagesNewsPage from "./components/ToolsMessagesNewsPage/ToolsMessagesNewsPage";
+import DicePage from "./components/DicePage/DicePage";
 import RosehipPage from "./components/RosehipPage/RosehipPage";
 
 import { SupportPage } from "./components/SupportPage/SupportPage";
@@ -189,20 +189,20 @@ export default function App() {
                 <Route path="/tools" element={<Tools />} />
                 <Route path="/tools/exit" element={<Tools doLogout={true} />} />
                 <Route path="/tools/rosehip" element={<RosehipPage />} />
-                <Route path="/tools/message-news" element={
+                {/* <Route path="/tools/message-news" element={
                     <ProtectedRoute
                         isAllowed={Context.UserData?.country_id}
                         to="/tools"
                         element={<ToolsMessagesNewsPage />} 
                     />
-                }/>
-                {/* <Route path="/tools/dice" element={
+                }/> */}
+                <Route path="/tools/dice" element={
                     <ProtectedRoute
                         isAllowed={Context.UserData}
                         to="/tools"
                         element={<DicePage />} 
                     />
-                }/> */}
+                }/>
 
                 <Route path="/support" element={<SupportPage />} />
                 <Route path="/support/:id" element={<SupportArticle />} />
