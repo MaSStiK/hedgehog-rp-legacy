@@ -35,7 +35,7 @@ import Nation from "./components/NationPage/NationPage";
 
 import Tools from "./components/ToolsPage/ToolsPage";
 import ToolsMessagesNewsPage from "./components/ToolsMessagesNewsPage/ToolsMessagesNewsPage";
-import DicePage from "./components/DicePage/DicePage";
+// import DicePage from "./components/DicePage/DicePage";
 import RosehipPage from "./components/RosehipPage/RosehipPage";
 
 import { SupportPage } from "./components/SupportPage/SupportPage";
@@ -196,13 +196,13 @@ export default function App() {
                         element={<ToolsMessagesNewsPage />} 
                     />
                 }/>
-                <Route path="/tools/dice" element={
+                {/* <Route path="/tools/dice" element={
                     <ProtectedRoute
                         isAllowed={Context.UserData}
                         to="/tools"
                         element={<DicePage />} 
                     />
-                }/>
+                }/> */}
 
                 <Route path="/support" element={<SupportPage />} />
                 <Route path="/support/:id" element={<SupportArticle />} />

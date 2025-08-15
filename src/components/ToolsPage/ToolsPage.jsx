@@ -34,7 +34,7 @@ export default function ToolsPage({ doLogout }) {
         <article>
             <h4 className="page-title">h/tools</h4>
 
-            {Context.UserData &&
+            {/* {Context.UserData &&
                 <section className="flex-col">
                     <h1>Новость из сообщения в ВК</h1>
                     <h4 className="text-light">Создайте новость из своего сообщения в беседе Ежиного-РП прямо на сайте</h4>
@@ -49,7 +49,7 @@ export default function ToolsPage({ doLogout }) {
                         : <p>Скачало вам нужно создать свою страну</p>
                     }
                 </section>
-            }
+            } */}
 
             {/* Если пользователь авторизован */}
             {Context.UserData &&
