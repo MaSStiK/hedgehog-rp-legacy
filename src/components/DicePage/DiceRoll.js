@@ -40,7 +40,7 @@ export default async function DiceRoll(Context, textEvent, DiceType, additionalV
         // Если прошло больше 30 секунд
         if (Math.round((Date.now() - timer) / 1000) > 30) {
             let message = textEvent ? `Событие: ${textEvent}\n` : "" // Событие перед сообщением
-            message += `[id${Context.UserData.id}|${Context.UserData.name}] бросает кость д${DiceType.faces}\nВыпадает грань с числом: ${result}`
+            message += `${Context.UserData.name} бросает кость д${DiceType.faces}\nВыпадает грань с числом: ${result}`
 
             if (resultAdditional !== undefined) {
                 message += `\nНо удача (${additionalValue > 0 ? `+${additionalValue}` : additionalValue}) меняет грань на: ${resultAdditional}`
