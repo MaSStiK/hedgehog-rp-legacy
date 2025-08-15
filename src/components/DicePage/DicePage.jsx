@@ -41,31 +41,31 @@ export default function DicePage() {
         {value: "true", label: "Отправить в беседу"},
         {value: "false", label: "Не отправлять"},
     ]
-    const [DiceSendVk, setDiceSendVk] = useState(diceSendOptions[0])
+    const [DiceResultSend, setDiceResultSend] = useState(diceSendOptions[0])
 
     const [showResult, setShowResult] = useState(false)
     const [resultData, setResultData] = useState(false)
-    function handleDiceRoll() {
-        DiceRoll(
-            Context,
-            inputRef.current.value,
-            DiceType,
-            DiceAdditionalValue, // Дополнительное значения шанса
-            DiceSendVk
-        )
-        .then(data => {
+    async function handleDiceRoll() {
+        try {
+            const data = await DiceRoll(
+                Context,
+                inputRef.current.value,
+                DiceType,
+                DiceAdditionalValue, // Дополнительное значения шанса
+                DiceResultSend
+            )
+
             setShowResult(true)
             setResultData(data)
 
             if (data.messageSended) {
-                startTimer(30) // Запускаем таймер
-                localStorage.diceCooldown = Date.now() // Сохраняем время в которое был запущен таймер
+                startTimer(30)
+                localStorage.diceCooldown = Date.now()
             }
-        })
-        .catch(error => { // Если ошибка
+        } catch (error) {
             setErrorText(error.text)
             setInputError(error.input)
-        })
+        }
     }
 
     function startTimer(timer) {
@@ -138,11 +138,11 @@ export default function DicePage() {
                 <CustomSelect
                     options={diceSendOptions}
                     values={diceSendOptions[
-                        diceSendOptions.findIndex(option => option.value === DiceSendVk.value) >= 0
-                        ? diceSendOptions.findIndex(option => option.value === DiceSendVk.value)
+                        diceSendOptions.findIndex(option => option.value === DiceResultSend.value) >= 0
+                        ? diceSendOptions.findIndex(option => option.value === DiceResultSend.value)
                         : 0
                     ]} // Значение по умолчанию
-                    onChange={value => setDiceSendVk(value[0])}
+                    onChange={value => setDiceResultSend(value[0])}
                 />
 
                 <p className="dice__timer">Через <span className="dice__timer-span"></span> секунд можно будет снова отправить результаты в беседу. Пока время идет, можете кидать кости на сайте без ограничений.</p>
