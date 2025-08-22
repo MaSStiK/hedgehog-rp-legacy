@@ -20,7 +20,7 @@ export default function AuthToken() {
                     <img
                         src={imgScreenshot}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
                 

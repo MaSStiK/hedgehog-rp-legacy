@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { setPageTitle } from "../../Global"
 import Fullscreen from "../../Fullscreen/Fullscreen"
 import ButtonToTop from "../../ButtonToTop/ButtonToTop"
-import $ from "jquery"
+import { ScrollToTitle } from "../SupportElements"
 
 import imgScreenshot1 from "../../../assets/support/RpLoreChapter4/screenshot-1.png"
 import imgScreenshot2 from "../../../assets/support/RpLoreChapter4/screenshot-2.png"
@@ -12,7 +12,6 @@ import "../SupportPage.css"
 
 export default function RpLoreChapter4() {
     useEffect(() => {setPageTitle("История РП: Глава IV - Планета Динахон Системы Базиликс")}, [])
-    const scrollToTitle = (title) => { $("article").animate({scrollTop: $(title).offset().top}, 250) }
 
     return (
         <article>
@@ -23,10 +22,11 @@ export default function RpLoreChapter4() {
                 <h1>Глава IV - Планета Динахон Системы Базиликс</h1>
 
                 <h2>Оглавление</h2>
-                <p>• <span className="text-link" onClick={() => scrollToTitle("#title1")}>Палками и камнями</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title2")}>Международный паритет</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title3")}>Это еще не конец</span>
-                </p>
+                <ul className="support-ul">
+                    <ScrollToTitle scrollTo="title1" text="Палками и камнями" />
+                    <ScrollToTitle scrollTo="title2" text="Международный паритет" />
+                    <ScrollToTitle scrollTo="title3" text="Это еще не конец" />
+                </ul>
 
                 <h2 id="title1">Палками и камнями</h2>
                 <h3>04.06.2024-24.08.2024</h3>
@@ -41,7 +41,7 @@ export default function RpLoreChapter4() {
                     <img
                         src={imgScreenshot1}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -58,7 +58,7 @@ export default function RpLoreChapter4() {
                     <img
                         src={imgScreenshot2}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -72,7 +72,7 @@ export default function RpLoreChapter4() {
                     <img
                         src={imgScreenshot3}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
             </section>

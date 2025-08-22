@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { setPageTitle } from "../../Global"
 import Fullscreen from "../../Fullscreen/Fullscreen"
 import ButtonToTop from "../../ButtonToTop/ButtonToTop"
-import $ from "jquery"
+import { ScrollToTitle } from "../SupportElements"
 
 import imgScreenshot1 from "../../../assets/support/RpLoreChapter1/screenshot-1.png"
 import imgScreenshot2 from "../../../assets/support/RpLoreChapter1/screenshot-2.png"
@@ -14,7 +14,6 @@ import "../SupportPage.css"
 
 export default function RpLoreChapter1() {
     useEffect(() => {setPageTitle("История РП: Глава I - Кулсториробоб")}, [])
-    const scrollToTitle = (title) => { $("article").animate({scrollTop: $(title).offset().top}, 250) }
 
     return (
         <article>
@@ -25,12 +24,13 @@ export default function RpLoreChapter1() {
                 <h1>Глава I - Кулсториробоб</h1>
 
                 <h2>Оглавление</h2>
-                <p>• <span className="text-link" onClick={() => scrollToTitle("#title1")}>Предыстория</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title2")}>Введение</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title3")}>Эпоха империй</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title4")}>Космополитизм и мировая дружба</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title5")}>Империализм, либерализм, ящеры</span>
-                </p>
+                <ul className="support-ul">
+                    <ScrollToTitle scrollTo="title1" text="Предыстория" />
+                    <ScrollToTitle scrollTo="title2" text="Введение" />
+                    <ScrollToTitle scrollTo="title3" text="Эпоха империй" />
+                    <ScrollToTitle scrollTo="title4" text="Космополитизм и мировая дружба" />
+                    <ScrollToTitle scrollTo="title5" text="Империализм, либерализм, ящеры" />
+                </ul>
 
                 <h2 id="title1">Предыстория</h2>
                 <h3>28.05.2020-04.06.2020</h3>
@@ -41,7 +41,7 @@ export default function RpLoreChapter1() {
                     <img
                         src={imgScreenshot1}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -60,7 +60,7 @@ export default function RpLoreChapter1() {
                     <img
                         src={imgScreenshot2}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -78,7 +78,7 @@ export default function RpLoreChapter1() {
                     <img
                         src={imgScreenshot3}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -90,7 +90,7 @@ export default function RpLoreChapter1() {
                     <img
                         src={imgScreenshot4}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -104,7 +104,7 @@ export default function RpLoreChapter1() {
                     <img
                         src={imgScreenshot5}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
             </section>

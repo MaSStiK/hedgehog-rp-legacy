@@ -23,14 +23,14 @@ export default function Feedback() {
                     <img
                         src={imgScreenshot1}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
                 <Fullscreen>
                     <img
                         src={imgScreenshot2}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
                 <p className="text-light">Ваша заявка будет рассмотрена в ближайшее время!</p>

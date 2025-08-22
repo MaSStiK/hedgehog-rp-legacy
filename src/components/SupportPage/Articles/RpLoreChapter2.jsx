@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { setPageTitle } from "../../Global"
 import Fullscreen from "../../Fullscreen/Fullscreen"
 import ButtonToTop from "../../ButtonToTop/ButtonToTop"
-import $ from "jquery"
+import { ScrollToTitle } from "../SupportElements"
 
 import imgScreenshot1 from "../../../assets/support/RpLoreChapter2/screenshot-1.png"
 import imgScreenshot2 from "../../../assets/support/RpLoreChapter2/screenshot-2.png"
@@ -15,7 +15,6 @@ import "../SupportPage.css"
 
 export default function RpLoreChapter2() {
     useEffect(() => {setPageTitle("История РП: Глава II - Лунная сторона Кулсториробоба")}, [])
-    const scrollToTitle = (title) => { $("article").animate({scrollTop: $(title).offset().top}, 250) }
 
     return (
         <article>
@@ -26,13 +25,14 @@ export default function RpLoreChapter2() {
                 <h1>Глава II - Лунная сторона Кулсториробоба</h1>
 
                 <h2>Оглавление</h2>
-                <p>• <span className="text-link" onClick={() => scrollToTitle("#title1")}>Античность</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title2")}>Дежавю</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title3")}>Воинственный век</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title4")}>Демократия нового типа</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title5")}>Это еще не конец</span><br/>
-                • <span className="text-link" onClick={() => scrollToTitle("#title6")}>Новый мировой порядок</span>
-                </p>
+                <ul className="support-ul">
+                    <ScrollToTitle scrollTo="title1" text="Античность" />
+                    <ScrollToTitle scrollTo="title2" text="Дежавю" />
+                    <ScrollToTitle scrollTo="title3" text="Воинственный век" />
+                    <ScrollToTitle scrollTo="title4" text="Демократия нового типа" />
+                    <ScrollToTitle scrollTo="title5" text="Это еще не конец" />
+                    <ScrollToTitle scrollTo="title6" text="Новый мировой порядок" />
+                </ul>
 
                 <h2 id="title1">Античность</h2>
                 <h3>03.07.2021-01.09.2021</h3>
@@ -47,7 +47,7 @@ export default function RpLoreChapter2() {
                     <img
                         src={imgScreenshot1}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -61,7 +61,7 @@ export default function RpLoreChapter2() {
                     <img
                         src={imgScreenshot2}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -78,7 +78,7 @@ export default function RpLoreChapter2() {
                     <img
                         src={imgScreenshot3}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -91,7 +91,7 @@ export default function RpLoreChapter2() {
                     <img
                         src={imgScreenshot4}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -104,7 +104,7 @@ export default function RpLoreChapter2() {
                     <img
                         src={imgScreenshot5}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
 
@@ -119,7 +119,7 @@ export default function RpLoreChapter2() {
                     <img
                         src={imgScreenshot6}
                         alt="screenshot"
-                        className="border-radius support__img"
+                        className="support-img"
                     />
                 </Fullscreen>
             </section>

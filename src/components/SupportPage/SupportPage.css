@@ -1,9 +1,10 @@
-.support__ul li {
+.support-ul li {
     margin-left: var(--gap-medium);
     list-style-type: disc;
 }
 
-.support__img {
+.support-img {
     border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius);
     object-fit: contain;
 }
