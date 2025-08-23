@@ -13,7 +13,10 @@ export default function ButtonToTop({
 
     // Прокрутить Article в самый верх
     function toTop() {
-        $("article").animate({scrollTop: $("article").offset().top}, 100)
+        const ScrollSpeed = 100 // Скорость прокрутки
+        $("article").animate({
+            scrollTop: $("article").offset().top
+        }, ScrollSpeed)
     }
 
     // Если кнопка НЕ выключена
