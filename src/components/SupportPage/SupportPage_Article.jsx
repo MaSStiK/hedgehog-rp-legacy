@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { articles } from "./SupportPage"
 
 import "./SupportPage.css"
