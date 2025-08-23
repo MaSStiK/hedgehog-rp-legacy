@@ -24,6 +24,7 @@ export const articles = [
     {title: "История РП: Глава III - Развязка", icon: imgInfo, component: RpLoreChapter3, link: "rp_lore_chapter3"},
     {title: "История РП: Глава IV - Планета Динахон Системы Базиликс", icon: imgInfo, component: RpLoreChapter4, link: "rp_lore_chapter4"},
     {title: "История РП: Глава V - Родной дом", icon: imgInfo, component: RpLoreChapter5, link: "rp_lore_chapter5"},
+    {title: "История РП: Глава VI - Кассиопея - созвездие Единорога", icon: imgInfo, component: RpLoreChapter6, link: "rp_lore_chapter6"},
 ]
 
 export function SupportPage() {
