@@ -7,7 +7,7 @@ import imgScreenshot from "../../../assets/support/AuthToken/screenshot.png"
 import "../SupportPage.css"
 
 export default function AuthToken() {
-    useEffect(() => {setPageTitle("Помощь")}, [])
+    useEffect(() => {setPageTitle("Как использовать токен авторизации")}, [])
 
     return (
         <article>

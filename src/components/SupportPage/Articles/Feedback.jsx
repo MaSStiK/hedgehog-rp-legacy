@@ -9,7 +9,7 @@ import imgScreenshot2 from "../../../assets/support/Feedback/screenshot-2.png"
 import "../SupportPage.css"
 
 export default function Feedback() {
-    useEffect(() => {setPageTitle("Помощь")}, [])
+    useEffect(() => {setPageTitle("Где можно опубликовать идеи или баги?")}, [])
 
     return (
         <article>
