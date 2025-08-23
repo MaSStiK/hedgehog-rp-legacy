@@ -89,14 +89,14 @@ export default function AboutSeasons() {
                 <ButtonImage
                     src={imgArrowLeft}
                     alt="image-prev"
-                    title="Предыдущий отзыв"
+                    title="Предыдущая глава"
                     onClick={sliderPrev}
                 />
                 <p><span>{seasonsCounter}</span> из <span>{seasons.length}</span></p>
                 <ButtonImage
                     src={imgArrowRight}
                     alt="image-next"
-                    title="Следующий отзыв"
+                    title="Следующая глава"
                     onClick={sliderNext}
                 />
             </div>

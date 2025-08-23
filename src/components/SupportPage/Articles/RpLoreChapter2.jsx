@@ -1,15 +1,14 @@
 import { useEffect } from "react"
 import { setPageTitle } from "../../Global"
-import Fullscreen from "../../Fullscreen/Fullscreen"
 import ButtonToTop from "../../ButtonToTop/ButtonToTop"
-import { ScrollToTitle } from "../SupportElements"
+import { ScrollToTitle, SupportImg } from "../SupportElements"
 
-import imgScreenshot1 from "../../../assets/support/RpLoreChapter2/screenshot-1.png"
-import imgScreenshot2 from "../../../assets/support/RpLoreChapter2/screenshot-2.png"
-import imgScreenshot3 from "../../../assets/support/RpLoreChapter2/screenshot-3.png"
-import imgScreenshot4 from "../../../assets/support/RpLoreChapter2/screenshot-4.png"
-import imgScreenshot5 from "../../../assets/support/RpLoreChapter2/screenshot-5.png"
-import imgScreenshot6 from "../../../assets/support/RpLoreChapter2/screenshot-6.png"
+import imgPart1 from "../../../assets/support/RpLoreChapter2/part-1.png"
+import imgPart2 from "../../../assets/support/RpLoreChapter2/part-2.png"
+import imgPart3 from "../../../assets/support/RpLoreChapter2/part-3.png"
+import imgPart4 from "../../../assets/support/RpLoreChapter2/part-4.png"
+import imgPart5 from "../../../assets/support/RpLoreChapter2/part-5.png"
+import imgPart6 from "../../../assets/support/RpLoreChapter2/part-6.png"
 
 import "../SupportPage.css"
 
@@ -21,7 +20,7 @@ export default function RpLoreChapter2() {
             <h4 className="page-title">h/support/rp_lore/chapter2</h4>
             <ButtonToTop />
 
-            <section className="flex-col">
+            <section className="flex-col support-section">
                 <h1>Глава II - Лунная сторона Кулсториробоба</h1>
 
                 <h2>Оглавление</h2>
@@ -33,8 +32,10 @@ export default function RpLoreChapter2() {
                     <ScrollToTitle scrollTo="title5" text="Это еще не конец" />
                     <ScrollToTitle scrollTo="title6" text="Новый мировой порядок" />
                 </ul>
+            </section>
 
-                <h2 id="title1">Античность</h2>
+            <section className="flex-col support-section" id="title1">
+                <h2>Античность</h2>
                 <h3>03.07.2021-01.09.2021</h3>
                 <p className="text-light">Спаслось всего лишь 10 000 кулсториробян, которым предстояло восстановить и укрепить свою цивилизацию. Они все понимали, что старый свет для них утерян.</p>
                 <p className="text-light">Основными силами на новом свете оказались Инквизиция (из Рима), Греческие царства (из Ежей) и Сицилия (от Шотландии). Помимо прочего, также спаслись Пепси, Змеи и Единороги.</p>
@@ -43,29 +44,21 @@ export default function RpLoreChapter2() {
                 <p className="text-light">Эпоха закончилась тотальным распадом Испании и упадком той в гражданскую войну - в самом пике было около 30 национально-освободительных движений, все воевавших друг против друга</p>
                 <p className="text-light">Эта эпоха также отметилась объединением - впервые были проведены мероприятия типа ЛеФильм, Кулсториробобвидение и Олимпийские игры.</p>
                 <p className="text-light">По итогу гражданской войны, Ежиния обрела независимость, Испания устояла но потеряла множество колоний (но присоединила Сицилию), а Рафталиленд Влада Летова вновь поднимает голову на восточном континенте.</p>
-                <Fullscreen>
-                    <img
-                        src={imgScreenshot1}
-                        alt="screenshot"
-                        className="support-img"
-                    />
-                </Fullscreen>
+                <SupportImg src={imgPart1} />
+            </section>
 
-                <h2 id="title2">Дежавю</h2>
+            <section className="flex-col support-section" id="title2">
+                <h2>Дежавю</h2>
                 <h3>01.09.2021 - 03.01.2022</h3>
                 <p className="text-light">Эпоха называется так по причине того, что многие события повторились - Великоежиное Государство во главе с Ууе Кэрионом, Великий Рафталиленд, возвышение Змеиной Империи, инопланетное вторжение.</p>
                 <p className="text-light">К концу эпохи голову начали поднимать религиозные движения - главным образом, Анимарсианизм, который получил множество сторонников по всему шару. Не последнюю роль в этом сыграла Ежиная Япония (конфедерация Ежей и Рафталиленда), которая проводила множество крестовых походов.</p>
                 <p className="text-light">Испания стала Италией, Малые Иванчики стали империей, мигрировав к Пепси и став РКИВС'ом. Ежиная Япония перевелась на Священную Ежиную Империю</p>
                 <p className="text-light">Эра закончилась с началом гражданской войны в СЕИ, после которой на карте вновь появилась Греция.</p>
-                <Fullscreen>
-                    <img
-                        src={imgScreenshot2}
-                        alt="screenshot"
-                        className="support-img"
-                    />
-                </Fullscreen>
+                <SupportImg src={imgPart2} />
+            </section>
 
-                <h2 id="title3">Воинственный век</h2>
+            <section className="flex-col support-section" id="title3">
+                <h2>Воинственный век</h2>
                 <h3>03.01.2022 - 12.06.2022</h3>
                 <p className="text-light">Крупнейшим событием этой эпохи стала VI мировая война, случившаяся между коммунистическим и анти-коммунистическим альянсом в 2660 году, и уничтожившая около 107% населения планеты. Война полыхала по всей планете.</p>
                 <p className="text-light">Ежиния полыхала в гражданских войнах всю третью треть XXVII века, Цанг вновь становился империей, а Италия укрепляла свою власть на севере.</p>
@@ -74,54 +67,36 @@ export default function RpLoreChapter2() {
                 <p className="text-light">К концу XXXVIII столетия, Италия вновь погрузилась в пучину гражданской войны. Это вызвало протесты в Ежинии, митингующие требовали уничтожить Италию.</p>
                 <p className="text-light">В конце концов Италия пала, и Ежиния установила свою доминацию над миром.</p>
                 <p className="text-light">Самым последним событием эпоххи стало сражение Ууе Кэриона и Мастера Зандреда..</p>
-                <Fullscreen>
-                    <img
-                        src={imgScreenshot3}
-                        alt="screenshot"
-                        className="support-img"
-                    />
-                </Fullscreen>
+                <SupportImg src={imgPart3} />
+            </section>
 
-                <h2 id="title4">Демократия нового типа</h2>
+            <section className="flex-col support-section" id="title4">
+                <h2>Демократия нового типа</h2>
                 <h3>12.06.2022 - 18.09.2022</h3>
                 <p className="text-light">Во время доминации Ежинии случилось самое ужасное - там произошел государственный переворот, к власти пришла сектантка Аспасия Афинская, которая сразу начала строить новую демократическую империю - которая в последствии должна была стать плацдармом для Галактического вторжения на Кбоб.</p>
                 <p className="text-light">Военные успехи были стремительными - уже через 10 лет созданная Аспасией страна достигла и превысила размеры недавнего СССР - но теперь это были Соединенные Штаты Кулсториробоба.</p>
                 <p className="text-light">После космической войны, СШК очевидно распались - только после этого еще распалась и Ежиния, но без гражданской войны. Двумя силами стали Новомандская Федерация (во главе с Ууе Кэрионом и столицей в Коалоежинске), и Тиктокерская Республика Ежиния (во главе с Настей Мирной). Когда в 2918 году началась война между ними, это привело к началу новой, очень длинной эпохе...</p>
-                <Fullscreen>
-                    <img
-                        src={imgScreenshot4}
-                        alt="screenshot"
-                        className="support-img"
-                    />
-                </Fullscreen>
+                <SupportImg src={imgPart4} />
+            </section>
 
-                <h2 id="title5">Это еще не конец</h2>
+            <section className="flex-col support-section" id="title5">
+                <h2>Это еще не конец</h2>
                 <h3>18.09.2022 - 01.06.2023</h3>
                 <p className="text-light">Эпоха характеризуется тем, что кроме наступление четвертого тысячелетия ничего особого так и не произошло. Крупных войн и катастроф не было (кроме того, что Сэнко еще в XXIX веке захватили и поделили весь мир буквально, но потом распались).</p>
                 <p className="text-light">Космического вторжения тоже не было, крупных гражданских войн также. Мир, казалось бы, научился жить в спокойствии.</p>
                 <p className="text-light">Из важного - появилось новое римское государство Новакидия (ставшая впоследствии Эридией). </p>
-                <Fullscreen>
-                    <img
-                        src={imgScreenshot5}
-                        alt="screenshot"
-                        className="support-img"
-                    />
-                </Fullscreen>
+                <SupportImg src={imgPart5} />
+            </section>
 
-                <h2 id="title6">Новый мировой порядок</h2>
+            <section className="flex-col support-section" id="title6">
+                <h2>Новый мировой порядок</h2>
                 <h3>01.06.2023 - 28.10.2023</h3>
                 <p className="text-light">В Ежинии прошло 10 военных переворотов за 30 лет, что стало показателем упадка политической и социальной сферы в стране. На фоне этого, малые государства стали сильнет - такими стали Хусестан, Претоирания, Арбузия, Пивград и прочие.</p>
                 <p className="text-light">Новый мировой порядок возглавила Претоирания, которая повела за собой Эридию, Арбузию, Хусинию, Пепси. Им противостоял старое НАТО, где из крупных сил остались только Ежи, Архэн, Змеи и Крапивы. Крапивы в последствии ушли к альянсу NWO (New World Order). Потом - случилась VIII мировая война, положившая конец НАТО. Ежиная доминация пала, и на месте образовалась СНГ - исключительно экономический альянс, ослабленный и задавленный, зависящий от новых глав мира.</p>
                 <p className="text-light">Позднее, Хуси, Змеи и Пепсы образовали собственный альянс, противостоящий НМП, и сотрудничавшие с СНГ. Альянс продержался 15 лет, и разложился после уничтожения Хусестана войсками Претоирании.</p>
                 <p className="text-light">Через 10 лет, планета опустела из-за массового вымирания. Цивилизации вновь пришлось начинать заново - Ежи стали Грецией, Претоирания - Дорийцами, Эридия эмигрировала на север, на старый дом римлян.</p>
                 <p className="text-light">Греция стала Византией и стала набирать мощи. Тогда Дорийцам выпал тяжелый вызов, который они проиграли - из-за того, что Рим, Греция и Крапивы снова объединились против них.</p>
-                <Fullscreen>
-                    <img
-                        src={imgScreenshot6}
-                        alt="screenshot"
-                        className="support-img"
-                    />
-                </Fullscreen>
+                <SupportImg src={imgPart6} />
             </section>
         </article>
     )
