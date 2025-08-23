@@ -10,6 +10,7 @@ import RpLoreChapter2 from "./Articles/RpLoreChapter2"
 import RpLoreChapter3 from "./Articles/RpLoreChapter3"
 import RpLoreChapter4 from "./Articles/RpLoreChapter4"
 import RpLoreChapter5 from "./Articles/RpLoreChapter5"
+import RpLoreChapter6 from "./Articles/RpLoreChapter6"
 
 import imgInfo from "../../assets/svg/Info.svg"
 import imgHelp from "../../assets/svg/Help.svg"
