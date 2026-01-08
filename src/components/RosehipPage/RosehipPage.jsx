@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import Fullscreen from "../Fullscreen/Fullscreen"
 import { GSAPI } from "../API"

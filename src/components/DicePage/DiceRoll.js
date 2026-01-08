@@ -18,7 +18,7 @@ async function sendTextToTelegram(text) {
 export default async function DiceRoll(Context, textEvent, DiceType, additionalValue, DiceResultSend) {
     // Проверка длины ивента
     if (textEvent.length > CONFIG.DICE_TEXT_MAX) {
-        throw { text: `Событие больше ${CONFIG.DICE_TEXT_MAX} символов`, input: "event" }
+        throw new Error({ text: `Событие больше ${CONFIG.DICE_TEXT_MAX} символов`, input: "event" })
     }
 
     // Получаем случайное значение в диапазоне от 1 и до макс. колва граней (включительно)

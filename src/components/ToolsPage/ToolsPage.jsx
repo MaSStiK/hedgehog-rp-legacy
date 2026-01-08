@@ -4,7 +4,6 @@ import { DataContext } from "../Context"
 import { setPageTitle } from "../Global"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import imgCopy from "../../assets/svg/Copy.svg"
-import imgSearch from "../../assets/svg/Search.svg"
 import imgRosehip from "../../assets/tools/Rosehip.png"
 import imgDice from "../../assets/tools/Dice.svg"
 
