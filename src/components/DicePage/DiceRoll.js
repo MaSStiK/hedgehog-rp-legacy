@@ -2,7 +2,7 @@ import { CONFIG, getRandomInt} from "../Global"
 
 async function sendTextToTelegram(text) {
     try {
-        await fetch("https://hedgehog-rp-api.vercel.app/api/telegram", {
+        await fetch("https://hedgehog-rp-api.appwrite.network/api/telegram", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
