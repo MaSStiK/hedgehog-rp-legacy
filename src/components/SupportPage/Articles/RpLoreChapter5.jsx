@@ -3,12 +3,13 @@ import { setPageTitle } from "../../Global"
 import ButtonToTop from "../../ButtonToTop/ButtonToTop"
 import { ScrollToTitle, SupportImg } from "../SupportElements"
 
-import imgPart1 from "../../../assets/support/RpLoreChapter5/part-1.png"
-import imgPart2 from "../../../assets/support/RpLoreChapter5/part-2.png"
-import imgPart3 from "../../../assets/support/RpLoreChapter5/part-3.png"
-import imgPart4 from "../../../assets/support/RpLoreChapter5/part-4.png"
-
 import "../SupportPage.css"
+
+const imgBasePath = "https://raw.githubusercontent.com/masstik/hedgehog-rp-assets/main/hedgehog-rp"
+const imgPart1 = imgBasePath + "/support/RpLoreChapter5/part-1.png"
+const imgPart2 = imgBasePath + "/support/RpLoreChapter5/part-2.png"
+const imgPart3 = imgBasePath + "/support/RpLoreChapter5/part-3.png"
+const imgPart4 = imgBasePath + "/support/RpLoreChapter5/part-4.png"
 
 export default function RpLoreChapter5() {
     useEffect(() => {setPageTitle("История РП: Глава V - Родной дом")}, [])

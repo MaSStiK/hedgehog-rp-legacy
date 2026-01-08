@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { setPageTitle } from "../../Global"
 import { SupportImg } from "../SupportElements"
 
-import imgScreenshot1 from "../../../assets/support/Feedback/screenshot-1.png"
-import imgScreenshot2 from "../../../assets/support/Feedback/screenshot-2.png"
-
 import "../SupportPage.css"
+
+const imgBasePath = "https://raw.githubusercontent.com/masstik/hedgehog-rp-assets/main/hedgehog-rp"
+const imgScreenshot1 = imgBasePath + "/support/Feedback/screenshot-1.png"
+const imgScreenshot2 = imgBasePath + "/support/Feedback/screenshot-2.png"
 
 export default function Feedback() {
     useEffect(() => {setPageTitle("Где можно опубликовать идеи или баги?")}, [])

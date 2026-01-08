@@ -6,14 +6,16 @@ import Fullscreen from "../Fullscreen/Fullscreen"
 import imgInfo from "../../assets/svg/Info.svg"
 import imgArrowLeft from "../../assets/svg/Arrow-left.svg"
 import imgArrowRight from "../../assets/svg/Arrow-right.svg"
-import imgSeason1 from "../../assets/about/season1.png"
-import imgSeason2 from "../../assets/about/season2.png"
-import imgSeason3 from "../../assets/about/season3.png"
-import imgSeason4 from "../../assets/about/season4.png"
-import imgSeason5 from "../../assets/about/season5.png"
-import imgSeason6 from "../../assets/about/season6.png"
 
 import "./Seasons.css"
+
+const imgBasePath = "https://raw.githubusercontent.com/masstik/hedgehog-rp-assets/main/hedgehog-rp"
+const imgSeason1 = imgBasePath + "/about/season1.png"
+const imgSeason2 = imgBasePath + "/about/season2.png"
+const imgSeason3 = imgBasePath + "/about/season3.png"
+const imgSeason4 = imgBasePath + "/about/season4.png"
+const imgSeason5 = imgBasePath + "/about/season5.png"
+const imgSeason6 = imgBasePath + "/about/season6.png"
 
 const seasons = [
     {img: imgSeason1, chapter: "I", start: "3 июня 2020, 22:42 МСК", link: "/support/rp_lore_chapter1", planet: "Кулсториробоб", system: "Бетальгейзе", desc: "Социалистическая империя рухнула под давлением сепаратистов. В разгар вспыхнувшей гражданской войны между социалистами, национал-демократами и монархистами Даниил Вудергорский объявил о создании Ежиной Армии."},

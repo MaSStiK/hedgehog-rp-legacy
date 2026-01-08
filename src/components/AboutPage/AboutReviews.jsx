@@ -2,16 +2,18 @@ import { useState, useRef, useEffect } from "react"
 import ButtonImage from "../ButtonImage/ButtonImage"
 import Fullscreen from "../Fullscreen/Fullscreen"
 
-import imgReviewStar from "../../assets/about/review-star.png"
-import imgItpedia from "../../assets/about/itpedia.gif"
-import imgIcarly from "../../assets/about/icarly.gif"
-import imgArtas from "../../assets/about/artas.gif"
-import imgLeo from "../../assets/about/leo_wolf.gif"
-import imgDjango from "../../assets/about/django.gif"
 import imgArrowLeft from "../../assets/svg/Arrow-left.svg"
 import imgArrowRight from "../../assets/svg/Arrow-right.svg"
 
 import "./Reviews.css"
+
+const imgBasePath = "https://raw.githubusercontent.com/masstik/hedgehog-rp-assets/main/hedgehog-rp"
+const imgReviewStar = imgBasePath + "/about/review-star.png"
+const imgItpedia = imgBasePath + "/about/itpedia.gif"
+const imgIcarly = imgBasePath + "/about/icarly.gif"
+const imgArtas = imgBasePath + "/about/artas.gif"
+const imgLeo = imgBasePath + "/about/leo_wolf.gif"
+const imgDjango = imgBasePath + "/about/django.gif"
 
 const reviews = [
     {
@@ -32,7 +34,7 @@ const reviews = [
     {
         photo: imgDjango,
         name: "Кристоф Вальц",
-        text: `Признаться, мне надоел этот чертов фарс.\n Вы укрываете у себя врагов Ежинии, ведь так?\n\n Медведи прямо у вас.. за спиной`
+        text: `Признаться, мне надоел этот чертов фарс.\n Вы укрываете у себя врагов Ежинии, ведь так?\n\n Медведи прямо у вас... за спиной`
     },
     {
         photo: imgLeo,

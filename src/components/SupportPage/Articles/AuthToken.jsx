@@ -2,9 +2,10 @@ import { useEffect } from "react"
 import { setPageTitle } from "../../Global"
 import { SupportImg } from "../SupportElements"
 
-import imgScreenshot from "../../../assets/support/AuthToken/screenshot.png"
-
 import "../SupportPage.css"
+
+const imgBasePath = "https://raw.githubusercontent.com/masstik/hedgehog-rp-assets/main/hedgehog-rp"
+const imgScreenshot = imgBasePath + "/support/AuthToken/screenshot.png"
 
 export default function AuthToken() {
     useEffect(() => {setPageTitle("Как использовать токен авторизации")}, [])
