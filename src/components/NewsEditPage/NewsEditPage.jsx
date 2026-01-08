@@ -70,6 +70,7 @@ export default function NewsEditPage() {
             setAttachments(attachmentsArray)
             authorInput.current.value = Location.state.author
         }
+        // eslint-disable-next-line
     }, [Location.state])
 
     // При обновлении любого из инпутов
@@ -91,6 +92,7 @@ export default function NewsEditPage() {
     }
 
     // Когда картинка загрузиться в state - сохраняем ее в sessionStorage
+    // eslint-disable-next-line
     useEffect(savePageData, [attachments])
 
     // Проверка существования картинки

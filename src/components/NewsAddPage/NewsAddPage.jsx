@@ -78,6 +78,7 @@ export default function NewsAddPage() {
         }
 
         handleInputUpdate() // После вставки данных
+        // eslint-disable-next-line
     }, [Location.state])
 
     // Устанавливаем название страны
@@ -96,6 +97,7 @@ export default function NewsAddPage() {
                 authorInput.current.value = countryData ? countryData.country_name : "Страна не найдена"
             }
         }
+        // eslint-disable-next-line
     }, [Context.Users])
 
     // При обновлении любого из инпутов
@@ -118,6 +120,7 @@ export default function NewsAddPage() {
     }
 
     // Когда картинка загрузиться в state - сохраняем ее в sessionStorage
+    // eslint-disable-next-line
     useEffect(savePageData, [attachments, selectedDate])
 
     // Проверка существования картинки
