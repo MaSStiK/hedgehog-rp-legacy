@@ -17,9 +17,8 @@
 - 📱 Telegram: [@MaSStiK](https://t.me/MaSStiK)
 
 **Создатель проекта**
-- 📱 Telegram: [@hedgehogia2805](https://t.me/hedgehogia2805)
+- 📱 Telegram: [@danyla_yanakereshchenko](https://t.me/danyla_yanakereshchenko)
 - ✨ Принимает новых участников в проект
-
 
 ## 📸 Скриншоты сайта
 <table>
