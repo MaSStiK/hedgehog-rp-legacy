@@ -16,38 +16,62 @@
 <table>
     <tr>
         <td align="center">
-            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/45e9c466-1162-4d5e-82da-e2d4a72f23d3" />
+            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/91754bc8-abb6-4490-a2f5-c54655fb091d" />
             <br>
             <p>Главная страница</p>
         </td>
         <td align="center">
-            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/3cf11ce5-6bbe-4ced-9f3c-c0d8d91b3d03" />
+            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/3f27891f-f513-4dd4-8caa-b54575e3194d" />
             <br>
-            <p>Новости</p>
+            <p>Низ главной страницы</p>
         </td>
     </tr>
     <tr>
         <td align="center">
-            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/6230c39a-c900-4c89-8b13-258d82735a6f" />
+            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/e3471523-174c-4b33-8367-00ff4a5c0ef4" />
+            <br>
+            <p>Новости</p>
+        </td>
+        <td align="center">
+            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/e4bc1677-9bcf-4fcc-ae9c-12230b53dcdf" />
+            <br>
+            <p>Редактирование поста</p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/458e587a-0e93-43f1-99c4-20441ce0bc5e" />
             <br>
             <p>Список участников</p>
         </td>
-            <td align="center">
-            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/28f9d39f-0a25-40cd-8692-5cceb78ddb05" />
+        <td align="center">
+            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/23d416fb-302e-4a77-be49-b7929e97b026" />
             <br>
             <p>Список стран</p>
         </td>
     </tr>
     <tr>
         <td align="center">
-            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/e05aab61-6bbc-49cf-bc8f-ac849d35948b" />
+            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/f05e9f2f-34ef-4acd-933c-546711679e7e" />
+            <br>
+            <p>Профиль участника</p>
+        </td>
+        <td align="center">
+            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/35295ca0-4ae3-4095-8b2e-dddc35d72da3" />
+            <br>
+            <p>Профиль страны</p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/687da957-18f4-4cc1-ba55-fb4c0edf47aa" />
             <br>
             <p>О нас</p>
         </td>
         <td align="center">
-            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/198053dc-5ae1-4fc4-bc1e-1f45de2ab8d1" />
+            <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/b45fd818-c531-4ac2-9943-15a485c91ba9" />
             <br>
-            <p>Первая глава лора вселенной</p>
+            <p>Рекомендации</p>
         </td>
     </tr>
 </table>
