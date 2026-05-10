@@ -12,6 +12,15 @@
 - 📺 [Ежиное телевидение](https://github.com/MaSStiK/tv.hedgehog-rp)
 - 📊 [Статистика беседы](https://github.com/MaSStiK/stats.hedgehog-rp)
 
+## 📇 Контакты
+**Главный Разработчик**
+- 📱 Telegram: [@MaSStiK](https://t.me/MaSStiK)
+
+**Создатель проекта**
+- 📱 Telegram: [@hedgehogia2805](https://t.me/hedgehogia2805)
+- ✨ Принимает новых участников в проект
+
+
 ## 📸 Скриншоты сайта
 <table>
     <tr>
