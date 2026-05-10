@@ -55,3 +55,7 @@
 .login__token-row button {
     height: var(--button-height);
 }
+
+.google-button span {
+    color: var(--text-black);
+}

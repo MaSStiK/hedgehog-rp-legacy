@@ -6,6 +6,7 @@ import ButtonImage from "../ButtonImage/ButtonImage"
 import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import AuthViaCode from "./AuthViaCode"
 import AuthViaToken from "./AuthViaToken"
+import AuthViaGoogle from "./AuthViaGoogle"
 import imgLogo from "../../assets/logotype538.png"
 import imgCopy from "../../assets/svg/Copy.svg"
 import imgLogin from "../../assets/svg/Login.svg"
@@ -156,6 +157,10 @@ export default function LoginPage() {
                     onClick={handleAuthViaToken}
                     disabled={disableTokenButton}
                 />
+
+                {/* <hr /> */}
+                
+                {/* <AuthViaGoogle /> */}
             </section>
         </article>
     )

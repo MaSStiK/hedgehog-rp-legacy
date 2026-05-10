@@ -14,6 +14,7 @@
     --text-light: rgb(255,255,255, 0.9); /* 90% прозрачность */
     --text-gray: rgba(255,255,255, 0.5); /* 50% прозрачность */
     --text-dark: rgba(255,255,255, 0.3); /* 30% прозрачность */
+    --text-black: rgba(0,0,0, 1);
     --text-red: #D60027;
     --text-link: #8B81E6;
     --text-input-label: #B6B6B6;
