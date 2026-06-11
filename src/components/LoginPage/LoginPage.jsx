@@ -6,7 +6,6 @@ import ButtonImage from "../ButtonImage/ButtonImage"
 import { CONFIG, setPageTitle, setPageLoading } from "../Global"
 import AuthViaCode from "./AuthViaCode"
 import AuthViaToken from "./AuthViaToken"
-import AuthViaGoogle from "./AuthViaGoogle"
 import imgLogo from "../../assets/logotype538.png"
 import imgCopy from "../../assets/svg/Copy.svg"
 import imgLogin from "../../assets/svg/Login.svg"
@@ -15,19 +14,19 @@ import imgPaste from "../../assets/svg/Paste.svg"
 import "./LoginPage.css"
 import "./LoginPage-phone.css"
 
+// Уникальный ключ
+function generateVkCode() {
+    return (Math.random().toString(32).substring(2) + Date.now().toString(32)).toUpperCase()
+}
+
 export default function LoginPage() {
     useEffect(() => {setPageTitle("Вход")}, [])
     const Context = useContext(DataContext)
     const Navigate = useNavigate()
 
-    // Уникальный ключ
-    function generateVkCode() {
-        return (Math.random().toString(32).substring(2) + Date.now().toString(32)).toUpperCase()
-    }
-
     const [showCopyMessage, setShowCopyMessage] = useState(false) // Спрятать ли сообщение об скопированном коде
 
-    const [vkCode] = useState(generateVkCode()) // Создаем ключ для отправки в вк (в state что бы при обновлении страницы не обновлялся код)
+    const [vkCode] = useState(generateVkCode) // Создаем ключ для отправки в вк (в state что бы при обновлении страницы не обновлялся код)
 
     const [errorCodeText, setErrorCodeText] = useState() // Отображать ли ошибку поиска юзера
     const [errorTokenText, setErrorTokenText] = useState() // Текст ошибки при входе через токен
@@ -157,10 +156,6 @@ export default function LoginPage() {
                     onClick={handleAuthViaToken}
                     disabled={disableTokenButton}
                 />
-
-                {/* <hr /> */}
-                
-                {/* <AuthViaGoogle /> */}
             </section>
         </article>
     )

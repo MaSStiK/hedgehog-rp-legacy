@@ -78,7 +78,7 @@ export default function DicePage() {
             if (timer <= 0) {
                 $(".dice__timer").removeClass("show-timer")
                 clearInterval(intervalId)
-                delete localStorage.diceCooldown
+                localStorage.removeItem("diceCooldown")
             }
         }, 1000)
     }

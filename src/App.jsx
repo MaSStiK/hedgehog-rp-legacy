@@ -91,7 +91,7 @@ export default function App() {
 
         // Загрузка всех юзеров
         function getUsers() {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 GSAPI("GETusers", {}, (data) => {
                     console.log("GSAPI: GETusers");
                     Context.setUsers(data) // Сохраняем в память приложения
@@ -102,7 +102,7 @@ export default function App() {
 
         // Загрузка всех постов
         function getPosts() {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 let offset = 0
                 GSAPI("GETposts", {offset: offset, amount: CONFIG.POSTS_AMOUNT}, (data) => {
                     console.log(`GSAPI: GETposts {offset: ${offset}, amount: ${CONFIG.POSTS_AMOUNT}}`);

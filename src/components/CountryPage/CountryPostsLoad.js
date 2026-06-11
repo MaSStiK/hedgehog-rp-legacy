@@ -3,7 +3,7 @@ import { CONFIG } from "../Global"
 
 // Загрузка постов страны
 export function CountryPostsLoad(Context, offset, country_id) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         GSAPI("GETcountryPosts", {offset: offset, amount: CONFIG.POSTS_AMOUNT + 40, country_id: country_id}, (data) => {
             console.log(`GSAPI: GETcountryPosts {count: ${data.count}}`)
 

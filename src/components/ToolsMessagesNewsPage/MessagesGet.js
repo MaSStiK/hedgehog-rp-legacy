@@ -1,7 +1,9 @@
 import { VKAPI } from "../API"
 
+const VITE_APP_VK_TOKEN_USERBOT = import.meta.env.VITE_APP_VK_TOKEN_USERBOT
+
 export default function MessagesGet(Context, vkConv, offset, disableFilter) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         // Получаем список сообщений от лица мотя бота
         VKAPI("messages.getHistory", {peer_id: vkConv, count: 200, offset: offset, rev: 0, extended: 1}, (data) => {
             let messages = data.response.items
@@ -14,6 +16,6 @@ export default function MessagesGet(Context, vkConv, offset, disableFilter) {
             }
             resolve({messages: messages, profiles: data.response.profiles})
             
-        }, process.env.REACT_APP_VK_TOKEN_USERBOT)
+        }, VITE_APP_VK_TOKEN_USERBOT)
     })
 }

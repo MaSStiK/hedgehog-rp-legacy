@@ -10,7 +10,7 @@ export function DataProvider({ children }) {
     try {
         userData = localStorage.UserData ? JSON.parse(localStorage.UserData) : null
     } catch {
-        delete localStorage.UserData
+        localStorage.removeItem("UserData")
         userData = null
     }
 
@@ -24,7 +24,7 @@ export function DataProvider({ children }) {
     try {
         pageSettings = localStorage.PageSettings ? JSON.parse(localStorage.PageSettings) : {}
     } catch {
-        delete localStorage.PageSettings
+        localStorage.removeItem("PageSettings")
         pageSettings = {}
     }
 

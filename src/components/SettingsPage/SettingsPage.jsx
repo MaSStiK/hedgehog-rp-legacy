@@ -23,7 +23,6 @@ const effectsOptions = [
     {value: "default", label: "По умолчанию"},
     {value: "snow", label: "Зимняя тема"},
     {value: "party", label: "Праздничная тема"},
-    // {value: "hedgehog34", label: "hedgehog34"}, // Плохо работает
 ]
 
 const buttonToTopOptions = [
