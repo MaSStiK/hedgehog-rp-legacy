@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useContext } from "react"
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { DataContext } from "../Context"
 import ButtonProfile from "../ButtonProfile/ButtonProfile"
@@ -35,19 +35,16 @@ export default function Aside() {
 
     // Состояние открытого или закрытого меню навигации на телефоне
     const [showNavMenu, setShowNavMenu] = useState(false) // По умолчанию не показываем
-    const [showAside, setShowAside] = useState(false)
 
-    // При обновлении ссылки закрываем навигацию
-    useEffect(() => {
-        setShowNavMenu(false)
-
-        // Отображаем Aside на всех страницах кроме /login
-        setShowAside(!Location.pathname.toLowerCase().endsWith("/login"))
-
-    }, [Location]);
-
+    // Отображаем Aside на всех страницах кроме /login
+    const showAside = !Location.pathname.toLowerCase().endsWith("/login")
     if (!showAside) {
         return false
+    }
+
+    // При обновлении ссылки закрываем навигацию
+    const closeNavMenu = () => {
+        setShowNavMenu(false)
     }
 
     return (
@@ -172,77 +169,77 @@ export default function Aside() {
 
                         <hr />
                         <li>
-                            <NavLink to="/">
+                            <NavLink to="/" onClick={closeNavMenu}>
                                 <img src={imgHome} alt="nav-icon" draggable="false" />
                                 <p>Главная</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/news">
+                            <NavLink to="/news" onClick={closeNavMenu}>
                                 <img src={imgNews} alt="nav-icon" draggable="false" />
                                 <p>Новости</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/user">
+                            <NavLink to="/user" onClick={closeNavMenu}>
                                 <img src={imgUser} alt="nav-icon" draggable="false" />
                                 <p>Участники</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/country">
+                            <NavLink to="/country" onClick={closeNavMenu}>
                                 <img src={imgCountry} alt="nav-icon" draggable="false" />
                                 <p>Страны</p>
                             </NavLink>
                         </li>
                         {/* <li><NavLink to="/nation">Нации</NavLink></li> */}
                         <li>
-                            <NavLink to="https://map.hedgehog-rp.ru">
+                            <a href="https://map.hedgehog-rp.ru" onClick={closeNavMenu}>
                                 <img src={imgMap} alt="nav-icon" draggable="false" />
                                 <p>Карта мира</p>
-                            </NavLink>
+                            </a>
                         </li>
                         <li>
-                            <NavLink to="https://tv.hedgehog-rp.ru">
+                            <a href="https://tv.hedgehog-rp.ru" onClick={closeNavMenu}>
                                 <img src={imgVideo} alt="nav-icon" draggable="false" />
                                 <p>Ежиное ТВ</p>
-                            </NavLink>
+                            </a>
                         </li>
                         <hr />
                         <li>
-                            <NavLink to="/tools">
+                            <NavLink to="/tools" onClick={closeNavMenu}>
                                 <img src={imgTool} alt="nav-icon" draggable="false" />
                                 <p>Инструменты</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/support">
+                            <NavLink to="/support" onClick={closeNavMenu}>
                                 <img src={imgHelp} alt="nav-icon" draggable="false" />
                                 <p>Помощь</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/about">
+                            <NavLink to="/about" onClick={closeNavMenu}>
                                 <img src={imgInfo} alt="nav-icon" draggable="false" />
                                 <p>О нас</p>
                             </NavLink>
                         </li>
                         <hr />
                         <li>
-                            <NavLink to="/settings">
+                            <NavLink to="/settings" onClick={closeNavMenu}>
                                 <img src={imgSettings} alt="nav-icon" draggable="false" />
                                 <p>Настройки</p>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/changelogs">
+                            <NavLink to="/changelogs" onClick={closeNavMenu}>
                                 <img src={imgUpdate} alt="nav-icon" draggable="false" />
                                 <p>Обновления</p>
                             </NavLink>
                         </li>
                         {(Context.UserData ? Context.UserData.roles.includes("admin") : false) && 
                             <li>
-                                <NavLink to="/dev">
+                                <NavLink to="/dev" onClick={closeNavMenu}>
                                     <img src={imgDev} alt="nav-icon" draggable="false" />
                                     <p>dev</p>
                                 </NavLink>
