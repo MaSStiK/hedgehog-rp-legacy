@@ -5,13 +5,24 @@
 </p>
 
 # Hedgehog RP (Legacy - React)
-
 > **Version:** `v1.0.0`  
 > **Current Version (Next.js):** [hedgehog-rp](https://github.com/MaSStiK/hedgehog-rp)
 
 **Hedgehog RP (Legacy)** is a social platform for a political role-playing game that brings participants together in a shared virtual world. Users can create their own countries, develop political and economic systems, publish news, interact with other players, form alliances, engage in diplomacy, and shape the ongoing history of the project.
 
 This repository contains the original React-based version of the platform. The project is now in maintenance mode and no longer receives new feature updates.
+
+## ✨ Features
+- Create and develop your own countries
+- Publish news articles and in-game events
+- User-friendly article and post editor
+- Interact with other community members
+- Diplomacy, alliances, and international relations
+- Directory of players and countries
+- Dedicated profiles for users and nations
+- News feed with the latest community publications
+- Recommendation system and additional content
+- Shared virtual world with an evolving history
 
 ## 🔗 Related Projects
 - 🌍 [Interactive Map](https://github.com/MaSStiK/map.hedgehog-rp)
