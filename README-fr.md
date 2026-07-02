@@ -6,87 +6,87 @@
 
 # Hedgehog RP (Legacy - React)
 
-> **Version:** `v1.0.0`  
-> **Current Version (Next.js):** [hedgehog-rp](https://github.com/MaSStiK/hedgehog-rp)
+> **Version :** `v1.0.0`  
+> **Version actuelle (Next.js) :** [hedgehog-rp](https://github.com/MaSStiK/hedgehog-rp)
 
-**Hedgehog RP (Legacy)** is a social platform for a political role-playing game that brings participants together in a shared virtual world. Users can create their own countries, develop political and economic systems, publish news, interact with other players, form alliances, engage in diplomacy, and shape the ongoing history of the project.
+**Hedgehog RP (Legacy)** est une plateforme sociale dédiée à un jeu de rôle politique, réunissant les participants dans un univers virtuel partagé. Les utilisateurs peuvent créer leurs propres États, développer des systèmes politiques et économiques, publier des actualités, interagir avec d'autres joueurs, conclure des alliances, mener des négociations diplomatiques et contribuer à l'évolution de l'histoire commune du projet.
 
-This repository contains the original React-based version of the platform. The project is now in maintenance mode and no longer receives new feature updates.
+Ce dépôt contient la version originale de la plateforme développée avec React. Le projet est désormais en maintenance limitée et ne reçoit plus de nouvelles fonctionnalités.
 
-## 🔗 Related Projects
-- 🌍 [Interactive Map](https://github.com/MaSStiK/map.hedgehog-rp)
-- 📺 [Hedgehog Television](https://github.com/MaSStiK/tv.hedgehog-rp)
-- 📊 [Chat Statistics](https://github.com/MaSStiK/stats.hedgehog-rp)
+## 🔗 Projets associés
+- 🌍 [Carte interactive](https://github.com/MaSStiK/map.hedgehog-rp)
+- 📺 [Télévision Hérisson](https://github.com/MaSStiK/tv.hedgehog-rp)
+- 📊 [Statistiques de la conversation](https://github.com/MaSStiK/stats.hedgehog-rp)
 
 ## 🛠️ Technologies
-- **React** - Application UI
-- **react-dropdown-select** - Custom dropdown components
-- **react-range** - Interactive sliders and range controls
-- **react-zoom-pan-pinch** - Image zooming and panning
-- **jQuery** - DOM manipulation and utility functions
-- **canvas-confetti** - Visual effects and animations
+- **React** - Interface utilisateur de l'application
+- **react-dropdown-select** - Listes déroulantes personnalisées
+- **react-range** - Curseurs et sélecteurs de plage interactifs
+- **react-zoom-pan-pinch** - Zoom et déplacement des images
+- **jQuery** - Manipulation du DOM et utilitaires
+- **canvas-confetti** - Animations et effets visuels
 
-## 📸 Screenshots
+## 📸 Captures d’écran
 
 <table>
     <tr>
         <td align="center">
             <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/91754bc8-abb6-4490-a2f5-c54655fb091d" />
             <br>
-            <p>Home Page</p>
+            <p>Page d'accueil</p>
         </td>
         <td align="center">
             <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/3f27891f-f513-4dd4-8caa-b54575e3194d" />
             <br>
-            <p>Home Page Bottom</p>
+            <p>Bas de la page d'accueil</p>
         </td>
     </tr>
     <tr>
         <td align="center">
             <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/e3471523-174c-4b33-8367-00ff4a5c0ef4" />
             <br>
-            <p>News</p>
+            <p>Actualités</p>
         </td>
         <td align="center">
             <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/e4bc1677-9bcf-4fcc-ae9c-12230b53dcdf" />
             <br>
-            <p>Post Editor</p>
+            <p>Éditeur d'article</p>
         </td>
     </tr>
     <tr>
         <td align="center">
             <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/458e587a-0e93-43f1-99c4-20441ce0bc5e" />
             <br>
-            <p>Members Directory</p>
+            <p>Liste des participants</p>
         </td>
         <td align="center">
             <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/23d416fb-302e-4a77-be49-b7929e97b026" />
             <br>
-            <p>Countries Directory</p>
+            <p>Liste des pays</p>
         </td>
     </tr>
     <tr>
         <td align="center">
             <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/f05e9f2f-34ef-4acd-933c-546711679e7e" />
             <br>
-            <p>User Profile</p>
+            <p>Profil utilisateur</p>
         </td>
         <td align="center">
             <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/35295ca0-4ae3-4095-8b2e-dddc35d72da3" />
             <br>
-            <p>Country Profile</p>
+            <p>Profil du pays</p>
         </td>
     </tr>
     <tr>
         <td align="center">
             <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/687da957-18f4-4cc1-ba55-fb4c0edf47aa" />
             <br>
-            <p>About Us</p>
+            <p>À propos</p>
         </td>
         <td align="center">
             <img width="500" alt="screenshot" src="https://github.com/user-attachments/assets/b45fd818-c531-4ac2-9943-15a485c91ba9" />
             <br>
-            <p>Recommendations</p>
+            <p>Recommandations</p>
         </td>
     </tr>
 </table>
