@@ -38,6 +38,7 @@
 - **canvas-confetti** — анимации и визуальные эффекты
 
 ## 📸 Скриншоты сайта
+
 <table>
     <tr>
         <td align="center">
