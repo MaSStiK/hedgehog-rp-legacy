@@ -21,7 +21,6 @@ This repository contains the original React-based version of the platform. The p
 - Directory of players and countries
 - Dedicated profiles for users and nations
 - News feed with the latest community publications
-- Recommendation system and additional content
 - Shared virtual world with an evolving history
 
 ## 🔗 Related Projects

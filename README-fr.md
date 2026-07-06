@@ -21,7 +21,6 @@ Ce dépôt contient la version originale de la plateforme développée avec Reac
 - Annuaire des joueurs et des pays
 - Profils dédiés pour les utilisateurs et les États
 - Fil d’actualités avec les dernières publications de la communauté
-- Système de recommandations et contenus complémentaires
 - Univers virtuel partagé avec une histoire en constante évolution
 
 ## 🔗 Projets associés
