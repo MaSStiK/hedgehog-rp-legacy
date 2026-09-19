@@ -5,41 +5,40 @@ import Fullscreen from "../Fullscreen/Fullscreen"
 import imgArrowLeft from "../../assets/svg/Arrow-left.svg"
 import imgArrowRight from "../../assets/svg/Arrow-right.svg"
 
-import "./Reviews.css"
+import imgReviewStar from "../../assets/about/review-star.png"
+import imgItpedia from "../../assets/about/itpedia.gif"
+import imgIcarly from "../../assets/about/icarly.gif"
+import imgArtas from "../../assets/about/artas.gif"
+import imgDjango from "../../assets/about/django.gif"
+import imgLeo from "../../assets/about/leo_wolf.gif"
 
-const imgBasePath = "https://raw.githubusercontent.com/masstik/hedgehog-rp-assets/main/hedgehog-rp"
-const imgReviewStar = imgBasePath + "/about/review-star.png"
-const imgItpedia = imgBasePath + "/about/itpedia.gif"
-const imgIcarly = imgBasePath + "/about/icarly.gif"
-const imgArtas = imgBasePath + "/about/artas.gif"
-const imgLeo = imgBasePath + "/about/leo_wolf.gif"
-const imgDjango = imgBasePath + "/about/django.gif"
+import "./Reviews.css"
 
 const reviews = [
     {
         photo: imgItpedia,
         name: "Алексей Шевцов",
-        text: `Есть только черный и зеленый.\nВсе остальное - оттенки.\n\n"Ежиное РП" - один из лучших проектов. Он уступает лишь нашему магазину вещей JolyBELL. Доставки есть во все страны, в которых есть McDonald’s.`
+        text: `Есть только черный и зеленый.\nВсе остальное - оттенки.\n\n"Ежиное РП" - один из лучших проектов.\nОн уступает лишь нашему магазину вещей JolyBELL. Доставки есть во все страны, в которых есть McDonald’s.`
     },
     {
         photo: imgIcarly,
         name: "Карли Шей",
-        text: `"Ежиное РП" это лучшее, что придумало человечество (после iCarly).\n\nЕсли бы ежи могли бы делать спаггети-тако, цены бы им не было. А им и так нет. Слава Сиэтлу!`
+        text: `"Ежиное РП" это лучшее, что придумало человечество (после iCarly).\n\nЕсли бы ежи могли бы делать спаггети-тако, цены бы им не было. А им и так нет.\nСлава Сиэтлу!`
     },
     {
         photo: imgArtas,
         name: "Виталий Папич",
-        text: `Когда меня добавили в беседу и я создал свою страну, первыми моими словами были:\n"О, найс, я щас убью всех, бл**ь."\n\nЭто хороший проект, который мне очень понравился. Да здравствует Дото-Винницкая Республика!`
+        text: `Когда меня добавили в беседу и я создал свою страну, первыми моими словами были:\n"О, найс, я щас убью всех, бл**ь."\n\nЭто хороший проект, который мне очень понравился.\nДа здравствует Дото-Винницкая Республика!`
     },
     {
         photo: imgDjango,
         name: "Кристоф Вальц",
-        text: `Признаться, мне надоел этот чертов фарс.\n Вы укрываете у себя врагов Ежинии, ведь так?\n\n Медведи прямо у вас... за спиной`
+        text: `Признаться, мне надоел этот чертов фарс.\nВы укрываете у себя врагов Ежинии, ведь так?\n\nМедведи прямо у вас... за спиной.`
     },
     {
         photo: imgLeo,
         name: "Леонардо Ди Каприо",
-        text: `Мне попалось отличное предложение,\n Возможно, это лучший вариант!\n\n Не хотите обсудить инвестирование в нашу страну?`
+        text: `Мне попалось отличное предложение,\nВозможно, это лучший вариант!\n\nНе хотите обсудить инвестирование в нашу страну?`
     },
 ]
 

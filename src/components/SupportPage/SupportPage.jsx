@@ -19,7 +19,7 @@ import "./SupportPage.css"
 
 export const articles = [
     {title: "Где оставить обратную связь (идеи или баги)", icon: imgHelp, component: Feedback, link: "feedback"},
-    {title: "Как использовать токен авторизации", icon: imgHelp, component: AuthToken, link: "auth_token"},
+    {title: "Как использовать токен авторизации", icon: imgHelp, component: AuthToken, link: "auth-token"},
     {title: "История РП: Глава I - Кулсториробоб", icon: imgInfo, component: RpLoreChapter1, link: "rp_lore_chapter1"},
     {title: "История РП: Глава II - Лунная сторона Кулсториробоба", icon: imgInfo, component: RpLoreChapter2, link: "rp_lore_chapter2"},
     {title: "История РП: Глава III - Развязка", icon: imgInfo, component: RpLoreChapter3, link: "rp_lore_chapter3"},

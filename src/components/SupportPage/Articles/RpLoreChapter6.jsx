@@ -3,10 +3,9 @@ import { setPageTitle } from "../../Global"
 import ButtonToTop from "../../ButtonToTop/ButtonToTop"
 import { SupportImg } from "../SupportElements"
 
-import "../SupportPage.css"
+import imgPart1 from "../../../assets/support/RpLoreChapter6/part-1.png"
 
-const imgBasePath = "https://raw.githubusercontent.com/masstik/hedgehog-rp-assets/main/hedgehog-rp"
-const imgPart1 = imgBasePath + "/support/RpLoreChapter6/part-1.png"
+import "../SupportPage.css"
 
 export default function RpLoreChapter5() {
     useEffect(() => {setPageTitle("История РП: Глава VI - Кассиопея - созвездие Единорога")}, [])
