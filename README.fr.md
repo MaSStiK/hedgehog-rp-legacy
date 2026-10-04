@@ -4,7 +4,7 @@
   <a href="./README.fr.md">🇫🇷 Français</a>
 </p>
 
-Hedgehog RP (Legacy - React)
+# Hedgehog RP (Legacy - React)
 
 > **Version :** `v1.0.0`
 > **Version actuelle (Next.js) :** [hedgehog-rp](https://github.com/MaSStiK/hedgehog-rp)
