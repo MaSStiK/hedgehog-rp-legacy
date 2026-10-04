@@ -1,11 +1,12 @@
-<p align="right">
+<p class="language-switch" align="right">
   <a href="./README.md">🇺🇸 English</a> |
-  <a href="./README-ru.md">🇷🇺 Русский</a> |
-  <a href="./README-fr.md">🇫🇷 Français</a>
+  <a href="./README.ru.md">🇷🇺 Русский</a> |
+  <a href="./README.fr.md">🇫🇷 Français</a>
 </p>
 
-# Hedgehog RP (Legacy - React)
-> **Version :** `v1.0.0`  
+Hedgehog RP (Legacy - React)
+
+> **Version :** `v1.0.0`
 > **Version actuelle (Next.js) :** [hedgehog-rp](https://github.com/MaSStiK/hedgehog-rp)
 
 **Hedgehog RP (Legacy)** est une plateforme sociale dédiée à un jeu de rôle politique, réunissant les participants dans un univers virtuel partagé. Les utilisateurs peuvent créer leurs propres États, développer des systèmes politiques et économiques, publier des actualités, interagir avec d'autres joueurs, conclure des alliances, mener des négociations diplomatiques et contribuer à l'évolution de l'histoire commune du projet.
@@ -13,6 +14,7 @@
 Ce dépôt contient la version originale de la plateforme développée avec React. Le projet est désormais en maintenance limitée et ne reçoit plus de nouvelles fonctionnalités.
 
 ## ✨ Fonctionnalités
+
 - Créer et développer vos propres États
 - Publier des actualités et des événements du jeu
 - Éditeur d’articles et de publications intuitif
@@ -24,11 +26,13 @@ Ce dépôt contient la version originale de la plateforme développée avec Reac
 - Univers virtuel partagé avec une histoire en constante évolution
 
 ## 🔗 Projets associés
+
 - 🌍 [Carte interactive](https://github.com/MaSStiK/map.hedgehog-rp)
 - 📺 [Télévision Hérisson](https://github.com/MaSStiK/tv.hedgehog-rp)
 - 📊 [Statistiques de la conversation](https://github.com/MaSStiK/stats.hedgehog-rp)
 
 ## 🛠️ Technologies
+
 - **React** - Interface utilisateur de l'application
 - **react-dropdown-select** - Listes déroulantes personnalisées
 - **react-range** - Curseurs et sélecteurs de plage interactifs
