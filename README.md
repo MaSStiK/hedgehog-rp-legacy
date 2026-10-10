@@ -40,6 +40,8 @@ This repository contains the original React-based version of the platform. The p
 - **jQuery** - DOM manipulation and utility functions
 - **canvas-confetti** - Visual effects and animations
 
+<!-- portfolio:hide:start -->
+
 ## 📸 Screenshots
 
 <table>
@@ -104,3 +106,4 @@ This repository contains the original React-based version of the platform. The p
         </td>
     </tr>
 </table>
+<!-- portfolio:hide:end -->

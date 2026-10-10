@@ -40,6 +40,8 @@ Ce dépôt contient la version originale de la plateforme développée avec Reac
 - **jQuery** - Manipulation du DOM et utilitaires
 - **canvas-confetti** - Animations et effets visuels
 
+<!-- portfolio:hide:start -->
+
 ## 📸 Captures d’écran
 
 <table>
@@ -104,3 +106,4 @@ Ce dépôt contient la version originale de la plateforme développée avec Reac
         </td>
     </tr>
 </table>
+<!-- portfolio:hide:end -->

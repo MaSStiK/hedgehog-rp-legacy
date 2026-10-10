@@ -41,6 +41,8 @@
 - **jQuery** — работа с DOM и вспомогательные утилиты
 - **canvas-confetti** — анимации и визуальные эффекты
 
+<!-- portfolio:hide:start -->
+
 ## 📸 Скриншоты сайта
 
 <table>
@@ -105,3 +107,4 @@
         </td>
     </tr>
 </table>
+<!-- portfolio:hide:end -->
