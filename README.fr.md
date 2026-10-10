@@ -106,4 +106,5 @@ Ce dépôt contient la version originale de la plateforme développée avec Reac
         </td>
     </tr>
 </table>
+
 <!-- portfolio:hide:end -->
