@@ -1,10 +1,14 @@
-<p class="language-switch" align="right">
-  <a href="./README.md">🇺🇸 English</a> |
-  <a href="./README.ru.md">🇷🇺 Русский</a> |
-  <a href="./README.fr.md">🇫🇷 Français</a>
+<p class="language-switch" align="center">
+  <a style="color: white;" href="./README.md">🇺🇸 English</a> •
+  <a style="color: white;" href="./README.ru.md">🇷🇺 Русский</a> •
+  <a style="color: white;" href="./README.fr.md">🇫🇷 Français</a>
 </p>
 
+<div align="center">
+
 # Hedgehog RP (Legacy - React)
+
+</div>
 
 > **Версия:** `v1.0.0`
 > **Актуальная версия (Next.js):** [hedgehog-rp](https://github.com/MaSStiK/hedgehog-rp)
