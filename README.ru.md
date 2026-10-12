@@ -1,5 +1,7 @@
 <p class="language-switch" align="center">
-  [🇺🇸 English](README.md) • [🇷🇺 Русский](README.ru.md) • [🇫🇷 Français](README.fr.md)
+  <a href="./README.md">🇺🇸 English</a> •
+  <a href="./README.ru.md">🇷🇺 Русский</a> •
+  <a href="./README.fr.md">🇫🇷 Français</a>
 </p>
 
 <div align="center">
