@@ -10,8 +10,6 @@
 
 </div>
 
-# Hedgehog RP (Legacy - React)
-
 > **Version:** `v1.0.0`
 > **Current version (Next.js):** [hedgehog-rp](https://github.com/MaSStiK/hedgehog-rp)
 
